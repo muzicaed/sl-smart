@@ -15,13 +15,14 @@ class SearchStationVC: UITableViewController, UISearchResultsUpdating {
   var searchController: UISearchController?
   var searchResult = [Station]()
   var delegate: StationSearchResponder?
+  var lastSearch = NSDate().timeIntervalSince1970
   
   /**
    * View is done loading.
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = UIColor(patternImage: UIImage(named: "GreenBackground")!)    
+    view.backgroundColor = UIColor(patternImage: UIImage(named: "GreenBackground")!)
     
     self.searchController = UISearchController(searchResultsController: nil)
     self.searchController!.searchResultsUpdater = self
@@ -69,13 +70,17 @@ class SearchStationVC: UITableViewController, UISearchResultsUpdating {
   // MARK: UISearchResultsUpdating
   
   @objc func updateSearchResultsForSearchController(searchController: UISearchController) {
-    if let query = searchController.searchBar.text {
-      if query.characters.count > 2 {
-        StationSearchService.sharedInstance.search(query) { stations in
-          dispatch_async(dispatch_get_main_queue(), {
-            self.searchResult = stations
-            self.tableView.reloadData()
-          })
+    let now = NSDate().timeIntervalSince1970
+    if (now - lastSearch) > 0.5 {
+      lastSearch = now
+      if let query = searchController.searchBar.text {
+        if query.characters.count > 2 {
+          StationSearchService.sharedInstance.search(query) { stations in
+            dispatch_async(dispatch_get_main_queue(), {
+              self.searchResult = stations
+              self.tableView.reloadData()
+            })
+          }
         }
       }
     }
