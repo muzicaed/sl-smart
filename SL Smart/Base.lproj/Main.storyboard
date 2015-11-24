@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                     </view>
-                    <navigationItem key="navigationItem" title="Planerad resa" id="83q-d1-17T"/>
+                    <navigationItem key="navigationItem" title="Sök resa" id="83q-d1-17T"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8lo-sW-Z19" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -30,7 +30,7 @@
         <scene sceneID="9uW-oM-y0U">
             <objects>
                 <navigationController id="8Uj-Rb-gfM" userLabel="Navigation Planned Trip" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Plannerad resa" image="PlannedTripIcon" id="5s0-EQ-3vW"/>
+                    <tabBarItem key="tabBarItem" title="Sök resa" image="SearchTripIcon" id="5s0-EQ-3vW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vnL-TT-XGt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -71,11 +71,11 @@
                         <viewControllerLayoutGuide type="bottom" id="vmh-6F-10o"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EMs-EX-gvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VhP-kY-6dU">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="649"/>
                                 <animations/>
                             </mapView>
                         </subviews>
@@ -712,7 +712,7 @@
         <scene sceneID="MTA-Lh-djo">
             <objects>
                 <navigationController id="ogZ-ni-TCn" userLabel="Navigation Routine Trips" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Vanliga resor" image="RutineTripIcon" id="g1N-Jd-Vgq"/>
+                    <tabBarItem key="tabBarItem" title="Smart sökning" image="SmartTripIcon" id="g1N-Jd-Vgq"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iNo-3S-NPq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -726,7 +726,7 @@
             </objects>
             <point key="canvasLocation" x="1512" y="280"/>
         </scene>
-        <!--Vanliga resor-->
+        <!--Smart sökning-->
         <scene sceneID="am1-xS-RbO">
             <objects>
                 <collectionViewController id="TL9-Eb-L0b" customClass="RoutineTripsVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
@@ -831,10 +831,10 @@
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19:23 (3 min.)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="xWu-uO-rQa" userLabel="19:23 (om 3 min.)">
-                                                                                            <rect key="frame" x="0.0" y="12" width="153" height="17"/>
+                                                                                            <rect key="frame" x="0.0" y="10" width="153" height="21.5"/>
                                                                                             <animations/>
-                                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                                                            <color key="textColor" red="0.52156862749999999" green="0.70980392160000005" blue="0.043137254899999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Karlberg super central och kompisar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrG-mx-4mb" userLabel="Karlberg">
@@ -884,10 +884,10 @@
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:43" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="aCY-Bf-tBi" userLabel="20:43">
-                                                                                            <rect key="frame" x="0.0" y="12" width="153" height="17"/>
+                                                                                            <rect key="frame" x="0.0" y="10" width="153" height="21.5"/>
                                                                                             <animations/>
-                                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                                                            <color key="textColor" red="0.52156862749999999" green="0.70980392160000005" blue="0.043137254899999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYo-Ng-Ovo" userLabel="Centralen">
@@ -1315,8 +1315,8 @@
                             <outlet property="delegate" destination="TL9-Eb-L0b" id="F9j-EG-xqd"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Vanliga resor" id="9vb-OE-0pW">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="KgG-WF-SzF">
+                    <navigationItem key="navigationItem" title="Smart sökning" id="9vb-OE-0pW">
+                        <barButtonItem key="rightBarButtonItem" title="Vanor" id="KgG-WF-SzF">
                             <connections>
                                 <segue destination="06E-RP-qJs" kind="show" id="plm-BT-rVX"/>
                             </connections>
@@ -1341,7 +1341,6 @@
                     <connections>
                         <segue destination="ogZ-ni-TCn" kind="relationship" relationship="viewControllers" id="lt8-hY-AbN"/>
                         <segue destination="8Uj-Rb-gfM" kind="relationship" relationship="viewControllers" id="KKd-KH-7HF"/>
-                        <segue destination="7VT-1i-IJ6" kind="relationship" relationship="viewControllers" id="pTj-Wk-Bi3"/>
                         <segue destination="cgm-qe-xun" kind="relationship" relationship="viewControllers" id="whp-zm-fWe"/>
                     </connections>
                 </tabBarController>
@@ -1352,8 +1351,8 @@
     </scenes>
     <resources>
         <image name="MapIcon" width="25" height="25"/>
-        <image name="PlannedTripIcon" width="25" height="25"/>
-        <image name="RutineTripIcon" width="25" height="25"/>
+        <image name="SearchTripIcon" width="25" height="25"/>
+        <image name="SmartTripIcon" width="25" height="25"/>
         <image name="WarningIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>

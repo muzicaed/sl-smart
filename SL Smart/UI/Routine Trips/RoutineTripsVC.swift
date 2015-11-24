@@ -108,10 +108,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     ]
     
     if isShowMore {
-      reusableView.titleLabel.text = "Andra resor härifrån"
+      reusableView.titleLabel.text = "Andra resor"
       reusableView.arrowLabel.text = "▲"
     } else {
-      reusableView.titleLabel.text = "Visa andra resor härifrån"
+      reusableView.titleLabel.text = "Visa andra resor"
       reusableView.arrowLabel.text = "▼"
     }
     return reusableView
