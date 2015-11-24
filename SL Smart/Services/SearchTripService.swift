@@ -19,7 +19,7 @@ class SearchTripService {
    * Search only for closest upcoming trip using origin and destination.
    * Return only one trip.
    */
-  func simpleSingleTripSearch(origin: Station, destination: Station, callback: (Trip) -> Void) {
+  func simpleSingleTripSearch(origin: Station, destination: Station, callback: (Trip) -> Void) {    
     api.simpleSearch(origin, destination: destination) { data in
       let trips = self.convertJsonResponse(data)
       if trips.count == 0 {
@@ -37,7 +37,7 @@ class SearchTripService {
   private func convertJsonResponse(jsonDataString: NSData) -> [Trip] {
     var result = [Trip]()
     let data = JSON(data: jsonDataString)
-    
+
     for (_,tripJson):(String, JSON) in data["TripList"]["Trip"] {
       let tripSegments = convertJsonToSegments(tripJson["LegList"]["Leg"])
       let trip = Trip(
@@ -54,12 +54,12 @@ class SearchTripService {
   /**
    * Converts json to trip segment object.
    */
-  private func convertJsonToSegments(segmentJson: JSON) -> [TripSegment] {
-    var tripSegments = [TripSegment]()
-    
-    for (_,segmentJson):(String, JSON) in segmentJson {
+  private func convertJsonToSegments(segmentsJson: JSON) -> [TripSegment] {
+    var tripSegments = [TripSegment]()    
+    for (_,segmentJson):(String, JSON) in segmentsJson {
       let tripSegment = TripSegment(
-        index: Int(segmentJson["idx"].string!)!, type: segmentJson["type"].string!,
+        index: Int(segmentJson["idx"].string!)!,
+        type: segmentJson["type"].string!,
         directionText: segmentJson["dir"].string, lineNumber: segmentJson["line"].string,
         origin: convertJsonToStation(segmentJson["Origin"]),
         destination: convertJsonToStation(segmentJson["Destination"]),

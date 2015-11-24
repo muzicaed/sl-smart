@@ -136,7 +136,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       
       let screenSize = UIScreen.mainScreen().bounds.size
       if indexPath.section == 0 {
-        return CGSizeMake(screenSize.width - 20, 120)
+        return CGSizeMake(screenSize.width - 20, 110)
       }
       
       return CGSizeMake(screenSize.width - 20, 90)
