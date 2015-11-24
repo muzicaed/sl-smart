@@ -9,36 +9,24 @@
 import Foundation
 
 class RoutineService {
-
+  
   // Singelton pattern
   static let sharedInstance = RoutineService()
   
   
   /**
-   * Finds the best routine trip based on 
+   * Finds the all routine trip based on
    * current position, time and week day.
    * TODO: Only test stub...
    */
-  func findBestRoutineTrip() -> RoutineTrip? {
+  func findRoutineTrip(callback: ([RoutineTrip]) -> Void) {
     let routineTrips = DataStore.sharedInstance.retriveRoutineTrips()
-    if routineTrips.count > 0 {
-      return routineTrips[0]
-    }
     
-    return nil
-  }
-  
-  /**
-   * Finds other relevant trips based on
-   * current position, time and week day.
-   * TODO: Only test stub...
-   */
-  func getOtherTrips() -> [RoutineTrip] {
-    var routineTrips = DataStore.sharedInstance.retriveRoutineTrips()
-    if routineTrips.count > 1 {
-      return Array(routineTrips[1..<routineTrips.count])
-    }
-    
-    return [RoutineTrip]()
+    // Simulate loading
+    let delay = 2 * Double(NSEC_PER_SEC)  // nanoseconds per seconds
+    let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))    
+    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+      callback(routineTrips)
+    })
   }
 }

@@ -1093,6 +1093,91 @@
                                     <outlet property="tripTitleLabel" destination="Dqp-N2-sug" id="mD5-hN-3gl"/>
                                 </connections>
                             </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LoadingCell" id="l3t-u8-IJZ" customClass="RoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
+                                <rect key="frame" x="22" y="344" width="370" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="AgM-1O-YjK">
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2H-Xo-cVm" userLabel="Space">
+                                                    <rect key="frame" x="0.0" y="0.0" width="370" height="5"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="5" id="rk0-d4-ftz"/>
+                                                    </constraints>
+                                                </view>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="imi-vO-4ak" userLabel="Title">
+                                                    <rect key="frame" x="0.0" y="5" width="370" height="30"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfI-m7-reW" userLabel="Space">
+                                                            <rect key="frame" x="0.0" y="0.0" width="11" height="30"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="11" id="9QI-dM-W84"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Laddar..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Cg-V7-lGO">
+                                                            <rect key="frame" x="11" y="0.0" width="348" height="30"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="VvF-cn-neY"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gsh-WD-ch8" userLabel="Space">
+                                                            <rect key="frame" x="359" y="0.0" width="11" height="30"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="11" id="DAy-Fw-ur3"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <animations/>
+                                                </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Khp-Lh-yf7">
+                                                    <rect key="frame" x="0.0" y="35" width="370" height="85"/>
+                                                    <subviews>
+                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="r7S-qu-Lzs">
+                                                            <rect key="frame" x="175" y="33" width="20" height="20"/>
+                                                            <animations/>
+                                                        </activityIndicatorView>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="Khp-Lh-yf7" firstAttribute="bottom" secondItem="AgM-1O-YjK" secondAttribute="bottomMargin" id="Ibf-SQ-8Mn"/>
+                                                <constraint firstItem="Khp-Lh-yf7" firstAttribute="leading" secondItem="AgM-1O-YjK" secondAttribute="leadingMargin" id="fQS-nx-YJB"/>
+                                                <constraint firstItem="Khp-Lh-yf7" firstAttribute="top" secondItem="imi-vO-4ak" secondAttribute="bottom" id="kcg-e5-2uR"/>
+                                                <constraint firstItem="Khp-Lh-yf7" firstAttribute="trailing" secondItem="AgM-1O-YjK" secondAttribute="trailingMargin" id="rY4-Ux-g79"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <color key="backgroundColor" red="0.24667548210000001" green="0.28710690430000002" blue="0.2424794669" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="AgM-1O-YjK" secondAttribute="bottom" id="4Sx-W1-GAY"/>
+                                    <constraint firstAttribute="trailing" secondItem="AgM-1O-YjK" secondAttribute="trailing" id="e5r-Wr-Du4"/>
+                                    <constraint firstItem="AgM-1O-YjK" firstAttribute="top" secondItem="l3t-u8-IJZ" secondAttribute="top" id="ii0-vL-Y1J"/>
+                                    <constraint firstItem="AgM-1O-YjK" firstAttribute="leading" secondItem="l3t-u8-IJZ" secondAttribute="leading" id="o3n-E9-I0v"/>
+                                </constraints>
+                                <size key="customSize" width="370" height="120"/>
+                                <connections>
+                                    <outlet property="tripTitleLabel" destination="6Cg-V7-lGO" id="8zq-IB-dTl"/>
+                                </connections>
+                            </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="GjQ-i1-UMc" customClass="RoutineTripHeader" customModule="SL_Smart" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="64" width="414" height="50"/>

@@ -13,9 +13,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   
   let cellIdentifier = "RoutineTripCell"
   let simpleCellIdentifier = "SimpleRoutineTripCell"
-  var bestTrip: RoutineTrip?
-  var otherTrips = [RoutineTrip]()
+  let loadingCellIdentifier = "LoadingCell"
+  var bestRoutineTrip: RoutineTrip?
+  var otherRoutineTrips = [RoutineTrip]()
   var isShowMore = false
+  var isLoading = true
   
   /**
    * View is done loading
@@ -55,12 +57,15 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func collectionView(collectionView: UICollectionView,
     numberOfItemsInSection section: Int) -> Int {
       if section == 0 {
-        let bestCount = (bestTrip == nil ? 0 : 1)
+        if isLoading {
+          return 1
+        }
+        let bestCount = (bestRoutineTrip == nil ? 0 : 1)
         return bestCount
       }
       
       if isShowMore {
-        return min(otherTrips.count, 4)
+        return min(otherRoutineTrips.count, 4)
       }
       
       return 0
@@ -71,19 +76,13 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func collectionView(collectionView: UICollectionView,
     cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-      
       if indexPath.section == 0 {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier,
-          forIndexPath: indexPath) as! RoutineTripCell
-        cell.setupData(bestTrip!)
-        return cell
+        if isLoading {
+          return createLoadingTripCell(indexPath)
+        }
+        return createBestTripCell(bestRoutineTrip!, indexPath: indexPath)
       }
-      
-      let cell = collectionView.dequeueReusableCellWithReuseIdentifier(simpleCellIdentifier,
-        forIndexPath: indexPath) as! RoutineTripCell
-      cell.setupData(otherTrips[indexPath.row])
-      
-      return cell
+      return createSimpleTripCell(bestRoutineTrip!, indexPath: indexPath)
   }
   
   /**
@@ -116,8 +115,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Title tap
    */
   func onMoreTap() {
-    isShowMore = !isShowMore    
-    self.collectionView?.reloadSections(NSIndexSet(index: 1))
+    if !self.isLoading {
+      isShowMore = !isShowMore
+      self.collectionView?.reloadSections(NSIndexSet(index: 1))
+    }
   }
   
   /**
@@ -167,7 +168,45 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * collection of time table data.
    */
   private func loadTripData() {
-    bestTrip = RoutineService.sharedInstance.findBestRoutineTrip()
-    otherTrips = RoutineService.sharedInstance.getOtherTrips()
+    RoutineService.sharedInstance.findRoutineTrip({ routineTrips in
+      if routineTrips.count > 0 {
+        self.bestRoutineTrip = routineTrips[0]
+        self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
+      } else {
+        // TODO: No trips display help box...
+      }
+      
+      self.isLoading = false
+      self.collectionView?.reloadData()
+      self.collectionView?.reloadSections(NSIndexSet(index: 1))
+    })
+  }
+  
+  /**
+   * Create best trip cell
+   */
+  private func createBestTripCell(trip: RoutineTrip, indexPath: NSIndexPath) -> RoutineTripCell {
+    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(cellIdentifier,
+      forIndexPath: indexPath) as! RoutineTripCell
+    cell.setupData(trip)
+    return cell
+  }
+  
+  /**
+   * Create simple trip cell
+   */
+  private func createSimpleTripCell(trip: RoutineTrip, indexPath: NSIndexPath) -> RoutineTripCell {
+    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(simpleCellIdentifier,
+      forIndexPath: indexPath) as! RoutineTripCell
+    cell.setupData(otherRoutineTrips[indexPath.row])
+    return cell
+  }
+  
+  /**
+   * Create loading trip cell
+   */
+  private func createLoadingTripCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+    return collectionView!.dequeueReusableCellWithReuseIdentifier(loadingCellIdentifier,
+      forIndexPath: indexPath)
   }
 }
