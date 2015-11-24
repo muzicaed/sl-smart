@@ -1,0 +1,891 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		180603641C01FCBE00AC1841 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180603631C01FCBE00AC1841 /* SwiftyJSON.swift */; };
+		180603661C0201A100AC1841 /* HttpRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180603651C0201A100AC1841 /* HttpRequestHelper.swift */; };
+		1806037C1C02165000AC1841 /* StationSearchResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037B1C02165000AC1841 /* StationSearchResponder.swift */; };
+		1806037E1C023E8400AC1841 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037D1C023E8400AC1841 /* DataStore.swift */; };
+		181B9AEF1C0370EF00B9145A /* SLTravelPlannerV2Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */; };
+		181B9AF11C0375DC00B9145A /* TripSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF01C0375DC00B9145A /* TripSegment.swift */; };
+		181B9AF31C0380FD00B9145A /* SearchTripService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF21C0380FD00B9145A /* SearchTripService.swift */; };
+		181B9AF61C03A9E100B9145A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF51C03A9E100B9145A /* Utils.swift */; };
+		181B9AF81C03B3FB00B9145A /* TripHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF71C03B3FB00B9145A /* TripHelper.swift */; };
+		181B9AFA1C03D64000B9145A /* RoutineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF91C03D64000B9145A /* RoutineService.swift */; };
+		181BD4161C047AA900651D0F /* RoutineTripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4151C047AA900651D0F /* RoutineTripHeader.swift */; };
+		18232CA41C01D46A006334D1 /* EditRoutineTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */; };
+		18232CA61C01DB81006334D1 /* StyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA51C01DB81006334D1 /* StyleButton.swift */; };
+		18232CAA1C01EA15006334D1 /* StationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA91C01EA15006334D1 /* StationSearchService.swift */; };
+		18232CAC1C01EC2F006334D1 /* SearchStationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAB1C01EC2F006334D1 /* SearchStationVC.swift */; };
+		18232CAE1C01F1CA006334D1 /* ManageRoutineTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAD1C01F1CA006334D1 /* ManageRoutineTripCell.swift */; };
+		18232CB01C01FA78006334D1 /* SLSearchStationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */; };
+		183AE0D01C047BF10032CA2A /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183AE0C91C047BE50032CA2A /* SwiftHTTP.framework */; };
+		183AE0D11C047C080032CA2A /* SwiftHTTP.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 183AE0C91C047BE50032CA2A /* SwiftHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		18937E351BFF33FA00C523C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E341BFF33FA00C523C9 /* AppDelegate.swift */; };
+		18937E3A1BFF33FA00C523C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18937E381BFF33FA00C523C9 /* Main.storyboard */; };
+		18937E3C1BFF33FA00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E3B1BFF33FA00C523C9 /* Assets.xcassets */; };
+		18937E3F1BFF33FA00C523C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18937E3D1BFF33FA00C523C9 /* LaunchScreen.storyboard */; };
+		18937E441BFF33FB00C523C9 /* SL Smart.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 18937E431BFF33FB00C523C9 /* SL Smart.app */; };
+		18937E4A1BFF33FB00C523C9 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18937E481BFF33FB00C523C9 /* Interface.storyboard */; };
+		18937E4C1BFF33FB00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E4B1BFF33FB00C523C9 /* Assets.xcassets */; };
+		18937E531BFF33FB00C523C9 /* SL Smart.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 18937E521BFF33FB00C523C9 /* SL Smart.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		18937E5A1BFF33FB00C523C9 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E591BFF33FB00C523C9 /* InterfaceController.swift */; };
+		18937E5C1BFF33FB00C523C9 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */; };
+		18937E5E1BFF33FB00C523C9 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5D1BFF33FB00C523C9 /* NotificationController.swift */; };
+		18937E601BFF33FB00C523C9 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5F1BFF33FB00C523C9 /* GlanceController.swift */; };
+		18937E621BFF33FB00C523C9 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E611BFF33FB00C523C9 /* ComplicationController.swift */; };
+		18937E641BFF33FB00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E631BFF33FB00C523C9 /* Assets.xcassets */; };
+		18937E771BFF5D6B00C523C9 /* RoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E761BFF5D6B00C523C9 /* RoutineTripsVC.swift */; };
+		18937E7A1BFF5F2F00C523C9 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E791BFF5F2F00C523C9 /* Trip.swift */; };
+		18937E7C1BFF5F8100C523C9 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E7B1BFF5F8100C523C9 /* Station.swift */; };
+		18937E7E1BFF6AB700C523C9 /* RoutineTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E7D1BFF6AB700C523C9 /* RoutineTripCell.swift */; };
+		18937E811BFFABFC00C523C9 /* PlannedTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E801BFFABFC00C523C9 /* PlannedTripsVC.swift */; };
+		18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */; };
+		18937E871C00A17700C523C9 /* RoutineTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E861C00A17700C523C9 /* RoutineTrip.swift */; };
+		18CE5CC71C025E3E00E1F5A9 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC61C025E3E00E1F5A9 /* Routine.swift */; };
+		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
+		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		183AE0C81C047BE50032CA2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6BFD901619C8D8B500DD99B6;
+			remoteInfo = SwiftHTTP;
+		};
+		183AE0CA1C047BE50032CA2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6BFD902119C8D8B500DD99B6;
+			remoteInfo = SwiftHTTPTests;
+		};
+		183AE0CC1C047BE50032CA2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D958025919E6EEEB003C8218;
+			remoteInfo = SwiftHTTPOSX;
+		};
+		183AE0CE1C047BE50032CA2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D958026319E6EEEB003C8218;
+			remoteInfo = SwiftHTTPOSXTests;
+		};
+		18937E451BFF33FB00C523C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18937E421BFF33FB00C523C9;
+			remoteInfo = "Res i Sverige WatchKit App";
+		};
+		18937E541BFF33FB00C523C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18937E511BFF33FB00C523C9;
+			remoteInfo = "Res i Sverige WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		180603771C02045C00AC1841 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				183AE0D11C047C080032CA2A /* SwiftHTTP.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18937E6B1BFF33FB00C523C9 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				18937E531BFF33FB00C523C9 /* SL Smart.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18937E6F1BFF33FB00C523C9 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				18937E441BFF33FB00C523C9 /* SL Smart.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		180603631C01FCBE00AC1841 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		180603651C0201A100AC1841 /* HttpRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHelper.swift; sourceTree = "<group>"; };
+		180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftHTTP.xcodeproj; path = /Users/mikaelhellman/Development/Xcode/SwiftHTTP/SwiftHTTP.xcodeproj; sourceTree = "<absolute>"; };
+		1806037B1C02165000AC1841 /* StationSearchResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationSearchResponder.swift; sourceTree = "<group>"; };
+		1806037D1C023E8400AC1841 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLTravelPlannerV2Api.swift; sourceTree = "<group>"; };
+		181B9AF01C0375DC00B9145A /* TripSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSegment.swift; sourceTree = "<group>"; };
+		181B9AF21C0380FD00B9145A /* SearchTripService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTripService.swift; sourceTree = "<group>"; };
+		181B9AF51C03A9E100B9145A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		181B9AF71C03B3FB00B9145A /* TripHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHelper.swift; sourceTree = "<group>"; };
+		181B9AF91C03D64000B9145A /* RoutineService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineService.swift; sourceTree = "<group>"; };
+		181BD4151C047AA900651D0F /* RoutineTripHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTripHeader.swift; sourceTree = "<group>"; };
+		18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRoutineTripVC.swift; sourceTree = "<group>"; };
+		18232CA51C01DB81006334D1 /* StyleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleButton.swift; sourceTree = "<group>"; };
+		18232CA91C01EA15006334D1 /* StationSearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationSearchService.swift; sourceTree = "<group>"; };
+		18232CAB1C01EC2F006334D1 /* SearchStationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchStationVC.swift; sourceTree = "<group>"; };
+		18232CAD1C01F1CA006334D1 /* ManageRoutineTripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageRoutineTripCell.swift; sourceTree = "<group>"; };
+		18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchStationApi.swift; sourceTree = "<group>"; };
+		18937E311BFF33FA00C523C9 /* SL Smart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SL Smart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18937E341BFF33FA00C523C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		18937E391BFF33FA00C523C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		18937E3B1BFF33FA00C523C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18937E3E1BFF33FA00C523C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		18937E401BFF33FA00C523C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18937E431BFF33FB00C523C9 /* SL Smart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SL Smart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18937E491BFF33FB00C523C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		18937E4B1BFF33FB00C523C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18937E4D1BFF33FB00C523C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18937E521BFF33FB00C523C9 /* SL Smart.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SL Smart.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18937E581BFF33FB00C523C9 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		18937E591BFF33FB00C523C9 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		18937E5D1BFF33FB00C523C9 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		18937E5F1BFF33FB00C523C9 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		18937E611BFF33FB00C523C9 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		18937E631BFF33FB00C523C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18937E651BFF33FB00C523C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18937E761BFF5D6B00C523C9 /* RoutineTripsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTripsVC.swift; sourceTree = "<group>"; };
+		18937E791BFF5F2F00C523C9 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		18937E7B1BFF5F8100C523C9 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		18937E7D1BFF6AB700C523C9 /* RoutineTripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTripCell.swift; sourceTree = "<group>"; };
+		18937E801BFFABFC00C523C9 /* PlannedTripsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannedTripsVC.swift; sourceTree = "<group>"; };
+		18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageRoutineTripsVC.swift; sourceTree = "<group>"; };
+		18937E861C00A17700C523C9 /* RoutineTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTrip.swift; sourceTree = "<group>"; };
+		18CE5CC61C025E3E00E1F5A9 /* Routine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
+		18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleHelper.swift; sourceTree = "<group>"; };
+		18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabVC.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18937E2E1BFF33FA00C523C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				183AE0D01C047BF10032CA2A /* SwiftHTTP.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18937E4F1BFF33FB00C523C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		181B9AF41C03A9BC00B9145A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				181B9AF51C03A9E100B9145A /* Utils.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		18232CA71C01E954006334D1 /* Manage Routine Trips */ = {
+			isa = PBXGroup;
+			children = (
+				18232CAD1C01F1CA006334D1 /* ManageRoutineTripCell.swift */,
+				18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */,
+				18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */,
+				18232CAB1C01EC2F006334D1 /* SearchStationVC.swift */,
+			);
+			name = "Manage Routine Trips";
+			path = "Manage routine trips";
+			sourceTree = "<group>";
+		};
+		18232CA81C01E9FF006334D1 /* SL API */ = {
+			isa = PBXGroup;
+			children = (
+				18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */,
+				181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */,
+				180603651C0201A100AC1841 /* HttpRequestHelper.swift */,
+			);
+			path = "SL API";
+			sourceTree = "<group>";
+		};
+		1827692E1C01163B00655B4B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				18232CA51C01DB81006334D1 /* StyleButton.swift */,
+				1806037B1C02165000AC1841 /* StationSearchResponder.swift */,
+				18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		183AE0C21C047BE50032CA2A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				183AE0C91C047BE50032CA2A /* SwiftHTTP.framework */,
+				183AE0CB1C047BE50032CA2A /* SwiftHTTPTests.xctest */,
+				183AE0CD1C047BE50032CA2A /* SwiftHTTP.framework */,
+				183AE0CF1C047BE50032CA2A /* SwiftHTTPOSXTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18937E281BFF33FA00C523C9 = {
+			isa = PBXGroup;
+			children = (
+				18CE5CCC1C0329DA00E1F5A9 /* Libraries */,
+				18937E331BFF33FA00C523C9 /* SL Smart */,
+				18937E471BFF33FB00C523C9 /* SL Smart WatchKit App */,
+				18937E561BFF33FB00C523C9 /* SL Smart WatchKit Extension */,
+				18937E321BFF33FA00C523C9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		18937E321BFF33FA00C523C9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18937E311BFF33FA00C523C9 /* SL Smart.app */,
+				18937E431BFF33FB00C523C9 /* SL Smart.app */,
+				18937E521BFF33FB00C523C9 /* SL Smart.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18937E331BFF33FA00C523C9 /* SL Smart */ = {
+			isa = PBXGroup;
+			children = (
+				181B9AF41C03A9BC00B9145A /* Common */,
+				18937E891C01139E00C523C9 /* UI */,
+				18937E881C01139400C523C9 /* Services */,
+				18937E781BFF5EF800C523C9 /* Model */,
+				18937E341BFF33FA00C523C9 /* AppDelegate.swift */,
+				18937E381BFF33FA00C523C9 /* Main.storyboard */,
+				18937E3B1BFF33FA00C523C9 /* Assets.xcassets */,
+				18937E3D1BFF33FA00C523C9 /* LaunchScreen.storyboard */,
+				18937E401BFF33FA00C523C9 /* Info.plist */,
+			);
+			path = "SL Smart";
+			sourceTree = "<group>";
+		};
+		18937E471BFF33FB00C523C9 /* SL Smart WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				18937E481BFF33FB00C523C9 /* Interface.storyboard */,
+				18937E4B1BFF33FB00C523C9 /* Assets.xcassets */,
+				18937E4D1BFF33FB00C523C9 /* Info.plist */,
+			);
+			path = "SL Smart WatchKit App";
+			sourceTree = "<group>";
+		};
+		18937E561BFF33FB00C523C9 /* SL Smart WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				18937E591BFF33FB00C523C9 /* InterfaceController.swift */,
+				18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */,
+				18937E5D1BFF33FB00C523C9 /* NotificationController.swift */,
+				18937E5F1BFF33FB00C523C9 /* GlanceController.swift */,
+				18937E611BFF33FB00C523C9 /* ComplicationController.swift */,
+				18937E631BFF33FB00C523C9 /* Assets.xcassets */,
+				18937E651BFF33FB00C523C9 /* Info.plist */,
+				18937E571BFF33FB00C523C9 /* Supporting Files */,
+			);
+			path = "SL Smart WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		18937E571BFF33FB00C523C9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				18937E581BFF33FB00C523C9 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18937E751BFF5CFC00C523C9 /* Routine Trips */ = {
+			isa = PBXGroup;
+			children = (
+				18232CA71C01E954006334D1 /* Manage Routine Trips */,
+				18937E761BFF5D6B00C523C9 /* RoutineTripsVC.swift */,
+				18937E7D1BFF6AB700C523C9 /* RoutineTripCell.swift */,
+				181BD4151C047AA900651D0F /* RoutineTripHeader.swift */,
+			);
+			path = "Routine Trips";
+			sourceTree = "<group>";
+		};
+		18937E781BFF5EF800C523C9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18937E791BFF5F2F00C523C9 /* Trip.swift */,
+				18937E7B1BFF5F8100C523C9 /* Station.swift */,
+				18937E861C00A17700C523C9 /* RoutineTrip.swift */,
+				1806037D1C023E8400AC1841 /* DataStore.swift */,
+				18CE5CC61C025E3E00E1F5A9 /* Routine.swift */,
+				181B9AF01C0375DC00B9145A /* TripSegment.swift */,
+				181B9AF71C03B3FB00B9145A /* TripHelper.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18937E7F1BFFABC100C523C9 /* Planned Trips */ = {
+			isa = PBXGroup;
+			children = (
+				18937E801BFFABFC00C523C9 /* PlannedTripsVC.swift */,
+			);
+			path = "Planned Trips";
+			sourceTree = "<group>";
+		};
+		18937E881C01139400C523C9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				18232CA81C01E9FF006334D1 /* SL API */,
+				181B9AF91C03D64000B9145A /* RoutineService.swift */,
+				18232CA91C01EA15006334D1 /* StationSearchService.swift */,
+				181B9AF21C0380FD00B9145A /* SearchTripService.swift */,
+				180603631C01FCBE00AC1841 /* SwiftyJSON.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		18937E891C01139E00C523C9 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				1827692E1C01163B00655B4B /* Common */,
+				18937E751BFF5CFC00C523C9 /* Routine Trips */,
+				18937E7F1BFFABC100C523C9 /* Planned Trips */,
+				18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		18CE5CCC1C0329DA00E1F5A9 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18937E301BFF33FA00C523C9 /* SL Smart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18937E701BFF33FB00C523C9 /* Build configuration list for PBXNativeTarget "SL Smart" */;
+			buildPhases = (
+				18937E2D1BFF33FA00C523C9 /* Sources */,
+				18937E2E1BFF33FA00C523C9 /* Frameworks */,
+				18937E2F1BFF33FA00C523C9 /* Resources */,
+				18937E6F1BFF33FB00C523C9 /* Embed Watch Content */,
+				18937E731BFF344600C523C9 /* ShellScript */,
+				18937E741BFF346F00C523C9 /* ShellScript */,
+				180603771C02045C00AC1841 /* Copy Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18937E461BFF33FB00C523C9 /* PBXTargetDependency */,
+			);
+			name = "SL Smart";
+			productName = "Res i Sverige";
+			productReference = 18937E311BFF33FA00C523C9 /* SL Smart.app */;
+			productType = "com.apple.product-type.application";
+		};
+		18937E421BFF33FB00C523C9 /* SL Smart WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18937E6C1BFF33FB00C523C9 /* Build configuration list for PBXNativeTarget "SL Smart WatchKit App" */;
+			buildPhases = (
+				18937E411BFF33FB00C523C9 /* Resources */,
+				18937E6B1BFF33FB00C523C9 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18937E551BFF33FB00C523C9 /* PBXTargetDependency */,
+			);
+			name = "SL Smart WatchKit App";
+			productName = "Res i Sverige WatchKit App";
+			productReference = 18937E431BFF33FB00C523C9 /* SL Smart.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		18937E511BFF33FB00C523C9 /* SL Smart WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18937E681BFF33FB00C523C9 /* Build configuration list for PBXNativeTarget "SL Smart WatchKit Extension" */;
+			buildPhases = (
+				18937E4E1BFF33FB00C523C9 /* Sources */,
+				18937E4F1BFF33FB00C523C9 /* Frameworks */,
+				18937E501BFF33FB00C523C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SL Smart WatchKit Extension";
+			productName = "Res i Sverige WatchKit Extension";
+			productReference = 18937E521BFF33FB00C523C9 /* SL Smart.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18937E291BFF33FA00C523C9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Mikael Hellman";
+				TargetAttributes = {
+					18937E301BFF33FA00C523C9 = {
+						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 43E7S6Y435;
+					};
+					18937E421BFF33FB00C523C9 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+					18937E511BFF33FB00C523C9 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 18937E2C1BFF33FA00C523C9 /* Build configuration list for PBXProject "SL Smart" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 18937E281BFF33FA00C523C9;
+			productRefGroup = 18937E321BFF33FA00C523C9 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 183AE0C21C047BE50032CA2A /* Products */;
+					ProjectRef = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				18937E301BFF33FA00C523C9 /* SL Smart */,
+				18937E421BFF33FB00C523C9 /* SL Smart WatchKit App */,
+				18937E511BFF33FB00C523C9 /* SL Smart WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		183AE0C91C047BE50032CA2A /* SwiftHTTP.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftHTTP.framework;
+			remoteRef = 183AE0C81C047BE50032CA2A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		183AE0CB1C047BE50032CA2A /* SwiftHTTPTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftHTTPTests.xctest;
+			remoteRef = 183AE0CA1C047BE50032CA2A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		183AE0CD1C047BE50032CA2A /* SwiftHTTP.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftHTTP.framework;
+			remoteRef = 183AE0CC1C047BE50032CA2A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		183AE0CF1C047BE50032CA2A /* SwiftHTTPOSXTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftHTTPOSXTests.xctest;
+			remoteRef = 183AE0CE1C047BE50032CA2A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		18937E2F1BFF33FA00C523C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18937E3F1BFF33FA00C523C9 /* LaunchScreen.storyboard in Resources */,
+				18937E3C1BFF33FA00C523C9 /* Assets.xcassets in Resources */,
+				18937E3A1BFF33FA00C523C9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18937E411BFF33FB00C523C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18937E4C1BFF33FB00C523C9 /* Assets.xcassets in Resources */,
+				18937E4A1BFF33FB00C523C9 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18937E501BFF33FB00C523C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18937E641BFF33FB00C523C9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		18937E731BFF344600C523C9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$SRCROOT/${PRODUCT_NAME} WatchKit Extension/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$SRCROOT/${PRODUCT_NAME} WatchKit App/Info.plist\"";
+		};
+		18937E741BFF346F00C523C9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "VERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nNEWSUBVERSION=`echo $VERSIONNUM | awk -F \".\" '{print $3}'`\nNEWSUBVERSION=$(($NEWSUBVERSION + 1))\nNEWVERSIONSTRING=`echo $VERSIONNUM | awk -F \".\" '{print $1 \".\" $2 \".'$NEWSUBVERSION'\" }'`\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"$SRCROOT/${PRODUCT_NAME} WatchKit Extension/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"$SRCROOT/${PRODUCT_NAME} WatchKit App/Info.plist\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18937E2D1BFF33FA00C523C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				181B9AEF1C0370EF00B9145A /* SLTravelPlannerV2Api.swift in Sources */,
+				181B9AF81C03B3FB00B9145A /* TripHelper.swift in Sources */,
+				1806037E1C023E8400AC1841 /* DataStore.swift in Sources */,
+				18937E811BFFABFC00C523C9 /* PlannedTripsVC.swift in Sources */,
+				18937E7A1BFF5F2F00C523C9 /* Trip.swift in Sources */,
+				18937E771BFF5D6B00C523C9 /* RoutineTripsVC.swift in Sources */,
+				181B9AF61C03A9E100B9145A /* Utils.swift in Sources */,
+				18CE5CC71C025E3E00E1F5A9 /* Routine.swift in Sources */,
+				180603641C01FCBE00AC1841 /* SwiftyJSON.swift in Sources */,
+				1806037C1C02165000AC1841 /* StationSearchResponder.swift in Sources */,
+				181B9AF31C0380FD00B9145A /* SearchTripService.swift in Sources */,
+				18232CAE1C01F1CA006334D1 /* ManageRoutineTripCell.swift in Sources */,
+				18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */,
+				18232CA61C01DB81006334D1 /* StyleButton.swift in Sources */,
+				18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */,
+				181B9AFA1C03D64000B9145A /* RoutineService.swift in Sources */,
+				181BD4161C047AA900651D0F /* RoutineTripHeader.swift in Sources */,
+				181B9AF11C0375DC00B9145A /* TripSegment.swift in Sources */,
+				18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */,
+				18232CB01C01FA78006334D1 /* SLSearchStationApi.swift in Sources */,
+				18232CAC1C01EC2F006334D1 /* SearchStationVC.swift in Sources */,
+				18937E7C1BFF5F8100C523C9 /* Station.swift in Sources */,
+				18937E7E1BFF6AB700C523C9 /* RoutineTripCell.swift in Sources */,
+				18232CA41C01D46A006334D1 /* EditRoutineTripVC.swift in Sources */,
+				18937E871C00A17700C523C9 /* RoutineTrip.swift in Sources */,
+				18232CAA1C01EA15006334D1 /* StationSearchService.swift in Sources */,
+				180603661C0201A100AC1841 /* HttpRequestHelper.swift in Sources */,
+				18937E351BFF33FA00C523C9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18937E4E1BFF33FB00C523C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18937E5E1BFF33FB00C523C9 /* NotificationController.swift in Sources */,
+				18937E5C1BFF33FB00C523C9 /* ExtensionDelegate.swift in Sources */,
+				18937E621BFF33FB00C523C9 /* ComplicationController.swift in Sources */,
+				18937E5A1BFF33FB00C523C9 /* InterfaceController.swift in Sources */,
+				18937E601BFF33FB00C523C9 /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18937E461BFF33FB00C523C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18937E421BFF33FB00C523C9 /* SL Smart WatchKit App */;
+			targetProxy = 18937E451BFF33FB00C523C9 /* PBXContainerItemProxy */;
+		};
+		18937E551BFF33FB00C523C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18937E511BFF33FB00C523C9 /* SL Smart WatchKit Extension */;
+			targetProxy = 18937E541BFF33FB00C523C9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		18937E381BFF33FA00C523C9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18937E391BFF33FA00C523C9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		18937E3D1BFF33FA00C523C9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18937E3E1BFF33FA00C523C9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		18937E481BFF33FB00C523C9 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18937E491BFF33FB00C523C9 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		18937E661BFF33FB00C523C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		18937E671BFF33FB00C523C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		18937E691BFF33FB00C523C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				INFOPLIST_FILE = "SL Smart WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "SL Smart";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		18937E6A1BFF33FB00C523C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				INFOPLIST_FILE = "SL Smart WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "SL Smart";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		18937E6D1BFF33FB00C523C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = Res_i_Sverige_WatchKit_Extension;
+				INFOPLIST_FILE = "SL Smart WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp";
+				PRODUCT_NAME = "SL Smart";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		18937E6E1BFF33FB00C523C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = Res_i_Sverige_WatchKit_Extension;
+				INFOPLIST_FILE = "SL Smart WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp";
+				PRODUCT_NAME = "SL Smart";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		18937E711BFF33FB00C523C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "SL Smart/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart";
+				PRODUCT_NAME = "SL Smart";
+			};
+			name = Debug;
+		};
+		18937E721BFF33FB00C523C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "SL Smart/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart";
+				PRODUCT_NAME = "SL Smart";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18937E2C1BFF33FA00C523C9 /* Build configuration list for PBXProject "SL Smart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18937E661BFF33FB00C523C9 /* Debug */,
+				18937E671BFF33FB00C523C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18937E681BFF33FB00C523C9 /* Build configuration list for PBXNativeTarget "SL Smart WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18937E691BFF33FB00C523C9 /* Debug */,
+				18937E6A1BFF33FB00C523C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18937E6C1BFF33FB00C523C9 /* Build configuration list for PBXNativeTarget "SL Smart WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18937E6D1BFF33FB00C523C9 /* Debug */,
+				18937E6E1BFF33FB00C523C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18937E701BFF33FB00C523C9 /* Build configuration list for PBXNativeTarget "SL Smart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18937E711BFF33FB00C523C9 /* Debug */,
+				18937E721BFF33FB00C523C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18937E291BFF33FA00C523C9 /* Project object */;
+}
