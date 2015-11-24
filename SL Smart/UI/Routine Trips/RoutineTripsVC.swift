@@ -77,7 +77,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       let cell = collectionView.dequeueReusableCellWithReuseIdentifier(simpleCellIdentifier,
         forIndexPath: indexPath) as! RoutineTripCell
       cell.setupData(otherTrips[indexPath.row])
-
+      
       return cell
   }
   
@@ -94,20 +94,23 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       return reusableView
     }
     
-    reusableView.titleLabel.text = "Andra resor"
+    reusableView.titleLabel.text = "Andra resor härifrån"
     return reusableView
   }
-
+  
   /**
    * Size for items.
    */
   func collectionView(collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,
     sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-
-      if indexPath.section == 1
-
       
+      let screenSize = UIScreen.mainScreen().bounds.size
+      if indexPath.section == 0 {
+        return CGSizeMake(screenSize.width - 20, 125)
+      }
+      
+      return CGSizeMake(screenSize.width - 20, 90)
   }
   
   // MARK: Private methods
@@ -117,9 +120,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   */
   private func setupCollectionView() {
     let flowLayout = UICollectionViewFlowLayout()
-    flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 20, 0)
+    flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 10, 0)
     flowLayout.headerReferenceSize = CGSizeMake(self.collectionView!.frame.size.width, 50)
-
+    
     
     collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
     collectionView?.collectionViewLayout = flowLayout
