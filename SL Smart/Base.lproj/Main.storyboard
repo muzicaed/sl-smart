@@ -725,7 +725,7 @@
             </objects>
             <point key="canvasLocation" x="1512" y="280"/>
         </scene>
-        <!--Mina resor-->
+        <!--Vanliga resor-->
         <scene sceneID="am1-xS-RbO">
             <objects>
                 <collectionViewController id="TL9-Eb-L0b" customClass="RoutineTripsVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
@@ -936,7 +936,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
-                                <color key="backgroundColor" red="0.090723633275509613" green="0.16845771070524984" blue="0.10403464764912601" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.24667548210000001" green="0.28710690430000002" blue="0.2424794669" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="5dC-JA-zlN" firstAttribute="top" secondItem="nIr-Nm-SXo" secondAttribute="top" id="2es-0D-9sn"/>
                                     <constraint firstItem="5dC-JA-zlN" firstAttribute="leading" secondItem="nIr-Nm-SXo" secondAttribute="leading" id="E6x-9f-ajc"/>
@@ -1080,7 +1080,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
-                                <color key="backgroundColor" red="0.090723633279999993" green="0.16845771070000001" blue="0.1040346476" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.24667548210000001" green="0.28710690430000002" blue="0.2424794669" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="rGc-N7-r7Y" secondAttribute="bottom" id="6bN-5P-V5G"/>
                                     <constraint firstItem="rGc-N7-r7Y" firstAttribute="top" secondItem="duh-gS-XIe" secondAttribute="top" id="CJc-0m-0cA"/>
@@ -1094,35 +1094,40 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="HeaderView" id="GjQ-i1-UMc" customClass="RoutineTripHeader" customModule="SL_Smart" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="GjQ-i1-UMc" customClass="RoutineTripHeader" customModule="SL_Smart" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="64" width="414" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eTu-pW-AjU">
                                     <rect key="frame" x="8" y="8" width="398" height="34"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bEW-dN-PeS">
-                                            <rect key="frame" x="13" y="8" width="372" height="18"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiK-10-sGX">
+                                            <rect key="frame" x="23" y="8" width="352" height="19"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xD-MP-Srz">
-                                                    <rect key="frame" x="0.0" y="0.0" width="372" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xD-MP-Srz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="336" height="19"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="▼" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pfn-Sv-5S8">
+                                                    <rect key="frame" x="336" y="0.0" width="16" height="19"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <animations/>
-                                            <color key="backgroundColor" red="0.52156862749999999" green="0.70980392160000005" blue="0.043137254899999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </stackView>
                                     </subviews>
                                     <animations/>
-                                    <color key="backgroundColor" red="0.52156862749999999" green="0.70980392160000005" blue="0.043137254899999998" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.52156862749999999" green="0.70980392160000005" blue="0.043137254899999998" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="bEW-dN-PeS" firstAttribute="leading" secondItem="eTu-pW-AjU" secondAttribute="leadingMargin" constant="5" id="2rg-qn-IUV"/>
-                                        <constraint firstItem="bEW-dN-PeS" firstAttribute="top" secondItem="eTu-pW-AjU" secondAttribute="topMargin" id="7rp-qE-NGG"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="bEW-dN-PeS" secondAttribute="trailing" constant="5" id="f0Q-dN-S0W"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="bEW-dN-PeS" secondAttribute="bottom" id="snS-NB-0lJ"/>
+                                        <constraint firstItem="hiK-10-sGX" firstAttribute="top" secondItem="eTu-pW-AjU" secondAttribute="topMargin" id="IZg-3L-2YV"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="hiK-10-sGX" secondAttribute="trailing" constant="15" id="dYo-5q-dmR"/>
+                                        <constraint firstItem="hiK-10-sGX" firstAttribute="leading" secondItem="eTu-pW-AjU" secondAttribute="leadingMargin" constant="15" id="gD2-yp-vfM"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -1134,6 +1139,7 @@
                                 <constraint firstItem="eTu-pW-AjU" firstAttribute="top" secondItem="GjQ-i1-UMc" secondAttribute="topMargin" id="mLx-3n-Yqo"/>
                             </constraints>
                             <connections>
+                                <outlet property="arrowLabel" destination="Pfn-Sv-5S8" id="sTd-Rd-qy4"/>
                                 <outlet property="titleLabel" destination="0xD-MP-Srz" id="C7C-qw-XJI"/>
                             </connections>
                         </collectionReusableView>
@@ -1142,7 +1148,7 @@
                             <outlet property="delegate" destination="TL9-Eb-L0b" id="F9j-EG-xqd"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Mina resor" id="9vb-OE-0pW">
+                    <navigationItem key="navigationItem" title="Vanliga resor" id="9vb-OE-0pW">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="KgG-WF-SzF">
                             <connections>
                                 <segue destination="06E-RP-qJs" kind="show" id="plm-BT-rVX"/>

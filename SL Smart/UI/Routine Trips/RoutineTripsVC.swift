@@ -15,6 +15,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   let simpleCellIdentifier = "SimpleRoutineTripCell"
   var bestTrip: RoutineTrip?
   var otherTrips = [RoutineTrip]()
+  var isShowMore = false
   
   /**
    * View is done loading
@@ -58,7 +59,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         return bestCount
       }
       
-      return min(otherTrips.count, 4)
+      if isShowMore {
+        return min(otherTrips.count, 4)
+      }
+      
+      return 0
   }
   
   /**
@@ -90,12 +95,29 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView", forIndexPath: indexPath) as! RoutineTripHeader
     
     if indexPath.section == 0 {
-      reusableView.titleLabel.text = "Trolig resa"
       return reusableView
     }
     
-    reusableView.titleLabel.text = "Andra resor härifrån"
+    reusableView.gestureRecognizers = [
+      UITapGestureRecognizer(target: self, action: Selector("onMoreTap"))
+    ]
+    
+    if isShowMore {
+      reusableView.titleLabel.text = "Andra resor härifrån"
+      reusableView.arrowLabel.text = "▲"
+    } else {
+      reusableView.titleLabel.text = "Visa andra resor härifrån"
+      reusableView.arrowLabel.text = "▼"
+    }
     return reusableView
+  }
+  
+  /**
+   * Title tap
+   */
+  func onMoreTap() {
+    isShowMore = !isShowMore    
+    self.collectionView?.reloadSections(NSIndexSet(index: 1))
   }
   
   /**
@@ -113,6 +135,17 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       return CGSizeMake(screenSize.width - 20, 90)
   }
   
+  func collectionView(collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    referenceSizeForHeaderInSection section: Int) -> CGSize {
+      
+      if section == 0 {
+        return CGSizeMake(0, 0)
+      }
+      
+      return CGSizeMake(self.collectionView!.frame.size.width, 50)
+  }
+  
   // MARK: Private methods
   
   /**
@@ -121,8 +154,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   private func setupCollectionView() {
     let flowLayout = UICollectionViewFlowLayout()
     flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 10, 0)
-    flowLayout.headerReferenceSize = CGSizeMake(self.collectionView!.frame.size.width, 50)
-    
     
     collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
     collectionView?.collectionViewLayout = flowLayout
@@ -138,7 +169,5 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   private func loadTripData() {
     bestTrip = RoutineService.sharedInstance.findBestRoutineTrip()
     otherTrips = RoutineService.sharedInstance.getOtherTrips()
-    print(bestTrip)
-    print(otherTrips)
   }
 }
