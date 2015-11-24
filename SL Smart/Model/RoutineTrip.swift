@@ -13,7 +13,7 @@ class RoutineTrip: NSObject, NSCoding {
   var routine: Routine?
   var origin: Station?
   var destination: Station?
-  var trips = [Trip]()
+  var trip = Trip(durationMin: 0, noOfChanges: 0, tripSegments: nil)
   
   init(title: String?, origin: Station?, destination: Station?, routine: Routine?) {
     self.title = title

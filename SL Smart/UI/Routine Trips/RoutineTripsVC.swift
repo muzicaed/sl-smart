@@ -25,7 +25,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCollectionView()
-    loadTripData()
   }
   
   /**
@@ -33,7 +32,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    isShowMore = false
+    isLoading = true
+    bestRoutineTrip = nil
+    otherRoutineTrips = [RoutineTrip]()
     collectionView?.reloadData()
+    loadTripData()
   }
   
   /**
@@ -91,7 +95,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
     
     let reusableView = collectionView.dequeueReusableSupplementaryViewOfKind(
-      UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView", forIndexPath: indexPath) as! RoutineTripHeader
+      UICollectionElementKindSectionHeader,
+      withReuseIdentifier: "HeaderView",
+      forIndexPath: indexPath) as! RoutineTripHeader
     
     if indexPath.section == 0 {
       return reusableView
@@ -130,7 +136,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       
       let screenSize = UIScreen.mainScreen().bounds.size
       if indexPath.section == 0 {
-        return CGSizeMake(screenSize.width - 20, 125)
+        return CGSizeMake(screenSize.width - 20, 120)
       }
       
       return CGSizeMake(screenSize.width - 20, 90)
@@ -140,8 +146,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     layout collectionViewLayout: UICollectionViewLayout,
     referenceSizeForHeaderInSection section: Int) -> CGSize {
       
-      if section == 0 {
+      if section == 0  {
         return CGSizeMake(0, 0)
+      } else if section == 1 && otherRoutineTrips.count == 0 {
+        return CGSizeMake(0, 0)        
       }
       
       return CGSizeMake(self.collectionView!.frame.size.width, 50)
@@ -172,13 +180,20 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       if routineTrips.count > 0 {
         self.bestRoutineTrip = routineTrips[0]
         self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
-      } else {
-        // TODO: No trips display help box...
+        SearchTripService.sharedInstance.simpleSingleTripSearch(
+          self.bestRoutineTrip!.origin!,
+          destination: self.bestRoutineTrip!.destination!,
+          callback: { trip in
+            dispatch_async(dispatch_get_main_queue(), {
+              self.bestRoutineTrip!.trip = trip
+              self.isLoading = false
+              self.collectionView?.reloadData()
+              self.collectionView?.reloadSections(NSIndexSet(index: 1))
+            })
+        })
       }
-      
-      self.isLoading = false
-      self.collectionView?.reloadData()
-      self.collectionView?.reloadSections(NSIndexSet(index: 1))
+      // TODO: No trips display help box...
+      return
     })
   }
   

@@ -24,6 +24,13 @@ class TripHelper {
   }
   
   /**
+   * Builds an icon name for the trip segment.
+   */
+  static func buildSegmentIconName(segment: TripSegment) -> String {
+    return "T-Green"
+  }
+  
+  /**
    * Creates human readable line name.
    */
   static func friendlyLineString(type: TripType, lineNumber: String?) -> String {

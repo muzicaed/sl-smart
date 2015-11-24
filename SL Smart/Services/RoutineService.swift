@@ -23,7 +23,7 @@ class RoutineService {
     let routineTrips = DataStore.sharedInstance.retriveRoutineTrips()
     
     // Simulate loading
-    let delay = 2 * Double(NSEC_PER_SEC)  // nanoseconds per seconds
+    let delay = 0.5 * Double(NSEC_PER_SEC)  // nanoseconds per seconds
     let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))    
     dispatch_after(dispatchTime, dispatch_get_main_queue(), {
       callback(routineTrips)
