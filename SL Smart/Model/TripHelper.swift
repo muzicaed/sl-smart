@@ -35,13 +35,13 @@ class TripHelper {
         return ("Färja", "Sjövägen (Pendelbåt)", "SHIP-NEUTRAL")
       case .Tram:
         if lineNumber == "7" {
-          return ("Spårvagn", "Spårvagn linje 7", "TRAM-RAIL")
+          return ("Spårväg", "Spårvagn linje 7", "TRAM-RAIL")
         } else if lineNumber == "12" {
-          return ("Spårvagn", "Nockebybanan 12", "TRAM-RAIL")
+          return ("Spårväg", "Nockebybanan 12", "TRAM-RAIL")
         } else if lineNumber == "21" {
-          return ("Spårvagn", "Lidingöbanan 21", "TRAM-RAIL")
+          return ("Spårväg", "Lidingöbanan 21", "TRAM-RAIL")
         } else if lineNumber == "22" {
-          return ("Tvärbanan", "Tvärbana 22", "TRAM-RAIL")
+          return ("Tvärbana", "Tvärbana 22", "TRAM-RAIL")
         } else if lineNumber == "25" {
           return ("Lokaltåg", "Saltsjöbanan 25", "TRAM-LOCAL")
         } else if lineNumber == "26" {
@@ -53,22 +53,22 @@ class TripHelper {
         } else if lineNumber == "29" {
           return ("Lokaltåg", "Roslagsbanan, Näsbyparkslinjen", "TRAM-LOCAL")
         }
-        return ("Spårvagn", "Spårvagn linje \(lineNumber!)", "TRAM-RAIL")
+        return ("Spårväg", "Spårvagn linje \(lineNumber!)", "TRAM-RAIL")
       case .Bus:
-        return ("Buss", "Buss \(lineNumber!)", "BUS-RED")
+        return ("\(lineNumber!)", "Buss \(lineNumber!)", "BUS-RED")
       case .Metro:
         if lineNumber == "13" || lineNumber == "14" {
-          return ("T-bana", "Tunnelbanan, röda", "METRO-RED")
+          return ("Röda", "Tunnelbanan, röda", "METRO-RED")
         } else if lineNumber == "17" || lineNumber == "18" || lineNumber == "19" {
-          return ("T-bana", "Tunnelbanan, gröna", "METRO-GREEN")
+          return ("Gröna", "Tunnelbanan, gröna", "METRO-GREEN")
         } else if lineNumber == "10" || lineNumber == "11" {
-          return ("T-bana", "Tunnelbanan, blåa", "METRO-BLUE")
+          return ("Blåa", "Tunnelbanan, blåa", "METRO-BLUE")
         }
         return ("T-bana", "Tunnelbanan", "METRO-NEUTRAL")
       case .Train:
-        return ("Pendel", "Pendeltåg linje \(lineNumber!)", "TRAIN-NEUTRAL")
+        return ("\(lineNumber!)", "Pendeltåg linje \(lineNumber!)", "TRAIN-NEUTRAL")
       case .Narbuss:
-        return ("Buss", "Närtrafikens buss \(lineNumber!)", "BUS-NEUTRAL")
+        return ("\(lineNumber!)", "Närtrafikens buss \(lineNumber!)", "BUS-NEUTRAL")
       case .Walk:
         return ("Gå", "en promenad", "WALK-NEUTRAL")
       default:

@@ -233,4 +233,12 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
     tripTitleTextField.resignFirstResponder()
     return true
   }
+  
+  func textField(textField: UITextField,
+    shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    guard let text = textField.text else { return true }
+    
+    let newLength = text.characters.count + string.characters.count - range.length
+    return newLength <= 30
+  }
 }
