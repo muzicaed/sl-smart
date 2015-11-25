@@ -69,7 +69,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       }
       
       if isShowMore {
-        return min(otherRoutineTrips.count, 4)
+        return otherRoutineTrips.count
       }
       
       return 0

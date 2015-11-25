@@ -22,6 +22,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
   var routineTripIndex = -1
   var isSearchingOriginStation = true
   var isNewTrip = true
+  var isChanged = false
   
   
   /**
@@ -64,7 +65,6 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     tripTitleTextField.resignFirstResponder()
-    
     if segue.identifier == "SearchOriginStation" {
       isSearchingOriginStation = true
       let vc = segue.destinationViewController as! SearchStationVC
@@ -110,6 +110,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
    * Time picker segment changed.
    */
   @IBAction func onTimeSegmentChange(sender: UISegmentedControl) {
+    isChanged = true
     routineTrip?.routine?.time = RoutineTime(
       rawValue: timeSegmentControl.selectedSegmentIndex)!
   }
@@ -118,6 +119,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
    * Time picker segment changed.
    */
   @IBAction func onWeekSegmentChange(sender: UISegmentedControl) {
+    isChanged = true
     routineTrip?.routine?.week = RoutineWeek(
       rawValue: weekRoutineSegmentControl.selectedSegmentIndex)!
   }
@@ -126,9 +128,22 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
    * On trip title text field change.
    */
   func textFieldDidChange(textField: UITextField) {
+    isChanged = true
     routineTrip?.title = tripTitleTextField.text
     if !isNewTrip {
       title = routineTrip!.title
+    }
+  }
+  
+  /**
+   * When user taps back
+   */
+  override func willMoveToParentViewController(parent: UIViewController?) {
+    //super.willMoveToParentViewController(parent)
+    if parent == nil {
+      if isChanged {
+      
+      }
     }
   }
   
@@ -138,6 +153,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
   * Triggered whem station is selected on station search VC.
   */
   func selectedStationFromSearch(station: Station) {
+    isChanged = true
     if isSearchingOriginStation {
       routineTrip?.origin = station
       originLabel.text = station.name
