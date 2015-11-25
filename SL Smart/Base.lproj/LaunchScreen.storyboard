@@ -20,7 +20,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hfY-5o-8dm">
                                 <rect key="frame" x="175" y="134" width="250" height="319"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashImage" translatesAutoresizingMaskIntoConstraints="NO" id="9e9-YC-8ge" userLabel="Splash">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TrainSplash" translatesAutoresizingMaskIntoConstraints="NO" id="9e9-YC-8ge" userLabel="Splash">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                                         <animations/>
                                         <constraints>
@@ -28,7 +28,7 @@
                                             <constraint firstAttribute="width" constant="250" id="ryu-WI-1Bn"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SL Smart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deN-vd-CAm">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SL Smart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deN-vd-CAm">
                                         <rect key="frame" x="0.0" y="250" width="250" height="69"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="60"/>
@@ -53,6 +53,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SplashImage" width="1024" height="1024"/>
+        <image name="TrainSplash" width="1024" height="1024"/>
     </resources>
 </document>

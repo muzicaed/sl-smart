@@ -171,7 +171,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     collectionView?.collectionViewLayout = flowLayout
     collectionView?.delegate = self
     
-    //view.backgroundColor = UIColor(patternImage: UIImage(named: "GreenBackground")!)
     StandardGradient.addLayer(view)
     
     let wrapper = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
