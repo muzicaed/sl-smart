@@ -12,29 +12,29 @@ import UIKit
 class StyleHelper {
 
   static let sharedInstance = StyleHelper()
-  let tintColor = UIColor(red: 0.521, green: 0.709, blue: 0.043, alpha: 1.0)
-  let lightTintColor = UIColor(red: 0.905, green: 1.0, blue: 0.815, alpha: 1.0)
+  let tintColor = UIColor(red: 203/255, green: 62/255, blue: 148/255, alpha: 1.0)
+  let mainGreen = UIColor(red: 125/255, green: 183/255, blue: 14/255, alpha: 1.0)
 
   func setupCustomStyle() {
     let navAppearance = UINavigationBar.appearance()
-    navAppearance.tintColor = UIColor.whiteColor()
-    navAppearance.barTintColor = tintColor
-    navAppearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+    navAppearance.tintColor = tintColor
+    navAppearance.barTintColor = mainGreen
+    navAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     
     let tabBarAppearance = UITabBar.appearance()
-    tabBarAppearance.tintColor = UIColor.whiteColor()
-    tabBarAppearance.barTintColor = tintColor
+    tabBarAppearance.tintColor = tintColor
+    tabBarAppearance.barTintColor = mainGreen
 
     let searchBarAppearance = UISearchBar.appearance()
-    searchBarAppearance.tintColor = UIColor.whiteColor()
-    searchBarAppearance.barTintColor = tintColor
+    searchBarAppearance.tintColor = tintColor
+    searchBarAppearance.barTintColor = mainGreen
 
     UITabBarItem.appearance().setTitleTextAttributes(
-      [NSForegroundColorAttributeName:UIColor(white: 0.0, alpha: 0.75)],
+      [NSForegroundColorAttributeName: UIColor(white: 0.0, alpha: 0.75)],
       forState: UIControlState.Normal)
     
     UITabBarItem.appearance().setTitleTextAttributes(
-      [NSForegroundColorAttributeName:UIColor.whiteColor()],
+      [NSForegroundColorAttributeName: tintColor],
       forState: UIControlState.Selected)
     
     UIApplication.sharedApplication().statusBarStyle = .LightContent

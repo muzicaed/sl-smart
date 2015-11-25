@@ -26,6 +26,7 @@
 		18232CB01C01FA78006334D1 /* SLSearchStationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */; };
 		183AE0D01C047BF10032CA2A /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183AE0C91C047BE50032CA2A /* SwiftHTTP.framework */; };
 		183AE0D11C047C080032CA2A /* SwiftHTTP.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 183AE0C91C047BE50032CA2A /* SwiftHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854E1981C065EB70070C545 /* StandardGradient.swift */; };
 		18937E351BFF33FA00C523C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E341BFF33FA00C523C9 /* AppDelegate.swift */; };
 		18937E3A1BFF33FA00C523C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18937E381BFF33FA00C523C9 /* Main.storyboard */; };
 		18937E3C1BFF33FA00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E3B1BFF33FA00C523C9 /* Assets.xcassets */; };
@@ -152,6 +153,7 @@
 		18232CAB1C01EC2F006334D1 /* SearchStationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchStationVC.swift; sourceTree = "<group>"; };
 		18232CAD1C01F1CA006334D1 /* ManageRoutineTripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageRoutineTripCell.swift; sourceTree = "<group>"; };
 		18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchStationApi.swift; sourceTree = "<group>"; };
+		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
 		18937E311BFF33FA00C523C9 /* SL Smart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SL Smart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18937E341BFF33FA00C523C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18937E391BFF33FA00C523C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				18232CA51C01DB81006334D1 /* StyleButton.swift */,
 				1806037B1C02165000AC1841 /* StationSearchResponder.swift */,
 				18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */,
+				1854E1981C065EB70070C545 /* StandardGradient.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				18232CAC1C01EC2F006334D1 /* SearchStationVC.swift in Sources */,
 				18937E7C1BFF5F8100C523C9 /* Station.swift in Sources */,
 				18937E7E1BFF6AB700C523C9 /* RoutineTripCell.swift in Sources */,
+				1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */,
 				18232CA41C01D46A006334D1 /* EditRoutineTripVC.swift in Sources */,
 				18937E871C00A17700C523C9 /* RoutineTrip.swift in Sources */,
 				18232CAA1C01EA15006334D1 /* StationSearchService.swift in Sources */,

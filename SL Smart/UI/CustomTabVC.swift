@@ -14,7 +14,8 @@ class CustomTabVC: UITabBarController {
   override func viewDidLoad() {
     for item in self.tabBar.items! as [UITabBarItem] {
       if let image = item.image {
-        item.image = image.imageWithColor(UIColor(white: 0.0, alpha: 0.75)).imageWithRenderingMode(.AlwaysOriginal)
+        item.image = image.imageWithColor(
+          UIColor(white: 0.0, alpha: 0.75)).imageWithRenderingMode(.AlwaysOriginal)
       }
     }
   }
