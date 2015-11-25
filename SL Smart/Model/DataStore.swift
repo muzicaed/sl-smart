@@ -26,6 +26,16 @@ class DataStore {
   }
   
   /**
+   * Moves a routine trip in data store
+   */
+  func moveRoutineTrip(index: Int, targetIndex: Int) {
+    myRoutineTrips = retrieveRoutineTripsFromStore()
+    let moveTrip = myRoutineTrips.removeAtIndex(index)
+    myRoutineTrips.insert(moveTrip, atIndex: targetIndex)
+    writeRoutineTripsToStore()
+  }
+  
+  /**
    * Update a routine trip in data store
    */
   func updateRoutineTrip(index: Int, trip: RoutineTrip) {

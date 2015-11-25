@@ -16,7 +16,6 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var tripTitleTextField: UITextField!
-  @IBOutlet weak var trashButton: UIBarButtonItem!
   
   var routineTrip: RoutineTrip?
   var routineTripIndex = -1
@@ -36,12 +35,11 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
       title = "Ny vanlig resa"
       routineTrip = RoutineTrip()
       isNewTrip = true
-      self.navigationItem.rightBarButtonItems!.removeFirst()
     } else {
       title = routineTrip!.title
       setupEditData()
       isNewTrip = false
-      self.navigationItem.rightBarButtonItems!.removeLast()
+      self.navigationItem.rightBarButtonItems!.removeFirst()
     }
     
     tripTitleTextField.delegate = self
@@ -81,29 +79,6 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
    */
   @IBAction func onRoutineTripNavAddTap(sender: UIBarButtonItem) {
     createRoutineTrip()
-  }
-  
-  /**
-   * Tap on trash button
-   */
-  @IBAction func onTrashButtonTap(sender: AnyObject) {
-    if !isNewTrip {
-      let confirmAlert = UIAlertController(
-        title: "Ta bort resa",
-        message: "Är du säker på att du vill ta bort \"\(routineTrip!.title!)\"?",
-        preferredStyle: UIAlertControllerStyle.Alert)
-      confirmAlert.addAction(
-        UIAlertAction(title: "Avbryt", style: UIAlertActionStyle.Cancel, handler: nil))
-      confirmAlert.addAction(
-        UIAlertAction(title: "Ta bort", style: UIAlertActionStyle.Destructive, handler: { _ in
-          DataStore.sharedInstance.deleteRoutineTrip(self.routineTripIndex)
-          self.performSegueWithIdentifier("unwindToManageRoutineTrips", sender: self)
-          self.routineTripIndex = -1
-          self.routineTrip = nil
-        }))
-      
-      presentViewController(confirmAlert, animated: true, completion: nil)
-    }
   }
   
   /**
