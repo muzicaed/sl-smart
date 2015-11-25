@@ -136,7 +136,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       
       let screenSize = UIScreen.mainScreen().bounds.size
       if indexPath.section == 0 {
-        return CGSizeMake(screenSize.width - 20, 110)
+        return CGSizeMake(screenSize.width - 20, 125)
       }
       
       return CGSizeMake(screenSize.width - 20, 90)
@@ -169,6 +169,16 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     collectionView?.delegate = self
     
     view.backgroundColor = UIColor(patternImage: UIImage(named: "GreenBackground")!)
+    
+    let wrapper = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+    let imageView = UIImageView(
+      image: UIImage(named: "SplashImage")?.imageWithRenderingMode(.AlwaysTemplate))
+    imageView.tintColor = UIColor.whiteColor()
+    imageView.frame.size = CGSizeMake(30, 30)
+    imageView.frame.origin.y = 5
+    
+    wrapper.addSubview(imageView)
+    self.navigationItem.titleView = wrapper
   }
   
   /**
@@ -180,6 +190,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       if routineTrips.count > 0 {
         self.bestRoutineTrip = routineTrips[0]
         self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
+        
         SearchTripService.sharedInstance.simpleSingleTripSearch(
           self.bestRoutineTrip!.origin!,
           destination: self.bestRoutineTrip!.destination!,

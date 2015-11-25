@@ -16,62 +16,64 @@ class TripHelper {
    */
   static func friendlyTripSegmentDesc(segment: TripSegment) -> String {
     if segment.type == .Walk {
-      return "Gå till \(segment.destination.name)"
+      return "Gå"
     }
     
-    let friendlyLine = friendlyLineString(segment.type, lineNumber: segment.lineNumber)
-    return "Ta \(friendlyLine) mot \(segment.directionText!)"
-  }
-  
-  /**
-   * Builds an icon name for the trip segment.
-   */
-  static func buildSegmentIconName(segment: TripSegment) -> String {
-    return "T-Green"
+    let friendlyLine = friendlyLineData(segment.type, lineNumber: segment.lineNumber)
+    return "Ta \(friendlyLine.long) mot \(segment.directionText!)"
   }
   
   /**
    * Creates human readable line name.
    */
-  static func friendlyLineString(type: TripType, lineNumber: String?) -> String {
-    switch type {
-    case .Ship:
-      return "Djurgårdsfärjan"
-    case .Ferry:
-      return "Sjövägen (Pendelbåt)"
-    case .Tram:
-      if lineNumber == "12" {
-        return "Nockebybanan"
-      } else if lineNumber == "21" {
-        return "Lidingöbanan"
-      } else if lineNumber == "22" {
-        return "Tvärbanan"
-      } else if lineNumber == "25" || lineNumber == "26" {
-        return "Saltsjöbanan"
-      } else if lineNumber == "27" || lineNumber == "28" || lineNumber == "29" {
-        return "Roslagsbanan"
+  static func friendlyLineData(
+    type: TripType, lineNumber: String?) -> (short: String, long: String, icon: String) {
+      switch type {
+      case .Ship:
+        return ("Färja", "Djurgårdsfärjan", "SHIP-NEUTRAL")
+      case .Ferry:
+        return ("Färja", "Sjövägen (Pendelbåt)", "SHIP-NEUTRAL")
+      case .Tram:
+        if lineNumber == "7" {
+          return ("Spårvagn", "Spårvagn linje 7", "TRAM-RAIL")
+        } else if lineNumber == "12" {
+          return ("Spårvagn", "Nockebybanan 12", "TRAM-RAIL")
+        } else if lineNumber == "21" {
+          return ("Spårvagn", "Lidingöbanan 21", "TRAM-RAIL")
+        } else if lineNumber == "22" {
+          return ("Tvärbanan", "Tvärbana 22", "TRAM-RAIL")
+        } else if lineNumber == "25" {
+          return ("Lokaltåg", "Saltsjöbanan 25", "TRAM-LOCAL")
+        } else if lineNumber == "26" {
+          return ("Lokaltåg", "Saltsjöbanan 26", "TRAM-LOCAL")
+        } else if lineNumber == "27" {
+          return ("Lokaltåg", "Roslagsbanan, Kårstalinjen", "TRAM-LOCAL")
+        } else if lineNumber == "28" {
+          return ("Lokaltåg", "Roslagsbanan, Österskärslinjen", "TRAM-LOCAL")
+        } else if lineNumber == "29" {
+          return ("Lokaltåg", "Roslagsbanan, Näsbyparkslinjen", "TRAM-LOCAL")
+        }
+        return ("Spårvagn", "Spårvagn linje \(lineNumber!)", "TRAM-RAIL")
+      case .Bus:
+        return ("Buss", "Buss \(lineNumber!)", "BUS-RED")
+      case .Metro:
+        if lineNumber == "13" || lineNumber == "14" {
+          return ("T-bana", "Tunnelbanan, röda", "METRO-RED")
+        } else if lineNumber == "17" || lineNumber == "18" || lineNumber == "19" {
+          return ("T-bana", "Tunnelbanan, gröna", "METRO-GREEN")
+        } else if lineNumber == "10" || lineNumber == "11" {
+          return ("T-bana", "Tunnelbanan, blåa", "METRO-BLUE")
+        }
+        return ("T-bana", "Tunnelbanan", "METRO-NEUTRAL")
+      case .Train:
+        return ("Pendel", "Pendeltåg linje \(lineNumber!)", "TRAIN-NEUTRAL")
+      case .Narbuss:
+        return ("Buss", "Närtrafikens buss \(lineNumber!)", "BUS-NEUTRAL")
+      case .Walk:
+        return ("Gå", "en promenad", "WALK-NEUTRAL")
+      default:
+        return ("", "", "")
       }
-      return "Spårvagn linje \(lineNumber!)"
-    case .Bus:
-      return "Buss \(lineNumber!)"
-    case .Metro:
-      if lineNumber == "13" || lineNumber == "14" {
-        return "röda T-banan"
-      } else if lineNumber == "17" || lineNumber == "18" || lineNumber == "19" {
-        return "gröna T-banan"
-      } else if lineNumber == "10" || lineNumber == "11" {
-        return "blåa T-banan"
-      }
-      return "T-bana"
-    case .Train:
-      return "Pendeltåg mot"
-    case .Narbuss:
-      return "Buss (Närtrafikens) \(lineNumber!)"
-    case .Walk:
-      return "Gå"
-    default:
-      return ""
-    }
   }
 }
 
@@ -84,6 +86,7 @@ enum TripType: String {
   case Train = "TRAIN"
   case Narbuss = "NARBUSS"
   case Walk = "WALK"
+  
   // Future
   case Bike = "BIKE"
   case Car = "CAR"

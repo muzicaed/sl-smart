@@ -88,8 +88,6 @@ class ManageRoutineTripsVC: UITableViewController {
       }
             
       let trip = trips[indexPath.row]
-      print(trip.origin?.siteId)
-      print(trip.destination?.siteId)
       let cell =  tableView.dequeueReusableCellWithIdentifier(
         cellIdentifier, forIndexPath: indexPath) as! ManageRoutineTripCell
       
