@@ -31,7 +31,7 @@ class SLSearchStationApi {
   private func createApiUrl(query: String) -> String {
     if let escapedQuery = query.stringByAddingPercentEncodingWithAllowedCharacters(
       .URLHostAllowedCharacterSet()) {
-        return urlBase + "?realtime=true&numTrips=1&key=\(apiKey)&searchstring=\(escapedQuery)"
+        return urlBase + "?key=\(apiKey)&searchstring=\(escapedQuery)"
     }
     
     fatalError("Could not encode query string.")

@@ -63,7 +63,7 @@ enum RoutineWeek: Int {
 
 enum RoutineTime: Int {
   case Morning = 0
-  case Afternoon = 1
+  case Day = 1
   case Evening = 2
   case Night = 3
   
@@ -71,8 +71,8 @@ enum RoutineTime: Int {
     switch self {
     case .Morning:
       return "Morgon"
-    case .Afternoon:
-      return "Förmiddagar"
+    case .Day:
+      return "Dagtid"
     case .Evening:
       return "Kvällar"
     case .Night:

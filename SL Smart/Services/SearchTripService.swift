@@ -38,17 +38,26 @@ class SearchTripService {
     var result = [Trip]()
     let data = JSON(data: jsonDataString)
     
-    for tripJson in data["TripList"]["Trip"].array! {
-      let tripSegments = convertJsonToSegments(tripJson["LegList"]["Leg"])
-      let trip = Trip(
-        durationMin: Int(tripJson["dur"].string!)!,
-        noOfChanges: Int(tripJson["chg"].string!)!,
-        tripSegments: tripSegments.sort({ $0.index < $1.index }))
-      
-      result.append(trip)
+    if let tripsJson = data["TripList"]["Trip"].array {
+      for tripJson in tripsJson {
+        result.append(convertJsonToTrip(tripJson))
+      }
+    } else {
+      result.append(convertJsonToTrip(data["TripList"]["Trip"]))
     }
     
     return result
+  }
+  
+  /**
+   * Converts json to trip object.
+   */
+  private func convertJsonToTrip(tripJson: JSON) -> Trip {
+    let tripSegments = convertJsonToSegments(tripJson["LegList"]["Leg"])
+    return Trip(
+      durationMin: Int(tripJson["dur"].string!)!,
+      noOfChanges: Int(tripJson["chg"].string!)!,
+      tripSegments: tripSegments.sort({ $0.index < $1.index }))
   }
   
   /**
@@ -76,6 +85,7 @@ class SearchTripService {
     
     return TripSegment(
       index: Int(segmentJson["idx"].string!)!,
+      name: segmentJson["name"].string!,
       type: segmentJson["type"].string!,
       directionText: segmentJson["dir"].string, lineNumber: segmentJson["line"].string,
       origin: origin, destination: destination,
@@ -92,6 +102,7 @@ class SearchTripService {
     return Station(
       id: Int(stationJson["id"].string!)!,
       name: stationJson["name"].string!,
+      cleanName: stationJson["name"].string!,
       area: "",
       xCoord: 0,
       yCoord: 0)

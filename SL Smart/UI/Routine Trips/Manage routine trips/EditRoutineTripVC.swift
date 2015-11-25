@@ -35,11 +35,12 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
       title = "Ny vanlig resa"
       routineTrip = RoutineTrip()
       isNewTrip = true
-      self.navigationItem.rightBarButtonItem = nil
+      self.navigationItem.rightBarButtonItems!.removeFirst()
     } else {
       title = routineTrip!.title
       setupEditData()
       isNewTrip = false
+      self.navigationItem.rightBarButtonItems!.removeLast()
     }
     
     tripTitleTextField.delegate = self
@@ -76,40 +77,10 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
   }
   
   /**
-   * Fills form with station data for edit.
+   * Tap on Add Routine Trip button in navigation bar
    */
-  private func setupEditData() {
-    if let trip = routineTrip {
-      tripTitleTextField.text = trip.title
-      originLabel.text = trip.origin?.name
-      destinationLabel.text = trip.destination?.name
-      
-      if let routine = trip.routine {
-        weekRoutineSegmentControl.selectedSegmentIndex = routine.week.rawValue
-        timeSegmentControl.selectedSegmentIndex = routine.time.rawValue
-      }
-    }
-  }
-  
-  /**
-   * Tap on Add Routine Trip button
-   */
-  @IBAction func onRoutineTripAddTap(sender: MyCustomButton) {
-    tripTitleTextField.resignFirstResponder()
-    if tripTitleTextField.text == nil || tripTitleTextField.text == "" {
-      showInvalidTitleAlert()
-      return
-    } else {
-      routineTrip?.title = tripTitleTextField.text
-    }
-    
-    if routineTrip == nil || routineTrip?.origin == nil || routineTrip?.destination == nil {
-      showInvalidStationAlert()
-      return
-    }
-    
-    DataStore.sharedInstance.addRoutineTrip(routineTrip!)
-    performSegueWithIdentifier("unwindToManageRoutineTrips", sender: self)
+  @IBAction func onRoutineTripNavAddTap(sender: UIBarButtonItem) {
+    createRoutineTrip()
   }
   
   /**
@@ -161,34 +132,6 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
     }
   }
   
-  /**
-   * Show a invalid title alert
-   */
-  private func showInvalidTitleAlert() {
-    let invalidTitleAlert = UIAlertController(
-      title: "Title saknas",
-      message: "Du behöver ange en title för din resa.",
-      preferredStyle: UIAlertControllerStyle.Alert)
-    invalidTitleAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
-    
-    presentViewController(invalidTitleAlert, animated: true, completion: nil)
-  }
-  
-  /**
-   * Show a invalid station alert
-   */
-  private func showInvalidStationAlert() {
-    let invalidStationAlert = UIAlertController(
-      title: "Station saknas",
-      message: "Du behöver ange de två stationerna du åker till och från för din resa.",
-      preferredStyle: UIAlertControllerStyle.Alert)
-    invalidStationAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
-    
-    presentViewController(invalidStationAlert, animated: true, completion: nil)
-  }
-  
   // MARK: StationSearchResponder
   
   /**
@@ -215,7 +158,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
       }
       return indexPath
   }
-  
+  /*
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     var height = CGFloat(44)
     
@@ -226,6 +169,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
     // Default value
     return height
   }
+*/
   
   // MARK: UITextFieldDelegate
   
@@ -240,5 +184,73 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
     
     let newLength = text.characters.count + string.characters.count - range.length
     return newLength <= 30
+  }
+  
+  // MARK: Private methods
+  
+  /**
+  * Fills form with station data for edit.
+  */
+  private func setupEditData() {
+    if let trip = routineTrip {
+      tripTitleTextField.text = trip.title
+      originLabel.text = trip.origin?.name
+      destinationLabel.text = trip.destination?.name
+      
+      if let routine = trip.routine {
+        weekRoutineSegmentControl.selectedSegmentIndex = routine.week.rawValue
+        timeSegmentControl.selectedSegmentIndex = routine.time.rawValue
+      }
+    }
+  }
+  
+  /**
+  * Show a invalid title alert
+  */
+  private func showInvalidTitleAlert() {
+    let invalidTitleAlert = UIAlertController(
+      title: "Title saknas",
+      message: "Du behöver ange en title för din resa.",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    invalidTitleAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+    
+    presentViewController(invalidTitleAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Show a invalid station alert
+   */
+  private func showInvalidStationAlert() {
+    let invalidStationAlert = UIAlertController(
+      title: "Station saknas",
+      message: "Du behöver ange de två stationerna du åker till och från för din resa.",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    invalidStationAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+    
+    presentViewController(invalidStationAlert, animated: true, completion: nil)
+  }
+
+  /** 
+   * Creats and persists a routine trip based
+   * on data on current form. Also navigates back.
+   */
+  private func createRoutineTrip() {
+    tripTitleTextField.resignFirstResponder()
+    if tripTitleTextField.text == nil || tripTitleTextField.text == "" {
+      showInvalidTitleAlert()
+      return
+    } else {
+      routineTrip?.title = tripTitleTextField.text
+    }
+    
+    if routineTrip == nil || routineTrip?.origin == nil || routineTrip?.destination == nil {
+      showInvalidStationAlert()
+      return
+    }
+    
+    DataStore.sharedInstance.addRoutineTrip(routineTrip!)
+    performSegueWithIdentifier("unwindToManageRoutineTrips", sender: self)
   }
 }

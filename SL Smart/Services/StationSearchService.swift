@@ -32,11 +32,9 @@ class StationSearchService {
     let data = JSON(data: jsonDataString)
 
     for (_,stationJson):(String, JSON) in data["ResponseData"] {
-      let (name, area) = extractNameAndArea(stationJson["Name"].string!)
       let station = Station(
         id: Int(stationJson["SiteId"].string!)!,
-        name: name,
-        area: area,
+        name: stationJson["Name"].string!,
         xCoord: Int(stationJson["X"].string!)!,
         yCoord: Int(stationJson["Y"].string!)!
       )
@@ -44,26 +42,5 @@ class StationSearchService {
     }
     
     return result
-  }
-  
-  /**
-   * Extracts the name and area from a search result name.
-   * Eg. "Spånga (Stockholm)" = "Spånga" and "Stockholm"
-   */
-  private func extractNameAndArea(nameString: String) -> (String, String) {
-    let res = nameString.rangeOfString("(", options: NSStringCompareOptions.BackwardsSearch)
-    if let res = res {
-      let name = nameString.substringToIndex(res.startIndex)
-        .stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-      
-      let area = nameString.substringFromIndex(res.startIndex)
-        .stringByReplacingOccurrencesOfString("(", withString: "",
-          options: NSStringCompareOptions.LiteralSearch, range: nil)
-        .stringByReplacingOccurrencesOfString(")", withString: "",
-          options: NSStringCompareOptions.LiteralSearch, range: nil)
-      
-      return (name, area)
-    }
-    return (nameString, "")
   }
 }

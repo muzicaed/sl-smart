@@ -29,6 +29,11 @@ class SLTravelPlannerV2Api {
    * Creates api url for simple search
    */
   private func createSimpleSearchApiUrl(origin: Station, destination: Station) -> String {
-    return urlBase + "?key=\(apiKey)&originId=\(origin.siteId)&destId=\(destination.siteId)"
+    let time =  Utils.dateAsTimeString(NSDate())
+    if let escapedTime = time.stringByAddingPercentEncodingWithAllowedCharacters(
+      .URLHostAllowedCharacterSet()) {
+        return urlBase + "?key=\(apiKey)&realtime=true&numTrips=1&time=\(escapedTime)&originId=\(origin.siteId)&destId=\(destination.siteId)"
+    }
+    fatalError("Could not encode time string.")
   }
 }

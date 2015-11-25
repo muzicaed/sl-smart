@@ -10,6 +10,7 @@ import Foundation
 
 class TripSegment {
   let index: Int
+  let name: String
   let type: TripType
   let directionText: String?
   let lineNumber: String?
@@ -19,12 +20,13 @@ class TripSegment {
   let arrivalDateTime: NSDate
   
   init(
-    index: Int, type: String, directionText: String?,
+    index: Int, name: String, type: String, directionText: String?,
     lineNumber: String?, origin: Station, destination: Station,
     departureTime: String, arrivalTime: String,
     departureDate: String, arrivalDate: String) {
       
       self.index = index
+      self.name = name
       self.type = TripType(rawValue: type)!
       self.directionText = directionText
       self.lineNumber = lineNumber

@@ -142,6 +142,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       return CGSizeMake(screenSize.width - 20, 90)
   }
   
+  /**
+   * Size for headers.
+   */
   func collectionView(collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,
     referenceSizeForHeaderInSection section: Int) -> CGSize {

@@ -44,8 +44,8 @@ class RoutineTripCell: UICollectionViewCell {
    */
   func setupData(routineTrip: RoutineTrip) {
     tripTitleLabel.text = routineTrip.title!
-    originLabel.text = routineTrip.origin?.name
-    destinationLabel.text = routineTrip.destination?.name
+    originLabel.text = routineTrip.origin?.cleanName
+    destinationLabel.text = routineTrip.destination?.cleanName
     if routineTrip.trip.tripSegments.count > 0 {
       let bestTrip = routineTrip.trip
       departureTimeLabel.text = Utils.dateAsTimeString(
@@ -65,9 +65,10 @@ class RoutineTripCell: UICollectionViewCell {
   * Creates an "(om xx min)" for depature time.
   */
   private func createAboutTimeText(departure: NSDate) -> String {
-    let diffMin = (departure.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60
+    let diffMin = Int((departure.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
     if diffMin < 16 {
-      return "❨om \(Int(diffMin)) min❩"
+      let diffMinStr = (diffMin + 1 <= 1) ? "❨Avgår nu❩" : "❨om \(diffMin + 1) min❩"
+      return diffMinStr
     }
     
     return ""
@@ -81,7 +82,7 @@ class RoutineTripCell: UICollectionViewCell {
     
     for (index, segment) in trip.tripSegments.enumerate() {
       if index > 5 { return }
-      let data = TripHelper.friendlyLineData(segment.type, lineNumber: segment.lineNumber)
+      let data = TripHelper.friendlyLineData(segment)
       
       let iconView = UIImageView(image: UIImage(named: data.icon))
       iconView.frame.size = CGSizeMake(15, 15)
