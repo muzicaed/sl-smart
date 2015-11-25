@@ -12,6 +12,8 @@ import UIKit
 class CustomTabVC: UITabBarController {
   
   override func viewDidLoad() {
+    StandardGradient.addLayer(view)
+    view.backgroundColor = StandardGradient.colorTop
     for item in self.tabBar.items! as [UITabBarItem] {
       if let image = item.image {
         item.image = image.imageWithColor(
