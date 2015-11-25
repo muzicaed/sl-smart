@@ -158,18 +158,18 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
       }
       return indexPath
   }
-  /*
-  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    var height = CGFloat(44)
-    
-    if indexPath.section == 3 {
-      height = (isNewTrip ? 60 : 0)
-    }
-    
-    // Default value
-    return height
+  
+  
+  override func tableView(tableView: UITableView,
+    accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+      if indexPath.section == 2 {
+        if indexPath.row == 0 {
+          showWeekInfoAlert()
+        } else {
+          showTimeInfoAlert()
+        }
+      }
   }
-*/
   
   // MARK: UITextFieldDelegate
   
@@ -225,6 +225,34 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
     let invalidStationAlert = UIAlertController(
       title: "Station saknas",
       message: "Du behöver ange de två stationerna du åker till och från för din resa.",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    invalidStationAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+    
+    presentViewController(invalidStationAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Show a week info alert
+   */
+  private func showWeekInfoAlert() {
+    let invalidStationAlert = UIAlertController(
+      title: "Förklaring",
+      message: "Week week wwek",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    invalidStationAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+    
+    presentViewController(invalidStationAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Show a time info alert
+   */
+  private func showTimeInfoAlert() {
+    let invalidStationAlert = UIAlertController(
+      title: "Förklaring",
+      message: "Tid tid tid...",
       preferredStyle: UIAlertControllerStyle.Alert)
     invalidStationAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
