@@ -24,7 +24,16 @@ class SearchTripService {
         // Better error here
         fatalError("No trips found...")
       }
-      callback(trips)
+      
+      let filtered = trips.filter {
+        for segment in $0.tripSegments {
+          if let dist = segment.distance {
+            return (dist > 30) ? true : false
+          }
+        }
+        return true
+      }
+      callback(filtered)
     }
   }
   
@@ -82,6 +91,8 @@ class SearchTripService {
     let origin = convertJsonToStation(segmentJson["Origin"])
     let destination = convertJsonToStation(segmentJson["Destination"])
     
+    let distString = (segmentJson["dist"].string != nil) ? segmentJson["dist"].string! : ""
+    
     return TripSegment(
       index: Int(segmentJson["idx"].string!)!,
       name: segmentJson["name"].string!,
@@ -91,7 +102,8 @@ class SearchTripService {
       departureTime: segmentJson["Origin"]["time"].string!,
       arrivalTime: segmentJson["Destination"]["time"].string!,
       departureDate: segmentJson["Origin"]["date"].string!,
-      arrivalDate: segmentJson["Destination"]["date"].string!)
+      arrivalDate: segmentJson["Destination"]["date"].string!,
+      distance: Int(distString))
   }
   
   /**

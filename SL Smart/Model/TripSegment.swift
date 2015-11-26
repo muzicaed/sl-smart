@@ -18,12 +18,14 @@ class TripSegment {
   let destination: Station
   let departureDateTime: NSDate
   let arrivalDateTime: NSDate
+  let distance: Int?
   
   init(
     index: Int, name: String, type: String, directionText: String?,
     lineNumber: String?, origin: Station, destination: Station,
     departureTime: String, arrivalTime: String,
-    departureDate: String, arrivalDate: String) {
+    departureDate: String, arrivalDate: String,
+    distance: Int?) {
       
       self.index = index
       self.name = name
@@ -34,5 +36,6 @@ class TripSegment {
       self.destination = destination
       self.departureDateTime =  Utils.convertDateString("\(departureDate) \(departureTime)")
       self.arrivalDateTime =  Utils.convertDateString("\(arrivalDate) \(arrivalTime)")
+      self.distance = distance
   }
 }

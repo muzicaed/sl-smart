@@ -16,7 +16,7 @@ class TripHelper {
    */
   static func friendlyTripSegmentDesc(segment: TripSegment) -> String {
     if segment.type == .Walk {
-      return "Gå"
+      return "Gå \(segment.distance!) till"
     }
     
     let friendlyLine = friendlyLineData(segment)
@@ -76,7 +76,7 @@ class TripHelper {
     case .Narbuss:
       return ("\(lineNumber!)", "Närtrafikens buss \(lineNumber!)", "BUS-NEUTRAL")
     case .Walk:
-      return ("Gå", "en promenad", "WALK-NEUTRAL")
+      return ("\(segment.distance!)m", "Gå", "WALK-NEUTRAL")
     default:
       return ("", "", "")
     }
