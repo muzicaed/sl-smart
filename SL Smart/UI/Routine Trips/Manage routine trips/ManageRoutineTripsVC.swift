@@ -31,6 +31,7 @@ class ManageRoutineTripsVC: UITableViewController {
     editButton = navigationItem.rightBarButtonItems![1]
     doneButton = navigationItem.rightBarButtonItems![2]
     navigationItem.rightBarButtonItems?.removeAtIndex(2)
+    tableView.tableFooterView = UIView()
   }
   
   /**

@@ -136,10 +136,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       
       let screenSize = UIScreen.mainScreen().bounds.size
       if indexPath.section == 0 {
-        return CGSizeMake(screenSize.width - 20, 125)
+        return CGSizeMake(screenSize.width - 10, 125)
       }
       
-      return CGSizeMake(screenSize.width - 20, 90)
+      return CGSizeMake(screenSize.width - 10, 90)
   }
   
   /**
@@ -175,7 +175,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     let wrapper = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
     let imageView = UIImageView(
-      image: UIImage(named: "SplashImage")?.imageWithRenderingMode(.AlwaysTemplate))
+      image: UIImage(named: "TrainSplash")?.imageWithRenderingMode(.AlwaysTemplate))
     imageView.tintColor = UIColor.whiteColor()
     imageView.frame.size = CGSizeMake(30, 30)
     imageView.frame.origin.y = 5

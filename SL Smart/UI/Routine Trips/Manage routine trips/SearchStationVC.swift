@@ -30,6 +30,7 @@ class SearchStationVC: UITableViewController, UISearchResultsUpdating {
     
     self.tableView.tableHeaderView = self.searchController!.searchBar
     self.tableView.reloadData()
+    tableView.tableFooterView = UIView()    
   }
   
   deinit {
