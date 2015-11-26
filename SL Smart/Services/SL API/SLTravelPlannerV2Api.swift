@@ -16,8 +16,8 @@ class SLTravelPlannerV2Api {
   /**
    * Search for trips.
    */
-  func simpleSearch(origin: Station, destination: Station, callback: (NSData) -> Void) {
-    let url = createSimpleSearchApiUrl(origin, destination: destination)
+  func tripSearch(criterions: TripSearchCriterion, callback: (NSData) -> Void) {
+    let url = createSimpleSearchApiUrl(criterions)
     HttpRequestHelper.makeGetRequest(url) { response in
       if let data = response {
         callback(data)
@@ -31,14 +31,10 @@ class SLTravelPlannerV2Api {
   // MARK: Private methods.
   
   /**
-   * Creates api url for simple search
-   */
-  private func createSimpleSearchApiUrl(origin: Station, destination: Station) -> String {
-    let time =  Utils.dateAsTimeString(NSDate())
-    if let escapedTime = time.stringByAddingPercentEncodingWithAllowedCharacters(
-      .URLHostAllowedCharacterSet()) {
-        return urlBase + "?key=\(apiKey)&realtime=true&numTrips=1&time=\(escapedTime)&originId=\(origin.siteId)&destId=\(destination.siteId)"
-    }
-    fatalError("Could not encode time string.")
+  * Creates api url for simple search
+  */
+  private func createSimpleSearchApiUrl(criterions: TripSearchCriterion) -> String {
+    let criterionsUrl = criterions.generateQueryString(false)    
+    return urlBase + "?key=\(apiKey)\(criterionsUrl)"
   }
 }

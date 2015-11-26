@@ -152,7 +152,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       if section == 0  {
         return CGSizeMake(0, 0)
       } else if section == 1 && otherRoutineTrips.count == 0 {
-        return CGSizeMake(0, 0)        
+        return CGSizeMake(0, 0)
       }
       
       return CGSizeMake(self.collectionView!.frame.size.width, 50)
@@ -194,22 +194,43 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       if routineTrips.count > 0 {
         self.bestRoutineTrip = routineTrips[0]
         self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
-        
-        SearchTripService.sharedInstance.simpleSingleTripSearch(
-          self.bestRoutineTrip!.origin!,
-          destination: self.bestRoutineTrip!.destination!,
-          callback: { trip in
-            dispatch_async(dispatch_get_main_queue(), {
-              self.bestRoutineTrip!.trip = trip
-              self.isLoading = false
-              self.collectionView?.reloadData()
-              self.collectionView?.reloadSections(NSIndexSet(index: 1))
-            })
-        })
+        self.searchBestTrip()
       }
       // TODO: No trips display help box...
       return
     })
+  }
+  
+  /**
+   * Searches trips data for best RoutineTrip
+   */
+  private func searchBestTrip() {
+    let simpleTripSearch = createSimpleCriterions(
+      bestRoutineTrip!.origin!,
+      destination: bestRoutineTrip!.destination!)
+    
+    SearchTripService.sharedInstance.tripSearch(simpleTripSearch,
+      callback: { trip in
+        dispatch_async(dispatch_get_main_queue(), {
+          self.bestRoutineTrip!.trip = trip
+          self.isLoading = false
+          self.collectionView?.reloadData()
+          self.collectionView?.reloadSections(NSIndexSet(index: 1))
+        })
+    })
+  }
+  
+  /**
+   * Creats a simple trips search criterion object.
+   */
+  private func createSimpleCriterions(
+    origin: Station, destination: Station) -> TripSearchCriterion {
+      let criterions = TripSearchCriterion(origin: origin, destination: destination)
+      criterions.date = Utils.dateAsDateString(NSDate())
+      criterions.time = Utils.dateAsTimeString(NSDate())
+      criterions.numTrips = 1
+      
+      return criterions
   }
   
   /**

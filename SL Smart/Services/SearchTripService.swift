@@ -15,12 +15,10 @@ class SearchTripService {
   private let api = SLTravelPlannerV2Api()
   
   /**
-   * Simple single trip search.
-   * Search only for closest upcoming trip using origin and destination.
-   * Return only one trip.
+   * Trip search.
    */
-  func simpleSingleTripSearch(origin: Station, destination: Station, callback: (Trip) -> Void) {
-    api.simpleSearch(origin, destination: destination) { data in
+  func tripSearch(criterion: TripSearchCriterion, callback: (Trip) -> Void) {
+    api.tripSearch(criterion) { data in
       let trips = self.convertJsonResponse(data)
       if trips.count == 0 {
         // Better error here
@@ -30,6 +28,7 @@ class SearchTripService {
     }
   }
   
+  // MARK: Private methods
   
   /**
    * Converts the raw json string into array of Station.
