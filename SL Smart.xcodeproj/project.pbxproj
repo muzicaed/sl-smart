@@ -135,7 +135,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		180603631C01FCBE00AC1841 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		180603631C01FCBE00AC1841 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "SL Smart/Services/SwiftyJSON.swift"; sourceTree = "<group>"; };
 		180603651C0201A100AC1841 /* HttpRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHelper.swift; sourceTree = "<group>"; };
 		180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftHTTP.xcodeproj; path = /Users/mikaelhellman/Development/Xcode/SwiftHTTP/SwiftHTTP.xcodeproj; sourceTree = "<absolute>"; };
 		1806037B1C02165000AC1841 /* StationSearchResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationSearchResponder.swift; sourceTree = "<group>"; };
@@ -366,7 +366,6 @@
 				181B9AF91C03D64000B9145A /* RoutineService.swift */,
 				18232CA91C01EA15006334D1 /* StationSearchService.swift */,
 				181B9AF21C0380FD00B9145A /* SearchTripService.swift */,
-				180603631C01FCBE00AC1841 /* SwiftyJSON.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -385,6 +384,7 @@
 		18CE5CCC1C0329DA00E1F5A9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				180603631C01FCBE00AC1841 /* SwiftyJSON.swift */,
 				180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */,
 			);
 			name = Libraries;

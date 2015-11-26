@@ -13,6 +13,9 @@ class SLSearchStationApi {
   let apiKey = "d6ab40d679d8426095c5da373c6aa1da"
   let urlBase = "http://api.sl.se/api2/typeahead.json"
   
+  /**
+   * Search for station.
+   */
   func search(query: String, callback: (NSData) -> Void) {
     let url = createApiUrl(query)
     HttpRequestHelper.makeGetRequest(url) { response in
@@ -24,6 +27,8 @@ class SLSearchStationApi {
       }
     }
   }
+  
+  // MARK: Private methods.
   
   /**
    * Creates api url

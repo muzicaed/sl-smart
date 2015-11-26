@@ -13,6 +13,9 @@ class SLTravelPlannerV2Api {
   let apiKey = "e785e23627434ac295f09e08053147dc"
   let urlBase = "http://api.sl.se/api2/TravelplannerV2/trip.json"
   
+  /**
+   * Search for trips.
+   */
   func simpleSearch(origin: Station, destination: Station, callback: (NSData) -> Void) {
     let url = createSimpleSearchApiUrl(origin, destination: destination)
     HttpRequestHelper.makeGetRequest(url) { response in
@@ -24,6 +27,8 @@ class SLTravelPlannerV2Api {
       }
     }
   }
+  
+  // MARK: Private methods.
   
   /**
    * Creates api url for simple search

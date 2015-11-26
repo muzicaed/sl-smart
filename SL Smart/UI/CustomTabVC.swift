@@ -11,6 +11,9 @@ import UIKit
 
 class CustomTabVC: UITabBarController {
   
+  /**
+   * View is done loading.
+   */
   override func viewDidLoad() {
     StandardGradient.addLayer(view)
     view.backgroundColor = StandardGradient.colorTop

@@ -11,6 +11,10 @@ import SwiftHTTP
 
 class HttpRequestHelper {
   
+  /**
+   * Makes a async get request to passed url.
+   * Returns the response data using callback.
+   */
   static func makeGetRequest(url: String, callback: (NSData?) -> Void) {
     print("GET: \(url)")
     let operationQueue = NSOperationQueue()
