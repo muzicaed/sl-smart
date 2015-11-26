@@ -48,6 +48,8 @@
 		18937E811BFFABFC00C523C9 /* PlannedTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E801BFFABFC00C523C9 /* PlannedTripsVC.swift */; };
 		18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */; };
 		18937E871C00A17700C523C9 /* RoutineTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E861C00A17700C523C9 /* RoutineTrip.swift */; };
+		18AC9CF81C07AD4D007ECFA2 /* TripListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF71C07AD4D007ECFA2 /* TripListVC.swift */; };
+		18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF91C07AE63007ECFA2 /* TripCell.swift */; };
 		18CE5CC71C025E3E00E1F5A9 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC61C025E3E00E1F5A9 /* Routine.swift */; };
 		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
 		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
@@ -181,6 +183,8 @@
 		18937E801BFFABFC00C523C9 /* PlannedTripsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannedTripsVC.swift; sourceTree = "<group>"; };
 		18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageRoutineTripsVC.swift; sourceTree = "<group>"; };
 		18937E861C00A17700C523C9 /* RoutineTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTrip.swift; sourceTree = "<group>"; };
+		18AC9CF71C07AD4D007ECFA2 /* TripListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripListVC.swift; sourceTree = "<group>"; };
+		18AC9CF91C07AE63007ECFA2 /* TripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCell.swift; sourceTree = "<group>"; };
 		18CE5CC61C025E3E00E1F5A9 /* Routine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleHelper.swift; sourceTree = "<group>"; };
 		18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabVC.swift; sourceTree = "<group>"; };
@@ -376,12 +380,22 @@
 		18937E891C01139E00C523C9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				18AC9CF61C07AD05007ECFA2 /* Trip List */,
 				1827692E1C01163B00655B4B /* Common */,
 				18937E751BFF5CFC00C523C9 /* Routine Trips */,
 				18937E7F1BFFABC100C523C9 /* Planned Trips */,
 				18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		18AC9CF61C07AD05007ECFA2 /* Trip List */ = {
+			isa = PBXGroup;
+			children = (
+				18AC9CF71C07AD4D007ECFA2 /* TripListVC.swift */,
+				18AC9CF91C07AE63007ECFA2 /* TripCell.swift */,
+			);
+			path = "Trip List";
 			sourceTree = "<group>";
 		};
 		18CE5CCC1C0329DA00E1F5A9 /* Libraries */ = {
@@ -603,6 +617,7 @@
 				18937E771BFF5D6B00C523C9 /* RoutineTripsVC.swift in Sources */,
 				181B9AF61C03A9E100B9145A /* Utils.swift in Sources */,
 				18CE5CC71C025E3E00E1F5A9 /* Routine.swift in Sources */,
+				18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */,
 				180603641C01FCBE00AC1841 /* SwiftyJSON.swift in Sources */,
 				1806037C1C02165000AC1841 /* StationSearchResponder.swift in Sources */,
 				181B9AF31C0380FD00B9145A /* SearchTripService.swift in Sources */,
@@ -625,6 +640,7 @@
 				18D1953F1C07964900FB1A93 /* TripSeachCriterion.swift in Sources */,
 				180603661C0201A100AC1841 /* HttpRequestHelper.swift in Sources */,
 				18937E351BFF33FA00C523C9 /* AppDelegate.swift in Sources */,
+				18AC9CF81C07AD4D007ECFA2 /* TripListVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

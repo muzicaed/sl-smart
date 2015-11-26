@@ -17,14 +17,14 @@ class SearchTripService {
   /**
    * Trip search.
    */
-  func tripSearch(criterion: TripSearchCriterion, callback: (Trip) -> Void) {
+  func tripSearch(criterion: TripSearchCriterion, callback: ([Trip]) -> Void) {
     api.tripSearch(criterion) { data in
       let trips = self.convertJsonResponse(data)
       if trips.count == 0 {
         // Better error here
         fatalError("No trips found...")
       }
-      callback(trips[0])
+      callback(trips)
     }
   }
   

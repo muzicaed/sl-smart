@@ -14,8 +14,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   let cellIdentifier = "RoutineTripCell"
   let simpleCellIdentifier = "SimpleRoutineTripCell"
   let loadingCellIdentifier = "LoadingCell"
+  let headerCellIdentifier = "HeaderView"
+  let showTripListSegue = "ShowTripList"
+  
   var bestRoutineTrip: RoutineTrip?
   var otherRoutineTrips = [RoutineTrip]()
+  var selectedRoutineTrip: RoutineTrip?
   var isShowMore = false
   var isLoading = true
   
@@ -35,9 +39,35 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     isShowMore = false
     isLoading = true
     bestRoutineTrip = nil
+    selectedRoutineTrip = nil
     otherRoutineTrips = [RoutineTrip]()
     collectionView?.reloadData()
     loadTripData()
+  }
+  
+  /**
+   * Title tap
+   */
+  func onMoreTap() {
+    if !self.isLoading {
+      isShowMore = !isShowMore
+      self.collectionView?.reloadSections(NSIndexSet(index: 1))
+    }
+  }
+  
+  /**
+   * Prepares for segue
+   */
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if let routineTrip = selectedRoutineTrip {
+      if segue.identifier == showTripListSegue {
+        let vc = segue.destinationViewController as! TripListVC
+        let criterions = TripSearchCriterion(
+          origin: routineTrip.origin!, destination: routineTrip.destination!)
+        vc.criterions = criterions
+        vc.trips = selectedRoutineTrip!.trips
+      }
+    }
   }
   
   /**
@@ -46,7 +76,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   @IBAction func unwindToRoutineTripsVC(segue: UIStoryboardSegue) {}
   
   
-  // MARK: UICollectionViewDataSource
+  // MARK: UICollectionViewController
   
   /**
   * Section count
@@ -96,7 +126,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     let reusableView = collectionView.dequeueReusableSupplementaryViewOfKind(
       UICollectionElementKindSectionHeader,
-      withReuseIdentifier: "HeaderView",
+      withReuseIdentifier: headerCellIdentifier,
       forIndexPath: indexPath) as! RoutineTripHeader
     
     if indexPath.section == 0 {
@@ -115,16 +145,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       reusableView.arrowLabel.text = "▼"
     }
     return reusableView
-  }
-  
-  /**
-   * Title tap
-   */
-  func onMoreTap() {
-    if !self.isLoading {
-      isShowMore = !isShowMore
-      self.collectionView?.reloadSections(NSIndexSet(index: 1))
-    }
   }
   
   /**
@@ -156,6 +176,20 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       }
       
       return CGSizeMake(self.collectionView!.frame.size.width, 50)
+  }
+  
+  /**
+   * User taps an item.
+   */
+  override func collectionView(
+    collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+      if indexPath.section == 0 {
+        selectedRoutineTrip = bestRoutineTrip
+      } else {
+        selectedRoutineTrip = otherRoutineTrips[indexPath.row]
+      }
+      
+      performSegueWithIdentifier(showTripListSegue, sender: self)
   }
   
   // MARK: Private methods
@@ -205,32 +239,19 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Searches trips data for best RoutineTrip
    */
   private func searchBestTrip() {
-    let simpleTripSearch = createSimpleCriterions(
-      bestRoutineTrip!.origin!,
-      destination: bestRoutineTrip!.destination!)
+    let criterions = TripSearchCriterion(
+      origin: bestRoutineTrip!.origin!, destination: bestRoutineTrip!.destination!)
+    criterions.numTrips = 6
     
-    SearchTripService.sharedInstance.tripSearch(simpleTripSearch,
-      callback: { trip in
+    SearchTripService.sharedInstance.tripSearch(criterions,
+      callback: { trips in
         dispatch_async(dispatch_get_main_queue(), {
-          self.bestRoutineTrip!.trip = trip
+          self.bestRoutineTrip!.trips = trips
           self.isLoading = false
           self.collectionView?.reloadData()
           self.collectionView?.reloadSections(NSIndexSet(index: 1))
         })
     })
-  }
-  
-  /**
-   * Creats a simple trips search criterion object.
-   */
-  private func createSimpleCriterions(
-    origin: Station, destination: Station) -> TripSearchCriterion {
-      let criterions = TripSearchCriterion(origin: origin, destination: destination)
-      criterions.date = Utils.dateAsDateString(NSDate())
-      criterions.time = Utils.dateAsTimeString(NSDate())
-      criterions.numTrips = 1
-      
-      return criterions
   }
   
   /**

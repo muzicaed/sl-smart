@@ -24,6 +24,4 @@ class Trip {
       self.tripSegments = segments
     }
   }
-  
-  init() {}
 }
