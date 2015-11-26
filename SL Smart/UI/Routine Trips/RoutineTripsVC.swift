@@ -179,6 +179,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     imageView.tintColor = UIColor.whiteColor()
     imageView.frame.size = CGSizeMake(30, 30)
     imageView.frame.origin.y = 5
+    imageView.frame.origin.x = 6
     
     wrapper.addSubview(imageView)
     self.navigationItem.titleView = wrapper
