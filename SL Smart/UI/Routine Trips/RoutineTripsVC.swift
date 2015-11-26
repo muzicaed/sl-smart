@@ -64,7 +64,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         let vc = segue.destinationViewController as! TripListVC
         let criterions = TripSearchCriterion(
           origin: routineTrip.origin!, destination: routineTrip.destination!)
+        
+        let date = NSDate(timeIntervalSinceNow: (60 * 10) * -1)
+        criterions.time = Utils.dateAsTimeString(date)
         vc.criterions = criterions
+
         vc.trips = selectedRoutineTrip!.trips
       }
     }
@@ -156,6 +160,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       
       let screenSize = UIScreen.mainScreen().bounds.size
       if indexPath.section == 0 {
+        if isLoading {
+          return CGSizeMake(screenSize.width - 10, collectionView.bounds.height - 49 - 64 - 20)
+        }
         return CGSizeMake(screenSize.width - 10, 125)
       }
       
@@ -241,7 +248,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   private func searchBestTrip() {
     let criterions = TripSearchCriterion(
       origin: bestRoutineTrip!.origin!, destination: bestRoutineTrip!.destination!)
-    criterions.numTrips = 6
     
     SearchTripService.sharedInstance.tripSearch(criterions,
       callback: { trips in

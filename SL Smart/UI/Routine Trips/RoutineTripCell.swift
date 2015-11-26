@@ -98,6 +98,7 @@ class RoutineTripCell: UICollectionViewCell {
       label.text = data.short
       label.textAlignment = NSTextAlignment.Center
       label.font = UIFont.systemFontOfSize(6.5)
+      label.textColor = UIColor.darkGrayColor()      
       label.sizeToFit()
       label.frame.size.width = 28
       label.center = CGPointMake((23 / 2), 21)

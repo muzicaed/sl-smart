@@ -69,8 +69,12 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
    */
   func collectionView(collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,
+    
     sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
       let screenSize = UIScreen.mainScreen().bounds.size
+      if isLoading {
+        return CGSizeMake(screenSize.width - 10, collectionView.bounds.height - 49 - 64 - 20)
+      }
       return CGSizeMake(screenSize.width, 90)
   }
   
