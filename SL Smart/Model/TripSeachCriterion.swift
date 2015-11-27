@@ -23,7 +23,7 @@ class TripSearchCriterion {
   var lineExc: String?
   var searchForArrival = false
   var unsharp = false
-  var maxWalkDist = 200
+  var maxWalkDist = 300
   
   var useTrain = true
   var useMetro = true

@@ -45,7 +45,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     super.viewWillAppear(animated)
     if self.isShowInfo ||
       self.lastReload == nil ||
-      self.lastReload?.timeIntervalSinceNow > (60 * 10) {
+      self.lastReload?.timeIntervalSinceNow > (60 * 5) {
         self.hardLoadTripData()
     } else {
       self.refreshTripData()
@@ -83,11 +83,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         let criterions = TripSearchCriterion(
           origin: routineTrip.origin!, destination: routineTrip.destination!)
         
-        let date = NSDate(timeIntervalSinceNow: (60 * 10) * -1)
+        let date = NSDate(timeIntervalSinceNow: (60 * 5) * -1)
         criterions.time = Utils.dateAsTimeString(date)
         vc.criterions = criterions
-        
-        vc.trips = selectedRoutineTrip!.trips
       }
     }
   }
@@ -316,8 +314,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   private func searchBestTrip(isFullReload: Bool) {
     if let routineTrip = bestRoutineTrip {
+      
       let criterions = TripSearchCriterion(
         origin: routineTrip.origin!, destination: routineTrip.destination!)
+      criterions.date = Utils.dateAsDateString(NSDate())
+      criterions.time = Utils.dateAsTimeString(NSDate())
       
       SearchTripService.tripSearch(criterions,
         callback: { trips in

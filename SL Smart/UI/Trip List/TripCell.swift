@@ -16,8 +16,8 @@ class TripCell: UICollectionViewCell {
   @IBOutlet weak var departureTimeLabel: UILabel!
   @IBOutlet weak var arrivalTimeLabel: UILabel!
   @IBOutlet weak var iconAreaView: UIView!
-  @IBOutlet weak var tripDurationLabel: UILabel!
-  
+  @IBOutlet weak var tripDurationLabel: UILabel!  
+  @IBOutlet weak var leftBarView: UIView!
   /**
    * Populate cell data based on passed RoutineTrip
    */
@@ -32,10 +32,26 @@ class TripCell: UICollectionViewCell {
         trip.tripSegments.last!.arrivalDateTime)
       tripDurationLabel.text = "Restid: \(trip.durationMin) min"
       createTripSegmentIcons(trip)
+      
+      checkInPast(trip.tripSegments.first!.departureDateTime)
+    }
+  }
+  
+  /**
+   * Checks if trip is in the past, and marks it.
+   */
+  private func checkInPast(date: NSDate) {
+    if date.timeIntervalSinceNow < 0 {
+      self.alpha = 0.6
+      leftBarView.backgroundColor = UIColor.lightGrayColor()
+      departureTimeLabel.textColor = UIColor.darkGrayColor()
+      arrivalTimeLabel.textColor = UIColor.darkGrayColor()
+      tripDurationLabel.text = "Redan avgått"
     }
   }
   
   // MARK: Private methods
+  
   
   /**
    * Creates trip type icon per segment.

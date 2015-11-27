@@ -13,6 +13,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   
   let cellIdentifier = "TripCell"
   let loadingCellIdentifier = "LoadingCell"
+  let noTripsFoundCell = "FoundNoTripsCell"
   
   var criterions: TripSearchCriterion?
   var trips = [Trip]()
@@ -23,7 +24,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    collectionView?.delegate = self    
+    collectionView?.delegate = self
     StandardGradient.addLayer(view)
     if trips.count == 0 {
       loadTripData()
@@ -60,6 +61,8 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
       if isLoading {
         return createLoadingTripCell(indexPath)
+      } else if trips.count == 0 {
+        return createNoTripsFoundCell(indexPath)
       }
       return createTripCell(trips[indexPath.row], indexPath: indexPath)
   }
@@ -116,6 +119,16 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     return collectionView!.dequeueReusableCellWithReuseIdentifier(loadingCellIdentifier,
       forIndexPath: indexPath)
   }
+  
+  /**
+   * Create "No trips found" trip cell
+   */
+  private func createNoTripsFoundCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+    return collectionView!.dequeueReusableCellWithReuseIdentifier(noTripsFoundCell,
+      forIndexPath: indexPath)
+  }
+  
+  
   
   deinit {
     print("Deinit: TipListVC")
