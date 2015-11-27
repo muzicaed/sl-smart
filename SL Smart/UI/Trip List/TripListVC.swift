@@ -105,16 +105,36 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   * Will check if we scrolled to bottom
   */
   override func scrollViewDidScroll(scrollView: UIScrollView) {
-    let bottomEdge = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.bounds.height
     
-    if scrollView.contentOffset.y >= bottomEdge + 40 && !isLoadingMore {
-      if self.trips.count > 0 {
-        isLoadingMore = true
-        footer?.displaySpinner()
-        let trip = self.trips.last!
-        criterions?.time = Utils.dateAsTimeString(
-          trip.tripSegments.last!.departureDateTime.dateByAddingTimeInterval(60))
-        loadTripData()
+    if scrollView.contentSize.height > 60 {
+      print("Content height: \(scrollView.contentSize.height)")
+      print("Inset.bottom: \(scrollView.contentInset.bottom)")
+      print("Inset.top: \(scrollView.contentInset.top)")
+      print("bounds.height: \(scrollView.bounds.height)")
+      print("Y Offset: \(scrollView.contentOffset.y)")
+      
+      let bottomEdge = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.bounds.height
+      var overflow = scrollView.contentOffset.y - bottomEdge
+      
+      if scrollView.contentSize.height < scrollView.bounds.height {
+        overflow =  scrollView.contentInset.top + scrollView.contentOffset.y
+      }
+      
+      print("bottomEdge: \(bottomEdge)")
+      print("Overflow: \(overflow)")
+      print("------------------------------")
+      if overflow > 0 && !isLoadingMore  {
+        footer?.displaySpinner(overflow / 45)
+        if overflow >= 45 {
+          if self.trips.count > 0 {
+            isLoadingMore = true
+            footer?.displaySpinner(1.0)
+            let trip = self.trips.last!
+            criterions?.time = Utils.dateAsTimeString(
+              trip.tripSegments.last!.departureDateTime.dateByAddingTimeInterval(60))
+            loadTripData()
+          }
+        }
       }
     }
   }

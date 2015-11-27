@@ -14,17 +14,17 @@ class TripFooter: UICollectionReusableView {
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var spinnerView: UIActivityIndicatorView!
   
-  func displaySpinner() {
-    UIView.animateWithDuration(0.4, animations: {
-      self.titleLabel.alpha = 0
-      self.spinnerView.alpha = 1
-    })
-    
-    spinnerView.startAnimating()
+  func displaySpinner(alpha: CGFloat) {
+    self.spinnerView.alpha = alpha
+    self.titleLabel.alpha = 1.0 - (alpha * 1.5)
+    if spinnerView.alpha >= 1.0 {
+      spinnerView.startAnimating()
+    }
   }
   
   func displayLabel() {
     self.titleLabel.alpha = 1
     self.spinnerView.alpha = 0
+    spinnerView.stopAnimating()
   }
 }
