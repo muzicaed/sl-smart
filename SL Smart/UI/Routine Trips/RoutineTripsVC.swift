@@ -188,7 +188,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         if isLoading {
           return CGSizeMake(screenSize.width - 10, collectionView.bounds.height - 49 - 64 - 20)
         } else if isShowInfo {
-          return CGSizeMake(screenSize.width - 10, 310)
+          return CGSizeMake(screenSize.width - 10, 345)
         }
         return CGSizeMake(screenSize.width - 10, 125)
       }
@@ -288,9 +288,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Will show navbar spinner when loading.
    */
   func refreshTripData() {
-    lastReload = NSDate()
-    navigationItem.leftBarButtonItem = createNavSpinner()
-    self.searchBestTrip(false)
+    if !isShowInfo {
+      lastReload = NSDate()
+      navigationItem.leftBarButtonItem = createNavSpinner()
+      self.searchBestTrip(false)
+    }
   }
   
   private func createNavSpinner() -> UIBarButtonItem {

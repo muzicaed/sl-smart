@@ -13,6 +13,9 @@ class ManageRoutineTripsVC: UITableViewController {
   
   let cellIdentifier = "MyRoutinTripCell"
   let emptyCellIdentifier = "NoRoutineCell"
+  let showEditTripsSegue = "EditRoutineTrip"
+  let showAddTripsSegue = "AddRoutineTrip"
+  
   var trips = [RoutineTrip]()
   var selectedRoutineTrip: RoutineTrip?
   var selectedRoutineTripIndex = -1
@@ -52,7 +55,7 @@ class ManageRoutineTripsVC: UITableViewController {
    * Prepare for seque to another vc.
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "EditRoutineTripe" {
+    if segue.identifier == showEditTripsSegue {
       let vc = segue.destinationViewController as! EditRoutineTripVC
       vc.routineTrip = selectedRoutineTrip
       vc.routineTripIndex = selectedRoutineTripIndex
@@ -167,8 +170,13 @@ class ManageRoutineTripsVC: UITableViewController {
    * When user selects a row.
    */
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    if trips.count == 0 {
+      performSegueWithIdentifier(showAddTripsSegue, sender: self)
+      return
+    }
+    
     selectedRoutineTrip = trips[indexPath.row]
     selectedRoutineTripIndex = indexPath.row
-    performSegueWithIdentifier("EditRoutineTripe", sender: self)
+    performSegueWithIdentifier(showEditTripsSegue, sender: self)
   }
 }
