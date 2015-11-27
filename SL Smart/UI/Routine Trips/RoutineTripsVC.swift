@@ -22,6 +22,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   var selectedRoutineTrip: RoutineTrip?
   var isShowMore = false
   var isLoading = true
+  var refreshButton: UIBarButtonItem?
+  var lastReload: NSDate?
+  var refreshTimer: NSTimer?
+  
   
   /**
    * View is done loading
@@ -29,6 +33,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCollectionView()
+    refreshButton = navigationItem.leftBarButtonItem
   }
   
   /**
@@ -36,13 +41,22 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    isShowMore = false
-    isLoading = true
-    bestRoutineTrip = nil
-    selectedRoutineTrip = nil
-    otherRoutineTrips = [RoutineTrip]()
-    collectionView?.reloadData()
-    loadTripData()
+    if lastReload == nil || lastReload?.timeIntervalSinceNow > (60 * 10) {
+      hardLoadTripData()
+    } else {
+      refreshTripData()
+      self.collectionView?.reloadSections(NSIndexSet(index: 1))
+    }
+    refreshTimer = NSTimer.scheduledTimerWithTimeInterval(
+      30, target: self, selector: "refreshTripData", userInfo: nil, repeats: true)
+  }
+  
+  /**
+   * View is about to disappear.
+   */
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    refreshTimer?.invalidate()
   }
   
   /**
@@ -68,10 +82,17 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         let date = NSDate(timeIntervalSinceNow: (60 * 10) * -1)
         criterions.time = Utils.dateAsTimeString(date)
         vc.criterions = criterions
-
+        
         vc.trips = selectedRoutineTrip!.trips
       }
     }
+  }
+  
+  /**
+   * On user taps refresh
+   */
+  @IBAction func onRefreshTap(sender: AnyObject) {
+    refreshTripData()
   }
   
   /**
@@ -229,13 +250,22 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   /**
    * Loading the trip data, and starting background
    * collection of time table data.
+   * Will show big spinner when loading.
    */
-  private func loadTripData() {
+  private func hardLoadTripData() {
+    otherRoutineTrips = [RoutineTrip]()
+    bestRoutineTrip = nil
+    selectedRoutineTrip = nil
+    isShowMore = false
+    self.isLoading = true
+    refreshButton?.enabled = false
+    collectionView?.reloadData()
+    lastReload = NSDate()
     RoutineService.sharedInstance.findRoutineTrip({ routineTrips in
       if routineTrips.count > 0 {
         self.bestRoutineTrip = routineTrips[0]
         self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
-        self.searchBestTrip()
+        self.searchBestTrip(true)
       }
       // TODO: No trips display help box...
       return
@@ -243,9 +273,27 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   /**
+   * Refresh the time table.
+   * Will show navbar spinner when loading.
+   */
+  func refreshTripData() {
+    lastReload = NSDate()
+    navigationItem.leftBarButtonItem = createNavSpinner()
+    self.searchBestTrip(false)
+  }
+  
+  private func createNavSpinner() -> UIBarButtonItem {
+    let spinner = UIActivityIndicatorView()
+    spinner.startAnimating()
+    spinner.frame.size.width = 20
+    
+    return UIBarButtonItem(customView: spinner)
+  }
+  
+  /**
    * Searches trips data for best RoutineTrip
    */
-  private func searchBestTrip() {
+  private func searchBestTrip(isFullReload: Bool) {
     let criterions = TripSearchCriterion(
       origin: bestRoutineTrip!.origin!, destination: bestRoutineTrip!.destination!)
     
@@ -253,11 +301,22 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       callback: { trips in
         dispatch_async(dispatch_get_main_queue(), {
           self.bestRoutineTrip!.trips = trips
-          self.isLoading = false
-          self.collectionView?.reloadData()
-          self.collectionView?.reloadSections(NSIndexSet(index: 1))
+          self.tripSearchDone()
+          if isFullReload {
+            self.collectionView?.reloadSections(NSIndexSet(index: 1))
+          }
         })
     })
+  }
+  
+  /**
+   * On trip search done.
+   */
+  private func tripSearchDone() {
+    self.isLoading = false
+    self.refreshButton?.enabled = true
+    self.navigationItem.leftBarButtonItem = self.refreshButton
+    self.collectionView?.reloadData()
   }
   
   /**
