@@ -11,9 +11,9 @@ import UIKit
 
 class StandardGradient {
   static let colorTop = UIColor(
-    red: 200/255.0, green: 219/255.0, blue: 153/255.0, alpha: 1.0)
+    red: 224/255.0, green: 240/255.0, blue: 203/255.0, alpha: 1.0)
   static let colorBottom = UIColor(
-    red: 173/255.0, green: 198/255.0, blue: 111/255.0, alpha: 1.0)
+    red: 210/255.0, green: 224/255.0, blue: 169/255.0, alpha: 1.0)
   
   /**
    * Adds a gradient background layer.
