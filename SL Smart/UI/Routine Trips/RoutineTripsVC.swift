@@ -43,14 +43,16 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    if isShowInfo || lastReload == nil || lastReload?.timeIntervalSinceNow > (60 * 10) {
-      hardLoadTripData()
+    if self.isShowInfo ||
+      self.lastReload == nil ||
+      self.lastReload?.timeIntervalSinceNow > (60 * 10) {
+        self.hardLoadTripData()
     } else {
-      refreshTripData()
+      self.refreshTripData()
       self.collectionView?.reloadSections(NSIndexSet(index: 1))
     }
-    refreshTimer = NSTimer.scheduledTimerWithTimeInterval(
-      30, target: self, selector: "refreshTripData", userInfo: nil, repeats: true)
+    self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(
+      60, target: self, selector: "refreshTripData", userInfo: nil, repeats: true)
   }
   
   /**
@@ -291,9 +293,13 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   func refreshTripData() {
     if !isShowInfo {
+      if NSDate().timeIntervalSinceDate(lastReload!) < 300.0 {
+        navigationItem.leftBarButtonItem = createNavSpinner()
+        searchBestTrip(false)
+      } else {
+        hardLoadTripData()
+      }
       lastReload = NSDate()
-      navigationItem.leftBarButtonItem = createNavSpinner()
-      self.searchBestTrip(false)
     }
   }
   

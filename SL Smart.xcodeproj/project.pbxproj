@@ -50,6 +50,8 @@
 		18937E871C00A17700C523C9 /* RoutineTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E861C00A17700C523C9 /* RoutineTrip.swift */; };
 		18AC9CF81C07AD4D007ECFA2 /* TripListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF71C07AD4D007ECFA2 /* TripListVC.swift */; };
 		18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF91C07AE63007ECFA2 /* TripCell.swift */; };
+		18AC9CFC1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */; };
+		18AC9CFE1C0866C7007ECFA2 /* MyLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */; };
 		18CE5CC71C025E3E00E1F5A9 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC61C025E3E00E1F5A9 /* Routine.swift */; };
 		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
 		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
@@ -185,6 +187,8 @@
 		18937E861C00A17700C523C9 /* RoutineTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTrip.swift; sourceTree = "<group>"; };
 		18AC9CF71C07AD4D007ECFA2 /* TripListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripListVC.swift; sourceTree = "<group>"; };
 		18AC9CF91C07AE63007ECFA2 /* TripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCell.swift; sourceTree = "<group>"; };
+		18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchNearbyStationsApi.swift; sourceTree = "<group>"; };
+		18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLocationHelper.swift; sourceTree = "<group>"; };
 		18CE5CC61C025E3E00E1F5A9 /* Routine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleHelper.swift; sourceTree = "<group>"; };
 		18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabVC.swift; sourceTree = "<group>"; };
@@ -236,6 +240,7 @@
 				18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */,
 				181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */,
 				180603651C0201A100AC1841 /* HttpRequestHelper.swift */,
+				18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */,
 			);
 			path = "SL API";
 			sourceTree = "<group>";
@@ -373,6 +378,7 @@
 				181B9AF91C03D64000B9145A /* RoutineService.swift */,
 				18232CA91C01EA15006334D1 /* StationSearchService.swift */,
 				181B9AF21C0380FD00B9145A /* SearchTripService.swift */,
+				18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -609,6 +615,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18AC9CFC1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift in Sources */,
 				181B9AEF1C0370EF00B9145A /* SLTravelPlannerV2Api.swift in Sources */,
 				181B9AF81C03B3FB00B9145A /* TripHelper.swift in Sources */,
 				1806037E1C023E8400AC1841 /* DataStore.swift in Sources */,
@@ -632,6 +639,7 @@
 				18232CB01C01FA78006334D1 /* SLSearchStationApi.swift in Sources */,
 				18232CAC1C01EC2F006334D1 /* SearchStationVC.swift in Sources */,
 				18937E7C1BFF5F8100C523C9 /* Station.swift in Sources */,
+				18AC9CFE1C0866C7007ECFA2 /* MyLocationHelper.swift in Sources */,
 				18937E7E1BFF6AB700C523C9 /* RoutineTripCell.swift in Sources */,
 				1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */,
 				18232CA41C01D46A006334D1 /* EditRoutineTripVC.swift in Sources */,

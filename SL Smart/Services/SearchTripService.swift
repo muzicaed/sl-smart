@@ -112,8 +112,6 @@ class SearchTripService {
       id: Int(stationJson["id"].string!)!,
       name: stationJson["name"].string!,
       cleanName: stationJson["name"].string!,
-      area: "",
-      xCoord: 0,
-      yCoord: 0)
+      area: "")
   }
 }

@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     StyleHelper.sharedInstance.setupCustomStyle()
     window?.tintColor = StyleHelper.sharedInstance.tintColor
     DataStore.sharedInstance.preload()
-    
-    
+    MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
+        
     return true
   }
   

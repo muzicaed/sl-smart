@@ -14,32 +14,26 @@ class Station: NSObject, NSCoding {
   let name: String
   let cleanName: String
   let area: String
-  var xCoord: Int
-  var yCoord: Int
   
   /**
    * Standard init
    */
-  init(id: Int, name: String, xCoord: Int, yCoord: Int) {
+  init(id: Int, name: String) {
     let nameAreaTuple = Station.extractNameAndArea(name)
     self.siteId = id
     self.name = nameAreaTuple.name
     self.area = nameAreaTuple.area
     self.cleanName = Station.createCleanName(nameAreaTuple.name)
-    self.xCoord = xCoord
-    self.yCoord = yCoord
   }
   
   /**
    * Standard init
    */
-  init(id: Int, name: String, cleanName: String, area: String, xCoord: Int, yCoord: Int) {
+  init(id: Int, name: String, cleanName: String, area: String) {
     self.siteId = id
     self.name = name
     self.cleanName = cleanName
     self.area = area
-    self.xCoord = xCoord
-    self.yCoord = yCoord
   }
   
   /**
@@ -85,10 +79,8 @@ class Station: NSObject, NSCoding {
     let name = aDecoder.decodeObjectForKey(PropertyKey.name) as! String
     let cleanName = aDecoder.decodeObjectForKey(PropertyKey.cleanName) as! String
     let area = aDecoder.decodeObjectForKey(PropertyKey.area) as! String
-    let xCoord = aDecoder.decodeIntegerForKey(PropertyKey.xCoord)
-    let yCoord = aDecoder.decodeIntegerForKey(PropertyKey.yCoord)
     
-    self.init(id: siteId, name: name, cleanName: cleanName, area: area, xCoord: xCoord, yCoord: yCoord)
+    self.init(id: siteId, name: name, cleanName: cleanName, area: area)
   }
   
   /**
@@ -99,8 +91,6 @@ class Station: NSObject, NSCoding {
     aCoder.encodeObject(name, forKey: PropertyKey.name)
     aCoder.encodeObject(cleanName, forKey: PropertyKey.cleanName)
     aCoder.encodeObject(area, forKey: PropertyKey.area)
-    aCoder.encodeInteger(xCoord, forKey: PropertyKey.xCoord)
-    aCoder.encodeInteger(yCoord, forKey: PropertyKey.yCoord)
   }
   
   struct PropertyKey {
@@ -108,7 +98,5 @@ class Station: NSObject, NSCoding {
     static let name = "name"
     static let cleanName = "cleanName"
     static let area = "area"
-    static let xCoord = "xCoord"
-    static let yCoord = "yCoord"
   }
 }
