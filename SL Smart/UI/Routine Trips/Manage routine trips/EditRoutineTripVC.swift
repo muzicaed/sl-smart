@@ -272,4 +272,8 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
     DataStore.sharedInstance.addRoutineTrip(routineTrip!)
     performSegueWithIdentifier("unwindToManageRoutineTrips", sender: self)
   }
+  
+  deinit {
+    print("Deinit: EditRoutineTripVC")
+  }
 }

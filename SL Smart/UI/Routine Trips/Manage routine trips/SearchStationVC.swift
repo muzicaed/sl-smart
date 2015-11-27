@@ -37,6 +37,7 @@ class SearchStationVC: UITableViewController, UISearchResultsUpdating {
     if let superView = searchController?.view.superview {
       superView.removeFromSuperview()
     }
+    print("Deinit: SearchStationVC")    
   }
   
   // MARK: UITableViewController

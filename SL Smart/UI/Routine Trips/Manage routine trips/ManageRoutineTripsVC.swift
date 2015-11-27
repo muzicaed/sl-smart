@@ -179,4 +179,8 @@ class ManageRoutineTripsVC: UITableViewController {
     selectedRoutineTripIndex = indexPath.row
     performSegueWithIdentifier(showEditTripsSegue, sender: self)
   }
+  
+  deinit {
+    print("Deinit: ManageRoutineTripsVC")
+  }
 }

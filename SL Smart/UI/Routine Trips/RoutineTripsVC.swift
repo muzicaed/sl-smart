@@ -217,13 +217,15 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func collectionView(
     collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-      if indexPath.section == 0 || !isShowInfo {
-        selectedRoutineTrip = bestRoutineTrip
-      } else {
-        selectedRoutineTrip = otherRoutineTrips[indexPath.row]
+      if !isShowInfo {
+        if indexPath.section == 0 {
+          selectedRoutineTrip = bestRoutineTrip
+        } else {
+          selectedRoutineTrip = otherRoutineTrips[indexPath.row]
+        }
+        
+        performSegueWithIdentifier(showTripListSegue, sender: self)
       }
-      
-      performSegueWithIdentifier(showTripListSegue, sender: self)
   }
   
   // MARK: Private methods
@@ -368,5 +370,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   private func createInfoTripCell(indexPath: NSIndexPath) -> UICollectionViewCell {
     return collectionView!.dequeueReusableCellWithReuseIdentifier(infoCellIdentifier,
       forIndexPath: indexPath)
+  }
+  
+  deinit {
+    print("Deinit: RoutineTripsVC")
   }
 }

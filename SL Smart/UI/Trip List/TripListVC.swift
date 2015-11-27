@@ -116,4 +116,8 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     return collectionView!.dequeueReusableCellWithReuseIdentifier(loadingCellIdentifier,
       forIndexPath: indexPath)
   }
+  
+  deinit {
+    print("Deinit: TipListVC")
+  }
 }
