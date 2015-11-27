@@ -96,7 +96,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * On user taps refresh
    */
   @IBAction func onRefreshTap(sender: AnyObject) {
-    refreshTripData()
+    hardLoadTripData()
   }
   
   /**
