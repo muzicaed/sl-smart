@@ -20,6 +20,8 @@ class RoutineTripCell: UICollectionViewCell {
   @IBOutlet weak var tripDurationLabel: UILabel!
   @IBOutlet weak var inAboutLabel: UILabel!
   
+  let normalColor = UIColor(red: 63/255, green: 73/255, blue: 62/255, alpha: 0.6)
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     setup()
@@ -50,6 +52,20 @@ class RoutineTripCell: UICollectionViewCell {
     if routineTrip.trips.count > 0 {
       setupTripData(routineTrip.trips[0])
     }
+  }
+  
+  /**
+   * Highlight this cell
+   */
+  func highlight() {
+    self.backgroundColor = StyleHelper.sharedInstance.mainGreen
+  }
+  
+  /**
+   * Unhighlight this cell
+   */
+  func unhighlight() {
+    self.backgroundColor = normalColor
   }
   
   // MARK: Private methods
