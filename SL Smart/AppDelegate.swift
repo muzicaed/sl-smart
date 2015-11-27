@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     StyleHelper.sharedInstance.setupCustomStyle()
     window?.tintColor = StyleHelper.sharedInstance.tintColor
+    DataStore.sharedInstance.preload()
+    
     
     return true
   }

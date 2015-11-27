@@ -16,12 +16,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   let loadingCellIdentifier = "LoadingCell"
   let headerCellIdentifier = "HeaderView"
   let showTripListSegue = "ShowTripList"
+  let infoCellIdentifier = "InfoCell"
   
   var bestRoutineTrip: RoutineTrip?
   var otherRoutineTrips = [RoutineTrip]()
   var selectedRoutineTrip: RoutineTrip?
   var isShowMore = false
   var isLoading = true
+  var isShowInfo = false
   var refreshButton: UIBarButtonItem?
   var lastReload: NSDate?
   var refreshTimer: NSTimer?
@@ -41,7 +43,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    if lastReload == nil || lastReload?.timeIntervalSinceNow > (60 * 10) {
+    if isShowInfo || lastReload == nil || lastReload?.timeIntervalSinceNow > (60 * 10) {
       hardLoadTripData()
     } else {
       refreshTripData()
@@ -116,7 +118,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func collectionView(collectionView: UICollectionView,
     numberOfItemsInSection section: Int) -> Int {
       if section == 0 {
-        if isLoading {
+        if isLoading || isShowInfo {
           return 1
         }
         let bestCount = (bestRoutineTrip == nil ? 0 : 1)
@@ -138,6 +140,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       if indexPath.section == 0 {
         if isLoading {
           return createLoadingTripCell(indexPath)
+        } else if isShowInfo {
+          return createInfoTripCell(indexPath)
         }
         return createBestTripCell(bestRoutineTrip!, indexPath: indexPath)
       }
@@ -183,6 +187,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       if indexPath.section == 0 {
         if isLoading {
           return CGSizeMake(screenSize.width - 10, collectionView.bounds.height - 49 - 64 - 20)
+        } else if isShowInfo {
+          return CGSizeMake(screenSize.width - 10, 310)
         }
         return CGSizeMake(screenSize.width - 10, 125)
       }
@@ -211,7 +217,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func collectionView(
     collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-      if indexPath.section == 0 {
+      if indexPath.section == 0 || !isShowInfo {
         selectedRoutineTrip = bestRoutineTrip
       } else {
         selectedRoutineTrip = otherRoutineTrips[indexPath.row]
@@ -253,23 +259,28 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Will show big spinner when loading.
    */
   private func hardLoadTripData() {
-    otherRoutineTrips = [RoutineTrip]()
-    bestRoutineTrip = nil
-    selectedRoutineTrip = nil
-    isShowMore = false
-    self.isLoading = true
-    refreshButton?.enabled = false
-    collectionView?.reloadData()
-    lastReload = NSDate()
-    RoutineService.sharedInstance.findRoutineTrip({ routineTrips in
-      if routineTrips.count > 0 {
-        self.bestRoutineTrip = routineTrips[0]
-        self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
-        self.searchBestTrip(true)
-      }
-      // TODO: No trips display help box...
-      return
-    })
+    if DataStore.sharedInstance.isEmpty() {
+      isShowInfo = true
+      isLoading = false
+      self.refreshButton?.enabled = false
+    } else {
+      otherRoutineTrips = [RoutineTrip]()
+      bestRoutineTrip = nil
+      selectedRoutineTrip = nil
+      isShowMore = false
+      isShowInfo = false
+      self.isLoading = true
+      refreshButton?.enabled = false
+      collectionView?.reloadData()
+      lastReload = NSDate()
+      RoutineService.sharedInstance.findRoutineTrip({ routineTrips in
+        if routineTrips.count > 0 {
+          self.bestRoutineTrip = routineTrips[0]
+          self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
+          self.searchBestTrip(true)
+        }
+      })
+    }
   }
   
   /**
@@ -294,19 +305,21 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Searches trips data for best RoutineTrip
    */
   private func searchBestTrip(isFullReload: Bool) {
-    let criterions = TripSearchCriterion(
-      origin: bestRoutineTrip!.origin!, destination: bestRoutineTrip!.destination!)
-    
-    SearchTripService.sharedInstance.tripSearch(criterions,
-      callback: { trips in
-        dispatch_async(dispatch_get_main_queue(), {
-          self.bestRoutineTrip!.trips = trips
-          self.tripSearchDone()
-          if isFullReload {
-            self.collectionView?.reloadSections(NSIndexSet(index: 1))
-          }
-        })
-    })
+    if let routineTrip = bestRoutineTrip {
+      let criterions = TripSearchCriterion(
+        origin: routineTrip.origin!, destination: routineTrip.destination!)
+      
+      SearchTripService.sharedInstance.tripSearch(criterions,
+        callback: { trips in
+          dispatch_async(dispatch_get_main_queue(), {
+            routineTrip.trips = trips
+            self.tripSearchDone()
+            if isFullReload {
+              self.collectionView?.reloadSections(NSIndexSet(index: 1))
+            }
+          })
+      })
+    }
   }
   
   /**
@@ -344,6 +357,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   private func createLoadingTripCell(indexPath: NSIndexPath) -> UICollectionViewCell {
     return collectionView!.dequeueReusableCellWithReuseIdentifier(loadingCellIdentifier,
+      forIndexPath: indexPath)
+  }
+  
+  /**
+   * Create info trip cell
+   */
+  private func createInfoTripCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+    return collectionView!.dequeueReusableCellWithReuseIdentifier(infoCellIdentifier,
       forIndexPath: indexPath)
   }
 }

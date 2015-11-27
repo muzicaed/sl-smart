@@ -17,6 +17,20 @@ class DataStore {
   static let sharedInstance = DataStore()
   
   /**
+   * Preloads routine trip data.
+   */
+  func preload() {
+    myRoutineTrips = retrieveRoutineTripsFromStore()
+  }
+  
+  /**
+   * Is empty
+   */
+  func isEmpty() -> Bool {
+    return (myRoutineTrips.count == 0) ? true : false
+  }
+  
+  /**
    * Adds a routine trip to data store
    */
   func addRoutineTrip(trip: RoutineTrip) {
@@ -75,7 +89,7 @@ class DataStore {
     }
     return [RoutineTrip]()
   }
-
+  
   /**
    * Store routine trip to "MyRoutineTrips" in data store
    */
