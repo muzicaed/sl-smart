@@ -14,10 +14,14 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   let cellIdentifier = "TripCell"
   let loadingCellIdentifier = "LoadingCell"
   let noTripsFoundCell = "FoundNoTripsCell"
+  let footerIdentifier = "LoadMoreFooter"
   
+  var footer: TripFooter?
   var criterions: TripSearchCriterion?
   var trips = [Trip]()
   var isLoading = true
+  var isLoadingMore = false
+  var originalDate = NSDate()
   
   /**
    * View is done loading
@@ -81,6 +85,40 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
       return CGSizeMake(screenSize.width - 10, 90)
   }
   
+  /**
+   * View for supplementary (header/footer)
+   */
+  override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    
+    footer = collectionView.dequeueReusableSupplementaryViewOfKind(
+      UICollectionElementKindSectionFooter,
+      withReuseIdentifier: footerIdentifier,
+      forIndexPath: indexPath) as? TripFooter
+    
+    return footer!
+  }
+  
+  // MARK: UIScrollViewDelegate
+  
+  /**
+  * On scroll
+  * Will check if we scrolled to bottom
+  */
+  override func scrollViewDidScroll(scrollView: UIScrollView) {
+    let bottomEdge = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.bounds.height
+    
+    if scrollView.contentOffset.y >= bottomEdge + 40 && !isLoadingMore {
+      if self.trips.count > 0 {
+        isLoadingMore = true
+        footer?.displaySpinner()
+        let trip = self.trips.last!
+        criterions?.time = Utils.dateAsTimeString(
+          trip.tripSegments.last!.departureDateTime.dateByAddingTimeInterval(60))
+        loadTripData()
+      }
+    }
+  }
+  
   // MARK: Private methods
   
   /**
@@ -92,8 +130,10 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
       SearchTripService.tripSearch(criterions,
         callback: { trips in
           dispatch_async(dispatch_get_main_queue(), {
-            self.trips = trips
+            self.trips.appendContentsOf(trips)
             self.isLoading = false
+            self.isLoadingMore = false
+            self.footer?.displayLabel()
             self.collectionView?.reloadData()
           })
       })
@@ -108,7 +148,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   private func createTripCell(trip: Trip, indexPath: NSIndexPath) -> TripCell {
     let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(cellIdentifier,
       forIndexPath: indexPath) as! TripCell
-    cell.setupData(trip)
+    cell.setupData(trip, originalDate: originalDate)
     return cell
   }
   
@@ -127,8 +167,6 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     return collectionView!.dequeueReusableCellWithReuseIdentifier(noTripsFoundCell,
       forIndexPath: indexPath)
   }
-  
-  
   
   deinit {
     print("Deinit: TipListVC")

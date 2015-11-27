@@ -21,7 +21,7 @@ class TripCell: UICollectionViewCell {
   /**
    * Populate cell data based on passed RoutineTrip
    */
-  func setupData(trip: Trip) {
+  func setupData(trip: Trip, originalDate: NSDate) {
     originLabel.text = trip.tripSegments.first?.origin.cleanName
     destinationLabel.text = trip.tripSegments.last?.destination.cleanName
     if trip.tripSegments.count > 0 {
@@ -33,15 +33,15 @@ class TripCell: UICollectionViewCell {
       tripDurationLabel.text = "Restid: \(trip.durationMin) min"
       createTripSegmentIcons(trip)
       
-      checkInPast(trip.tripSegments.first!.departureDateTime)
+      checkInPast(trip.tripSegments.first!.departureDateTime, originalDate: originalDate)
     }
   }
   
   /**
    * Checks if trip is in the past, and marks it.
    */
-  private func checkInPast(date: NSDate) {
-    if date.timeIntervalSinceNow < 0 {
+  private func checkInPast(date: NSDate, originalDate: NSDate) {
+    if date.timeIntervalSinceDate(originalDate) < 0 {
       self.alpha = 0.6
       leftBarView.backgroundColor = UIColor.lightGrayColor()
       departureTimeLabel.textColor = UIColor.darkGrayColor()

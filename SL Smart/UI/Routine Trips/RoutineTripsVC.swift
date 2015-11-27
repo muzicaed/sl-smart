@@ -84,8 +84,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
           origin: routineTrip.origin!, destination: routineTrip.destination!)
         
         let date = NSDate(timeIntervalSinceNow: (60 * 5) * -1)
+        criterions.date = Utils.dateAsDateString(date)
         criterions.time = Utils.dateAsTimeString(date)
+        
         vc.criterions = criterions
+        vc.originalDate = date
       }
     }
   }
