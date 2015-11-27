@@ -73,7 +73,7 @@ class SearchStationVC: UITableViewController, UISearchResultsUpdating {
   @objc func updateSearchResultsForSearchController(searchController: UISearchController) {    
     if let query = searchController.searchBar.text {
       if query.characters.count > 1 {
-        StationSearchService.sharedInstance.search(query) { stations in
+        StationSearchService.search(query) { stations in
           dispatch_async(dispatch_get_main_queue(), {
             self.searchResult = stations
             self.tableView.reloadData()

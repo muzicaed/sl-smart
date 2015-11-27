@@ -275,7 +275,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       refreshButton?.enabled = false
       collectionView?.reloadData()
       lastReload = NSDate()
-      RoutineService.sharedInstance.findRoutineTrip({ routineTrips in
+      RoutineService.findRoutineTrip({ routineTrips in
         if routineTrips.count > 0 {
           self.bestRoutineTrip = routineTrips[0]
           self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
@@ -313,7 +313,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       let criterions = TripSearchCriterion(
         origin: routineTrip.origin!, destination: routineTrip.destination!)
       
-      SearchTripService.sharedInstance.tripSearch(criterions,
+      SearchTripService.tripSearch(criterions,
         callback: { trips in
           dispatch_async(dispatch_get_main_queue(), {
             routineTrip.trips = trips

@@ -9,24 +9,19 @@
 import Foundation
 
 class RoutineService {
-  
-  // Singelton pattern
-  static let sharedInstance = RoutineService()
-  
-  
+
   /**
    * Finds the all routine trip based on
    * current position, time and week day.
    * TODO: Only test stub...
    */
-  func findRoutineTrip(callback: ([RoutineTrip]) -> Void) {
-    let routineTrips = DataStore.sharedInstance.retriveRoutineTrips()
+  static func findRoutineTrip(callback: ([RoutineTrip]) -> Void) {
+    let nearbyStations = StationSearchService.searchNearby()
+    var allRoutineTrips = DataStore.sharedInstance.retriveRoutineTrips()
     
-    // Simulate loading
-    let delay = 0.2 * Double(NSEC_PER_SEC)  // nanoseconds per seconds
-    let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))    
-    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-      callback(routineTrips)
-    })
+//    allRoutineTrips = score
+    
+    let prioList = allRoutineTrips.sort {$0.score > $1.score}
+    callback(Array(prioList[0..<2]) as [RoutineTrip])
   }
 }

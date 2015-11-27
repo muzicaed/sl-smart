@@ -1200,7 +1200,7 @@
                                                                     <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-tn-fDB">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-tn-fDB">
                                                                     <rect key="frame" x="0.0" y="23" width="339" height="306"/>
                                                                     <animations/>
                                                                     <attributedString key="attributedText">
@@ -1515,39 +1515,39 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                 <constraint firstAttribute="width" constant="10" id="v5m-o8-Jx3"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6VA-T1-FU9" userLabel="Time table">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6VA-T1-FU9" userLabel="Time table">
                                                             <rect key="frame" x="20" y="0.0" width="320" height="100"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bCO-gG-xAn" userLabel="Table rows">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bCO-gG-xAn" userLabel="Table rows">
                                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                                                     <subviews>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WmF-ov-2k7" userLabel="Origin -&gt; Destiantion">
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmF-ov-2k7" userLabel="Origin -&gt; Destiantion">
                                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                                                             <subviews>
-                                                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="27u-LY-jZ5" userLabel="Origin">
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="27u-LY-jZ5" userLabel="Origin">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="138" height="65"/>
                                                                                     <subviews>
-                                                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jIh-yD-wPU" userLabel="Space">
+                                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jIh-yD-wPU" userLabel="Space">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="138" height="5"/>
                                                                                             <animations/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="jDD-dp-rd1"/>
                                                                                             </constraints>
                                                                                         </view>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="19:23" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkG-AC-ZZE" userLabel="19:23 (om 3 min.)">
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19:23" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkG-AC-ZZE" userLabel="19:23 (om 3 min.)">
                                                                                             <rect key="frame" x="0.0" y="11" width="138" height="23"/>
                                                                                             <animations/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                                             <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxx-FU-l9L" userLabel="Karlberg">
-                                                                                            <rect key="frame" x="0.0" y="35" width="138" height="16"/>
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxx-FU-l9L" userLabel="Karlberg">
+                                                                                            <rect key="frame" x="0.0" y="34" width="138" height="16"/>
                                                                                             <animations/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
-                                                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dOc-Rd-xE3" userLabel="Space">
+                                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOc-Rd-xE3" userLabel="Space">
                                                                                             <rect key="frame" x="0.0" y="60" width="138" height="5"/>
                                                                                             <animations/>
                                                                                             <constraints>
@@ -1558,11 +1558,11 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                     <animations/>
                                                                                     <color key="backgroundColor" red="0.52156862749999999" green="0.70980392160000005" blue="0.043137254899999998" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                                                                 </stackView>
-                                                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y5l-Av-sLA" userLabel="Spacer">
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y5l-Av-sLA" userLabel="Spacer">
                                                                                     <rect key="frame" x="138" y="0.0" width="44" height="65"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Aq0-TM-bsn">
-                                                                                            <rect key="frame" x="11.5" y="15" width="21.5" height="36"/>
+                                                                                            <rect key="frame" x="11" y="15" width="21.5" height="36"/>
                                                                                             <animations/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
                                                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1576,30 +1576,30 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                         <constraint firstItem="Aq0-TM-bsn" firstAttribute="centerX" secondItem="Y5l-Av-sLA" secondAttribute="centerX" id="KYx-0c-dq9"/>
                                                                                     </constraints>
                                                                                 </view>
-                                                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="gXn-Ls-CgF" userLabel="Destination">
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="gXn-Ls-CgF" userLabel="Destination">
                                                                                     <rect key="frame" x="182" y="0.0" width="138" height="65"/>
                                                                                     <subviews>
-                                                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="llQ-4E-VEP" userLabel="Space">
+                                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="llQ-4E-VEP" userLabel="Space">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="138" height="5"/>
                                                                                             <animations/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="76d-Fc-CGE"/>
                                                                                             </constraints>
                                                                                         </view>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="20:43" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwz-5L-zPm" userLabel="20:43">
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:43" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwz-5L-zPm" userLabel="20:43">
                                                                                             <rect key="frame" x="0.0" y="11" width="138" height="23"/>
                                                                                             <animations/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                                             <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQI-Ex-ggn" userLabel="Centralen">
-                                                                                            <rect key="frame" x="0.0" y="35" width="138" height="16"/>
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQI-Ex-ggn" userLabel="Centralen">
+                                                                                            <rect key="frame" x="0.0" y="34" width="138" height="16"/>
                                                                                             <animations/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
-                                                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wnk-E0-RU8" userLabel="Space">
+                                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wnk-E0-RU8" userLabel="Space">
                                                                                             <rect key="frame" x="0.0" y="60" width="138" height="5"/>
                                                                                             <animations/>
                                                                                             <constraints>
@@ -1617,10 +1617,10 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                 <constraint firstItem="gXn-Ls-CgF" firstAttribute="width" secondItem="WmF-ov-2k7" secondAttribute="width" multiplier="0.43" id="kSR-we-27m"/>
                                                                             </constraints>
                                                                         </stackView>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AoK-UF-GjS" userLabel="Icon &amp; Duration">
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoK-UF-GjS" userLabel="Icon &amp; Duration">
                                                                             <rect key="frame" x="0.0" y="65" width="320" height="25"/>
                                                                             <subviews>
-                                                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FU0-FO-mE4" userLabel="Icon">
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FU0-FO-mE4" userLabel="Icon">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="138" height="25"/>
                                                                                     <animations/>
                                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1628,12 +1628,12 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                         <constraint firstAttribute="height" constant="25" id="BzP-ie-WJT" userLabel="height = 30"/>
                                                                                     </constraints>
                                                                                 </view>
-                                                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jjk-EG-Yoy" userLabel="Space">
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jjk-EG-Yoy" userLabel="Space">
                                                                                     <rect key="frame" x="138" y="0.0" width="44" height="25"/>
                                                                                     <animations/>
                                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 </view>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" misplaced="YES" text="Res tid: 1h 33m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVg-st-IjB">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Res tid: 1h 33m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVg-st-IjB">
                                                                                     <rect key="frame" x="182" y="0.0" width="138" height="25"/>
                                                                                     <animations/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -1643,7 +1643,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                             </subviews>
                                                                             <animations/>
                                                                         </stackView>
-                                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gbH-ns-2Sa" userLabel="Padding">
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbH-ns-2Sa" userLabel="Padding">
                                                                             <rect key="frame" x="0.0" y="90" width="320" height="10"/>
                                                                             <animations/>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1668,11 +1668,11 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                 <constraint firstItem="bCO-gG-xAn" firstAttribute="leading" secondItem="6VA-T1-FU9" secondAttribute="leading" id="rj3-BU-EeR"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HIP-1t-2OT" userLabel="Space">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HIP-1t-2OT" userLabel="Space">
                                                             <rect key="frame" x="340" y="0.0" width="25" height="100"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="›" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wS5-I2-VZB">
-                                                                    <rect key="frame" x="0.5" y="26" width="25" height="48"/>
+                                                                    <rect key="frame" x="0.0" y="26" width="25" height="48"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="41"/>
                                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1687,7 +1687,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                 <constraint firstItem="wS5-I2-VZB" firstAttribute="centerY" secondItem="HIP-1t-2OT" secondAttribute="centerY" id="z2x-S9-ela"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JmP-5W-PkG" userLabel="Space">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JmP-5W-PkG" userLabel="Space">
                                                             <rect key="frame" x="365" y="0.0" width="5" height="100"/>
                                                             <animations/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -10,24 +10,29 @@ import Foundation
 
 class StationSearchService {
   
-  // Singelton pattern
-  static let sharedInstance = StationSearchService()
-  private let api = SLSearchStationApi()
+  private static let api = SLSearchStationApi()
   
   /**
    * Searches for stations based on the query
    */
-  func search(query: String, callback: ([Station]) -> Void) {
+  static func search(query: String, callback: ([Station]) -> Void) {
     api.search(query) { data in
-      let stations = self.convertJsonResponse(data)
+      let stations = StationSearchService.convertJsonResponse(data)
       callback(stations)
     }
   }
   
   /**
+   * Searches for nearby stations.
+   */
+  static func searchNearby() -> [Station] {
+    return [Station]()
+  }
+  
+  /**
    * Converts the raw json string into array of Station.
    */
-  private func convertJsonResponse(jsonDataString: NSData) -> [Station] {
+  private static func convertJsonResponse(jsonDataString: NSData) -> [Station] {
     var result = [Station]()
     let data = JSON(data: jsonDataString)
 

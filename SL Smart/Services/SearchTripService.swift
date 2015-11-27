@@ -10,14 +10,12 @@ import Foundation
 
 class SearchTripService {
   
-  // Singelton pattern
-  static let sharedInstance = SearchTripService()
-  private let api = SLTravelPlannerV2Api()
+  private static let api = SLTravelPlannerV2Api()
   
   /**
    * Trip search.
    */
-  func tripSearch(criterion: TripSearchCriterion, callback: ([Trip]) -> Void) {
+  static func tripSearch(criterion: TripSearchCriterion, callback: ([Trip]) -> Void) {
     api.tripSearch(criterion) { data in
       let trips = self.convertJsonResponse(data)
       if trips.count == 0 {
@@ -40,9 +38,9 @@ class SearchTripService {
   // MARK: Private methods
   
   /**
-   * Converts the raw json string into array of Station.
-   */
-  private func convertJsonResponse(jsonDataString: NSData) -> [Trip] {
+  * Converts the raw json string into array of Station.
+  */
+  private static func convertJsonResponse(jsonDataString: NSData) -> [Trip] {
     var result = [Trip]()
     let data = JSON(data: jsonDataString)
     
@@ -60,7 +58,7 @@ class SearchTripService {
   /**
    * Converts json to trip object.
    */
-  private func convertJsonToTrip(tripJson: JSON) -> Trip {
+  private static func convertJsonToTrip(tripJson: JSON) -> Trip {
     let tripSegments = convertJsonToSegments(tripJson["LegList"]["Leg"])
     return Trip(
       durationMin: Int(tripJson["dur"].string!)!,
@@ -71,7 +69,7 @@ class SearchTripService {
   /**
    * Converts json to trip segment object.
    */
-  private func convertJsonToSegments(segmentsJson: JSON) -> [TripSegment] {
+  private static func convertJsonToSegments(segmentsJson: JSON) -> [TripSegment] {
     var tripSegments = [TripSegment]()
     if let segmentsArr = segmentsJson.array  {
       for segmentJson in segmentsArr {
@@ -87,7 +85,7 @@ class SearchTripService {
   /**
    * Converts json to trip segment object.
    */
-  private func convertJsonToTripSegment(segmentJson: JSON) -> TripSegment {
+  private static func convertJsonToTripSegment(segmentJson: JSON) -> TripSegment {
     let origin = convertJsonToStation(segmentJson["Origin"])
     let destination = convertJsonToStation(segmentJson["Destination"])
     
@@ -109,7 +107,7 @@ class SearchTripService {
   /**
    * Converts json to station object.
    */
-  private func convertJsonToStation(stationJson: JSON) -> Station {
+  private static func convertJsonToStation(stationJson: JSON) -> Station {
     return Station(
       id: Int(stationJson["id"].string!)!,
       name: stationJson["name"].string!,

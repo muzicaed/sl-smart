@@ -86,7 +86,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   */
   private func loadTripData() {
     if let criterions = self.criterions {
-      SearchTripService.sharedInstance.tripSearch(criterions,
+      SearchTripService.tripSearch(criterions,
         callback: { trips in
           dispatch_async(dispatch_get_main_queue(), {
             self.trips = trips
