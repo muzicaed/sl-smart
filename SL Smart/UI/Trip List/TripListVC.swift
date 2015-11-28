@@ -49,6 +49,13 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   // MARK: UICollectionViewController
   
   /**
+   * Number of sections
+   */
+  override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    return 1
+  }
+  
+  /**
   * Item count for section
   */
   override func collectionView(collectionView: UICollectionView,
@@ -74,6 +81,21 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   }
   
   /**
+   * Size for headers.
+   */
+  func collectionView(collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    referenceSizeForHeaderInSection section: Int) -> CGSize {
+      
+      if isLoading  {
+        return CGSizeMake(0, 0)
+      }
+      
+      let screenSize = UIScreen.mainScreen().bounds.size
+      return CGSizeMake(screenSize.width - 10, 35)
+  }
+  
+  /**
    * Size for items.
    */
   func collectionView(collectionView: UICollectionView,
@@ -93,7 +115,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   override func collectionView(collectionView: UICollectionView,
     viewForSupplementaryElementOfKind kind: String,
     atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-    
+      
     if kind == UICollectionElementKindSectionHeader {
       let header = collectionView.dequeueReusableSupplementaryViewOfKind(
         UICollectionElementKindSectionHeader,
