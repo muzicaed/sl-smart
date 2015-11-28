@@ -41,9 +41,6 @@ class RoutineService {
   * Score based on proximity to location.
   */
   static private func scoreForLocation(trip: RoutineTrip, locations: [(id: Int, dist: Int)]) -> Int {
-    
-    print("Trip id: \(trip.origin!.siteId)")
-    
     for location in locations {
       if trip.origin!.siteId == location.id {
         if location.dist < 50 {

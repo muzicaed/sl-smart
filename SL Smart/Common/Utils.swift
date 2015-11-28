@@ -15,7 +15,6 @@ class Utils {
    * NSDate object.
    */
   static func convertDateString(dateTime: String) -> NSDate {
-    print(dateTime)
     let formatter = NSDateFormatter()
     formatter.locale = NSLocale(localeIdentifier: "sv_SE")
     formatter.dateFormat = "yyyy-MM-dd HH:mm"

@@ -40,11 +40,7 @@ class TripCell: UICollectionViewCell {
   /**
    * Checks if trip is in the past, and marks it.
    */
-  private func checkInPast(date: NSDate, originalDate: NSDate) {
-    
-    print("Original: \(originalDate)")
-    print("Depart:   \(date)")
-    
+  private func checkInPast(date: NSDate, originalDate: NSDate) {    
     if date.timeIntervalSinceDate(originalDate) < 0 {
       self.alpha = 0.6
       leftBarView.backgroundColor = UIColor.lightGrayColor()
