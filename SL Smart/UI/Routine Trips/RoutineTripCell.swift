@@ -45,7 +45,7 @@ class RoutineTripCell: UICollectionViewCell {
    * Populate cell data based on passed RoutineTrip
    */
   func setupData(routineTrip: RoutineTrip) {
-    tripTitleLabel.text = routineTrip.title! + " " + String(routineTrip.score)
+    tripTitleLabel.text = routineTrip.title! + " [\(String(routineTrip.score))]"
     originLabel.text = routineTrip.origin?.cleanName
     destinationLabel.text = routineTrip.destination?.cleanName
     
