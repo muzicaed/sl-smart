@@ -1483,7 +1483,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                             <size key="itemSize" width="370" height="90"/>
                             <size key="headerReferenceSize" width="50" height="35"/>
                             <size key="footerReferenceSize" width="50" height="50"/>
-                            <inset key="sectionInset" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TripCell" id="71s-Mx-d6l" userLabel="TripCell" customClass="TripCell" customModule="SL_Smart" customModuleProvider="target">
@@ -1772,29 +1772,43 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <size key="customSize" width="370" height="120"/>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DateHeader" id="6Ci-aM-zr7">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DateHeader" id="6Ci-aM-zr7" customClass="TripHeader" customModule="SL_Smart" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="64" width="414" height="35"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Idag - 2015-11-28" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9HV-hm-dNp">
-                                    <rect key="frame" x="8" y="8" width="398" height="19"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fog-xR-L0k">
+                                    <rect key="frame" x="0.0" y="10" width="414" height="25"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Måndagen den 24:e januari" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9HV-hm-dNp">
+                                            <rect key="frame" x="8" y="0.0" width="414" height="25"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                    <constraints>
+                                        <constraint firstItem="9HV-hm-dNp" firstAttribute="leading" secondItem="Fog-xR-L0k" secondAttribute="leadingMargin" id="VD3-vA-RLi"/>
+                                        <constraint firstAttribute="trailing" secondItem="9HV-hm-dNp" secondAttribute="trailingMargin" id="W6L-9N-xuM"/>
+                                        <constraint firstAttribute="bottom" secondItem="9HV-hm-dNp" secondAttribute="bottom" id="asJ-5L-UcO"/>
+                                        <constraint firstItem="9HV-hm-dNp" firstAttribute="top" secondItem="Fog-xR-L0k" secondAttribute="top" id="fQa-t3-67G"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <animations/>
-                            <color key="backgroundColor" red="0.36865660550000001" green="0.53865325450000001" blue="0.043615758419999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstItem="9HV-hm-dNp" firstAttribute="leading" secondItem="6Ci-aM-zr7" secondAttribute="leadingMargin" id="AQx-OH-zG1"/>
-                                <constraint firstAttribute="trailingMargin" secondItem="9HV-hm-dNp" secondAttribute="trailing" id="DsU-sb-iDT"/>
-                                <constraint firstAttribute="bottomMargin" secondItem="9HV-hm-dNp" secondAttribute="bottom" id="NMW-RS-r0o"/>
-                                <constraint firstItem="9HV-hm-dNp" firstAttribute="top" secondItem="6Ci-aM-zr7" secondAttribute="topMargin" id="p1H-Yn-zXO"/>
+                                <constraint firstItem="Fog-xR-L0k" firstAttribute="leading" secondItem="6Ci-aM-zr7" secondAttribute="leading" id="0CI-LX-S0r"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="Fog-xR-L0k" secondAttribute="trailingMargin" id="Mma-0J-Df3"/>
+                                <constraint firstItem="Fog-xR-L0k" firstAttribute="top" secondItem="6Ci-aM-zr7" secondAttribute="top" constant="10" id="ND7-ed-L5f"/>
+                                <constraint firstAttribute="bottomMargin" secondItem="Fog-xR-L0k" secondAttribute="bottomMargin" id="WXz-Ko-NSx"/>
                             </constraints>
+                            <connections>
+                                <outlet property="titleLabel" destination="9HV-hm-dNp" id="iIt-hL-dip"/>
+                            </connections>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LoadMoreFooter" id="SPI-Bo-xvO" userLabel="LoadMoreFooter" customClass="TripFooter" customModule="SL_Smart" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="450" width="414" height="50"/>
+                            <rect key="frame" x="0.0" y="455" width="414" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼  Visa fler resor  ▼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gR2-gH-c4e">

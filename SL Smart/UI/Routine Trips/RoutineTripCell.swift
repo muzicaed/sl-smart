@@ -101,35 +101,38 @@ class RoutineTripCell: UICollectionViewCell {
    */
   private func createTripSegmentIcons(trip: Trip) {
     iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
-    
-    for (index, segment) in trip.tripSegments.enumerate() {
-      if index > 5 { return }
-      let data = TripHelper.friendlyLineData(segment)
-      
-      let iconView = UIImageView(image: UIImage(named: data.icon))
-      iconView.frame.size = CGSizeMake(15, 15)
-      iconView.center = CGPointMake(23 / 2, 9)
-      
-      let label = UILabel()
-      label.text = data.short
-      label.textAlignment = NSTextAlignment.Center
-      label.font = UIFont.systemFontOfSize(6.5)
-      label.textColor = UIColor.darkGrayColor()      
-      label.sizeToFit()
-      label.frame.size.width = 28
-      label.center = CGPointMake((23 / 2), 21)
-      label.adjustsFontSizeToFitWidth = true
-      
-      let wrapperView = UIView(
-        frame:CGRect(
-          origin: CGPointMake(0, 0),
-          size: CGSizeMake(23, 30)))
-      wrapperView.frame.origin = CGPointMake((23 * CGFloat(index)), 0)
-      
-      wrapperView.addSubview(iconView)
-      wrapperView.addSubview(label)
-      wrapperView.clipsToBounds = false
-      iconAreaView.addSubview(wrapperView)
+    var count = 0
+    for (_, segment) in trip.tripSegments.enumerate() {
+      if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
+        if count > 5 { return }
+        let data = TripHelper.friendlyLineData(segment)
+        
+        let iconView = UIImageView(image: UIImage(named: data.icon))
+        iconView.frame.size = CGSizeMake(15, 15)
+        iconView.center = CGPointMake(23 / 2, 9)
+        
+        let label = UILabel()
+        label.text = data.short
+        label.textAlignment = NSTextAlignment.Center
+        label.font = UIFont.systemFontOfSize(6.5)
+        label.textColor = UIColor.darkGrayColor()
+        label.sizeToFit()
+        label.frame.size.width = 28
+        label.center = CGPointMake((23 / 2), 21)
+        label.adjustsFontSizeToFitWidth = true
+        
+        let wrapperView = UIView(
+          frame:CGRect(
+            origin: CGPointMake(0, 0),
+            size: CGSizeMake(23, 30)))
+        wrapperView.frame.origin = CGPointMake((23 * CGFloat(count)), 0)
+        
+        wrapperView.addSubview(iconView)
+        wrapperView.addSubview(label)
+        wrapperView.clipsToBounds = false
+        iconAreaView.addSubview(wrapperView)
+        count++
+      }
     }
   }
 }

@@ -17,6 +17,7 @@ class Utils {
   static func convertDateString(dateTime: String) -> NSDate {
     print(dateTime)
     let formatter = NSDateFormatter()
+    formatter.locale = NSLocale(localeIdentifier: "sv_SE")
     formatter.dateFormat = "yyyy-MM-dd HH:mm"
     
     return formatter.dateFromString(dateTime)!
@@ -44,6 +45,27 @@ class Utils {
     formatter.dateFormat = "HH:mm"
     
     return formatter.stringFromDate(date)
+  }
+
+   /**
+   * Converts a NSDate to a swedish local friendly
+   * date string.
+   */
+  static func friendlyDate(date: NSDate) -> String {
+    let formatter = NSDateFormatter()
+    formatter.locale = NSLocale(localeIdentifier: "sv_SE")
+    
+    formatter.dateFormat = "EEEE"
+    let weekDay = (formatter.stringFromDate(date) + "en").capitalizedString
+
+    formatter.dateFormat = "d"
+    var day = formatter.stringFromDate(date)
+    day = (day == "1" || day == "2") ? day + ":a" : day + ":e"
+
+    formatter.dateFormat = "MMMM"
+    let month = formatter.stringFromDate(date)
+    
+    return ("\(weekDay) den \(day) \(month)")
   }
   
   /**

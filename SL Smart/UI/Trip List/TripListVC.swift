@@ -20,7 +20,8 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   
   var footer: TripFooter?
   var criterions: TripSearchCriterion?
-  var trips = [Trip]()
+  var keys = [String]()
+  var trips = Dictionary<String, [Trip]>()
   var isLoading = true
   var isLoadingMore = false
   var originalDate = NSDate()
@@ -49,22 +50,22 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   // MARK: UICollectionViewController
   
   /**
-   * Number of sections
-   */
+  * Number of sections
+  */
   override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-    return 1
+    return keys.count
   }
   
   /**
-  * Item count for section
-  */
+   * Item count for section
+   */
   override func collectionView(collectionView: UICollectionView,
     numberOfItemsInSection section: Int) -> Int {
       if isLoading || trips.count == 0 {
         return 1
       }
       
-      return trips.count
+      return trips[keys[section]]!.count
   }
   
   /**
@@ -77,7 +78,8 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
       } else if trips.count == 0 {
         return createNoTripsFoundCell(indexPath)
       }
-      return createTripCell(trips[indexPath.row], indexPath: indexPath)
+      
+      return createTripCell(indexPath)
   }
   
   /**
@@ -93,6 +95,21 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
       
       let screenSize = UIScreen.mainScreen().bounds.size
       return CGSizeMake(screenSize.width - 10, 35)
+  }
+  
+  /**
+   * Size for footers.
+   */
+  func collectionView(collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    referenceSizeForFooterInSection section: Int) -> CGSize {
+      
+      if isLoading  {
+        return CGSizeMake(0, 0)
+      }
+      
+      let screenSize = UIScreen.mainScreen().bounds.size
+      return (section == keys.count - 1) ? CGSizeMake(screenSize.width - 10, 50) : CGSizeMake(0, 0)
   }
   
   /**
@@ -116,21 +133,23 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     viewForSupplementaryElementOfKind kind: String,
     atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
       
-    if kind == UICollectionElementKindSectionHeader {
-      let header = collectionView.dequeueReusableSupplementaryViewOfKind(
-        UICollectionElementKindSectionHeader,
-        withReuseIdentifier: headerIdentifier,
-        forIndexPath: indexPath)
+      if kind == UICollectionElementKindSectionHeader {
+        let header = collectionView.dequeueReusableSupplementaryViewOfKind(
+          UICollectionElementKindSectionHeader,
+          withReuseIdentifier: headerIdentifier,
+          forIndexPath: indexPath) as! TripHeader
+        
+        let date = Utils.convertDateString("\(keys[indexPath.section]) 00:00")
+        header.titleLabel.text = Utils.friendlyDate(date)
+        return header
+      }
       
-      return header
-    }
-    
-    footer = collectionView.dequeueReusableSupplementaryViewOfKind(
-      UICollectionElementKindSectionFooter,
-      withReuseIdentifier: footerIdentifier,
-      forIndexPath: indexPath) as? TripFooter
-    
-    return footer!
+      footer = collectionView.dequeueReusableSupplementaryViewOfKind(
+        UICollectionElementKindSectionFooter,
+        withReuseIdentifier: footerIdentifier,
+        forIndexPath: indexPath) as? TripFooter
+      
+      return footer!
   }
   
   // MARK: UIScrollViewDelegate
@@ -139,21 +158,22 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   * On scroll
   * Will check if we scrolled to bottom
   */
-  override func scrollViewDidScroll(scrollView: UIScrollView) {    
+  override func scrollViewDidScroll(scrollView: UIScrollView) {
     if scrollView.contentSize.height > 60 {
       let bottomEdge = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.bounds.height
       var overflow = scrollView.contentOffset.y - bottomEdge
       if scrollView.contentSize.height < scrollView.bounds.height {
         overflow =  scrollView.contentInset.top + scrollView.contentOffset.y
       }
-
+      
       if overflow > 0 && !isLoadingMore  {
-        footer?.displaySpinner(overflow / 45)
-        if overflow >= 45 {
-          if self.trips.count > 0 {
+        footer?.displaySpinner(overflow / 60)
+        if overflow >= 60 {
+          if trips.count > 0 {
             isLoadingMore = true
             footer?.displaySpinner(1.0)
-            let trip = self.trips.last!
+            
+            let trip = trips[keys.last!]!.last!
             criterions?.time = Utils.dateAsTimeString(
               trip.tripSegments.last!.departureDateTime.dateByAddingTimeInterval(60))
             loadTripData()
@@ -174,7 +194,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
       SearchTripService.tripSearch(criterions,
         callback: { trips in
           dispatch_async(dispatch_get_main_queue(), {
-            self.trips.appendContentsOf(trips)
+            self.appendToDictionary(trips)
             self.isLoading = false
             self.isLoadingMore = false
             self.footer?.displayLabel()
@@ -189,16 +209,32 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   }
   
   /**
+   * Appends search result to dictionary
+   */
+  private func appendToDictionary(tripsArr: [Trip]) {
+    for trip in tripsArr {
+      let destDateString = Utils.dateAsDateString(trip.tripSegments.last!.departureDateTime)
+      if !keys.contains(destDateString) {
+        keys.append(destDateString)
+        trips[destDateString] = [Trip]()
+      }
+      trips[destDateString]!.append(trip)
+    }
+  }
+  
+  /**
    * Checks if a day passed in the search result, and update
    * the search criterions in that case.
    */
   private func updateDateCriterions() {
     let cal = NSCalendar.currentCalendar()
-    let departDate = trips.last!.tripSegments.last!.departureDateTime
+    let trip = trips[keys.last!]!.last!
+    
+    let departDate = trip.tripSegments.last!.departureDateTime
     let departDay = cal.ordinalityOfUnit(.Day, inUnit: .Year, forDate: departDate)
     let criterionDate = Utils.convertDateString("\(criterions!.date!) \(criterions!.time!)")
     let criterionDay = cal.ordinalityOfUnit(.Day, inUnit: .Year, forDate: criterionDate)
-
+    
     if departDay != criterionDay {
       criterions?.date = Utils.dateAsDateString(departDate)
     }
@@ -207,7 +243,9 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   /**
    * Create trip cell
    */
-  private func createTripCell(trip: Trip, indexPath: NSIndexPath) -> TripCell {
+  private func createTripCell(indexPath: NSIndexPath) -> TripCell {
+    let key = keys[indexPath.section]
+    let trip = trips[key]![indexPath.row]
     let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(cellIdentifier,
       forIndexPath: indexPath) as! TripCell
     cell.setupData(trip, originalDate: originalDate)

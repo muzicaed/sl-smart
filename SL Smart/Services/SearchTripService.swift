@@ -21,17 +21,8 @@ class SearchTripService {
       if trips.count == 0 {
         // Better error here
         fatalError("No trips found...")
-      }
-      
-      let filtered = trips.filter {
-        for segment in $0.tripSegments {
-          if let dist = segment.distance {
-            return (dist > 30) ? true : false
-          }
-        }
-        return true
-      }
-      callback(filtered)
+      }      
+      callback(trips)
     }
   }
   
