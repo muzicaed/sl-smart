@@ -43,7 +43,7 @@ class SearchTripService {
   private static func convertJsonResponse(jsonDataString: NSData) -> [Trip] {
     var result = [Trip]()
     let data = JSON(data: jsonDataString)
-    
+
     if let tripsJson = data["TripList"]["Trip"].array {
       for tripJson in tripsJson {
         result.append(convertJsonToTrip(tripJson))
@@ -90,7 +90,6 @@ class SearchTripService {
     let destination = convertJsonToStation(segmentJson["Destination"])
     
     let distString = (segmentJson["dist"].string != nil) ? segmentJson["dist"].string! : ""
-    
     return TripSegment(
       index: Int(segmentJson["idx"].string!)!,
       name: segmentJson["name"].string!,

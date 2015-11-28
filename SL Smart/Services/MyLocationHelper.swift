@@ -50,7 +50,6 @@ class MyLocationHelper: NSObject, CLLocationManagerDelegate {
     
     let sortedLocations = locations.sort {$0.timestamp.timeIntervalSince1970 > $1.timestamp.timeIntervalSince1970}
     currentLocation = sortedLocations[0]
-    print(currentLocation)
     callback?(currentLocation!)
     callback = nil
   }

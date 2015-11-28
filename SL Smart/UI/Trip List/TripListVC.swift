@@ -14,7 +14,9 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   let cellIdentifier = "TripCell"
   let loadingCellIdentifier = "LoadingCell"
   let noTripsFoundCell = "FoundNoTripsCell"
+  let headerIdentifier = "DateHeader"
   let footerIdentifier = "LoadMoreFooter"
+  
   
   var footer: TripFooter?
   var criterions: TripSearchCriterion?
@@ -88,7 +90,18 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   /**
    * View for supplementary (header/footer)
    */
-  override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+  override func collectionView(collectionView: UICollectionView,
+    viewForSupplementaryElementOfKind kind: String,
+    atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    
+    if kind == UICollectionElementKindSectionHeader {
+      let header = collectionView.dequeueReusableSupplementaryViewOfKind(
+        UICollectionElementKindSectionHeader,
+        withReuseIdentifier: headerIdentifier,
+        forIndexPath: indexPath)
+      
+      return header
+    }
     
     footer = collectionView.dequeueReusableSupplementaryViewOfKind(
       UICollectionElementKindSectionFooter,
@@ -144,11 +157,29 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
             self.isLoadingMore = false
             self.footer?.displayLabel()
             self.collectionView?.reloadData()
+            
+            self.updateDateCriterions()
           })
       })
       return
     }
     fatalError("Criterions not set in TripListVC")
+  }
+  
+  /**
+   * Checks if a day passed in the search result, and update
+   * the search criterions in that case.
+   */
+  private func updateDateCriterions() {
+    let cal = NSCalendar.currentCalendar()
+    let departDate = trips.last!.tripSegments.last!.departureDateTime
+    let departDay = cal.ordinalityOfUnit(.Day, inUnit: .Year, forDate: departDate)
+    let criterionDate = Utils.convertDateString("\(criterions!.date!) \(criterions!.time!)")
+    let criterionDay = cal.ordinalityOfUnit(.Day, inUnit: .Year, forDate: criterionDate)
+
+    if departDay != criterionDay {
+      criterions?.date = Utils.dateAsDateString(departDate)
+    }
   }
   
   /**
