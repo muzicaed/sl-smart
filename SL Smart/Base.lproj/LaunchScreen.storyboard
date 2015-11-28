@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,33 +18,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hfY-5o-8dm">
-                                <rect key="frame" x="175" y="134" width="250" height="319"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TrainSplash" translatesAutoresizingMaskIntoConstraints="NO" id="9e9-YC-8ge" userLabel="Splash">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="250" id="OG7-ZG-Qck"/>
-                                            <constraint firstAttribute="width" constant="250" id="ryu-WI-1Bn"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SL Smart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deN-vd-CAm">
-                                        <rect key="frame" x="0.0" y="250" width="250" height="69"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="60"/>
-                                        <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TrainSplash" translatesAutoresizingMaskIntoConstraints="NO" id="9e9-YC-8ge" userLabel="Splash">
+                                <rect key="frame" x="175" y="175" width="250" height="250"/>
                                 <animations/>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="OG7-ZG-Qck"/>
+                                    <constraint firstAttribute="width" constant="250" id="ryu-WI-1Bn"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Res Smart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deN-vd-CAm">
+                                <rect key="frame" x="20" y="403" width="560" height="69"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="60"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.7843137255" green="0.85882352939999995" blue="0.043137254899999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.20000000300000001" green="0.56078433989999998" blue="0.34901961679999999" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="hfY-5o-8dm" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="WUt-Sh-T8e"/>
-                            <constraint firstItem="hfY-5o-8dm" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="hZe-e8-HJx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="deN-vd-CAm" secondAttribute="trailing" id="2rC-zd-p5T"/>
+                            <constraint firstItem="9e9-YC-8ge" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="OR6-tM-sqZ"/>
+                            <constraint firstItem="deN-vd-CAm" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="YTj-vT-OR4"/>
+                            <constraint firstItem="deN-vd-CAm" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="383" id="nQD-l7-KFM"/>
+                            <constraint firstItem="9e9-YC-8ge" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="yo9-M7-ZIv"/>
                         </constraints>
                     </view>
                 </viewController>

@@ -1500,15 +1500,15 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                     <rect key="frame" x="0.0" y="0.0" width="370" height="100"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QML-pz-iSS" userLabel="Color">
-                                                            <rect key="frame" x="0.0" y="0.0" width="10" height="100"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="5" height="100"/>
                                                             <animations/>
-                                                            <color key="backgroundColor" red="0.36865660550000001" green="0.53865325450000001" blue="0.043615758419999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" red="0.20000000300000001" green="0.56078433989999998" blue="0.34901961679999999" alpha="1" colorSpace="deviceRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="10" id="UFN-ga-Md7"/>
+                                                                <constraint firstAttribute="width" constant="5" id="UFN-ga-Md7"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E87-NZ-vJe" userLabel="Space">
-                                                            <rect key="frame" x="10" y="0.0" width="10" height="100"/>
+                                                            <rect key="frame" x="5" y="0.0" width="10" height="100"/>
                                                             <animations/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -1516,39 +1516,39 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6VA-T1-FU9" userLabel="Time table">
-                                                            <rect key="frame" x="20" y="0.0" width="320" height="100"/>
+                                                            <rect key="frame" x="15" y="0.0" width="325" height="100"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bCO-gG-xAn" userLabel="Table rows">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="325" height="100"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmF-ov-2k7" userLabel="Origin -&gt; Destiantion">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="325" height="65"/>
                                                                             <subviews>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="27u-LY-jZ5" userLabel="Origin">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="138" height="65"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="65"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jIh-yD-wPU" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="138" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="140" height="5"/>
                                                                                             <animations/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="jDD-dp-rd1"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19:23" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkG-AC-ZZE" userLabel="19:23 (om 3 min.)">
-                                                                                            <rect key="frame" x="0.0" y="11" width="138" height="23"/>
+                                                                                            <rect key="frame" x="0.0" y="11" width="140" height="23"/>
                                                                                             <animations/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                                             <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxx-FU-l9L" userLabel="Karlberg">
-                                                                                            <rect key="frame" x="0.0" y="34" width="138" height="16"/>
+                                                                                            <rect key="frame" x="0.0" y="34.5" width="140" height="16"/>
                                                                                             <animations/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOc-Rd-xE3" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="60" width="138" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="60" width="140" height="5"/>
                                                                                             <animations/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="ps8-m5-z3C"/>
@@ -1559,10 +1559,10 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                     <color key="backgroundColor" red="0.52156862749999999" green="0.70980392160000005" blue="0.043137254899999998" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                                                                 </stackView>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y5l-Av-sLA" userLabel="Spacer">
-                                                                                    <rect key="frame" x="138" y="0.0" width="44" height="65"/>
+                                                                                    <rect key="frame" x="140" y="0.0" width="45" height="65"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Aq0-TM-bsn">
-                                                                                            <rect key="frame" x="11" y="15" width="21.5" height="36"/>
+                                                                                            <rect key="frame" x="11.5" y="15" width="21.5" height="36"/>
                                                                                             <animations/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
                                                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1577,30 +1577,30 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="gXn-Ls-CgF" userLabel="Destination">
-                                                                                    <rect key="frame" x="182" y="0.0" width="138" height="65"/>
+                                                                                    <rect key="frame" x="185" y="0.0" width="140" height="65"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="llQ-4E-VEP" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="138" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="140" height="5"/>
                                                                                             <animations/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="76d-Fc-CGE"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:43" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwz-5L-zPm" userLabel="20:43">
-                                                                                            <rect key="frame" x="0.0" y="11" width="138" height="23"/>
+                                                                                            <rect key="frame" x="0.0" y="11" width="140" height="23"/>
                                                                                             <animations/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                                             <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQI-Ex-ggn" userLabel="Centralen">
-                                                                                            <rect key="frame" x="0.0" y="34" width="138" height="16"/>
+                                                                                            <rect key="frame" x="0.0" y="34.5" width="140" height="16"/>
                                                                                             <animations/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wnk-E0-RU8" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="60" width="138" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="60" width="140" height="5"/>
                                                                                             <animations/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="oNn-We-LZw"/>
@@ -1618,10 +1618,10 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                             </constraints>
                                                                         </stackView>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoK-UF-GjS" userLabel="Icon &amp; Duration">
-                                                                            <rect key="frame" x="0.0" y="65" width="320" height="25"/>
+                                                                            <rect key="frame" x="0.0" y="65" width="325" height="25"/>
                                                                             <subviews>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FU0-FO-mE4" userLabel="Icon">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="138" height="25"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="25"/>
                                                                                     <animations/>
                                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                     <constraints>
@@ -1629,12 +1629,12 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jjk-EG-Yoy" userLabel="Space">
-                                                                                    <rect key="frame" x="138" y="0.0" width="44" height="25"/>
+                                                                                    <rect key="frame" x="140" y="0.0" width="45" height="25"/>
                                                                                     <animations/>
                                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Res tid: 1h 33m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVg-st-IjB">
-                                                                                    <rect key="frame" x="182" y="0.0" width="138" height="25"/>
+                                                                                    <rect key="frame" x="185" y="0.0" width="140" height="25"/>
                                                                                     <animations/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1644,7 +1644,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                             <animations/>
                                                                         </stackView>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbH-ns-2Sa" userLabel="Padding">
-                                                                            <rect key="frame" x="0.0" y="90" width="320" height="10"/>
+                                                                            <rect key="frame" x="0.0" y="90" width="325" height="10"/>
                                                                             <animations/>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <constraints>
