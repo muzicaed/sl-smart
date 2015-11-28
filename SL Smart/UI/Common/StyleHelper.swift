@@ -12,17 +12,18 @@ import UIKit
 class StyleHelper {
 
   static let sharedInstance = StyleHelper()
-  let tintColor = UIColor(red: 203/255, green: 62/255, blue: 148/255, alpha: 1.0)
-  let mainGreen = UIColor(red: 125/255, green: 183/255, blue: 14/255, alpha: 1.0)
+  let popColor = UIColor(red: 203/255, green: 62/255, blue: 148/255, alpha: 1.0)
+  let tintColor = UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 1.0)
+  let mainGreen = UIColor(red: 51/255, green: 143/255, blue: 89/255, alpha: 1.0)
 
   func setupCustomStyle() {
     let navAppearance = UINavigationBar.appearance()
-    navAppearance.tintColor = tintColor
+    navAppearance.tintColor = UIColor.whiteColor()
     navAppearance.barTintColor = mainGreen
     navAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     
     let tabBarAppearance = UITabBar.appearance()
-    tabBarAppearance.tintColor = tintColor
+    tabBarAppearance.tintColor = UIColor.whiteColor()
     tabBarAppearance.barTintColor = mainGreen
 
     let searchBarAppearance = UISearchBar.appearance()
@@ -34,7 +35,7 @@ class StyleHelper {
       forState: UIControlState.Normal)
     
     UITabBarItem.appearance().setTitleTextAttributes(
-      [NSForegroundColorAttributeName: tintColor],
+      [NSForegroundColorAttributeName: UIColor.whiteColor()],
       forState: UIControlState.Selected)
     
     UIApplication.sharedApplication().statusBarStyle = .LightContent
