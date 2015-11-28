@@ -78,7 +78,9 @@ class RoutineTripCell: UICollectionViewCell {
         trip.tripSegments.last!.arrivalDateTime)
       inAboutLabel.text = createAboutTimeText(
         trip.tripSegments.first!.departureDateTime)
+      
       tripDurationLabel.text = "Restid: \(trip.durationMin) min"
+      
       createTripSegmentIcons(trip)
     }
   }
@@ -89,7 +91,7 @@ class RoutineTripCell: UICollectionViewCell {
   private func createAboutTimeText(departure: NSDate) -> String {
     let diffMin = Int((departure.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
     if diffMin < 16 {
-      let diffMinStr = (diffMin + 1 <= 1) ? "❨Avgår nu❩" : "❨om \(diffMin + 1) min❩"
+      let diffMinStr = (diffMin + 1 <= 1) ? " ❨Avgår nu❩" : " ❨om \(diffMin + 1) min❩"
       return diffMinStr
     }
     
