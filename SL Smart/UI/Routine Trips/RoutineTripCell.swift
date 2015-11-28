@@ -107,7 +107,8 @@ class RoutineTripCell: UICollectionViewCell {
         if count > 5 { return }
         let data = TripHelper.friendlyLineData(segment)
         
-        let iconView = UIImageView(image: UIImage(named: data.icon))
+
+        let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
         iconView.frame.size = CGSizeMake(15, 15)
         iconView.center = CGPointMake(23 / 2, 9)
         

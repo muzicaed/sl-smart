@@ -26,6 +26,7 @@
 		18232CB01C01FA78006334D1 /* SLSearchStationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */; };
 		183AE0D01C047BF10032CA2A /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183AE0C91C047BE50032CA2A /* SwiftHTTP.framework */; };
 		183AE0D11C047C080032CA2A /* SwiftHTTP.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 183AE0C91C047BE50032CA2A /* SwiftHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		185073751C09CE84005D0D7E /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185073741C09CE84005D0D7E /* TripIcons.swift */; };
 		1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854E1981C065EB70070C545 /* StandardGradient.swift */; };
 		185BCC921C09389E00A2C6DB /* TripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BCC911C09389E00A2C6DB /* TripHeader.swift */; };
 		18937E351BFF33FA00C523C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E341BFF33FA00C523C9 /* AppDelegate.swift */; };
@@ -160,6 +161,7 @@
 		18232CAB1C01EC2F006334D1 /* SearchStationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchStationVC.swift; sourceTree = "<group>"; };
 		18232CAD1C01F1CA006334D1 /* ManageRoutineTripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageRoutineTripCell.swift; sourceTree = "<group>"; };
 		18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchStationApi.swift; sourceTree = "<group>"; };
+		185073741C09CE84005D0D7E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
 		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
 		185BCC911C09389E00A2C6DB /* TripHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHeader.swift; sourceTree = "<group>"; };
 		18937E311BFF33FA00C523C9 /* SL Smart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SL Smart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,6 +258,7 @@
 				1806037B1C02165000AC1841 /* StationSearchResponder.swift */,
 				18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */,
 				1854E1981C065EB70070C545 /* StandardGradient.swift */,
+				185073741C09CE84005D0D7E /* TripIcons.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				180603661C0201A100AC1841 /* HttpRequestHelper.swift in Sources */,
 				18937E351BFF33FA00C523C9 /* AppDelegate.swift in Sources */,
 				18AC9CF81C07AD4D007ECFA2 /* TripListVC.swift in Sources */,
+				185073751C09CE84005D0D7E /* TripIcons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
