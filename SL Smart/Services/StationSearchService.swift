@@ -32,8 +32,6 @@ class StationSearchService {
       var result = [(id: Int, dist: Int)]()
       let data = JSON(data: jsonData)
       
-      print(data)
-      
       if let locationJson = data["LocationList"]["StopLocation"].array {
         for locationJson in locationJson {
           let id = locationJson["id"].string!.stringByReplacingOccurrencesOfString("30010", withString: "")
@@ -56,8 +54,7 @@ class StationSearchService {
   private static func convertJsonResponse(jsonData: NSData) -> [Station] {
     var result = [Station]()
     let data = JSON(data: jsonData)
-    
-    print(data)
+
     for (_,stationJson):(String, JSON) in data["ResponseData"] {
       let station = Station(
         id: Int(stationJson["SiteId"].string!)!,
