@@ -32,8 +32,6 @@ class ScorePostHelper {
       
   }
   
-  static func modifyScoreForPost()
-  
   //MARK: Private
   
   
