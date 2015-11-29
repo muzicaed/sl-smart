@@ -43,16 +43,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    if self.isShowInfo ||
-      self.lastReload == nil ||
-      self.lastReload?.timeIntervalSinceNow > (60 * 5) {
-        self.hardLoadTripData()
-    } else {
-      self.refreshTripData()
-      self.collectionView?.reloadSections(NSIndexSet(index: 1))
-    }
-    self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(
-      60, target: self, selector: "refreshTripData", userInfo: nil, repeats: true)
+    hardLoadTripData()
   }
   
   /**
@@ -269,6 +260,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       isLoading = false
       self.refreshButton?.enabled = false
     } else {
+      refreshTimer?.invalidate()
       otherRoutineTrips = [RoutineTrip]()
       bestRoutineTrip = nil
       selectedRoutineTrip = nil
@@ -329,6 +321,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
             routineTrip.trips = trips
             self.tripSearchDone()
             if isFullReload {
+              self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(
+                20, target: self, selector: "refreshTripData", userInfo: nil, repeats: true)
               self.collectionView?.reloadSections(NSIndexSet(index: 1))
             }
           })
