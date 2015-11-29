@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TripSegment {
+class TripSegment: NSObject, NSCopying {
   let index: Int
   let name: String
   let type: TripType
@@ -37,5 +37,23 @@ class TripSegment {
       self.departureDateTime =  Utils.convertDateString("\(departureDate) \(departureTime)")
       self.arrivalDateTime =  Utils.convertDateString("\(arrivalDate) \(arrivalTime)")
       self.distance = distance
+  }
+  
+  // MARK: NSCopying
+  
+  /**
+  * Copy self
+  */
+  func copyWithZone(zone: NSZone) -> AnyObject {
+    return TripSegment(
+      index: index, name: name, type: type.rawValue,
+      directionText: directionText, lineNumber: lineNumber,
+      origin: origin.copy() as! Station,
+      destination: destination.copy() as! Station,
+      departureTime: Utils.dateAsTimeString(departureDateTime),
+      arrivalTime: Utils.dateAsTimeString(arrivalDateTime),
+      departureDate: Utils.dateAsDateString(departureDateTime),
+      arrivalDate: Utils.dateAsDateString(departureDateTime),
+      distance: distance)
   }
 }

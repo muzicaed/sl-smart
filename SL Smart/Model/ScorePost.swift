@@ -8,21 +8,23 @@
 
 import Foundation
 
-class ScorePost: NSObject, NSCoding {
+class ScorePost: NSObject, NSCoding, NSCopying {
 
   var dayInWeek = 0
   var hourOfDay = 0
-  var originId = 0
-  var destinationId = 0
+  var siteId = 0
+  var score = 0
+  var isOrigin = false
   
   /**
    * Standard init
    */
-  init(dayInWeek: Int, hourOfDay: Int, originId: Int, destinationId: Int) {
+  init(dayInWeek: Int, hourOfDay: Int, siteId: Int, score: Int, isOrigin: Bool) {
     self.dayInWeek = dayInWeek
     self.hourOfDay = hourOfDay
-    self.originId = originId
-    self.destinationId = destinationId
+    self.siteId = siteId
+    self.score = score
+    self.isOrigin = isOrigin
   }
   
   // MARK: NSCoding  
@@ -33,12 +35,13 @@ class ScorePost: NSObject, NSCoding {
   required convenience init?(coder aDecoder: NSCoder) {
     let dayInWeek = aDecoder.decodeIntegerForKey(PropertyKey.dayInWeek)
     let hourOfDay = aDecoder.decodeIntegerForKey(PropertyKey.hourOfDay)
-    let originId = aDecoder.decodeIntegerForKey(PropertyKey.originId)
-    let destinationId = aDecoder.decodeIntegerForKey(PropertyKey.destinationId)
+    let siteId = aDecoder.decodeIntegerForKey(PropertyKey.siteId)
+    let score = aDecoder.decodeIntegerForKey(PropertyKey.score)
+    let isOrigin = aDecoder.decodeBoolForKey(PropertyKey.isOrigin)
     
     self.init(
       dayInWeek: dayInWeek, hourOfDay: hourOfDay,
-      originId: originId, destinationId: destinationId)
+      siteId: siteId, score: score, isOrigin: isOrigin)
   }
   
   /**
@@ -47,14 +50,27 @@ class ScorePost: NSObject, NSCoding {
   func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodeInteger(dayInWeek, forKey: PropertyKey.dayInWeek)
     aCoder.encodeInteger(hourOfDay, forKey: PropertyKey.hourOfDay)
-    aCoder.encodeInteger(originId, forKey: PropertyKey.originId)
-    aCoder.encodeInteger(destinationId, forKey: PropertyKey.destinationId)
+    aCoder.encodeInteger(siteId, forKey: PropertyKey.siteId)
+    aCoder.encodeInteger(score, forKey: PropertyKey.score)
+    aCoder.encodeBool(isOrigin, forKey: PropertyKey.isOrigin)
   }
     
   struct PropertyKey {
     static let dayInWeek = "dayInWeek"
     static let hourOfDay = "hourOfDay"
-    static let originId = "originId"
-    static let destinationId = "destinationId"
+    static let siteId = "siteId"
+    static let score = "score"
+    static let isOrigin = "isOrigin"
+  }
+  
+  // MARK: NSCopying
+  
+  /**
+  * Copy self
+  */
+  func copyWithZone(zone: NSZone) -> AnyObject {
+    return ScorePost(
+      dayInWeek: dayInWeek, hourOfDay: hourOfDay,
+      siteId: siteId, score: score, isOrigin: isOrigin)
   }
 }

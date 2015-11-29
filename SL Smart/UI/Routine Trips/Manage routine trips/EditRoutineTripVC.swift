@@ -270,7 +270,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
     }
     
     DataStore.sharedInstance.addRoutineTrip(routineTrip!)
-    ScorePostHelper.createScorePostForNewRoutine(routineTrip!)
+    ScorePostHelper.giveScoreForNewRoutineTrip(routineTrip!)
     performSegueWithIdentifier("unwindToManageRoutineTrips", sender: self)
   }
   

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Routine: NSObject, NSCoding {
+class Routine: NSObject, NSCoding, NSCopying {
   
   var week = RoutineWeek.WeekDays
   var time = RoutineTime.Morning
@@ -43,6 +43,15 @@ class Routine: NSObject, NSCoding {
   struct PropertyKey {
     static let week = "week"
     static let time = "time"
+  }
+  
+  // MARK: NSCopying
+  
+  /**
+  * Copy self
+  */
+  func copyWithZone(zone: NSZone) -> AnyObject {
+    return Routine(week: RoutineWeek(rawValue: week.rawValue)!, time: RoutineTime(rawValue: time.rawValue)!)
   }
 }
 

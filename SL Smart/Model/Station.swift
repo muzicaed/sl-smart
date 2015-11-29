@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Station: NSObject, NSCoding {
+class Station: NSObject, NSCoding, NSCopying {
   
   let siteId: Int
   let name: String
@@ -98,5 +98,14 @@ class Station: NSObject, NSCoding {
     static let name = "name"
     static let cleanName = "cleanName"
     static let area = "area"
+  }
+  
+  // MARK: NSCopying
+  
+  /**
+  * Copy self
+  */
+  func copyWithZone(zone: NSZone) -> AnyObject {
+    return Station(id: siteId, name: name, cleanName: cleanName, area: area)
   }
 }

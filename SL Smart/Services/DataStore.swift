@@ -10,9 +10,9 @@ import Foundation
 
 class DataStore {
   
-  let defaults = NSUserDefaults.standardUserDefaults()
-  var myRoutineTrips = [RoutineTrip]()
-  var myScorePosts = [ScorePost]()
+  private let defaults = NSUserDefaults.standardUserDefaults()
+  private var cachedRoutineTrips = [RoutineTrip]()
+  private var cachedScorePosts = [ScorePost]()
   
   // Singelton pattern
   static let sharedInstance = DataStore()
@@ -21,22 +21,23 @@ class DataStore {
    * Preloads routine trip data.
    */
   func preload() {
-    myRoutineTrips = retrieveRoutineTripsFromStore()
+    cachedRoutineTrips = retrieveRoutineTripsFromStore()
+    cachedScorePosts = retrieveScorePosts()
   }
   
   /**
    * Is empty
    */
-  func isEmpty() -> Bool {
-    return (myRoutineTrips.count == 0) ? true : false
+  func isRoutineTripsEmpty() -> Bool {
+    return (cachedRoutineTrips.count == 0) ? true : false
   }
   
   /**
    * Adds a routine trip to data store
    */
   func addRoutineTrip(trip: RoutineTrip) {
-    myRoutineTrips = retrieveRoutineTripsFromStore()
-    myRoutineTrips.append(trip)
+    cachedRoutineTrips = retrieveRoutineTripsFromStore()
+    cachedRoutineTrips.append(trip)
     writeRoutineTripsToStore()
   }
   
@@ -44,9 +45,9 @@ class DataStore {
    * Moves a routine trip in data store
    */
   func moveRoutineTrip(index: Int, targetIndex: Int) {
-    myRoutineTrips = retrieveRoutineTripsFromStore()
-    let moveTrip = myRoutineTrips.removeAtIndex(index)
-    myRoutineTrips.insert(moveTrip, atIndex: targetIndex)
+    cachedRoutineTrips = retrieveRoutineTripsFromStore()
+    let moveTrip = cachedRoutineTrips.removeAtIndex(index)
+    cachedRoutineTrips.insert(moveTrip, atIndex: targetIndex)
     writeRoutineTripsToStore()
   }
   
@@ -54,7 +55,7 @@ class DataStore {
    * Update a routine trip in data store
    */
   func updateRoutineTrip(index: Int, trip: RoutineTrip) {
-    myRoutineTrips[index] = trip
+    cachedRoutineTrips[index] = trip
     writeRoutineTripsToStore()
   }
   
@@ -62,7 +63,7 @@ class DataStore {
    * Delete a routine trip from data store
    */
   func deleteRoutineTrip(index: Int) {
-    myRoutineTrips.removeAtIndex(index)
+    cachedRoutineTrips.removeAtIndex(index)
     writeRoutineTripsToStore()
   }
   
@@ -70,20 +71,20 @@ class DataStore {
    * Retrieves all routine trips from data store
    */
   func retriveRoutineTrips() -> [RoutineTrip] {
-    if myRoutineTrips.count > 0  {
-      return myRoutineTrips
+    if cachedRoutineTrips.count > 0  {
+      return cachedRoutineTrips
     }
     
-    myRoutineTrips = retrieveRoutineTripsFromStore()
-    return myRoutineTrips
+    cachedRoutineTrips = retrieveRoutineTripsFromStore()
+    return cachedRoutineTrips
   }
   
   /**
    * Retrive "ScoreList" from data store
    */
-  func retrieveScoreListFromStore() -> [ScorePost] {
-    if myScorePosts.count != 0 {
-      return myScorePosts
+  func retrieveScorePosts() -> [ScorePost] {
+    if cachedScorePosts.count != 0 {
+      return cachedScorePosts
     } else if let unarchivedObject = defaults.objectForKey(PropertyKey.ScoreList) as? NSData {
       if let scorePosts = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [ScorePost] {
         return scorePosts
@@ -96,10 +97,16 @@ class DataStore {
   /**
    * Store score lists to "ScoreList" in data store
    */
-  func writeScoreListToStore(scorePosts: [ScorePost]) {
-    let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(scorePosts as NSArray)
+  func writeScorePosts(scorePosts: [ScorePost]) {
+    var filteredPosts = [ScorePost]()
+    for post in scorePosts {
+      if post.score > 0 {
+        filteredPosts.append(post.copy() as! ScorePost)
+      }
+    }    
+    let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(filteredPosts as NSArray)
     defaults.setObject(archivedObject, forKey: PropertyKey.ScoreList)
-    myScorePosts = scorePosts
+    cachedScorePosts = filteredPosts
     defaults.synchronize()
   }
   
@@ -122,7 +129,7 @@ class DataStore {
    * Store routine trip to "MyRoutineTrips" in data store
    */
   private func writeRoutineTripsToStore() {
-    let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(myRoutineTrips as NSArray)
+    let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(cachedRoutineTrips as NSArray)
     defaults.setObject(archivedObject, forKey: PropertyKey.MyRoutineTrips)
     defaults.synchronize()
   }

@@ -10,49 +10,92 @@ import Foundation
 
 class ScorePostHelper {
   
+  static let NewRoutineTripScore = 5
+  static let TapCountScore = 2
+  static let NotBestTripScore = -1
+  
   
   /**
    * Creates the score posts to represent a newly
    * created routine trip.
    */
-  static func createScorePostForNewRoutine(routineTrip: RoutineTrip) {
-    let scorePosts = DataStore.sharedInstance.retrieveScoreListFromStore()
+  static func giveScoreForNewRoutineTrip(routineTrip: RoutineTrip) {
+    var scorePosts = DataStore.sharedInstance.retrieveScorePosts()
     if routineTrip.routine != nil {
-      scoreForNewRoutineTrip(routineTrip, scorePosts: scorePosts)
+      scoreForRoutineTrip(routineTrip, scorePosts: &scorePosts, scoreMod: NewRoutineTripScore)
     }
     
-    DataStore.sharedInstance.writeScoreListToStore(scorePosts)
+    DataStore.sharedInstance.writeScorePosts(scorePosts)
   }
   
   /**
    * Handles changes to rotine for modified routine trip
    */
-  static func handleRoutineChange(routineTrip: RoutineTrip,
-    oldWeek: RoutineWeek, oldTime: RoutineTime) {
+  static func giveScoreForUpdatedRoutineTrip(
+    updatedRoutineTrip: RoutineTrip, oldRoutineTrip: RoutineTrip) {
       
+      var scorePosts = DataStore.sharedInstance.retrieveScorePosts()
+      if oldRoutineTrip.routine != nil {
+        scoreForRoutineTrip(oldRoutineTrip, scorePosts: &scorePosts, scoreMod: (NewRoutineTripScore * -1))
+      }
+      if updatedRoutineTrip.routine != nil {
+        scoreForRoutineTrip(updatedRoutineTrip, scorePosts: &scorePosts, scoreMod: NewRoutineTripScore)
+      }
+      
+      DataStore.sharedInstance.writeScorePosts(scorePosts)
+  }
+  
+  /**
+   * Change (or create) score for matching score post.
+   */
+  static func changeScore(
+    dayInWeek: Int, hourOfDay: Int,
+    siteId: Int, isOrigin: Bool, scoreMod: Int, inout scorePosts: [ScorePost]) {
+      
+      if !modifyScorePost(
+        dayInWeek, hourOfDay: hourOfDay, siteId: siteId,
+        isOrigin: isOrigin, allPosts: &scorePosts, scoreMod: scoreMod) {
+          
+          let newScorePost = ScorePost(
+            dayInWeek: dayInWeek, hourOfDay: hourOfDay,
+            siteId: siteId, score: scoreMod, isOrigin: isOrigin)
+          scorePosts.append(newScorePost)
+      }
   }
   
   //MARK: Private
   
-  
   /**
   * Handles score for new routine trip.
   */
-  private static func scoreForNewRoutineTrip(routineTrip: RoutineTrip, scorePosts: [ScorePost]) {
-    for dayInWeek in createWeekRange(routineTrip.routine!.week) {
-      for hourOfDay in createHourRange(routineTrip.routine!.time) {
-        print("Day: \(dayInWeek)")
-        print(" - Hour: \(hourOfDay)")
-      }
-      // Add after midnight hours..
-      if routineTrip.routine!.time == .Night {
-        for hourOfDay in 0...4 {
-          print("-----")
-          print("Day: \(dayInWeek)")
-          print(" - Hour: \(hourOfDay)")
+  private static func scoreForRoutineTrip(
+    routineTrip: RoutineTrip, inout scorePosts: [ScorePost], scoreMod: Int) {
+      for dayInWeek in createWeekRange(routineTrip.routine!.week) {
+        for hourOfDay in createHourRange(routineTrip.routine!.time) {
+          changeScore(
+            dayInWeek, hourOfDay: hourOfDay,
+            siteId: routineTrip.origin!.siteId,
+            isOrigin: true, scoreMod: scoreMod, scorePosts: &scorePosts)
+          changeScore(
+            dayInWeek, hourOfDay: hourOfDay,
+            siteId: routineTrip.destination!.siteId,
+            isOrigin: false, scoreMod: scoreMod, scorePosts: &scorePosts)
+          
+        }
+        // Add after midnight hours..
+        if routineTrip.routine!.time == .Night {
+          for hourOfDay in 0...4 {
+            changeScore(
+              dayInWeek, hourOfDay: hourOfDay,
+              siteId: routineTrip.origin!.siteId,
+              isOrigin: true, scoreMod: scoreMod, scorePosts: &scorePosts)
+            changeScore(
+              dayInWeek, hourOfDay: hourOfDay,
+              siteId: routineTrip.destination!.siteId,
+              isOrigin: false, scoreMod: scoreMod, scorePosts: &scorePosts)
+          }
         }
       }
-    }
   }
   
   
@@ -78,7 +121,26 @@ class ScorePostHelper {
     case .Evening:
       return 18...21
     case .Night:
-      return 22...24
+      return 22...23
     }
+  }
+  
+  /**
+   * Finds existing score post
+   */
+  private static func modifyScorePost(
+    dayInWeek: Int, hourOfDay: Int, siteId: Int, isOrigin: Bool,
+    inout allPosts: [ScorePost], scoreMod: Int) -> Bool {
+      
+      for post in allPosts {
+        if post.dayInWeek == dayInWeek && post.hourOfDay == hourOfDay &&
+          post.siteId == siteId && post.isOrigin == isOrigin {
+            
+            post.score += scoreMod
+            return true
+        }
+      }
+      
+      return false
   }
 }

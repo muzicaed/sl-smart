@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Trip {
+class Trip: NSObject, NSCopying {
   
   var durationMin = 0
   var noOfChanges = 0
@@ -23,5 +23,18 @@ class Trip {
     if let segments = tripSegments {
       self.tripSegments = segments
     }
+  }
+  
+  // MARK: NSCopying
+  
+  /**
+  * Copy self
+  */
+  func copyWithZone(zone: NSZone) -> AnyObject {
+    var tripSegmentCopy = [TripSegment]()
+    for segment in tripSegments {
+      tripSegmentCopy.append(segment.copy() as! TripSegment)
+    }    
+    return Trip(durationMin: durationMin, noOfChanges: noOfChanges, tripSegments: tripSegmentCopy)
   }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RoutineTrip: NSObject, NSCoding {
+class RoutineTrip: NSObject, NSCoding, NSCopying {
   var title: String?
   var routine: Routine?
   var origin: Station?
@@ -53,5 +53,23 @@ class RoutineTrip: NSObject, NSCoding {
     static let routine = "routine"
     static let origin = "origin"
     static let destination = "destination"
+  }
+  
+  // MARK: NSCopying
+  
+  /**
+   * Copy self
+   */
+  func copyWithZone(zone: NSZone) -> AnyObject {
+    let copy =  RoutineTrip(
+      title: title, origin: origin?.copy() as! Station?,
+      destination: destination?.copy() as! Station?, routine: routine?.copy() as! Routine?)
+    copy.score = score
+    
+    for trip in trips {
+      copy.trips.append(trip.copy() as! Trip)
+    }
+    
+    return copy
   }
 }
