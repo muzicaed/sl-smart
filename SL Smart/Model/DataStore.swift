@@ -78,6 +78,30 @@ class DataStore {
   }
   
   /**
+   * Retrive "ScoreList" from data store
+   */
+  func retrieveScoreListFromStore() -> [ScorePost] {
+    if let unarchivedObject = defaults.objectForKey(PropertyKey.ScoreList) as? NSData {
+      if let scorePosts = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [ScorePost] {
+        return scorePosts
+      }
+      
+    }
+    return [ScorePost]()
+  }
+  
+  /**
+   * Store score lists to "ScoreList" in data store
+   */
+  func writeScoreListToStore(scorePosts: [ScorePost]) {
+    let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(scorePosts as NSArray)
+    defaults.setObject(archivedObject, forKey: PropertyKey.ScoreList)
+    defaults.synchronize()
+  }
+  
+  // MARK: Private
+  
+  /**
    * Retrive "MyRoutineTrips" from data store
    */
   private func retrieveRoutineTripsFromStore() -> [RoutineTrip] {
@@ -101,5 +125,6 @@ class DataStore {
   
   struct PropertyKey {
     static let MyRoutineTrips = "MyRoutineTrips"
+    static let ScoreList = "ScoreList"
   }
 }

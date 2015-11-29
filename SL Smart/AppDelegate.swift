@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.tintColor = StyleHelper.sharedInstance.tintColor
     DataStore.sharedInstance.preload()
     MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
-        
+
     return true
   }
   

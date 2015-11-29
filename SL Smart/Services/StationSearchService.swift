@@ -57,6 +57,7 @@ class StationSearchService {
     var result = [Station]()
     let data = JSON(data: jsonData)
     
+    print(data)
     for (_,stationJson):(String, JSON) in data["ResponseData"] {
       let station = Station(
         id: Int(stationJson["SiteId"].string!)!,

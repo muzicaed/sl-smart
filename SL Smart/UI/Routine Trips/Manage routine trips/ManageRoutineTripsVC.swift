@@ -146,9 +146,15 @@ class ManageRoutineTripsVC: UITableViewController {
     forRowAtIndexPath indexPath: NSIndexPath) {
       switch editingStyle {
       case .Delete:
-        trips.removeAtIndex(indexPath.row)
         DataStore.sharedInstance.deleteRoutineTrip(indexPath.row)
+        trips.removeAtIndex(indexPath.row)
+        
+        tableView.beginUpdates()
         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        if trips.count == 0 {
+          tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+        tableView.endUpdates()
       default:
         return
       }
