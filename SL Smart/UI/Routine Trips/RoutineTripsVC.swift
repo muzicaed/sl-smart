@@ -88,7 +88,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         criterions.time = Utils.dateAsTimeString(date)
         
         vc.criterions = criterions
-        vc.originalDate = date
+        vc.title = routineTrip.title
       }
     }
   }

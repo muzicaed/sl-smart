@@ -24,7 +24,6 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   var trips = Dictionary<String, [Trip]>()
   var isLoading = true
   var isLoadingMore = false
-  var originalDate = NSDate()
   
   /**
    * View is done loading
@@ -254,7 +253,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     let trip = trips[key]![indexPath.row]
     let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(cellIdentifier,
       forIndexPath: indexPath) as! TripCell
-    cell.setupData(trip, originalDate: originalDate)
+    cell.setupData(trip)
     return cell
   }
   

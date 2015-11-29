@@ -13,13 +13,13 @@ class ScorePost: NSObject, NSCoding, NSCopying {
   var dayInWeek = 0
   var hourOfDay = 0
   var siteId = 0
-  var score = 0
+  var score = Float(0.0)
   var isOrigin = false
   
   /**
    * Standard init
    */
-  init(dayInWeek: Int, hourOfDay: Int, siteId: Int, score: Int, isOrigin: Bool) {
+  init(dayInWeek: Int, hourOfDay: Int, siteId: Int, score: Float, isOrigin: Bool) {
     self.dayInWeek = dayInWeek
     self.hourOfDay = hourOfDay
     self.siteId = siteId
@@ -36,7 +36,7 @@ class ScorePost: NSObject, NSCoding, NSCopying {
     let dayInWeek = aDecoder.decodeIntegerForKey(PropertyKey.dayInWeek)
     let hourOfDay = aDecoder.decodeIntegerForKey(PropertyKey.hourOfDay)
     let siteId = aDecoder.decodeIntegerForKey(PropertyKey.siteId)
-    let score = aDecoder.decodeIntegerForKey(PropertyKey.score)
+    let score = aDecoder.decodeFloatForKey(PropertyKey.score)
     let isOrigin = aDecoder.decodeBoolForKey(PropertyKey.isOrigin)
     
     self.init(
@@ -51,7 +51,7 @@ class ScorePost: NSObject, NSCoding, NSCopying {
     aCoder.encodeInteger(dayInWeek, forKey: PropertyKey.dayInWeek)
     aCoder.encodeInteger(hourOfDay, forKey: PropertyKey.hourOfDay)
     aCoder.encodeInteger(siteId, forKey: PropertyKey.siteId)
-    aCoder.encodeInteger(score, forKey: PropertyKey.score)
+    aCoder.encodeFloat(score, forKey: PropertyKey.score)
     aCoder.encodeBool(isOrigin, forKey: PropertyKey.isOrigin)
   }
     

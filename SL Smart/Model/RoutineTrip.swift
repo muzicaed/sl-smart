@@ -14,7 +14,7 @@ class RoutineTrip: NSObject, NSCoding, NSCopying {
   var origin: Station?
   var destination: Station?
   var trips = [Trip]()
-  var score = 0
+  var score = Float(0.0)
   
   init(title: String?, origin: Station?, destination: Station?, routine: Routine?) {
     self.title = title

@@ -20,6 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     DataStore.sharedInstance.preload()
     MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
     
+    // TODO: Remove
+    
+    print(Utils.getDayOfWeek())
+    
     return true
   }
   

@@ -18,10 +18,11 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
   @IBOutlet weak var tripTitleTextField: UITextField!
   
   var routineTrip: RoutineTrip?
+  var routineTripCopy: RoutineTrip?
   var routineTripIndex = -1
   var isSearchingOriginStation = true
   var isNewTrip = true
-  var isChanged = false
+  var hasChanged = false
   
   
   /**
@@ -36,6 +37,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
       routineTrip = RoutineTrip()
       isNewTrip = true
     } else {
+      routineTripCopy = routineTrip!.copy() as? RoutineTrip
       title = routineTrip!.title
       setupEditData()
       isNewTrip = false
@@ -53,7 +55,8 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
    */
   override func viewWillDisappear(animated: Bool) {
     super.viewDidDisappear(animated)
-    if !isNewTrip && routineTrip != nil {
+    if !isNewTrip && routineTrip != nil && hasChanged {
+      ScorePostHelper.giveScoreForUpdatedRoutineTrip(routineTrip!, oldRoutineTrip: routineTripCopy!)
       DataStore.sharedInstance.updateRoutineTrip(routineTripIndex, trip: routineTrip!)
     }
   }
@@ -85,7 +88,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
    * Time picker segment changed.
    */
   @IBAction func onTimeSegmentChange(sender: UISegmentedControl) {
-    isChanged = true
+    hasChanged = true
     routineTrip?.routine?.time = RoutineTime(
       rawValue: timeSegmentControl.selectedSegmentIndex)!
   }
@@ -94,7 +97,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
    * Time picker segment changed.
    */
   @IBAction func onWeekSegmentChange(sender: UISegmentedControl) {
-    isChanged = true
+    hasChanged = true
     routineTrip?.routine?.week = RoutineWeek(
       rawValue: weekRoutineSegmentControl.selectedSegmentIndex)!
   }
@@ -103,22 +106,10 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
    * On trip title text field change.
    */
   func textFieldDidChange(textField: UITextField) {
-    isChanged = true
+    hasChanged = true
     routineTrip?.title = tripTitleTextField.text
     if !isNewTrip {
       title = routineTrip!.title
-    }
-  }
-  
-  /**
-   * When user taps back
-   */
-  override func willMoveToParentViewController(parent: UIViewController?) {
-    //super.willMoveToParentViewController(parent)
-    if parent == nil {
-      if isChanged {
-      
-      }
     }
   }
   
@@ -128,7 +119,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
   * Triggered whem station is selected on station search VC.
   */
   func selectedStationFromSearch(station: Station) {
-    isChanged = true
+    hasChanged = true
     if isSearchingOriginStation {
       routineTrip?.origin = station
       originLabel.text = station.name
@@ -229,7 +220,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
   private func showWeekInfoAlert() {
     let invalidStationAlert = UIAlertController(
       title: "Förklaring",
-      message: "Week week wwek",
+      message: "Ange om vardagar eller helger är då du vanligtvis åker denna resa.\n\nKom ihåg att Appen lär sig dina vanor även när du reser utanför denna rutin. ",
       preferredStyle: UIAlertControllerStyle.Alert)
     invalidStationAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
@@ -243,7 +234,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
   private func showTimeInfoAlert() {
     let invalidStationAlert = UIAlertController(
       title: "Förklaring",
-      message: "Tid tid tid...",
+      message: "Morgon: 05:00 - 10.59\nDag: 11:00 - 17:59\nKväll: 18:00 - 21:59\nNatt: 22:00 - 04:59\n\nKom ihåg att Appen lär sig dina vanor även när du reser utanför dessa tider.",
       preferredStyle: UIAlertControllerStyle.Alert)
     invalidStationAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))

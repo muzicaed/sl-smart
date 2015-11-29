@@ -15,10 +15,8 @@ class Utils {
    * NSDate object.
    */
   static func convertDateString(dateTime: String) -> NSDate {
-    let formatter = NSDateFormatter()
-    formatter.locale = NSLocale(localeIdentifier: "sv_SE")
+    let formatter = getSwedishFormatter()
     formatter.dateFormat = "yyyy-MM-dd HH:mm"
-    
     return formatter.dateFromString(dateTime)!
   }
   
@@ -27,10 +25,8 @@ class Utils {
    * eg. "2015-02-06"
    */
   static func dateAsDateString(date: NSDate) -> String {
-    let formatter = NSDateFormatter()
-    formatter.locale = NSLocale(localeIdentifier: "sv_SE")
+    let formatter = getSwedishFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
-    
     return formatter.stringFromDate(date)
   }
   
@@ -39,10 +35,8 @@ class Utils {
    * eg. "17:04"
    */
   static func dateAsTimeString(date: NSDate) -> String {
-    let formatter = NSDateFormatter()
-    formatter.locale = NSLocale(localeIdentifier: "sv_SE")
+    let formatter = getSwedishFormatter()
     formatter.dateFormat = "HH:mm"
-    
     return formatter.stringFromDate(date)
   }
 
@@ -51,8 +45,7 @@ class Utils {
    * date string.
    */
   static func friendlyDate(date: NSDate) -> String {
-    let formatter = NSDateFormatter()
-    formatter.locale = NSLocale(localeIdentifier: "sv_SE")
+    let formatter = getSwedishFormatter()
     
     formatter.dateFormat = "EEEE"
     let weekDay = (formatter.stringFromDate(date) + "en").capitalizedString
@@ -74,5 +67,31 @@ class Utils {
    */
   static func dateAsStringTuple(date: NSDate) -> (date: String, time: String) {
     return (dateAsDateString(date), dateAsTimeString(date))
+  }
+  
+  /**
+   * Gets today's day of week as integer.
+   */
+  static func getDayOfWeek() -> Int {
+    let formatter = getSwedishFormatter()
+    formatter.dateFormat = "c"
+    return Int(formatter.stringFromDate(NSDate()))!
+  }
+  
+  /**
+   * Gets today's hour of day as integer.
+   */
+  static func getHourOfDay() -> Int {
+    let formatter = getSwedishFormatter()
+    formatter.dateFormat = "H"
+    return Int(formatter.stringFromDate(NSDate()))!
+  }
+  
+  // MARK: Private 
+  
+  static func getSwedishFormatter() -> NSDateFormatter {
+    let formatter = NSDateFormatter()
+    formatter.locale = NSLocale(localeIdentifier: "sv_SE")
+    return formatter
   }
 }

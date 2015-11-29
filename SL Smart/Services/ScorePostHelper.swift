@@ -10,9 +10,9 @@ import Foundation
 
 class ScorePostHelper {
   
-  static let NewRoutineTripScore = 5
-  static let TapCountScore = 2
-  static let NotBestTripScore = -1
+  static let NewRoutineTripScore = Float(5)
+  static let TapCountScore = Float(2)
+  static let NotBestTripScore = Float(-1)
   
   
   /**
@@ -50,7 +50,7 @@ class ScorePostHelper {
    */
   static func changeScore(
     dayInWeek: Int, hourOfDay: Int,
-    siteId: Int, isOrigin: Bool, scoreMod: Int, inout scorePosts: [ScorePost]) {
+    siteId: Int, isOrigin: Bool, scoreMod: Float, inout scorePosts: [ScorePost]) {
       
       if !modifyScorePost(
         dayInWeek, hourOfDay: hourOfDay, siteId: siteId,
@@ -69,7 +69,7 @@ class ScorePostHelper {
   * Handles score for new routine trip.
   */
   private static func scoreForRoutineTrip(
-    routineTrip: RoutineTrip, inout scorePosts: [ScorePost], scoreMod: Int) {
+    routineTrip: RoutineTrip, inout scorePosts: [ScorePost], scoreMod: Float) {
       for dayInWeek in createWeekRange(routineTrip.routine!.week) {
         for hourOfDay in createHourRange(routineTrip.routine!.time) {
           changeScore(
@@ -130,7 +130,7 @@ class ScorePostHelper {
    */
   private static func modifyScorePost(
     dayInWeek: Int, hourOfDay: Int, siteId: Int, isOrigin: Bool,
-    inout allPosts: [ScorePost], scoreMod: Int) -> Bool {
+    inout allPosts: [ScorePost], scoreMod: Float) -> Bool {
       
       for post in allPosts {
         if post.dayInWeek == dayInWeek && post.hourOfDay == hourOfDay &&
