@@ -32,6 +32,8 @@ class ScorePostHelper {
       
   }
   
+  static func modifyScoreForPost()
+  
   //MARK: Private
   
   
@@ -39,7 +41,6 @@ class ScorePostHelper {
   * Handles score for new routine trip.
   */
   private static func scoreForNewRoutineTrip(routineTrip: RoutineTrip, scorePosts: [ScorePost]) {
-    
     for dayInWeek in createWeekRange(routineTrip.routine!.week) {
       for hourOfDay in createHourRange(routineTrip.routine!.time) {
         print("Day: \(dayInWeek)")

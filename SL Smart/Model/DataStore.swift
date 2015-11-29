@@ -12,6 +12,7 @@ class DataStore {
   
   let defaults = NSUserDefaults.standardUserDefaults()
   var myRoutineTrips = [RoutineTrip]()
+  var myScorePosts = [ScorePost]()
   
   // Singelton pattern
   static let sharedInstance = DataStore()
@@ -81,7 +82,9 @@ class DataStore {
    * Retrive "ScoreList" from data store
    */
   func retrieveScoreListFromStore() -> [ScorePost] {
-    if let unarchivedObject = defaults.objectForKey(PropertyKey.ScoreList) as? NSData {
+    if myScorePosts.count != 0 {
+      return myScorePosts
+    } else if let unarchivedObject = defaults.objectForKey(PropertyKey.ScoreList) as? NSData {
       if let scorePosts = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [ScorePost] {
         return scorePosts
       }
@@ -96,14 +99,15 @@ class DataStore {
   func writeScoreListToStore(scorePosts: [ScorePost]) {
     let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(scorePosts as NSArray)
     defaults.setObject(archivedObject, forKey: PropertyKey.ScoreList)
+    myScorePosts = scorePosts
     defaults.synchronize()
   }
   
   // MARK: Private
   
   /**
-   * Retrive "MyRoutineTrips" from data store
-   */
+  * Retrive "MyRoutineTrips" from data store
+  */
   private func retrieveRoutineTripsFromStore() -> [RoutineTrip] {
     if let unarchivedObject = defaults.objectForKey(PropertyKey.MyRoutineTrips) as? NSData {
       if let trips = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [RoutineTrip] {
