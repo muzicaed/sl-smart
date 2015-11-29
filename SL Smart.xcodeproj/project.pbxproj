@@ -12,6 +12,7 @@
 		1806037C1C02165000AC1841 /* StationSearchResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037B1C02165000AC1841 /* StationSearchResponder.swift */; };
 		1806037E1C023E8400AC1841 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037D1C023E8400AC1841 /* DataStore.swift */; };
 		180FD8B51C0B087E0095C790 /* ScorePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FD8B41C0B087E0095C790 /* ScorePost.swift */; };
+		180FD8BB1C0B150E0095C790 /* ScorePostHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */; };
 		181B9AEF1C0370EF00B9145A /* SLTravelPlannerV2Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */; };
 		181B9AF11C0375DC00B9145A /* TripSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF01C0375DC00B9145A /* TripSegment.swift */; };
 		181B9AF31C0380FD00B9145A /* SearchTripService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF21C0380FD00B9145A /* SearchTripService.swift */; };
@@ -150,6 +151,7 @@
 		1806037B1C02165000AC1841 /* StationSearchResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationSearchResponder.swift; sourceTree = "<group>"; };
 		1806037D1C023E8400AC1841 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		180FD8B41C0B087E0095C790 /* ScorePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePost.swift; sourceTree = "<group>"; };
+		180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePostHelper.swift; sourceTree = "<group>"; };
 		181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLTravelPlannerV2Api.swift; sourceTree = "<group>"; };
 		181B9AF01C0375DC00B9145A /* TripSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSegment.swift; sourceTree = "<group>"; };
 		181B9AF21C0380FD00B9145A /* SearchTripService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTripService.swift; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 				18232CA91C01EA15006334D1 /* StationSearchService.swift */,
 				181B9AF21C0380FD00B9145A /* SearchTripService.swift */,
 				18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */,
+				180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				18937E871C00A17700C523C9 /* RoutineTrip.swift in Sources */,
 				18232CAA1C01EA15006334D1 /* StationSearchService.swift in Sources */,
 				18D1953F1C07964900FB1A93 /* TripSeachCriterion.swift in Sources */,
+				180FD8BB1C0B150E0095C790 /* ScorePostHelper.swift in Sources */,
 				180603661C0201A100AC1841 /* HttpRequestHelper.swift in Sources */,
 				18937E351BFF33FA00C523C9 /* AppDelegate.swift in Sources */,
 				18AC9CF81C07AD4D007ECFA2 /* TripListVC.swift in Sources */,

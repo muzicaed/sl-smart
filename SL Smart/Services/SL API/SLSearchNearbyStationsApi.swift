@@ -38,7 +38,7 @@ class SLSearchNearbyStationsApi {
     var url = urlBase + "?key=\(apiKey)"
     url += "&originCoordLat=\(position.coordinate.latitude)"
     url += "&originCoordLong=\(position.coordinate.longitude)"
-    url += "&radius=\(500)"
+    url += "&radius=\(2000)&maxResults=\(30)"
     return url
   }
 
