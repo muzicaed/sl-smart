@@ -34,10 +34,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    NSNotificationCenter.defaultCenter().addObserver(
-      self, selector: Selector("resigningActive"),
-      name: UIApplicationWillResignActiveNotification, object: nil)
-    
     setupNotificationListeners()
     setupCollectionView()
     refreshButton = navigationItem.leftBarButtonItem
