@@ -46,29 +46,9 @@ class ScorePostHelper {
   }
   
   /**
-   * Change (or create) score for matching score post.
+   * Handles score for new routine trip.
    */
-  static func changeScore(
-    dayInWeek: Int, hourOfDay: Int,
-    siteId: Int, isOrigin: Bool, scoreMod: Float, inout scorePosts: [ScorePost]) {
-      
-      if !modifyScorePost(
-        dayInWeek, hourOfDay: hourOfDay, siteId: siteId,
-        isOrigin: isOrigin, allPosts: &scorePosts, scoreMod: scoreMod) {
-          
-          let newScorePost = ScorePost(
-            dayInWeek: dayInWeek, hourOfDay: hourOfDay,
-            siteId: siteId, score: scoreMod, isOrigin: isOrigin)
-          scorePosts.append(newScorePost)
-      }
-  }
-  
-  //MARK: Private
-  
-  /**
-  * Handles score for new routine trip.
-  */
-  private static func scoreForRoutineTrip(
+  static func scoreForRoutineTrip(
     routineTrip: RoutineTrip, inout scorePosts: [ScorePost], scoreMod: Float) {
       for dayInWeek in createWeekRange(routineTrip.routine!.week) {
         for hourOfDay in createHourRange(routineTrip.routine!.time) {
@@ -98,6 +78,26 @@ class ScorePostHelper {
       }
   }
   
+  //MARK: Private
+  
+  
+  /**
+  * Change (or create) score for matching score post.
+  */
+  private static func changeScore(
+    dayInWeek: Int, hourOfDay: Int,
+    siteId: Int, isOrigin: Bool, scoreMod: Float, inout scorePosts: [ScorePost]) {
+      
+      if !modifyScorePost(
+        dayInWeek, hourOfDay: hourOfDay, siteId: siteId,
+        isOrigin: isOrigin, allPosts: &scorePosts, scoreMod: scoreMod) {
+          
+          let newScorePost = ScorePost(
+            dayInWeek: dayInWeek, hourOfDay: hourOfDay,
+            siteId: siteId, score: scoreMod, isOrigin: isOrigin)
+          scorePosts.append(newScorePost)
+      }
+  }
   
   /**
    * Creates a day-in-week integer range based on RoutineWeek.

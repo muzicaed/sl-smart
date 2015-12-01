@@ -52,11 +52,11 @@ class RoutineService {
     for location in locations {
       if trip.origin!.siteId == location.id {
         if location.dist <= 50 {
-          return 3
+          return 5
         } else if location.dist > 50 && location.dist <= 100 {
-          return 2.5
+          return 3
         } else if location.dist > 100 && location.dist <= 250 {
-          return 2
+          return 1.8
         } else if location.dist > 500 && location.dist <= 1000 {
           return 1.6
         } else if location.dist > 1000 && location.dist <= 1500 {

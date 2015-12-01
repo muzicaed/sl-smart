@@ -101,7 +101,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Triggered when is about to go into backgorund.
    */
   func didBecomeActive() {
-    hardLoadTripData()    
+    hardLoadTripData()
   }
   
   /**
@@ -238,6 +238,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
           selectedRoutineTrip = otherRoutineTrips[indexPath.row]
         }
         
+        addScoreForSelectedRoutineTrip()
         performSegueWithIdentifier(showTripListSegue, sender: self)
       }
   }
@@ -245,8 +246,16 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   // MARK: Private methods
   
   /**
-  * Setup collection view properties and layout.
+  * Adds score for selected routine trip.
   */
+  private func addScoreForSelectedRoutineTrip() {
+    var scorePost = DataStore.sharedInstance.retrieveScorePosts()
+    ScorePostHelper.scoreForRoutineTrip(selectedRoutineTrip!, scorePosts: &scorePost, scoreMod: 0.25)
+  }
+  
+  /**
+   * Setup collection view properties and layout.
+   */
   private func setupCollectionView() {
     let flowLayout = UICollectionViewFlowLayout()
     flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 10, 0)
