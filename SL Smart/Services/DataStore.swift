@@ -36,6 +36,7 @@ class DataStore {
    * Adds a routine trip to data store
    */
   func addRoutineTrip(trip: RoutineTrip) {
+    trip.trips = [Trip]()
     cachedRoutineTrips = retrieveRoutineTripsFromStore()
     cachedRoutineTrips.append(trip)
     writeRoutineTripsToStore()
@@ -55,6 +56,7 @@ class DataStore {
    * Update a routine trip in data store
    */
   func updateRoutineTrip(index: Int, trip: RoutineTrip) {
+    trip.trips = [Trip]()    
     cachedRoutineTrips[index] = trip
     writeRoutineTripsToStore()
   }
@@ -71,27 +73,25 @@ class DataStore {
    * Retrieves all routine trips from data store
    */
   func retriveRoutineTrips() -> [RoutineTrip] {
-    if cachedRoutineTrips.count > 0  {
-      return cachedRoutineTrips
+    if cachedRoutineTrips.count == 0  {
+      cachedRoutineTrips = retrieveRoutineTripsFromStore()
     }
     
-    cachedRoutineTrips = retrieveRoutineTripsFromStore()
-    return cachedRoutineTrips
+    return cachedRoutineTrips.map { ($0.copy() as! RoutineTrip) }
   }
   
   /**
    * Retrive "ScoreList" from data store
    */
   func retrieveScorePosts() -> [ScorePost] {
-    if cachedScorePosts.count != 0 {
-      return cachedScorePosts
-    } else if let unarchivedObject = defaults.objectForKey(PropertyKey.ScoreList) as? NSData {
-      if let scorePosts = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [ScorePost] {
-        return scorePosts
+    if cachedScorePosts.count == 0 {
+      if let unarchivedObject = defaults.objectForKey(PropertyKey.ScoreList) as? NSData {
+        if let scorePosts = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [ScorePost] {
+          cachedScorePosts = scorePosts
+        }
       }
-      
     }
-    return [ScorePost]()
+    return cachedScorePosts.map { ($0.copy() as! ScorePost) }
   }
   
   /**
@@ -103,7 +103,7 @@ class DataStore {
       if post.score > 0 {
         filteredPosts.append(post.copy() as! ScorePost)
       }
-    }    
+    }
     let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(filteredPosts as NSArray)
     defaults.setObject(archivedObject, forKey: PropertyKey.ScoreList)
     cachedScorePosts = filteredPosts

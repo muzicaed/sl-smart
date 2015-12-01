@@ -49,8 +49,8 @@ class RoutineTripCell: UICollectionViewCell {
     originLabel.text = routineTrip.origin?.cleanName
     destinationLabel.text = routineTrip.destination?.cleanName
     
-    if routineTrip.trips.count > 0 {
-      setupTripData(routineTrip.trips[0])
+    if let trip = routineTrip.trips.first {
+      setupTripData(trip)
     }
   }
   
@@ -71,13 +71,10 @@ class RoutineTripCell: UICollectionViewCell {
   // MARK: Private methods
   
   private func setupTripData(trip: Trip) {
-    if trip.tripSegments.count > 0 {
-      departureTimeLabel.text = Utils.dateAsTimeString(
-        trip.tripSegments.first!.departureDateTime)
-      arrivalTimeLabel.text = Utils.dateAsTimeString(
-        trip.tripSegments.last!.arrivalDateTime)
-      inAboutLabel.text = createAboutTimeText(
-        trip.tripSegments.first!.departureDateTime)
+    if let first = trip.tripSegments.first, last = trip.tripSegments.last  {
+      departureTimeLabel.text = Utils.dateAsTimeString(first.departureDateTime)
+      arrivalTimeLabel.text = Utils.dateAsTimeString(last.arrivalDateTime)
+      inAboutLabel.text = createAboutTimeText(first.departureDateTime)
       
       tripDurationLabel.text = "Restid: \(trip.durationMin) min"
       
@@ -109,7 +106,7 @@ class RoutineTripCell: UICollectionViewCell {
         if count > 5 { return }
         let data = TripHelper.friendlyLineData(segment)
         
-
+        
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
         iconView.frame.size = CGSizeMake(15, 15)
         iconView.center = CGPointMake(23 / 2, 9)

@@ -22,14 +22,13 @@ class RoutineService {
         let todayTimeTuple = createTimeTuple()
         
         for trip in allRoutineTrips {
-          let multiplier = multiplierBasedOnProximityToLocation(trip, locations: nearbyLocations)
           print("---------------------------------")
           print("\(trip.title!)")
-          trip.score = Float(0.0)
+          var multiplier = multiplierBasedOnProximityToLocation(trip, locations: nearbyLocations)
+          multiplier += multiplierBasedOnProximityToScorePostLocation(trip)
           trip.score = scoreBasedOnRoutineSchedule(trip, today: todayTimeTuple)
-          print("Schedule: \(trip.score)")
-          print("Multiplier: \(multiplier)")
           trip.score = (trip.score == 0) ? multiplier * 5: trip.score * multiplier
+          print("Multiplier: \(multiplier)")          
           print("TOTAL: \(trip.score)")
         }
         
@@ -51,22 +50,13 @@ class RoutineService {
   static private func multiplierBasedOnProximityToLocation(trip: RoutineTrip, locations: [(id: Int, dist: Int)]) -> Float {
     for location in locations {
       if trip.origin!.siteId == location.id {
-        if location.dist <= 50 {
-          return 5
-        } else if location.dist > 50 && location.dist <= 100 {
-          return 3
-        } else if location.dist > 100 && location.dist <= 250 {
-          return 1.8
-        } else if location.dist > 500 && location.dist <= 1000 {
-          return 1.6
-        } else if location.dist > 1000 && location.dist <= 1500 {
-          return 1.4
-        } else {
-          return 1.2
-        }
+        var tempMultiplier = Float(1000 - location.dist)
+        tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
+        print("Prox to loc mult: \(tempMultiplier)")
+        return tempMultiplier
       }
     }
-    return 0
+    return 0.0
   }
   
   
@@ -90,7 +80,28 @@ class RoutineService {
             }
         }
       }
+      print("Sched score: \(score)")
       return score
+  }
+  
+  /**
+   * Score based on current locatiosn proximity to locations logged with ScorePost.
+   */
+  static private func multiplierBasedOnProximityToScorePostLocation(trip: RoutineTrip) -> Float {
+    var highestMulitplier = Float(0.0)
+    if let currentLocation = MyLocationHelper.sharedInstance.currentLocation {
+      let scorePosts = DataStore.sharedInstance.retrieveScorePosts()
+      for post in scorePosts {
+        if let postLocation = post.location {
+          let distance = postLocation.distanceFromLocation(currentLocation)
+          var tempMultiplier = Float(1000 - distance)
+          tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
+          highestMulitplier = (tempMultiplier > highestMulitplier) ? tempMultiplier : highestMulitplier
+        }
+      }
+    }
+    print("Prox to post mult: \(highestMulitplier)")
+    return highestMulitplier
   }
   
   /**

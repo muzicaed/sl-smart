@@ -53,6 +53,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func viewDidDisappear(animated: Bool) {
     super.viewDidDisappear(animated)
     refreshTimer?.invalidate()
+    refreshTimer = nil
   }
   
   /**
@@ -153,9 +154,13 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         } else if isShowInfo {
           return createInfoTripCell(indexPath)
         }
-        return createBestTripCell(bestRoutineTrip!, indexPath: indexPath)
+        
+        if let routineTrip = bestRoutineTrip {
+          return createRoutineTripCell(routineTrip, type: cellIdentifier, indexPath: indexPath)
+        }
+        fatalError("Could not create cell.")
       }
-      return createSimpleTripCell(bestRoutineTrip!, indexPath: indexPath)
+      return createRoutineTripCell(otherRoutineTrips[indexPath.row], type: simpleCellIdentifier, indexPath: indexPath)
   }
   
   /**
@@ -245,8 +250,22 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   * Adds score for selected routine trip.
   */
   private func addScoreForSelectedRoutineTrip() {
-    var scorePost = DataStore.sharedInstance.retrieveScorePosts()
-    ScorePostHelper.scoreForRoutineTrip(selectedRoutineTrip!, scorePosts: &scorePost, scoreMod: 0.25)
+    if let trip = selectedRoutineTrip {
+      var scorePosts = DataStore.sharedInstance.retrieveScorePosts()
+      let currentLocation = MyLocationHelper.sharedInstance.currentLocation
+      let dayOfWeek = Utils.getDayOfWeek()
+      let hourOfDay = Utils.getHourOfDay()
+      let originId = trip.origin!.siteId
+      let destinationId = trip.destination!.siteId
+      
+      ScorePostHelper.changeScore(dayOfWeek, hourOfDay: hourOfDay,
+        siteId: originId, isOrigin: true, scoreMod: 1,
+        location: currentLocation, scorePosts: &scorePosts)
+      ScorePostHelper.changeScore(dayOfWeek, hourOfDay: hourOfDay,
+        siteId: destinationId, isOrigin: false, scoreMod: 2,
+        location: currentLocation, scorePosts: &scorePosts)
+      DataStore.sharedInstance.writeScorePosts(scorePosts)
+    }
   }
   
   /**
@@ -298,6 +317,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       self.refreshButton?.enabled = false
     } else {
       refreshTimer?.invalidate()
+      refreshTimer = nil
       otherRoutineTrips = [RoutineTrip]()
       bestRoutineTrip = nil
       selectedRoutineTrip = nil
@@ -309,7 +329,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       lastReload = NSDate()
       RoutineService.findRoutineTrip({ routineTrips in
         if routineTrips.count > 0 {
-          self.bestRoutineTrip = routineTrips[0]
+          self.bestRoutineTrip = routineTrips.first!
           self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
           self.searchBestTrip(true)
         }
@@ -323,6 +343,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   func refreshTripData() {
     if !isShowInfo {
+      refreshTimer?.invalidate()
+      refreshTimer = nil
       if NSDate().timeIntervalSinceDate(lastReload!) < 300.0 {
         navigationItem.leftBarButtonItem = createNavSpinner()
         searchBestTrip(false)
@@ -362,8 +384,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
             routineTrip.trips = trips
             self.tripSearchDone()
             if isFullReload {
-              self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(
-                20, target: self, selector: "refreshTripData", userInfo: nil, repeats: true)
               self.collectionView?.reloadSections(NSIndexSet(index: 1))
             }
           })
@@ -379,25 +399,17 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     self.refreshButton?.enabled = true
     self.navigationItem.leftBarButtonItem = self.refreshButton
     self.collectionView?.reloadData()
+    self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(
+      20, target: self, selector: "refreshTripData", userInfo: nil, repeats: true)
   }
   
   /**
    * Create best trip cell
    */
-  private func createBestTripCell(trip: RoutineTrip, indexPath: NSIndexPath) -> RoutineTripCell {
-    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(cellIdentifier,
+  private func createRoutineTripCell(trip: RoutineTrip, type: String, indexPath: NSIndexPath) -> RoutineTripCell {
+    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(type,
       forIndexPath: indexPath) as! RoutineTripCell
     cell.setupData(trip)
-    return cell
-  }
-  
-  /**
-   * Create simple trip cell
-   */
-  private func createSimpleTripCell(trip: RoutineTrip, indexPath: NSIndexPath) -> RoutineTripCell {
-    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(simpleCellIdentifier,
-      forIndexPath: indexPath) as! RoutineTripCell
-    cell.setupData(otherRoutineTrips[indexPath.row])
     return cell
   }
   
