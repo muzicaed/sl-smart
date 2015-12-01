@@ -34,6 +34,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewDidLoad() {
     super.viewDidLoad()
+    NSNotificationCenter.defaultCenter().addObserver(
+      self, selector: Selector("resigningActive"),
+      name: UIApplicationWillResignActiveNotification, object: nil)
+    
+    setupNotificationListeners()
     setupCollectionView()
     refreshButton = navigationItem.leftBarButtonItem
   }
@@ -82,6 +87,21 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         vc.title = routineTrip.title
       }
     }
+  }
+  
+  /**
+   * Triggered when is about to go into backgorund.
+   */
+  func willResigningActive() {
+    refreshTimer?.invalidate()
+    refreshTimer = nil
+  }
+  
+  /**
+   * Triggered when is about to go into backgorund.
+   */
+  func didBecomeActive() {
+    hardLoadTripData()    
   }
   
   /**
@@ -250,6 +270,18 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   /**
+   * Setup notification listeners.
+   */
+  private func setupNotificationListeners() {
+    NSNotificationCenter.defaultCenter().addObserver(
+      self, selector: Selector("willResigningActive"),
+      name: UIApplicationWillResignActiveNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(
+      self, selector: Selector("didBecomeActive"),
+      name: UIApplicationDidBecomeActiveNotification, object: nil)
+  }
+  
+  /**
    * Loading the trip data, and starting background
    * collection of time table data.
    * Will show big spinner when loading.
@@ -296,6 +328,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
   }
   
+  /**
+   * Creates a loading spinner in NavBar
+   *
+   */
   private func createNavSpinner() -> UIBarButtonItem {
     let spinner = UIActivityIndicatorView()
     spinner.startAnimating()
