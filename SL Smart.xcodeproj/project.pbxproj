@@ -45,7 +45,7 @@
 		18937E811BFFABFC00C523C9 /* PlannedTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E801BFFABFC00C523C9 /* PlannedTripsVC.swift */; };
 		18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */; };
 		18937E871C00A17700C523C9 /* RoutineTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E861C00A17700C523C9 /* RoutineTrip.swift */; };
-		18A824741C0EE866006190C4 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E591BFF33FB00C523C9 /* InterfaceController.swift */; };
+		18A824741C0EE866006190C4 /* SmartTripIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E591BFF33FB00C523C9 /* SmartTripIC.swift */; };
 		18A824751C0EE866006190C4 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */; };
 		18A824761C0EE866006190C4 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5D1BFF33FB00C523C9 /* NotificationController.swift */; };
 		18A824771C0EE866006190C4 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5F1BFF33FB00C523C9 /* GlanceController.swift */; };
@@ -61,6 +61,7 @@
 		18D1953F1C07964900FB1A93 /* TripSeachCriterion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D1953E1C07964900FB1A93 /* TripSeachCriterion.swift */; };
 		18EAF4E81C0F8A010014701B /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EAF4E11C0F89990014701B /* SwiftHTTP.framework */; };
 		18EAF4E91C0F8A0F0014701B /* SwiftHTTP.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 18EAF4E11C0F89990014701B /* SwiftHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		18EAF4EB1C0F90C80014701B /* OtherTripButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EAF4EA1C0F90C80014701B /* OtherTripButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,7 +181,7 @@
 		18937E4D1BFF33FB00C523C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18937E521BFF33FB00C523C9 /* SL Smart.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SL Smart.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18937E581BFF33FB00C523C9 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		18937E591BFF33FB00C523C9 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		18937E591BFF33FB00C523C9 /* SmartTripIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartTripIC.swift; sourceTree = "<group>"; };
 		18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		18937E5D1BFF33FB00C523C9 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		18937E5F1BFF33FB00C523C9 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
@@ -203,6 +204,7 @@
 		18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleHelper.swift; sourceTree = "<group>"; };
 		18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabVC.swift; sourceTree = "<group>"; };
 		18D1953E1C07964900FB1A93 /* TripSeachCriterion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSeachCriterion.swift; sourceTree = "<group>"; };
+		18EAF4EA1C0F90C80014701B /* OtherTripButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherTripButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,7 +319,7 @@
 		18937E561BFF33FB00C523C9 /* SL Smart WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				18937E591BFF33FB00C523C9 /* InterfaceController.swift */,
+				18937E591BFF33FB00C523C9 /* SmartTripIC.swift */,
 				18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */,
 				18937E5D1BFF33FB00C523C9 /* NotificationController.swift */,
 				18937E5F1BFF33FB00C523C9 /* GlanceController.swift */,
@@ -325,6 +327,7 @@
 				18937E631BFF33FB00C523C9 /* Assets.xcassets */,
 				18937E651BFF33FB00C523C9 /* Info.plist */,
 				18937E571BFF33FB00C523C9 /* Supporting Files */,
+				18EAF4EA1C0F90C80014701B /* OtherTripButton.swift */,
 			);
 			path = "SL Smart WatchKit Extension";
 			sourceTree = "<group>";
@@ -678,7 +681,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18A824741C0EE866006190C4 /* InterfaceController.swift in Sources */,
+				18A824741C0EE866006190C4 /* SmartTripIC.swift in Sources */,
+				18EAF4EB1C0F90C80014701B /* OtherTripButton.swift in Sources */,
 				18A824751C0EE866006190C4 /* ExtensionDelegate.swift in Sources */,
 				18A824761C0EE866006190C4 /* NotificationController.swift in Sources */,
 				18A824771C0EE866006190C4 /* GlanceController.swift in Sources */,

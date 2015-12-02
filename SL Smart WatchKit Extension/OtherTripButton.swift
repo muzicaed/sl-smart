@@ -7,3 +7,8 @@
 //
 
 import Foundation
+import WatchKit
+
+class OtherTripButton: WKInterfaceButton {
+
+}
