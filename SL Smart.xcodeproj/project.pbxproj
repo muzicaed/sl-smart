@@ -39,11 +39,6 @@
 		18937E4A1BFF33FB00C523C9 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18937E481BFF33FB00C523C9 /* Interface.storyboard */; };
 		18937E4C1BFF33FB00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E4B1BFF33FB00C523C9 /* Assets.xcassets */; };
 		18937E531BFF33FB00C523C9 /* SL Smart.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 18937E521BFF33FB00C523C9 /* SL Smart.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		18937E5A1BFF33FB00C523C9 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E591BFF33FB00C523C9 /* InterfaceController.swift */; };
-		18937E5C1BFF33FB00C523C9 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */; };
-		18937E5E1BFF33FB00C523C9 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5D1BFF33FB00C523C9 /* NotificationController.swift */; };
-		18937E601BFF33FB00C523C9 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5F1BFF33FB00C523C9 /* GlanceController.swift */; };
-		18937E621BFF33FB00C523C9 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E611BFF33FB00C523C9 /* ComplicationController.swift */; };
 		18937E641BFF33FB00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E631BFF33FB00C523C9 /* Assets.xcassets */; };
 		18937E771BFF5D6B00C523C9 /* RoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E761BFF5D6B00C523C9 /* RoutineTripsVC.swift */; };
 		18937E7A1BFF5F2F00C523C9 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E791BFF5F2F00C523C9 /* Trip.swift */; };
@@ -52,6 +47,11 @@
 		18937E811BFFABFC00C523C9 /* PlannedTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E801BFFABFC00C523C9 /* PlannedTripsVC.swift */; };
 		18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */; };
 		18937E871C00A17700C523C9 /* RoutineTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E861C00A17700C523C9 /* RoutineTrip.swift */; };
+		18A824741C0EE866006190C4 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E591BFF33FB00C523C9 /* InterfaceController.swift */; };
+		18A824751C0EE866006190C4 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */; };
+		18A824761C0EE866006190C4 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5D1BFF33FB00C523C9 /* NotificationController.swift */; };
+		18A824771C0EE866006190C4 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5F1BFF33FB00C523C9 /* GlanceController.swift */; };
+		18A824781C0EE866006190C4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E611BFF33FB00C523C9 /* ComplicationController.swift */; };
 		18AC9CF81C07AD4D007ECFA2 /* TripListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF71C07AD4D007ECFA2 /* TripListVC.swift */; };
 		18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF91C07AE63007ECFA2 /* TripCell.swift */; };
 		18AC9CFC1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */; };
@@ -503,9 +503,11 @@
 					};
 					18937E421BFF33FB00C523C9 = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 43E7S6Y435;
 					};
 					18937E511BFF33FB00C523C9 = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 43E7S6Y435;
 					};
 				};
 			};
@@ -676,11 +678,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18937E5E1BFF33FB00C523C9 /* NotificationController.swift in Sources */,
-				18937E5C1BFF33FB00C523C9 /* ExtensionDelegate.swift in Sources */,
-				18937E621BFF33FB00C523C9 /* ComplicationController.swift in Sources */,
-				18937E5A1BFF33FB00C523C9 /* InterfaceController.swift in Sources */,
-				18937E601BFF33FB00C523C9 /* GlanceController.swift in Sources */,
+				18A824741C0EE866006190C4 /* InterfaceController.swift in Sources */,
+				18A824751C0EE866006190C4 /* ExtensionDelegate.swift in Sources */,
+				18A824761C0EE866006190C4 /* NotificationController.swift in Sources */,
+				18A824771C0EE866006190C4 /* GlanceController.swift in Sources */,
+				18A824781C0EE866006190C4 /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,6 +816,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "SL Smart WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp.watchkitextension";
@@ -829,6 +832,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "SL Smart WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp.watchkitextension";
@@ -844,8 +848,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				IBSC_MODULE = Res_i_Sverige_WatchKit_Extension;
+				IBSC_MODULE = SL_Smart_WatchKit_Extension;
 				INFOPLIST_FILE = "SL Smart WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp";
 				PRODUCT_NAME = "SL Smart";
@@ -860,8 +865,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				IBSC_MODULE = Res_i_Sverige_WatchKit_Extension;
+				IBSC_MODULE = SL_Smart_WatchKit_Extension;
 				INFOPLIST_FILE = "SL Smart WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp";
 				PRODUCT_NAME = "SL Smart";

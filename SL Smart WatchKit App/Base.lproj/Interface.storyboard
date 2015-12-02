@@ -8,17 +8,145 @@
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Res_i_Sverige_WatchKit_App" customModuleProvider="target"/>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="SL_Smart">
+                    <items>
+                        <group width="1" alignment="left" layout="vertical" id="2eR-Jh-VnR">
+                            <items>
+                                <button alignment="left" id="af7-dj-LLu" userLabel="Smart resa">
+                                    <group key="contentGroup" width="1" alignment="left" animationDuration="0.5" layout="vertical" id="Bie-IP-jFC">
+                                        <items>
+                                            <label alignment="left" text="Åka till jobbet" textAlignment="left" id="cFt-Gb-vyb">
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="14"/>
+                                            </label>
+                                            <label alignment="left" text="Om 6 min" textAlignment="left" id="9m3-ui-Mak" userLabel="Om 6 min">
+                                                <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="font" type="system" pointSize="13"/>
+                                            </label>
+                                            <group width="1" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="7Xa-W2-V96" userLabel="Stations">
+                                                <items>
+                                                    <label width="1" alignment="left" text="Kälvestavägen" textAlignment="left" id="QqC-Jn-KFB" userLabel="Karlberg">
+                                                        <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="font" type="system" pointSize="11"/>
+                                                    </label>
+                                                    <label width="1" alignment="left" text="Karlberg" textAlignment="left" id="Tmi-wm-EQ3" userLabel="Karlberg">
+                                                        <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="font" type="system" pointSize="11"/>
+                                                    </label>
+                                                </items>
+                                                <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                            </group>
+                                            <group width="1" alignment="left" verticalAlignment="center" spacing="0.0" id="AgH-53-ejJ" userLabel="Travel type icons">
+                                                <items>
+                                                    <imageView width="15" height="15" alignment="left" image="SHIP-NEUTRAL" id="S7W-ow-jnI"/>
+                                                    <separator height="15" alignment="left" id="ke7-me-nB2">
+                                                        <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </separator>
+                                                    <imageView width="15" height="15" alignment="left" image="BUS-BLUE" id="z7R-dh-lwZ"/>
+                                                    <separator height="15" alignment="left" id="Y8U-Y0-llE">
+                                                        <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </separator>
+                                                    <imageView width="15" height="15" alignment="left" image="BUS-RED" id="rfJ-dp-auO"/>
+                                                </items>
+                                                <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                            </group>
+                                        </items>
+                                        <color key="backgroundColor" red="0.4645483494" green="0.66118609910000004" blue="0.30511242150000001" alpha="1" colorSpace="deviceRGB"/>
+                                        <edgeInsets key="margins" left="4" right="4" top="4" bottom="4"/>
+                                    </group>
+                                </button>
+                                <label alignment="left" text="Fler rutiner" id="QX7-yk-ayb">
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </label>
+                                <button alignment="left" id="if3-4c-5UW" userLabel="Övrig resa">
+                                    <group key="contentGroup" width="1" alignment="left" animationDuration="0.5" layout="vertical" id="MT7-oM-H1X">
+                                        <items>
+                                            <label alignment="left" text="Hem från jobbet" textAlignment="left" id="mwC-Zg-lRp">
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="14"/>
+                                            </label>
+                                            <group width="1" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="01d-NH-oYf" userLabel="Stations">
+                                                <items>
+                                                    <label width="1" alignment="left" text="Kälvestavägen" textAlignment="left" id="cGs-L1-kyH" userLabel="Karlberg">
+                                                        <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="font" type="system" pointSize="11"/>
+                                                    </label>
+                                                    <label width="1" alignment="left" text="Karlberg" textAlignment="left" id="xrP-2G-ZlU" userLabel="Karlberg">
+                                                        <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="font" type="system" pointSize="11"/>
+                                                    </label>
+                                                </items>
+                                                <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                            </group>
+                                        </items>
+                                        <color key="backgroundColor" red="0.4645483494" green="0.66118609910000004" blue="0.30511242150000001" alpha="1" colorSpace="deviceRGB"/>
+                                        <edgeInsets key="margins" left="4" right="4" top="4" bottom="4"/>
+                                    </group>
+                                </button>
+                            </items>
+                            <edgeInsets key="margins" left="2" right="2" top="2" bottom="2"/>
+                        </group>
+                    </items>
+                </controller>
             </objects>
             <point key="canvasLocation" x="235" y="347"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">
             <objects>
-                <glanceController spacing="0.0" id="0uZ-2p-rRc" customClass="GlanceController" customModule="Res_i_Sverige_WatchKit_App" customModuleProvider="target">
+                <glanceController spacing="0.0" topTemplateType="groupBody1" id="0uZ-2p-rRc" customClass="GlanceController" customModule="SL_Smart">
                     <items>
-                        <group alignment="left" id="t8f-Gd-c4y"/>
-                        <group alignment="left" id="uCw-4Q-Ouw"/>
+                        <group alignment="left" layout="vertical" id="gnt-Cq-KVm">
+                            <items>
+                                <imageView width="30" height="30" alignment="left" image="TrainSplash" id="RD1-of-RMt"/>
+                            </items>
+                        </group>
+                        <label alignment="left" text="Res Smart" id="brv-oZ-oj4" userLabel="I">
+                            <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <group alignment="left" animationDuration="0.5" layout="vertical" id="uCw-4Q-Ouw">
+                            <items>
+                                <group width="1" alignment="left" animationDuration="0.5" layout="vertical" radius="6" id="Es7-bG-KgD">
+                                    <items>
+                                        <label alignment="left" text="Åka till jobbet" textAlignment="left" id="wLE-Ae-etP">
+                                            <fontDescription key="font" type="system" weight="semibold" pointSize="14"/>
+                                        </label>
+                                        <label alignment="left" text="Om 6 min" textAlignment="left" id="NHT-8y-f1e" userLabel="Om 6 min">
+                                            <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="13"/>
+                                        </label>
+                                        <group width="1" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="6E4-OE-RCg" userLabel="Stations">
+                                            <items>
+                                                <label width="1" alignment="left" text="Kälvestavägen" textAlignment="left" id="LoS-cI-Lw2" userLabel="Karlberg">
+                                                    <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="font" type="system" pointSize="11"/>
+                                                </label>
+                                                <label width="1" alignment="left" text="Karlberg" textAlignment="left" id="uUk-p3-VO4" userLabel="Karlberg">
+                                                    <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="font" type="system" pointSize="11"/>
+                                                </label>
+                                            </items>
+                                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                        </group>
+                                        <group width="1" alignment="left" verticalAlignment="center" spacing="0.0" id="kTt-2n-teR" userLabel="Travel type icons">
+                                            <items>
+                                                <imageView width="15" height="15" alignment="left" image="SHIP-NEUTRAL" id="Ius-LD-p0c"/>
+                                                <separator height="15" alignment="left" id="ur9-yd-GFg">
+                                                    <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </separator>
+                                                <imageView width="15" height="15" alignment="left" image="BUS-BLUE" id="D9z-xF-TVB"/>
+                                                <separator height="15" alignment="left" id="qdJ-EO-FMa">
+                                                    <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </separator>
+                                                <imageView width="15" height="15" alignment="left" image="BUS-RED" id="9gd-RI-Are"/>
+                                            </items>
+                                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                        </group>
+                                    </items>
+                                    <color key="backgroundColor" red="0.36865660550000001" green="0.53865325450000001" blue="0.043615758419999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <edgeInsets key="margins" left="4" right="4" top="4" bottom="4"/>
+                                </group>
+                            </items>
+                            <edgeInsets key="margins" left="2" right="2" top="2" bottom="2"/>
+                        </group>
                     </items>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
                 </glanceController>
@@ -44,7 +172,7 @@
         <!--Notification Controller-->
         <scene sceneID="KIl-fV-djm">
             <objects>
-                <controller id="gdX-wl-uQE" customClass="NotificationController" customModule="Res_i_Sverige_WatchKit_App" customModuleProvider="target"/>
+                <controller id="gdX-wl-uQE" customClass="NotificationController" customModule="SL_Smart" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="553" y="1001"/>
         </scene>
