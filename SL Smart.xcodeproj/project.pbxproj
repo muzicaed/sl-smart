@@ -26,8 +26,6 @@
 		18232CAC1C01EC2F006334D1 /* SearchStationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAB1C01EC2F006334D1 /* SearchStationVC.swift */; };
 		18232CAE1C01F1CA006334D1 /* ManageRoutineTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAD1C01F1CA006334D1 /* ManageRoutineTripCell.swift */; };
 		18232CB01C01FA78006334D1 /* SLSearchStationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */; };
-		183AE0D01C047BF10032CA2A /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183AE0C91C047BE50032CA2A /* SwiftHTTP.framework */; };
-		183AE0D11C047C080032CA2A /* SwiftHTTP.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 183AE0C91C047BE50032CA2A /* SwiftHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		185073751C09CE84005D0D7E /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185073741C09CE84005D0D7E /* TripIcons.swift */; };
 		1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854E1981C065EB70070C545 /* StandardGradient.swift */; };
 		185BCC921C09389E00A2C6DB /* TripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BCC911C09389E00A2C6DB /* TripHeader.swift */; };
@@ -61,37 +59,11 @@
 		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
 		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
 		18D1953F1C07964900FB1A93 /* TripSeachCriterion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D1953E1C07964900FB1A93 /* TripSeachCriterion.swift */; };
+		18EAF4E81C0F8A010014701B /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EAF4E11C0F89990014701B /* SwiftHTTP.framework */; };
+		18EAF4E91C0F8A0F0014701B /* SwiftHTTP.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 18EAF4E11C0F89990014701B /* SwiftHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		183AE0C81C047BE50032CA2A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6BFD901619C8D8B500DD99B6;
-			remoteInfo = SwiftHTTP;
-		};
-		183AE0CA1C047BE50032CA2A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6BFD902119C8D8B500DD99B6;
-			remoteInfo = SwiftHTTPTests;
-		};
-		183AE0CC1C047BE50032CA2A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D958025919E6EEEB003C8218;
-			remoteInfo = SwiftHTTPOSX;
-		};
-		183AE0CE1C047BE50032CA2A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D958026319E6EEEB003C8218;
-			remoteInfo = SwiftHTTPOSXTests;
-		};
 		18937E451BFF33FB00C523C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
@@ -106,6 +78,34 @@
 			remoteGlobalIDString = 18937E511BFF33FB00C523C9;
 			remoteInfo = "Res i Sverige WatchKit Extension";
 		};
+		18EAF4E01C0F89990014701B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6BFD901619C8D8B500DD99B6;
+			remoteInfo = SwiftHTTP;
+		};
+		18EAF4E21C0F89990014701B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6BFD902119C8D8B500DD99B6;
+			remoteInfo = SwiftHTTPTests;
+		};
+		18EAF4E41C0F89990014701B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D958025919E6EEEB003C8218;
+			remoteInfo = SwiftHTTPOSX;
+		};
+		18EAF4E61C0F89990014701B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D958026319E6EEEB003C8218;
+			remoteInfo = SwiftHTTPOSXTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -115,7 +115,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				183AE0D11C047C080032CA2A /* SwiftHTTP.framework in Copy Frameworks */,
+				18EAF4E91C0F8A0F0014701B /* SwiftHTTP.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,7 +147,7 @@
 /* Begin PBXFileReference section */
 		180603631C01FCBE00AC1841 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "SL Smart/Services/SwiftyJSON.swift"; sourceTree = "<group>"; };
 		180603651C0201A100AC1841 /* HttpRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHelper.swift; sourceTree = "<group>"; };
-		180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftHTTP.xcodeproj; path = /Users/mikaelhellman/Development/Xcode/SwiftHTTP/SwiftHTTP.xcodeproj; sourceTree = "<absolute>"; };
+		180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftHTTP.xcodeproj; path = /Users/mikaelhellman/Documents/Development/SwiftHTTP/SwiftHTTP.xcodeproj; sourceTree = "<absolute>"; };
 		1806037B1C02165000AC1841 /* StationSearchResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationSearchResponder.swift; sourceTree = "<group>"; };
 		1806037D1C023E8400AC1841 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		180FD8B41C0B087E0095C790 /* ScorePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePost.swift; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				183AE0D01C047BF10032CA2A /* SwiftHTTP.framework in Frameworks */,
+				18EAF4E81C0F8A010014701B /* SwiftHTTP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,17 +265,6 @@
 				185073741C09CE84005D0D7E /* TripIcons.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		183AE0C21C047BE50032CA2A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				183AE0C91C047BE50032CA2A /* SwiftHTTP.framework */,
-				183AE0CB1C047BE50032CA2A /* SwiftHTTPTests.xctest */,
-				183AE0CD1C047BE50032CA2A /* SwiftHTTP.framework */,
-				183AE0CF1C047BE50032CA2A /* SwiftHTTPOSXTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		18937E281BFF33FA00C523C9 = {
@@ -428,6 +417,17 @@
 			name = Libraries;
 			sourceTree = "<group>";
 		};
+		18EAF4DA1C0F89990014701B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18EAF4E11C0F89990014701B /* SwiftHTTP.framework */,
+				18EAF4E31C0F89990014701B /* SwiftHTTPTests.xctest */,
+				18EAF4E51C0F89990014701B /* SwiftHTTP.framework */,
+				18EAF4E71C0F89990014701B /* SwiftHTTPOSXTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -524,7 +524,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 183AE0C21C047BE50032CA2A /* Products */;
+					ProductGroup = 18EAF4DA1C0F89990014701B /* Products */;
 					ProjectRef = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
 				},
 			);
@@ -538,32 +538,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		183AE0C91C047BE50032CA2A /* SwiftHTTP.framework */ = {
+		18EAF4E11C0F89990014701B /* SwiftHTTP.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = SwiftHTTP.framework;
-			remoteRef = 183AE0C81C047BE50032CA2A /* PBXContainerItemProxy */;
+			remoteRef = 18EAF4E01C0F89990014701B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		183AE0CB1C047BE50032CA2A /* SwiftHTTPTests.xctest */ = {
+		18EAF4E31C0F89990014701B /* SwiftHTTPTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = SwiftHTTPTests.xctest;
-			remoteRef = 183AE0CA1C047BE50032CA2A /* PBXContainerItemProxy */;
+			remoteRef = 18EAF4E21C0F89990014701B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		183AE0CD1C047BE50032CA2A /* SwiftHTTP.framework */ = {
+		18EAF4E51C0F89990014701B /* SwiftHTTP.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = SwiftHTTP.framework;
-			remoteRef = 183AE0CC1C047BE50032CA2A /* PBXContainerItemProxy */;
+			remoteRef = 18EAF4E41C0F89990014701B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		183AE0CF1C047BE50032CA2A /* SwiftHTTPOSXTests.xctest */ = {
+		18EAF4E71C0F89990014701B /* SwiftHTTPOSXTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = SwiftHTTPOSXTests.xctest;
-			remoteRef = 183AE0CE1C047BE50032CA2A /* PBXContainerItemProxy */;
+			remoteRef = 18EAF4E61C0F89990014701B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -883,11 +883,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "SL Smart/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart";
 				PRODUCT_NAME = "SL Smart";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -896,11 +898,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "SL Smart/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart";
 				PRODUCT_NAME = "SL Smart";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
