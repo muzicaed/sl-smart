@@ -13,11 +13,13 @@ import WatchConnectivity
 
 class SmartTripIC: WKInterfaceController, WCSessionDelegate {
     
+    @IBOutlet var containerGroup: WKInterfaceGroup!
     @IBOutlet var titleLabel: WKInterfaceLabel!
     @IBOutlet var departureTimeLabel: WKInterfaceLabel!
     @IBOutlet var originLabel: WKInterfaceLabel!
     @IBOutlet var destinationLabel: WKInterfaceLabel!
     @IBOutlet var travelTypeIconWrapper: WKInterfaceGroup!
+    @IBOutlet var loadingLabel: WKInterfaceLabel!
     
     var session : WCSession?
     
@@ -34,10 +36,11 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
      */
     override func willActivate() {
         super.willActivate()
-        print("willActivate")
+        containerGroup.setHidden(true)
+        self.titleLabel.setText("bla bal")
+        
         setupPhoneConnection()
         if let sess = session {
-            print("Send message.")
             sess.sendMessage(["action": "requestRoutineTrips"],
                 replyHandler: requestRoutineTripsHandler,
                 errorHandler: messageErrorHandler)
@@ -55,10 +58,18 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
      * Handle reply for a "requestRoutineTrips" message.
      */
     func requestRoutineTripsHandler(reply: [String: AnyObject]) {
-        //let bestTrip = reply["best"] as! Dictionary<String, AnyObject>
+        let routineTripData = reply["best"] as! Dictionary<String, AnyObject>
+        print("\(reply["bestTripData"])")
+        titleLabel.setText(routineTripData["tit"] as? String)
+        originLabel.setText(routineTripData["ori"] as? String)
+        destinationLabel.setText(routineTripData["des"] as? String)
+        departureTimeLabel.setText(routineTripData["dep"] as? String)
 
-        print("Recived Response")
-        print("\(reply["best"])")
+        self.animateWithDuration(0.4, animations: {
+            self.loadingLabel.setHidden(true)
+            self.containerGroup.setHidden(false)
+            
+        })
     }
     
     /**
@@ -74,7 +85,6 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
         if (WCSession.isSupported()) {
             session = WCSession.defaultSession()
             if let defaultSession = session {
-                print("Created WCSession.")
                 defaultSession.delegate = self;
                 defaultSession.activateSession()
             } else {
