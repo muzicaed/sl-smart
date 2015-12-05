@@ -26,6 +26,7 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
      */
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
+        print("awakeWithContext")
     }
     
     /**
@@ -33,11 +34,11 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
      */
     override func willActivate() {
         super.willActivate()
-        if (WCSession.isSupported()) {
-            session = WCSession.defaultSession()
-            session!.delegate = self
-            session!.activateSession()
-            session!.sendMessage(["action": "requestRoutineTrips"],
+        print("willActivate")
+        setupPhoneConnection()
+        if let sess = session {
+            print("Send message.")
+            sess.sendMessage(["action": "requestRoutineTrips"],
                 replyHandler: requestRoutineTripsHandler,
                 errorHandler: messageErrorHandler)
         }
@@ -54,7 +55,10 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
      * Handle reply for a "requestRoutineTrips" message.
      */
     func requestRoutineTripsHandler(reply: [String: AnyObject]) {
-        print(reply["test"])
+        //let bestTrip = reply["best"] as! Dictionary<String, AnyObject>
+
+        print("Recived Response")
+        print("\(reply["best"])")
     }
     
     /**
@@ -62,5 +66,20 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
      */
     func messageErrorHandler(error: NSError) {
         fatalError("Message error: \(error)")
+    }
+    
+    // MARK private
+    
+    private func setupPhoneConnection() {
+        if (WCSession.isSupported()) {
+            session = WCSession.defaultSession()
+            if let defaultSession = session {
+                print("Created WCSession.")
+                defaultSession.delegate = self;
+                defaultSession.activateSession()
+            } else {
+                print("No WCSession.")
+            }
+        }
     }
 }
