@@ -84,6 +84,9 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
     
     // MARK private
     
+    /**
+     * Sets up a WKSession with the partner iPhone
+     */
     private func setupPhoneConnection() {
         if (WCSession.isSupported()) {
             session = WCSession.defaultSession()
