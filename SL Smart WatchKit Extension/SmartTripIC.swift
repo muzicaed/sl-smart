@@ -29,6 +29,7 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         print("awakeWithContext")
+        setupPhoneConnection()
     }
     
     /**
@@ -36,10 +37,12 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
      */
     override func willActivate() {
         super.willActivate()
+    }
+    
+    override func didAppear() {
+        super.willActivate()
         containerGroup.setHidden(true)
-        self.titleLabel.setText("bla bal")
-        
-        setupPhoneConnection()
+        self.loadingLabel.setHidden(false)
         if let sess = session {
             sess.sendMessage(["action": "requestRoutineTrips"],
                 replyHandler: requestRoutineTripsHandler,

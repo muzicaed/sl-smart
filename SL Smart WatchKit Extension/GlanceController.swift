@@ -23,6 +23,9 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
+        loadingLabel.setHidden(false)
+        contentGroup.setHidden(true)
+        setupPhoneConnection()
     }
     
     
@@ -31,9 +34,11 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
      */
     override func willActivate() {
         super.willActivate()
+    }
+    
+    override func didAppear() {
         loadingLabel.setHidden(false)
         contentGroup.setHidden(true)
-        setupPhoneConnection()
         if let sess = session {
             print("Send message.")
             sess.sendMessage(["action": "requestRoutineTrips"],
