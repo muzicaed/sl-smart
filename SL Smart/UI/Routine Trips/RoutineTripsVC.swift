@@ -371,32 +371,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         return UIBarButtonItem(customView: spinner)
     }
-    
-    /**
-     * Searches trips data for best RoutineTrip
-     * TODO: Remove this, unused.
-     */
-    private func searchBestTrip(isFullReload: Bool) {
-        if let routineTrip = bestRoutineTrip {
-            
-            let criterions = TripSearchCriterion(
-                origin: routineTrip.origin!, destination: routineTrip.destination!)
-            criterions.date = Utils.dateAsDateString(NSDate())
-            criterions.time = Utils.dateAsTimeString(NSDate())
-            
-            SearchTripService.tripSearch(criterions,
-                callback: { trips in
-                    dispatch_async(dispatch_get_main_queue(), {
-                        routineTrip.trips = trips
-                        self.tripSearchDone()
-                        if isFullReload {
-                            self.collectionView?.reloadSections(NSIndexSet(index: 1))
-                        }
-                    })
-            })
-        }
-    }
-    
+  
     /**
      * On trip search done.
      */

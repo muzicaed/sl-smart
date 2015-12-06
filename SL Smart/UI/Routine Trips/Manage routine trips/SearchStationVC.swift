@@ -29,15 +29,14 @@ class SearchStationVC: UITableViewController, UISearchResultsUpdating {
     self.searchController!.searchBar.placeholder = "Ange namnet på en station"
     
     self.tableView.tableHeaderView = self.searchController!.searchBar
-    self.tableView.reloadData()
-    tableView.tableFooterView = UIView()    
+    tableView.tableFooterView = UIView()
   }
   
   deinit {
     if let superView = searchController?.view.superview {
       superView.removeFromSuperview()
     }
-    print("Deinit: SearchStationVC")    
+    print("Deinit: SearchStationVC")
   }
   
   // MARK: UITableViewController
@@ -66,20 +65,39 @@ class SearchStationVC: UITableViewController, UISearchResultsUpdating {
     performSegueWithIdentifier("unwindToEditRoutineTrip", sender: self)
   }
   
-  
-  
   // MARK: UISearchResultsUpdating
   
-  @objc func updateSearchResultsForSearchController(searchController: UISearchController) {    
+  @objc func updateSearchResultsForSearchController(searchController: UISearchController) {
     if let query = searchController.searchBar.text {
       if query.characters.count > 1 {
-        StationSearchService.search(query) { stations in
+        StationSearchService.search(query) { resTuple in
           dispatch_async(dispatch_get_main_queue(), {
-            self.searchResult = stations
+            if let error = resTuple.error {
+              print("\(error)")
+              self.showNetworkErrorAlert()
+              return
+            }
+            self.searchResult = resTuple.data
             self.tableView.reloadData()
           })
         }
       }
     }
+  }
+  
+  // MARK: Private
+  
+  /**
+  * Show a network error alert
+  */
+  private func showNetworkErrorAlert() {
+    let networkErrorAlert = UIAlertController(
+      title: "Tjänsten är otillgänglig",
+      message: "Det gick inte att kontakta söktjänsten.",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    networkErrorAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+    
+    presentViewController(networkErrorAlert, animated: true, completion: nil)
   }
 }

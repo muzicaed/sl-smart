@@ -54,9 +54,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             RoutineService.findRoutineTrip({ routineTrips in
                 if let bestRoutineTrip = routineTrips.first {
                     let bestData = bestRoutineTrip
-                    replyHandler(["best": bestData.watchTransferData()])
+                    replyHandler(["best": bestData.watchTransferData(), "foundData": true])
                 } else {
-                    replyHandler(["noData": true])
+                    replyHandler(["foundData": false])
                 }
             })
         }

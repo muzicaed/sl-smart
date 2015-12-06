@@ -10,27 +10,30 @@ import Foundation
 import SwiftHTTP
 
 class HttpRequestHelper {
-  
-  /**
-   * Makes a async get request to passed url.
-   * Returns the response data using callback.
-   */
-  static func makeGetRequest(url: String, callback: (NSData?) -> Void) {
-    print("GET: \(url)")
-    let operationQueue = NSOperationQueue()
-    operationQueue.maxConcurrentOperationCount = 4
-    do {
-      let opt = try HTTP.New(url, method: .GET)
-      opt.onFinish = { response in
-        if let error = response.error {
-          // TODO: Better error handeling here...
-          fatalError("Got an error: \(error)")
-        }
-        callback(response.data)
-      }
-      operationQueue.addOperation(opt)
-    } catch let error {
-      fatalError("Got an error creating the request: \(error)")
+    
+    /**
+     * Makes a async get request to passed url.
+     * Returns the response data using callback.
+     */
+    static func makeGetRequest(url: String,
+        callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
+            print("GET: \(url)")
+            let operationQueue = NSOperationQueue()
+            operationQueue.maxConcurrentOperationCount = 4
+            do {
+                let opt = try HTTP.New(url, method: .GET)
+                opt.onFinish = { response in
+                    if let error = response.error {
+                        print(error.code)
+                        print(error.localizedDescription)
+                        callback((nil, SLNetworkError.NetworkError))
+                    }
+
+                    callback((response.data, nil))
+                }
+                operationQueue.addOperation(opt)
+            } catch _ {
+                callback((nil, SLNetworkError.InvalidRequest))
+            }
     }
-  }
 }

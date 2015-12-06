@@ -17,16 +17,13 @@ class SLSearchNearbyStationsApi {
   /**
    * Search for station.
    */
-  func search(position: CLLocation, callback: (NSData) -> Void) {
-    let url = createApiUrl(position)
-    HttpRequestHelper.makeGetRequest(url) { response in
-      if let data = response {
-        callback(data)
-      } else {
-        // TODO: Better error
-        fatalError("No data in response")
+  func search(
+    position: CLLocation,
+    callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
+      let url = createApiUrl(position)
+      HttpRequestHelper.makeGetRequest(url) { resTuple in
+        callback(resTuple)
       }
-    }
   }
   
   // MARK: Private methods.
@@ -41,5 +38,5 @@ class SLSearchNearbyStationsApi {
     url += "&radius=\(2000)&maxResults=\(50)"
     return url
   }
-
+  
 }

@@ -197,9 +197,14 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   private func loadTripData() {
     if let criterions = self.criterions {
       SearchTripService.tripSearch(criterions,
-        callback: { trips in
+        callback: { resTuple in
           dispatch_async(dispatch_get_main_queue(), {
-            self.appendToDictionary(trips)
+            if let error = resTuple.error {
+              print("\(error)")
+              self.showNetworkErrorAlert()
+              return
+            }
+            self.appendToDictionary(resTuple.data)
             self.isLoading = false
             self.isLoadingMore = false
             self.footer?.displayLabel()
@@ -271,6 +276,20 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   private func createNoTripsFoundCell(indexPath: NSIndexPath) -> UICollectionViewCell {
     return collectionView!.dequeueReusableCellWithReuseIdentifier(noTripsFoundCell,
       forIndexPath: indexPath)
+  }
+  
+  /**
+  * Show a network error alert
+  */
+  private func showNetworkErrorAlert() {
+    let networkErrorAlert = UIAlertController(
+      title: "Tjänsten är otillgänglig",
+      message: "Det gick inte att kontakta söktjänsten.",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    networkErrorAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+    
+    presentViewController(networkErrorAlert, animated: true, completion: nil)
   }
   
   deinit {

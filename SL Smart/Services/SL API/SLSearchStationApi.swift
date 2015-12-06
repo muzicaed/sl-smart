@@ -16,23 +16,20 @@ class SLSearchStationApi {
   /**
    * Search for station.
    */
-  func search(query: String, callback: (NSData) -> Void) {
-    let url = createApiUrl(query)
-    HttpRequestHelper.makeGetRequest(url) { response in
-      if let data = response {
-        callback(data)
-      } else {
-        // TODO: Better error
-        fatalError("No data in response")
+  func search(
+    query: String,
+    callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
+      let url = createApiUrl(query)
+      HttpRequestHelper.makeGetRequest(url) { resTuple in
+        callback(resTuple)
       }
-    }
   }
   
   // MARK: Private methods.
   
   /**
-   * Creates api url
-   */
+  * Creates api url
+  */
   private func createApiUrl(query: String) -> String {
     if let escapedQuery = query.stringByAddingPercentEncodingWithAllowedCharacters(
       .URLHostAllowedCharacterSet()) {

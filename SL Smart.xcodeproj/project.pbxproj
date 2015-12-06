@@ -29,6 +29,7 @@
 		185073751C09CE84005D0D7E /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185073741C09CE84005D0D7E /* TripIcons.swift */; };
 		1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854E1981C065EB70070C545 /* StandardGradient.swift */; };
 		185BCC921C09389E00A2C6DB /* TripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BCC911C09389E00A2C6DB /* TripHeader.swift */; };
+		188B85661C14ADF100098B00 /* SLNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85651C14ADF100098B00 /* SLNetworkError.swift */; };
 		18937E351BFF33FA00C523C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E341BFF33FA00C523C9 /* AppDelegate.swift */; };
 		18937E3A1BFF33FA00C523C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18937E381BFF33FA00C523C9 /* Main.storyboard */; };
 		18937E3C1BFF33FA00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E3B1BFF33FA00C523C9 /* Assets.xcassets */; };
@@ -168,6 +169,7 @@
 		185073741C09CE84005D0D7E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
 		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
 		185BCC911C09389E00A2C6DB /* TripHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHeader.swift; sourceTree = "<group>"; };
+		188B85651C14ADF100098B00 /* SLNetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLNetworkError.swift; sourceTree = "<group>"; };
 		18937E311BFF33FA00C523C9 /* SL Smart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SL Smart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18937E341BFF33FA00C523C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18937E391BFF33FA00C523C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */,
 				180603651C0201A100AC1841 /* HttpRequestHelper.swift */,
 				18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */,
+				188B85651C14ADF100098B00 /* SLNetworkError.swift */,
 			);
 			path = "SL API";
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				18937E871C00A17700C523C9 /* RoutineTrip.swift in Sources */,
 				18232CAA1C01EA15006334D1 /* StationSearchService.swift in Sources */,
 				18D1953F1C07964900FB1A93 /* TripSeachCriterion.swift in Sources */,
+				188B85661C14ADF100098B00 /* SLNetworkError.swift in Sources */,
 				180FD8BB1C0B150E0095C790 /* ScorePostHelper.swift in Sources */,
 				180603661C0201A100AC1841 /* HttpRequestHelper.swift in Sources */,
 				18937E351BFF33FA00C523C9 /* AppDelegate.swift in Sources */,

@@ -17,35 +17,52 @@ class StationSearchService {
   /**
    * Searches for stations based on the query
    */
-  static func search(query: String, callback: ([Station]) -> Void) {
-    api.search(query) { data in
-      let stations = StationSearchService.convertJsonResponse(data)
-      callback(stations)
-    }
+  static func search(
+    query: String,
+    callback: (data: [Station], error: SLNetworkError?) -> Void) {
+      api.search(query) { resTuple in
+        var stations = [Station]()
+        if let data = resTuple.data {
+          stations = StationSearchService.convertJsonResponse(data)
+          if stations.count == 0 {
+            callback(data: stations, error: SLNetworkError.NoDataFound)
+            return
+          }
+        }
+        callback(data: stations, error: resTuple.error)
+      }
   }
   
   /**
    * Searches for nearby stations.
    */
-  static func searchNearby(location: CLLocation, callback: ([(id: Int, dist: Int)]) -> Void) {
-    nearbyApi.search(location) { jsonData in
-      var result = [(id: Int, dist: Int)]()
-      let data = JSON(data: jsonData)
-      
-      if let locationJson = data["LocationList"]["StopLocation"].array {
-        for locationJson in locationJson {
-          let id = locationJson["id"].string!.stringByReplacingOccurrencesOfString("30010", withString: "")
-          let res = (id: Int(id)!, dist: Int(locationJson["dist"].string!)!)
-          result.append(res)
+  static func searchNearby(
+    location: CLLocation,
+    callback: (data: [(id: Int, dist: Int)], error: SLNetworkError?) -> Void) {
+      nearbyApi.search(location) { resTuple in
+        var result = [(id: Int, dist: Int)]()
+        if let resData = resTuple.data {
+          let data = JSON(data: resData)
+          
+          if let locationJson = data["LocationList"]["StopLocation"].array {
+            for locationJson in locationJson {
+              let id = locationJson["id"].string!.stringByReplacingOccurrencesOfString("30010", withString: "")
+              let res = (id: Int(id)!, dist: Int(locationJson["dist"].string!)!)
+              result.append(res)
+            }
+          } else if let locationJson = data["LocationList"]["StopLocation"].object as? JSON {
+            let id = locationJson["id"].string!.stringByReplacingOccurrencesOfString("30010", withString: "")
+            let res = (id: Int(id)!, dist: Int(locationJson["dist"].string!)!)
+            result.append(res)
+          }
         }
-      } else if let locationJson = data["LocationList"]["StopLocation"].object as? JSON {
-        let id = locationJson["id"].string!.stringByReplacingOccurrencesOfString("30010", withString: "")
-        let res = (id: Int(id)!, dist: Int(locationJson["dist"].string!)!)
-        result.append(res)
+        
+        if result.count == 0 {
+          callback(data: result, error: SLNetworkError.NoDataFound)
+          return
+        }
+        callback(data: result, error: resTuple.error)
       }
-      
-      callback(result)
-    }
   }
   
   /**
@@ -54,7 +71,7 @@ class StationSearchService {
   private static func convertJsonResponse(jsonData: NSData) -> [Station] {
     var result = [Station]()
     let data = JSON(data: jsonData)
-
+    
     for (_,stationJson):(String, JSON) in data["ResponseData"] {
       let station = Station(
         id: Int(stationJson["SiteId"].string!)!,

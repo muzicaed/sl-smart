@@ -15,15 +15,20 @@ class SearchTripService {
   /**
    * Trip search.
    */
-  static func tripSearch(criterion: TripSearchCriterion, callback: ([Trip]) -> Void) {
-    api.tripSearch(criterion) { data in
-      let trips = self.convertJsonResponse(data)
-      if trips.count == 0 {
-        // Better error here
-        fatalError("No trips found...")
-      }      
-      callback(trips)
-    }
+  static func tripSearch(
+    criterion: TripSearchCriterion,
+    callback: (data: [Trip], error: SLNetworkError?) -> Void) {
+      api.tripSearch(criterion) { resTuple in
+        var trips = [Trip]()
+        if let data = resTuple.data {
+          if data.length == 0 {
+            callback(data: trips, error: SLNetworkError.NoDataFound)
+            return
+          }
+          trips = self.convertJsonResponse(data)
+        }
+        callback(data: trips, error: resTuple.error)
+      }
   }
   
   // MARK: Private methods
@@ -34,7 +39,7 @@ class SearchTripService {
   private static func convertJsonResponse(jsonDataString: NSData) -> [Trip] {
     var result = [Trip]()
     let data = JSON(data: jsonDataString)
-
+    
     if let tripsJson = data["TripList"]["Trip"].array {
       for tripJson in tripsJson {
         result.append(convertJsonToTrip(tripJson))
