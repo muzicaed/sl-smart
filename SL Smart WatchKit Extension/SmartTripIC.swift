@@ -18,10 +18,17 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
   @IBOutlet var departureTimeLabel: WKInterfaceLabel!
   @IBOutlet var originLabel: WKInterfaceLabel!
   @IBOutlet var destinationLabel: WKInterfaceLabel!
-  @IBOutlet var travelTypeIconWrapper: WKInterfaceGroup!
   @IBOutlet var loadingLabel: WKInterfaceLabel!
   
+  @IBOutlet var icon1: WKInterfaceImage!
+  @IBOutlet var icon2: WKInterfaceImage!
+  @IBOutlet var icon3: WKInterfaceImage!
+  @IBOutlet var icon4: WKInterfaceImage!
+  @IBOutlet var icon5: WKInterfaceImage!
+  @IBOutlet var icon6: WKInterfaceImage!
+  
   var session : WCSession?
+  var icons = [WKInterfaceImage]()
   
   /**
    * About to show on screen.
@@ -30,6 +37,7 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
     super.willActivate()
     print("willActivate")
     setupPhoneConnection()
+    prepareIcons()
     reloadRoutineTripData()
   }
   
@@ -46,6 +54,8 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
       originLabel.setText(routineTripData["ori"] as? String)
       destinationLabel.setText(routineTripData["des"] as? String)
       departureTimeLabel.setText(routineTripData["dep"] as? String)
+      
+      createTripIcons(routineTripData["icn"] as! [String])
       
       self.animateWithDuration(0.4, animations: {
         self.loadingLabel.setHidden(true)
@@ -100,6 +110,36 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
           message: "Det går inte att kommunicera med din iPhone. Kontrollera att den är laddad och finns i närheten.")
       }
     }
+  }
+  
+  /**
+   * Creates trip icons
+   */
+  private func createTripIcons(iconNames: [String]) {
+    let nameCount = iconNames.count
+    for (index, iconImage) in icons.enumerate() {
+      if index < nameCount {
+        print("W_\(iconNames[index])")
+        iconImage.setImageNamed("W_\(iconNames[index])")
+        iconImage.setHidden(false)
+      } else {
+        iconImage.setHidden(true)
+      }
+    }
+  }
+  
+  /**
+   * Stores all trip icons in a array
+   * for easier manipulation.
+   */
+  private func prepareIcons() {
+    icons = [WKInterfaceImage]()
+    icons.append(icon1)
+    icons.append(icon2)
+    icons.append(icon3)
+    icons.append(icon4)
+    icons.append(icon5)
+    icons.append(icon6)
   }
   
   /**

@@ -18,7 +18,15 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
   @IBOutlet var originLabel: WKInterfaceLabel!
   @IBOutlet var destinationLabel: WKInterfaceLabel!
   
+  @IBOutlet var icon1: WKInterfaceImage!
+  @IBOutlet var icon2: WKInterfaceImage!
+  @IBOutlet var icon3: WKInterfaceImage!
+  @IBOutlet var icon4: WKInterfaceImage!
+  @IBOutlet var icon5: WKInterfaceImage!
+  @IBOutlet var icon6: WKInterfaceImage!
+  
   var session : WCSession?
+  var icons = [WKInterfaceImage]()
   
   /**
    * About to show on screen.
@@ -27,6 +35,7 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
     super.willActivate()
     print("awakeWithContext")
     setupPhoneConnection()
+    prepareIcons()
     reloadRoutineTripData()
   }
   
@@ -41,9 +50,11 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
       originLabel.setText(routineTripData["ori"] as? String)
       destinationLabel.setText(routineTripData["des"] as? String)
       departureLabel.setText(routineTripData["dep"] as? String)
-      
       subTitleLabel.setText(routineTripData["tit"] as? String)
       subTitleLabel.setTextColor(UIColor.whiteColor())
+      
+      createTripIcons(routineTripData["icn"] as! [String])
+      
       contentGroup.setHidden(false)
     } else {
       displayError("Hittade inga smarta resor.")
@@ -98,6 +109,36 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
   private func displayError(title: String) {
     subTitleLabel.setText(title)
     subTitleLabel.setTextColor(UIColor.redColor())
+  }
+  
+  /**
+   * Creates trip icons
+   */
+  private func createTripIcons(iconNames: [String]) {
+    let nameCount = iconNames.count
+    for (index, iconImage) in icons.enumerate() {
+      if index < nameCount {
+        print("W_\(iconNames[index])")
+        iconImage.setImageNamed("W_\(iconNames[index])")
+        iconImage.setHidden(false)
+      } else {
+        iconImage.setHidden(true)
+      }
+    }
+  }
+  
+  /**
+   * Stores all trip icons in a array
+   * for easier manipulation.
+   */
+  private func prepareIcons() {
+    icons = [WKInterfaceImage]()
+    icons.append(icon1)
+    icons.append(icon2)
+    icons.append(icon3)
+    icons.append(icon4)
+    icons.append(icon5)
+    icons.append(icon6)
   }
   
   /**

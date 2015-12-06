@@ -18,22 +18,18 @@
                                 <group width="1" alignment="left" verticalAlignment="center" layout="vertical" id="2eR-Jh-VnR">
                                     <items>
                                         <button alignment="left" id="af7-dj-LLu" userLabel="Smart resa">
-                                            <group key="contentGroup" width="1" alignment="left" animationDuration="0.5" layout="vertical" id="Bie-IP-jFC">
+                                            <group key="contentGroup" width="1" alignment="left" animationDuration="0.5" layout="vertical" spacing="8" id="Bie-IP-jFC">
                                                 <items>
-                                                    <label width="1" alignment="left" text="Åka till jobbet" textAlignment="center" id="cFt-Gb-vyb">
+                                                    <label width="1" alignment="left" text="Åka till jobbet" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="cFt-Gb-vyb">
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="font" type="system" weight="light" pointSize="16"/>
                                                     </label>
                                                     <label width="1" alignment="left" text="Om 6 min" textAlignment="center" id="9m3-ui-Mak" userLabel="Om 6 min">
-                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                        <fontDescription key="font" type="system" pointSize="18"/>
                                                     </label>
                                                     <group width="1" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="7Xa-W2-V96" userLabel="Stations">
                                                         <items>
                                                             <label width="1" alignment="left" text="Kälvestavägen" textAlignment="center" id="QqC-Jn-KFB" userLabel="Karlberg">
-                                                                <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="font" type="system" weight="light" pointSize="11"/>
-                                                            </label>
-                                                            <label width="1" alignment="left" text="↓" textAlignment="center" id="Jw4-kY-mhf" userLabel="Arrow">
                                                                 <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="font" type="system" weight="light" pointSize="11"/>
                                                             </label>
@@ -44,35 +40,21 @@
                                                         </items>
                                                         <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                                     </group>
-                                                    <group alignment="left" verticalAlignment="center" spacing="0.0" id="AgH-53-ejJ" userLabel="Travel type icons">
+                                                    <group alignment="center" verticalAlignment="center" radius="3" spacing="2" id="AgH-53-ejJ" userLabel="Travel type icons">
                                                         <items>
-                                                            <imageView width="15" height="15" alignment="left" image="W_SHIP-NEUTRAL" id="S7W-ow-jnI"/>
-                                                            <separator height="15" alignment="left" id="ke7-me-nB2">
-                                                                <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            </separator>
-                                                            <separator height="15" alignment="left" id="tpq-az-Bpz">
-                                                                <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            </separator>
-                                                            <imageView width="15" height="15" alignment="left" image="W_BUS-BLUE" id="z7R-dh-lwZ"/>
-                                                            <separator height="15" alignment="left" id="Y8U-Y0-llE">
-                                                                <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            </separator>
-                                                            <separator height="15" alignment="left" id="mXx-ze-duz">
-                                                                <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            </separator>
-                                                            <imageView width="15" height="15" alignment="left" image="W_METRO-GREEN" id="rfJ-dp-auO"/>
+                                                            <imageView width="15" height="15" alignment="left" id="S7W-ow-jnI" userLabel="Image 1"/>
+                                                            <imageView width="15" height="15" alignment="left" id="z7R-dh-lwZ" userLabel="Image 2"/>
+                                                            <imageView width="15" height="15" alignment="left" id="rfJ-dp-auO" userLabel="Image 3"/>
+                                                            <imageView width="15" height="15" alignment="left" id="K6h-il-mDX" userLabel="Image 4"/>
+                                                            <imageView width="15" height="15" alignment="left" id="vWa-XD-QTN" userLabel="Image 5"/>
+                                                            <imageView width="15" height="15" alignment="left" id="Srp-0I-lYL" userLabel="Image 6"/>
                                                         </items>
                                                         <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                                         <edgeInsets key="margins" left="4" right="4" top="4" bottom="4"/>
                                                     </group>
                                                 </items>
-                                                <color key="backgroundColor" red="0.4645483494" green="0.66118609910000004" blue="0.30511242150000001" alpha="0.80000000000000004" colorSpace="deviceRGB"/>
-                                                <edgeInsets key="margins" left="4" right="4" top="5" bottom="5"/>
-                                                <variation key="default">
-                                                    <mask key="items">
-                                                        <exclude reference="AgH-53-ejJ"/>
-                                                    </mask>
-                                                </variation>
+                                                <color key="backgroundColor" red="0.4645483494" green="0.66118609910000004" blue="0.30511242150000001" alpha="0.59999999999999998" colorSpace="deviceRGB"/>
+                                                <edgeInsets key="margins" left="0.0" right="0.0" top="5" bottom="5"/>
                                             </group>
                                             <connections>
                                                 <segue destination="KjQ-iU-gEp" kind="push" identifier="ShowTripDetails" id="6z8-OE-mpU"/>
@@ -111,10 +93,15 @@
                         <outlet property="containerGroup" destination="2eR-Jh-VnR" id="e07-WP-OBR"/>
                         <outlet property="departureTimeLabel" destination="9m3-ui-Mak" id="cU5-Tl-ZRQ"/>
                         <outlet property="destinationLabel" destination="Tmi-wm-EQ3" id="yKZ-RL-7Rx"/>
+                        <outlet property="icon1" destination="S7W-ow-jnI" id="QH0-Ye-74a"/>
+                        <outlet property="icon2" destination="z7R-dh-lwZ" id="imm-KH-C87"/>
+                        <outlet property="icon3" destination="rfJ-dp-auO" id="XHE-jJ-BNe"/>
+                        <outlet property="icon4" destination="K6h-il-mDX" id="7y1-Xf-fsi"/>
+                        <outlet property="icon5" destination="vWa-XD-QTN" id="z7Y-gt-LET"/>
+                        <outlet property="icon6" destination="Srp-0I-lYL" id="PbC-mM-16L"/>
                         <outlet property="loadingLabel" destination="8YZ-WO-QNP" id="6Wc-u3-qSN"/>
                         <outlet property="originLabel" destination="QqC-Jn-KFB" id="Edx-c9-uND"/>
                         <outlet property="titleLabel" destination="cFt-Gb-vyb" id="N2v-Dn-hDw"/>
-                        <outlet property="travelTypeIconWrapper" destination="AgH-53-ejJ" id="b6R-RN-U7p"/>
                     </connections>
                 </controller>
             </objects>
@@ -140,19 +127,15 @@
                         </label>
                         <group alignment="left" animationDuration="0.5" layout="vertical" id="uCw-4Q-Ouw" userLabel="Content">
                             <items>
-                                <group width="1" alignment="left" verticalAlignment="center" animationDuration="0.5" layout="vertical" radius="6" spacing="8" id="Es7-bG-KgD">
+                                <group width="1" alignment="center" verticalAlignment="center" animationDuration="0.5" layout="vertical" radius="6" spacing="4" id="Es7-bG-KgD">
                                     <items>
                                         <label width="1" alignment="left" text="Om 6 min" textAlignment="center" id="NHT-8y-f1e" userLabel="Om 6 min">
                                             <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            <fontDescription key="font" type="system" pointSize="24"/>
+                                            <fontDescription key="font" type="system" pointSize="20"/>
                                         </label>
-                                        <group width="1" alignment="left" verticalAlignment="center" layout="vertical" spacing="1" id="6E4-OE-RCg" userLabel="Stations">
+                                        <group width="1" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="6E4-OE-RCg" userLabel="Stations">
                                             <items>
                                                 <label width="1" alignment="left" text="Kälvestavägen" textAlignment="center" id="LoS-cI-Lw2" userLabel="Karlberg">
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="font" type="system" weight="light" pointSize="11"/>
-                                                </label>
-                                                <label width="1" alignment="left" text="↓" textAlignment="center" id="Zbo-qR-ILq" userLabel="Karlberg">
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="font" type="system" weight="light" pointSize="11"/>
                                                 </label>
@@ -163,34 +146,19 @@
                                             </items>
                                             <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                         </group>
-                                        <group alignment="left" verticalAlignment="center" spacing="0.0" id="yiV-4p-pcN" userLabel="Travel type icons">
+                                        <group alignment="center" verticalAlignment="center" spacing="2" id="e5X-Xh-ttr" userLabel="Travel type icons">
                                             <items>
-                                                <imageView width="15" height="15" alignment="left" image="W_SHIP-NEUTRAL" id="54X-hG-39p"/>
-                                                <separator height="15" alignment="left" id="RlT-gP-VEE">
-                                                    <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </separator>
-                                                <separator height="15" alignment="left" id="fwd-so-nMf">
-                                                    <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </separator>
-                                                <imageView width="15" height="15" alignment="left" image="W_BUS-BLUE" id="eGX-6c-SpV"/>
-                                                <separator height="15" alignment="left" id="697-rF-HHH">
-                                                    <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </separator>
-                                                <separator height="15" alignment="left" id="I4y-YQ-pgQ">
-                                                    <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </separator>
-                                                <imageView width="15" height="15" alignment="left" image="W_METRO-GREEN" id="Gfs-rH-8fh"/>
+                                                <imageView width="15" height="15" alignment="left" id="BlZ-Os-BJg" userLabel="Image 1"/>
+                                                <imageView width="15" height="15" alignment="left" id="nki-Va-yhS" userLabel="Image 2"/>
+                                                <imageView width="15" height="15" alignment="left" id="utG-uo-ntD" userLabel="Image 3"/>
+                                                <imageView width="15" height="15" alignment="left" id="L4u-At-Vwp" userLabel="Image 4"/>
+                                                <imageView width="15" height="15" alignment="left" id="SEL-91-tsa" userLabel="Image 5"/>
+                                                <imageView width="15" height="15" alignment="left" id="yWn-UW-07N" userLabel="Image 6"/>
                                             </items>
-                                            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                             <edgeInsets key="margins" left="4" right="4" top="4" bottom="4"/>
                                         </group>
                                     </items>
-                                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
-                                    <variation key="default">
-                                        <mask key="items">
-                                            <exclude reference="yiV-4p-pcN"/>
-                                        </mask>
-                                    </variation>
+                                    <edgeInsets key="margins" left="0.0" right="0.0" top="2" bottom="2"/>
                                 </group>
                             </items>
                             <edgeInsets key="margins" left="2" right="2" top="2" bottom="2"/>
@@ -201,6 +169,12 @@
                         <outlet property="contentGroup" destination="Es7-bG-KgD" id="J5v-Vn-iMV"/>
                         <outlet property="departureLabel" destination="NHT-8y-f1e" id="bj1-ay-Nu8"/>
                         <outlet property="destinationLabel" destination="uUk-p3-VO4" id="j2y-j8-KKG"/>
+                        <outlet property="icon1" destination="BlZ-Os-BJg" id="wlu-QL-QNj"/>
+                        <outlet property="icon2" destination="nki-Va-yhS" id="BZh-8h-d4u"/>
+                        <outlet property="icon3" destination="utG-uo-ntD" id="eBK-Lk-QGz"/>
+                        <outlet property="icon4" destination="L4u-At-Vwp" id="zkR-ax-wgq"/>
+                        <outlet property="icon5" destination="SEL-91-tsa" id="1d9-P9-geG"/>
+                        <outlet property="icon6" destination="yWn-UW-07N" id="NDr-BO-9c7"/>
                         <outlet property="originLabel" destination="LoS-cI-Lw2" id="gRj-jh-mW4"/>
                         <outlet property="subTitleLabel" destination="JgG-Sl-WR9" id="2Li-pD-Qno"/>
                     </connections>
