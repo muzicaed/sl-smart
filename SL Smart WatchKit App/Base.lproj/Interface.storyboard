@@ -65,18 +65,22 @@
                                         </label>
                                         <table alignment="left" id="fRr-Pe-7eK">
                                             <items>
-                                                <tableRow identifier="routineRow" id="pX4-Ta-K8Y">
-                                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="P5p-Mh-lmm">
+                                                <tableRow identifier="Routine Row" id="pX4-Ta-K8Y">
+                                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="2" id="P5p-Mh-lmm">
                                                         <items>
+                                                            <separator alignment="left" id="uxc-jB-BJb">
+                                                                <color key="color" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </separator>
                                                             <label alignment="left" text="Hem från jobbet" textAlignment="left" id="BWu-h1-71D">
+                                                                <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="font" type="system" weight="light" pointSize="14"/>
                                                             </label>
                                                             <label width="1" alignment="left" text="Kälvestavägen" textAlignment="left" id="GEm-9g-MGo" userLabel="Karlberg">
-                                                                <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="font" type="system" weight="light" pointSize="11"/>
                                                             </label>
                                                             <label width="1" alignment="left" text="Karlberg" textAlignment="left" id="y87-G0-DR9" userLabel="Karlberg">
-                                                                <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="font" type="system" weight="light" pointSize="11"/>
                                                             </label>
                                                         </items>
@@ -107,10 +111,94 @@
             </objects>
             <point key="canvasLocation" x="235" y="393.75"/>
         </scene>
-        <!--Resultat-->
+        <!--Resor-->
         <scene sceneID="3Lq-WI-dKH">
             <objects>
-                <controller title="Resultat" id="KjQ-iU-gEp"/>
+                <controller title="Resor" id="KjQ-iU-gEp">
+                    <items>
+                        <separator alignment="left" id="FhQ-0L-sZt">
+                            <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </separator>
+                        <group width="1" height="0.0" alignment="left" layout="vertical" id="Ha4-Tt-f0c">
+                            <items>
+                                <label width="1" alignment="left" text="Hem från jobbet" textAlignment="left" id="2CW-tm-7mt">
+                                    <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="system" weight="light" pointSize="14"/>
+                                </label>
+                                <label width="1" alignment="left" text="Kälvestavägen" textAlignment="left" id="fS8-Zo-4gH" userLabel="Karlberg">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" weight="light" pointSize="11"/>
+                                </label>
+                                <label width="1" alignment="left" text="Karlberg" textAlignment="left" id="Wo9-B8-JBH" userLabel="Karlberg">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" weight="light" pointSize="11"/>
+                                </label>
+                            </items>
+                        </group>
+                        <separator alignment="left" id="ONC-nl-P8h">
+                            <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </separator>
+                        <table alignment="left" id="127-3q-0Gz">
+                            <items>
+                                <tableRow identifier="Trip Row" selectable="NO" id="IQa-Qh-Uig">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="2" id="OJI-g6-70X">
+                                        <items>
+                                            <separator alignment="left" id="AK8-x4-8we">
+                                                <color key="color" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            </separator>
+                                            <label width="1" alignment="left" text="23:35 → 10:10" textAlignment="center" id="wna-Ru-M1o" userLabel="Om 6 min">
+                                                <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                            </label>
+                                            <label width="1" alignment="left" text="Restid: 59 min" textAlignment="center" id="uBR-S0-BU4" userLabel="Om 6 min">
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="font" type="system" pointSize="11"/>
+                                            </label>
+                                            <group alignment="center" verticalAlignment="center" spacing="2" id="Slf-s0-dHR" userLabel="Travel type icons">
+                                                <items>
+                                                    <imageView width="15" height="15" alignment="left" id="s2D-GH-Hoh" userLabel="Image 1"/>
+                                                    <imageView width="15" height="15" alignment="left" id="2eH-ME-26B" userLabel="Image 2"/>
+                                                    <imageView width="15" height="15" alignment="left" id="pP6-Y3-o2c" userLabel="Image 3"/>
+                                                    <imageView width="15" height="15" alignment="left" id="1MB-1x-KaU" userLabel="Image 4"/>
+                                                    <imageView width="15" height="15" alignment="left" id="xfD-V9-kF6" userLabel="Image 5"/>
+                                                    <imageView width="15" height="15" alignment="left" id="c8n-cZ-DGn" userLabel="Image 6"/>
+                                                </items>
+                                                <edgeInsets key="margins" left="4" right="4" top="4" bottom="4"/>
+                                            </group>
+                                        </items>
+                                    </group>
+                                </tableRow>
+                                <tableRow identifier="Trip Row" selectable="NO" id="RNj-CT-hoO">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="2" id="FPM-Y3-t5s">
+                                        <items>
+                                            <separator alignment="left" id="kgR-Tc-wIe">
+                                                <color key="color" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            </separator>
+                                            <label width="1" alignment="left" text="23:35 → 10:10" textAlignment="center" id="DGC-gn-N45" userLabel="Om 6 min">
+                                                <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                            </label>
+                                            <label width="1" alignment="left" text="Restid: 59 min" textAlignment="center" id="zW4-ve-xK0" userLabel="Om 6 min">
+                                                <fontDescription key="font" type="system" pointSize="11"/>
+                                            </label>
+                                            <group alignment="center" verticalAlignment="center" spacing="2" id="1hI-6q-BeL" userLabel="Travel type icons">
+                                                <items>
+                                                    <imageView width="15" height="15" alignment="left" id="t4s-pr-tq2" userLabel="Image 1"/>
+                                                    <imageView width="15" height="15" alignment="left" id="BaY-Yf-S1H" userLabel="Image 2"/>
+                                                    <imageView width="15" height="15" alignment="left" id="PVf-8q-gGR" userLabel="Image 3"/>
+                                                    <imageView width="15" height="15" alignment="left" id="spW-Yy-R9O" userLabel="Image 4"/>
+                                                    <imageView width="15" height="15" alignment="left" id="k0z-dw-5EO" userLabel="Image 5"/>
+                                                    <imageView width="15" height="15" alignment="left" id="8Em-fL-7ip" userLabel="Image 6"/>
+                                                </items>
+                                                <edgeInsets key="margins" left="4" right="4" top="4" bottom="4"/>
+                                            </group>
+                                        </items>
+                                    </group>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                </controller>
             </objects>
             <point key="canvasLocation" x="500" y="394"/>
         </scene>

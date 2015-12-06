@@ -119,7 +119,6 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
     let nameCount = iconNames.count
     for (index, iconImage) in icons.enumerate() {
       if index < nameCount {
-        print("W_\(iconNames[index])")
         iconImage.setImageNamed("W_\(iconNames[index])")
         iconImage.setHidden(false)
       } else {
