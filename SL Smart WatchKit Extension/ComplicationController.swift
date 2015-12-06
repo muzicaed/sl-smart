@@ -114,7 +114,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   */
   private func createModularSmall(timeString: String) -> CLKComplicationTemplate {
     let modTemplate = CLKComplicationTemplateModularSmallStackImage()
-    modTemplate.highlightLine2 = true
+    modTemplate.highlightLine2 = false
     modTemplate.line1ImageProvider = CLKImageProvider(onePieceImage: UIImage(named: "CompModSmallIcon")!)
     modTemplate.line2TextProvider = CLKSimpleTextProvider(text: timeString)
     modTemplate.tintColor = tintColor
