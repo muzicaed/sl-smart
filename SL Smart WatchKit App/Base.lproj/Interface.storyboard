@@ -13,7 +13,7 @@
                         <group width="1" alignment="left" verticalAlignment="center" layout="vertical" id="naW-Us-NIZ">
                             <items>
                                 <label alignment="center" verticalAlignment="center" text="Söker resa..." id="8YZ-WO-QNP">
-                                    <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </label>
                                 <group width="1" alignment="left" verticalAlignment="center" layout="vertical" id="2eR-Jh-VnR">
                                     <items>
@@ -126,22 +126,18 @@
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">
             <objects>
-                <glanceController spacing="0.0" hidesWhenLoading="NO" topTemplateType="mediumBody1" id="0uZ-2p-rRc" customClass="GlanceController" customModule="SL_Smart">
+                <glanceController spacing="0.0" hidesWhenLoading="NO" topTemplateType="body1Medium" id="0uZ-2p-rRc" customClass="GlanceController" customModule="SL_Smart">
                     <items>
                         <label alignment="left" text="Res Smart" id="brv-oZ-oj4" userLabel="I">
                             <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <label alignment="left" text="Söker resa..." id="JgG-Sl-WR9">
+                        <label alignment="left" text="Söker resa..." minimumScaleFactor="0.80000000000000004" id="JgG-Sl-WR9">
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </label>
                         <group alignment="left" animationDuration="0.5" layout="vertical" id="uCw-4Q-Ouw" userLabel="Content">
                             <items>
-                                <group width="1" alignment="left" animationDuration="0.5" layout="vertical" radius="6" spacing="8" id="Es7-bG-KgD">
+                                <group width="1" alignment="left" verticalAlignment="center" animationDuration="0.5" layout="vertical" radius="6" spacing="8" id="Es7-bG-KgD">
                                     <items>
-                                        <label width="1" alignment="left" text="Åka till jobbet" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="wLE-Ae-etP">
-                                            <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            <fontDescription key="font" type="system" weight="light" pointSize="20"/>
-                                        </label>
                                         <label width="1" alignment="left" text="Om 6 min" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="NHT-8y-f1e" userLabel="Om 6 min">
                                             <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="font" type="system" pointSize="20"/>
@@ -181,7 +177,7 @@
                                             <edgeInsets key="margins" left="4" right="4" top="4" bottom="4"/>
                                         </group>
                                     </items>
-                                    <edgeInsets key="margins" left="4" right="4" top="4" bottom="4"/>
+                                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                     <variation key="default">
                                         <mask key="items">
                                             <exclude reference="yiV-4p-pcN"/>
@@ -197,9 +193,8 @@
                         <outlet property="contentGroup" destination="Es7-bG-KgD" id="J5v-Vn-iMV"/>
                         <outlet property="departureLabel" destination="NHT-8y-f1e" id="bj1-ay-Nu8"/>
                         <outlet property="destinationLabel" destination="uUk-p3-VO4" id="j2y-j8-KKG"/>
-                        <outlet property="loadingLabel" destination="JgG-Sl-WR9" id="hbf-eM-f8G"/>
                         <outlet property="originLabel" destination="LoS-cI-Lw2" id="gRj-jh-mW4"/>
-                        <outlet property="titleLabel" destination="wLE-Ae-etP" id="yg2-8i-LWB"/>
+                        <outlet property="subTitleLabel" destination="JgG-Sl-WR9" id="2Li-pD-Qno"/>
                     </connections>
                 </glanceController>
             </objects>

@@ -24,37 +24,13 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
     var session : WCSession?
     
     /**
-     * On load.
-     */
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
-        print("awakeWithContext")
-        setupPhoneConnection()
-    }
-    
-    /**
      * About to show on screen.
      */
     override func willActivate() {
         super.willActivate()
-    }
-    
-    override func didAppear() {
-        super.willActivate()
-        containerGroup.setHidden(true)
-        self.loadingLabel.setHidden(false)
-        if let sess = session {
-            sess.sendMessage(["action": "requestRoutineTrips"],
-                replyHandler: requestRoutineTripsHandler,
-                errorHandler: messageErrorHandler)
-        }
-    }
-    
-    /**
-     * Did disapear from screen.
-     */
-    override func didDeactivate() {
-        super.didDeactivate()
+        print("willActivate")
+        setupPhoneConnection()
+        reloadRoutineTripData()
     }
     
     /**
@@ -62,12 +38,13 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
      */
     func requestRoutineTripsHandler(reply: [String: AnyObject]) {
         let routineTripData = reply["best"] as! Dictionary<String, AnyObject>
-        print("\(reply["bestTripData"])")
+        print("Got reply")
+        print("\(routineTripData)")
         titleLabel.setText(routineTripData["tit"] as? String)
         originLabel.setText(routineTripData["ori"] as? String)
         destinationLabel.setText(routineTripData["des"] as? String)
         departureTimeLabel.setText(routineTripData["dep"] as? String)
-
+        
         self.animateWithDuration(0.4, animations: {
             self.loadingLabel.setHidden(true)
             self.containerGroup.setHidden(false)
@@ -79,10 +56,29 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
      * Handles any session send messages errors.
      */
     func messageErrorHandler(error: NSError) {
-        fatalError("Message error: \(error)")
+        // TODO: Debug only. Replace with generic error message before publish.
+        displayErrorAlert("Fel", message: error.localizedDescription)
     }
     
     // MARK private
+    
+    /**
+    * Ask partner iPhone for new Routine Trip data
+    */
+    private func reloadRoutineTripData() {
+        if ((session?.reachable) != nil) {
+            containerGroup.setHidden(true)
+            loadingLabel.setHidden(false)
+            if let sess = session {
+                sess.sendMessage(["action": "requestRoutineTrips"],
+                    replyHandler: requestRoutineTripsHandler,
+                    errorHandler: messageErrorHandler)
+            }
+        } else {
+            displayErrorAlert("Kan inte hitta din iPhone",
+                message: "Det går inte att kommunicera med din iPhone. Kontrollera att den är laddad och finns i närheten.")
+        }
+    }
     
     /**
      * Sets up a WKSession with the partner iPhone
@@ -94,8 +90,18 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
                 defaultSession.delegate = self;
                 defaultSession.activateSession()
             } else {
-                print("No WCSession.")
+                displayErrorAlert("Kan inte hitta din iPhone",
+                    message: "Det går inte att kommunicera med din iPhone. Kontrollera att den är laddad och finns i närheten.")
             }
         }
+    }
+    
+    /**
+     * Displays an error alert
+     */
+    private func displayErrorAlert(title: String, message: String) {
+        let okAction = WKAlertAction(title: "Försök igen", style: .Default, handler: {})
+        presentAlertControllerWithTitle(title,
+            message: message, preferredStyle: .Alert, actions: [okAction])
     }
 }

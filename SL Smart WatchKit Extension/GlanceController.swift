@@ -12,57 +12,36 @@ import WatchConnectivity
 
 class GlanceController: WKInterfaceController, WCSessionDelegate {
     
-    @IBOutlet var titleLabel: WKInterfaceLabel!
-    @IBOutlet var loadingLabel: WKInterfaceLabel!
+    @IBOutlet var subTitleLabel: WKInterfaceLabel!
     @IBOutlet var contentGroup: WKInterfaceGroup!
     @IBOutlet var departureLabel: WKInterfaceLabel!
     @IBOutlet var originLabel: WKInterfaceLabel!
     @IBOutlet var destinationLabel: WKInterfaceLabel!
     
     var session : WCSession?
-    
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
-        loadingLabel.setHidden(false)
-        contentGroup.setHidden(true)
-        setupPhoneConnection()
-    }
-    
-    
+
     /**
      * About to show on screen.
      */
     override func willActivate() {
         super.willActivate()
+        print("awakeWithContext")
+        setupPhoneConnection()
+        reloadRoutineTripData()
     }
-    
-    override func didAppear() {
-        loadingLabel.setHidden(false)
-        contentGroup.setHidden(true)
-        if let sess = session {
-            print("Send message.")
-            sess.sendMessage(["action": "requestRoutineTrips"],
-                replyHandler: requestRoutineTripsHandler,
-                errorHandler: messageErrorHandler)
-        }
-    }
-    
-    override func didDeactivate() {
-        super.didDeactivate()
-    }
-    
+
     /**
      * Handle reply for a "requestRoutineTrips" message.
      */
     func requestRoutineTripsHandler(reply: [String: AnyObject]) {
         let routineTripData = reply["best"] as! Dictionary<String, AnyObject>
         print("\(routineTripData)")
-        titleLabel.setText(routineTripData["tit"] as? String)
         originLabel.setText(routineTripData["ori"] as? String)
         destinationLabel.setText(routineTripData["des"] as? String)
         departureLabel.setText(routineTripData["dep"] as? String)
         
-        loadingLabel.setHidden(true)
+        subTitleLabel.setText(routineTripData["tit"] as? String)
+        subTitleLabel.setTextColor(UIColor.whiteColor())
         contentGroup.setHidden(false)
     }
     
@@ -70,12 +49,32 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
      * Handles any session send messages errors.
      */
     func messageErrorHandler(error: NSError) {
-        fatalError("Message error: \(error)")
+        // TODO: Debug only. Replace with generic error message before publish.
+        print("\(error)")
+        displayError(error.localizedDescription)
     }
-    
     
     // MARK private
     
+    /**
+    * Ask partner iPhone for new Routine Trip data
+    */
+    private func reloadRoutineTripData() {
+        if ((session?.reachable) != nil) {
+            setLoadingUIState()
+            if let sess = session {
+                sess.sendMessage(["action": "requestRoutineTrips"],
+                    replyHandler: requestRoutineTripsHandler,
+                    errorHandler: messageErrorHandler)
+            }
+        } else {
+            displayError("Kan inte hitta din iPhone")
+        }
+    }
+    
+    /**
+     * Sets up a WKSession with the partner iPhone
+     */
     private func setupPhoneConnection() {
         if (WCSession.isSupported()) {
             session = WCSession.defaultSession()
@@ -83,8 +82,25 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
                 defaultSession.delegate = self;
                 defaultSession.activateSession()
             } else {
-                print("No WCSession.")
+                displayError("Kan inte hitta din iPhone")
             }
         }
+    }
+    
+    /**
+     * Displays an error alert
+     */
+    private func displayError(title: String) {
+        subTitleLabel.setText(title)
+        subTitleLabel.setTextColor(UIColor.redColor())
+    }
+    
+    /**
+     * Updates UI to show "Loading..."
+     */
+    private func setLoadingUIState() {
+        contentGroup.setHidden(true)
+        subTitleLabel.setText("Söker resa...")
+        subTitleLabel.setTextColor(UIColor.lightGrayColor())
     }
 }
