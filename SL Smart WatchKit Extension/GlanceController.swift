@@ -16,22 +16,55 @@ class GlanceController: SmartTripIC {
   @IBOutlet var contentGroup: WKInterfaceGroup!
   @IBOutlet var departureLabel: WKInterfaceLabel!
   
-  override init() {
-    super.init()
+  var timer: NSTimer?
+  
+  /**
+   * Interface about to be active.
+   */
+  override func willActivate() {
+    super.willActivate()
+    timer = NSTimer.scheduledTimerWithTimeInterval(
+      60 * 10, target: self,
+      selector: Selector("forceRefreshData"),
+      userInfo: nil, repeats: true)
+  }
+  
+  /**
+   * Interface appeard
+   */
+  override func didAppear() {
+    super.didAppear()
+    if checkIfTripPassed() {
+      forceRefreshData()
+    } else {
+      refreshData()
+      updateUIData()
+    }
+  }
+  
+  /**
+   * Interface deactivated.
+   */
+  override func didDeactivate() {
+    super.didDeactivate()
+    timer?.invalidate()
+    timer = nil
   }
   
   /**
    * Updates UI using data from iPhone
    */
   override func updateUIData() {
-    print("GlanceController updateUIData")
     if let data = routineData {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
+      let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
+      let lines = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
+      
       originLabel.setText(bestRoutine["ori"] as? String)
       destinationLabel.setText(bestRoutine["des"] as? String)
       departureLabel.setText(createDepartureTimeString(bestRoutine["dep"] as! String))
       subTitleLabel.setText(bestRoutine["tit"] as? String)
-      createTripIcons(bestRoutine["icn"] as! [String], lines: bestRoutine["lns"] as! [String])
+      createTripIcons(icons, lines: lines)
     }
   }
   
@@ -39,7 +72,6 @@ class GlanceController: SmartTripIC {
    * Displays an error
    */
   override func displayError(title: String, message: String?) {
-    print("GlanceController displayError")
     subTitleLabel.setText(title)
     subTitleLabel.setTextColor(UIColor.redColor())
   }
@@ -48,7 +80,6 @@ class GlanceController: SmartTripIC {
    * Updates UI to show "Loading..."
    */
   override func setLoadingUIState() {
-    print("GlanceController setLoadingUIState")
     contentGroup.setHidden(true)
     subTitleLabel.setText("Söker resa...")
     subTitleLabel.setTextColor(UIColor.lightGrayColor())
@@ -58,7 +89,6 @@ class GlanceController: SmartTripIC {
    * Updates UI to show content
    */
   override func showContentUIState() {
-    print("GlanceController showContentUIState")
     if let data = routineData {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
       contentGroup.setHidden(false)

@@ -49,7 +49,6 @@ class SmartTripIC: WKInterfaceController {
   
   override init() {
     super.init()
-    print("SmartTripIC init()")
     notificationCenter.addObserver(self,
       selector: Selector("refreshData"),
       name: "SessionBecameReachable", object: nil)
@@ -59,33 +58,33 @@ class SmartTripIC: WKInterfaceController {
    * About to show on screen.
    */
   override func willActivate() {
-    print("SmartTripIC willActivate")
     super.willActivate()
     validSession = session.reachable
-    self.refreshData()
+    if checkIfTripPassed() {
+      forceRefreshData()
+    } else {
+      refreshData()
+    }
   }
   
   /**
-   * Trigger a UI refresh of routine trip data
+   * Trigger a data refresh.
    */
   func refreshData() {
-    print("SmartTripIC refreshData")
-    if lastUpdated.timeIntervalSinceNow > (60 * 3) || routineData == nil {
-      setLoadingUIState()
-      prepareIcons()
-      if validSession {
-        self.reloadRoutineTripData()
-      }
-    } else {
-      showContentUIState()
-    }
+    perfromRefreshData(false)
+  }
+  
+  /**
+   * Force a data refresh.
+   */
+  func forceRefreshData() {
+    perfromRefreshData(true)
   }
   
   /**
    * Ask partner iPhone for new Routine Trip data
    */
   func reloadRoutineTripData() {
-    print("SmartTripIC reloadRoutineTripData")
     if validSession {
       session.sendMessage(["action": "requestRoutineTrips"],
         replyHandler: requestRoutineTripsHandler,
@@ -100,8 +99,6 @@ class SmartTripIC: WKInterfaceController {
    * Handle reply for a "requestRoutineTrips" message.
    */
   func requestRoutineTripsHandler(reply: [String: AnyObject]) {
-    print("SmartTripIC requestRoutineTripsHandler")
-    print("\(reply)")
     let hasData = reply["foundData"] as! Bool
     if hasData {
       routineData = reply
@@ -119,7 +116,6 @@ class SmartTripIC: WKInterfaceController {
    * Handles any session send messages errors.
    */
   func messageErrorHandler(error: NSError) {
-    print("SmartTripIC messageErrorHandler")
     // TODO: Debug only. Replace with generic error message before publish.
     print("Error Code: \(error.code)\n\(error.localizedDescription)")
     displayError("Fel", message: error.localizedDescription)
@@ -129,7 +125,6 @@ class SmartTripIC: WKInterfaceController {
    * Updates UI using data from iPhone
    */
   func updateUIData() {
-    print("SmartTripIC updateUIData")
     if let data = routineData {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
       let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
@@ -148,7 +143,6 @@ class SmartTripIC: WKInterfaceController {
    * Creates trip icons
    */
   func createTripIcons(iconNames: [String], lines: [String]) {
-    print("SmartTripIC createTripIcons")
     let nameCount = iconNames.count
     for (index, iconImage) in icons.enumerate() {
       if index < nameCount {
@@ -195,7 +189,6 @@ class SmartTripIC: WKInterfaceController {
    * Displays an error
    */
   func displayError(title: String, message: String?) {
-    print("SmartTripIC displayError")
     let okAction = WKAlertAction(title: "Försök igen", style: .Default, handler: {})
     presentAlertControllerWithTitle(title,
       message: message, preferredStyle: .Alert, actions: [okAction])
@@ -205,7 +198,6 @@ class SmartTripIC: WKInterfaceController {
    * Updates UI to show "Loading..."
    */
   func setLoadingUIState() {
-    print("SmartTripIC setLoadingUIState")
     containerGroup.setHidden(true)
     loadingLabel.setHidden(false)
   }
@@ -214,7 +206,6 @@ class SmartTripIC: WKInterfaceController {
    * Updates UI to show content
    */
   func showContentUIState() {
-    print("SmartTripIC showContentUIState")
     updateUIData()
     containerGroup.setHidden(false)
     loadingLabel.setHidden(true)
@@ -236,19 +227,31 @@ class SmartTripIC: WKInterfaceController {
   }
   
   /**
+   * Checks if the best trip have departed allreay.
+   */
+  func checkIfTripPassed() -> Bool {
+    if let data = routineData {
+      let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
+      let depTime = bestRoutine["dep"] as! String
+      let now = NSDate()
+      let departureDate = DateUtils.convertDateString("\(DateUtils.dateAsDateString(now)) \(depTime)")
+      let diffMin = Int((departureDate.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
+      if diffMin < 1 {
+        return true
+      }
+    }
+    
+    return false
+  }
+  
+  /**
    * On menu reload tap.
    */
   @IBAction func onReloadTap() {
-    print("SmartTripIC onReloadTap")
-    setLoadingUIState()
-    prepareIcons()
-    if validSession {
-      self.reloadRoutineTripData()
-    }
+    forceRefreshData()
   }
   
   override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
-    print("Tap on table row \(rowIndex)")
     if let data = routineData {
       let routines = data["other"] as! [Dictionary<String, AnyObject>]
       pushControllerWithName("Trips", context: routines[rowIndex])
@@ -259,7 +262,6 @@ class SmartTripIC: WKInterfaceController {
    * Handle segue
    */
   override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
-    print(segueIdentifier)
     if segueIdentifier == "ShowTrips" {
       if let data = routineData {
         return data["best"] as! Dictionary<String, AnyObject>
@@ -285,6 +287,21 @@ class SmartTripIC: WKInterfaceController {
       otherRoutinesLabel.setHidden(false)
     } else {
       otherRoutinesLabel.setHidden(true)
+    }
+  }
+  
+  /**
+   * Trigger a UI refresh of routine trip data
+   */
+  private func perfromRefreshData(force: Bool) {
+    if lastUpdated.timeIntervalSinceNow > (60 * 5) || routineData == nil || force {
+      setLoadingUIState()
+      prepareIcons()
+      if validSession {
+        self.reloadRoutineTripData()
+      }
+    } else {
+      showContentUIState()
     }
   }
 }
