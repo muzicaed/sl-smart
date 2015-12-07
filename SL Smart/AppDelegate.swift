@@ -66,6 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
               if index != 0 {
                 otherTrips.append(routineTrip.watchTransferData())
               }
+              if index >= 3 {
+                break
+              }
             }
           }
           response["other"] = otherTrips
@@ -76,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         replyHandler(response)
       })
     }
-  }
+  }  
   
   //MARK: Private
   

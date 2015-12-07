@@ -26,11 +26,12 @@ class GlanceController: SmartTripIC {
   override func updateUIData() {
     print("GlanceController updateUIData")
     if let data = routineData {
-      originLabel.setText(data["ori"] as? String)
-      destinationLabel.setText(data["des"] as? String)
-      departureLabel.setText(createDepartureTimeString(data["dep"] as! String))
-      subTitleLabel.setText(data["tit"] as? String)
-      createTripIcons(data["icn"] as! [String])
+      let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
+      originLabel.setText(bestRoutine["ori"] as? String)
+      destinationLabel.setText(bestRoutine["des"] as? String)
+      departureLabel.setText(createDepartureTimeString(bestRoutine["dep"] as! String))
+      subTitleLabel.setText(bestRoutine["tit"] as? String)
+      createTripIcons(bestRoutine["icn"] as! [String])
     }
   }
   
@@ -59,8 +60,9 @@ class GlanceController: SmartTripIC {
   override func showContentUIState() {
     print("GlanceController showContentUIState")
     if let data = routineData {
+      let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
       contentGroup.setHidden(false)
-      subTitleLabel.setText(data["tit"] as? String)
+      subTitleLabel.setText(bestRoutine["tit"] as? String)
       subTitleLabel.setTextColor(UIColor.whiteColor())
     }
   }

@@ -19,6 +19,8 @@ class SmartTripIC: WKInterfaceController {
   @IBOutlet var originLabel: WKInterfaceLabel!
   @IBOutlet var destinationLabel: WKInterfaceLabel!
   @IBOutlet var loadingLabel: WKInterfaceLabel!
+  @IBOutlet var otherRoutinesTable: WKInterfaceTable!
+  @IBOutlet var otherRoutinesLabel: WKInterfaceLabel!
   
   @IBOutlet var icon1: WKInterfaceImage!
   @IBOutlet var icon2: WKInterfaceImage!
@@ -91,7 +93,7 @@ class SmartTripIC: WKInterfaceController {
     print("\(reply)")
     let hasData = reply["foundData"] as! Bool
     if hasData {
-      routineData = reply["best"] as? Dictionary<String, AnyObject>
+      routineData = reply
       print("---------------------------------------")
       updateUIData()
       showContentUIState()
@@ -118,11 +120,13 @@ class SmartTripIC: WKInterfaceController {
   func updateUIData() {
     print("SmartTripIC updateUIData")
     if let data = routineData {
-      titleLabel.setText(data["tit"] as? String)
-      originLabel.setText(data["ori"] as? String)
-      destinationLabel.setText(data["des"] as? String)
-      departureTimeLabel.setText(createDepartureTimeString(data["dep"] as! String))
-      createTripIcons(data["icn"] as! [String])
+      let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
+      titleLabel.setText(bestRoutine["tit"] as? String)
+      originLabel.setText(bestRoutine["ori"] as? String)
+      destinationLabel.setText(bestRoutine["des"] as? String)
+      departureTimeLabel.setText(createDepartureTimeString(bestRoutine["dep"] as! String))
+      createTripIcons(bestRoutine["icn"] as! [String])
+      updateOtherTable(data["other"] as! [Dictionary<String, AnyObject>])
     }
   }
   
@@ -210,6 +214,38 @@ class SmartTripIC: WKInterfaceController {
     prepareIcons()
     if validSession {
       self.reloadRoutineTripData()
+    }
+  }
+  
+  /**
+   * Handle table selects
+   */
+  override func contextsForSegueWithIdentifier(
+    segueIdentifier: String, inTable table: WKInterfaceTable, rowIndex: Int) -> [AnyObject]? {
+      
+      if segueIdentifier == "TableShowTrips" {
+      
+      }
+      return  nil
+  }
+  
+  // MARK: Private
+  
+  /**
+  * Updates the other routine trips table.
+  */
+  private func updateOtherTable(otherTripsData: [Dictionary<String, AnyObject>]) {
+    if otherTripsData.count > 0 {
+      otherRoutinesTable.setNumberOfRows(otherTripsData.count, withRowType: "RoutineRow")
+      for (index, data) in otherTripsData.enumerate() {
+        let row = otherRoutinesTable.rowControllerAtIndex(index) as! OtherRoutinesRow
+        row.titleLabel.setText(data["tit"] as? String)
+        row.originLabel.setText(data["ori"] as? String)
+        row.destinationLabel.setText(data["des"] as? String)
+      }
+      otherRoutinesLabel.setHidden(false)
+    } else {
+      otherRoutinesLabel.setHidden(true)
     }
   }
 }

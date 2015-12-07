@@ -66,7 +66,7 @@
                                         </label>
                                         <table alignment="left" id="fRr-Pe-7eK">
                                             <items>
-                                                <tableRow identifier="Routine Row" id="pX4-Ta-K8Y">
+                                                <tableRow identifier="RoutineRow" id="pX4-Ta-K8Y" customClass="OtherRoutinesRow" customModule="SL_Smart">
                                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="2" id="P5p-Mh-lmm">
                                                         <items>
                                                             <separator alignment="left" id="uxc-jB-BJb">
@@ -86,6 +86,12 @@
                                                             </label>
                                                         </items>
                                                     </group>
+                                                    <connections>
+                                                        <outlet property="destinationLabel" destination="y87-G0-DR9" id="1w8-6b-y1m"/>
+                                                        <outlet property="originLabel" destination="GEm-9g-MGo" id="2H8-KP-g7A"/>
+                                                        <outlet property="titleLabel" destination="BWu-h1-71D" id="Xin-ZV-UfD"/>
+                                                        <segue destination="KjQ-iU-gEp" kind="push" identifier="TableShowTrips" id="dkB-rm-4f7"/>
+                                                    </connections>
                                                 </tableRow>
                                             </items>
                                         </table>
@@ -115,6 +121,8 @@
                         <outlet property="icon6" destination="Srp-0I-lYL" id="PbC-mM-16L"/>
                         <outlet property="loadingLabel" destination="8YZ-WO-QNP" id="6Wc-u3-qSN"/>
                         <outlet property="originLabel" destination="QqC-Jn-KFB" id="Edx-c9-uND"/>
+                        <outlet property="otherRoutinesLabel" destination="QX7-yk-ayb" id="9qt-gb-mKT"/>
+                        <outlet property="otherRoutinesTable" destination="fRr-Pe-7eK" id="rNr-KK-ZyO"/>
                         <outlet property="titleLabel" destination="cFt-Gb-vyb" id="N2v-Dn-hDw"/>
                     </connections>
                 </controller>
@@ -281,4 +289,7 @@
             <point key="canvasLocation" x="235" y="672"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="dkB-rm-4f7"/>
+    </inferredMetricsTieBreakers>
 </document>
