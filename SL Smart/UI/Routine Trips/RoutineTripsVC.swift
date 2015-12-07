@@ -279,9 +279,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   private func setupNotificationListeners() {
     NSNotificationCenter.defaultCenter().addObserver(
-      self, selector: Selector("willResigningActive"),
-      name: UIApplicationWillResignActiveNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(
       self, selector: Selector("didBecomeActive"),
       name: UIApplicationDidBecomeActiveNotification, object: nil)
   }
