@@ -51,6 +51,7 @@ class WatchService {
     originId: Int, destinationId: Int,
     callback: (Dictionary<String, AnyObject>) -> Void) {
       
+      ScorePostHelper.addScoreForSelectedRoutineTrip(originId, destinationId: destinationId)
       var response: Dictionary<String, AnyObject> = [
         "error": false
       ]
@@ -73,5 +74,4 @@ class WatchService {
           callback(response)
       })
   }
-  
 }

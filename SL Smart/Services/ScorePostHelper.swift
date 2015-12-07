@@ -72,6 +72,26 @@ class ScorePostHelper {
       }
   }
   
+  /**
+   * Adds score for selected routine trip.
+   */
+  static func addScoreForSelectedRoutineTrip(originId: Int, destinationId: Int) {
+    var scorePosts = DataStore.sharedInstance.retrieveScorePosts()
+    let currentLocation = MyLocationHelper.sharedInstance.currentLocation
+    let dayOfWeek = DateUtils.getDayOfWeek()
+    let hourOfDay = DateUtils.getHourOfDay()
+    let originId = originId
+    let destinationId = destinationId
+    
+    ScorePostHelper.changeScore(dayOfWeek, hourOfDay: hourOfDay,
+      siteId: originId, isOrigin: true, scoreMod: 1,
+      location: currentLocation, scorePosts: &scorePosts)
+    ScorePostHelper.changeScore(dayOfWeek, hourOfDay: hourOfDay,
+      siteId: destinationId, isOrigin: false, scoreMod: 2,
+      location: currentLocation, scorePosts: &scorePosts)
+    DataStore.sharedInstance.writeScorePosts(scorePosts)
+  }
+  
   //MARK: Private
   
   /**
