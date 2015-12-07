@@ -116,9 +116,8 @@ class SmartTripIC: WKInterfaceController {
    * Handles any session send messages errors.
    */
   func messageErrorHandler(error: NSError) {
-    // TODO: Debug only. Replace with generic error message before publish.
+    // TODO: How to handle this error??
     print("Error Code: \(error.code)\n\(error.localizedDescription)")
-    displayError("Fel", message: error.localizedDescription)
   }
   
   /**
