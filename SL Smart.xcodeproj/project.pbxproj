@@ -32,6 +32,7 @@
 		188B85661C14ADF100098B00 /* SLNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85651C14ADF100098B00 /* SLNetworkError.swift */; };
 		188B856A1C15B03400098B00 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85691C15B03400098B00 /* DateUtils.swift */; };
 		188B856E1C15BFA000098B00 /* OtherRoutinesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B856D1C15BFA000098B00 /* OtherRoutinesRow.swift */; };
+		188B85711C15D44200098B00 /* TripsIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85701C15D44200098B00 /* TripsIC.swift */; };
 		18937E351BFF33FA00C523C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E341BFF33FA00C523C9 /* AppDelegate.swift */; };
 		18937E3A1BFF33FA00C523C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18937E381BFF33FA00C523C9 /* Main.storyboard */; };
 		18937E3C1BFF33FA00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E3B1BFF33FA00C523C9 /* Assets.xcassets */; };
@@ -173,6 +174,7 @@
 		188B85651C14ADF100098B00 /* SLNetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLNetworkError.swift; sourceTree = "<group>"; };
 		188B85691C15B03400098B00 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		188B856D1C15BFA000098B00 /* OtherRoutinesRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherRoutinesRow.swift; sourceTree = "<group>"; };
+		188B85701C15D44200098B00 /* TripsIC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsIC.swift; sourceTree = "<group>"; };
 		18937E311BFF33FA00C523C9 /* SL Smart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SL Smart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18937E341BFF33FA00C523C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18937E391BFF33FA00C523C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -289,6 +291,14 @@
 			name = "Glance and Complication";
 			sourceTree = "<group>";
 		};
+		188B856F1C15D42E00098B00 /* Trips */ = {
+			isa = PBXGroup;
+			children = (
+				188B85701C15D44200098B00 /* TripsIC.swift */,
+			);
+			name = Trips;
+			sourceTree = "<group>";
+		};
 		18937E281BFF33FA00C523C9 = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				188B856B1C15BF5400098B00 /* Smart Trip */,
+				188B856F1C15D42E00098B00 /* Trips */,
 				188B856C1C15BF6400098B00 /* Glance and Complication */,
 				18937E571BFF33FB00C523C9 /* Supporting Files */,
 				18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */,
@@ -701,6 +712,7 @@
 			files = (
 				188B856E1C15BFA000098B00 /* OtherRoutinesRow.swift in Sources */,
 				18A824741C0EE866006190C4 /* SmartTripIC.swift in Sources */,
+				188B85711C15D44200098B00 /* TripsIC.swift in Sources */,
 				188B856A1C15B03400098B00 /* DateUtils.swift in Sources */,
 				18A824751C0EE866006190C4 /* ExtensionDelegate.swift in Sources */,
 				18A824771C0EE866006190C4 /* GlanceController.swift in Sources */,

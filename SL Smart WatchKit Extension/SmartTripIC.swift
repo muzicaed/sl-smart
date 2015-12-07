@@ -221,7 +221,7 @@ class SmartTripIC: WKInterfaceController {
     print("Tap on table row \(rowIndex)")
     if let data = routineData {
       let routines = data["other"] as! [Dictionary<String, AnyObject>]
-      pushControllerWithName("Trips", context: ["routineTrip": routines[rowIndex]])
+      pushControllerWithName("Trips", context: routines[rowIndex])
     }
     
   }
