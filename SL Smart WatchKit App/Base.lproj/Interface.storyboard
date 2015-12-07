@@ -13,7 +13,7 @@
                         <group width="1" alignment="left" verticalAlignment="center" animationDuration="0.29999999999999999" layout="vertical" id="naW-Us-NIZ">
                             <items>
                                 <label alignment="center" verticalAlignment="center" text="Söker resa..." id="8YZ-WO-QNP">
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </label>
                                 <group width="1" alignment="left" verticalAlignment="center" layout="vertical" id="2eR-Jh-VnR">
                                     <items>
@@ -54,20 +54,20 @@
                                                         <edgeInsets key="margins" left="4" right="4" top="4" bottom="4"/>
                                                     </group>
                                                 </items>
-                                                <color key="backgroundColor" red="0.4645483494" green="0.66118609910000004" blue="0.30511242150000001" alpha="0.59999999999999998" colorSpace="deviceRGB"/>
+                                                <color key="backgroundColor" red="0.4645483494" green="0.66118609910000004" blue="0.30511242150000001" alpha="0.5" colorSpace="deviceRGB"/>
                                                 <edgeInsets key="margins" left="0.0" right="0.0" top="5" bottom="5"/>
                                             </group>
                                             <connections>
-                                                <segue destination="KjQ-iU-gEp" kind="push" identifier="ShowTripDetails" id="6z8-OE-mpU"/>
+                                                <segue destination="KjQ-iU-gEp" kind="push" identifier="ShowTrips" id="0tW-Xe-cdF"/>
                                             </connections>
                                         </button>
                                         <label alignment="left" text="Fler rutiner" id="QX7-yk-ayb">
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
-                                        <table alignment="left" id="fRr-Pe-7eK">
+                                        <table alignment="left" spacing="6" id="fRr-Pe-7eK">
                                             <items>
                                                 <tableRow identifier="RoutineRow" id="pX4-Ta-K8Y" customClass="OtherRoutinesRow" customModule="SL_Smart">
-                                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="2" id="P5p-Mh-lmm">
+                                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" radius="0.0" spacing="1" id="P5p-Mh-lmm">
                                                         <items>
                                                             <separator alignment="left" id="uxc-jB-BJb">
                                                                 <color key="color" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -84,13 +84,17 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="font" type="system" weight="light" pointSize="11"/>
                                                             </label>
+                                                            <separator alignment="left" id="vwd-Bn-weI">
+                                                                <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            </separator>
                                                         </items>
+                                                        <color key="backgroundColor" red="0.4645483494" green="0.66118609910000004" blue="0.30511242150000001" alpha="0.20000000000000001" colorSpace="deviceRGB"/>
+                                                        <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                                     </group>
                                                     <connections>
                                                         <outlet property="destinationLabel" destination="y87-G0-DR9" id="1w8-6b-y1m"/>
                                                         <outlet property="originLabel" destination="GEm-9g-MGo" id="2H8-KP-g7A"/>
                                                         <outlet property="titleLabel" destination="BWu-h1-71D" id="Xin-ZV-UfD"/>
-                                                        <segue destination="KjQ-iU-gEp" kind="push" identifier="TableShowTrips" id="dkB-rm-4f7"/>
                                                     </connections>
                                                 </tableRow>
                                             </items>
@@ -132,7 +136,7 @@
         <!--Resor-->
         <scene sceneID="3Lq-WI-dKH">
             <objects>
-                <controller title="Resor" id="KjQ-iU-gEp">
+                <controller identifier="Trips" title="Resor" id="KjQ-iU-gEp">
                     <items>
                         <separator alignment="left" id="FhQ-0L-sZt">
                             <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -289,7 +293,4 @@
             <point key="canvasLocation" x="235" y="672"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="dkB-rm-4f7"/>
-    </inferredMetricsTieBreakers>
 </document>

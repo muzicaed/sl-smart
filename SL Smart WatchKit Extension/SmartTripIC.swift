@@ -217,16 +217,24 @@ class SmartTripIC: WKInterfaceController {
     }
   }
   
+  override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
+    print("Tap on table row \(rowIndex)")
+    if let data = routineData {
+      let routines = data["other"] as! [Dictionary<String, AnyObject>]
+      pushControllerWithName("Trips", context: ["routineTrip": routines[rowIndex]])
+    }
+    
+  }
+  
   /**
-   * Handle table selects
+   * Handle segue
    */
-  override func contextsForSegueWithIdentifier(
-    segueIdentifier: String, inTable table: WKInterfaceTable, rowIndex: Int) -> [AnyObject]? {
-      
-      if segueIdentifier == "TableShowTrips" {
-      
-      }
-      return  nil
+  override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
+    print(segueIdentifier)
+    if segueIdentifier == "ShowTrips" {
+      print("Best trip tap")
+    }
+    return nil
   }
   
   // MARK: Private
