@@ -42,17 +42,15 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     var template: CLKComplicationTemplate? = nil
     switch complication.family {
     case .ModularSmall:
-      template = createModularSmall("12:34")
+      template = createModularSmall()
     case .ModularLarge:
-      template = createModularLarge("Åka till jobbet",
-        originTime: "12:34", originName: "Kälvestavägen",
-        destinationTime: "13:13",destinationName:  "Karlberg")
-    case .UtilitarianSmall:
-      template = createUtilitarianSmall("12:34")
-    case .UtilitarianLarge:
-      template = createUtilitarianLarge("12:34 Hälsa på Petter")
-    case .CircularSmall:
       template = nil
+    case .UtilitarianSmall:
+      template = createUtilitarianSmall()
+    case .UtilitarianLarge:
+      template = nil
+    case .CircularSmall:
+      template = createCircularSmall()
     }
     
     if let template = template {
@@ -78,7 +76,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   * Schedule next data update
   */
   func getNextRequestedUpdateDateWithHandler(handler: (NSDate?) -> Void) {
-    handler(NSDate(timeIntervalSinceNow: 60 * 15))
+    handler(nil)
   }
   
   // MARK: - Placeholder Templates
@@ -92,17 +90,15 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
       var template: CLKComplicationTemplate? = nil
       switch complication.family {
       case .ModularSmall:
-        template = createModularSmall("--:--")
+        template = createModularSmall()
       case .ModularLarge:
-        template = createModularLarge("Hälsa på Petter",
-          originTime: "--:--", originName: "Centralen",
-          destinationTime: "--:--",destinationName:  "Spånga")
-      case .UtilitarianSmall:
-        template = createUtilitarianSmall("--:--")
-      case .UtilitarianLarge:
-        template = createUtilitarianLarge("--:-- Hälsa på Petter")
-      case .CircularSmall:
         template = nil
+      case .UtilitarianSmall:
+        template = createUtilitarianSmall()
+      case .UtilitarianLarge:
+        template = nil
+      case .CircularSmall:
+        template = createCircularSmall()
       }
       handler(template)
   }
@@ -112,50 +108,29 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   /**
   * Create template for ModularSmall
   */
-  private func createModularSmall(timeString: String) -> CLKComplicationTemplate {
-    let modTemplate = CLKComplicationTemplateModularSmallStackImage()
-    modTemplate.highlightLine2 = false
-    modTemplate.line1ImageProvider = CLKImageProvider(onePieceImage: UIImage(named: "CompModSmallIcon")!)
-    modTemplate.line2TextProvider = CLKSimpleTextProvider(text: timeString)
+  private func createModularSmall() -> CLKComplicationTemplate {
+    let modTemplate = CLKComplicationTemplateModularSmallSimpleImage()
+    modTemplate.imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "CompModSmallIcon")!)
     modTemplate.tintColor = tintColor
     return modTemplate
   }
-  
-  /**
-   * Create template for ModularLarge
-   */
-  private func createModularLarge(title: String,
-    originTime: String, originName: String,
-    destinationTime: String, destinationName: String) -> CLKComplicationTemplate {
-      
-      let modTemplate = CLKComplicationTemplateModularLargeTable()
-      modTemplate.headerImageProvider = CLKImageProvider(onePieceImage: UIImage(named: "CompModLargeIcon")!)
-      modTemplate.headerTextProvider = CLKSimpleTextProvider(text: title)
-      modTemplate.row1Column1TextProvider = CLKSimpleTextProvider(text: originTime)
-      modTemplate.row1Column2TextProvider = CLKSimpleTextProvider(text: originName)
-      modTemplate.row2Column1TextProvider = CLKSimpleTextProvider(text: destinationTime)
-      modTemplate.row2Column2TextProvider = CLKSimpleTextProvider(text: destinationName)
-      modTemplate.tintColor = tintColor
-      return modTemplate
-  }
-  
+
   /**
    * Create template for UtilitarianSmall
    */
-  private func createUtilitarianSmall(timeString: String) -> CLKComplicationTemplate {
-    let modTemplate = CLKComplicationTemplateUtilitarianSmallFlat()
+  private func createUtilitarianSmall() -> CLKComplicationTemplate {
+    let modTemplate = CLKComplicationTemplateUtilitarianSmallSquare()
     modTemplate.imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "CompUtilIcon")!)
-    modTemplate.textProvider = CLKSimpleTextProvider(text: timeString)
     modTemplate.tintColor = tintColor
     return modTemplate
   }
   
   /**
-   * Create template for UtilitarianLarge
+   * Create template for CircularSmall
    */
-  private func createUtilitarianLarge(message: String) -> CLKComplicationTemplate {
-    let modTemplate = CLKComplicationTemplateUtilitarianLargeFlat()
-    modTemplate.textProvider = CLKSimpleTextProvider(text: message)
+  private func createCircularSmall() -> CLKComplicationTemplate {
+    let modTemplate = CLKComplicationTemplateCircularSmallSimpleImage()
+    modTemplate.imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "CompCircIcon")!)
     modTemplate.tintColor = tintColor
     return modTemplate
   }
