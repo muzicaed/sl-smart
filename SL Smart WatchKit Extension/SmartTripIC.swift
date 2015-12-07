@@ -232,7 +232,9 @@ class SmartTripIC: WKInterfaceController {
   override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
     print(segueIdentifier)
     if segueIdentifier == "ShowTrips" {
-      print("Best trip tap")
+      if let data = routineData {
+        return data["best"] as! Dictionary<String, AnyObject>
+      }
     }
     return nil
   }

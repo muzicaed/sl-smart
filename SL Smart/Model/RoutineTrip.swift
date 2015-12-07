@@ -50,7 +50,9 @@ class RoutineTrip: NSObject, NSCoding, NSCopying {
     
     return [
       "tit": title!,
+      "oid": origin!.siteId,
       "ori": origin!.name,
+      "did": destination!.siteId,
       "des": destination!.name,
       "dep": departureString,
       "icn": icons,
