@@ -32,13 +32,20 @@ class RoutineTrip: NSObject, NSCoding, NSCopying {
    * Converts into data dictionary for transfer to AppleWatch.
    */
   func watchTransferData() -> Dictionary<String, AnyObject> {
-    let departure = trips.first!.tripSegments.first!.departureDateTime
-    let departureString = DateUtils.dateAsTimeString(departure)
+    var departureString = ""
+    if trips.count > 0 {
+      let departure = trips.first!.tripSegments.first!.departureDateTime
+      departureString = DateUtils.dateAsTimeString(departure)
+    }
     
     var icons = [String]()
+    var trasportTrips = Dictionary<String, AnyObject>()
     if trips.count > 0 {
       let data = trips.first!.watchTransferData()
       icons = data["icn"] as! [String]
+      for trip in trips {
+        trasportTrips = trip.watchTransferData()
+      }
     }
     
     return [
@@ -46,7 +53,8 @@ class RoutineTrip: NSObject, NSCoding, NSCopying {
       "ori": origin!.name,
       "des": destination!.name,
       "dep": departureString,
-      "icn": icons
+      "icn": icons,
+      "trp": trasportTrips
     ]
   }
   

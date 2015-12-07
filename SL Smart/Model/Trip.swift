@@ -40,7 +40,11 @@ class Trip: NSObject, NSCopying {
     
     return [
       "dur": durationMin,
-      "icn": icons
+      "icn": icons,
+      "origin": "bla",
+      "destination": "bla",
+      "originTime": "bla",
+      "destinationTime": "bla",
     ]
   }
   

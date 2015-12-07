@@ -91,7 +91,7 @@ class SmartTripIC: WKInterfaceController {
     let hasData = reply["foundData"] as! Bool
     if hasData {
       routineData = reply["best"] as? Dictionary<String, AnyObject>
-      print("Got reply")
+      print("\(routineData)")
       print("---------------------------------------")
       updateUIData()
       showContentUIState()

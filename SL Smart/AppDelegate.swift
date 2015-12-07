@@ -51,13 +51,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
     
     dispatch_async(dispatch_get_main_queue()) {
+      var response = Dictionary<String, AnyObject>()
       RoutineService.findRoutineTrip({ routineTrips in
         if let bestRoutineTrip = routineTrips.first {
           let bestData = bestRoutineTrip
-          replyHandler(["best": bestData.watchTransferData(), "foundData": true])
+          response = [
+            "best": bestData.watchTransferData(),
+            "foundData": true
+          ]
+          
+          var otherTrips = [Dictionary<String, AnyObject>]()
+          if routineTrips.count > 1 {
+            for (index, routineTrip) in routineTrips.enumerate() {
+              if index != 0 {
+                otherTrips.append(routineTrip.watchTransferData())
+              }
+            }
+          }
+          response["other"] = otherTrips
         } else {
-          replyHandler(["foundData": false])
+          response = ["foundData": false]
         }
+        replyHandler(response)
       })
     }
   }
