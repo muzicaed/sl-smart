@@ -144,8 +144,8 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
           withReuseIdentifier: headerIdentifier,
           forIndexPath: indexPath) as! TripHeader
         
-        let date = Utils.convertDateString("\(keys[indexPath.section]) 00:00")
-        header.titleLabel.text = Utils.friendlyDate(date)
+        let date = DateUtils.convertDateString("\(keys[indexPath.section]) 00:00")
+        header.titleLabel.text = DateUtils.friendlyDate(date)
         return header
       }
       
@@ -179,7 +179,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
             footer?.displaySpinner(1.0)
             
             let trip = trips[keys.last!]!.last!
-            criterions?.time = Utils.dateAsTimeString(
+            criterions?.time = DateUtils.dateAsTimeString(
               trip.tripSegments.last!.departureDateTime.dateByAddingTimeInterval(60))
             loadTripData()
           }
@@ -223,7 +223,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
    */
   private func appendToDictionary(tripsArr: [Trip]) {
     for trip in tripsArr {
-      let destDateString = Utils.dateAsDateString(trip.tripSegments.last!.departureDateTime)
+      let destDateString = DateUtils.dateAsDateString(trip.tripSegments.last!.departureDateTime)
       if !keys.contains(destDateString) {
         keys.append(destDateString)
         trips[destDateString] = [Trip]()
@@ -242,11 +242,11 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     
     let departDate = trip.tripSegments.last!.departureDateTime
     let departDay = cal.ordinalityOfUnit(.Day, inUnit: .Year, forDate: departDate)
-    let criterionDate = Utils.convertDateString("\(criterions!.date!) \(criterions!.time!)")
+    let criterionDate = DateUtils.convertDateString("\(criterions!.date!) \(criterions!.time!)")
     let criterionDay = cal.ordinalityOfUnit(.Day, inUnit: .Year, forDate: criterionDate)
     
     if departDay != criterionDay {
-      criterions?.date = Utils.dateAsDateString(departDate)
+      criterions?.date = DateUtils.dateAsDateString(departDate)
     }
   }
   

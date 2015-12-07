@@ -57,9 +57,9 @@ class SmartTripIC: WKInterfaceController {
    */
   func refreshData() {
     print("SmartTripIC refreshData")
-    if lastUpdated.timeIntervalSinceNow > (60 * 2) || routineData == nil {
-      prepareIcons()
+    if lastUpdated.timeIntervalSinceNow > (60 * 3) || routineData == nil {
       setLoadingUIState()
+      prepareIcons()
       if validSession {
         self.reloadRoutineTripData()
       }
@@ -118,12 +118,10 @@ class SmartTripIC: WKInterfaceController {
   func updateUIData() {
     print("SmartTripIC updateUIData")
     if let data = routineData {
-      let departureTime = data["dep"] as? String
-      
       titleLabel.setText(data["tit"] as? String)
       originLabel.setText(data["ori"] as? String)
       destinationLabel.setText(data["des"] as? String)
-      departureTimeLabel.setText(departureTime)
+      departureTimeLabel.setText(createDepartureTimeString(data["dep"] as! String))
       createTripIcons(data["icn"] as! [String])
     }
   }
@@ -186,5 +184,32 @@ class SmartTripIC: WKInterfaceController {
     updateUIData()
     containerGroup.setHidden(false)
     loadingLabel.setHidden(true)
+  }
+  
+  /**
+   * Creates a human friendly deparure time.
+   */
+  func createDepartureTimeString(departureTime: String) -> String {
+    var departureString = departureTime
+    let now = NSDate()
+    let departureDate = DateUtils.convertDateString("\(DateUtils.dateAsDateString(now)) \(departureTime)")
+    let diffMin = Int((departureDate.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
+    if diffMin < 16 {
+      departureString = (diffMin + 1 <= 1) ? "Avgår nu" : "Om \(diffMin + 1) min"
+    }
+    
+    return departureString
+  }
+  
+  /**
+   * On menu reload tap.
+   */
+  @IBAction func onReloadTap() {
+    print("SmartTripIC onReloadTap")
+    setLoadingUIState()
+    prepareIcons()
+    if validSession {
+      self.reloadRoutineTripData()
+    }
   }
 }

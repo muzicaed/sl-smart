@@ -67,8 +67,8 @@ class RoutineService {
     if let routineTrip = bestRoutineTrip {
       let criterions = TripSearchCriterion(
         origin: routineTrip.origin!, destination: routineTrip.destination!)
-      criterions.date = Utils.dateAsDateString(NSDate())
-      criterions.time = Utils.dateAsTimeString(NSDate())
+      criterions.date = DateUtils.dateAsDateString(NSDate())
+      criterions.time = DateUtils.dateAsTimeString(NSDate())
       
       SearchTripService.tripSearch(criterions, callback: { resTuple in
         if let _ = resTuple.error {
@@ -146,6 +146,6 @@ class RoutineService {
    * time and date for RoutineTrip.
    */
   static private func createTimeTuple() -> (dayInWeek: Int, hourOfDay: Int) {
-    return (Utils.getDayOfWeek(), Utils.getHourOfDay())
+    return (DateUtils.getDayOfWeek(), DateUtils.getHourOfDay())
   }
 }

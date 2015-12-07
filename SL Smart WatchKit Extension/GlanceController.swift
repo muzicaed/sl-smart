@@ -28,7 +28,7 @@ class GlanceController: SmartTripIC {
     if let data = routineData {
       originLabel.setText(data["ori"] as? String)
       destinationLabel.setText(data["des"] as? String)
-      departureLabel.setText(data["dep"] as? String)
+      departureLabel.setText(createDepartureTimeString(data["dep"] as! String))
       subTitleLabel.setText(data["tit"] as? String)
       createTripIcons(data["icn"] as! [String])
     }

@@ -72,8 +72,8 @@ class RoutineTripCell: UICollectionViewCell {
   
   private func setupTripData(trip: Trip) {
     if let first = trip.tripSegments.first, last = trip.tripSegments.last  {
-      departureTimeLabel.text = Utils.dateAsTimeString(first.departureDateTime)
-      arrivalTimeLabel.text = Utils.dateAsTimeString(last.arrivalDateTime)
+      departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)
+      arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
       inAboutLabel.text = createAboutTimeText(first.departureDateTime)
       
       tripDurationLabel.text = "Restid: \(trip.durationMin) min"

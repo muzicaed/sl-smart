@@ -34,8 +34,8 @@ class TripSegment: NSObject, NSCopying {
       self.lineNumber = lineNumber
       self.origin = origin
       self.destination = destination
-      self.departureDateTime =  Utils.convertDateString("\(departureDate) \(departureTime)")
-      self.arrivalDateTime =  Utils.convertDateString("\(arrivalDate) \(arrivalTime)")
+      self.departureDateTime =  DateUtils.convertDateString("\(departureDate) \(departureTime)")
+      self.arrivalDateTime =  DateUtils.convertDateString("\(arrivalDate) \(arrivalTime)")
       self.distance = distance
   }
   
@@ -50,10 +50,10 @@ class TripSegment: NSObject, NSCopying {
       directionText: directionText, lineNumber: lineNumber,
       origin: origin.copy() as! Station,
       destination: destination.copy() as! Station,
-      departureTime: Utils.dateAsTimeString(departureDateTime),
-      arrivalTime: Utils.dateAsTimeString(arrivalDateTime),
-      departureDate: Utils.dateAsDateString(departureDateTime),
-      arrivalDate: Utils.dateAsDateString(departureDateTime),
+      departureTime: DateUtils.dateAsTimeString(departureDateTime),
+      arrivalTime: DateUtils.dateAsTimeString(arrivalDateTime),
+      departureDate: DateUtils.dateAsDateString(departureDateTime),
+      arrivalDate: DateUtils.dateAsDateString(departureDateTime),
       distance: distance)
   }
 }

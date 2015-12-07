@@ -1,5 +1,5 @@
 //
-//  Utils.swift
+//  DateUtils.swift
 //  SL Smart
 //
 //  Created by Mikael Hellman on 2015-11-23.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Utils {
+class DateUtils {
   
   /**
    * Converts date and time strings ("2015-01-01" and "13:32") to
@@ -39,8 +39,8 @@ class Utils {
     formatter.dateFormat = "HH:mm"
     return formatter.stringFromDate(date)
   }
-
-   /**
+  
+  /**
    * Converts a NSDate to a swedish local friendly
    * date string.
    */
@@ -49,11 +49,11 @@ class Utils {
     
     formatter.dateFormat = "EEEE"
     let weekDay = (formatter.stringFromDate(date) + "en").capitalizedString
-
+    
     formatter.dateFormat = "d"
     var day = formatter.stringFromDate(date)
     day = (day == "1" || day == "2") ? day + ":a" : day + ":e"
-
+    
     formatter.dateFormat = "MMMM"
     let month = formatter.stringFromDate(date)
     
@@ -61,7 +61,7 @@ class Utils {
   }
   
   /**
-   * Converts a NSDate to a swedish local tuple with 
+   * Converts a NSDate to a swedish local tuple with
    * date and time string
    * eg. "2015-02-06" and "17:04"
    */
@@ -87,7 +87,7 @@ class Utils {
     return Int(formatter.stringFromDate(NSDate()))!
   }
   
-  // MARK: Private 
+  // MARK: Private
   
   static func getSwedishFormatter() -> NSDateFormatter {
     let formatter = NSDateFormatter()

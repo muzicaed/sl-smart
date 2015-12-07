@@ -96,7 +96,11 @@
                     </items>
                     <menu key="menu" id="8Ud-Ra-O6Z">
                         <items>
-                            <menuItem title="Ladda om" icon="repeat" id="TQy-EB-Sab"/>
+                            <menuItem title="Uppdatera" image="RefreshIcon" id="TQy-EB-Sab">
+                                <connections>
+                                    <action selector="onReloadTap" destination="pz1-TM-aL5" id="Ht9-lS-qK8"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                     <connections>

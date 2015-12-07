@@ -66,8 +66,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
           origin: routineTrip.origin!, destination: routineTrip.destination!)
         
         let date = NSDate(timeIntervalSinceNow: (60 * 5) * -1)
-        criterions.date = Utils.dateAsDateString(date)
-        criterions.time = Utils.dateAsTimeString(date)
+        criterions.date = DateUtils.dateAsDateString(date)
+        criterions.time = DateUtils.dateAsTimeString(date)
         
         vc.criterions = criterions
         vc.title = routineTrip.title
@@ -234,8 +234,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     if let trip = selectedRoutineTrip {
       var scorePosts = DataStore.sharedInstance.retrieveScorePosts()
       let currentLocation = MyLocationHelper.sharedInstance.currentLocation
-      let dayOfWeek = Utils.getDayOfWeek()
-      let hourOfDay = Utils.getHourOfDay()
+      let dayOfWeek = DateUtils.getDayOfWeek()
+      let hourOfDay = DateUtils.getHourOfDay()
       let originId = trip.origin!.siteId
       let destinationId = trip.destination!.siteId
       

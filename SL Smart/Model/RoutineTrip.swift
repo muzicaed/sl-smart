@@ -33,7 +33,7 @@ class RoutineTrip: NSObject, NSCoding, NSCopying {
    */
   func watchTransferData() -> Dictionary<String, AnyObject> {
     let departure = trips.first!.tripSegments.first!.departureDateTime
-    let departureString = Utils.dateAsTimeString(departure)
+    let departureString = DateUtils.dateAsTimeString(departure)
     
     var icons = [String]()
     if trips.count > 0 {

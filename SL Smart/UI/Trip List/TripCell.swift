@@ -28,9 +28,9 @@ class TripCell: UICollectionViewCell {
     destinationLabel.text = trip.tripSegments.last?.destination.cleanName
     if trip.tripSegments.count > 0 {
       let trip = trip
-      departureTimeLabel.text = Utils.dateAsTimeString(
+      departureTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.first!.departureDateTime)
-      arrivalTimeLabel.text = Utils.dateAsTimeString(
+      arrivalTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.last!.arrivalDateTime)
       inAboutLabel.text = createAboutTimeText(
         trip.tripSegments.first!.departureDateTime)

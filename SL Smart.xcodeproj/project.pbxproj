@@ -16,7 +16,7 @@
 		181B9AEF1C0370EF00B9145A /* SLTravelPlannerV2Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */; };
 		181B9AF11C0375DC00B9145A /* TripSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF01C0375DC00B9145A /* TripSegment.swift */; };
 		181B9AF31C0380FD00B9145A /* SearchTripService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF21C0380FD00B9145A /* SearchTripService.swift */; };
-		181B9AF61C03A9E100B9145A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF51C03A9E100B9145A /* Utils.swift */; };
+		181B9AF61C03A9E100B9145A /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF51C03A9E100B9145A /* DateUtils.swift */; };
 		181B9AF81C03B3FB00B9145A /* TripHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF71C03B3FB00B9145A /* TripHelper.swift */; };
 		181B9AFA1C03D64000B9145A /* RoutineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF91C03D64000B9145A /* RoutineService.swift */; };
 		181BD4161C047AA900651D0F /* RoutineTripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4151C047AA900651D0F /* RoutineTripHeader.swift */; };
@@ -30,6 +30,7 @@
 		1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854E1981C065EB70070C545 /* StandardGradient.swift */; };
 		185BCC921C09389E00A2C6DB /* TripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BCC911C09389E00A2C6DB /* TripHeader.swift */; };
 		188B85661C14ADF100098B00 /* SLNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85651C14ADF100098B00 /* SLNetworkError.swift */; };
+		188B856A1C15B03400098B00 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85691C15B03400098B00 /* DateUtils.swift */; };
 		18937E351BFF33FA00C523C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E341BFF33FA00C523C9 /* AppDelegate.swift */; };
 		18937E3A1BFF33FA00C523C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18937E381BFF33FA00C523C9 /* Main.storyboard */; };
 		18937E3C1BFF33FA00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E3B1BFF33FA00C523C9 /* Assets.xcassets */; };
@@ -156,7 +157,7 @@
 		181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLTravelPlannerV2Api.swift; sourceTree = "<group>"; };
 		181B9AF01C0375DC00B9145A /* TripSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSegment.swift; sourceTree = "<group>"; };
 		181B9AF21C0380FD00B9145A /* SearchTripService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTripService.swift; sourceTree = "<group>"; };
-		181B9AF51C03A9E100B9145A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		181B9AF51C03A9E100B9145A /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		181B9AF71C03B3FB00B9145A /* TripHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHelper.swift; sourceTree = "<group>"; };
 		181B9AF91C03D64000B9145A /* RoutineService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineService.swift; sourceTree = "<group>"; };
 		181BD4151C047AA900651D0F /* RoutineTripHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTripHeader.swift; sourceTree = "<group>"; };
@@ -170,6 +171,7 @@
 		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
 		185BCC911C09389E00A2C6DB /* TripHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHeader.swift; sourceTree = "<group>"; };
 		188B85651C14ADF100098B00 /* SLNetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLNetworkError.swift; sourceTree = "<group>"; };
+		188B85691C15B03400098B00 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		18937E311BFF33FA00C523C9 /* SL Smart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SL Smart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18937E341BFF33FA00C523C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18937E391BFF33FA00C523C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -228,7 +230,7 @@
 		181B9AF41C03A9BC00B9145A /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				181B9AF51C03A9E100B9145A /* Utils.swift */,
+				181B9AF51C03A9E100B9145A /* DateUtils.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -334,6 +336,7 @@
 		18937E571BFF33FB00C523C9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				188B85691C15B03400098B00 /* DateUtils.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -641,7 +644,7 @@
 				18937E7A1BFF5F2F00C523C9 /* Trip.swift in Sources */,
 				180FD8B51C0B087E0095C790 /* ScorePost.swift in Sources */,
 				18937E771BFF5D6B00C523C9 /* RoutineTripsVC.swift in Sources */,
-				181B9AF61C03A9E100B9145A /* Utils.swift in Sources */,
+				181B9AF61C03A9E100B9145A /* DateUtils.swift in Sources */,
 				18CE5CC71C025E3E00E1F5A9 /* Routine.swift in Sources */,
 				18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */,
 				180603641C01FCBE00AC1841 /* SwiftyJSON.swift in Sources */,
@@ -681,6 +684,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18A824741C0EE866006190C4 /* SmartTripIC.swift in Sources */,
+				188B856A1C15B03400098B00 /* DateUtils.swift in Sources */,
 				18EAF4EB1C0F90C80014701B /* OtherTripButton.swift in Sources */,
 				18A824751C0EE866006190C4 /* ExtensionDelegate.swift in Sources */,
 				18A824771C0EE866006190C4 /* GlanceController.swift in Sources */,
