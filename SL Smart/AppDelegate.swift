@@ -50,36 +50,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   
   func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
     
+    let action = message["action"] as! String
     dispatch_async(dispatch_get_main_queue()) {
-      var response = Dictionary<String, AnyObject>()
-      RoutineService.findRoutineTrip({ routineTrips in
-        if let bestRoutineTrip = routineTrips.first {
-          let bestData = bestRoutineTrip
-          response = [
-            "best": bestData.watchTransferData(),
-            "foundData": true
-          ]
-          
-          var otherTrips = [Dictionary<String, AnyObject>]()
-          if routineTrips.count > 1 {
-            for (index, routineTrip) in routineTrips.enumerate() {
-              if index != 0 {
-                otherTrips.append(routineTrip.watchTransferData())
-              }
-              if index >= 3 {
-                break
-              }
-            }
-          }
-          response["other"] = otherTrips
-        } else {
-          response["foundData"] = false
+      switch action {
+      case "RequestRoutineTrips":
+        WatchService.requestRoutineTrips() { response in
+          replyHandler(response)
         }
-
-        replyHandler(response)
-      })
+      case "SearchTrips":
+        WatchService.searchTrips() { response in
+          replyHandler(response)
+        }
+      default:
+        fatalError("Unknown WCSession message.")
+      }
     }
-  }  
+  }
   
   //MARK: Private
   

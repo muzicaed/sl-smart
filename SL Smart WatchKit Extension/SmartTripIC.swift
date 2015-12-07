@@ -86,7 +86,7 @@ class SmartTripIC: WKInterfaceController {
    */
   func reloadRoutineTripData() {
     if validSession {
-      session.sendMessage(["action": "requestRoutineTrips"],
+      session.sendMessage(["action": "RequestRoutineTrips"],
         replyHandler: requestRoutineTripsHandler,
         errorHandler: messageErrorHandler)
     } else {
