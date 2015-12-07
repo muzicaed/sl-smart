@@ -39,6 +39,7 @@ class TripRow: NSObject {
    * Creates trip icons
    */
   func createTripIcons(iconNames: [String], lines: [String]) {
+    prepareIcons()
     let nameCount = iconNames.count
     for (index, iconImage) in icons.enumerate() {
       if index < nameCount {
