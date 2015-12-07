@@ -10,7 +10,7 @@ import Foundation
 
 
 class WatchService {
-
+  
   /**
    * Request routine trips
    */
@@ -47,9 +47,31 @@ class WatchService {
   /**
    * Search for trips
    */
-  static func searchTrips(callback: (Dictionary<String, AnyObject>) -> Void) {
-    dispatch_async(dispatch_get_main_queue()) {
-    }
+  static func searchTrips(
+    originId: Int, destinationId: Int,
+    callback: (Dictionary<String, AnyObject>) -> Void) {
+      
+      var response: Dictionary<String, AnyObject> = [
+        "error": false
+      ]
+      let date = NSDate(timeIntervalSinceNow: (60 * 5) * -1)
+      let criterions = TripSearchCriterion(originId: originId, destId: destinationId)
+      criterions.date = DateUtils.dateAsDateString(date)
+      criterions.time = DateUtils.dateAsTimeString(date)
+      
+      SearchTripService.tripSearch(criterions,
+        callback: { resTuple in
+          if resTuple.error != nil {
+            response["error"] = true
+          }
+          
+          var foundTrips = [Dictionary<String, AnyObject>]()
+          for trip in resTuple.data {
+            foundTrips.append(trip.watchTransferData())
+          }
+          response["trips"] = foundTrips
+          callback(response)
+      })
   }
   
 }

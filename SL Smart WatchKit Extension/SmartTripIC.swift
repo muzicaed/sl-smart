@@ -90,15 +90,15 @@ class SmartTripIC: WKInterfaceController {
         replyHandler: requestRoutineTripsHandler,
         errorHandler: messageErrorHandler)
     } else {
-      displayError("Kan inte hitta din iPhone",
+      displayError("Hittar inte din iPhone",
         message: "Det går inte att kommunicera med din iPhone. Kontrollera att den är laddad och finns i närheten.")
     }
   }
   
   /**
-   * Handle reply for a "requestRoutineTrips" message.
+   * Handle reply for a "RequestRoutineTrips" message.
    */
-  func requestRoutineTripsHandler(reply: [String: AnyObject]) {
+  func requestRoutineTripsHandler(reply: Dictionary<String, AnyObject>) {
     let hasData = reply["foundData"] as! Bool
     if hasData {
       routineData = reply

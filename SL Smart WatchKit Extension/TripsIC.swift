@@ -19,6 +19,7 @@ class TripsIC: WKInterfaceController {
   @IBOutlet var loadingLabel: WKInterfaceLabel!
   @IBOutlet var tripTable: WKInterfaceTable!
   
+  let session = WCSession.defaultSession()
   var data: Dictionary<String, AnyObject>?
   var tripData = [Dictionary<String, AnyObject>]()
   
@@ -29,7 +30,8 @@ class TripsIC: WKInterfaceController {
     super.awakeWithContext(context)
     data = context as? Dictionary<String, AnyObject>
     tripData = data!["trp"] as! [Dictionary<String, AnyObject>]
-    print(tripData)
+    print("------- DATA ---------")
+    print(data)
   }
   
   /**
@@ -43,16 +45,56 @@ class TripsIC: WKInterfaceController {
       updateTripTable()
       loadingLabel.setHidden(true)
     } else {
-      // Load trips from iPhone
+      loadData()
     }
   }
-  
+
+  /**
+   * Handle reply for a "SearchTrips" message.
+   */
+  func searchTripsHandler(reply: Dictionary<String, AnyObject>) {
+    if reply["error"] as! Bool {
+      displayError("Något gick fel",
+        message: "Söktjänsten är inte tillgänglig.\nKontrollera att din iPhone har tillgång till internet och försök igen.")
+      return
+    }
+    
+    tripData = reply["trips"] as! [Dictionary<String, AnyObject>]
+    if tripData.count > 0 {
+      updateTripTable()
+      loadingLabel.setHidden(true)
+    } else {
+      loadingLabel.setText("Hittade inga resor.")
+    }
+  }
   
   // MARK: Private
   
   /**
-  * Update ui
+  * Loads trip data from partner iPhone
   */
+  private func loadData() {
+    if session.reachable {
+      session.sendMessage(
+        [
+          "action": "SearchTrips",
+          "oid": data!["oid"] as! Int,
+          "did": data!["did"] as! Int
+        ],
+        replyHandler: searchTripsHandler,
+        errorHandler: { error in
+          self.displayError("Något gick fel",
+            message: "Söktjänsten är inte tillgänglig.\nKontrollera att din iPhone har tillgång till internet och försök igen.")
+      })
+    } else {
+      displayError("Hittar inte din iPhone",
+        message: "Det går inte att kommunicera med din iPhone. Kontrollera att den är laddad och finns i närheten.")
+    }
+  }
+  
+  /**
+   * Update ui
+   */
   private func updateUI() {
     if let data = data {
       titleLabel.setText(data["tit"] as? String)
@@ -73,7 +115,7 @@ class TripsIC: WKInterfaceController {
         row.scheduleLabel.setText("\(depDateString) → \(data["destinationTime"] as! String)")
         row.travelTimeLabel.setText("Restid: \(data["dur"] as! Int) min")
         row.createTripIcons(data["icn"] as! [String], lines: data["lns"] as! [String])
-
+        
       }
     }
     loadingLabel.setHidden(true)
@@ -92,5 +134,14 @@ class TripsIC: WKInterfaceController {
     }
     
     return departureString
+  }
+  
+  /**
+   * Displays an error
+   */
+  private func displayError(title: String, message: String?) {
+    let okAction = WKAlertAction(title: "Försök igen", style: .Default, handler: {})
+    presentAlertControllerWithTitle(title,
+      message: message, preferredStyle: .Alert, actions: [okAction])
   }
 }

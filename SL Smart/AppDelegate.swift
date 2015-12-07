@@ -58,7 +58,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
           replyHandler(response)
         }
       case "SearchTrips":
-        WatchService.searchTrips() { response in
+        let originId = message["oid"] as! Int
+        let destId = message["did"] as! Int
+        WatchService.searchTrips(originId, destinationId: destId) { response in
           replyHandler(response)
         }
       default:
