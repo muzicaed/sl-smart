@@ -28,6 +28,7 @@ class TripsIC: WKInterfaceController {
    */
   override func awakeWithContext(context: AnyObject?) {
     super.awakeWithContext(context)
+    tripTable.setHidden(true)
     data = context as? Dictionary<String, AnyObject>
     tripData = data!["trp"] as! [Dictionary<String, AnyObject>]
     print("------- DATA ---------")
@@ -44,6 +45,7 @@ class TripsIC: WKInterfaceController {
     if tripData.count > 0 {
       updateTripTable()
       loadingLabel.setHidden(true)
+      tripTable.setHidden(false)
     } else {
       loadData()
     }
@@ -63,6 +65,7 @@ class TripsIC: WKInterfaceController {
     if tripData.count > 0 {
       updateTripTable()
       loadingLabel.setHidden(true)
+      tripTable.setHidden(false)      
     } else {
       loadingLabel.setText("Hittade inga resor.")
     }
