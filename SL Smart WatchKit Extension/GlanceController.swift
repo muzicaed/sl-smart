@@ -34,9 +34,26 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
   override func willActivate() {
     super.willActivate()
     print("awakeWithContext")
+
+  }
+  
+  override func didAppear() {
     setupPhoneConnection()
     prepareIcons()
     reloadRoutineTripData()
+  }
+  
+  override func willDisappear() {
+    super.willDisappear()
+    session = nil
+  }
+
+  /**
+   * Did deactivate
+   */
+  override func didDeactivate() {
+    super.didDeactivate()
+    session = nil
   }
   
   /**

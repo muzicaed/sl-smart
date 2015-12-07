@@ -36,9 +36,25 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
   override func willActivate() {
     super.willActivate()
     print("willActivate")
+  }
+  
+  override func didAppear() {
     setupPhoneConnection()
     prepareIcons()
     reloadRoutineTripData()
+  }
+  
+  override func willDisappear() {
+    super.willDisappear()
+    session = nil
+  }
+  
+  /**
+   * Did deactivate
+   */
+  override func didDeactivate() {
+    super.didDeactivate()
+    session = nil
   }
   
   /**
@@ -74,6 +90,12 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
   func messageErrorHandler(error: NSError) {
     // TODO: Debug only. Replace with generic error message before publish.
     displayErrorAlert("Fel", message: error.localizedDescription)
+  }
+
+  // MARK WCSessionDelegate
+  
+  func sessionWatchStateDidChange(session: WCSession) {
+    setupPhoneConnection()
   }
   
   // MARK private
