@@ -37,14 +37,14 @@ class RoutineTrip: NSObject, NSCoding, NSCopying {
       let departure = trips.first!.tripSegments.first!.departureDateTime
       departureString = DateUtils.dateAsTimeString(departure)
     }
-    
-    var icons = [String]()
-    var trasportTrips = Dictionary<String, AnyObject>()
+
+    var trasportTrips = [Dictionary<String, AnyObject>]()
     if trips.count > 0 {
-      let data = trips.first!.watchTransferData()
-      icons = data["icn"] as! [String]
-      for trip in trips {
-        trasportTrips = trip.watchTransferData()
+      for (index, trip) in trips.enumerate() {
+        trasportTrips.append(trip.watchTransferData())
+        if index > 4 {
+          break
+        }
       }
     }
     
@@ -55,7 +55,6 @@ class RoutineTrip: NSObject, NSCoding, NSCopying {
       "did": destination!.siteId,
       "des": destination!.name,
       "dep": departureString,
-      "icn": icons,
       "trp": trasportTrips
     ]
   }

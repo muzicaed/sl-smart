@@ -31,7 +31,7 @@ class GlanceController: SmartTripIC {
       destinationLabel.setText(bestRoutine["des"] as? String)
       departureLabel.setText(createDepartureTimeString(bestRoutine["dep"] as! String))
       subTitleLabel.setText(bestRoutine["tit"] as? String)
-      createTripIcons(bestRoutine["icn"] as! [String])
+      createTripIcons(bestRoutine["icn"] as! [String], lines: bestRoutine["lns"] as! [String])
     }
   }
   

@@ -27,11 +27,22 @@ class SmartTripIC: WKInterfaceController {
   @IBOutlet var icon3: WKInterfaceImage!
   @IBOutlet var icon4: WKInterfaceImage!
   @IBOutlet var icon5: WKInterfaceImage!
-  @IBOutlet var icon6: WKInterfaceImage!
+  @IBOutlet var icnLbl1: WKInterfaceLabel!
+  @IBOutlet var icnLbl2: WKInterfaceLabel!
+  @IBOutlet var icnLbl3: WKInterfaceLabel!
+  @IBOutlet var icnLbl4: WKInterfaceLabel!
+  @IBOutlet var icnLbl5: WKInterfaceLabel!
+  @IBOutlet var icnGrp1: WKInterfaceGroup!
+  @IBOutlet var icnGrp2: WKInterfaceGroup!
+  @IBOutlet var icnGrp3: WKInterfaceGroup!
+  @IBOutlet var icnGrp4: WKInterfaceGroup!
+  @IBOutlet var icnGrp5: WKInterfaceGroup!
   
   let session = WCSession.defaultSession()
   let notificationCenter = NSNotificationCenter.defaultCenter()
   var icons = [WKInterfaceImage]()
+  var iconLables = [WKInterfaceLabel]()
+  var iconGroups = [WKInterfaceGroup]()
   var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
   var routineData: Dictionary<String, AnyObject>?
   var validSession = false
@@ -121,11 +132,14 @@ class SmartTripIC: WKInterfaceController {
     print("SmartTripIC updateUIData")
     if let data = routineData {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
+      let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
+      let lines = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
+      
       titleLabel.setText(bestRoutine["tit"] as? String)
       originLabel.setText(bestRoutine["ori"] as? String)
       destinationLabel.setText(bestRoutine["des"] as? String)
       departureTimeLabel.setText(createDepartureTimeString(bestRoutine["dep"] as! String))
-      createTripIcons(bestRoutine["icn"] as! [String])
+      createTripIcons(icons, lines: lines)
       updateOtherTable(data["other"] as! [Dictionary<String, AnyObject>])
     }
   }
@@ -133,15 +147,21 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Creates trip icons
    */
-  func createTripIcons(iconNames: [String]) {
+  func createTripIcons(iconNames: [String], lines: [String]) {
     print("SmartTripIC createTripIcons")
     let nameCount = iconNames.count
     for (index, iconImage) in icons.enumerate() {
       if index < nameCount {
         iconImage.setImageNamed("W_\(iconNames[index])")
         iconImage.setHidden(false)
+        iconLables[index].setHidden(false)
+        iconLables[index].setText(lines[index])
+        iconGroups[index].setHidden(false)
       } else {
         iconImage.setHidden(true)
+        iconLables[index].setHidden(true)
+        iconLables[index].setText(nil)
+        iconGroups[index].setHidden(true)
       }
     }
   }
@@ -151,14 +171,24 @@ class SmartTripIC: WKInterfaceController {
    * for easier manipulation.
    */
   func prepareIcons() {
-    print("SmartTripIC prepareIcons")
     icons = [WKInterfaceImage]()
     icons.append(icon1)
     icons.append(icon2)
     icons.append(icon3)
     icons.append(icon4)
     icons.append(icon5)
-    icons.append(icon6)
+    iconLables = [WKInterfaceLabel]()
+    iconLables.append(icnLbl1)
+    iconLables.append(icnLbl2)
+    iconLables.append(icnLbl3)
+    iconLables.append(icnLbl4)
+    iconLables.append(icnLbl5)
+    iconGroups = [WKInterfaceGroup]()
+    iconGroups.append(icnGrp1)
+    iconGroups.append(icnGrp2)
+    iconGroups.append(icnGrp3)
+    iconGroups.append(icnGrp4)
+    iconGroups.append(icnGrp5)
   }
   
   /**
@@ -223,7 +253,6 @@ class SmartTripIC: WKInterfaceController {
       let routines = data["other"] as! [Dictionary<String, AnyObject>]
       pushControllerWithName("Trips", context: routines[rowIndex])
     }
-    
   }
   
   /**

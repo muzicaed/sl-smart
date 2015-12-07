@@ -30,21 +30,21 @@ class Trip: NSObject, NSCopying {
    */
   func watchTransferData() -> Dictionary<String, AnyObject> {
     var icons = [String]()
-    for (index, segment) in tripSegments.enumerate() {
+    var lines = [String]()
+    for segment in tripSegments {
       let data = TripHelper.friendlyLineData(segment)
       icons.append(data.icon)
-      if index >= 5 {
-        break
-      }
+      lines.append(data.short)
     }
     
     return [
       "dur": durationMin,
       "icn": icons,
-      "origin": "bla",
-      "destination": "bla",
-      "originTime": "bla",
-      "destinationTime": "bla",
+      "lns": lines,
+      "origin": tripSegments.first!.origin.name,
+      "destination": tripSegments.last!.destination.name,
+      "originTime": DateUtils.dateAsTimeString(tripSegments.first!.departureDateTime),
+      "destinationTime": DateUtils.dateAsTimeString(tripSegments.last!.arrivalDateTime),
     ]
   }
   
