@@ -111,9 +111,12 @@ class TripsIC: WKInterfaceController {
       tripTable.setNumberOfRows(tripData.count, withRowType: "TripRow")
       for (index, data) in tripData.enumerate() {
         let row = tripTable.rowControllerAtIndex(index) as! TripRow
-        let depDateString = createDepartureTimeString(data["originTime"] as! String)
-        row.scheduleLabel.setText("\(depDateString) → \(data["destinationTime"] as! String)")
-        row.travelTimeLabel.setText("Restid: \(data["dur"] as! Int) min")
+        let depDateString = DateUtils.createDepartureTimeString(data["originTime"] as! String)
+        let arrivalDate = DateUtils.convertDateString(data["destinationTime"] as! String)
+        let humanTripDuration = createHumanTripDuration(data["dur"] as! Int)
+        
+        row.scheduleLabel.setText("\(depDateString) → \(DateUtils.dateAsTimeString(arrivalDate))")
+        row.travelTimeLabel.setText("Restid: \(humanTripDuration)")
         row.createTripIcons(data["icn"] as! [String], lines: data["lns"] as! [String])
         
       }
@@ -122,18 +125,19 @@ class TripsIC: WKInterfaceController {
   }
   
   /**
-   * Creates a human friendly deparure time.
+   * Creates a human readable trip duration string.
+   * eg "1:32" eller "20 minuter"
    */
-  private func createDepartureTimeString(departureTime: String) -> String {
-    var departureString = departureTime
-    let now = NSDate()
-    let departureDate = DateUtils.convertDateString("\(DateUtils.dateAsDateString(now)) \(departureTime)")
-    let diffMin = Int((departureDate.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
-    if diffMin < 16 {
-      departureString = (diffMin + 1 <= 1) ? "Avgår nu" : "Om \(diffMin + 1) min"
+  private func createHumanTripDuration(duration: Int) -> String {
+    if duration < 60 {
+      return "\(duration) minuter"
     }
     
-    return departureString
+    var remainder = String(duration % 60)
+    if remainder.characters.count <= 1 {
+      remainder = "0" + remainder
+    }
+    return "\(duration / 60):\(remainder)h"
   }
   
   /**

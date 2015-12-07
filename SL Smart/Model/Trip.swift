@@ -43,8 +43,8 @@ class Trip: NSObject, NSCopying {
       "lns": lines,
       "origin": tripSegments.first!.origin.name,
       "destination": tripSegments.last!.destination.name,
-      "originTime": DateUtils.dateAsTimeString(tripSegments.first!.departureDateTime),
-      "destinationTime": DateUtils.dateAsTimeString(tripSegments.last!.arrivalDateTime),
+      "originTime": DateUtils.dateAsDateAndTimeString(tripSegments.first!.departureDateTime),
+      "destinationTime": DateUtils.dateAsDateAndTimeString(tripSegments.last!.arrivalDateTime),
     ]
   }
   

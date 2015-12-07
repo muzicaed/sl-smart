@@ -35,7 +35,7 @@ class RoutineTrip: NSObject, NSCoding, NSCopying {
     var departureString = ""
     if trips.count > 0 {
       let departure = trips.first!.tripSegments.first!.departureDateTime
-      departureString = DateUtils.dateAsTimeString(departure)
+      departureString = DateUtils.dateAsDateAndTimeString(departure)
     }
 
     var trasportTrips = [Dictionary<String, AnyObject>]()

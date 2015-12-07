@@ -133,7 +133,7 @@ class SmartTripIC: WKInterfaceController {
       titleLabel.setText(bestRoutine["tit"] as? String)
       originLabel.setText(bestRoutine["ori"] as? String)
       destinationLabel.setText(bestRoutine["des"] as? String)
-      departureTimeLabel.setText(createDepartureTimeString(bestRoutine["dep"] as! String))
+      departureTimeLabel.setText(DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String))
       createTripIcons(icons, lines: lines)
       updateOtherTable(data["other"] as! [Dictionary<String, AnyObject>])
     }
@@ -212,31 +212,15 @@ class SmartTripIC: WKInterfaceController {
   }
   
   /**
-   * Creates a human friendly deparure time.
-   */
-  func createDepartureTimeString(departureTime: String) -> String {
-    var departureString = departureTime
-    let now = NSDate()
-    let departureDate = DateUtils.convertDateString("\(DateUtils.dateAsDateString(now)) \(departureTime)")
-    let diffMin = Int((departureDate.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
-    if diffMin < 16 {
-      departureString = (diffMin + 1 <= 1) ? "Avgår nu" : "Om \(diffMin + 1) min"
-    }
-    
-    return departureString
-  }
-  
-  /**
    * Checks if the best trip have departed allreay.
    */
   func checkIfTripPassed() -> Bool {
     if let data = routineData {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
       let depTime = bestRoutine["dep"] as! String
-      let now = NSDate()
-      let departureDate = DateUtils.convertDateString("\(DateUtils.dateAsDateString(now)) \(depTime)")
+      let departureDate = DateUtils.convertDateString(depTime)
       let diffMin = Int((departureDate.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
-      if diffMin < 1 {
+      if diffMin < 0 {
         return true
       }
     }

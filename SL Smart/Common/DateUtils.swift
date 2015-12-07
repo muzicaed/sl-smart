@@ -40,6 +40,16 @@ class DateUtils {
     return formatter.stringFromDate(date)
   }
 
+  /**
+   * Converts a NSDate to a swedish local date and time string
+   * eg. "2015-02-06 11:32"
+   */
+  static func dateAsDateAndTimeString(date: NSDate) -> String {
+    let formatter = getSwedishFormatter()
+    formatter.dateFormat = "yyyy-MM-dd HH:mm"
+    return formatter.stringFromDate(date)
+  }
+  
    /**
    * Converts a NSDate to a swedish local friendly
    * date string.
