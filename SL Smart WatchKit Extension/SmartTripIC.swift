@@ -88,10 +88,10 @@ class SmartTripIC: WKInterfaceController {
    */
   func requestRoutineTripsHandler(reply: [String: AnyObject]) {
     print("SmartTripIC requestRoutineTripsHandler")
+    print("\(reply)")
     let hasData = reply["foundData"] as! Bool
     if hasData {
       routineData = reply["best"] as? Dictionary<String, AnyObject>
-      print("\(routineData)")
       print("---------------------------------------")
       updateUIData()
       showContentUIState()

@@ -70,8 +70,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
           }
           response["other"] = otherTrips
         } else {
-          response = ["foundData": false]
+          response["foundData"] = false
         }
+
         replyHandler(response)
       })
     }
