@@ -10,7 +10,7 @@
             <objects>
                 <controller title="Res Smart" id="pz1-TM-aL5" customClass="SmartTripIC" customModule="SL_Smart">
                     <items>
-                        <group width="1" alignment="left" verticalAlignment="center" layout="vertical" id="naW-Us-NIZ">
+                        <group width="1" alignment="left" verticalAlignment="center" animationDuration="0.29999999999999999" layout="vertical" id="naW-Us-NIZ">
                             <items>
                                 <label alignment="center" verticalAlignment="center" text="Söker resa..." id="8YZ-WO-QNP">
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -18,13 +18,14 @@
                                 <group width="1" alignment="left" verticalAlignment="center" layout="vertical" id="2eR-Jh-VnR">
                                     <items>
                                         <button alignment="left" id="af7-dj-LLu" userLabel="Smart resa">
-                                            <group key="contentGroup" width="1" alignment="left" animationDuration="0.5" layout="vertical" spacing="8" id="Bie-IP-jFC">
+                                            <group key="contentGroup" width="1" alignment="left" initiallyAnimated="NO" animationDuration="0.29999999999999999" layout="vertical" spacing="8" id="Bie-IP-jFC">
                                                 <items>
                                                     <label width="1" alignment="left" text="Åka till jobbet" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="cFt-Gb-vyb">
-                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="0.64736209479999995" green="0.88223335709999995" blue="0.056549147860000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="font" type="system" weight="light" pointSize="16"/>
                                                     </label>
                                                     <label width="1" alignment="left" text="Om 6 min" textAlignment="center" id="9m3-ui-Mak" userLabel="Om 6 min">
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="font" type="system" pointSize="18"/>
                                                     </label>
                                                     <group width="1" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="7Xa-W2-V96" userLabel="Stations">

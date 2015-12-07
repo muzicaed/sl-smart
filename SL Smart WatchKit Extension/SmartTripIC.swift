@@ -30,42 +30,55 @@ class SmartTripIC: WKInterfaceController {
   let session = WCSession.defaultSession()
   let notificationCenter = NSNotificationCenter.defaultCenter()
   var icons = [WKInterfaceImage]()
+  var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
+  var routineData: Dictionary<String, AnyObject>?
+  var validSession = false
   
   override init() {
     super.init()
+    print("SmartTripIC init()")
     notificationCenter.addObserver(self,
-      selector: Selector("reloadRoutineTripData"),
+      selector: Selector("refreshData"),
       name: "SessionBecameReachable", object: nil)
-  }
-  
-  override func awakeWithContext(context: AnyObject?) {
-    super.awakeWithContext(context)
-    print("awakeWithContext")
   }
   
   /**
    * About to show on screen.
    */
   override func willActivate() {
-    print("willActivate")
+    print("SmartTripIC willActivate")
     super.willActivate()
-    prepareIcons()
-    setLoadingUIState()
-    if session.reachable {
-      self.reloadRoutineTripData()
+    validSession = session.reachable
+    self.refreshData()
+  }
+  
+  /**
+   * Trigger a UI refresh of routine trip data
+   */
+  func refreshData() {
+    print("SmartTripIC refreshData")
+    if lastUpdated.timeIntervalSinceNow > (60 * 2) || routineData == nil {
+      prepareIcons()
+      setLoadingUIState()
+      if validSession {
+        self.reloadRoutineTripData()
+      }
+    } else {
+      showContentUIState()
     }
   }
   
   /**
    * Ask partner iPhone for new Routine Trip data
    */
-  private func reloadRoutineTripData() {
-    if session.reachable {
+  func reloadRoutineTripData() {
+    print("SmartTripIC reloadRoutineTripData")
+    if validSession {
       session.sendMessage(["action": "requestRoutineTrips"],
         replyHandler: requestRoutineTripsHandler,
         errorHandler: messageErrorHandler)
     } else {
-      displayErrorAlert("Kan inte hitta din iPhone",
+      displayError("Kan inte hitta din iPhone",
         message: "Det går inte att kommunicera med din iPhone. Kontrollera att den är laddad och finns i närheten.")
     }
   }
@@ -74,24 +87,16 @@ class SmartTripIC: WKInterfaceController {
    * Handle reply for a "requestRoutineTrips" message.
    */
   func requestRoutineTripsHandler(reply: [String: AnyObject]) {
+    print("SmartTripIC requestRoutineTripsHandler")
     let hasData = reply["foundData"] as! Bool
     if hasData {
-      let routineTripData = reply["best"] as! Dictionary<String, AnyObject>
+      routineData = reply["best"] as? Dictionary<String, AnyObject>
       print("Got reply")
       print("---------------------------------------")
-      titleLabel.setText(routineTripData["tit"] as? String)
-      originLabel.setText(routineTripData["ori"] as? String)
-      destinationLabel.setText(routineTripData["des"] as? String)
-      departureTimeLabel.setText(routineTripData["dep"] as? String)
-      
-      createTripIcons(routineTripData["icn"] as! [String])
-      
-      self.animateWithDuration(0.4, animations: {
-        self.loadingLabel.setHidden(true)
-        self.containerGroup.setHidden(false)
-      })
+      updateUIData()
+      showContentUIState()
     } else {
-      displayErrorAlert(
+      displayError(
         "Hittade inga Smarta Resor",
         message: "Du hanterar dina rutinresor från din iPhone.\nOm du redan gjort detta, kontrollera din iPhones internetanslutning.")
     }
@@ -101,25 +106,33 @@ class SmartTripIC: WKInterfaceController {
    * Handles any session send messages errors.
    */
   func messageErrorHandler(error: NSError) {
+    print("SmartTripIC messageErrorHandler")
     // TODO: Debug only. Replace with generic error message before publish.
-    displayErrorAlert("Fel", message: error.localizedDescription)
+    print("Error Code: \(error.code)\n\(error.localizedDescription)")
+    displayError("Fel", message: error.localizedDescription)
   }
   
-  // MARK: WCSessionDelegate
-  
-  func sessionWatchStateDidChange(session: WCSession) {
-    if !session.reachable {
-      displayErrorAlert("Kan inte hitta din iPhone",
-        message: "Det går inte att kommunicera med din iPhone. Kontrollera att den är laddad och finns i närheten.")
+  /**
+   * Updates UI using data from iPhone
+   */
+  func updateUIData() {
+    print("SmartTripIC updateUIData")
+    if let data = routineData {
+      let departureTime = data["dep"] as? String
+      
+      titleLabel.setText(data["tit"] as? String)
+      originLabel.setText(data["ori"] as? String)
+      destinationLabel.setText(data["des"] as? String)
+      departureTimeLabel.setText(departureTime)
+      createTripIcons(data["icn"] as! [String])
     }
   }
-  
-  // MARK private
   
   /**
    * Creates trip icons
    */
-  private func createTripIcons(iconNames: [String]) {
+  func createTripIcons(iconNames: [String]) {
+    print("SmartTripIC createTripIcons")
     let nameCount = iconNames.count
     for (index, iconImage) in icons.enumerate() {
       if index < nameCount {
@@ -135,7 +148,8 @@ class SmartTripIC: WKInterfaceController {
    * Stores all trip icons in a array
    * for easier manipulation.
    */
-  private func prepareIcons() {
+  func prepareIcons() {
+    print("SmartTripIC prepareIcons")
     icons = [WKInterfaceImage]()
     icons.append(icon1)
     icons.append(icon2)
@@ -146,9 +160,10 @@ class SmartTripIC: WKInterfaceController {
   }
   
   /**
-   * Displays an error alert
+   * Displays an error
    */
-  private func displayErrorAlert(title: String, message: String) {
+  func displayError(title: String, message: String?) {
+    print("SmartTripIC displayError")
     let okAction = WKAlertAction(title: "Försök igen", style: .Default, handler: {})
     presentAlertControllerWithTitle(title,
       message: message, preferredStyle: .Alert, actions: [okAction])
@@ -157,8 +172,19 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Updates UI to show "Loading..."
    */
-  private func setLoadingUIState() {
+  func setLoadingUIState() {
+    print("SmartTripIC setLoadingUIState")
     containerGroup.setHidden(true)
     loadingLabel.setHidden(false)
+  }
+  
+  /**
+   * Updates UI to show content
+   */
+  func showContentUIState() {
+    print("SmartTripIC showContentUIState")
+    updateUIData()
+    containerGroup.setHidden(false)
+    loadingLabel.setHidden(true)
   }
 }
