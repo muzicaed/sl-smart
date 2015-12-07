@@ -10,7 +10,7 @@ import WatchKit
 import Foundation
 import WatchConnectivity
 
-class GlanceController: WKInterfaceController, WCSessionDelegate {
+class GlanceController: WKInterfaceController {
   
   @IBOutlet var subTitleLabel: WKInterfaceLabel!
   @IBOutlet var contentGroup: WKInterfaceGroup!
@@ -25,35 +25,26 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
   @IBOutlet var icon5: WKInterfaceImage!
   @IBOutlet var icon6: WKInterfaceImage!
   
-  var session : WCSession?
+  let session = WCSession.defaultSession()
   var icons = [WKInterfaceImage]()
+  
+  override func awakeWithContext(context: AnyObject?) {
+    super.awakeWithContext(context)
+    print("awakeWithContext")
+  }
   
   /**
    * About to show on screen.
    */
   override func willActivate() {
     super.willActivate()
-    print("awakeWithContext")
-
-  }
-  
-  override func didAppear() {
-    setupPhoneConnection()
+    print("willActivate")
+    setLoadingUIState()
     prepareIcons()
-    reloadRoutineTripData()
-  }
-  
-  override func willDisappear() {
-    super.willDisappear()
-    session = nil
-  }
-
-  /**
-   * Did deactivate
-   */
-  override func didDeactivate() {
-    super.didDeactivate()
-    session = nil
+    let triggerTime = (Int64(NSEC_PER_MSEC) * 10)
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+      self.reloadRoutineTripData()
+    })
   }
   
   /**
@@ -93,30 +84,12 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
   * Ask partner iPhone for new Routine Trip data
   */
   private func reloadRoutineTripData() {
-    if ((session?.reachable) != nil) {
-      setLoadingUIState()
-      if let sess = session {
-        sess.sendMessage(["action": "requestRoutineTrips"],
-          replyHandler: requestRoutineTripsHandler,
-          errorHandler: messageErrorHandler)
-      }
+    if session.reachable {
+      session.sendMessage(["action": "requestRoutineTrips"],
+        replyHandler: requestRoutineTripsHandler,
+        errorHandler: messageErrorHandler)
     } else {
       displayError("Kan inte hitta din iPhone")
-    }
-  }
-  
-  /**
-   * Sets up a WKSession with the partner iPhone
-   */
-  private func setupPhoneConnection() {
-    if (WCSession.isSupported()) {
-      session = WCSession.defaultSession()
-      if let defaultSession = session {
-        defaultSession.delegate = self;
-        defaultSession.activateSession()
-      } else {
-        displayError("Kan inte hitta din iPhone")
-      }
     }
   }
   

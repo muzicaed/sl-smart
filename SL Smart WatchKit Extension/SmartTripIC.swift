@@ -11,7 +11,7 @@ import Foundation
 import WatchConnectivity
 
 
-class SmartTripIC: WKInterfaceController, WCSessionDelegate {
+class SmartTripIC: WKInterfaceController {
   
   @IBOutlet var containerGroup: WKInterfaceGroup!
   @IBOutlet var titleLabel: WKInterfaceLabel!
@@ -27,34 +27,47 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
   @IBOutlet var icon5: WKInterfaceImage!
   @IBOutlet var icon6: WKInterfaceImage!
   
-  var session : WCSession?
+  let session = WCSession.defaultSession()
+  let notificationCenter = NSNotificationCenter.defaultCenter()
   var icons = [WKInterfaceImage]()
+  
+  override init() {
+    super.init()
+    notificationCenter.addObserver(self,
+      selector: Selector("reloadRoutineTripData"),
+      name: "SessionBecameReachable", object: nil)
+  }
+  
+  override func awakeWithContext(context: AnyObject?) {
+    super.awakeWithContext(context)
+    print("awakeWithContext")
+  }
   
   /**
    * About to show on screen.
    */
   override func willActivate() {
-    super.willActivate()
     print("willActivate")
-  }
-  
-  override func didAppear() {
-    setupPhoneConnection()
+    super.willActivate()
     prepareIcons()
-    reloadRoutineTripData()
-  }
-  
-  override func willDisappear() {
-    super.willDisappear()
-    session = nil
+    setLoadingUIState()
+    if session.reachable {
+      self.reloadRoutineTripData()
+    }
   }
   
   /**
-   * Did deactivate
+   * Ask partner iPhone for new Routine Trip data
    */
-  override func didDeactivate() {
-    super.didDeactivate()
-    session = nil
+  private func reloadRoutineTripData() {
+    if session.reachable {
+      session.sendMessage(["action": "requestRoutineTrips"],
+        replyHandler: requestRoutineTripsHandler,
+        errorHandler: messageErrorHandler)
+    } else {
+      displayErrorAlert("Kan inte hitta din iPhone",
+        message: "Det går inte att kommunicera med din iPhone. Kontrollera att den är laddad och finns i närheten.")
+    }
   }
   
   /**
@@ -65,7 +78,7 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
     if hasData {
       let routineTripData = reply["best"] as! Dictionary<String, AnyObject>
       print("Got reply")
-      print("\(routineTripData)")
+      print("---------------------------------------")
       titleLabel.setText(routineTripData["tit"] as? String)
       originLabel.setText(routineTripData["ori"] as? String)
       destinationLabel.setText(routineTripData["des"] as? String)
@@ -91,48 +104,17 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
     // TODO: Debug only. Replace with generic error message before publish.
     displayErrorAlert("Fel", message: error.localizedDescription)
   }
-
-  // MARK WCSessionDelegate
+  
+  // MARK: WCSessionDelegate
   
   func sessionWatchStateDidChange(session: WCSession) {
-    setupPhoneConnection()
-  }
-  
-  // MARK private
-  
-  /**
-  * Ask partner iPhone for new Routine Trip data
-  */
-  private func reloadRoutineTripData() {
-    if ((session?.reachable) != nil) {
-      containerGroup.setHidden(true)
-      loadingLabel.setHidden(false)
-      if let sess = session {
-        sess.sendMessage(["action": "requestRoutineTrips"],
-          replyHandler: requestRoutineTripsHandler,
-          errorHandler: messageErrorHandler)
-      }
-    } else {
+    if !session.reachable {
       displayErrorAlert("Kan inte hitta din iPhone",
         message: "Det går inte att kommunicera med din iPhone. Kontrollera att den är laddad och finns i närheten.")
     }
   }
   
-  /**
-   * Sets up a WKSession with the partner iPhone
-   */
-  private func setupPhoneConnection() {
-    if (WCSession.isSupported()) {
-      session = WCSession.defaultSession()
-      if let defaultSession = session {
-        defaultSession.delegate = self;
-        defaultSession.activateSession()
-      } else {
-        displayErrorAlert("Kan inte hitta din iPhone",
-          message: "Det går inte att kommunicera med din iPhone. Kontrollera att den är laddad och finns i närheten.")
-      }
-    }
-  }
+  // MARK private
   
   /**
    * Creates trip icons
@@ -170,5 +152,13 @@ class SmartTripIC: WKInterfaceController, WCSessionDelegate {
     let okAction = WKAlertAction(title: "Försök igen", style: .Default, handler: {})
     presentAlertControllerWithTitle(title,
       message: message, preferredStyle: .Alert, actions: [okAction])
+  }
+  
+  /**
+   * Updates UI to show "Loading..."
+   */
+  private func setLoadingUIState() {
+    containerGroup.setHidden(true)
+    loadingLabel.setHidden(false)
   }
 }
