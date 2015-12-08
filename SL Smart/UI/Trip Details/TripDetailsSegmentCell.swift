@@ -11,7 +11,11 @@ import UIKit
 
 class TripDetailsSegmentCell: UITableViewCell, TripCellProtocol {
   
-  func setData(trip: Trip) {
+  @IBOutlet weak var tripTypeIcon: UIImageView!
+  @IBOutlet weak var lineLabel: UILabel!
+  @IBOutlet weak var directionLabel: UILabel!
+  
+  func setData(indexPath: NSIndexPath, trip: Trip) {
     // Set data here
   }
 }

@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
 protocol TripCellProtocol {
   
-  func setData(trip: Trip)  
+  func setData(indexPath: NSIndexPath, trip: Trip)
 }

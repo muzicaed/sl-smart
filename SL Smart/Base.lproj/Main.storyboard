@@ -1919,6 +1919,10 @@ Välkommen till ett smartare sätt att pendla.</string>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="locationLabel" destination="Jhi-IY-7Pj" id="XK6-F0-Apa"/>
+                                    <outlet property="timeLabel" destination="eiG-yH-VqD" id="o8i-fU-RsO"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Segment" rowHeight="60" id="5bV-hp-Oh4" userLabel="Segment" customClass="TripDetailsSegmentCell" customModule="SL_Smart" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="180" width="414" height="60"/>
@@ -2013,6 +2017,11 @@ Välkommen till ett smartare sätt att pendla.</string>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="directionLabel" destination="aaz-Pu-tBq" id="muJ-x8-72s"/>
+                                    <outlet property="lineLabel" destination="pz8-em-IcL" id="iQK-B9-iXh"/>
+                                    <outlet property="tripTypeIcon" destination="iyl-c3-qGr" id="0DC-lh-Yxq"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubSegment" rowHeight="25" id="iUr-zi-k8u" userLabel="Sub segment">
                                 <rect key="frame" x="0.0" y="240" width="414" height="25"/>
@@ -2172,6 +2181,12 @@ Välkommen till ett smartare sätt att pendla.</string>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="arrivalTimeLabel" destination="rPS-dF-FcG" id="QTI-YB-Sfv"/>
+                                    <outlet property="departureTimeLabel" destination="C0h-Rz-Gbm" id="Jkq-Hu-kGm"/>
+                                    <outlet property="destinationLabel" destination="BSk-dF-O22" id="A0h-ab-Sm6"/>
+                                    <outlet property="originLabel" destination="nX8-uO-bUw" id="35q-VJ-aXM"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Destination" id="72z-46-yDK" userLabel="Destination" customClass="TripDetailsDestinationCell" customModule="SL_Smart" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="325" width="414" height="44"/>
@@ -2220,6 +2235,10 @@ Välkommen till ett smartare sätt att pendla.</string>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="destinationLabel" destination="FXA-76-yac" id="H1d-YL-izG"/>
+                                    <outlet property="timeLabel" destination="yVu-LK-ZWM" id="8lQ-Eh-8WD"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -11,7 +11,10 @@ import UIKit
 
 class TripDetailsOriginCell: UITableViewCell, TripCellProtocol {
   
-  func setData(trip: Trip) {
+  @IBOutlet weak var timeLabel: UILabel!
+  @IBOutlet weak var locationLabel: UILabel!
+    
+  func setData(indexPath: NSIndexPath, trip: Trip) {
     // Set data here
   }
   
