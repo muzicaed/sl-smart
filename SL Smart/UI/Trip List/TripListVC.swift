@@ -16,12 +16,13 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   let noTripsFoundCell = "FoundNoTripsCell"
   let headerIdentifier = "DateHeader"
   let footerIdentifier = "LoadMoreFooter"
-  
+  let showDetailsSegue = "ShowDetails"
   
   var footer: TripFooter?
   var criterions: TripSearchCriterion?
   var keys = [String]()
   var trips = Dictionary<String, [Trip]>()
+  var selectedTrip: Trip?
   var isLoading = true
   var isLoadingMore = false
   
@@ -33,10 +34,8 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     collectionView?.delegate = self
     StandardGradient.addLayer(view)
     if trips.count == 0 {
-      print("Loading...")
       loadTripData()
     } else {
-      print("Not loading...")
       isLoading = false
       self.collectionView?.reloadData()
     }
@@ -47,6 +46,12 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
    */
   @IBAction func unwindToTripListVC(segue: UIStoryboardSegue) {}
   
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == showDetailsSegue {
+      let vc = segue.destinationViewController as! TripDetailsVC
+      vc.trip = selectedTrip!
+    }
+  }
   
   // MARK: UICollectionViewController
   
@@ -125,10 +130,19 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
       
       let screenSize = UIScreen.mainScreen().bounds.size
       if isLoading {
-        print("Loading size")
         return CGSizeMake(screenSize.width - 10, collectionView.bounds.height - 49 - 64 - 20)
       }
       return CGSizeMake(screenSize.width - 10, 90)
+  }
+  
+  /**
+   * User tapped a item.
+   */
+  override func collectionView(collectionView: UICollectionView,
+    didSelectItemAtIndexPath indexPath: NSIndexPath) {
+      let key = keys[indexPath.section]
+      selectedTrip = trips[key]![indexPath.row]
+      performSegueWithIdentifier(showDetailsSegue, sender: self)
   }
   
   /**
