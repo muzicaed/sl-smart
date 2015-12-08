@@ -21,7 +21,7 @@ class TripDetailsHeaderCell: UITableViewCell, TripCellProtocol {
    * Set cell data.
    */
   func setData(indexPath: NSIndexPath, trip: Trip) {
-    dateTimeLabel.text = DateUtils.friendlyDate(trip.tripSegments.first!.departureDateTime)
+    dateTimeLabel.text = DateUtils.friendlyDate(trip.tripSegments.last!.arrivalDateTime)
     originLabel.text = trip.tripSegments.first!.origin.name
     destinationLabel.text = trip.tripSegments.last!.destination.name
   }

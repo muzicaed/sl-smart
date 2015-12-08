@@ -48,7 +48,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         })
       }
     })
-*/
+    */
   }
   
   
@@ -56,6 +56,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * Updates the UI based on data
    */
   private func updateUI() {
+    /*
     if let routine = bestRoutineTrip {
       let trip = routine.trips.first!
       titleLabel.text = routine.title
@@ -64,6 +65,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.last!.arrivalDateTime)
     }
-    
+    */
   }
 }
