@@ -88,6 +88,13 @@
 			remoteGlobalIDString = 188B80411C175D9600E7D90C;
 			remoteInfo = "SL Smart-Today";
 		};
+		188B80981C17816800E7D90C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18937E301BFF33FA00C523C9;
+			remoteInfo = "SL Smart";
+		};
 		18937E451BFF33FB00C523C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
@@ -217,6 +224,8 @@
 		188B80471C175D9600E7D90C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		188B804A1C175D9600E7D90C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		188B804C1C175D9600E7D90C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		188B80961C177E0700E7D90C /* SL Smart-Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SL Smart-Today.entitlements"; sourceTree = "<group>"; };
+		188B80971C177E9E00E7D90C /* SL Smart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SL Smart.entitlements"; sourceTree = "<group>"; };
 		188B85651C14ADF100098B00 /* SLNetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLNetworkError.swift; sourceTree = "<group>"; };
 		188B85691C15B03400098B00 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		188B856D1C15BFA000098B00 /* OtherRoutinesRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherRoutinesRow.swift; sourceTree = "<group>"; };
@@ -354,6 +363,7 @@
 		188B80461C175D9600E7D90C /* SL Smart-Today */ = {
 			isa = PBXGroup;
 			children = (
+				188B80961C177E0700E7D90C /* SL Smart-Today.entitlements */,
 				188B80471C175D9600E7D90C /* TodayViewController.swift */,
 				188B80491C175D9600E7D90C /* MainInterface.storyboard */,
 				188B804C1C175D9600E7D90C /* Info.plist */,
@@ -416,6 +426,7 @@
 		18937E331BFF33FA00C523C9 /* SL Smart */ = {
 			isa = PBXGroup;
 			children = (
+				188B80971C177E9E00E7D90C /* SL Smart.entitlements */,
 				181B9AF41C03A9BC00B9145A /* Common */,
 				18937E891C01139E00C523C9 /* UI */,
 				18937E881C01139400C523C9 /* Services */,
@@ -568,6 +579,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				188B80991C17816800E7D90C /* PBXTargetDependency */,
 			);
 			name = "SL Smart-Today";
 			productName = "SL Smart-Today";
@@ -645,10 +657,20 @@
 					188B80411C175D9600E7D90C = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 43E7S6Y435;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					18937E301BFF33FA00C523C9 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 43E7S6Y435;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					18937E421BFF33FB00C523C9 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -872,6 +894,11 @@
 			target = 188B80411C175D9600E7D90C /* SL Smart-Today */;
 			targetProxy = 188B804D1C175D9600E7D90C /* PBXContainerItemProxy */;
 		};
+		188B80991C17816800E7D90C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18937E301BFF33FA00C523C9 /* SL Smart */;
+			targetProxy = 188B80981C17816800E7D90C /* PBXContainerItemProxy */;
+		};
 		18937E461BFF33FB00C523C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 18937E421BFF33FB00C523C9 /* SL Smart WatchKit App */;
@@ -923,12 +950,14 @@
 		188B80501C175D9600E7D90C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "SL Smart-Today/SL Smart-Today.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "SL Smart-Today/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.SL-Smart-Today";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -936,12 +965,14 @@
 		188B80511C175D9600E7D90C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "SL Smart-Today/SL Smart-Today.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "SL Smart-Today/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.SL-Smart-Today";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -1099,6 +1130,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "SL Smart/SL Smart.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -1115,6 +1147,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "SL Smart/SL Smart.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;

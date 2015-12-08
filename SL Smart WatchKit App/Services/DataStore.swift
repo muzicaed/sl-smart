@@ -10,7 +10,7 @@ import Foundation
 
 class DataStore {
   
-  private let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
+  private let defaults = NSUserDefaults.standardUserDefaults()
   private var cachedRoutineTrips = [RoutineTrip]()
   private var cachedScorePosts = [ScorePost]()
   

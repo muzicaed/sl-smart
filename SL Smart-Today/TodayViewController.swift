@@ -10,25 +10,60 @@ import UIKit
 import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-        
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view from its nib.
+  
+  @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var departureTimeLabel: UILabel!
+  @IBOutlet weak var departureDescLabel: UILabel!
+  @IBOutlet weak var arrivalTimeLabel: UILabel!
+  @IBOutlet weak var arrivalDescLabel: UILabel!
+  @IBOutlet weak var iconContainerView: UIView!
+  @IBOutlet weak var travelTimeLabel: UILabel!
+  
+  //var bestRoutineTrip: RoutineTrip?
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.preferredContentSize = CGSizeMake(0, 140)
+    self.reloadData()
+  }
+  
+  func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
+    print("widgetPerformUpdateWithCompletionHandler")
+    reloadData()
+    completionHandler(NCUpdateResult.NewData)
+  }
+  
+  // MARK: Private
+  
+  /**
+  * Reloads the data
+  */
+  private func reloadData() {
+    /*
+    RoutineService.findRoutineTrip({ routineTrips in
+      if routineTrips.count > 0 {
+        self.bestRoutineTrip = routineTrips.first!
+        dispatch_async(dispatch_get_main_queue(), {
+          self.updateUI()
+        })
+      }
+    })
+*/
+  }
+  
+  
+  /**
+   * Updates the UI based on data
+   */
+  private func updateUI() {
+    if let routine = bestRoutineTrip {
+      let trip = routine.trips.first!
+      titleLabel.text = routine.title
+      departureTimeLabel.text = DateUtils.dateAsTimeString(
+        trip.tripSegments.first!.departureDateTime)
+      arrivalTimeLabel.text = DateUtils.dateAsTimeString(
+        trip.tripSegments.last!.arrivalDateTime)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
-        // Perform any setup necessary in order to update the view.
-
-        // If an error is encountered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
-
-        completionHandler(NCUpdateResult.NewData)
-    }
-    
+  }
 }
