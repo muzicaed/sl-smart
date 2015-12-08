@@ -22,6 +22,7 @@ class TripsIC: WKInterfaceController {
   let session = WCSession.defaultSession()
   var data: Dictionary<String, AnyObject>?
   var tripData = [Dictionary<String, AnyObject>]()
+  var wasLoadedDate = NSDate()
   
   /**
    * On load
@@ -39,6 +40,11 @@ class TripsIC: WKInterfaceController {
    * About to show
    */
   override func willActivate() {
+    if checkOldData() {
+      // Go back
+      popToRootController()
+      return
+    }
     super.willActivate()
     updateUI()
     loadingLabel.setHidden(false)
@@ -48,9 +54,18 @@ class TripsIC: WKInterfaceController {
       tripTable.setHidden(false)
     } else {
       loadData()
-    }
+    }    
   }
-
+  
+  /**
+   * Checks if on screen data is
+   * outdated.
+   */
+  func checkOldData() -> Bool {
+    let diffMin = Int((NSDate().timeIntervalSince1970 - wasLoadedDate.timeIntervalSince1970) / 60)
+    return diffMin > 3
+  }
+  
   /**
    * Handle reply for a "SearchTrips" message.
    */
@@ -65,7 +80,7 @@ class TripsIC: WKInterfaceController {
     if tripData.count > 0 {
       updateTripTable()
       loadingLabel.setHidden(true)
-      tripTable.setHidden(false)      
+      tripTable.setHidden(false)
     } else {
       loadingLabel.setText("Hittade inga resor.")
     }

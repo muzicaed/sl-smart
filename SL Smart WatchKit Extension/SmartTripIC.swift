@@ -280,9 +280,7 @@ class SmartTripIC: WKInterfaceController {
     if lastUpdated.timeIntervalSinceNow > (60 * 5) || routineData == nil || force {
       setLoadingUIState()
       prepareIcons()
-      if validSession {
-        self.reloadRoutineTripData()
-      }
+      self.reloadRoutineTripData()
     } else {
       showContentUIState()
     }
