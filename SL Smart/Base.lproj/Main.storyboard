@@ -29,7 +29,7 @@
         <!--Sök resa-->
         <scene sceneID="Jvl-1s-m4F">
             <objects>
-                <tableViewController id="Hg1-8K-Ui9" sceneMemberID="viewController">
+                <tableViewController id="Hg1-8K-Ui9" customClass="TripSearchVC" customModule="SL_Smart" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="5" id="rFV-AS-BO5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,10 +47,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1N-3x-c9N">
-                                                    <rect key="frame" x="8" y="8" width="365" height="28"/>
+                                                    <rect key="frame" x="0.0" y="8" width="373" height="28"/>
                                                     <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KjU-5e-3C6">
+                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="28"/>
+                                                            <animations/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="QzM-ey-LDE"/>
+                                                            </constraints>
+                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Från" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6e-ev-APg">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="28"/>
+                                                            <rect key="frame" x="15" y="0.0" width="50" height="28"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="SAr-Sj-24S"/>
@@ -60,7 +68,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbw-ZD-CnG">
-                                                            <rect key="frame" x="50" y="0.0" width="315" height="28"/>
+                                                            <rect key="frame" x="65" y="0.0" width="308" height="28"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,7 +80,7 @@
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstItem="Q1N-3x-c9N" firstAttribute="leading" secondItem="ehb-9p-dzI" secondAttribute="leadingMargin" id="4KC-Oy-xsJ"/>
+                                                <constraint firstItem="Q1N-3x-c9N" firstAttribute="leading" secondItem="ehb-9p-dzI" secondAttribute="leading" id="4KC-Oy-xsJ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Q1N-3x-c9N" secondAttribute="trailing" id="9Mj-hZ-23d"/>
                                                 <constraint firstItem="Q1N-3x-c9N" firstAttribute="top" secondItem="ehb-9p-dzI" secondAttribute="topMargin" id="MJa-zu-Kql"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Q1N-3x-c9N" secondAttribute="bottom" id="QSC-sQ-nNE"/>
@@ -88,10 +96,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfY-92-XdH">
-                                                    <rect key="frame" x="8" y="8" width="365" height="27.5"/>
+                                                    <rect key="frame" x="0.0" y="8" width="373" height="28"/>
                                                     <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qSD-l6-TVz">
+                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="28"/>
+                                                            <animations/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="pTl-Wu-gyt"/>
+                                                            </constraints>
+                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Till" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YoD-AW-fNX">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="27.5"/>
+                                                            <rect key="frame" x="15" y="0.0" width="50" height="28"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="Nbm-Kd-C6P"/>
@@ -101,7 +117,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgc-fR-mDo">
-                                                            <rect key="frame" x="50" y="0.0" width="315" height="27.5"/>
+                                                            <rect key="frame" x="65" y="0.0" width="308" height="28"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -115,7 +131,7 @@
                                             <constraints>
                                                 <constraint firstItem="vfY-92-XdH" firstAttribute="top" secondItem="NFv-mc-lJ3" secondAttribute="topMargin" id="3GB-qY-siV"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="vfY-92-XdH" secondAttribute="trailing" id="j9I-Tf-Rvf"/>
-                                                <constraint firstItem="vfY-92-XdH" firstAttribute="leading" secondItem="NFv-mc-lJ3" secondAttribute="leadingMargin" id="tqV-iG-iHB"/>
+                                                <constraint firstItem="vfY-92-XdH" firstAttribute="leading" secondItem="NFv-mc-lJ3" secondAttribute="leading" id="tqV-iG-iHB"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="vfY-92-XdH" secondAttribute="bottom" id="yHG-r2-A00"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -125,7 +141,7 @@
                             </tableViewSection>
                             <tableViewSection id="Iin-ag-WRW" userLabel="Avresetid eller ankomsttid">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="QfG-cZ-sfK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="QfG-cZ-sfK">
                                         <rect key="frame" x="0.0" y="224.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QfG-cZ-sfK" id="2Q9-La-InF">
@@ -133,7 +149,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="068-l7-XTW">
-                                                    <rect key="frame" x="8" y="8" width="398" height="29"/>
+                                                    <rect key="frame" x="-2" y="-1" width="418" height="45.5"/>
                                                     <animations/>
                                                     <segments>
                                                         <segment title="Tidigast åka"/>
@@ -143,10 +159,10 @@
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="068-l7-XTW" secondAttribute="bottom" id="5zL-oh-s6F"/>
-                                                <constraint firstItem="068-l7-XTW" firstAttribute="top" secondItem="2Q9-La-InF" secondAttribute="topMargin" id="7Kg-c0-Fcc"/>
-                                                <constraint firstItem="068-l7-XTW" firstAttribute="leading" secondItem="2Q9-La-InF" secondAttribute="leadingMargin" id="OPf-Uw-Y0h"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="068-l7-XTW" secondAttribute="trailing" id="gUP-t8-sDZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="068-l7-XTW" secondAttribute="bottom" id="5zL-oh-s6F"/>
+                                                <constraint firstItem="068-l7-XTW" firstAttribute="top" secondItem="2Q9-La-InF" secondAttribute="top" constant="-1" id="7Kg-c0-Fcc"/>
+                                                <constraint firstItem="068-l7-XTW" firstAttribute="leading" secondItem="2Q9-La-InF" secondAttribute="leading" constant="-2" id="OPf-Uw-Y0h"/>
+                                                <constraint firstAttribute="trailing" secondItem="068-l7-XTW" secondAttribute="trailing" constant="-2" id="gUP-t8-sDZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
@@ -163,17 +179,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dzk-DJ-K6r">
-                                                    <rect key="frame" x="8" y="8" width="365" height="28"/>
+                                                    <rect key="frame" x="0.0" y="8" width="373" height="28"/>
                                                     <subviews>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" misplaced="YES" text="När" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5T-0X-L73">
-                                                            <rect key="frame" x="0.0" y="0.0" width="26" height="28"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gXV-Ij-Gsz">
+                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="28"/>
+                                                            <animations/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="CPy-ub-gof"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="När" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5T-0X-L73">
+                                                            <rect key="frame" x="15" y="0.0" width="25.5" height="28"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="249" misplaced="YES" text="Idag tisdag, kl 23:33" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LER-mx-vhk">
-                                                            <rect key="frame" x="26" y="0.0" width="340" height="28"/>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="249" text="Idag tisdag, kl 23:33" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LER-mx-vhk">
+                                                            <rect key="frame" x="40.5" y="0.0" width="332.5" height="28"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -186,7 +210,7 @@
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="dzk-DJ-K6r" secondAttribute="bottom" id="Xic-jG-Fd7"/>
-                                                <constraint firstItem="dzk-DJ-K6r" firstAttribute="leading" secondItem="2FO-Zu-i92" secondAttribute="leadingMargin" id="YUT-HE-oNe"/>
+                                                <constraint firstItem="dzk-DJ-K6r" firstAttribute="leading" secondItem="2FO-Zu-i92" secondAttribute="leading" id="YUT-HE-oNe"/>
                                                 <constraint firstItem="dzk-DJ-K6r" firstAttribute="top" secondItem="2FO-Zu-i92" secondAttribute="topMargin" id="ubX-kz-I6P"/>
                                                 <constraint firstItem="dzk-DJ-K6r" firstAttribute="trailing" secondItem="2FO-Zu-i92" secondAttribute="trailingMargin" id="uor-71-YXl"/>
                                             </constraints>
@@ -201,7 +225,10 @@
                             <outlet property="delegate" destination="Hg1-8K-Ui9" id="pei-WU-5NV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Sök resa" id="glH-7o-VC8"/>
+                    <navigationItem key="navigationItem" title="Sök resa" id="glH-7o-VC8">
+                        <barButtonItem key="leftBarButtonItem" title="Avancerat" id="ddt-6P-8PN"/>
+                        <barButtonItem key="rightBarButtonItem" title="Sök" style="done" id="cLP-J8-IqA"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Xm-jb-YxA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

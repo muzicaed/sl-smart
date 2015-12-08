@@ -42,6 +42,7 @@
 		188B80481C175D9600E7D90C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B80471C175D9600E7D90C /* TodayViewController.swift */; };
 		188B804B1C175D9600E7D90C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188B80491C175D9600E7D90C /* MainInterface.storyboard */; };
 		188B804F1C175D9600E7D90C /* SL Smart-Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 188B80421C175D9600E7D90C /* SL Smart-Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		188B80AE1C178DD900E7D90C /* TripSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B80AD1C178DD900E7D90C /* TripSearchVC.swift */; };
 		188B85661C14ADF100098B00 /* SLNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85651C14ADF100098B00 /* SLNetworkError.swift */; };
 		188B856A1C15B03400098B00 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85691C15B03400098B00 /* DateUtils.swift */; };
 		188B856E1C15BFA000098B00 /* OtherRoutinesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B856D1C15BFA000098B00 /* OtherRoutinesRow.swift */; };
@@ -226,6 +227,7 @@
 		188B804C1C175D9600E7D90C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		188B80961C177E0700E7D90C /* SL Smart-Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SL Smart-Today.entitlements"; sourceTree = "<group>"; };
 		188B80971C177E9E00E7D90C /* SL Smart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SL Smart.entitlements"; sourceTree = "<group>"; };
+		188B80AD1C178DD900E7D90C /* TripSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSearchVC.swift; sourceTree = "<group>"; };
 		188B85651C14ADF100098B00 /* SLNetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLNetworkError.swift; sourceTree = "<group>"; };
 		188B85691C15B03400098B00 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		188B856D1C15BFA000098B00 /* OtherRoutinesRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherRoutinesRow.swift; sourceTree = "<group>"; };
@@ -369,6 +371,14 @@
 				188B804C1C175D9600E7D90C /* Info.plist */,
 			);
 			path = "SL Smart-Today";
+			sourceTree = "<group>";
+		};
+		188B80AC1C178DB800E7D90C /* Trip Search */ = {
+			isa = PBXGroup;
+			children = (
+				188B80AD1C178DD900E7D90C /* TripSearchVC.swift */,
+			);
+			path = "Trip Search";
 			sourceTree = "<group>";
 		};
 		188B856B1C15BF5400098B00 /* Smart Trip */ = {
@@ -524,6 +534,7 @@
 		18937E891C01139E00C523C9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				188B80AC1C178DB800E7D90C /* Trip Search */,
 				188367671C16EE7A00A8BE16 /* Trip Details */,
 				1827692E1C01163B00655B4B /* Common */,
 				18AC9CF61C07AD05007ECFA2 /* Trip List */,
@@ -828,6 +839,7 @@
 				18937E811BFFABFC00C523C9 /* PlannedTripsVC.swift in Sources */,
 				18937E7A1BFF5F2F00C523C9 /* Trip.swift in Sources */,
 				180FD8B51C0B087E0095C790 /* ScorePost.swift in Sources */,
+				188B80AE1C178DD900E7D90C /* TripSearchVC.swift in Sources */,
 				18937E771BFF5D6B00C523C9 /* RoutineTripsVC.swift in Sources */,
 				181B9AF61C03A9E100B9145A /* DateUtils.swift in Sources */,
 				18CE5CC71C025E3E00E1F5A9 /* Routine.swift in Sources */,

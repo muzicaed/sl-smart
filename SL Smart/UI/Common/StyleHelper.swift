@@ -23,8 +23,8 @@ class StyleHelper {
     navAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     
     let tabBarAppearance = UITabBar.appearance()
-    tabBarAppearance.tintColor = UIColor.whiteColor()
-    tabBarAppearance.barTintColor = mainGreen
+    tabBarAppearance.tintColor = mainGreen
+    //tabBarAppearance.barTintColor = mainGreen
 
     let searchBarAppearance = UISearchBar.appearance()
     searchBarAppearance.tintColor = tintColor
@@ -35,7 +35,7 @@ class StyleHelper {
       forState: UIControlState.Normal)
     
     UITabBarItem.appearance().setTitleTextAttributes(
-      [NSForegroundColorAttributeName: UIColor.whiteColor()],
+      [NSForegroundColorAttributeName: mainGreen],
       forState: UIControlState.Selected)
     
     UIApplication.sharedApplication().statusBarStyle = .LightContent
