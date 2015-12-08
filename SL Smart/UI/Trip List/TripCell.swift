@@ -38,25 +38,10 @@ class TripCell: UICollectionViewCell {
       tripDurationLabel.text = "Restid: \(trip.durationMin) min"
       
       createTripSegmentIcons(trip)
-      checkInPast(trip.tripSegments.first!.departureDateTime)
     }
   }
   
   // MARK: Private methods
-  
-  /**
-  * Checks if trip is in the past, and marks it.
-  */
-  private func checkInPast(date: NSDate) {
-    if NSDate().timeIntervalSince1970 > date.timeIntervalSince1970 {
-      self.alpha = 0.5
-      leftBarView.backgroundColor = UIColor.lightGrayColor()
-      departureTimeLabel.textColor = UIColor.darkGrayColor()
-      arrivalTimeLabel.textColor = UIColor.darkGrayColor()
-      inAboutLabel.text = "Avgått"
-      inAboutLabel.textColor = UIColor.darkGrayColor()
-    }
-  }
   
   /**
    * Creates an "(om xx min)" for depature time.

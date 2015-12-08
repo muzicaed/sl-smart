@@ -12,6 +12,7 @@ import UIKit
 class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
   
   let cellIdentifier = "TripCell"
+  let pastCellIdentifier = "PassedTripCell"
   let loadingCellIdentifier = "LoadingCell"
   let noTripsFoundCell = "FoundNoTripsCell"
   let headerIdentifier = "DateHeader"
@@ -271,10 +272,26 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   private func createTripCell(indexPath: NSIndexPath) -> TripCell {
     let key = keys[indexPath.section]
     let trip = trips[key]![indexPath.row]
+    
+    if checkInPast(trip) {
+      let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(pastCellIdentifier,
+        forIndexPath: indexPath) as! TripCell
+      cell.setupData(trip)
+      return cell
+    }
+    
     let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(cellIdentifier,
       forIndexPath: indexPath) as! TripCell
     cell.setupData(trip)
     return cell
+  }
+  
+  /**
+   * Check if trip is in past.
+   */
+  private func checkInPast(trip: Trip) -> Bool{
+    let date = trip.tripSegments.first!.departureDateTime
+    return (NSDate().timeIntervalSince1970 > date.timeIntervalSince1970)
   }
   
   /**
