@@ -8,10 +8,10 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
-        <!--Planerad resa-->
+        <!--Sök resa-->
         <scene sceneID="Lwd-we-f4D">
             <objects>
-                <viewController id="xYO-l4-z4r" userLabel="Planerad resa" customClass="PlannedTripsVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xYO-l4-z4r" customClass="PlannedTripsVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ekU-x8-oLI"/>
                         <viewControllerLayoutGuide type="bottom" id="GfZ-gQ-NOk"/>
@@ -44,56 +44,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCD-cY-mWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1504" y="1337"/>
-        </scene>
-        <!--Nära station-->
-        <scene sceneID="3Wz-F3-6QL">
-            <objects>
-                <navigationController id="7VT-1i-IJ6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Nära station" image="MapIcon" id="BOz-U2-6zl"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ii2-GB-BZF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Xe2-QC-4kP" kind="relationship" relationship="rootViewController" id="zjC-DF-epy"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7ur-81-bf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1504" y="2341"/>
-        </scene>
-        <!--Station i närheten-->
-        <scene sceneID="6Pl-eT-hoO">
-            <objects>
-                <viewController title="Station i närheten" id="Xe2-QC-4kP" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ah1-NY-r18"/>
-                        <viewControllerLayoutGuide type="bottom" id="vmh-6F-10o"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="EMs-EX-gvc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VhP-kY-6dU">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="649"/>
-                                <animations/>
-                            </mapView>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="VhP-kY-6dU" firstAttribute="top" secondItem="ah1-NY-r18" secondAttribute="bottom" constant="-64" id="PdK-7B-bTi"/>
-                            <constraint firstAttribute="trailing" secondItem="VhP-kY-6dU" secondAttribute="trailing" id="Upb-i4-ZO5"/>
-                            <constraint firstItem="VhP-kY-6dU" firstAttribute="leading" secondItem="EMs-EX-gvc" secondAttribute="leading" id="g0f-iF-UG1"/>
-                            <constraint firstItem="vmh-6F-10o" firstAttribute="top" secondItem="VhP-kY-6dU" secondAttribute="bottom" constant="-49" id="oqI-xK-qsc"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Stationer i närheten" id="nHm-Fy-w4c"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Sfo-1P-bPv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2211" y="2341"/>
         </scene>
         <!--Nuvarande störningar-->
         <scene sceneID="flZ-ox-ThE">
@@ -169,7 +119,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="398" height="23"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                    <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.68708559160000005" green="0.20646639559999999" blue="0.88029801159999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWJ-Ip-1PH">
@@ -368,7 +318,7 @@
                                                                 <constraint firstAttribute="width" constant="50" id="Tpp-BZ-tSw"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                            <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X91-GZ-AOv">
@@ -422,7 +372,7 @@
                                                                 <constraint firstAttribute="width" constant="50" id="Jx2-bl-5e1"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                            <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5j-V2-bdx">
@@ -828,7 +778,7 @@
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
                                                                                                     <animations/>
                                                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                                                                    <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                                    <color key="textColor" red="0.68708559160000005" green="0.20646639559999999" blue="0.88029801159999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                                                     <nil key="highlightedColor"/>
                                                                                                 </label>
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PS6-Hw-YES" userLabel="Space">
@@ -901,7 +851,7 @@
                                                                                             <rect key="frame" x="0.0" y="6" width="151" height="23"/>
                                                                                             <animations/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                                                            <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                            <color key="textColor" red="0.68708559160000005" green="0.20646639559999999" blue="0.88029801159999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYo-Ng-Ovo" userLabel="Centralen">
@@ -1126,7 +1076,7 @@
                                                                             <rect key="frame" x="0.0" y="29" width="355" height="16"/>
                                                                             <animations/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                            <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <color key="textColor" red="0.68708559160000005" green="0.20646639559999999" blue="0.88029801159999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OVd-jL-7sQ">
@@ -1211,7 +1161,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="339" height="23"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                                    <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="textColor" red="0.68708559160000005" green="0.20646639559999999" blue="0.88029801159999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-tn-fDB">
@@ -1555,7 +1505,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="50.5" height="30"/>
                                                                                                     <animations/>
                                                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                                                                    <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                                    <color key="textColor" red="0.68708559160000005" green="0.20646639559999999" blue="0.88029801159999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                                                     <nil key="highlightedColor"/>
                                                                                                 </label>
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tIA-iy-eCT" userLabel="Space">
@@ -1628,7 +1578,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                             <rect key="frame" x="0.0" y="11" width="140" height="23"/>
                                                                                             <animations/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                                                            <color key="textColor" red="0.79607844350000001" green="0.24313725529999999" blue="0.58039218189999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                            <color key="textColor" red="0.68708559160000005" green="0.20646639559999999" blue="0.88029801159999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQI-Ex-ggn" userLabel="Centralen">
@@ -1887,7 +1837,6 @@ Välkommen till ett smartare sätt att pendla.</string>
         </scene>
     </scenes>
     <resources>
-        <image name="MapIcon" width="25" height="25"/>
         <image name="SearchTripIcon" width="25" height="25"/>
         <image name="SmartTripIcon" width="25" height="25"/>
         <image name="WarningIcon" width="25" height="25"/>

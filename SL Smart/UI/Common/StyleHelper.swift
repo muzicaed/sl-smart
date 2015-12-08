@@ -12,7 +12,7 @@ import UIKit
 class StyleHelper {
 
   static let sharedInstance = StyleHelper()
-  let popColor = UIColor(red: 203/255, green: 62/255, blue: 148/255, alpha: 1.0)
+  let popColor = UIColor(red: 175/255, green: 53/255, blue: 224/255, alpha: 1.0)
   let tintColor = UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 1.0)
   let mainGreen = UIColor(red: 51/255, green: 143/255, blue: 89/255, alpha: 1.0)
 
