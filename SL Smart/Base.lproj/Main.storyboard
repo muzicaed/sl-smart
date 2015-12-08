@@ -1849,29 +1849,29 @@ Välkommen till ett smartare sätt att pendla.</string>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="44" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Header" rowHeight="60" id="I7M-jQ-Rqn" userLabel="Header" customClass="TripDetailsHeaderCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="414" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Header" rowHeight="66" id="I7M-jQ-Rqn" userLabel="Header" customClass="TripDetailsHeaderCell" customModule="SL_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="414" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I7M-jQ-Rqn" id="R8E-lU-VS7">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="65.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="5Y3-WT-CuR">
-                                            <rect key="frame" x="11" y="0.0" width="395" height="60"/>
+                                            <rect key="frame" x="11" y="0.0" width="395" height="66"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QaQ-dB-dXd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="119" height="60"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="119" height="66"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lTT-4S-XGb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="119" height="3"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="119" height="6"/>
                                                             <animations/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="3" id="ayH-z4-9rJ" userLabel="height = 6"/>
+                                                                <constraint firstAttribute="height" constant="6" id="ayH-z4-9rJ" userLabel="height = 6"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Idag Tisdag bla bla" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cb-iK-Mp9">
-                                                            <rect key="frame" x="0.0" y="3" width="119" height="18"/>
+                                                            <rect key="frame" x="0.0" y="6" width="119" height="18"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="no4-fc-YWu"/>
@@ -1881,7 +1881,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stockholms södra" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVk-DQ-Fsf">
-                                                            <rect key="frame" x="0.0" y="21" width="119" height="18"/>
+                                                            <rect key="frame" x="0.0" y="24" width="119" height="18"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="bnA-CP-tbN"/>
@@ -1890,7 +1890,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arlanda" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pml-VN-3hz">
-                                                            <rect key="frame" x="0.0" y="39" width="119" height="18"/>
+                                                            <rect key="frame" x="0.0" y="42" width="119" height="18"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="U7C-tx-LtM"/>
@@ -1899,24 +1899,24 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S76-Ia-cBl">
-                                                            <rect key="frame" x="0.0" y="57" width="119" height="3"/>
+                                                            <rect key="frame" x="0.0" y="60" width="119" height="6"/>
                                                             <animations/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="3" id="I62-R9-1Mi" userLabel="height = 6"/>
+                                                                <constraint firstAttribute="height" constant="6" id="I62-R9-1Mi" userLabel="height = 6"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
                                                     <animations/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="kxW-Qg-Opj"/>
+                                                        <constraint firstAttribute="height" constant="66" id="kxW-Qg-Opj"/>
                                                     </constraints>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWj-9U-i5l">
-                                                    <rect key="frame" x="335" y="0.0" width="60" height="60"/>
+                                                    <rect key="frame" x="329" y="0.0" width="66" height="66"/>
                                                     <subviews>
                                                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="O4e-f6-JpH">
-                                                            <rect key="frame" x="5" y="5" width="50" height="50"/>
+                                                            <rect key="frame" x="8" y="8" width="50" height="50"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="H2n-eC-H9k"/>
@@ -1928,15 +1928,15 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="O4e-f6-JpH" firstAttribute="centerX" secondItem="CWj-9U-i5l" secondAttribute="centerX" id="Gcr-jg-4ES"/>
-                                                        <constraint firstAttribute="height" constant="60" id="TBy-m9-ZWl"/>
-                                                        <constraint firstAttribute="width" constant="60" id="iJ7-pJ-rxW"/>
+                                                        <constraint firstAttribute="height" constant="66" id="TBy-m9-ZWl"/>
+                                                        <constraint firstAttribute="width" constant="66" id="iJ7-pJ-rxW"/>
                                                         <constraint firstItem="O4e-f6-JpH" firstAttribute="centerY" secondItem="CWj-9U-i5l" secondAttribute="centerY" id="vkJ-XK-KN8"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="60" id="QXj-1m-2Yf"/>
+                                                <constraint firstAttribute="height" constant="66" id="QXj-1m-2Yf"/>
                                                 <constraint firstItem="CWj-9U-i5l" firstAttribute="trailing" secondItem="5Y3-WT-CuR" secondAttribute="trailingMargin" id="Uob-KC-ORz"/>
                                             </constraints>
                                         </stackView>
@@ -1957,7 +1957,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Origin" id="WaZ-2A-eHI" userLabel="Origin" customClass="TripDetailsOriginCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="152" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="158" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WaZ-2A-eHI" id="ap3-pH-rn1">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -2009,7 +2009,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Segment" rowHeight="60" id="5bV-hp-Oh4" userLabel="Segment" customClass="TripDetailsSegmentCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="196" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="202" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5bV-hp-Oh4" id="rwZ-DX-ZGT">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
@@ -2108,7 +2108,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubSegment" rowHeight="25" id="iUr-zi-k8u" userLabel="Sub segment">
-                                <rect key="frame" x="0.0" y="256" width="414" height="25"/>
+                                <rect key="frame" x="0.0" y="262" width="414" height="25"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iUr-zi-k8u" id="ql2-Mt-GO2">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="24.5"/>
@@ -2158,7 +2158,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <animations/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Change" rowHeight="60" id="L2B-dE-HV5" userLabel="Change" customClass="TripDetailsChangeCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="281" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="287" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L2B-dE-HV5" id="wQu-HG-jGq">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
@@ -2273,7 +2273,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Destination" id="72z-46-yDK" userLabel="Destination" customClass="TripDetailsDestinationCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="341" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="347" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="72z-46-yDK" id="Rzj-Ms-fM2">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>

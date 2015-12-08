@@ -20,6 +20,12 @@ class TripDetailsChangeCell: UITableViewCell, TripCellProtocol {
    * Set cell data.
    */
   func setData(indexPath: NSIndexPath, trip: Trip) {
-    // Set data here
+    let beforeSegment = trip.tripSegments[indexPath.section - 2]
+    let segment = trip.tripSegments[indexPath.section - 1]
+    
+    arrivalTimeLabel.text = DateUtils.dateAsTimeString(beforeSegment.arrivalDateTime)
+    destinationLabel.text = beforeSegment.destination.name
+    departureTimeLabel.text = DateUtils.dateAsTimeString(segment.departureDateTime)
+    originLabel.text = segment.origin.name
   }
 }

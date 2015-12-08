@@ -22,7 +22,7 @@ class TripDetailsVC: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    StandardGradient.addLayer(view)    
+    StandardGradient.addLayer(view)
     tableView.tableFooterView = UIView(frame: CGRect.zero)
   }
   
@@ -56,7 +56,9 @@ class TripDetailsVC: UITableViewController {
   
   override func tableView(tableView: UITableView,
     heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-      if !(indexPath.section == 1 && indexPath.row == 0) &&
+      if indexPath.section == 0 {
+        return 66
+      } else if !(indexPath.section == 1 && indexPath.row == 0) &&
         indexPath.section != (trip.tripSegments.count + 1) {
           return 60
       }
@@ -71,7 +73,7 @@ class TripDetailsVC: UITableViewController {
   */
   private func createHeaderCell() -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(headerCellId) as! TripDetailsHeaderCell
-    cell.setData(NSIndexPath(), trip: trip)    
+    cell.setData(NSIndexPath(), trip: trip)
     return cell
   }
   

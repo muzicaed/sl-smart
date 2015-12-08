@@ -18,6 +18,7 @@ class TripDetailsDestinationCell: UITableViewCell, TripCellProtocol {
    * Set cell data.
    */
   func setData(indexPath: NSIndexPath, trip: Trip) {
-    // Set data here
+    timeLabel.text = DateUtils.dateAsTimeString(trip.tripSegments.last!.arrivalDateTime)
+    destinationLabel.text = trip.tripSegments.last!.destination.name
   }
 }

@@ -69,10 +69,17 @@ class SearchTripService {
     var tripSegments = [TripSegment]()
     if let segmentsArr = segmentsJson.array  {
       for segmentJson in segmentsArr {
-        tripSegments.append(convertJsonToTripSegment(segmentJson))
+        
+        let segment = convertJsonToTripSegment(segmentJson)
+        if !(segment.type == .Walk && segment.distance! < 125) {
+          tripSegments.append(segment)
+        }
       }
     } else {
-      tripSegments.append(convertJsonToTripSegment(segmentsJson))
+      let segment = convertJsonToTripSegment(segmentsJson)
+      if !(segment.type == .Walk && segment.distance! < 125) {
+        tripSegments.append(segment)
+      }
     }
     
     return tripSegments
