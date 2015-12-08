@@ -55,6 +55,21 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     }
   }
   
+  
+  /**
+   * On footer tap
+   */
+  func footerTap() {
+    if trips.count > 0 && !isLoadingMore {
+      isLoadingMore = true
+      footer?.displaySpinner(1.0)
+      let trip = trips[keys.last!]!.last!
+      criterions?.time = DateUtils.dateAsTimeString(
+        trip.tripSegments.last!.departureDateTime.dateByAddingTimeInterval(60))
+      loadTripData()
+    }
+  }
+  
   // MARK: UICollectionViewController
   
   /**
@@ -169,6 +184,11 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
         UICollectionElementKindSectionFooter,
         withReuseIdentifier: footerIdentifier,
         forIndexPath: indexPath) as? TripFooter
+      
+      let tapGesture = UITapGestureRecognizer(target: self, action: Selector("footerTap"))
+      tapGesture.delaysTouchesBegan = true
+      tapGesture.numberOfTapsRequired = 1
+      footer?.addGestureRecognizer(tapGesture)
       
       return footer!
   }

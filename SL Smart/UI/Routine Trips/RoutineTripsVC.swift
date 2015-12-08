@@ -213,7 +213,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func collectionView(
     collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-      if !isShowInfo {
+      if !isShowInfo && !isLoading {
         if indexPath.section == 0 {
           selectedRoutineTrip = bestRoutineTrip
         } else {
