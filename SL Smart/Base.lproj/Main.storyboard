@@ -1846,34 +1846,118 @@ Välkommen till ett smartare sätt att pendla.</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="44" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Header" id="I7M-jQ-Rqn" userLabel="Header" customClass="TripDetailsHeaderCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Header" rowHeight="60" id="I7M-jQ-Rqn" userLabel="Header" customClass="TripDetailsHeaderCell" customModule="SL_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I7M-jQ-Rqn" id="R8E-lU-VS7">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="En resa" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cb-iK-Mp9">
-                                            <rect key="frame" x="8" y="10" width="67.5" height="24"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="5Y3-WT-CuR">
+                                            <rect key="frame" x="11" y="0.0" width="395" height="60"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QaQ-dB-dXd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="119" height="60"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lTT-4S-XGb">
+                                                            <rect key="frame" x="0.0" y="0.0" width="119" height="3"/>
+                                                            <animations/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="3" id="ayH-z4-9rJ" userLabel="height = 6"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Idag Tisdag bla bla" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cb-iK-Mp9">
+                                                            <rect key="frame" x="0.0" y="3" width="119" height="18"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="18" id="no4-fc-YWu"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stockholms södra" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVk-DQ-Fsf">
+                                                            <rect key="frame" x="0.0" y="21" width="119" height="18"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="18" id="bnA-CP-tbN"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arlanda" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pml-VN-3hz">
+                                                            <rect key="frame" x="0.0" y="39" width="119" height="18"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="18" id="U7C-tx-LtM"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S76-Ia-cBl">
+                                                            <rect key="frame" x="0.0" y="57" width="119" height="3"/>
+                                                            <animations/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="3" id="I62-R9-1Mi" userLabel="height = 6"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="kxW-Qg-Opj"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWj-9U-i5l">
+                                                    <rect key="frame" x="335" y="0.0" width="60" height="60"/>
+                                                    <subviews>
+                                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="O4e-f6-JpH">
+                                                            <rect key="frame" x="5" y="5" width="50" height="50"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="H2n-eC-H9k"/>
+                                                                <constraint firstAttribute="width" constant="50" id="jr7-OF-a9J"/>
+                                                            </constraints>
+                                                        </mapView>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="O4e-f6-JpH" firstAttribute="centerX" secondItem="CWj-9U-i5l" secondAttribute="centerX" id="Gcr-jg-4ES"/>
+                                                        <constraint firstAttribute="height" constant="60" id="TBy-m9-ZWl"/>
+                                                        <constraint firstAttribute="width" constant="60" id="iJ7-pJ-rxW"/>
+                                                        <constraint firstItem="O4e-f6-JpH" firstAttribute="centerY" secondItem="CWj-9U-i5l" secondAttribute="centerY" id="vkJ-XK-KN8"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="QXj-1m-2Yf"/>
+                                                <constraint firstItem="CWj-9U-i5l" firstAttribute="trailing" secondItem="5Y3-WT-CuR" secondAttribute="trailingMargin" id="Uob-KC-ORz"/>
+                                            </constraints>
+                                        </stackView>
                                     </subviews>
                                     <animations/>
                                     <constraints>
-                                        <constraint firstItem="1cb-iK-Mp9" firstAttribute="centerY" secondItem="R8E-lU-VS7" secondAttribute="centerY" id="eeH-qU-dfb"/>
-                                        <constraint firstItem="1cb-iK-Mp9" firstAttribute="leading" secondItem="R8E-lU-VS7" secondAttribute="leadingMargin" id="r0t-dL-3ia"/>
+                                        <constraint firstItem="5Y3-WT-CuR" firstAttribute="leading" secondItem="R8E-lU-VS7" secondAttribute="leadingMargin" constant="3" id="7Rb-4y-JR6"/>
+                                        <constraint firstItem="5Y3-WT-CuR" firstAttribute="centerY" secondItem="R8E-lU-VS7" secondAttribute="centerY" id="E7w-dA-BCT"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="5Y3-WT-CuR" secondAttribute="trailing" id="Hmy-1J-8cz"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="dateTimeLabel" destination="1cb-iK-Mp9" id="V0p-2x-uLQ"/>
+                                    <outlet property="destinationLabel" destination="pml-VN-3hz" id="DeP-zs-nJq"/>
+                                    <outlet property="miniMap" destination="O4e-f6-JpH" id="qhf-Ya-DfS"/>
+                                    <outlet property="originLabel" destination="oVk-DQ-Fsf" id="JCh-kX-W6f"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Origin" id="WaZ-2A-eHI" userLabel="Origin" customClass="TripDetailsOriginCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="136" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="152" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WaZ-2A-eHI" id="ap3-pH-rn1">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -1925,10 +2009,10 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Segment" rowHeight="60" id="5bV-hp-Oh4" userLabel="Segment" customClass="TripDetailsSegmentCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="180" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="196" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5bV-hp-Oh4" id="rwZ-DX-ZGT">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BIJ-v0-c0c">
@@ -1946,11 +2030,11 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                     <rect key="frame" x="44" y="0.0" width="60" height="60"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BUS-BLUE" translatesAutoresizingMaskIntoConstraints="NO" id="iyl-c3-qGr">
-                                                            <rect key="frame" x="22" y="23" width="15" height="15"/>
+                                                            <rect key="frame" x="19.5" y="20.5" width="20" height="20"/>
                                                             <animations/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="15" id="dDt-GH-ARa"/>
-                                                                <constraint firstAttribute="height" constant="15" id="eWP-XB-2Bc"/>
+                                                                <constraint firstAttribute="width" constant="20" id="dDt-GH-ARa"/>
+                                                                <constraint firstAttribute="height" constant="20" id="eWP-XB-2Bc"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -1980,7 +2064,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="eCd-JB-ipB"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1990,7 +2074,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="TO6-im-HX5"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -2024,7 +2108,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubSegment" rowHeight="25" id="iUr-zi-k8u" userLabel="Sub segment">
-                                <rect key="frame" x="0.0" y="240" width="414" height="25"/>
+                                <rect key="frame" x="0.0" y="256" width="414" height="25"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iUr-zi-k8u" id="ql2-Mt-GO2">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="24.5"/>
@@ -2074,7 +2158,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <animations/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Change" rowHeight="60" id="L2B-dE-HV5" userLabel="Change" customClass="TripDetailsChangeCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="265" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="281" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L2B-dE-HV5" id="wQu-HG-jGq">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
@@ -2189,7 +2273,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Destination" id="72z-46-yDK" userLabel="Destination" customClass="TripDetailsDestinationCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="325" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="341" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="72z-46-yDK" id="Rzj-Ms-fM2">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>

@@ -15,9 +15,10 @@ class TripDetailsChangeCell: UITableViewCell, TripCellProtocol {
   @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var departureTimeLabel: UILabel!
   @IBOutlet weak var originLabel: UILabel!
-  
-  
-  
+    
+  /**
+   * Set cell data.
+   */
   func setData(indexPath: NSIndexPath, trip: Trip) {
     // Set data here
   }

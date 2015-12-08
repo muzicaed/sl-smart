@@ -16,11 +16,10 @@ class TripHelper {
    */
   static func friendlyTripSegmentDesc(segment: TripSegment) -> String {
     if segment.type == .Walk {
-      return "Gå \(segment.distance!) till"
+      return "Gå \(segment.distance!) meter"
     }
-    
-    let friendlyLine = friendlyLineData(segment)
-    return "Ta \(friendlyLine.long) mot \(segment.directionText!)"
+
+    return "Mot \(segment.directionText!)"
   }
   
   /**

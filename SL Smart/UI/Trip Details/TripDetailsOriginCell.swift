@@ -13,9 +13,13 @@ class TripDetailsOriginCell: UITableViewCell, TripCellProtocol {
   
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var locationLabel: UILabel!
-    
+  
+  /**
+   * Set cell data.
+   */
   func setData(indexPath: NSIndexPath, trip: Trip) {
-    // Set data here
+    timeLabel.text = DateUtils.dateAsTimeString(trip.tripSegments.first!.departureDateTime)
+    locationLabel.text = trip.tripSegments.first!.origin.name
   }
   
 }

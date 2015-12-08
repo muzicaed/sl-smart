@@ -31,6 +31,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
    */
   override func viewDidLoad() {
     super.viewDidLoad()
+    StandardGradient.addLayer(view)    
     collectionView?.delegate = self
     StandardGradient.addLayer(view)
     if trips.count == 0 {

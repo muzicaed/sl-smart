@@ -15,7 +15,18 @@ class TripDetailsSegmentCell: UITableViewCell, TripCellProtocol {
   @IBOutlet weak var lineLabel: UILabel!
   @IBOutlet weak var directionLabel: UILabel!
   
+  /**
+   * Set cell data.
+   */
   func setData(indexPath: NSIndexPath, trip: Trip) {
-    // Set data here
+    let segment = trip.tripSegments[indexPath.section - 1]
+    let lineData = TripHelper.friendlyLineData(segment)
+    tripTypeIcon.image = UIImage(named: lineData.icon)
+    lineLabel.text = lineData.long
+    directionLabel.text = TripHelper.friendlyTripSegmentDesc(segment)
+    
+    if segment.type == .Walk {
+      lineLabel.hidden = true
+    }
   }
 }

@@ -13,7 +13,10 @@ class TripDetailsDestinationCell: UITableViewCell, TripCellProtocol {
   
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
-    
+  
+  /**
+   * Set cell data.
+   */
   func setData(indexPath: NSIndexPath, trip: Trip) {
     // Set data here
   }

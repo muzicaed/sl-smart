@@ -8,8 +8,21 @@
 
 import Foundation
 import UIKit
+import MapKit
 
-class TripDetailsHeaderCell: UITableViewCell {
+class TripDetailsHeaderCell: UITableViewCell, TripCellProtocol {
 
+  @IBOutlet weak var dateTimeLabel: UILabel!
+  @IBOutlet weak var originLabel: UILabel!
+  @IBOutlet weak var destinationLabel: UILabel!
+  @IBOutlet weak var miniMap: MKMapView!
 
+  /**
+   * Set cell data.
+   */
+  func setData(indexPath: NSIndexPath, trip: Trip) {
+    dateTimeLabel.text = DateUtils.friendlyDate(trip.tripSegments.first!.departureDateTime)
+    originLabel.text = trip.tripSegments.first!.origin.name
+    originLabel.text = trip.tripSegments.last!.destination.name
+  }
 }
