@@ -59,6 +59,7 @@ class SmartTripIC: WKInterfaceController {
    */
   override func willActivate() {
     super.willActivate()
+    setLoadingUIState()
     validSession = session.reachable
     if checkIfTripPassed() {
       forceRefreshData()
