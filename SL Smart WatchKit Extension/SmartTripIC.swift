@@ -118,6 +118,8 @@ class SmartTripIC: WKInterfaceController {
   func messageErrorHandler(error: NSError) {
     // TODO: How to handle this error??
     print("Error Code: \(error.code)\n\(error.localizedDescription)")
+    displayError("\(error.localizedDescription) (\(error.code))",
+      message: "\(error.localizedDescription)")
   }
   
   /**
