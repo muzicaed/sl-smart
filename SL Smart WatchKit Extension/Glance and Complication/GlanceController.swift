@@ -22,30 +22,19 @@ class GlanceController: SmartTripIC {
    * Interface about to be active.
    */
   override func willActivate() {
+    print("SmartTripIC willActivate")
     super.willActivate()
     timer = NSTimer.scheduledTimerWithTimeInterval(
-      60 * 10, target: self,
-      selector: Selector("forceRefreshData"),
+      15, target: self,
+      selector: Selector("updateUIData"),
       userInfo: nil, repeats: true)
-  }
-  
-  /**
-   * Interface appeard
-   */
-  override func didAppear() {
-    super.didAppear()
-    if checkIfTripPassed() {
-      forceRefreshData()
-    } else {
-      refreshData()
-      updateUIData()
-    }
   }
   
   /**
    * Interface deactivated.
    */
   override func didDeactivate() {
+    print("SmartTripIC didDeactivate")
     super.didDeactivate()
     timer?.invalidate()
     timer = nil
@@ -55,6 +44,7 @@ class GlanceController: SmartTripIC {
    * Updates UI using data from iPhone
    */
   override func updateUIData() {
+    print("SmartTripIC updateUIData")
     if let data = routineData {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
       let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
@@ -72,6 +62,9 @@ class GlanceController: SmartTripIC {
    * Displays an error
    */
   override func displayError(title: String, message: String?) {
+    print("SmartTripIC displayError")
+    print("\(title)")
+    print("\(message)")
     subTitleLabel.setText(title)
     subTitleLabel.setTextColor(UIColor.redColor())
   }
@@ -80,6 +73,7 @@ class GlanceController: SmartTripIC {
    * Updates UI to show "Loading..."
    */
   override func setLoadingUIState() {
+    print("SmartTripIC setLoadingUIState")
     contentGroup.setHidden(true)
     subTitleLabel.setText("Söker resa...")
     subTitleLabel.setTextColor(UIColor.lightGrayColor())
@@ -89,7 +83,9 @@ class GlanceController: SmartTripIC {
    * Updates UI to show content
    */
   override func showContentUIState() {
+    print("SmartTripIC showContentUIState")
     if let data = routineData {
+      updateUIData()
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
       contentGroup.setHidden(false)
       subTitleLabel.setText(bestRoutine["tit"] as? String)
