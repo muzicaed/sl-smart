@@ -8,25 +8,6 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
-        <!--Sök resa-->
-        <scene sceneID="Lwd-we-f4D">
-            <objects>
-                <viewController id="xYO-l4-z4r" customClass="PlannedTripsVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ekU-x8-oLI"/>
-                        <viewControllerLayoutGuide type="bottom" id="GfZ-gQ-NOk"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6l8-rc-VuE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Sök resa" id="83q-d1-17T"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8lo-sW-Z19" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2211" y="1337"/>
-        </scene>
         <!--Navigation Planned Trip-->
         <scene sceneID="9uW-oM-y0U">
             <objects>
@@ -38,12 +19,193 @@
                         <animations/>
                     </navigationBar>
                     <connections>
-                        <segue destination="xYO-l4-z4r" kind="relationship" relationship="rootViewController" id="Y9o-pZ-JmU"/>
+                        <segue destination="Hg1-8K-Ui9" kind="relationship" relationship="rootViewController" id="1Ev-VD-iv4"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCD-cY-mWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1504" y="1337"/>
+        </scene>
+        <!--Sök resa-->
+        <scene sceneID="Jvl-1s-m4F">
+            <objects>
+                <tableViewController id="Hg1-8K-Ui9" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="5" id="rFV-AS-BO5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.55447716349999998" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection headerTitle="Mellan vilka stationer?" id="le3-KJ-PGv">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Xyy-yp-POa">
+                                        <rect key="frame" x="0.0" y="113.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xyy-yp-POa" id="ehb-9p-dzI">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1N-3x-c9N">
+                                                    <rect key="frame" x="8" y="8" width="365" height="28"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Från" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6e-ev-APg">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="28"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="SAr-Sj-24S"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbw-ZD-CnG">
+                                                            <rect key="frame" x="50" y="0.0" width="315" height="28"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <animations/>
+                                                </stackView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="Q1N-3x-c9N" firstAttribute="leading" secondItem="ehb-9p-dzI" secondAttribute="leadingMargin" id="4KC-Oy-xsJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Q1N-3x-c9N" secondAttribute="trailing" id="9Mj-hZ-23d"/>
+                                                <constraint firstItem="Q1N-3x-c9N" firstAttribute="top" secondItem="ehb-9p-dzI" secondAttribute="topMargin" id="MJa-zu-Kql"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Q1N-3x-c9N" secondAttribute="bottom" id="QSC-sQ-nNE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="5ee-y1-l7X">
+                                        <rect key="frame" x="0.0" y="157.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5ee-y1-l7X" id="NFv-mc-lJ3">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfY-92-XdH">
+                                                    <rect key="frame" x="8" y="8" width="365" height="27.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Till" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YoD-AW-fNX">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="27.5"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="Nbm-Kd-C6P"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgc-fR-mDo">
+                                                            <rect key="frame" x="50" y="0.0" width="315" height="27.5"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <animations/>
+                                                </stackView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="vfY-92-XdH" firstAttribute="top" secondItem="NFv-mc-lJ3" secondAttribute="topMargin" id="3GB-qY-siV"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vfY-92-XdH" secondAttribute="trailing" id="j9I-Tf-Rvf"/>
+                                                <constraint firstItem="vfY-92-XdH" firstAttribute="leading" secondItem="NFv-mc-lJ3" secondAttribute="leadingMargin" id="tqV-iG-iHB"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="vfY-92-XdH" secondAttribute="bottom" id="yHG-r2-A00"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="Iin-ag-WRW" userLabel="Avresetid eller ankomsttid">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="QfG-cZ-sfK">
+                                        <rect key="frame" x="0.0" y="224.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QfG-cZ-sfK" id="2Q9-La-InF">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="068-l7-XTW">
+                                                    <rect key="frame" x="8" y="8" width="398" height="29"/>
+                                                    <animations/>
+                                                    <segments>
+                                                        <segment title="Tidigast åka"/>
+                                                        <segment title="Senast framme"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="068-l7-XTW" secondAttribute="bottom" id="5zL-oh-s6F"/>
+                                                <constraint firstItem="068-l7-XTW" firstAttribute="top" secondItem="2Q9-La-InF" secondAttribute="topMargin" id="7Kg-c0-Fcc"/>
+                                                <constraint firstItem="068-l7-XTW" firstAttribute="leading" secondItem="2Q9-La-InF" secondAttribute="leadingMargin" id="OPf-Uw-Y0h"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="068-l7-XTW" secondAttribute="trailing" id="gUP-t8-sDZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="IL2-mU-feH" userLabel="Time picker">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="12f-Dj-YYm">
+                                        <rect key="frame" x="0.0" y="291.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="12f-Dj-YYm" id="2FO-Zu-i92">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dzk-DJ-K6r">
+                                                    <rect key="frame" x="8" y="8" width="365" height="28"/>
+                                                    <subviews>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" misplaced="YES" text="När" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5T-0X-L73">
+                                                            <rect key="frame" x="0.0" y="0.0" width="26" height="28"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="249" misplaced="YES" text="Idag tisdag, kl 23:33" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LER-mx-vhk">
+                                                            <rect key="frame" x="26" y="0.0" width="340" height="28"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <animations/>
+                                                </stackView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="dzk-DJ-K6r" secondAttribute="bottom" id="Xic-jG-Fd7"/>
+                                                <constraint firstItem="dzk-DJ-K6r" firstAttribute="leading" secondItem="2FO-Zu-i92" secondAttribute="leadingMargin" id="YUT-HE-oNe"/>
+                                                <constraint firstItem="dzk-DJ-K6r" firstAttribute="top" secondItem="2FO-Zu-i92" secondAttribute="topMargin" id="ubX-kz-I6P"/>
+                                                <constraint firstItem="dzk-DJ-K6r" firstAttribute="trailing" secondItem="2FO-Zu-i92" secondAttribute="trailingMargin" id="uor-71-YXl"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Hg1-8K-Ui9" id="8QL-Sq-d7c"/>
+                            <outlet property="delegate" destination="Hg1-8K-Ui9" id="pei-WU-5NV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Sök resa" id="glH-7o-VC8"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Xm-jb-YxA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2211" y="1337"/>
         </scene>
         <!--Nuvarande störningar-->
         <scene sceneID="flZ-ox-ThE">
@@ -317,7 +479,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="Tpp-BZ-tSw"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -371,7 +533,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="Jx2-bl-5e1"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
