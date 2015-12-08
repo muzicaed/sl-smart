@@ -31,6 +31,12 @@
 		185BCC921C09389E00A2C6DB /* TripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BCC911C09389E00A2C6DB /* TripHeader.swift */; };
 		188367621C16264200A8BE16 /* WatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367611C16264200A8BE16 /* WatchService.swift */; };
 		188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367681C16EEA000A8BE16 /* TripDetailsVC.swift */; };
+		1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */; };
+		1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */; };
+		1883676F1C170DE500A8BE16 /* TripDetailsOriginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676E1C170DE500A8BE16 /* TripDetailsOriginCell.swift */; };
+		188367711C170E1800A8BE16 /* TripDetailsChangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367701C170E1800A8BE16 /* TripDetailsChangeCell.swift */; };
+		188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */; };
+		188367751C170E5500A8BE16 /* TripDetailsDestinationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */; };
 		188B85661C14ADF100098B00 /* SLNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85651C14ADF100098B00 /* SLNetworkError.swift */; };
 		188B856A1C15B03400098B00 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85691C15B03400098B00 /* DateUtils.swift */; };
 		188B856E1C15BFA000098B00 /* OtherRoutinesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B856D1C15BFA000098B00 /* OtherRoutinesRow.swift */; };
@@ -176,6 +182,12 @@
 		185BCC911C09389E00A2C6DB /* TripHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHeader.swift; sourceTree = "<group>"; };
 		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchService.swift; sourceTree = "<group>"; };
 		188367681C16EEA000A8BE16 /* TripDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsVC.swift; sourceTree = "<group>"; };
+		1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCellProtocol.swift; sourceTree = "<group>"; };
+		1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsHeaderCell.swift; sourceTree = "<group>"; };
+		1883676E1C170DE500A8BE16 /* TripDetailsOriginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsOriginCell.swift; sourceTree = "<group>"; };
+		188367701C170E1800A8BE16 /* TripDetailsChangeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsChangeCell.swift; sourceTree = "<group>"; };
+		188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsSegmentCell.swift; sourceTree = "<group>"; };
+		188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsDestinationCell.swift; sourceTree = "<group>"; };
 		188B85651C14ADF100098B00 /* SLNetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLNetworkError.swift; sourceTree = "<group>"; };
 		188B85691C15B03400098B00 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		188B856D1C15BFA000098B00 /* OtherRoutinesRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherRoutinesRow.swift; sourceTree = "<group>"; };
@@ -283,6 +295,12 @@
 			isa = PBXGroup;
 			children = (
 				188367681C16EEA000A8BE16 /* TripDetailsVC.swift */,
+				1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */,
+				1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */,
+				1883676E1C170DE500A8BE16 /* TripDetailsOriginCell.swift */,
+				188367701C170E1800A8BE16 /* TripDetailsChangeCell.swift */,
+				188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */,
+				188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */,
 			);
 			path = "Trip Details";
 			sourceTree = "<group>";
@@ -684,6 +702,7 @@
 				181B9AEF1C0370EF00B9145A /* SLTravelPlannerV2Api.swift in Sources */,
 				181B9AF81C03B3FB00B9145A /* TripHelper.swift in Sources */,
 				1806037E1C023E8400AC1841 /* DataStore.swift in Sources */,
+				188367751C170E5500A8BE16 /* TripDetailsDestinationCell.swift in Sources */,
 				18937E811BFFABFC00C523C9 /* PlannedTripsVC.swift in Sources */,
 				18937E7A1BFF5F2F00C523C9 /* Trip.swift in Sources */,
 				180FD8B51C0B087E0095C790 /* ScorePost.swift in Sources */,
@@ -703,15 +722,20 @@
 				185BCC921C09389E00A2C6DB /* TripHeader.swift in Sources */,
 				188367621C16264200A8BE16 /* WatchService.swift in Sources */,
 				181BD4161C047AA900651D0F /* RoutineTripHeader.swift in Sources */,
+				1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */,
 				181B9AF11C0375DC00B9145A /* TripSegment.swift in Sources */,
 				18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */,
 				18232CB01C01FA78006334D1 /* SLSearchStationApi.swift in Sources */,
+				188367711C170E1800A8BE16 /* TripDetailsChangeCell.swift in Sources */,
+				188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */,
 				188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */,
+				1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */,
 				18232CAC1C01EC2F006334D1 /* SearchStationVC.swift in Sources */,
 				18937E7C1BFF5F8100C523C9 /* Station.swift in Sources */,
 				18AC9CFE1C0866C7007ECFA2 /* MyLocationHelper.swift in Sources */,
 				18937E7E1BFF6AB700C523C9 /* RoutineTripCell.swift in Sources */,
 				1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */,
+				1883676F1C170DE500A8BE16 /* TripDetailsOriginCell.swift in Sources */,
 				18232CA41C01D46A006334D1 /* EditRoutineTripVC.swift in Sources */,
 				18937E871C00A17700C523C9 /* RoutineTrip.swift in Sources */,
 				18232CAA1C01EA15006334D1 /* StationSearchService.swift in Sources */,

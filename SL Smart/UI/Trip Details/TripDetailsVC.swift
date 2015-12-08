@@ -33,7 +33,7 @@ class TripDetailsVC: UITableViewController {
   
   override func tableView(tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
-      if section == 1 || section == trip.tripSegments.count {
+      if section == 0 || section == trip.tripSegments.count + 1 {
         return 1
       }
       return 2
@@ -42,23 +42,25 @@ class TripDetailsVC: UITableViewController {
   override func tableView(tableView: UITableView,
     cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       let sec = indexPath.section
-      if sec == 1 {
-        return createHeaderCell(indexPath)
-      } else if sec == 2 {
+      print("sec: \(indexPath.section)")
+      print("row: \(indexPath.row)")
+      if sec == 0 {
+        return createHeaderCell()
+      } else if sec == 1 {
         return createOriginCell(indexPath)
-      } else if sec == (trip.tripSegments.count + 2) {
-        return createDestinationCell(indexPath)
+      } else if sec == (trip.tripSegments.count + 1) {
+        return createDestinationCell()
       }
       
       return createSegmentCell(indexPath)
   }
   
   override func tableView(tableView: UITableView,
-    heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {      
-      if indexPath.row == 2 || indexPath.row == 4 {
-        return 60
-      } else if indexPath.row == 3 {
-        return 25
+    heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+      if indexPath.section != 0 &&
+        !(indexPath.section == 1 && indexPath.row == 0) &&
+        indexPath.row != (trip.tripSegments.count + 1) {
+          return 60
       }
       
       return 44
@@ -69,28 +71,34 @@ class TripDetailsVC: UITableViewController {
   /**
   * Create table cell for header row.
   */
-  private func createHeaderCell(indexPath: NSIndexPath) -> UITableViewCell {
-    return UITableViewCell()
+  private func createHeaderCell() -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier(headerCellId)!
+    return cell
   }
   
   /**
    * Create table cell for origin row.
    */
   private func createOriginCell(indexPath: NSIndexPath) -> UITableViewCell {
-    return UITableViewCell()
+    let cellId = indexPath.row == 0 ? originCellId : segmentCellId
+    let cell = tableView.dequeueReusableCellWithIdentifier(cellId)!
+    return cell
   }
   
   /**
    * Create table cell for segment row.
    */
   private func createSegmentCell(indexPath: NSIndexPath) -> UITableViewCell {
-    return UITableViewCell()
+    let cellId = indexPath.row == 0 ? changeCellId : segmentCellId
+    let cell = tableView.dequeueReusableCellWithIdentifier(cellId)!
+    return cell
   }
   
   /**
    * Create table cell for segment row.
    */
-  private func createDestinationCell(indexPath: NSIndexPath) -> UITableViewCell {
-    return UITableViewCell()
+  private func createDestinationCell() -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier(destinationCellId)!
+    return cell
   }
 }
