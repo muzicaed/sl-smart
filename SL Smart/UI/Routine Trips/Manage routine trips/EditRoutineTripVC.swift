@@ -220,7 +220,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
   private func showWeekInfoAlert() {
     let invalidStationAlert = UIAlertController(
       title: "Förklaring",
-      message: "Ange om vardagar eller helger är då du vanligtvis åker denna resa.\n\nKom ihåg att Appen lär sig dina vanor även när du reser utanför denna rutin. ",
+      message: "Välj hur du oftast åker denna resa - vardagar eller helger.\n\nAppen lär sig dina vanor även när du reser utanför denna rutin. ",
       preferredStyle: UIAlertControllerStyle.Alert)
     invalidStationAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
@@ -234,7 +234,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
   private func showTimeInfoAlert() {
     let invalidStationAlert = UIAlertController(
       title: "Förklaring",
-      message: "Morgon: 05:00 - 10.59\nDag: 11:00 - 17:59\nKväll: 18:00 - 21:59\nNatt: 22:00 - 04:59\n\nKom ihåg att Appen lär sig dina vanor även när du reser utanför dessa tider.",
+      message: "Morgon: 05:00 - 10.59\nDag: 11:00 - 17:59\nKväll: 18:00 - 21:59\nNatt: 22:00 - 04:59\n\nAppen lär sig dina vanor även när du reser utanför dessa tider.",
       preferredStyle: UIAlertControllerStyle.Alert)
     invalidStationAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
