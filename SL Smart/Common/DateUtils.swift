@@ -71,6 +71,27 @@ class DateUtils {
   }
   
   /**
+   * Converts a NSDate to a swedish local friendly
+   * date string.
+   */
+  static func friendlyDateAndTime(date: NSDate) -> String {
+    let formatter = getSwedishFormatter()
+    
+    formatter.dateFormat = "EEEE"
+    var weekDay = formatter.stringFromDate(date)
+    if formatter.stringFromDate(NSDate()) == weekDay {
+      weekDay = "Idag"
+    } else if formatter.stringFromDate(NSDate(timeIntervalSinceNow: 86400)) == weekDay {
+      weekDay = "imorgon"
+    }
+    
+    formatter.dateFormat = "HH:mm"
+    let time = formatter.stringFromDate(date)
+    
+    return ("\(weekDay.capitalizedString), kl. \(time)")
+  }
+  
+  /**
    * Converts a NSDate to a swedish local tuple with 
    * date and time string
    * eg. "2015-02-06" and "17:04"

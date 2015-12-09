@@ -74,6 +74,7 @@
 		18AC9CFE1C0866C7007ECFA2 /* MyLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */; };
 		18AC9D001C08B5B4007ECFA2 /* TripFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFF1C08B5B4007ECFA2 /* TripFooter.swift */; };
 		18BF52231C182D3E002B68AD /* TripCellCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF52221C182D3E002B68AD /* TripCellCache.swift */; };
+		18BF52261C1840E1002B68AD /* DateTimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF52251C1840E1002B68AD /* DateTimePickerVC.swift */; };
 		18CE5CC71C025E3E00E1F5A9 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC61C025E3E00E1F5A9 /* Routine.swift */; };
 		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
 		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
@@ -264,6 +265,7 @@
 		18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLocationHelper.swift; sourceTree = "<group>"; };
 		18AC9CFF1C08B5B4007ECFA2 /* TripFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripFooter.swift; sourceTree = "<group>"; };
 		18BF52221C182D3E002B68AD /* TripCellCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCellCache.swift; sourceTree = "<group>"; };
+		18BF52251C1840E1002B68AD /* DateTimePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickerVC.swift; sourceTree = "<group>"; };
 		18CE5CC61C025E3E00E1F5A9 /* Routine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleHelper.swift; sourceTree = "<group>"; };
 		18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabVC.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				188B80AD1C178DD900E7D90C /* TripSearchVC.swift */,
+				18BF52251C1840E1002B68AD /* DateTimePickerVC.swift */,
 			);
 			path = "Trip Search";
 			sourceTree = "<group>";
@@ -869,6 +872,7 @@
 				188367621C16264200A8BE16 /* WatchService.swift in Sources */,
 				181BD4161C047AA900651D0F /* RoutineTripHeader.swift in Sources */,
 				1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */,
+				18BF52261C1840E1002B68AD /* DateTimePickerVC.swift in Sources */,
 				181B9AF11C0375DC00B9145A /* TripSegment.swift in Sources */,
 				18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */,
 				18232CB01C01FA78006334D1 /* SLSearchStationApi.swift in Sources */,

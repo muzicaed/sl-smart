@@ -13,8 +13,8 @@ import Foundation
  */
 class TripSearchCriterion {
   
-  let originId: Int
-  let destId: Int
+  var originId: Int
+  var destId: Int
   var date: String?
   var time: String?
   var numChg: Int?

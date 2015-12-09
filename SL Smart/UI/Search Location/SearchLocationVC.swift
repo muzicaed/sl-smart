@@ -62,7 +62,7 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
     let selectedStation = searchResult[indexPath.row]
     delegate?.selectedStationFromSearch(selectedStation)
     searchController?.active = false
-    performSegueWithIdentifier("unwindToEditRoutineTrip", sender: self)
+    performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
   }
   
   // MARK: UISearchResultsUpdating

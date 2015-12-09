@@ -129,7 +129,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
     }
   }
   
-  @IBAction func unwindToEditRoutineTrip(segue: UIStoryboardSegue) {}
+  @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
   
   // MARK: UITableViewController
   
