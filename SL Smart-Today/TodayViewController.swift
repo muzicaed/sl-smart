@@ -80,6 +80,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * Creates trip type icon per segment.
    */
   private func createTripSegmentIcons(trip: Trip) {
+    iconContainerView.subviews.forEach({ $0.removeFromSuperview() })
     var count = 0
     for (_, segment) in trip.tripSegments.enumerate() {
       if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
