@@ -10,6 +10,26 @@ import Foundation
 import UIKit
 
 class DateTimePickerVC: UIViewController {
-
-
+  
+  @IBOutlet weak var dateTimePicker: UIDatePicker!
+  
+  var delegate: DateTimePickResponder?
+  var selectedDate: NSDate?
+  
+  /**
+   * On close button tap
+   */
+  @IBAction func onCloseButtonTap(sender: AnyObject) {
+    dismissViewControllerAnimated(true, completion: nil)
+    
+  }
+  
+  /**
+   * On pick time button tap
+   */
+  @IBAction func onPickTimeButtonTap(sender: AnyObject) {
+    delegate?.pickedDate(dateTimePicker.date)
+    dismissViewControllerAnimated(true, completion: nil)
+  }
 }
+

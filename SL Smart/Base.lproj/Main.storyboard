@@ -236,7 +236,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Sök resa" id="glH-7o-VC8">
                         <barButtonItem key="leftBarButtonItem" title="Avancerat" id="ddt-6P-8PN"/>
-                        <barButtonItem key="rightBarButtonItem" title="Sök" style="done" id="cLP-J8-IqA"/>
+                        <barButtonItem key="rightBarButtonItem" title="Sök" style="done" id="cLP-J8-IqA">
+                            <connections>
+                                <segue destination="1Cw-O1-Jfo" kind="show" identifier="ShowTripList" id="p87-eE-sWT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="destinationLabel" destination="Hgc-fR-mDo" id="odM-3o-LDM"/>
@@ -251,7 +255,7 @@
         <!--Date Time Picker-->
         <scene sceneID="XvZ-hj-gEE">
             <objects>
-                <viewController title="Date Time Picker" id="TZ1-ux-qDf" sceneMemberID="viewController">
+                <viewController title="Date Time Picker" id="TZ1-ux-qDf" customClass="DateTimePickerVC" customModule="SL_Smart" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UKT-Lk-M9I"/>
                         <viewControllerLayoutGuide type="bottom" id="uoU-Vx-2MX"/>
@@ -285,6 +289,9 @@
                                                 <state key="normal" title="Välj tid">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onPickTimeButtonTap:" destination="TZ1-ux-qDf" eventType="touchUpInside" id="pnb-3q-txJ"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZb-ha-dRH">
                                                 <rect key="frame" x="8" y="8" width="45" height="28"/>
@@ -293,6 +300,9 @@
                                                 <state key="normal" title="Stäng">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onCloseButtonTap:" destination="TZ1-ux-qDf" eventType="touchUpInside" id="5ea-v0-1Ay"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <animations/>
@@ -328,6 +338,9 @@
                             <constraint firstAttribute="trailing" secondItem="MdY-re-yjp" secondAttribute="trailing" id="t5M-ux-XWP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dateTimePicker" destination="ZXf-Q6-ESW" id="nrz-80-G1T"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGC-CH-k9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2909,7 +2922,8 @@ Välkommen till ett smartare sätt att pendla.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Sda-vE-i9s"/>
+        <segue reference="p87-eE-sWT"/>
+        <segue reference="52i-vc-COQ"/>
         <segue reference="Q81-bK-EK6"/>
     </inferredMetricsTieBreakers>
 </document>

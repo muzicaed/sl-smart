@@ -65,6 +65,7 @@
 		18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */; };
 		18937E871C00A17700C523C9 /* RoutineTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E861C00A17700C523C9 /* RoutineTrip.swift */; };
 		18946B171C18431500A5829D /* DateTimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18946B161C18431500A5829D /* DateTimePickerVC.swift */; };
+		18946B1D1C1844E700A5829D /* DateTimePickResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */; };
 		18A824741C0EE866006190C4 /* SmartTripIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E591BFF33FB00C523C9 /* SmartTripIC.swift */; };
 		18A824751C0EE866006190C4 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */; };
 		18A824771C0EE866006190C4 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5F1BFF33FB00C523C9 /* GlanceController.swift */; };
@@ -260,6 +261,7 @@
 		18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageRoutineTripsVC.swift; sourceTree = "<group>"; };
 		18937E861C00A17700C523C9 /* RoutineTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTrip.swift; sourceTree = "<group>"; };
 		18946B161C18431500A5829D /* DateTimePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickerVC.swift; sourceTree = "<group>"; };
+		18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickResponder.swift; sourceTree = "<group>"; };
 		18AC9CF71C07AD4D007ECFA2 /* TripListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripListVC.swift; sourceTree = "<group>"; };
 		18AC9CF91C07AE63007ECFA2 /* TripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCell.swift; sourceTree = "<group>"; };
 		18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchNearbyStationsApi.swift; sourceTree = "<group>"; };
@@ -335,7 +337,6 @@
 			isa = PBXGroup;
 			children = (
 				18232CA51C01DB81006334D1 /* StyleButton.swift */,
-				1806037B1C02165000AC1841 /* StationSearchResponder.swift */,
 				18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */,
 				1854E1981C065EB70070C545 /* StandardGradient.swift */,
 				185073741C09CE84005D0D7E /* TripIcons.swift */,
@@ -379,6 +380,8 @@
 		188B80AC1C178DB800E7D90C /* Trip Search */ = {
 			isa = PBXGroup;
 			children = (
+				18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */,
+				18946B161C18431500A5829D /* DateTimePickerVC.swift */,
 				188B80AD1C178DD900E7D90C /* TripSearchVC.swift */,
 			);
 			path = "Trip Search";
@@ -565,7 +568,7 @@
 			isa = PBXGroup;
 			children = (
 				18232CAB1C01EC2F006334D1 /* SearchLocationVC.swift */,
-				18946B161C18431500A5829D /* DateTimePickerVC.swift */,
+				1806037B1C02165000AC1841 /* StationSearchResponder.swift */,
 			);
 			path = "Search Location";
 			sourceTree = "<group>";
@@ -869,6 +872,7 @@
 				18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */,
 				181B9AFA1C03D64000B9145A /* RoutineService.swift in Sources */,
 				185BCC921C09389E00A2C6DB /* TripHeader.swift in Sources */,
+				18946B1D1C1844E700A5829D /* DateTimePickResponder.swift in Sources */,
 				188367621C16264200A8BE16 /* WatchService.swift in Sources */,
 				181BD4161C047AA900651D0F /* RoutineTripHeader.swift in Sources */,
 				1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */,
