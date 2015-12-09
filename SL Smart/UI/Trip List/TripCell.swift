@@ -93,7 +93,6 @@ class TripCell: UICollectionViewCell {
         iconAreaView.addSubview(wrapperView)
         count++
       }
-
     }
   }
 }

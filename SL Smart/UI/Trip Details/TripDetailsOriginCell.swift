@@ -20,7 +20,7 @@ class TripDetailsOriginCell: UITableViewCell, TripCellProtocol {
    */
   func setData(indexPath: NSIndexPath, trip: Trip) {
     timeLabel.text = DateUtils.dateAsTimeString(trip.tripSegments.first!.departureDateTime)
-    locationLabel.text = trip.tripSegments.first!.origin.name
+    locationLabel.text = trip.tripSegments.first!.origin.cleanName
   }
   
 }

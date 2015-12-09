@@ -25,8 +25,8 @@ class TripDetailsChangeCell: UITableViewCell, TripCellProtocol {
     let segment = trip.tripSegments[indexPath.section - 1]
     
     arrivalTimeLabel.text = DateUtils.dateAsTimeString(beforeSegment.arrivalDateTime)
-    destinationLabel.text = beforeSegment.destination.name
+    destinationLabel.text = beforeSegment.destination.cleanName
     departureTimeLabel.text = DateUtils.dateAsTimeString(segment.departureDateTime)
-    originLabel.text = segment.origin.name
+    originLabel.text = segment.origin.cleanName
   }
 }

@@ -18,6 +18,9 @@
 		1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854E1981C065EB70070C545 /* StandardGradient.swift */; };
 		185BCC921C09389E00A2C6DB /* TripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BCC911C09389E00A2C6DB /* TripHeader.swift */; };
 		185D8DBE1C189D0200300890 /* WatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367611C16264200A8BE16 /* WatchService.swift */; };
+		185D8DBF1C18A73500300890 /* ResStockholmApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; };
+		185D8DC11C18AFE200300890 /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185D8DC01C18AFE200300890 /* TripIcons.swift */; };
+		185D8DC31C18B00A00300890 /* Assests.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185D8DC21C18B00A00300890 /* Assests.xcassets */; };
 		188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367681C16EEA000A8BE16 /* TripDetailsVC.swift */; };
 		1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */; };
 		1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */; };
@@ -226,6 +229,8 @@
 		185073741C09CE84005D0D7E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
 		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
 		185BCC911C09389E00A2C6DB /* TripHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHeader.swift; sourceTree = "<group>"; };
+		185D8DC01C18AFE200300890 /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
+		185D8DC21C18B00A00300890 /* Assests.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assests.xcassets; sourceTree = "<group>"; };
 		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WatchService.swift; path = "SL Smart/WatchService.swift"; sourceTree = "<group>"; };
 		188367681C16EEA000A8BE16 /* TripDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsVC.swift; sourceTree = "<group>"; };
 		1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCellProtocol.swift; sourceTree = "<group>"; };
@@ -294,6 +299,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185D8DBF1C18A73500300890 /* ResStockholmApiKit.framework in Frameworks */,
 				188B80451C175D9600E7D90C /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,6 +403,8 @@
 				188B80471C175D9600E7D90C /* TodayViewController.swift */,
 				188B80491C175D9600E7D90C /* MainInterface.storyboard */,
 				188B804C1C175D9600E7D90C /* Info.plist */,
+				185D8DC01C18AFE200300890 /* TripIcons.swift */,
+				185D8DC21C18B00A00300890 /* Assests.xcassets */,
 			);
 			path = "SL Smart-Today";
 			sourceTree = "<group>";
@@ -842,6 +850,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185D8DC31C18B00A00300890 /* Assests.xcassets in Resources */,
 				188B804B1C175D9600E7D90C /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -917,6 +926,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				188B80481C175D9600E7D90C /* TodayViewController.swift in Sources */,
+				185D8DC11C18AFE200300890 /* TripIcons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

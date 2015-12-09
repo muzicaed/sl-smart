@@ -20,6 +20,6 @@ class TripDetailsDestinationCell: UITableViewCell, TripCellProtocol {
    */
   func setData(indexPath: NSIndexPath, trip: Trip) {
     timeLabel.text = DateUtils.dateAsTimeString(trip.tripSegments.last!.arrivalDateTime)
-    destinationLabel.text = trip.tripSegments.last!.destination.name
+    destinationLabel.text = trip.tripSegments.last!.destination.cleanName
   }
 }
