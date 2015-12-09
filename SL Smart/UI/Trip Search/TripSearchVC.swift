@@ -45,7 +45,7 @@ class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickR
       vc.criterions = criterions
     } else if segue.identifier == "ShowDateTimePicker" {
       let vc = segue.destinationViewController as! DateTimePickerVC
-      vc.dateTimePicker.date = selectedDate
+      vc.selectedDate = selectedDate
       vc.delegate = self
     }
   }
@@ -85,9 +85,15 @@ class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickR
   
   override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
     
-    
     let bgColorView = UIView()
-    bgColorView.backgroundColor = UIColor.lightGrayColor()
+    bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
     cell.selectedBackgroundView = bgColorView
+  }
+  
+  /**
+   * Deselect selected row.
+   */
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
 }

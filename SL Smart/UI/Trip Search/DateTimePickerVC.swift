@@ -16,6 +16,16 @@ class DateTimePickerVC: UIViewController {
   var delegate: DateTimePickResponder?
   var selectedDate: NSDate?
   
+  
+  /**
+   * View did load
+   */
+  override func viewDidLoad() {
+    if let date = selectedDate {
+      dateTimePicker.date = date
+    }
+  }
+  
   /**
    * On close button tap
    */

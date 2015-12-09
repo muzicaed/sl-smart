@@ -153,6 +153,20 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
       }
   }
   
+  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    let bgColorView = UIView()
+    bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+    cell.selectedBackgroundView = bgColorView
+  }
+  
+  /**
+   * Deselect selected row.
+   */
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  }
+  
   // MARK: UITextFieldDelegate
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
