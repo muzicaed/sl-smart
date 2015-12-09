@@ -27,10 +27,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.preferredContentSize = CGSizeMake(0, 160)
+
+    view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("onTap")))
+  }
+  
+  /**
+   * User taps the view.
+   */
+  func onTap() {
+    extensionContext?.openURL(NSURL(string: "ressmart://")!, completionHandler: nil)
   }
   
   func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
-    print("widgetPerformUpdateWithCompletionHandler")
     reloadData(completionHandler)
   }
   
