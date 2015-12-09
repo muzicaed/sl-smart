@@ -32,7 +32,7 @@ class TripSearchCriterion {
   var useFerry = true
   var useShip = true
   
-  var numTrips = 6
+  var numTrips = 8
   var realtime = false
   
   

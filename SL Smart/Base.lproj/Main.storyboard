@@ -161,6 +161,9 @@
                                                         <segment title="Tidigast åka"/>
                                                         <segment title="Senast framme"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="onDepartureArrivalChanged:" destination="Hg1-8K-Ui9" eventType="valueChanged" id="aYH-Ki-QrT"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <animations/>
@@ -243,6 +246,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="destinationArrivalSegmented" destination="068-l7-XTW" id="4EV-7d-hUV"/>
                         <outlet property="destinationLabel" destination="Hgc-fR-mDo" id="odM-3o-LDM"/>
                         <outlet property="originLabel" destination="Nbw-ZD-CnG" id="mR4-Gr-Xs9"/>
                         <outlet property="timeLabel" destination="aCt-QJ-mxP" id="khP-tq-igr"/>

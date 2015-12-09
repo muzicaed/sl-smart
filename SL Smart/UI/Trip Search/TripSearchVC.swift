@@ -18,6 +18,7 @@ class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickR
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
+  @IBOutlet weak var destinationArrivalSegmented: UISegmentedControl!
   
   /**
    * View did load
@@ -26,6 +27,14 @@ class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickR
     super.viewDidLoad()
     view.backgroundColor = StyleHelper.sharedInstance.background
     pickedDate(NSDate())
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    criterions.searchForArrival = (destinationArrivalSegmented.selectedSegmentIndex == 1)
+    let dateTimeTuple = DateUtils.dateAsStringTuple(selectedDate)
+    criterions.date = dateTimeTuple.date
+    criterions.time = dateTimeTuple.time
   }
   
   /**
@@ -49,6 +58,14 @@ class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickR
       vc.delegate = self
     }
   }
+  
+  /**
+   * Changed if departure time or arrival time
+   */
+  @IBAction func onDepartureArrivalChanged(sender: UISegmentedControl) {
+    criterions.searchForArrival = (destinationArrivalSegmented.selectedSegmentIndex == 1)
+  }
+  
   
   @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
   
