@@ -22,11 +22,7 @@ public class Station: NSObject, NSCoding, NSCopying {
    * Standard init
    */
   public init(id: Int, name: String, type: String, lat: String, lon: String) {
-    let nameAreaTuple = Station.extractNameAndArea(name)
     self.siteId = id
-    self.name = nameAreaTuple.name
-    self.area = nameAreaTuple.area
-    self.cleanName = Station.createCleanName(nameAreaTuple.name)
     self.lat = lat
     self.lon = lon
     if let enumType = LocationType(rawValue: type) {
@@ -36,6 +32,11 @@ public class Station: NSObject, NSCoding, NSCopying {
     } else {
       self.type = LocationType.Station
     }
+    
+    let nameAreaTuple = Station.extractNameAndArea(name, type: self.type)
+    self.name = nameAreaTuple.name
+    self.area = nameAreaTuple.area
+    self.cleanName = Station.createCleanName(nameAreaTuple.name)
   }
   
   /**
@@ -56,21 +57,34 @@ public class Station: NSObject, NSCoding, NSCopying {
    * Extracts the name and area from a search result name.
    * Eg. "Spånga (Stockholm)" = "Spånga" and "Stockholm"
    */
-  private static func extractNameAndArea(nameString: String) -> (name: String, area: String) {
-    let res = nameString.rangeOfString("(", options: NSStringCompareOptions.BackwardsSearch)
-    if let res = res {
-      let name = nameString.substringToIndex(res.startIndex)
-        .stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+  private static func extractNameAndArea(
+    nameString: String, type: LocationType) -> (name: String, area: String) {
       
-      let area = nameString.substringFromIndex(res.startIndex)
-        .stringByReplacingOccurrencesOfString("(", withString: "",
-          options: NSStringCompareOptions.LiteralSearch, range: nil)
-        .stringByReplacingOccurrencesOfString(")", withString: "",
-          options: NSStringCompareOptions.LiteralSearch, range: nil)
+      if type == .Station {
+        let res = nameString.rangeOfString("(", options: NSStringCompareOptions.BackwardsSearch)
+        if let res = res {
+          let name = nameString.substringToIndex(res.startIndex)
+            .stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+          
+          let area = nameString.substringFromIndex(res.startIndex)
+            .stringByReplacingOccurrencesOfString("(", withString: "",
+              options: NSStringCompareOptions.LiteralSearch, range: nil)
+            .stringByReplacingOccurrencesOfString(")", withString: "",
+              options: NSStringCompareOptions.LiteralSearch, range: nil)
+          
+          return (name, "\(area) (Hållplats)")
+        }
+        
+      }
+      let nameSegments = nameString.characters.split{$0 == ","}.map(String.init)
+      if nameSegments.count > 1 {
+        return (
+          nameSegments[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()),
+          nameSegments[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + " (Adress)"
+        )
+      }
+      return (nameString, "")
       
-      return (name, area)
-    }
-    return (nameString, "")
   }
   
   /**

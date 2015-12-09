@@ -20,7 +20,7 @@ public class StationSearchService {
   public static func search(
     query: String,
     callback: (data: [Station], error: SLNetworkError?) -> Void) {
-      api.search(query, stationsOnly: true) { resTuple in
+      api.search(query, stationsOnly: false) { resTuple in
         var stations = [Station]()
         if let data = resTuple.data {
           stations = StationSearchService.convertJsonResponse(data)

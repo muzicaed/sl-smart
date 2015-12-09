@@ -55,6 +55,12 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
         forIndexPath: indexPath)
       cell.textLabel?.text = station.name
       cell.detailTextLabel?.text = station.area
+      if station.type == .Station {
+        cell.imageView?.image = UIImage(named: "station-icon")
+      } else {
+        cell.imageView?.image = UIImage(named: "address-icon")
+      }
+      cell.imageView?.alpha = 0.4
       
       return cell
   }
