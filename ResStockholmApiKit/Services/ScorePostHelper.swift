@@ -84,10 +84,10 @@ public class ScorePostHelper {
     let destinationId = destinationId
     
     ScorePostHelper.changeScore(dayOfWeek, hourOfDay: hourOfDay,
-      siteId: originId, isOrigin: true, scoreMod: 1,
+      siteId: originId, isOrigin: true, scoreMod: 2,
       location: currentLocation, scorePosts: &scorePosts)
     ScorePostHelper.changeScore(dayOfWeek, hourOfDay: hourOfDay,
-      siteId: destinationId, isOrigin: false, scoreMod: 2,
+      siteId: destinationId, isOrigin: false, scoreMod: 3,
       location: currentLocation, scorePosts: &scorePosts)
     DataStore.sharedInstance.writeScorePosts(scorePosts)
   }

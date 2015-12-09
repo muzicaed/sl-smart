@@ -46,6 +46,7 @@ class SmartTripIC: WKInterfaceController {
   var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
   var routineData: Dictionary<String, AnyObject>?
   var isLoading = false
+  var timer: NSTimer?  
   
   override init() {
     super.init()
@@ -60,6 +61,10 @@ class SmartTripIC: WKInterfaceController {
   override func willActivate() {
     print("SmartTripIC willActivate")
     super.willActivate()
+    timer = NSTimer.scheduledTimerWithTimeInterval(
+      10, target: self,
+      selector: Selector("updateUIData"),
+      userInfo: nil, repeats: true)
     
     // Initial load
     if routineData == nil {
@@ -68,6 +73,16 @@ class SmartTripIC: WKInterfaceController {
     } else {
       showContentUIState()
     }
+  }
+  
+  /**
+   * Interface deactivated.
+   */
+  override func didDeactivate() {
+    print("SmartTripIC didDeactivate")
+    super.didDeactivate()
+    timer?.invalidate()
+    timer = nil
   }
   
   /**
@@ -97,6 +112,11 @@ class SmartTripIC: WKInterfaceController {
       session.sendMessage(["action": "RequestRoutineTrips"],
         replyHandler: requestRoutineTripsHandler,
         errorHandler: messageErrorHandler)
+    } else {
+      // TODO: How to handle this??
+      displayError(
+        "Kan inte nå din iPhone",
+        message: "Kontrollera att din iPhone är påslagen, i närheten och att den är ansluten till internet.")
     }
   }
   
@@ -110,6 +130,7 @@ class SmartTripIC: WKInterfaceController {
     if hasData {
       routineData = reply
       showContentUIState()
+      lastUpdated = NSDate()
     } else {
       displayError(
         "Hittade inga Smarta Resor",
@@ -226,9 +247,11 @@ class SmartTripIC: WKInterfaceController {
    */
   func showContentUIState() {
     print("SmartTripIC showContentUIState")
-    updateUIData()
-    containerGroup.setHidden(false)
-    loadingLabel.setHidden(true)
+    if !isLoading {
+      updateUIData()
+      containerGroup.setHidden(false)
+      loadingLabel.setHidden(true)
+    }
   }
   
   /**
@@ -313,7 +336,7 @@ class SmartTripIC: WKInterfaceController {
    */
   private func shouldReloadData() -> Bool {
     return (
-      lastUpdated.timeIntervalSinceNow > (60 * 5) ||
+      NSDate().timeIntervalSinceDate(lastUpdated) > (60 * 5) ||
       routineData == nil ||
       checkIfTripPassed()
     )

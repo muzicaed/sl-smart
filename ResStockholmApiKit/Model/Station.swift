@@ -14,26 +14,42 @@ public class Station: NSObject, NSCoding, NSCopying {
   public let name: String
   public let cleanName: String
   public let area: String
+  public let type: LocationType
+  public let lat: String
+  public let lon: String
   
   /**
    * Standard init
    */
-  public init(id: Int, name: String) {
+  public init(id: Int, name: String, type: String, lat: String, lon: String) {
     let nameAreaTuple = Station.extractNameAndArea(name)
     self.siteId = id
     self.name = nameAreaTuple.name
     self.area = nameAreaTuple.area
     self.cleanName = Station.createCleanName(nameAreaTuple.name)
+    self.lat = lat
+    self.lon = lon
+    if let enumType = LocationType(rawValue: type) {
+      self.type = enumType
+    } else if let enumType = LocationType(fromShort: type){
+      self.type = enumType
+    } else {
+      self.type = LocationType.Station
+    }
   }
   
   /**
    * Standard init
    */
-  public init(id: Int, name: String, cleanName: String, area: String) {
-    self.siteId = id
-    self.name = name
-    self.cleanName = cleanName
-    self.area = area
+  public init(id: Int, name: String, cleanName: String,
+    area: String, type: LocationType, lat: String, lon: String) {
+      self.siteId = id
+      self.name = name
+      self.cleanName = cleanName
+      self.area = area
+      self.type = type
+      self.lat = lat
+      self.lon = lon
   }
   
   /**
@@ -79,8 +95,14 @@ public class Station: NSObject, NSCoding, NSCopying {
     let name = aDecoder.decodeObjectForKey(PropertyKey.name) as! String
     let cleanName = aDecoder.decodeObjectForKey(PropertyKey.cleanName) as! String
     let area = aDecoder.decodeObjectForKey(PropertyKey.area) as! String
+    let type = aDecoder.decodeObjectForKey(PropertyKey.type) as! String
+    let lat = aDecoder.decodeObjectForKey(PropertyKey.lat) as! String
+    let lon = aDecoder.decodeObjectForKey(PropertyKey.lon) as! String
     
-    self.init(id: siteId, name: name, cleanName: cleanName, area: area)
+    self.init(
+      id: siteId, name: name, cleanName: cleanName,
+      area: area, type: LocationType(rawValue: type)!,
+      lat: lat, lon: lon)
   }
   
   /**
@@ -91,6 +113,9 @@ public class Station: NSObject, NSCoding, NSCopying {
     aCoder.encodeObject(name, forKey: PropertyKey.name)
     aCoder.encodeObject(cleanName, forKey: PropertyKey.cleanName)
     aCoder.encodeObject(area, forKey: PropertyKey.area)
+    aCoder.encodeObject(type.rawValue, forKey: PropertyKey.type)
+    aCoder.encodeObject(lat, forKey: PropertyKey.lat)
+    aCoder.encodeObject(lon, forKey: PropertyKey.lon)
   }
   
   struct PropertyKey {
@@ -98,6 +123,9 @@ public class Station: NSObject, NSCoding, NSCopying {
     static let name = "name"
     static let cleanName = "cleanName"
     static let area = "area"
+    static let type = "type"
+    static let lat = "lat"
+    static let lon = "lon"
   }
   
   // MARK: NSCopying
@@ -106,6 +134,25 @@ public class Station: NSObject, NSCoding, NSCopying {
   * Copy self
   */
   public func copyWithZone(zone: NSZone) -> AnyObject {
-    return Station(id: siteId, name: name, cleanName: cleanName, area: area)
+    return Station(
+      id: siteId, name: name, cleanName: cleanName,
+      area: area, type: LocationType(rawValue: type.rawValue)!,
+      lat: lat, lon: lon)
+  }
+}
+
+public enum LocationType: String {
+  case Station = "Station"
+  case Address = "Address"
+  
+  init?(fromShort: String) {
+    switch fromShort.uppercaseString {
+    case "ST":
+      self = .Station
+    case "ADR":
+      self = .Address
+    default:
+      return nil
+    }
   }
 }

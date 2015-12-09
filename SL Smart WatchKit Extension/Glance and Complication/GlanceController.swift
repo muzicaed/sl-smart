@@ -16,30 +16,6 @@ class GlanceController: SmartTripIC {
   @IBOutlet var contentGroup: WKInterfaceGroup!
   @IBOutlet var departureLabel: WKInterfaceLabel!
   
-  var timer: NSTimer?
-  
-  /**
-   * Interface about to be active.
-   */
-  override func willActivate() {
-    print("SmartTripIC willActivate")
-    super.willActivate()
-    timer = NSTimer.scheduledTimerWithTimeInterval(
-      15, target: self,
-      selector: Selector("updateUIData"),
-      userInfo: nil, repeats: true)
-  }
-  
-  /**
-   * Interface deactivated.
-   */
-  override func didDeactivate() {
-    print("SmartTripIC didDeactivate")
-    super.didDeactivate()
-    timer?.invalidate()
-    timer = nil
-  }
-  
   /**
    * Updates UI using data from iPhone
    */
@@ -85,11 +61,13 @@ class GlanceController: SmartTripIC {
   override func showContentUIState() {
     print("SmartTripIC showContentUIState")
     if let data = routineData {
-      updateUIData()
-      let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
-      contentGroup.setHidden(false)
-      subTitleLabel.setText(bestRoutine["tit"] as? String)
-      subTitleLabel.setTextColor(UIColor.whiteColor())
+      if !isLoading {
+        updateUIData()
+        let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
+        contentGroup.setHidden(false)
+        subTitleLabel.setText(bestRoutine["tit"] as? String)
+        subTitleLabel.setTextColor(UIColor.whiteColor())
+      }
     }
   }
 }

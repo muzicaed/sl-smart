@@ -110,10 +110,12 @@ public class SearchTripService {
    * Converts json to station object.
    */
   private static func convertJsonToStation(stationJson: JSON) -> Station {
+    print(stationJson)
     return Station(
       id: Int(stationJson["id"].string!)!,
       name: stationJson["name"].string!,
-      cleanName: stationJson["name"].string!,
-      area: "")
+      type: stationJson["type"].string!,
+      lat: stationJson["lat"].string!,
+      lon: stationJson["lon"].string!)
   }
 }

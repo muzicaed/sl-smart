@@ -17,9 +17,9 @@ class SLSearchStationApi {
    * Search for station.
    */
   func search(
-    query: String,
+    query: String, stationsOnly: Bool,
     callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
-      let url = createApiUrl(query)
+      let url = createApiUrl(query, stationsOnly: stationsOnly)
       HttpRequestHelper.makeGetRequest(url) { resTuple in
         callback(resTuple)
       }
@@ -30,10 +30,10 @@ class SLSearchStationApi {
   /**
   * Creates api url
   */
-  private func createApiUrl(query: String) -> String {
+  private func createApiUrl(query: String, stationsOnly: Bool) -> String {
     if let escapedQuery = query.stringByAddingPercentEncodingWithAllowedCharacters(
       .URLHostAllowedCharacterSet()) {
-        return urlBase + "?key=\(apiKey)&searchstring=\(escapedQuery)"
+        return urlBase + "?Key=\(apiKey)&StationsOnly=\(stationsOnly)&SearchString=\(escapedQuery)"
     }
     
     fatalError("Could not encode query string.")
