@@ -30,7 +30,7 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    StandardGradient.addLayer(view)
+    view.backgroundColor = StyleHelper.sharedInstance.background
     
     if routineTrip == nil {
       title = "Ny vanlig resa"

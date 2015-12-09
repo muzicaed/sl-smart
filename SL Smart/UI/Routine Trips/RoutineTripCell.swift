@@ -36,9 +36,11 @@ class RoutineTripCell: UICollectionViewCell {
    * Shared init code.
    */
   func setup() {
-    layer.borderColor = UIColor.whiteColor().CGColor
-    layer.cornerRadius = 6
-    layer.borderWidth = 4
+    layer.masksToBounds = false
+    layer.shadowOffset = CGSizeMake(2, 2)
+    layer.shadowRadius = 3.5
+    layer.shadowColor = UIColor.blackColor().CGColor
+    layer.shadowOpacity = 0.3
   }
   
   /**

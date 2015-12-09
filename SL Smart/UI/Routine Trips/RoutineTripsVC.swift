@@ -182,14 +182,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       let screenSize = UIScreen.mainScreen().bounds.size
       if indexPath.section == 0 {
         if isLoading {
-          return CGSizeMake(screenSize.width - 10, collectionView.bounds.height - 49 - 64 - 20)
+          return CGSizeMake(screenSize.width - 20, collectionView.bounds.height - 49 - 64 - 20)
         } else if isShowInfo {
-          return CGSizeMake(screenSize.width - 10, 345)
+          return CGSizeMake(screenSize.width - 20, 345)
         }
-        return CGSizeMake(screenSize.width - 10, 125)
+        return CGSizeMake(screenSize.width - 20, 125)
       }
       
-      return CGSizeMake(screenSize.width - 10, 90)
+      return CGSizeMake(screenSize.width - 20, 90)
   }
   
   /**
@@ -240,7 +240,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     collectionView?.collectionViewLayout = flowLayout
     collectionView?.delegate = self
     
-    StandardGradient.addLayer(view)
+    view.backgroundColor = StyleHelper.sharedInstance.background
     
     let wrapper = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
     let imageView = UIImageView(

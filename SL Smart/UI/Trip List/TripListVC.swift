@@ -32,9 +32,8 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    StandardGradient.addLayer(view)    
+    view.backgroundColor = StyleHelper.sharedInstance.background
     collectionView?.delegate = self
-    StandardGradient.addLayer(view)
     if trips.count == 0 {
       loadTripData()
     } else {

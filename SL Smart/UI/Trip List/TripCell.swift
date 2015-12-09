@@ -20,6 +20,16 @@ class TripCell: UICollectionViewCell {
   @IBOutlet weak var leftBarView: UIView!
   @IBOutlet weak var inAboutLabel: UILabel!
   
+
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    layer.masksToBounds = false
+    layer.shadowOffset = CGSizeMake(2, 2)
+    layer.shadowRadius = 3.5
+    layer.shadowColor = UIColor.blackColor().CGColor
+    layer.shadowOpacity = 0.3
+  }
+  
   /**
    * Populate cell data based on passed RoutineTrip
    */

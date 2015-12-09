@@ -29,7 +29,7 @@ class ManageRoutineTripsVC: UITableViewController {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    StandardGradient.addLayer(view)
+    view.backgroundColor = StyleHelper.sharedInstance.background
     addButton = navigationItem.rightBarButtonItems![0]
     editButton = navigationItem.rightBarButtonItems![1]
     doneButton = navigationItem.rightBarButtonItems![2]

@@ -21,7 +21,7 @@ class SearchStationVC: UITableViewController, UISearchResultsUpdating {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    StandardGradient.addLayer(view)
+    view.backgroundColor = StyleHelper.sharedInstance.background
     
     self.searchController = UISearchController(searchResultsController: nil)
     self.searchController!.searchResultsUpdater = self

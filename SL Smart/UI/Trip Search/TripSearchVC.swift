@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 class TripSearchVC: UITableViewController {
-
+  
   
   /**
    * View did load
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    StandardGradient.addLayer(view)
+    view.backgroundColor = StyleHelper.sharedInstance.background
   }
 }

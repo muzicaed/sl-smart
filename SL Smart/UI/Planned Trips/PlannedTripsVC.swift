@@ -16,6 +16,6 @@ class PlannedTripsVC: UIViewController {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    StandardGradient.addLayer(view)
+    view.backgroundColor = StyleHelper.sharedInstance.background
   }
 }
