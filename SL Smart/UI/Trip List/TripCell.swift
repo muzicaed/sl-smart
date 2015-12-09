@@ -59,9 +59,7 @@ class TripCell: UICollectionViewCell {
   /**
    * Creates trip type icon per segment.
    */
-  private func createTripSegmentIcons(trip: Trip) {
-    iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
-    
+  private func createTripSegmentIcons(trip: Trip) {    
     var count = 0
     for (_, segment) in trip.tripSegments.enumerate() {
       if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
