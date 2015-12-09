@@ -1,5 +1,5 @@
 //
-//  SearchStationVC.swift
+//  SearchLocationVC.swift
 //  SL Smart
 //
 //  Created by Mikael Hellman on 2015-11-22.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SearchStationVC: UITableViewController, UISearchResultsUpdating {
+class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
   
   let cellReusableId = "StationSearchResultCell"
   var searchController: UISearchController?
@@ -36,7 +36,7 @@ class SearchStationVC: UITableViewController, UISearchResultsUpdating {
     if let superView = searchController?.view.superview {
       superView.removeFromSuperview()
     }
-    print("Deinit: SearchStationVC")
+    print("Deinit: SearchLocationVC")
   }
   
   // MARK: UITableViewController

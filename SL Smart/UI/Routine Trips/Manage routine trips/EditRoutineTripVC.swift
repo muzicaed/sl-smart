@@ -68,11 +68,11 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
     tripTitleTextField.resignFirstResponder()
     if segue.identifier == "SearchOriginStation" {
       isSearchingOriginStation = true
-      let vc = segue.destinationViewController as! SearchStationVC
+      let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
     } else if segue.identifier == "SearchDestinationStation" {
       isSearchingOriginStation = false
-      let vc = segue.destinationViewController as! SearchStationVC
+      let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
     }
   }

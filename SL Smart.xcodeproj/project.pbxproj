@@ -23,7 +23,7 @@
 		18232CA41C01D46A006334D1 /* EditRoutineTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */; };
 		18232CA61C01DB81006334D1 /* StyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA51C01DB81006334D1 /* StyleButton.swift */; };
 		18232CAA1C01EA15006334D1 /* StationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA91C01EA15006334D1 /* StationSearchService.swift */; };
-		18232CAC1C01EC2F006334D1 /* SearchStationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAB1C01EC2F006334D1 /* SearchStationVC.swift */; };
+		18232CAC1C01EC2F006334D1 /* SearchLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAB1C01EC2F006334D1 /* SearchLocationVC.swift */; };
 		18232CAE1C01F1CA006334D1 /* ManageRoutineTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAD1C01F1CA006334D1 /* ManageRoutineTripCell.swift */; };
 		18232CB01C01FA78006334D1 /* SLSearchStationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */; };
 		185073751C09CE84005D0D7E /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185073741C09CE84005D0D7E /* TripIcons.swift */; };
@@ -206,7 +206,7 @@
 		18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRoutineTripVC.swift; sourceTree = "<group>"; };
 		18232CA51C01DB81006334D1 /* StyleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleButton.swift; sourceTree = "<group>"; };
 		18232CA91C01EA15006334D1 /* StationSearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationSearchService.swift; sourceTree = "<group>"; };
-		18232CAB1C01EC2F006334D1 /* SearchStationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchStationVC.swift; sourceTree = "<group>"; };
+		18232CAB1C01EC2F006334D1 /* SearchLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationVC.swift; sourceTree = "<group>"; };
 		18232CAD1C01F1CA006334D1 /* ManageRoutineTripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageRoutineTripCell.swift; sourceTree = "<group>"; };
 		18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchStationApi.swift; sourceTree = "<group>"; };
 		185073741C09CE84005D0D7E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
@@ -312,7 +312,6 @@
 				18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */,
 				18232CAD1C01F1CA006334D1 /* ManageRoutineTripCell.swift */,
 				18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */,
-				18232CAB1C01EC2F006334D1 /* SearchStationVC.swift */,
 			);
 			name = "Manage Routine Trips";
 			path = "Manage routine trips";
@@ -536,6 +535,7 @@
 		18937E891C01139E00C523C9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				18BF52241C18302A002B68AD /* Search Location */,
 				188B80AC1C178DB800E7D90C /* Trip Search */,
 				188367671C16EE7A00A8BE16 /* Trip Details */,
 				1827692E1C01163B00655B4B /* Common */,
@@ -557,6 +557,14 @@
 				18BF52221C182D3E002B68AD /* TripCellCache.swift */,
 			);
 			path = "Trip List";
+			sourceTree = "<group>";
+		};
+		18BF52241C18302A002B68AD /* Search Location */ = {
+			isa = PBXGroup;
+			children = (
+				18232CAB1C01EC2F006334D1 /* SearchLocationVC.swift */,
+			);
+			path = "Search Location";
 			sourceTree = "<group>";
 		};
 		18CE5CCC1C0329DA00E1F5A9 /* Libraries */ = {
@@ -868,7 +876,7 @@
 				188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */,
 				188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */,
 				1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */,
-				18232CAC1C01EC2F006334D1 /* SearchStationVC.swift in Sources */,
+				18232CAC1C01EC2F006334D1 /* SearchLocationVC.swift in Sources */,
 				18937E7C1BFF5F8100C523C9 /* Station.swift in Sources */,
 				18AC9CFE1C0866C7007ECFA2 /* MyLocationHelper.swift in Sources */,
 				18937E7E1BFF6AB700C523C9 /* RoutineTripCell.swift in Sources */,
