@@ -8,14 +8,14 @@
 
 import Foundation
 
-class SearchTripService {
+public class SearchTripService {
   
   private static let api = SLTravelPlannerV2Api()
   
   /**
    * Trip search.
    */
-  static func tripSearch(
+  public static func tripSearch(
     criterion: TripSearchCriterion,
     callback: (data: [Trip], error: SLNetworkError?) -> Void) {
       api.tripSearch(criterion) { resTuple in

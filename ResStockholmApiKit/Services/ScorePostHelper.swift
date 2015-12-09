@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class ScorePostHelper {
+public class ScorePostHelper {
   
   static let NewRoutineTripScore = Float(5)
   static let TapCountScore = Float(2)
@@ -21,7 +21,7 @@ class ScorePostHelper {
    * Creates the score posts to represent a newly
    * created routine trip.
    */
-  static func giveScoreForNewRoutineTrip(routineTrip: RoutineTrip) {
+  public static func giveScoreForNewRoutineTrip(routineTrip: RoutineTrip) {
     var scorePosts = DataStore.sharedInstance.retrieveScorePosts()
     if routineTrip.routine != nil {
       scoreForRoutineTrip(routineTrip, scorePosts: &scorePosts,
@@ -34,7 +34,7 @@ class ScorePostHelper {
   /**
    * Handles changes to rotine for modified routine trip
    */
-  static func giveScoreForUpdatedRoutineTrip(
+  public static func giveScoreForUpdatedRoutineTrip(
     updatedRoutineTrip: RoutineTrip, oldRoutineTrip: RoutineTrip) {
       
       var scorePosts = DataStore.sharedInstance.retrieveScorePosts()
@@ -53,7 +53,7 @@ class ScorePostHelper {
   /**
    * Change (or create) score for matching score post.
    */
-  static func changeScore(
+  public static func changeScore(
     dayInWeek: Int, hourOfDay: Int,
     siteId: Int, isOrigin: Bool, scoreMod: Float,
     location: CLLocation?, inout scorePosts: [ScorePost]) {
@@ -75,7 +75,7 @@ class ScorePostHelper {
   /**
    * Adds score for selected routine trip.
    */
-  static func addScoreForSelectedRoutineTrip(originId: Int, destinationId: Int) {
+  public static func addScoreForSelectedRoutineTrip(originId: Int, destinationId: Int) {
     var scorePosts = DataStore.sharedInstance.retrieveScorePosts()
     let currentLocation = MyLocationHelper.sharedInstance.currentLocation
     let dayOfWeek = DateUtils.getDayOfWeek()

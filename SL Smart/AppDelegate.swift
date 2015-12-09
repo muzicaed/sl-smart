@@ -8,6 +8,7 @@
 
 import UIKit
 import WatchConnectivity
+import ResStockholmApiKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {

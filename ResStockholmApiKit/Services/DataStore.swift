@@ -8,19 +8,19 @@
 
 import Foundation
 
-class DataStore {
+public class DataStore {
   
   private let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
   private var cachedRoutineTrips = [RoutineTrip]()
   private var cachedScorePosts = [ScorePost]()
   
   // Singelton pattern
-  static let sharedInstance = DataStore()
+  public static let sharedInstance = DataStore()
   
   /**
    * Preloads routine trip data.
    */
-  func preload() {
+  public func preload() {
     cachedRoutineTrips = retrieveRoutineTripsFromStore()
     cachedScorePosts = retrieveScorePosts()
   }
@@ -28,14 +28,14 @@ class DataStore {
   /**
    * Is empty
    */
-  func isRoutineTripsEmpty() -> Bool {
+  public func isRoutineTripsEmpty() -> Bool {
     return (cachedRoutineTrips.count == 0) ? true : false
   }
   
   /**
    * Adds a routine trip to data store
    */
-  func addRoutineTrip(trip: RoutineTrip) {
+  public func addRoutineTrip(trip: RoutineTrip) {
     trip.trips = [Trip]()
     cachedRoutineTrips = retrieveRoutineTripsFromStore()
     cachedRoutineTrips.append(trip)
@@ -45,7 +45,7 @@ class DataStore {
   /**
    * Moves a routine trip in data store
    */
-  func moveRoutineTrip(index: Int, targetIndex: Int) {
+  public func moveRoutineTrip(index: Int, targetIndex: Int) {
     cachedRoutineTrips = retrieveRoutineTripsFromStore()
     let moveTrip = cachedRoutineTrips.removeAtIndex(index)
     cachedRoutineTrips.insert(moveTrip, atIndex: targetIndex)
@@ -55,8 +55,8 @@ class DataStore {
   /**
    * Update a routine trip in data store
    */
-  func updateRoutineTrip(index: Int, trip: RoutineTrip) {
-    trip.trips = [Trip]()    
+  public func updateRoutineTrip(index: Int, trip: RoutineTrip) {
+    trip.trips = [Trip]()
     cachedRoutineTrips[index] = trip
     writeRoutineTripsToStore()
   }
@@ -64,7 +64,7 @@ class DataStore {
   /**
    * Delete a routine trip from data store
    */
-  func deleteRoutineTrip(index: Int) {
+  public func deleteRoutineTrip(index: Int) {
     cachedRoutineTrips.removeAtIndex(index)
     writeRoutineTripsToStore()
   }
@@ -72,7 +72,7 @@ class DataStore {
   /**
    * Retrieves all routine trips from data store
    */
-  func retriveRoutineTrips() -> [RoutineTrip] {
+  public func retriveRoutineTrips() -> [RoutineTrip] {
     if cachedRoutineTrips.count == 0  {
       cachedRoutineTrips = retrieveRoutineTripsFromStore()
     }
@@ -83,7 +83,7 @@ class DataStore {
   /**
    * Retrive "ScoreList" from data store
    */
-  func retrieveScorePosts() -> [ScorePost] {
+  public func retrieveScorePosts() -> [ScorePost] {
     if cachedScorePosts.count == 0 {
       if let unarchivedObject = defaults.objectForKey(PropertyKey.ScoreList) as? NSData {
         if let scorePosts = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [ScorePost] {
@@ -97,7 +97,7 @@ class DataStore {
   /**
    * Store score lists to "ScoreList" in data store
    */
-  func writeScorePosts(scorePosts: [ScorePost]) {
+  public func writeScorePosts(scorePosts: [ScorePost]) {
     var filteredPosts = [ScorePost]()
     for post in scorePosts {
       if post.score > 0 {

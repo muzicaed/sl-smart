@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import ResStockholmApiKit
 
 class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
   

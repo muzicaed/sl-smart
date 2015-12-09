@@ -9,14 +9,14 @@
 import Foundation
 import CoreLocation
 
-class MyLocationHelper: NSObject, CLLocationManagerDelegate {
+public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   
-  static let sharedInstance = MyLocationHelper()
-  let locationManager = CLLocationManager()
-  var currentLocation: CLLocation?
-  var callback: ((CLLocation) -> Void)?
+  public  static let sharedInstance = MyLocationHelper()
+  public let locationManager = CLLocationManager()
+  public var currentLocation: CLLocation?
+  public var callback: ((CLLocation) -> Void)?
   
-  override init() {
+  override public init() {
     super.init()
     if CLLocationManager.locationServicesEnabled() {
       locationManager.delegate = self
@@ -33,9 +33,9 @@ class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   /**
    * Request a force updat of current location.
    */
-  func requestLocationUpdate(callback: ((location: CLLocation) -> ())?) {
+  public func requestLocationUpdate(callback: ((location: CLLocation) -> ())?) {
     if let location = currentLocation {
-        callback?(location: location)
+      callback?(location: location)
     }
     
     self.callback = callback
@@ -46,7 +46,7 @@ class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   /**
   * On location update
   */
-  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+  public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     
     let sortedLocations = locations.sort {$0.timestamp.timeIntervalSince1970 > $1.timestamp.timeIntervalSince1970}
     currentLocation = sortedLocations[0]
@@ -57,7 +57,7 @@ class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   /**
    * On error
    */
-  func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+  public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
     if error.code != 0 {
       fatalError(error.debugDescription)
     }

@@ -8,14 +8,14 @@
 
 import Foundation
 
-class Routine: NSObject, NSCoding, NSCopying {
+public class Routine: NSObject, NSCoding, NSCopying {
   
-  var week = RoutineWeek.WeekDays
-  var time = RoutineTime.Morning
+  public var week = RoutineWeek.WeekDays
+  public var time = RoutineTime.Morning
   
   override init() {}
   
-  init(week: RoutineWeek, time: RoutineTime) {
+  public init(week: RoutineWeek, time: RoutineTime) {
     self.week = week
     self.time = time
   }
@@ -25,7 +25,7 @@ class Routine: NSObject, NSCoding, NSCopying {
   /**
   * Decoder init
   */
-  required convenience init?(coder aDecoder: NSCoder) {
+  public required convenience init?(coder aDecoder: NSCoder) {
     let week = RoutineWeek.init(rawValue: aDecoder.decodeIntegerForKey(PropertyKey.week))!
     let time = RoutineTime.init(rawValue: aDecoder.decodeIntegerForKey(PropertyKey.time))!
     
@@ -35,7 +35,7 @@ class Routine: NSObject, NSCoding, NSCopying {
   /**
    * Encode this object
    */
-  func encodeWithCoder(aCoder: NSCoder) {
+  public func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodeInteger(week.rawValue, forKey: PropertyKey.week)
     aCoder.encodeInteger(time.rawValue, forKey: PropertyKey.time)
   }
@@ -50,17 +50,17 @@ class Routine: NSObject, NSCoding, NSCopying {
   /**
   * Copy self
   */
-  func copyWithZone(zone: NSZone) -> AnyObject {
+  public func copyWithZone(zone: NSZone) -> AnyObject {
     return Routine(week: RoutineWeek(rawValue: week.rawValue)!, time: RoutineTime(rawValue: time.rawValue)!)
   }
 }
 
 
-enum RoutineWeek: Int {
+public enum RoutineWeek: Int {
   case WeekDays = 0
   case WeekEnds = 1
   
-  func toFriendlyString() -> String {
+  public func toFriendlyString() -> String {
     switch self {
     case .WeekDays:
       return "vardagar"
@@ -70,13 +70,13 @@ enum RoutineWeek: Int {
   }
 }
 
-enum RoutineTime: Int {
+public enum RoutineTime: Int {
   case Morning = 0
   case Day = 1
   case Evening = 2
   case Night = 3
   
-  func toFriendlyString() -> String {
+  public func toFriendlyString() -> String {
     switch self {
     case .Morning:
       return "Morgon"

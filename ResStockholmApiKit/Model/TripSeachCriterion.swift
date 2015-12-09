@@ -11,47 +11,47 @@ import Foundation
 /**
  * Simple data object.
  */
-class TripSearchCriterion {
+public class TripSearchCriterion {
   
-  var originId: Int
-  var destId: Int
-  var date: String?
-  var time: String?
-  var numChg: Int?
-  var minChgTime: Int?
-  var lineInc: String?
-  var lineExc: String?
-  var searchForArrival = false
-  var unsharp = false
-  var maxWalkDist = 300
+  public var originId: Int
+  public var destId: Int
+  public var date: String?
+  public var time: String?
+  public var numChg: Int?
+  public var minChgTime: Int?
+  public var lineInc: String?
+  public var lineExc: String?
+  public var searchForArrival = false
+  public var unsharp = false
+  public var maxWalkDist = 300
   
-  var useTrain = true
-  var useMetro = true
-  var useTram = true
-  var useBus = true
-  var useFerry = true
-  var useShip = true
+  public var useTrain = true
+  public var useMetro = true
+  public var useTram = true
+  public var useBus = true
+  public var useFerry = true
+  public var useShip = true
   
-  var numTrips = 8
-  var realtime = false
+  public var numTrips = 8
+  public var realtime = false
   
   
   /**
    * Standard init
    */
-  init(originId: Int, destId: Int) {
+  public init(originId: Int, destId: Int) {
     self.originId = originId
     self.destId = destId
   }
   
-  convenience init(origin: Station, destination: Station) {
+  convenience public init(origin: Station, destination: Station) {
     self.init(originId: origin.siteId, destId: destination.siteId)
   }
   
   /**
    * Query string.
    */
-  func generateQueryString(beginsWithQuestionMark: Bool) -> String {
+  public func generateQueryString(beginsWithQuestionMark: Bool) -> String {
     var query = (beginsWithQuestionMark) ? "?" : "&"
     query += "originId=\(originId)&destId=\(destId)&numTrips=\(numTrips)"
     query += (date != nil) ? "&date=\(date!)" : ""

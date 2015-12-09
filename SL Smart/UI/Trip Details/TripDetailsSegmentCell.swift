@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import ResStockholmApiKit
 
 class TripDetailsSegmentCell: UITableViewCell, TripCellProtocol {
   

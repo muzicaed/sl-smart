@@ -8,19 +8,19 @@
 
 import Foundation
 
-class TripSegment: NSObject, NSCopying {
-  let index: Int
-  let name: String
-  let type: TripType
-  let directionText: String?
-  let lineNumber: String?
-  let origin: Station
-  let destination: Station
-  let departureDateTime: NSDate
-  let arrivalDateTime: NSDate
-  let distance: Int?
+public class TripSegment: NSObject, NSCopying {
+  public let index: Int
+  public let name: String
+  public let type: TripType
+  public let directionText: String?
+  public let lineNumber: String?
+  public let origin: Station
+  public let destination: Station
+  public let departureDateTime: NSDate
+  public let arrivalDateTime: NSDate
+  public let distance: Int?
   
-  init(
+  public init(
     index: Int, name: String, type: String, directionText: String?,
     lineNumber: String?, origin: Station, destination: Station,
     departureTime: String, arrivalTime: String,
@@ -44,7 +44,7 @@ class TripSegment: NSObject, NSCopying {
   /**
   * Copy self
   */
-  func copyWithZone(zone: NSZone) -> AnyObject {
+  public func copyWithZone(zone: NSZone) -> AnyObject {
     return TripSegment(
       index: index, name: name, type: type.rawValue,
       directionText: directionText, lineNumber: lineNumber,

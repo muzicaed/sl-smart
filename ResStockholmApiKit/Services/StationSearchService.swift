@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class StationSearchService {
+public class StationSearchService {
   
   private static let api = SLSearchStationApi()
   private static let nearbyApi = SLSearchNearbyStationsApi()
@@ -17,7 +17,7 @@ class StationSearchService {
   /**
    * Searches for stations based on the query
    */
-  static func search(
+  public static func search(
     query: String,
     callback: (data: [Station], error: SLNetworkError?) -> Void) {
       api.search(query) { resTuple in
@@ -36,7 +36,7 @@ class StationSearchService {
   /**
    * Searches for nearby stations.
    */
-  static func searchNearby(
+  public static func searchNearby(
     location: CLLocation,
     callback: (data: [(id: Int, dist: Int)], error: SLNetworkError?) -> Void) {
       nearbyApi.search(location) { resTuple in

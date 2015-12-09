@@ -9,19 +9,19 @@
 import Foundation
 import CoreLocation
 
-class ScorePost: NSObject, NSCoding, NSCopying {
+public class ScorePost: NSObject, NSCoding, NSCopying {
   
-  var dayInWeek = 0
-  var hourOfDay = 0
-  var siteId = 0
-  var score = Float(0.0)
-  var isOrigin = false
-  var location: CLLocation?
+  public var dayInWeek = 0
+  public var hourOfDay = 0
+  public var siteId = 0
+  public var score = Float(0.0)
+  public var isOrigin = false
+  public var location: CLLocation?
   
   /**
    * Standard init
    */
-  init(dayInWeek: Int, hourOfDay: Int, siteId: Int,
+  public init(dayInWeek: Int, hourOfDay: Int, siteId: Int,
     score: Float, isOrigin: Bool, location: CLLocation?) {
       self.dayInWeek = dayInWeek
       self.hourOfDay = hourOfDay
@@ -36,7 +36,7 @@ class ScorePost: NSObject, NSCoding, NSCopying {
   /**
   * Decoder init
   */
-  required convenience init?(coder aDecoder: NSCoder) {
+  required convenience public init?(coder aDecoder: NSCoder) {
     let dayInWeek = aDecoder.decodeIntegerForKey(PropertyKey.dayInWeek)
     let hourOfDay = aDecoder.decodeIntegerForKey(PropertyKey.hourOfDay)
     let siteId = aDecoder.decodeIntegerForKey(PropertyKey.siteId)
@@ -53,7 +53,7 @@ class ScorePost: NSObject, NSCoding, NSCopying {
   /**
    * Encode this object
    */
-  func encodeWithCoder(aCoder: NSCoder) {
+  public func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodeInteger(dayInWeek, forKey: PropertyKey.dayInWeek)
     aCoder.encodeInteger(hourOfDay, forKey: PropertyKey.hourOfDay)
     aCoder.encodeInteger(siteId, forKey: PropertyKey.siteId)
@@ -76,7 +76,7 @@ class ScorePost: NSObject, NSCoding, NSCopying {
   /**
   * Copy self
   */
-  func copyWithZone(zone: NSZone) -> AnyObject {
+  public func copyWithZone(zone: NSZone) -> AnyObject {
     var locationCopy: CLLocation? = nil
     if let location = location {
       locationCopy = location.copy() as? CLLocation

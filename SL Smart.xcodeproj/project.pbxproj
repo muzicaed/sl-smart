@@ -8,28 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		180603641C01FCBE00AC1841 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180603631C01FCBE00AC1841 /* SwiftyJSON.swift */; };
-		180603661C0201A100AC1841 /* HttpRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180603651C0201A100AC1841 /* HttpRequestHelper.swift */; };
 		1806037C1C02165000AC1841 /* StationSearchResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037B1C02165000AC1841 /* StationSearchResponder.swift */; };
-		1806037E1C023E8400AC1841 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037D1C023E8400AC1841 /* DataStore.swift */; };
-		180FD8B51C0B087E0095C790 /* ScorePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FD8B41C0B087E0095C790 /* ScorePost.swift */; };
-		180FD8BB1C0B150E0095C790 /* ScorePostHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */; };
-		181B9AEF1C0370EF00B9145A /* SLTravelPlannerV2Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */; };
-		181B9AF11C0375DC00B9145A /* TripSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF01C0375DC00B9145A /* TripSegment.swift */; };
-		181B9AF31C0380FD00B9145A /* SearchTripService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF21C0380FD00B9145A /* SearchTripService.swift */; };
-		181B9AF61C03A9E100B9145A /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF51C03A9E100B9145A /* DateUtils.swift */; };
-		181B9AF81C03B3FB00B9145A /* TripHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF71C03B3FB00B9145A /* TripHelper.swift */; };
-		181B9AFA1C03D64000B9145A /* RoutineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF91C03D64000B9145A /* RoutineService.swift */; };
 		181BD4161C047AA900651D0F /* RoutineTripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4151C047AA900651D0F /* RoutineTripHeader.swift */; };
 		18232CA41C01D46A006334D1 /* EditRoutineTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */; };
 		18232CA61C01DB81006334D1 /* StyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA51C01DB81006334D1 /* StyleButton.swift */; };
-		18232CAA1C01EA15006334D1 /* StationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA91C01EA15006334D1 /* StationSearchService.swift */; };
 		18232CAC1C01EC2F006334D1 /* SearchLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAB1C01EC2F006334D1 /* SearchLocationVC.swift */; };
 		18232CAE1C01F1CA006334D1 /* ManageRoutineTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAD1C01F1CA006334D1 /* ManageRoutineTripCell.swift */; };
-		18232CB01C01FA78006334D1 /* SLSearchStationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */; };
 		185073751C09CE84005D0D7E /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185073741C09CE84005D0D7E /* TripIcons.swift */; };
 		1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854E1981C065EB70070C545 /* StandardGradient.swift */; };
 		185BCC921C09389E00A2C6DB /* TripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BCC911C09389E00A2C6DB /* TripHeader.swift */; };
-		188367621C16264200A8BE16 /* WatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367611C16264200A8BE16 /* WatchService.swift */; };
+		185D8DBE1C189D0200300890 /* WatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367611C16264200A8BE16 /* WatchService.swift */; };
 		188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367681C16EEA000A8BE16 /* TripDetailsVC.swift */; };
 		1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */; };
 		1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */; };
@@ -43,7 +31,6 @@
 		188B804B1C175D9600E7D90C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188B80491C175D9600E7D90C /* MainInterface.storyboard */; };
 		188B804F1C175D9600E7D90C /* SL Smart-Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 188B80421C175D9600E7D90C /* SL Smart-Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		188B80AE1C178DD900E7D90C /* TripSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B80AD1C178DD900E7D90C /* TripSearchVC.swift */; };
-		188B85661C14ADF100098B00 /* SLNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85651C14ADF100098B00 /* SLNetworkError.swift */; };
 		188B856A1C15B03400098B00 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85691C15B03400098B00 /* DateUtils.swift */; };
 		188B856E1C15BFA000098B00 /* OtherRoutinesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B856D1C15BFA000098B00 /* OtherRoutinesRow.swift */; };
 		188B85711C15D44200098B00 /* TripsIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85701C15D44200098B00 /* TripsIC.swift */; };
@@ -58,29 +45,46 @@
 		18937E531BFF33FB00C523C9 /* SL Smart.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 18937E521BFF33FB00C523C9 /* SL Smart.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		18937E641BFF33FB00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E631BFF33FB00C523C9 /* Assets.xcassets */; };
 		18937E771BFF5D6B00C523C9 /* RoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E761BFF5D6B00C523C9 /* RoutineTripsVC.swift */; };
-		18937E7A1BFF5F2F00C523C9 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E791BFF5F2F00C523C9 /* Trip.swift */; };
-		18937E7C1BFF5F8100C523C9 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E7B1BFF5F8100C523C9 /* Station.swift */; };
 		18937E7E1BFF6AB700C523C9 /* RoutineTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E7D1BFF6AB700C523C9 /* RoutineTripCell.swift */; };
 		18937E811BFFABFC00C523C9 /* PlannedTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E801BFFABFC00C523C9 /* PlannedTripsVC.swift */; };
 		18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */; };
-		18937E871C00A17700C523C9 /* RoutineTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E861C00A17700C523C9 /* RoutineTrip.swift */; };
 		18946B171C18431500A5829D /* DateTimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18946B161C18431500A5829D /* DateTimePickerVC.swift */; };
 		18946B1D1C1844E700A5829D /* DateTimePickResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */; };
 		18A824741C0EE866006190C4 /* SmartTripIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E591BFF33FB00C523C9 /* SmartTripIC.swift */; };
 		18A824751C0EE866006190C4 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */; };
 		18A824771C0EE866006190C4 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5F1BFF33FB00C523C9 /* GlanceController.swift */; };
 		18A824781C0EE866006190C4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E611BFF33FB00C523C9 /* ComplicationController.swift */; };
+		18A9E84A1C18993B008F97C8 /* ResStockholmApiKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 18A9E8491C18993B008F97C8 /* ResStockholmApiKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18A9E84E1C18993B008F97C8 /* ResStockholmApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; };
+		18A9E84F1C18993B008F97C8 /* ResStockholmApiKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		18A9E85E1C189998008F97C8 /* RoutineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF91C03D64000B9145A /* RoutineService.swift */; };
+		18A9E85F1C189998008F97C8 /* StationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA91C01EA15006334D1 /* StationSearchService.swift */; };
+		18A9E8601C189998008F97C8 /* SearchTripService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF21C0380FD00B9145A /* SearchTripService.swift */; };
+		18A9E8611C189998008F97C8 /* MyLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */; };
+		18A9E8621C189998008F97C8 /* ScorePostHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */; };
+		18A9E8631C189998008F97C8 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037D1C023E8400AC1841 /* DataStore.swift */; };
+		18A9E8651C1899E7008F97C8 /* SLSearchStationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */; };
+		18A9E8661C1899E7008F97C8 /* SLTravelPlannerV2Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */; };
+		18A9E8671C1899E7008F97C8 /* HttpRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180603651C0201A100AC1841 /* HttpRequestHelper.swift */; };
+		18A9E8681C1899E7008F97C8 /* SLSearchNearbyStationsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */; };
+		18A9E8691C1899E7008F97C8 /* SLNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85651C14ADF100098B00 /* SLNetworkError.swift */; };
+		18A9E86A1C1899ED008F97C8 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E791BFF5F2F00C523C9 /* Trip.swift */; };
+		18A9E86B1C1899ED008F97C8 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E7B1BFF5F8100C523C9 /* Station.swift */; };
+		18A9E86C1C1899ED008F97C8 /* RoutineTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E861C00A17700C523C9 /* RoutineTrip.swift */; };
+		18A9E86D1C1899ED008F97C8 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC61C025E3E00E1F5A9 /* Routine.swift */; };
+		18A9E86E1C1899ED008F97C8 /* TripSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF01C0375DC00B9145A /* TripSegment.swift */; };
+		18A9E86F1C1899ED008F97C8 /* TripHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF71C03B3FB00B9145A /* TripHelper.swift */; };
+		18A9E8701C1899ED008F97C8 /* TripSeachCriterion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D1953E1C07964900FB1A93 /* TripSeachCriterion.swift */; };
+		18A9E8711C1899ED008F97C8 /* ScorePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FD8B41C0B087E0095C790 /* ScorePost.swift */; };
+		18A9E8721C1899F3008F97C8 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF51C03A9E100B9145A /* DateUtils.swift */; };
+		18A9E8731C189B97008F97C8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180603631C01FCBE00AC1841 /* SwiftyJSON.swift */; };
+		18A9E8741C189C1C008F97C8 /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EAF4E11C0F89990014701B /* SwiftHTTP.framework */; };
 		18AC9CF81C07AD4D007ECFA2 /* TripListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF71C07AD4D007ECFA2 /* TripListVC.swift */; };
 		18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF91C07AE63007ECFA2 /* TripCell.swift */; };
-		18AC9CFC1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */; };
-		18AC9CFE1C0866C7007ECFA2 /* MyLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */; };
 		18AC9D001C08B5B4007ECFA2 /* TripFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFF1C08B5B4007ECFA2 /* TripFooter.swift */; };
 		18BF52231C182D3E002B68AD /* TripCellCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF52221C182D3E002B68AD /* TripCellCache.swift */; };
-		18CE5CC71C025E3E00E1F5A9 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC61C025E3E00E1F5A9 /* Routine.swift */; };
 		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
 		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
-		18D1953F1C07964900FB1A93 /* TripSeachCriterion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D1953E1C07964900FB1A93 /* TripSeachCriterion.swift */; };
-		18EAF4E81C0F8A010014701B /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EAF4E11C0F89990014701B /* SwiftHTTP.framework */; };
 		18EAF4E91C0F8A0F0014701B /* SwiftHTTP.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 18EAF4E11C0F89990014701B /* SwiftHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -112,6 +116,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 18937E511BFF33FB00C523C9;
 			remoteInfo = "Res i Sverige WatchKit Extension";
+		};
+		18A9E84C1C18993B008F97C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18A9E8461C18993B008F97C8;
+			remoteInfo = ResStockholmApiKit;
 		};
 		18EAF4E01C0F89990014701B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -150,6 +161,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				18A9E84F1C18993B008F97C8 /* ResStockholmApiKit.framework in Copy Frameworks */,
 				18EAF4E91C0F8A0F0014701B /* SwiftHTTP.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
@@ -191,7 +203,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		180603631C01FCBE00AC1841 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "SL Smart/Services/SwiftyJSON.swift"; sourceTree = "<group>"; };
+		180603631C01FCBE00AC1841 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		180603651C0201A100AC1841 /* HttpRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHelper.swift; sourceTree = "<group>"; };
 		180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftHTTP.xcodeproj; path = /Users/mikaelhellman/Documents/Development/SwiftHTTP/SwiftHTTP.xcodeproj; sourceTree = "<absolute>"; };
 		1806037B1C02165000AC1841 /* StationSearchResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationSearchResponder.swift; sourceTree = "<group>"; };
@@ -214,7 +226,7 @@
 		185073741C09CE84005D0D7E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
 		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
 		185BCC911C09389E00A2C6DB /* TripHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHeader.swift; sourceTree = "<group>"; };
-		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchService.swift; sourceTree = "<group>"; };
+		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WatchService.swift; path = "SL Smart/WatchService.swift"; sourceTree = "<group>"; };
 		188367681C16EEA000A8BE16 /* TripDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsVC.swift; sourceTree = "<group>"; };
 		1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCellProtocol.swift; sourceTree = "<group>"; };
 		1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsHeaderCell.swift; sourceTree = "<group>"; };
@@ -262,6 +274,9 @@
 		18937E861C00A17700C523C9 /* RoutineTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTrip.swift; sourceTree = "<group>"; };
 		18946B161C18431500A5829D /* DateTimePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickerVC.swift; sourceTree = "<group>"; };
 		18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickResponder.swift; sourceTree = "<group>"; };
+		18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ResStockholmApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18A9E8491C18993B008F97C8 /* ResStockholmApiKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResStockholmApiKit.h; sourceTree = "<group>"; };
+		18A9E84B1C18993B008F97C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18AC9CF71C07AD4D007ECFA2 /* TripListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripListVC.swift; sourceTree = "<group>"; };
 		18AC9CF91C07AE63007ECFA2 /* TripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCell.swift; sourceTree = "<group>"; };
 		18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchNearbyStationsApi.swift; sourceTree = "<group>"; };
@@ -288,7 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1883677B1C1717AD00A8BE16 /* MapKit.framework in Frameworks */,
-				18EAF4E81C0F8A010014701B /* SwiftHTTP.framework in Frameworks */,
+				18A9E84E1C18993B008F97C8 /* ResStockholmApiKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,12 +314,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		18A9E8431C18993B008F97C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18A9E8741C189C1C008F97C8 /* SwiftHTTP.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		181B9AF41C03A9BC00B9145A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				180603631C01FCBE00AC1841 /* SwiftyJSON.swift */,
 				181B9AF51C03A9E100B9145A /* DateUtils.swift */,
 			);
 			path = Common;
@@ -417,12 +441,14 @@
 		18937E281BFF33FA00C523C9 = {
 			isa = PBXGroup;
 			children = (
+				188367611C16264200A8BE16 /* WatchService.swift */,
 				1883677A1C1717AD00A8BE16 /* MapKit.framework */,
 				18CE5CCC1C0329DA00E1F5A9 /* Libraries */,
 				18937E331BFF33FA00C523C9 /* SL Smart */,
 				18937E471BFF33FB00C523C9 /* SL Smart WatchKit App */,
 				18937E561BFF33FB00C523C9 /* SL Smart WatchKit Extension */,
 				188B80461C175D9600E7D90C /* SL Smart-Today */,
+				18A9E8481C18993B008F97C8 /* ResStockholmApiKit */,
 				188B80431C175D9600E7D90C /* Frameworks */,
 				18937E321BFF33FA00C523C9 /* Products */,
 			);
@@ -435,6 +461,7 @@
 				18937E431BFF33FB00C523C9 /* SL Smart.app */,
 				18937E521BFF33FB00C523C9 /* SL Smart.appex */,
 				188B80421C175D9600E7D90C /* SL Smart-Today.appex */,
+				18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -443,10 +470,7 @@
 			isa = PBXGroup;
 			children = (
 				188B80971C177E9E00E7D90C /* SL Smart.entitlements */,
-				181B9AF41C03A9BC00B9145A /* Common */,
 				18937E891C01139E00C523C9 /* UI */,
-				18937E881C01139400C523C9 /* Services */,
-				18937E781BFF5EF800C523C9 /* Model */,
 				18937E341BFF33FA00C523C9 /* AppDelegate.swift */,
 				18937E381BFF33FA00C523C9 /* Main.storyboard */,
 				18937E3B1BFF33FA00C523C9 /* Assets.xcassets */,
@@ -532,7 +556,6 @@
 				18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */,
 				180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */,
 				1806037D1C023E8400AC1841 /* DataStore.swift */,
-				188367611C16264200A8BE16 /* WatchService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -550,6 +573,18 @@
 				18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		18A9E8481C18993B008F97C8 /* ResStockholmApiKit */ = {
+			isa = PBXGroup;
+			children = (
+				18937E881C01139400C523C9 /* Services */,
+				18937E781BFF5EF800C523C9 /* Model */,
+				181B9AF41C03A9BC00B9145A /* Common */,
+				18A9E8491C18993B008F97C8 /* ResStockholmApiKit.h */,
+				18A9E84B1C18993B008F97C8 /* Info.plist */,
+			);
+			path = ResStockholmApiKit;
 			sourceTree = "<group>";
 		};
 		18AC9CF61C07AD05007ECFA2 /* Trip List */ = {
@@ -576,7 +611,6 @@
 		18CE5CCC1C0329DA00E1F5A9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				180603631C01FCBE00AC1841 /* SwiftyJSON.swift */,
 				180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */,
 			);
 			name = Libraries;
@@ -594,6 +628,17 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		18A9E8441C18993B008F97C8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18A9E84A1C18993B008F97C8 /* ResStockholmApiKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		188B80411C175D9600E7D90C /* SL Smart-Today */ = {
@@ -632,6 +677,7 @@
 			dependencies = (
 				18937E461BFF33FB00C523C9 /* PBXTargetDependency */,
 				188B804E1C175D9600E7D90C /* PBXTargetDependency */,
+				18A9E84D1C18993B008F97C8 /* PBXTargetDependency */,
 			);
 			name = "SL Smart";
 			productName = "Res i Sverige";
@@ -672,6 +718,24 @@
 			productReference = 18937E521BFF33FB00C523C9 /* SL Smart.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		18A9E8461C18993B008F97C8 /* ResStockholmApiKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18A9E8561C18993C008F97C8 /* Build configuration list for PBXNativeTarget "ResStockholmApiKit" */;
+			buildPhases = (
+				18A9E8421C18993B008F97C8 /* Sources */,
+				18A9E8431C18993B008F97C8 /* Frameworks */,
+				18A9E8441C18993B008F97C8 /* Headers */,
+				18A9E8451C18993B008F97C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ResStockholmApiKit;
+			productName = ResStockholmApiKit;
+			productReference = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -708,6 +772,10 @@
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 43E7S6Y435;
 					};
+					18A9E8461C18993B008F97C8 = {
+						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 43E7S6Y435;
+					};
 				};
 			};
 			buildConfigurationList = 18937E2C1BFF33FA00C523C9 /* Build configuration list for PBXProject "SL Smart" */;
@@ -733,6 +801,7 @@
 				18937E421BFF33FB00C523C9 /* SL Smart WatchKit App */,
 				18937E511BFF33FB00C523C9 /* SL Smart WatchKit Extension */,
 				188B80411C175D9600E7D90C /* SL Smart-Today */,
+				18A9E8461C18993B008F97C8 /* ResStockholmApiKit */,
 			);
 		};
 /* End PBXProject section */
@@ -804,6 +873,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		18A9E8451C18993B008F97C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -849,54 +925,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				18BF52231C182D3E002B68AD /* TripCellCache.swift in Sources */,
-				18AC9CFC1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift in Sources */,
-				181B9AEF1C0370EF00B9145A /* SLTravelPlannerV2Api.swift in Sources */,
-				181B9AF81C03B3FB00B9145A /* TripHelper.swift in Sources */,
-				1806037E1C023E8400AC1841 /* DataStore.swift in Sources */,
 				188367751C170E5500A8BE16 /* TripDetailsDestinationCell.swift in Sources */,
 				18937E811BFFABFC00C523C9 /* PlannedTripsVC.swift in Sources */,
-				18937E7A1BFF5F2F00C523C9 /* Trip.swift in Sources */,
-				180FD8B51C0B087E0095C790 /* ScorePost.swift in Sources */,
 				188B80AE1C178DD900E7D90C /* TripSearchVC.swift in Sources */,
 				18937E771BFF5D6B00C523C9 /* RoutineTripsVC.swift in Sources */,
-				181B9AF61C03A9E100B9145A /* DateUtils.swift in Sources */,
-				18CE5CC71C025E3E00E1F5A9 /* Routine.swift in Sources */,
 				18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */,
 				180603641C01FCBE00AC1841 /* SwiftyJSON.swift in Sources */,
 				1806037C1C02165000AC1841 /* StationSearchResponder.swift in Sources */,
-				181B9AF31C0380FD00B9145A /* SearchTripService.swift in Sources */,
 				18232CAE1C01F1CA006334D1 /* ManageRoutineTripCell.swift in Sources */,
 				18AC9D001C08B5B4007ECFA2 /* TripFooter.swift in Sources */,
 				18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */,
 				18232CA61C01DB81006334D1 /* StyleButton.swift in Sources */,
 				18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */,
-				181B9AFA1C03D64000B9145A /* RoutineService.swift in Sources */,
 				185BCC921C09389E00A2C6DB /* TripHeader.swift in Sources */,
 				18946B1D1C1844E700A5829D /* DateTimePickResponder.swift in Sources */,
-				188367621C16264200A8BE16 /* WatchService.swift in Sources */,
 				181BD4161C047AA900651D0F /* RoutineTripHeader.swift in Sources */,
 				1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */,
-				181B9AF11C0375DC00B9145A /* TripSegment.swift in Sources */,
 				18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */,
-				18232CB01C01FA78006334D1 /* SLSearchStationApi.swift in Sources */,
 				18946B171C18431500A5829D /* DateTimePickerVC.swift in Sources */,
 				188367711C170E1800A8BE16 /* TripDetailsChangeCell.swift in Sources */,
 				188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */,
+				185D8DBE1C189D0200300890 /* WatchService.swift in Sources */,
 				188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */,
 				1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */,
 				18232CAC1C01EC2F006334D1 /* SearchLocationVC.swift in Sources */,
-				18937E7C1BFF5F8100C523C9 /* Station.swift in Sources */,
-				18AC9CFE1C0866C7007ECFA2 /* MyLocationHelper.swift in Sources */,
 				18937E7E1BFF6AB700C523C9 /* RoutineTripCell.swift in Sources */,
 				1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */,
 				1883676F1C170DE500A8BE16 /* TripDetailsOriginCell.swift in Sources */,
 				18232CA41C01D46A006334D1 /* EditRoutineTripVC.swift in Sources */,
-				18937E871C00A17700C523C9 /* RoutineTrip.swift in Sources */,
-				18232CAA1C01EA15006334D1 /* StationSearchService.swift in Sources */,
-				18D1953F1C07964900FB1A93 /* TripSeachCriterion.swift in Sources */,
-				188B85661C14ADF100098B00 /* SLNetworkError.swift in Sources */,
-				180FD8BB1C0B150E0095C790 /* ScorePostHelper.swift in Sources */,
-				180603661C0201A100AC1841 /* HttpRequestHelper.swift in Sources */,
 				18937E351BFF33FA00C523C9 /* AppDelegate.swift in Sources */,
 				18AC9CF81C07AD4D007ECFA2 /* TripListVC.swift in Sources */,
 				185073751C09CE84005D0D7E /* TripIcons.swift in Sources */,
@@ -915,6 +971,34 @@
 				18A824771C0EE866006190C4 /* GlanceController.swift in Sources */,
 				18A824781C0EE866006190C4 /* ComplicationController.swift in Sources */,
 				188B85731C15E30B00098B00 /* TripRow.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18A9E8421C18993B008F97C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18A9E8731C189B97008F97C8 /* SwiftyJSON.swift in Sources */,
+				18A9E8611C189998008F97C8 /* MyLocationHelper.swift in Sources */,
+				18A9E8631C189998008F97C8 /* DataStore.swift in Sources */,
+				18A9E86F1C1899ED008F97C8 /* TripHelper.swift in Sources */,
+				18A9E8701C1899ED008F97C8 /* TripSeachCriterion.swift in Sources */,
+				18A9E8721C1899F3008F97C8 /* DateUtils.swift in Sources */,
+				18A9E8711C1899ED008F97C8 /* ScorePost.swift in Sources */,
+				18A9E8621C189998008F97C8 /* ScorePostHelper.swift in Sources */,
+				18A9E8651C1899E7008F97C8 /* SLSearchStationApi.swift in Sources */,
+				18A9E8681C1899E7008F97C8 /* SLSearchNearbyStationsApi.swift in Sources */,
+				18A9E86B1C1899ED008F97C8 /* Station.swift in Sources */,
+				18A9E8691C1899E7008F97C8 /* SLNetworkError.swift in Sources */,
+				18A9E86A1C1899ED008F97C8 /* Trip.swift in Sources */,
+				18A9E8671C1899E7008F97C8 /* HttpRequestHelper.swift in Sources */,
+				18A9E86C1C1899ED008F97C8 /* RoutineTrip.swift in Sources */,
+				18A9E85F1C189998008F97C8 /* StationSearchService.swift in Sources */,
+				18A9E8661C1899E7008F97C8 /* SLTravelPlannerV2Api.swift in Sources */,
+				18A9E85E1C189998008F97C8 /* RoutineService.swift in Sources */,
+				18A9E86D1C1899ED008F97C8 /* Routine.swift in Sources */,
+				18A9E8601C189998008F97C8 /* SearchTripService.swift in Sources */,
+				18A9E86E1C1899ED008F97C8 /* TripSegment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,6 +1024,11 @@
 			isa = PBXTargetDependency;
 			target = 18937E511BFF33FB00C523C9 /* SL Smart WatchKit Extension */;
 			targetProxy = 18937E541BFF33FB00C523C9 /* PBXContainerItemProxy */;
+		};
+		18A9E84D1C18993B008F97C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18A9E8461C18993B008F97C8 /* ResStockholmApiKit */;
+			targetProxy = 18A9E84C1C18993B008F97C8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1192,6 +1281,48 @@
 			};
 			name = Release;
 		};
+		18A9E8501C18993C008F97C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ResStockholmApiKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mikael-hellman.ResStockholmApiKit";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		18A9E8511C18993C008F97C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ResStockholmApiKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mikael-hellman.ResStockholmApiKit";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1236,6 +1367,15 @@
 			buildConfigurations = (
 				18937E711BFF33FB00C523C9 /* Debug */,
 				18937E721BFF33FB00C523C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18A9E8561C18993C008F97C8 /* Build configuration list for PBXNativeTarget "ResStockholmApiKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18A9E8501C18993C008F97C8 /* Debug */,
+				18A9E8511C18993C008F97C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

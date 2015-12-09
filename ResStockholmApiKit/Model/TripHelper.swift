@@ -8,24 +8,24 @@
 
 import Foundation
 
-class TripHelper {
+public class TripHelper {
   
   
   /**
    * Creates a human readable trip segment description.
    */
-  static func friendlyTripSegmentDesc(segment: TripSegment) -> String {
+  public static func friendlyTripSegmentDesc(segment: TripSegment) -> String {
     if segment.type == .Walk {
       return "Gå \(segment.distance!) meter"
     }
-
+    
     return "Mot \(segment.directionText!)"
   }
   
   /**
    * Creates human readable line name.
    */
-  static func friendlyLineData(segment: TripSegment) -> (short: String, long: String, icon: String) {
+  public static func friendlyLineData(segment: TripSegment) -> (short: String, long: String, icon: String) {
     
     let type = segment.type
     let lineNumber = segment.lineNumber
@@ -82,7 +82,7 @@ class TripHelper {
   }
 }
 
-enum TripType: String {
+public enum TripType: String {
   case Ship = "SHIP"
   case Ferry = "FERRY"
   case Tram = "TRAM"

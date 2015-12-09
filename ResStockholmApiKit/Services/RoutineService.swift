@@ -8,14 +8,14 @@
 
 import Foundation
 
-class RoutineService {
+public class RoutineService {
   
   /**
    * Finds the all routine trip based on
    * current position, time and week day.
    * TODO: Refactoring....
    */
-  static func findRoutineTrip(callback: ([RoutineTrip]) -> Void) {
+  public static func findRoutineTrip(callback: ([RoutineTrip]) -> Void) {
     MyLocationHelper.sharedInstance.requestLocationUpdate { location in
       StationSearchService.searchNearby(location) { resTuple in
         

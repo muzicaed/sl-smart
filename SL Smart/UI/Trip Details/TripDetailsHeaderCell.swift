@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MapKit
+import ResStockholmApiKit
 
 class TripDetailsHeaderCell: UITableViewCell, TripCellProtocol {
 

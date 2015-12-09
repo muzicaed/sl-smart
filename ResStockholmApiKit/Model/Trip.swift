@@ -8,16 +8,16 @@
 
 import Foundation
 
-class Trip: NSObject, NSCopying {
+public class Trip: NSObject, NSCopying {
   
-  var durationMin = 0
-  var noOfChanges = 0
-  var tripSegments = [TripSegment]()
+  public var durationMin = 0
+  public var noOfChanges = 0
+  public var tripSegments = [TripSegment]()
   
   /**
    * Standard init
    */
-  init(durationMin: Int, noOfChanges: Int, tripSegments: [TripSegment]?) {
+  public init(durationMin: Int, noOfChanges: Int, tripSegments: [TripSegment]?) {
     self.durationMin = durationMin
     self.noOfChanges = noOfChanges
     if let segments = tripSegments {
@@ -28,7 +28,7 @@ class Trip: NSObject, NSCopying {
   /**
    * Converts into data dictionary for transfer to AppleWatch.
    */
-  func watchTransferData() -> Dictionary<String, AnyObject> {
+  public func watchTransferData() -> Dictionary<String, AnyObject> {
     var icons = [String]()
     var lines = [String]()
     for segment in tripSegments {
@@ -53,7 +53,7 @@ class Trip: NSObject, NSCopying {
   /**
   * Copy self
   */
-  func copyWithZone(zone: NSZone) -> AnyObject {
+  public func copyWithZone(zone: NSZone) -> AnyObject {
     var tripSegmentCopy = [TripSegment]()
     for segment in tripSegments {
       tripSegmentCopy.append(segment.copy() as! TripSegment)

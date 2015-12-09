@@ -8,17 +8,17 @@
 
 import Foundation
 
-class Station: NSObject, NSCoding, NSCopying {
+public class Station: NSObject, NSCoding, NSCopying {
   
-  let siteId: Int
-  let name: String
-  let cleanName: String
-  let area: String
+  public let siteId: Int
+  public let name: String
+  public let cleanName: String
+  public let area: String
   
   /**
    * Standard init
    */
-  init(id: Int, name: String) {
+  public init(id: Int, name: String) {
     let nameAreaTuple = Station.extractNameAndArea(name)
     self.siteId = id
     self.name = nameAreaTuple.name
@@ -29,7 +29,7 @@ class Station: NSObject, NSCoding, NSCopying {
   /**
    * Standard init
    */
-  init(id: Int, name: String, cleanName: String, area: String) {
+  public init(id: Int, name: String, cleanName: String, area: String) {
     self.siteId = id
     self.name = name
     self.cleanName = cleanName
@@ -74,7 +74,7 @@ class Station: NSObject, NSCoding, NSCopying {
   /**
   * Decoder init
   */
-  required convenience init?(coder aDecoder: NSCoder) {
+  required convenience public init?(coder aDecoder: NSCoder) {
     let siteId = aDecoder.decodeIntegerForKey(PropertyKey.siteId)
     let name = aDecoder.decodeObjectForKey(PropertyKey.name) as! String
     let cleanName = aDecoder.decodeObjectForKey(PropertyKey.cleanName) as! String
@@ -86,7 +86,7 @@ class Station: NSObject, NSCoding, NSCopying {
   /**
    * Encode this object
    */
-  func encodeWithCoder(aCoder: NSCoder) {
+  public func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodeInteger(siteId, forKey: PropertyKey.siteId)
     aCoder.encodeObject(name, forKey: PropertyKey.name)
     aCoder.encodeObject(cleanName, forKey: PropertyKey.cleanName)
@@ -105,7 +105,7 @@ class Station: NSObject, NSCoding, NSCopying {
   /**
   * Copy self
   */
-  func copyWithZone(zone: NSZone) -> AnyObject {
+  public func copyWithZone(zone: NSZone) -> AnyObject {
     return Station(id: siteId, name: name, cleanName: cleanName, area: area)
   }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SLNetworkError: ErrorType {
+public enum SLNetworkError: ErrorType {
   case ServiceUnavailable
   case NetworkError
   case NoDataFound
