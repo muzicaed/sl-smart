@@ -30,7 +30,7 @@ class WatchService {
             if index != 0 {
               otherTrips.append(routineTrip.watchTransferData())
             }
-            if index >= 3 {
+            if index >= 5 {
               break
             }
           }
