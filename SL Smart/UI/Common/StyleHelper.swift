@@ -16,6 +16,7 @@ class StyleHelper {
   let mainGreen = UIColor(red: 51/255, green: 143/255, blue: 89/255, alpha: 1.0)
   let mainGreenLight = UIColor(red: 51/255, green: 143/255, blue: 89/255, alpha: 0.4)
   let background = UIColor(red: 219/255, green: 235/255, blue: 227/255, alpha: 1.0)
+  let cardBackground = UIColor(red: 63/255, green: 73/255, blue: 62/255, alpha: 0.8)
 
   func setupCustomStyle() {
     let navAppearance = UINavigationBar.appearance()

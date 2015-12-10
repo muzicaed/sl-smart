@@ -195,6 +195,16 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
       return footer!
   }
   
+  /**
+   * Green highlight on selected row.
+   */
+  override func collectionView(collectionView: UICollectionView,
+    willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+      let bgColorView = UIView()
+      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+      cell.selectedBackgroundView = bgColorView
+  }
+  
   // MARK: UIScrollViewDelegate
   
   /**

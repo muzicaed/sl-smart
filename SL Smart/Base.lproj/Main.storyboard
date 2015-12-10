@@ -985,7 +985,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RoutineTripCell" id="opy-Pk-f0A" customClass="RoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="RoutineTripCell" id="opy-Pk-f0A" customClass="RoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
                                 <rect key="frame" x="22" y="114" width="370" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1276,7 +1276,7 @@
                                     <outlet property="tripTitleLabel" destination="Jds-FT-cH4" id="dsG-Yg-xEP"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SimpleRoutineTripCell" id="duh-gS-XIe" customClass="RoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="SimpleRoutineTripCell" id="duh-gS-XIe" customClass="RoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
                                 <rect key="frame" x="22" y="244" width="370" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1442,7 +1442,7 @@
                                     <outlet property="tripTitleLabel" destination="Dqp-N2-sug" id="mD5-hN-3gl"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InfoCell" id="37S-3z-DMK" userLabel="InfoCell" customClass="RoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="InfoCell" id="37S-3z-DMK" userLabel="InfoCell" customClass="RoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
                                 <rect key="frame" x="22" y="344" width="370" height="345"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1625,7 +1625,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </constraints>
                                 <size key="customSize" width="370" height="345"/>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LoadingCell" id="l3t-u8-IJZ">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="LoadingCell" id="l3t-u8-IJZ">
                                 <rect key="frame" x="22" y="699" width="370" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1760,7 +1760,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                             <inset key="sectionInset" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TripCell" id="71s-Mx-d6l" userLabel="TripCell" customClass="TripCell" customModule="SL_Smart" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="TripCell" id="71s-Mx-d6l" userLabel="TripCell" customClass="TripCell" customModule="SL_Smart" customModuleProvider="target">
                                 <rect key="frame" x="22" y="104" width="370" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1784,7 +1784,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E87-NZ-vJe" userLabel="Space">
                                                             <rect key="frame" x="5" y="0.0" width="10" height="100"/>
                                                             <animations/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="10" id="v5m-o8-Jx3"/>
                                                             </constraints>
@@ -1804,6 +1804,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jIh-yD-wPU" userLabel="Space">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="140" height="5"/>
                                                                                             <animations/>
+                                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="jDD-dp-rd1"/>
                                                                                             </constraints>
@@ -1814,6 +1815,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19:23" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkG-AC-ZZE" userLabel="19:23 (om 3 min.)">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="51" height="30"/>
                                                                                                     <animations/>
+                                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                                                     <nil key="highlightedColor"/>
@@ -1821,7 +1823,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tIA-iy-eCT" userLabel="Space">
                                                                                                     <rect key="frame" x="51" y="0.0" width="5" height="30"/>
                                                                                                     <animations/>
-                                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="width" constant="5" id="mUJ-dc-5SL"/>
                                                                                                     </constraints>
@@ -1829,6 +1831,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text=" ❨om 15 min❩" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfu-nL-1gC">
                                                                                                     <rect key="frame" x="55" y="0.0" width="85" height="30"/>
                                                                                                     <animations/>
+                                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="height" constant="30" id="4N7-dN-fsO"/>
                                                                                                     </constraints>
@@ -1838,23 +1841,26 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                                 </label>
                                                                                             </subviews>
                                                                                             <animations/>
+                                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                         </stackView>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxx-FU-l9L" userLabel="Karlberg">
                                                                                             <rect key="frame" x="0.0" y="40" width="140" height="16"/>
                                                                                             <animations/>
+                                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOc-Rd-xE3" userLabel="Space">
                                                                                             <rect key="frame" x="0.0" y="60" width="140" height="5"/>
                                                                                             <animations/>
+                                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="ps8-m5-z3C"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                     </subviews>
                                                                                     <animations/>
-                                                                                    <color key="backgroundColor" red="0.52156862749999999" green="0.70980392160000005" blue="0.043137254899999998" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                 </stackView>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y5l-Av-sLA" userLabel="Spacer">
                                                                                     <rect key="frame" x="140" y="0.0" width="45" height="65"/>
@@ -1868,7 +1874,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                         </label>
                                                                                     </subviews>
                                                                                     <animations/>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                     <constraints>
                                                                                         <constraint firstItem="Aq0-TM-bsn" firstAttribute="centerY" secondItem="Y5l-Av-sLA" secondAttribute="centerY" id="0fg-Ux-HB7"/>
                                                                                         <constraint firstItem="Aq0-TM-bsn" firstAttribute="centerX" secondItem="Y5l-Av-sLA" secondAttribute="centerX" id="KYx-0c-dq9"/>
@@ -1880,6 +1886,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="llQ-4E-VEP" userLabel="Space">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="140" height="5"/>
                                                                                             <animations/>
+                                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="76d-Fc-CGE"/>
                                                                                             </constraints>
@@ -1887,6 +1894,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:43" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwz-5L-zPm" userLabel="20:43">
                                                                                             <rect key="frame" x="0.0" y="11" width="140" height="23"/>
                                                                                             <animations/>
+                                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                                             <nil key="highlightedColor"/>
@@ -1894,22 +1902,25 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQI-Ex-ggn" userLabel="Centralen">
                                                                                             <rect key="frame" x="0.0" y="34" width="140" height="16"/>
                                                                                             <animations/>
+                                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wnk-E0-RU8" userLabel="Space">
                                                                                             <rect key="frame" x="0.0" y="60" width="140" height="5"/>
                                                                                             <animations/>
+                                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="oNn-We-LZw"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                     </subviews>
                                                                                     <animations/>
-                                                                                    <color key="backgroundColor" red="0.52156862749999999" green="0.70980392160000005" blue="0.043137254899999998" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                 </stackView>
                                                                             </subviews>
                                                                             <animations/>
+                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                             <constraints>
                                                                                 <constraint firstItem="27u-LY-jZ5" firstAttribute="width" secondItem="WmF-ov-2k7" secondAttribute="width" multiplier="0.43" id="cUq-d0-IVx"/>
                                                                                 <constraint firstItem="gXn-Ls-CgF" firstAttribute="width" secondItem="WmF-ov-2k7" secondAttribute="width" multiplier="0.43" id="kSR-we-27m"/>
@@ -1940,17 +1951,19 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                 </label>
                                                                             </subviews>
                                                                             <animations/>
+                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         </stackView>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbH-ns-2Sa" userLabel="Padding">
                                                                             <rect key="frame" x="0.0" y="90" width="325" height="10"/>
                                                                             <animations/>
-                                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="10" id="cpv-1m-WUk"/>
                                                                             </constraints>
                                                                         </view>
                                                                     </subviews>
                                                                     <animations/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <constraints>
                                                                         <constraint firstItem="FU0-FO-mE4" firstAttribute="width" secondItem="27u-LY-jZ5" secondAttribute="width" id="JlG-lv-NTX"/>
                                                                         <constraint firstItem="Jjk-EG-Yoy" firstAttribute="width" secondItem="Y5l-Av-sLA" secondAttribute="width" id="pd9-nO-tkU"/>
@@ -1958,7 +1971,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                 </stackView>
                                                             </subviews>
                                                             <animations/>
-                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstItem="bCO-gG-xAn" firstAttribute="top" secondItem="6VA-T1-FU9" secondAttribute="top" id="9fs-PZ-CTT"/>
                                                                 <constraint firstAttribute="bottom" secondItem="bCO-gG-xAn" secondAttribute="bottom" id="FyL-6t-Cgg"/>
@@ -1978,7 +1991,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                 </label>
                                                             </subviews>
                                                             <animations/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstItem="wS5-I2-VZB" firstAttribute="centerX" secondItem="HIP-1t-2OT" secondAttribute="centerX" id="DKT-Og-e95"/>
                                                                 <constraint firstAttribute="width" constant="25" id="W7T-dH-eKC"/>
@@ -1988,16 +2001,18 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JmP-5W-PkG" userLabel="Space">
                                                             <rect key="frame" x="365" y="0.0" width="5" height="100"/>
                                                             <animations/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="5" id="4l2-Ue-PWU"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
                                                     <animations/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </stackView>
                                             </subviews>
                                             <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </stackView>
                                     </subviews>
                                     <animations/>
@@ -2023,7 +2038,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                     <outlet property="tripDurationLabel" destination="sVg-st-IjB" id="LEg-2t-vLu"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.69999999999999996" contentMode="center" reuseIdentifier="PassedTripCell" id="2MI-Pc-ubI" userLabel="PassedTripCell" customClass="TripCell" customModule="SL_Smart" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="center" reuseIdentifier="PassedTripCell" id="2MI-Pc-ubI" userLabel="PassedTripCell" customClass="TripCell" customModule="SL_Smart" customModuleProvider="target">
                                 <rect key="frame" x="22" y="207" width="370" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -2296,7 +2311,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                     <outlet property="tripDurationLabel" destination="vHB-QB-sDd" id="CuE-CZ-EJU"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LoadingCell" id="bZc-ja-Cy0">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="LoadingCell" id="bZc-ja-Cy0">
                                 <rect key="frame" x="22" y="310" width="370" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -2319,7 +2334,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </constraints>
                                 <size key="customSize" width="370" height="120"/>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FoundNoTripsCell" id="Mcb-5M-IbY" userLabel="FoundNoTripsCell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="FoundNoTripsCell" id="Mcb-5M-IbY" userLabel="FoundNoTripsCell">
                                 <rect key="frame" x="22" y="433" width="370" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -2345,7 +2360,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <size key="customSize" width="370" height="120"/>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DateHeader" id="6Ci-aM-zr7" customClass="TripHeader" customModule="SL_Smart" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="DateHeader" id="6Ci-aM-zr7" customClass="TripHeader" customModule="SL_Smart" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="64" width="414" height="35"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -2380,7 +2395,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <outlet property="titleLabel" destination="9HV-hm-dNp" id="iIt-hL-dip"/>
                             </connections>
                         </collectionReusableView>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LoadMoreFooter" id="SPI-Bo-xvO" userLabel="LoadMoreFooter" customClass="TripFooter" customModule="SL_Smart" customModuleProvider="target">
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="LoadMoreFooter" id="SPI-Bo-xvO" userLabel="LoadMoreFooter" customClass="TripFooter" customModule="SL_Smart" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="558" width="414" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>

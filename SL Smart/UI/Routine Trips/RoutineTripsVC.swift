@@ -228,11 +228,21 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       }
   }
   
+  /**
+   * Green highlight on selected row.
+   */
+  override func collectionView(collectionView: UICollectionView,
+    willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+      let bgColorView = UIView()
+      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+      cell.selectedBackgroundView = bgColorView
+  }
+  
   // MARK: Private methods
   
   /**
-   * Setup collection view properties and layout.
-   */
+  * Setup collection view properties and layout.
+  */
   private func setupCollectionView() {
     let flowLayout = UICollectionViewFlowLayout()
     flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 10, 0)
