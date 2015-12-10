@@ -111,11 +111,14 @@ class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickR
   
   // MARK: UITableViewController
   
-  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-    
-    let bgColorView = UIView()
-    bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
-    cell.selectedBackgroundView = bgColorView
+  /**
+   * Green highlight on selected row.
+   */
+  override func tableView(tableView: UITableView,
+    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+      let bgColorView = UIView()
+      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+      cell.selectedBackgroundView = bgColorView
   }
   
   /**

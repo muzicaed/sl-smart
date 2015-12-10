@@ -43,11 +43,17 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
   
   // MARK: UITableViewController
   
+  /**
+   * Number of rows
+   */
   override func tableView(tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
       return searchResult.count
   }
   
+  /**
+   * Cell for index
+   */
   override func tableView(tableView: UITableView,
     cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       
@@ -66,11 +72,24 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
       return cell
   }
   
+  /**
+   * User selects row
+   */
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let selectedStation = searchResult[indexPath.row]
     delegate?.selectedStationFromSearch(selectedStation)
     searchController?.active = false
     performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
+  }
+  
+  /**
+   * Green highlight on selected row.
+   */
+  override func tableView(tableView: UITableView,
+    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+      let bgColorView = UIView()
+      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+      cell.selectedBackgroundView = bgColorView
   }
   
   // MARK: UISearchResultsUpdating

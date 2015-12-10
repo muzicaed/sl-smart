@@ -14,7 +14,7 @@ class StyleHelper {
   static let sharedInstance = StyleHelper()
   let tintColor = UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 1.0)
   let mainGreen = UIColor(red: 51/255, green: 143/255, blue: 89/255, alpha: 1.0)
-  let mainGreenLight = UIColor(red: 51/255, green: 143/255, blue: 89/255, alpha: 0.5)
+  let mainGreenLight = UIColor(red: 51/255, green: 143/255, blue: 89/255, alpha: 0.4)
   let background = UIColor(red: 219/255, green: 235/255, blue: 227/255, alpha: 1.0)
 
   func setupCustomStyle() {
@@ -25,7 +25,6 @@ class StyleHelper {
     
     let tabBarAppearance = UITabBar.appearance()
     tabBarAppearance.tintColor = mainGreen
-    //tabBarAppearance.barTintColor = mainGreen
 
     let searchBarAppearance = UISearchBar.appearance()
     searchBarAppearance.tintColor = tintColor

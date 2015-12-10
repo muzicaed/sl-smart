@@ -181,10 +181,19 @@ class ManageRoutineTripsVC: UITableViewController {
       performSegueWithIdentifier(showAddTripsSegue, sender: self)
       return
     }
-    
     selectedRoutineTrip = trips[indexPath.row]
     selectedRoutineTripIndex = indexPath.row
     performSegueWithIdentifier(showEditTripsSegue, sender: self)
+  }
+  
+  /**
+   * Green highlight on selected row.
+   */
+  override func tableView(tableView: UITableView,
+    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+      let bgColorView = UIView()
+      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+      cell.selectedBackgroundView = bgColorView
   }
   
   deinit {
