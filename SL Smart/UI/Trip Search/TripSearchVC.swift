@@ -48,12 +48,12 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
    * Before seque is triggred.
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "SearchOriginStation" {
+    if segue.identifier == "SearchOriginLocation" {
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
       vc.searchOnlyForStations = false
       isSearchingOriginLocation = true
-    } else if segue.identifier == "SearchDestinationStation" {
+    } else if segue.identifier == "SearchDestinationLocation" {
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
       vc.searchOnlyForStations = false

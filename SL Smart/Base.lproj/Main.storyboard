@@ -88,7 +88,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="WJw-HK-J3L" kind="show" identifier="SearchOriginStation" id="52i-vc-COQ"/>
+                                            <segue destination="WJw-HK-J3L" kind="show" identifier="SearchOriginLocation" id="52i-vc-COQ"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="5ee-y1-l7X">
@@ -140,7 +140,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="WJw-HK-J3L" kind="show" identifier="SearchDestinationStation" id="Sda-vE-i9s"/>
+                                            <segue destination="WJw-HK-J3L" kind="show" identifier="SearchDestinationLocation" id="Sda-vE-i9s"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -709,7 +709,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="WJw-HK-J3L" kind="show" identifier="SearchDestinationStation" id="zAQ-4U-scN"/>
+                                            <segue destination="WJw-HK-J3L" kind="show" identifier="SearchDestinationLocation" id="zAQ-4U-scN"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -2953,7 +2953,7 @@ Välkommen till ett smartare sätt att pendla.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="p87-eE-sWT"/>
-        <segue reference="Q81-bK-EK6"/>
-        <segue reference="BSf-cG-wcV"/>
+        <segue reference="Sda-vE-i9s"/>
+        <segue reference="6zU-Tw-atf"/>
     </inferredMetricsTieBreakers>
 </document>

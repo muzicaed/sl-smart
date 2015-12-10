@@ -1,5 +1,5 @@
 //
-//  SLSearchStationApi.swift
+//  SLSearchLocationApi.swift
 //  SL Smart
 //
 //  Created by Mikael Hellman on 2015-11-22.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-class SLSearchStationApi {
+class SLSearchLocationApi {
   
   let apiKey = "d6ab40d679d8426095c5da373c6aa1da"
   let urlBase = "http://api.sl.se/api2/typeahead.json"
   
   /**
-   * Search for station.
+   * Search for location.
    */
   func search(
     query: String, stationsOnly: Bool,

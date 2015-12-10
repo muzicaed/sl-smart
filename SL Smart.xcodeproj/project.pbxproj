@@ -66,7 +66,7 @@
 		18A9E8611C189998008F97C8 /* MyLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */; };
 		18A9E8621C189998008F97C8 /* ScorePostHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */; };
 		18A9E8631C189998008F97C8 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037D1C023E8400AC1841 /* DataStore.swift */; };
-		18A9E8651C1899E7008F97C8 /* SLSearchStationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */; };
+		18A9E8651C1899E7008F97C8 /* SLSearchLocationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAF1C01FA78006334D1 /* SLSearchLocationApi.swift */; };
 		18A9E8661C1899E7008F97C8 /* SLTravelPlannerV2Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */; };
 		18A9E8671C1899E7008F97C8 /* HttpRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180603651C0201A100AC1841 /* HttpRequestHelper.swift */; };
 		18A9E8681C1899E7008F97C8 /* SLSearchNearbyStationsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */; };
@@ -225,7 +225,7 @@
 		18232CA91C01EA15006334D1 /* LocationSearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 		18232CAB1C01EC2F006334D1 /* SearchLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationVC.swift; sourceTree = "<group>"; };
 		18232CAD1C01F1CA006334D1 /* ManageRoutineTripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageRoutineTripCell.swift; sourceTree = "<group>"; };
-		18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchStationApi.swift; sourceTree = "<group>"; };
+		18232CAF1C01FA78006334D1 /* SLSearchLocationApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchLocationApi.swift; sourceTree = "<group>"; };
 		185073741C09CE84005D0D7E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
 		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
 		185BCC911C09389E00A2C6DB /* TripHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHeader.swift; sourceTree = "<group>"; };
@@ -354,7 +354,7 @@
 		18232CA81C01E9FF006334D1 /* SL API */ = {
 			isa = PBXGroup;
 			children = (
-				18232CAF1C01FA78006334D1 /* SLSearchStationApi.swift */,
+				18232CAF1C01FA78006334D1 /* SLSearchLocationApi.swift */,
 				181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */,
 				180603651C0201A100AC1841 /* HttpRequestHelper.swift */,
 				18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */,
@@ -996,7 +996,7 @@
 				18A9E8721C1899F3008F97C8 /* DateUtils.swift in Sources */,
 				18A9E8711C1899ED008F97C8 /* ScorePost.swift in Sources */,
 				18A9E8621C189998008F97C8 /* ScorePostHelper.swift in Sources */,
-				18A9E8651C1899E7008F97C8 /* SLSearchStationApi.swift in Sources */,
+				18A9E8651C1899E7008F97C8 /* SLSearchLocationApi.swift in Sources */,
 				18A9E8681C1899E7008F97C8 /* SLSearchNearbyStationsApi.swift in Sources */,
 				18A9E86B1C1899ED008F97C8 /* Location.swift in Sources */,
 				18A9E8691C1899E7008F97C8 /* SLNetworkError.swift in Sources */,

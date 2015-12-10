@@ -11,7 +11,7 @@ import CoreLocation
 
 public class LocationSearchService {
   
-  private static let api = SLSearchStationApi()
+  private static let api = SLSearchLocationApi()
   private static let nearbyApi = SLSearchNearbyStationsApi()
   
   /**
