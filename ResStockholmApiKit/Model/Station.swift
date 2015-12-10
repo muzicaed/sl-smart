@@ -23,8 +23,8 @@ public class Station: NSObject, NSCoding, NSCopying {
    */
   public init(id: Int, name: String, type: String, lat: String, lon: String) {
     self.siteId = id
-    self.lat = lat
-    self.lon = lon
+    self.lat = Station.convertCoordinateFormat(lat)
+    self.lon = Station.convertCoordinateFormat(lon)
     if let enumType = LocationType(rawValue: type) {
       self.type = enumType
     } else if let enumType = LocationType(fromShort: type){
@@ -37,6 +37,8 @@ public class Station: NSObject, NSCoding, NSCopying {
     self.name = nameAreaTuple.name
     self.area = nameAreaTuple.area
     self.cleanName = Station.createCleanName(nameAreaTuple.name)
+    
+    print("Lat: \(self.lat), Lon: \(self.lon)")
   }
   
   /**
@@ -97,6 +99,20 @@ public class Station: NSObject, NSCoding, NSCopying {
         .stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
     }
     return nameString
+  }
+  
+  /**
+   * Converts Xpos & Ypos returned from some SL Services
+   * into true lat/lon values
+   */
+  private static func convertCoordinateFormat(coordinate: String) -> String {
+    if !coordinate.characters.contains(".") {
+      print("Converting...")
+      let index = 2
+      return String(coordinate.characters.prefix(index)) +
+        "." + String(coordinate.characters.suffix(coordinate.characters.count - index))
+    }
+    return coordinate
   }
   
   // MARK: NSCoding
