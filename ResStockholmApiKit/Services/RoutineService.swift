@@ -69,6 +69,7 @@ public class RoutineService {
         origin: routineTrip.origin!, dest: routineTrip.destination!)
       criterions.date = DateUtils.dateAsDateString(NSDate())
       criterions.time = DateUtils.dateAsTimeString(NSDate())
+      criterions.numTrips = 1
       
       SearchTripService.tripSearch(criterions, callback: { resTuple in
         if let _ = resTuple.error {
