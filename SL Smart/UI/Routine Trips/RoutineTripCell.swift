@@ -82,6 +82,7 @@ class RoutineTripCell: UICollectionViewCell {
       tripDurationLabel.text = "Restid: \(trip.durationMin) min"
       
       createTripSegmentIcons(trip)
+      return
     }
   }
   

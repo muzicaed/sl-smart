@@ -115,9 +115,7 @@ public class TripSearchCriterion {
     if dest == nil {
       return "&destId=\(destId)"
     } else if dest!.type == .Station {
-//      return "&destId=\(dest!.siteId)"
-      // TODO: Remove test code
-      return "&originId=\(dest!.siteId)"
+      return "&destId=\(dest!.siteId)"
     }
 
     return "&destCoordLat=\(dest!.lat)&destCoordLong=\(dest!.lon)&destCoordName=\(dest!.name)"
