@@ -21,7 +21,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   var routineTrip: RoutineTrip?
   var routineTripCopy: RoutineTrip?
   var routineTripIndex = -1
-  var isSearchingOriginStation = true
+  var isSearchingOriginLocation = true
   var isNewTrip = true
   var hasChanged = false
   
@@ -67,12 +67,12 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     tripTitleTextField.resignFirstResponder()
-    if segue.identifier == "SearchOriginStation" {
-      isSearchingOriginStation = true
+    if segue.identifier == "SearchOriginLocation" {
+      isSearchingOriginLocation = true
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
-    } else if segue.identifier == "SearchDestinationStation" {
-      isSearchingOriginStation = false
+    } else if segue.identifier == "SearchDestinationLocation" {
+      isSearchingOriginLocation = false
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
     }
@@ -117,11 +117,11 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   // MARK: LocationSearchResponder
   
   /**
-  * Triggered whem station is selected on location search VC.
+  * Triggered whem location is selected on location search VC.
   */
   func selectedLocationFromSearch(location: Location) {
     hasChanged = true
-    if isSearchingOriginStation {
+    if isSearchingOriginLocation {
       routineTrip?.origin = location
       originLabel.text = location.name
     } else {
@@ -186,7 +186,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   // MARK: Private methods
   
   /**
-  * Fills form with station data for edit.
+  * Fills form with location data for edit.
   */
   private func setupEditData() {
     if let trip = routineTrip {
@@ -216,45 +216,45 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   }
   
   /**
-   * Show a invalid station alert
+   * Show a invalid location alert
    */
-  private func showInvalidStationAlert() {
-    let invalidStationAlert = UIAlertController(
+  private func showInvalidLocationAlert() {
+    let invalidLocationAlert = UIAlertController(
       title: "Station saknas",
       message: "Du behöver ange de två stationerna du åker till och från för din resa.",
       preferredStyle: UIAlertControllerStyle.Alert)
-    invalidStationAlert.addAction(
+    invalidLocationAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
     
-    presentViewController(invalidStationAlert, animated: true, completion: nil)
+    presentViewController(invalidLocationAlert, animated: true, completion: nil)
   }
   
   /**
    * Show a week info alert
    */
   private func showWeekInfoAlert() {
-    let invalidStationAlert = UIAlertController(
+    let invalidLocationAlert = UIAlertController(
       title: "Förklaring",
       message: "Välj hur du oftast åker denna resa - vardagar eller helger.\n\nAppen lär sig dina vanor även när du reser utanför denna rutin. ",
       preferredStyle: UIAlertControllerStyle.Alert)
-    invalidStationAlert.addAction(
+    invalidLocationAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
     
-    presentViewController(invalidStationAlert, animated: true, completion: nil)
+    presentViewController(invalidLocationAlert, animated: true, completion: nil)
   }
   
   /**
    * Show a time info alert
    */
   private func showTimeInfoAlert() {
-    let invalidStationAlert = UIAlertController(
+    let invalidLocationAlert = UIAlertController(
       title: "Förklaring",
       message: "Morgon: 05:00 - 10.59\nDag: 11:00 - 17:59\nKväll: 18:00 - 21:59\nNatt: 22:00 - 04:59\n\nAppen lär sig dina vanor även när du reser utanför dessa tider.",
       preferredStyle: UIAlertControllerStyle.Alert)
-    invalidStationAlert.addAction(
+    invalidLocationAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
     
-    presentViewController(invalidStationAlert, animated: true, completion: nil)
+    presentViewController(invalidLocationAlert, animated: true, completion: nil)
   }
 
   /** 
@@ -271,7 +271,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     }
     
     if routineTrip == nil || routineTrip?.origin == nil || routineTrip?.destination == nil {
-      showInvalidStationAlert()
+      showInvalidLocationAlert()
       return
     }
     
