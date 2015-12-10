@@ -1,5 +1,5 @@
 //
-//  Station.swift
+//  Location.swift
 //  SL Smart
 //
 //  Created by Mikael Hellman on 2015-11-20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Station: NSObject, NSCoding, NSCopying {
+public class Location: NSObject, NSCoding, NSCopying {
   
   public let siteId: Int
   public let name: String
@@ -23,8 +23,8 @@ public class Station: NSObject, NSCoding, NSCopying {
    */
   public init(id: Int, name: String, type: String, lat: String, lon: String) {
     self.siteId = id
-    self.lat = Station.convertCoordinateFormat(lat)
-    self.lon = Station.convertCoordinateFormat(lon)
+    self.lat = Location.convertCoordinateFormat(lat)
+    self.lon = Location.convertCoordinateFormat(lon)
     if let enumType = LocationType(rawValue: type) {
       self.type = enumType
     } else if let enumType = LocationType(fromShort: type){
@@ -33,10 +33,10 @@ public class Station: NSObject, NSCoding, NSCopying {
       self.type = LocationType.Station
     }
     
-    let nameAreaTuple = Station.extractNameAndArea(name, type: self.type)
+    let nameAreaTuple = Location.extractNameAndArea(name, type: self.type)
     self.name = nameAreaTuple.name
     self.area = nameAreaTuple.area
-    self.cleanName = Station.createCleanName(nameAreaTuple.name)
+    self.cleanName = Location.createCleanName(nameAreaTuple.name)
   }
   
   /**
@@ -161,7 +161,7 @@ public class Station: NSObject, NSCoding, NSCopying {
   * Copy self
   */
   public func copyWithZone(zone: NSZone) -> AnyObject {
-    return Station(
+    return Location(
       id: siteId, name: name, cleanName: cleanName,
       area: area, type: LocationType(rawValue: type.rawValue)!,
       lat: lat, lon: lon)

@@ -14,15 +14,15 @@ public class TripSegment: NSObject, NSCopying {
   public let type: TripType
   public let directionText: String?
   public let lineNumber: String?
-  public let origin: Station
-  public let destination: Station
+  public let origin: Location
+  public let destination: Location
   public let departureDateTime: NSDate
   public let arrivalDateTime: NSDate
   public let distance: Int?
   
   public init(
     index: Int, name: String, type: String, directionText: String?,
-    lineNumber: String?, origin: Station, destination: Station,
+    lineNumber: String?, origin: Location, destination: Location,
     departureTime: String, arrivalTime: String,
     departureDate: String, arrivalDate: String,
     distance: Int?) {
@@ -48,8 +48,8 @@ public class TripSegment: NSObject, NSCopying {
     return TripSegment(
       index: index, name: name, type: type.rawValue,
       directionText: directionText, lineNumber: lineNumber,
-      origin: origin.copy() as! Station,
-      destination: destination.copy() as! Station,
+      origin: origin.copy() as! Location,
+      destination: destination.copy() as! Location,
       departureTime: DateUtils.dateAsTimeString(departureDateTime),
       arrivalTime: DateUtils.dateAsTimeString(arrivalDateTime),
       departureDate: DateUtils.dateAsDateString(departureDateTime),

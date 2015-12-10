@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickResponder {
+class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePickResponder {
   
-  var isSearchingOriginStation = false
+  var isSearchingOriginLocation = false
   var selectedDate = NSDate()
   var criterions: TripSearchCriterion?
   var dimmer: UIView?
@@ -52,12 +52,12 @@ class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickR
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
       vc.searchOnlyForStations = false
-      isSearchingOriginStation = true
+      isSearchingOriginLocation = true
     } else if segue.identifier == "SearchDestinationStation" {
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
       vc.searchOnlyForStations = false
-      isSearchingOriginStation = false
+      isSearchingOriginLocation = false
     } else if segue.identifier == "ShowTripList" {
       let vc = segue.destinationViewController as! TripListVC
       vc.criterions = criterions
@@ -83,24 +83,24 @@ class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickR
   
   @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
   
-  // MARK: StationSearchResponder
+  // MARK: LocationSearchResponder
   
   /**
-  * Triggered whem station is selected on station search VC.
+  * Triggered when location is selected on location search VC.
   */
-  func selectedStationFromSearch(station: Station) {
+  func selectedLocationFromSearch(location: Location) {
     if let crit = criterions {
-      if isSearchingOriginStation {
-        crit.origin = station
-        originLabel.text = station.name
+      if isSearchingOriginLocation {
+        crit.origin = location
+        originLabel.text = location.name
       } else {
-        crit.dest = station
-        destinationLabel.text = station.name
+        crit.dest = location
+        destinationLabel.text = location.name
       }
     }
   }
   
-  // MARK: StationSearchResponder
+  // MARK: DateTimePickResponder
   
   /**
   * Triggered whem date and time is picked

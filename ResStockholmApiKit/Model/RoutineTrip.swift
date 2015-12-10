@@ -11,12 +11,12 @@ import Foundation
 public class RoutineTrip: NSObject, NSCoding, NSCopying {
   public var title: String?
   public var routine: Routine?
-  public var origin: Station?
-  public var destination: Station?
+  public var origin: Location?
+  public var destination: Location?
   public var trips = [Trip]()
   public var score = Float(0.0)
   
-  public init(title: String?, origin: Station?, destination: Station?, routine: Routine?) {
+  public init(title: String?, origin: Location?, destination: Location?, routine: Routine?) {
     self.title = title
     self.routine = routine
     self.origin = origin
@@ -64,8 +64,8 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   required convenience public init?(coder aDecoder: NSCoder) {
     let title = aDecoder.decodeObjectForKey(PropertyKey.title) as? String
     let routine = aDecoder.decodeObjectForKey(PropertyKey.routine) as? Routine
-    let origin = aDecoder.decodeObjectForKey(PropertyKey.origin) as? Station
-    let destination = aDecoder.decodeObjectForKey(PropertyKey.destination) as? Station
+    let origin = aDecoder.decodeObjectForKey(PropertyKey.origin) as? Location
+    let destination = aDecoder.decodeObjectForKey(PropertyKey.destination) as? Location
     self.init(title: title, origin: origin, destination: destination, routine: routine)
   }
   
@@ -93,8 +93,8 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   */
   public func copyWithZone(zone: NSZone) -> AnyObject {
     let copy =  RoutineTrip(
-      title: title, origin: origin?.copy() as! Station?,
-      destination: destination?.copy() as! Station?, routine: routine?.copy() as! Routine?)
+      title: title, origin: origin?.copy() as! Location?,
+      destination: destination?.copy() as! Location?, routine: routine?.copy() as! Routine?)
     copy.score = score
     
     for trip in trips {

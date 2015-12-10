@@ -1,5 +1,5 @@
 //
-//  StationSearchResponder.swift
+//  LocationSearchResponder.swift
 //  SL Smart
 //
 //  Created by Mikael Hellman on 2015-11-22.
@@ -9,8 +9,8 @@
 import Foundation
 import ResStockholmApiKit
 
-protocol StationSearchResponder {
+protocol LocationSearchResponder {
 
-  func selectedStationFromSearch(station: Station) -> Void
+  func selectedLocationFromSearch(location: Location) -> Void
   
 }

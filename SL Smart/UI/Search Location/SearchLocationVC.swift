@@ -14,8 +14,8 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
   
   let cellReusableId = "StationSearchResultCell"
   var searchController: UISearchController?
-  var searchResult = [Station]()
-  var delegate: StationSearchResponder?
+  var searchResult = [Location]()
+  var delegate: LocationSearchResponder?
   var searchOnlyForStations = true
   
   /**
@@ -77,7 +77,7 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
    */
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let selectedStation = searchResult[indexPath.row]
-    delegate?.selectedStationFromSearch(selectedStation)
+    delegate?.selectedLocationFromSearch(selectedStation)
     searchController?.active = false
     performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
   }
@@ -97,7 +97,7 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
   @objc func updateSearchResultsForSearchController(searchController: UISearchController) {
     if let query = searchController.searchBar.text {
       if query.characters.count > 1 {
-        StationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
+        LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
           dispatch_async(dispatch_get_main_queue(), {
             if let error = resTuple.error {
               print("\(error)")

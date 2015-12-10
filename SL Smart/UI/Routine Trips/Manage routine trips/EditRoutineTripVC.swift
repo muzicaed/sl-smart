@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFieldDelegate {
+class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextFieldDelegate {
   
   @IBOutlet weak var timeSegmentControl: UISegmentedControl!
   @IBOutlet weak var weekRoutineSegmentControl: UISegmentedControl!
@@ -114,19 +114,19 @@ class EditRoutineTripVC: UITableViewController, StationSearchResponder, UITextFi
     }
   }
   
-  // MARK: StationSearchResponder
+  // MARK: LocationSearchResponder
   
   /**
-  * Triggered whem station is selected on station search VC.
+  * Triggered whem station is selected on location search VC.
   */
-  func selectedStationFromSearch(station: Station) {
+  func selectedLocationFromSearch(location: Location) {
     hasChanged = true
     if isSearchingOriginStation {
-      routineTrip?.origin = station
-      originLabel.text = station.name
+      routineTrip?.origin = location
+      originLabel.text = location.name
     } else {
-      routineTrip?.destination = station
-      destinationLabel.text = station.name
+      routineTrip?.destination = location
+      destinationLabel.text = location.name
     }
   }
   

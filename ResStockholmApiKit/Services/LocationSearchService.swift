@@ -1,5 +1,5 @@
 //
-//  StationSearchService.swift
+//  LocationSearchService.swift
 //  SL Smart
 //
 //  Created by Mikael Hellman on 2015-11-22.
@@ -9,32 +9,32 @@
 import Foundation
 import CoreLocation
 
-public class StationSearchService {
+public class LocationSearchService {
   
   private static let api = SLSearchStationApi()
   private static let nearbyApi = SLSearchNearbyStationsApi()
   
   /**
-   * Searches for stations based on the query
+   * Searches for locations based on the query
    */
   public static func search(
     query: String, stationsOnly: Bool,
-    callback: (data: [Station], error: SLNetworkError?) -> Void) {
+    callback: (data: [Location], error: SLNetworkError?) -> Void) {
       api.search(query, stationsOnly: stationsOnly) { resTuple in
-        var stations = [Station]()
+        var locations = [Location]()
         if let data = resTuple.data {
-          stations = StationSearchService.convertJsonResponse(data)
-          if stations.count == 0 {
-            callback(data: stations, error: SLNetworkError.NoDataFound)
+          locations = LocationSearchService.convertJsonResponse(data)
+          if locations.count == 0 {
+            callback(data: locations, error: SLNetworkError.NoDataFound)
             return
           }
         }
-        callback(data: stations, error: resTuple.error)
+        callback(data: locations, error: resTuple.error)
       }
   }
   
   /**
-   * Searches for nearby stations.
+   * Searches for nearby locations.
    */
   public static func searchNearby(
     location: CLLocation,
@@ -66,21 +66,21 @@ public class StationSearchService {
   }
   
   /**
-   * Converts the raw json string into array of Station.
+   * Converts the raw json string into array of Location.
    */
-  private static func convertJsonResponse(jsonData: NSData) -> [Station] {
-    var result = [Station]()
+  private static func convertJsonResponse(jsonData: NSData) -> [Location] {
+    var result = [Location]()
     let data = JSON(data: jsonData)
     
-    for (_,stationJson):(String, JSON) in data["ResponseData"] {
-      let station = Station(
-        id: Int(stationJson["SiteId"].string!)!,
-        name: stationJson["Name"].string!,
-        type: stationJson["Type"].string!,
-        lat: stationJson["Y"].string!,
-        lon: stationJson["X"].string!
+    for (_,locationJson):(String, JSON) in data["ResponseData"] {
+      let location = Location(
+        id: Int(locationJson["SiteId"].string!)!,
+        name: locationJson["Name"].string!,
+        type: locationJson["Type"].string!,
+        lat: locationJson["Y"].string!,
+        lon: locationJson["X"].string!
       )
-      result.append(station)
+      result.append(location)
     }
     
     return result

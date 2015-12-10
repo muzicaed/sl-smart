@@ -34,7 +34,7 @@ public class SearchTripService {
   // MARK: Private methods
   
   /**
-  * Converts the raw json string into array of Station.
+  * Converts the raw json string into array of Trip.
   */
   private static func convertJsonResponse(jsonDataString: NSData) -> [Trip] {
     var result = [Trip]()
@@ -104,8 +104,8 @@ public class SearchTripService {
    * Converts json to trip segment object.
    */
   private static func convertJsonToTripSegment(segmentJson: JSON) -> TripSegment {
-    let origin = convertJsonToStation(segmentJson["Origin"])
-    let destination = convertJsonToStation(segmentJson["Destination"])
+    let origin = convertJsonToLocation(segmentJson["Origin"])
+    let destination = convertJsonToLocation(segmentJson["Destination"])
     
     let distString = (segmentJson["dist"].string != nil) ? segmentJson["dist"].string! : ""
     return TripSegment(
@@ -122,20 +122,20 @@ public class SearchTripService {
   }
   
   /**
-   * Converts json to station object.
+   * Converts json to location object.
    */
-  private static func convertJsonToStation(stationJson: JSON) -> Station {
+  private static func convertJsonToLocation(locationJson: JSON) -> Location {
     var id = 0
-    if let idStr = stationJson["id"].string {
+    if let idStr = locationJson["id"].string {
       id = Int(idStr)!
     }
     
-    return Station(
+    return Location(
       id: id,
-      name: ensureUTF8(stationJson["name"].string!),
-      type: stationJson["type"].string!,
-      lat: stationJson["lat"].string!,
-      lon: stationJson["lon"].string!)
+      name: ensureUTF8(locationJson["name"].string!),
+      type: locationJson["type"].string!,
+      lat: locationJson["lat"].string!,
+      lon: locationJson["lon"].string!)
   }
   
   

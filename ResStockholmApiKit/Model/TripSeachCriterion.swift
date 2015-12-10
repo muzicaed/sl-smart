@@ -15,8 +15,8 @@ public class TripSearchCriterion {
 
   public var originId = 0
   public var destId = 0
-  public var origin: Station?
-  public var dest: Station?
+  public var origin: Location?
+  public var dest: Location?
   public var date: String?
   public var time: String?
   public var numChg: Int?
@@ -41,7 +41,7 @@ public class TripSearchCriterion {
   /**
    * Standard init
    */
-  public init(origin: Station?, dest: Station?) {
+  public init(origin: Location?, dest: Location?) {
     self.origin = origin
     self.dest = dest
   }
