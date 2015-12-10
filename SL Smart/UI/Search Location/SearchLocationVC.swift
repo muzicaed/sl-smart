@@ -16,6 +16,7 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
   var searchController: UISearchController?
   var searchResult = [Station]()
   var delegate: StationSearchResponder?
+  var searchOnlyForStations = true
   
   /**
    * View is done loading.
@@ -77,7 +78,7 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
   @objc func updateSearchResultsForSearchController(searchController: UISearchController) {
     if let query = searchController.searchBar.text {
       if query.characters.count > 1 {
-        StationSearchService.search(query) { resTuple in
+        StationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
           dispatch_async(dispatch_get_main_queue(), {
             if let error = resTuple.error {
               print("\(error)")

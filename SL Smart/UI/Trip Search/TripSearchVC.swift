@@ -43,13 +43,15 @@ class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickR
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "SearchOriginStation" {
+      let vc = segue.destinationViewController as! SearchLocationVC
+      vc.delegate = self
+      vc.searchOnlyForStations = false
       isSearchingOriginStation = true
-      let vc = segue.destinationViewController as! SearchLocationVC
-      vc.delegate = self
     } else if segue.identifier == "SearchDestinationStation" {
-      isSearchingOriginStation = false
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
+      vc.searchOnlyForStations = false      
+      isSearchingOriginStation = false
     } else if segue.identifier == "ShowTripList" {
       let vc = segue.destinationViewController as! TripListVC
       vc.criterions = criterions
