@@ -26,6 +26,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   var trips = Dictionary<String, [Trip]>()
   var selectedTrip: Trip?
   var isLoading = true
+  var isLoadingMoreBlocked = false
   var isLoadingMore = false
   
   /**
@@ -44,11 +45,20 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   }
   
   /**
+   * View about to appear
+   */
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    isLoadingMoreBlocked = false
+  }
+  
+  /**
    * Unwind (back) to this view.
    */
   @IBAction func unwindToTripListVC(segue: UIStoryboardSegue) {}
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    isLoadingMoreBlocked = true
     if segue.identifier == showDetailsSegue {
       let vc = segue.destinationViewController as! TripDetailsVC
       vc.trip = selectedTrip!
@@ -219,7 +229,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
         overflow =  scrollView.contentInset.top + scrollView.contentOffset.y
       }
       
-      if overflow > 0 && !isLoadingMore  {
+      if overflow > 0 && !isLoadingMore && !isLoadingMoreBlocked {
         footer?.displaySpinner(overflow / 60)
         if overflow >= 60 {
           if trips.count > 0 {
