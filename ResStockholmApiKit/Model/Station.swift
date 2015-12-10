@@ -37,8 +37,6 @@ public class Station: NSObject, NSCoding, NSCopying {
     self.name = nameAreaTuple.name
     self.area = nameAreaTuple.area
     self.cleanName = Station.createCleanName(nameAreaTuple.name)
-    
-    print("Lat: \(self.lat), Lon: \(self.lon)")
   }
   
   /**
@@ -107,7 +105,6 @@ public class Station: NSObject, NSCoding, NSCopying {
    */
   private static func convertCoordinateFormat(coordinate: String) -> String {
     if !coordinate.characters.contains(".") {
-      print("Converting...")
       let index = 2
       return String(coordinate.characters.prefix(index)) +
         "." + String(coordinate.characters.suffix(coordinate.characters.count - index))

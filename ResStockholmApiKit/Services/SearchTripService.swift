@@ -110,9 +110,21 @@ public class SearchTripService {
    * Converts json to station object.
    */
   private static func convertJsonToStation(stationJson: JSON) -> Station {
+    var id = 0
+    if let idStr = stationJson["id"].string {
+      id = Int(idStr)!
+    }
+    
+    var stationName = stationJson["name"].string!
+    let data = stationName.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)!
+    let convertedName = NSString(data: data, encoding: NSUTF8StringEncoding)
+    if let convName = convertedName {
+      stationName = convName as String
+    }
+    
     return Station(
-      id: Int(stationJson["id"].string!)!,
-      name: stationJson["name"].string!,
+      id: id,
+      name: stationName,
       type: stationJson["type"].string!,
       lat: stationJson["lat"].string!,
       lon: stationJson["lon"].string!)

@@ -77,8 +77,8 @@ public class StationSearchService {
         id: Int(stationJson["SiteId"].string!)!,
         name: stationJson["Name"].string!,
         type: stationJson["Type"].string!,
-        lat: stationJson["X"].string!,
-        lon: stationJson["Y"].string!
+        lat: stationJson["Y"].string!,
+        lon: stationJson["X"].string!
       )
       result.append(station)
     }

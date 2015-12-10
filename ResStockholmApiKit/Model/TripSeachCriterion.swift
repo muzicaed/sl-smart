@@ -12,9 +12,11 @@ import Foundation
  * Simple data object.
  */
 public class TripSearchCriterion {
-  
-  public var originId: Int
-  public var destId: Int
+
+  public var originId = 0
+  public var destId = 0
+  public var origin: Station?
+  public var dest: Station?
   public var date: String?
   public var time: String?
   public var numChg: Int?
@@ -23,7 +25,7 @@ public class TripSearchCriterion {
   public var lineExc: String?
   public var searchForArrival = false
   public var unsharp = false
-  public var maxWalkDist = 300
+  public var maxWalkDist = 1000
   
   public var useTrain = true
   public var useMetro = true
@@ -39,21 +41,33 @@ public class TripSearchCriterion {
   /**
    * Standard init
    */
+  public init(origin: Station?, dest: Station?) {
+    self.origin = origin
+    self.dest = dest
+  }
+  
+  /**
+   * Standard init
+   */
   public init(originId: Int, destId: Int) {
     self.originId = originId
     self.destId = destId
-  }
-  
-  convenience public init(origin: Station, destination: Station) {
-    self.init(originId: origin.siteId, destId: destination.siteId)
   }
   
   /**
    * Query string.
    */
   public func generateQueryString(beginsWithQuestionMark: Bool) -> String {
+    if (origin == nil && originId == 0) || (dest == nil && destId == 0) {
+      fatalError("TripSearchCriterion: Can not generate query without origin/destination")
+    }
+    
     var query = (beginsWithQuestionMark) ? "?" : "&"
-    query += "originId=\(originId)&destId=\(destId)&numTrips=\(numTrips)"
+    query += "numTrips=\(numTrips)"
+    
+    query += createOriginQuery()
+    query += createDestinationQuery()
+    
     query += (date != nil) ? "&date=\(date!)" : ""
     query += (time != nil) ? "&time=\(time!)" : ""
     query += (numChg != nil) ? "&numChg=\(numChg!)" : ""
@@ -74,9 +88,41 @@ public class TripSearchCriterion {
     query += (maxWalkDist > 0) ? "&maxWalkDist=\(maxWalkDist)" : ""
     
     if let escapedQuery = query.stringByAddingPercentEncodingWithAllowedCharacters(
-      .URLHostAllowedCharacterSet()) {
+      .URLQueryAllowedCharacterSet()) {
         return escapedQuery
     }
     fatalError("Could not encode query string.")
+  }
+  
+  /**
+   * Creates a query mathing the origin location
+   * type (Station/Address).
+   */
+  private func createOriginQuery() -> String {
+    if origin == nil {
+      return "&originId=\(originId)"
+    } else if origin!.type == .Station {
+      return "&originId=\(origin!.siteId)"
+    }
+    
+    let escLat = origin!.lat.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+
+    
+    
+    return "&originCoordLat=\(origin!.lat)&originCoordLong=\(origin!.lon)&originCoordName=\(origin!.name)"
+  }
+  
+  /**
+   * Creates a query mathing the destination location
+   * type (Station/Address).
+   */
+  private func createDestinationQuery() -> String {
+    if dest == nil {
+      return "&destId=\(destId)"
+    } else if dest!.type == .Station {
+      return "&destId=\(dest!.siteId)"
+    }
+
+    return "&destCoordLat=\(dest!.lat)&destCoordLong=\(dest!.lon)&destCoordName=\(dest!.name)"
   }
 }

@@ -66,7 +66,7 @@ public class RoutineService {
   static private func searchTripsForBestRoutine(bestRoutineTrip: RoutineTrip?, callback: ([Trip]) -> Void) {
     if let routineTrip = bestRoutineTrip {
       let criterions = TripSearchCriterion(
-        origin: routineTrip.origin!, destination: routineTrip.destination!)
+        origin: routineTrip.origin!, dest: routineTrip.destination!)
       criterions.date = DateUtils.dateAsDateString(NSDate())
       criterions.time = DateUtils.dateAsTimeString(NSDate())
       
