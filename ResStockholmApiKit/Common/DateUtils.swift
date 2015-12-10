@@ -77,18 +77,24 @@ public class DateUtils {
   public static func friendlyDateAndTime(date: NSDate) -> String {
     let formatter = getSwedishFormatter()
     
+    formatter.dateFormat = "d"
+    var day = formatter.stringFromDate(date)
+    day = (day == "1" || day == "2") ? day + ":a" : day + ":e"
+    
     formatter.dateFormat = "EEEE"
     var weekDay = formatter.stringFromDate(date)
     if formatter.stringFromDate(NSDate()) == weekDay {
       weekDay = "Idag"
     } else if formatter.stringFromDate(NSDate(timeIntervalSinceNow: 86400)) == weekDay {
       weekDay = "imorgon"
+    } else {
+      weekDay = weekDay.capitalizedString + " den \(day)"
     }
     
     formatter.dateFormat = "HH:mm"
     let time = formatter.stringFromDate(date)
     
-    return ("\(weekDay.capitalizedString), kl. \(time)")
+    return ("\(weekDay), kl. \(time)")
   }
   
   /**

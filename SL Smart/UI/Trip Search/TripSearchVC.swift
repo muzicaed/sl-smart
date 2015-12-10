@@ -15,6 +15,7 @@ class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickR
   var isSearchingOriginStation = false
   var selectedDate = NSDate()
   var criterions: TripSearchCriterion?
+  var dimmer: UIView?
   
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
@@ -29,6 +30,8 @@ class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickR
     view.backgroundColor = StyleHelper.sharedInstance.background
     criterions = TripSearchCriterion(origin: nil, dest: nil)
     pickedDate(NSDate())
+    
+    createDimmer()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -62,6 +65,9 @@ class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickR
       let vc = segue.destinationViewController as! DateTimePickerVC
       vc.selectedDate = selectedDate
       vc.delegate = self
+      UIView.animateWithDuration(0.4, animations: {
+        self.dimmer?.alpha = 0.7
+      })
     }
   }
   
@@ -99,21 +105,27 @@ class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickR
   /**
   * Triggered whem date and time is picked
   */
-  func pickedDate(date: NSDate) -> Void {
-    if let crit = criterions {
+  func pickedDate(date: NSDate?) -> Void {
+    print(criterions)
+    print(date)
+    if let crit = criterions, let date = date {
+      print("Updated date")
       let dateTimeTuple = DateUtils.dateAsStringTuple(date)
       crit.date = dateTimeTuple.date
       crit.time = dateTimeTuple.time
       timeLabel.text = DateUtils.friendlyDateAndTime(date)
       selectedDate = date
     }
+    UIView.animateWithDuration(0.2, animations: {
+      self.dimmer?.alpha = 0.0
+    })
   }
   
   // MARK: UITableViewController
   
   /**
-   * Green highlight on selected row.
-   */
+  * Green highlight on selected row.
+  */
   override func tableView(tableView: UITableView,
     willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
       let bgColorView = UIView()
@@ -126,5 +138,19 @@ class TripSearchVC: UITableViewController, StationSearchResponder, DateTimePickR
    */
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  }
+  
+  // MARK: Private
+  
+  
+  /**
+  * Creates a screen dimmer for date/time picker.
+  */
+  private func createDimmer() {
+    dimmer = UIView(frame: CGRect(origin: CGPoint.zero, size: view.bounds.size))
+    dimmer!.userInteractionEnabled = false
+    dimmer!.backgroundColor = UIColor.blackColor()
+    dimmer!.alpha = 0.0
+    view.addSubview(dimmer!)
   }
 }

@@ -30,6 +30,7 @@ class DateTimePickerVC: UIViewController {
    * On close button tap
    */
   @IBAction func onCloseButtonTap(sender: AnyObject) {
+    delegate?.pickedDate(nil)
     dismissViewControllerAnimated(true, completion: nil)
     
   }
