@@ -40,6 +40,7 @@ class StyleHelper {
       forState: UIControlState.Selected)
     
     UIApplication.sharedApplication().statusBarStyle = .LightContent
+    (UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])).tintColor = UIColor.whiteColor()
   }
 }
 
