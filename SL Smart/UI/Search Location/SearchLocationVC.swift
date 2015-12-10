@@ -30,7 +30,11 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
     self.searchController = UISearchController(searchResultsController: nil)
     self.searchController!.searchResultsUpdater = self
     self.searchController!.dimsBackgroundDuringPresentation = false
-    self.searchController!.searchBar.placeholder = "Ange namnet på en station"
+    if searchOnlyForStations {
+      self.searchController!.searchBar.placeholder = "Skriv namnet på en station"
+    } else {
+      self.searchController!.searchBar.placeholder = "Skriv stationsnamn eller en adress"
+    }
     
     self.tableView.tableHeaderView = self.searchController!.searchBar
     tableView.tableFooterView = UIView()
@@ -67,12 +71,12 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
         return cell
       }
       
-      let station = searchResult[indexPath.row]
+      let location = searchResult[indexPath.row]
       let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
         forIndexPath: indexPath)
-      cell.textLabel?.text = station.name
-      cell.detailTextLabel?.text = station.area
-      if station.type == .Station {
+      cell.textLabel?.text = location.name
+      cell.detailTextLabel?.text = location.area
+      if location.type == .Station {
         cell.imageView?.image = UIImage(named: "station-icon")
       } else {
         cell.imageView?.image = UIImage(named: "address-icon")
@@ -86,8 +90,8 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
    * User selects row
    */
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let selectedStation = searchResult[indexPath.row]
-    delegate?.selectedLocationFromSearch(selectedStation)
+    let selectedLocation = searchResult[indexPath.row]
+    delegate?.selectedLocationFromSearch(selectedLocation)
     searchController?.active = false
     performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
   }
