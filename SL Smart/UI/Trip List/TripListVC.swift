@@ -115,7 +115,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     layout collectionViewLayout: UICollectionViewLayout,
     referenceSizeForHeaderInSection section: Int) -> CGSize {
       
-      if isLoading  {
+      if isLoading || trips.count > 0  {
         return CGSizeMake(0, 0)
       }
       
@@ -175,8 +175,10 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
           withReuseIdentifier: headerIdentifier,
           forIndexPath: indexPath) as! TripHeader
         
-        let date = DateUtils.convertDateString("\(keys[indexPath.section]) 00:00")
-        header.titleLabel.text = DateUtils.friendlyDate(date)
+        if trips.count > 0 {
+          let date = DateUtils.convertDateString("\(keys[indexPath.section]) 00:00")
+          header.titleLabel.text = DateUtils.friendlyDate(date)
+        }
         return header
       }
       
@@ -239,16 +241,18 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
         callback: { resTuple in
           dispatch_async(dispatch_get_main_queue(), {
             if let error = resTuple.error {
-              print("\(error)")
+              print("Error: \(error)")
               self.showNetworkErrorAlert()
+              self.isLoading = false
+              self.collectionView?.reloadData()
               return
             }
+            
             self.appendToDictionary(resTuple.data)
             self.isLoading = false
             self.isLoadingMore = false
             self.footer?.displayLabel()
             self.collectionView?.reloadData()
-            
             self.updateDateCriterions()
           })
       })
@@ -276,16 +280,18 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
    * the search criterions in that case.
    */
   private func updateDateCriterions() {
-    let cal = NSCalendar.currentCalendar()
-    let trip = trips[keys.last!]!.last!
-    
-    let departDate = trip.tripSegments.last!.departureDateTime
-    let departDay = cal.ordinalityOfUnit(.Day, inUnit: .Year, forDate: departDate)
-    let criterionDate = DateUtils.convertDateString("\(criterions!.date!) \(criterions!.time!)")
-    let criterionDay = cal.ordinalityOfUnit(.Day, inUnit: .Year, forDate: criterionDate)
-    
-    if departDay != criterionDay {
-      criterions?.date = DateUtils.dateAsDateString(departDate)
+    if trips.count > 0 {
+      let cal = NSCalendar.currentCalendar()
+      let trip = trips[keys.last!]!.last!
+      
+      let departDate = trip.tripSegments.last!.departureDateTime
+      let departDay = cal.ordinalityOfUnit(.Day, inUnit: .Year, forDate: departDate)
+      let criterionDate = DateUtils.convertDateString("\(criterions!.date!) \(criterions!.time!)")
+      let criterionDay = cal.ordinalityOfUnit(.Day, inUnit: .Year, forDate: criterionDate)
+      
+      if departDay != criterionDay {
+        criterions?.date = DateUtils.dateAsDateString(departDate)
+      }
     }
   }
   
@@ -334,8 +340,8 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   }
   
   /**
-  * Show a network error alert
-  */
+   * Show a network error alert
+   */
   private func showNetworkErrorAlert() {
     let networkErrorAlert = UIAlertController(
       title: "Tjänsten är otillgänglig",

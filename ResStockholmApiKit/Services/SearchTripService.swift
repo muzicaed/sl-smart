@@ -40,6 +40,10 @@ public class SearchTripService {
     var result = [Trip]()
     let data = JSON(data: jsonDataString)
     
+    if checkErrors(data) {
+      return [Trip]()
+    }
+    
     if let tripsJson = data["TripList"]["Trip"].array {
       for tripJson in tripsJson {
         result.append(convertJsonToTrip(tripJson))
@@ -49,6 +53,17 @@ public class SearchTripService {
     }
     
     return result
+  }
+  
+  /**
+   * Checks if service returned error.
+   */
+  private static func checkErrors(data: JSON) -> Bool {
+    if let errorCode = data["TripList"]["errorCode"].string {
+      print("SearchTripService got error: \(data["TripList"]["errorText"].string!) (Code: \(errorCode))")
+      return true
+    }
+    return false
   }
   
   /**
@@ -115,18 +130,25 @@ public class SearchTripService {
       id = Int(idStr)!
     }
     
-    var stationName = stationJson["name"].string!
-    let data = stationName.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)!
-    let convertedName = NSString(data: data, encoding: NSUTF8StringEncoding)
-    if let convName = convertedName {
-      stationName = convName as String
-    }
-    
     return Station(
       id: id,
-      name: stationName,
+      name: ensureUTF8(stationJson["name"].string!),
       type: stationJson["type"].string!,
       lat: stationJson["lat"].string!,
       lon: stationJson["lon"].string!)
+  }
+  
+  
+  /**
+   * Ensures the string is UTF8
+   */
+  private static func ensureUTF8(var string: String) -> String {
+    let data = string.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)!
+    let convertedName = NSString(data: data, encoding: NSUTF8StringEncoding)
+    if let convName = convertedName {
+      string = convName as String
+    }
+    
+    return string
   }
 }
