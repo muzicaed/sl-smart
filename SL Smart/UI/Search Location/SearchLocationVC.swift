@@ -13,10 +13,12 @@ import ResStockholmApiKit
 class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
   
   let cellReusableId = "StationSearchResultCell"
+  let cellNotFoundId = "NoStationsFound"
   var searchController: UISearchController?
   var searchResult = [Location]()
   var delegate: LocationSearchResponder?
   var searchOnlyForStations = true
+  var noResults = false
   
   /**
    * View is done loading.
@@ -44,10 +46,13 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
   // MARK: UITableViewController
   
   /**
-   * Number of rows
-   */
+  * Number of rows
+  */
   override func tableView(tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
+      if noResults {
+        return 1
+      }
       return searchResult.count
   }
   
@@ -56,6 +61,11 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
    */
   override func tableView(tableView: UITableView,
     cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+      if noResults {
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellNotFoundId,
+          forIndexPath: indexPath)
+        return cell
+      }
       
       let station = searchResult[indexPath.row]
       let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
@@ -97,11 +107,13 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
   @objc func updateSearchResultsForSearchController(searchController: UISearchController) {
     if let query = searchController.searchBar.text {
       if query.characters.count > 1 {
+        self.noResults = false
         LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
           dispatch_async(dispatch_get_main_queue(), {
             if let error = resTuple.error {
               print("\(error)")
-              self.showNetworkErrorAlert()
+              self.noResults = true
+              self.tableView.reloadData()
               return
             }
             self.searchResult = resTuple.data
