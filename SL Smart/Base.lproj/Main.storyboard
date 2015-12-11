@@ -392,19 +392,19 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1C-Mj-3GQ">
-                                                    <rect key="frame" x="40" y="0.0" width="64.5" height="44"/>
+                                                    <rect key="frame" x="40" y="0.0" width="59" height="44"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="b7X-zO-zU0"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gl7-Al-Pu9" userLabel="Type Icon">
-                                                    <rect key="frame" x="104.5" y="0.0" width="309.5" height="44"/>
+                                                    <rect key="frame" x="99" y="0.0" width="315" height="44"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="METRO-NEUTRAL" translatesAutoresizingMaskIntoConstraints="NO" id="NIP-kO-KxH" userLabel="Type icon">
-                                                            <rect key="frame" x="286.5" y="14" width="15" height="15"/>
+                                                            <rect key="frame" x="291.5" y="14" width="15" height="15"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="fUj-xu-nGU"/>
@@ -2600,7 +2600,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <outlet property="titleLabel" destination="9HV-hm-dNp" id="iIt-hL-dip"/>
                             </connections>
                         </collectionReusableView>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="LoadMoreFooter" id="SPI-Bo-xvO" userLabel="LoadMoreFooter" customClass="TripFooter" customModule="SL_Smart" customModuleProvider="target">
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LoadMoreFooter" id="SPI-Bo-xvO" userLabel="LoadMoreFooter" customClass="TripFooter" customModule="SL_Smart" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="494" width="414" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
