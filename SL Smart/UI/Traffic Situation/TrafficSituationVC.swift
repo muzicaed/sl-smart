@@ -15,6 +15,7 @@ class TrafficSituationVC: UITableViewController {
   var situationGroups = [SituationGroup]()
   var filteredSituationGroups = [SituationGroup]()
   var showPlanned = false
+  var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
   
   /**
    * View did load
@@ -120,7 +121,7 @@ class TrafficSituationVC: UITableViewController {
    * Loads traffic situation data.
    */
   private func loadData() {
-    if situationGroups.count == 0 {
+    if shouldReload() {
       TrafficSituationService.fetchInformation() {data, error in
         dispatch_async(dispatch_get_main_queue()) {
           if error != nil {
@@ -128,12 +129,24 @@ class TrafficSituationVC: UITableViewController {
             fatalError("ERROR!!")
           }
           
+          self.lastUpdated = NSDate()
           self.situationGroups = data
           self.filteredSituationGroups = self.filterSituationsOnPlanned(data)
           self.tableView.reloadData()
+          self.tableView.reloadSections(
+            NSIndexSet(
+              indexesInRange: NSRange.init(location: 0, length: self.situationGroups.count)),
+            withRowAnimation: UITableViewRowAnimation.Left)
         }
       }
     }
+  }
+  
+  /**
+   * Checks if data should be reloaded.
+   */
+  private func shouldReload() -> Bool {
+    return situationGroups.count == 0 || (NSDate().timeIntervalSinceDate(lastUpdated) > 60)
   }
   
   /**
