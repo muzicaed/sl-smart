@@ -1,5 +1,5 @@
 //
-//  TraficSituationService.swift
+//  TrafficSituationService.swift
 //  SL Smart
 //
 //  Created by Mikael Hellman on 2015-12-10.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class TraficSituationService {
+public class TrafficSituationService {
   
-  private static let api = SLTraficSituationServiceApi()
+  private static let api = SLTrafficSituationServiceApi()
   
   public static func fetchInformation() {
     api.fetchInformation { (data, error) -> Void in
