@@ -68,7 +68,6 @@ class SmartTripIC: WKInterfaceController {
     
     // Initial load
     if routineData == nil {
-      setLoadingUIState()
       refreshData()
     } else {
       showContentUIState()
@@ -114,9 +113,13 @@ class SmartTripIC: WKInterfaceController {
         errorHandler: messageErrorHandler)
     } else {
       // TODO: How to handle this??
+      NSTimer.scheduledTimerWithTimeInterval(
+        NSTimeInterval(1), target: self, selector: "reloadRoutineTripData", userInfo: nil, repeats: false)
+      /*
       displayError(
         "Kan inte nå din iPhone",
         message: "Kontrollera att din iPhone är påslagen, i närheten och att den är ansluten till internet.")
+*/
     }
   }
   

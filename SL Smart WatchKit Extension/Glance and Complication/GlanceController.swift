@@ -20,7 +20,7 @@ class GlanceController: SmartTripIC {
    * Updates UI using data from iPhone
    */
   override func updateUIData() {
-    print("SmartTripIC updateUIData")
+    print("GlanceController updateUIData")
     if let data = routineData {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
       let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
@@ -38,7 +38,7 @@ class GlanceController: SmartTripIC {
    * Displays an error
    */
   override func displayError(title: String, message: String?) {
-    print("SmartTripIC displayError")
+    print("GlanceController displayError")
     print("\(title)")
     print("\(message)")
     subTitleLabel.setText(title)
@@ -49,7 +49,7 @@ class GlanceController: SmartTripIC {
    * Updates UI to show "Loading..."
    */
   override func setLoadingUIState() {
-    print("SmartTripIC setLoadingUIState")
+    print("GlanceController setLoadingUIState")
     contentGroup.setHidden(true)
     subTitleLabel.setText("Söker resa...")
     subTitleLabel.setTextColor(UIColor.lightGrayColor())
@@ -59,7 +59,7 @@ class GlanceController: SmartTripIC {
    * Updates UI to show content
    */
   override func showContentUIState() {
-    print("SmartTripIC showContentUIState")
+    print("GlanceController showContentUIState")
     if let data = routineData {
       if !isLoading {
         updateUIData()
