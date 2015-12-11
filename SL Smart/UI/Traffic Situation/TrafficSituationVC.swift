@@ -39,7 +39,7 @@ class TrafficSituationVC: UITableViewController {
     tableView.reloadSections(
       NSIndexSet(indexesInRange: NSRange.init(location: 0, length: situationGroups.count)),
       withRowAnimation: .Automatic)
-
+    
   }
   
   // MARK: UITableViewController
@@ -94,8 +94,12 @@ class TrafficSituationVC: UITableViewController {
    */
   override func tableView(tableView: UITableView,
     willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-      cell.layoutMargins = UIEdgeInsetsZero
-      cell.preservesSuperviewLayoutMargins = false
+      if indexPath.row == 0 {
+        cell.layoutMargins = UIEdgeInsetsZero
+        cell.preservesSuperviewLayoutMargins = false
+      } else {
+        cell.layoutMargins = UIEdgeInsets.init(top: 0, left: 16, bottom: 0, right: 0)
+      }
   }
   
   // MARK: Private
