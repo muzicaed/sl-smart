@@ -25,8 +25,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   var isShowMore = false
   var isLoading = true
   var isShowInfo = false
+  var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
   var refreshButton: UIBarButtonItem?
-  
   
   /**
    * View is done loading
@@ -43,7 +43,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    hardLoadTripData()
+    loadTripData(false)
   }
   
   /**
@@ -77,17 +77,17 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   /**
-   * Triggered when is about to go into backgorund.
+   * Triggered when returning from background.
    */
   func didBecomeActive() {
-    hardLoadTripData()
+    loadTripData(true)
   }
   
   /**
    * On user taps refresh
    */
   @IBAction func onRefreshTap(sender: AnyObject) {
-    hardLoadTripData()
+    loadTripData(true)
   }
   
   /**
@@ -279,12 +279,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * collection of time table data.
    * Will show big spinner when loading.
    */
-  private func hardLoadTripData() {
+  private func loadTripData(force: Bool) {
     if DataStore.sharedInstance.isRoutineTripsEmpty() {
       isShowInfo = true
       isLoading = false
       self.refreshButton?.enabled = false
-    } else {
+    } else if shouldReload() || force {
       otherRoutineTrips = [RoutineTrip]()
       bestRoutineTrip = nil
       selectedRoutineTrip = nil
@@ -298,12 +298,22 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
           self.bestRoutineTrip = routineTrips.first!
           self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
           dispatch_async(dispatch_get_main_queue()) {
+            self.lastUpdated = NSDate()
             self.tripSearchDone()
             self.collectionView?.reloadSections(NSIndexSet(index: 1))
           }
         }
       })
+    } else {
+      self.collectionView?.reloadData()
     }
+  }
+  
+  /**
+   * Checks if data should be reloaded.
+   */
+  private func shouldReload() -> Bool {
+    return (NSDate().timeIntervalSinceDate(lastUpdated) > 60)
   }
   
   /**

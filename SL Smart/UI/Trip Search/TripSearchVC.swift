@@ -106,10 +106,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   * Triggered whem date and time is picked
   */
   func pickedDate(date: NSDate?) -> Void {
-    print(criterions)
-    print(date)
     if let crit = criterions, let date = date {
-      print("Updated date")
       let dateTimeTuple = DateUtils.dateAsStringTuple(date)
       crit.date = dateTimeTuple.date
       crit.time = dateTimeTuple.time

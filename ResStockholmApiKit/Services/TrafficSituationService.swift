@@ -82,7 +82,6 @@ public class TrafficSituationService {
    */
   private static func checkErrors(data: JSON) -> Bool {
     if let statusCode = data["StatusCode"].int {
-      print(data["Message"].string!)
       return (statusCode != 0) ? true : false
     }
     return false

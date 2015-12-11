@@ -32,8 +32,6 @@ class TripsIC: WKInterfaceController {
     tripTable.setHidden(true)
     data = context as? Dictionary<String, AnyObject>
     tripData = data!["trp"] as! [Dictionary<String, AnyObject>]
-    print("------- DATA ---------")
-    print(data)
   }
   
   /**
