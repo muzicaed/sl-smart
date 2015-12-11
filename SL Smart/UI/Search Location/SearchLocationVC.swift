@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
+class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISearchResultsUpdating {
   
   let cellReusableId = "StationSearchResultCell"
   let cellNotFoundId = "NoStationsFound"
@@ -27,16 +27,17 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
     super.viewDidLoad()
     view.backgroundColor = StyleHelper.sharedInstance.background
     
-    self.searchController = UISearchController(searchResultsController: nil)
-    self.searchController!.searchResultsUpdater = self
-    self.searchController!.dimsBackgroundDuringPresentation = false
+    searchController = UISearchController(searchResultsController: nil)
+    searchController!.searchResultsUpdater = self
+    searchController!.delegate = self
+    searchController!.dimsBackgroundDuringPresentation = false
     if searchOnlyForStations {
-      self.searchController!.searchBar.placeholder = "Skriv namnet på en station"
+      searchController!.searchBar.placeholder = "Skriv namnet på en station"
     } else {
-      self.searchController!.searchBar.placeholder = "Skriv stationsnamn eller en adress"
+      searchController!.searchBar.placeholder = "Skriv stationsnamn eller en adress"
     }
     
-    self.tableView.tableHeaderView = self.searchController!.searchBar
+    tableView.tableHeaderView = searchController!.searchBar
     tableView.tableFooterView = UIView()
   }
   
@@ -126,6 +127,14 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
         }
       }
     }
+  }
+  
+  func willPresentSearchController(searchController: UISearchController) {
+    navigationController?.navigationBar.translucent = true
+  }
+  
+  func willDismissSearchController(searchController: UISearchController) {
+    navigationController?.navigationBar.translucent = false
   }
   
   // MARK: Private
