@@ -559,7 +559,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Trafikläget" id="2ZB-fH-LU2">
-                        <barButtonItem key="rightBarButtonItem" image="RefreshIcon" id="nfp-rR-lJX"/>
+                        <barButtonItem key="rightBarButtonItem" title="Visa planerade" id="IUn-E9-XYV">
+                            <connections>
+                                <action selector="onTogglePlannedButtonTap:" destination="542-NY-ThD" id="MgH-sr-gbZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1i-hj-Qno" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3147,7 +3151,6 @@ Välkommen till ett smartare sätt att pendla.</string>
         <image name="BUS-NEUTRAL" width="15" height="15"/>
         <image name="EventGood" width="25" height="25"/>
         <image name="EventPlanned" width="25" height="25"/>
-        <image name="RefreshIcon" width="40" height="40"/>
         <image name="SearchTripIcon" width="25" height="25"/>
         <image name="SmartTripIcon" width="25" height="25"/>
         <image name="WarningIcon" width="25" height="25"/>

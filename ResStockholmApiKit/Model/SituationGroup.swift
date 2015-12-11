@@ -29,7 +29,18 @@ public class SituationGroup {
       self.type = SituationGroup.createTripTypeIconName(tripType)
       self.situations = situations
   }
- 
+  
+  /**
+   * Counts no of situations excluding planned situations.
+   */
+  public func countSituationsExclPlanned() -> Int {
+    var count = 0
+    for situation in situations {
+      count = (situation.planned) ? count : count + 1
+    }    
+    return count
+  }
+  
   
   /**
    * Converts the API's trip type string icon name
@@ -49,7 +60,7 @@ public class SituationGroup {
     case "fer":
       return "SHIP-NEUTRAL"
     default:
-      fatalError("Invalid TripType")
+      return typeString
     }
   }
 }

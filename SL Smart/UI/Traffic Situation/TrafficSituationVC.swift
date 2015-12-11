@@ -13,6 +13,8 @@ import ResStockholmApiKit
 class TrafficSituationVC: UITableViewController {
   
   var situationGroups = [SituationGroup]()
+  var filteredSituationGroups = [SituationGroup]()
+  var showPlanned = false
   
   /**
    * View did load
@@ -23,6 +25,22 @@ class TrafficSituationVC: UITableViewController {
     loadData()
   }
   
+  /**
+   * Toggle show planned situations
+   */
+  @IBAction func onTogglePlannedButtonTap(sender: UIBarButtonItem) {
+    if showPlanned {
+      sender.title = "Visa planerade"
+    } else {
+      sender.title = "Dölj planerade"
+    }
+    showPlanned = !showPlanned
+    
+    tableView.reloadSections(
+      NSIndexSet(indexesInRange: NSRange.init(location: 0, length: situationGroups.count)),
+      withRowAnimation: .Automatic)
+
+  }
   
   // MARK: UITableViewController
   
@@ -39,8 +57,11 @@ class TrafficSituationVC: UITableViewController {
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if situationGroups.count == 0 {
       return 1
+    } else if showPlanned {
+      return situationGroups[section].situations.count + 1
     }
-    return situationGroups[section].situations.count + 1
+    
+    return situationGroups[section].countSituationsExclPlanned() + 1
   }
   
   /**
@@ -56,9 +77,15 @@ class TrafficSituationVC: UITableViewController {
         return cell
       }
       
+      var data: Situation?
+      if showPlanned {
+        data = situationGroups[indexPath.section].situations[indexPath.row - 1]
+      } else {
+        data = filteredSituationGroups[indexPath.section].situations[indexPath.row - 1]
+      }
       let cell = tableView.dequeueReusableCellWithIdentifier(
         "SituationRow", forIndexPath: indexPath) as! SituationRow
-      cell.setupData(situationGroups[indexPath.section].situations[indexPath.row - 1])
+      cell.setupData(data!)
       return cell
   }
   
@@ -98,9 +125,44 @@ class TrafficSituationVC: UITableViewController {
           }
           
           self.situationGroups = data
+          self.filteredSituationGroups = self.filterSituationsOnPlanned(data)
           self.tableView.reloadData()
         }
       }
     }
+  }
+  
+  /**
+   * Filter situations on planned or not.
+   */
+  private func filterSituationsOnPlanned(
+    situationGroups: [SituationGroup]) -> [SituationGroup] {
+      
+      var filtredGroups = [SituationGroup]()
+      for group in situationGroups {
+        let filterGroup = SituationGroup(
+          statusIcon: group.statusIcon, hasPlannedEvent: group.hasPlannedEvent,
+          name: group.name, tripType: group.type,
+          situations: filterSituations(group.situations))
+        filtredGroups.append(filterGroup)
+      }
+      
+      return filtredGroups
+  }
+  
+  /**
+   * Filter situations on planned or not.
+   */
+  private func filterSituations(
+    situations: [Situation]) -> [Situation] {
+      
+      var filtredSituations = [Situation]()
+      for situation in situations {
+        if !situation.planned {
+          filtredSituations.append(situation)
+        }
+      }
+      
+      return filtredSituations
   }
 }

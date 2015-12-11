@@ -111,7 +111,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   
   @objc func updateSearchResultsForSearchController(searchController: UISearchController) {
     if let query = searchController.searchBar.text {
-      if query.characters.count > 1 {
+      if query.characters.count % 2 == 0 {
         self.noResults = false
         LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
           dispatch_async(dispatch_get_main_queue()) {
@@ -122,7 +122,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
               return
             }
             self.searchResult = resTuple.data
-            self.tableView.reloadData()
+              self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
           }
         }
       }
