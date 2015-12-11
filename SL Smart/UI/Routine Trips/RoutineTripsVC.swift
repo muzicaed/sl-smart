@@ -297,10 +297,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         if routineTrips.count > 0 {
           self.bestRoutineTrip = routineTrips.first!
           self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
-          dispatch_async(dispatch_get_main_queue(), {
+          dispatch_async(dispatch_get_main_queue()) {
             self.tripSearchDone()
             self.collectionView?.reloadSections(NSIndexSet(index: 1))
-          })
+          }
         }
       })
     }

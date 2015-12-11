@@ -13,7 +13,7 @@
             <objects>
                 <navigationController id="8Uj-Rb-gfM" userLabel="Navigation Planned Trip" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Sök resa" image="SearchTripIcon" id="5s0-EQ-3vW"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vnL-TT-XGt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="vnL-TT-XGt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
@@ -31,7 +31,7 @@
             <objects>
                 <tableViewController id="Hg1-8K-Ui9" customClass="TripSearchVC" customModule="SL_Smart" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="5" id="rFV-AS-BO5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -40,7 +40,7 @@
                             <tableViewSection headerTitle="Mellan vilka stationer?" id="le3-KJ-PGv">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Xyy-yp-POa">
-                                        <rect key="frame" x="0.0" y="113.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xyy-yp-POa" id="ehb-9p-dzI">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
@@ -92,7 +92,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="5ee-y1-l7X">
-                                        <rect key="frame" x="0.0" y="157.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="93.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5ee-y1-l7X" id="NFv-mc-lJ3">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
@@ -148,7 +148,7 @@
                             <tableViewSection id="Iin-ag-WRW" userLabel="Avresetid eller ankomsttid">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="QfG-cZ-sfK">
-                                        <rect key="frame" x="0.0" y="224.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="160.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QfG-cZ-sfK" id="2Q9-La-InF">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -181,7 +181,7 @@
                             <tableViewSection id="IL2-mU-feH" userLabel="Time picker">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="12f-Dj-YYm">
-                                        <rect key="frame" x="0.0" y="291.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="227.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="12f-Dj-YYm" id="2FO-Zu-i92">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
@@ -356,13 +356,13 @@
             <objects>
                 <tableViewController title="Nuvarande störningar" id="542-NY-ThD" customClass="TrafficSituationVC" customModule="SL_Smart" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Nss-D7-0Qn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SituationHeader" rowHeight="44" id="hjj-Nz-c5g" userLabel="SituationHeader">
-                                <rect key="frame" x="0.0" y="92" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SituationHeader" rowHeight="44" id="hjj-Nz-c5g" userLabel="SituationHeader" customClass="SituationHeader" customModule="SL_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hjj-Nz-c5g" id="WVh-wu-GPs">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -374,8 +374,8 @@
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wpw-7H-K3n" userLabel="Type icon">
                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="44"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BUS-NEUTRAL" translatesAutoresizingMaskIntoConstraints="NO" id="ek0-9Y-Aph" userLabel="InfoIcon">
-                                                            <rect key="frame" x="12" y="14.5" width="15" height="15"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BUS-NEUTRAL" translatesAutoresizingMaskIntoConstraints="NO" id="ek0-9Y-Aph" userLabel="TypeIcon">
+                                                            <rect key="frame" x="12" y="14" width="15" height="15"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="KrG-Ec-b8y"/>
@@ -403,7 +403,7 @@
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gl7-Al-Pu9" userLabel="Status icons">
                                                     <rect key="frame" x="96" y="0.0" width="318" height="44"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="situation-warning" translatesAutoresizingMaskIntoConstraints="NO" id="NIP-kO-KxH" userLabel="StatusIcon">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EventGood" translatesAutoresizingMaskIntoConstraints="NO" id="NIP-kO-KxH" userLabel="StatusIcon">
                                                             <rect key="frame" x="285" y="9" width="25" height="25"/>
                                                             <animations/>
                                                             <constraints>
@@ -411,7 +411,7 @@
                                                                 <constraint firstAttribute="height" constant="25" id="ioV-de-yTs"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="situation-info" translatesAutoresizingMaskIntoConstraints="NO" id="W90-1G-4qW" userLabel="InfoIcon">
+                                                        <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EventPlanned" translatesAutoresizingMaskIntoConstraints="NO" id="W90-1G-4qW" userLabel="InfoIcon">
                                                             <rect key="frame" x="255" y="9" width="25" height="25"/>
                                                             <animations/>
                                                             <constraints>
@@ -447,21 +447,26 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="statusIcon" destination="NIP-kO-KxH" id="iC3-fB-NDt"/>
+                                    <outlet property="title" destination="e1C-Mj-3GQ" id="GRH-CT-ggc"/>
+                                    <outlet property="typeIcon" destination="ek0-9Y-Aph" id="FCh-3c-j6r"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SituationRow" id="wZf-ZO-dcC" userLabel="SituationRow">
-                                <rect key="frame" x="0.0" y="136" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SituationRow" id="wZf-ZO-dcC" userLabel="SituationRow" customClass="SituationRow" customModule="SL_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wZf-ZO-dcC" id="Lu7-6b-Tzz">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MkM-FS-wOU">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="406" height="44"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9lI-Xm-Ssb" userLabel="Type icon">
                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="44"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="situation-warning" translatesAutoresizingMaskIntoConstraints="NO" id="MKy-e0-SE7" userLabel="InfoIcon">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EventPlanned" translatesAutoresizingMaskIntoConstraints="NO" id="MKy-e0-SE7" userLabel="InfoIcon">
                                                             <rect key="frame" x="7" y="8" width="25" height="25"/>
                                                             <animations/>
                                                             <constraints>
@@ -479,10 +484,10 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="enh-Ca-2rB">
-                                                    <rect key="frame" x="40" y="0.0" width="374" height="44"/>
+                                                    <rect key="frame" x="40" y="0.0" width="366" height="44"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlo-GK-y0y">
-                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="366" height="5"/>
                                                             <animations/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -490,7 +495,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVg-ZR-Aw3">
-                                                            <rect key="frame" x="0.0" y="5" width="374" height="20"/>
+                                                            <rect key="frame" x="0.0" y="5" width="366" height="20"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="OZk-Id-pj6"/>
@@ -499,7 +504,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeR-n2-xLr" userLabel="Text">
-                                                            <rect key="frame" x="0.0" y="25" width="374" height="14"/>
+                                                            <rect key="frame" x="0.0" y="25" width="366" height="14"/>
                                                             <animations/>
                                                             <string key="text">Soluta torquatos ius et, eu sed impetus discere repudiandae. Enim admodum eos te, est eu omnes dicam. Eum no essent nostrud vocibus. Oblique periculis efficiantur per ea, autem sanctus ut mel. Ornatus consetetur eu ius, eu qui feugiat perfecto.</string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -507,7 +512,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3El-EF-z4f">
-                                                            <rect key="frame" x="0.0" y="39" width="374" height="5"/>
+                                                            <rect key="frame" x="0.0" y="39" width="366" height="5"/>
                                                             <animations/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -521,6 +526,7 @@
                                             <animations/>
                                             <constraints>
                                                 <constraint firstItem="9lI-Xm-Ssb" firstAttribute="leading" secondItem="MkM-FS-wOU" secondAttribute="leadingMargin" id="EEd-qO-SZN"/>
+                                                <constraint firstAttribute="trailing" secondItem="enh-Ca-2rB" secondAttribute="trailing" id="rv9-rH-zo8"/>
                                             </constraints>
                                         </stackView>
                                     </subviews>
@@ -528,12 +534,23 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="MkM-FS-wOU" secondAttribute="trailing" id="640-Tx-2ID"/>
                                         <constraint firstItem="MkM-FS-wOU" firstAttribute="leading" secondItem="Lu7-6b-Tzz" secondAttribute="leading" id="QOV-jP-iFG"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="MkM-FS-wOU" secondAttribute="trailing" id="fAd-7C-bj1"/>
                                         <constraint firstItem="MkM-FS-wOU" firstAttribute="top" secondItem="Lu7-6b-Tzz" secondAttribute="top" id="fBe-NV-yGF"/>
                                         <constraint firstAttribute="bottom" secondItem="MkM-FS-wOU" secondAttribute="bottom" id="hSO-lf-Ama"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="640-Tx-2ID"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <animations/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.65026595744680848" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="headerLabel" destination="rVg-ZR-Aw3" id="jqB-dX-Iwp"/>
+                                    <outlet property="messageLabel" destination="DeR-n2-xLr" id="Jd9-1e-uY7"/>
+                                    <outlet property="typeIcon" destination="MKy-e0-SE7" id="C9o-Op-mxu"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -541,7 +558,9 @@
                             <outlet property="delegate" destination="542-NY-ThD" id="bge-PO-lF3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Trafikläget" id="2ZB-fH-LU2"/>
+                    <navigationItem key="navigationItem" title="Trafikläget" id="2ZB-fH-LU2">
+                        <barButtonItem key="rightBarButtonItem" image="RefreshIcon" id="nfp-rR-lJX"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1i-hj-Qno" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -552,7 +571,7 @@
             <objects>
                 <navigationController id="cgm-qe-xun" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Trafikläget" image="WarningIcon" id="h03-w4-daJ"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lyw-sX-FVR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="lyw-sX-FVR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
@@ -570,13 +589,13 @@
             <objects>
                 <tableViewController id="06E-RP-qJs" userLabel="My Routine Trips" customClass="ManageRoutineTripsVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bNx-rF-zNd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoRoutineCell" rowHeight="100" id="5eW-1F-79F" userLabel="No routine cell">
-                                <rect key="frame" x="0.0" y="92" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5eW-1F-79F" id="6BF-GG-lFv">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
@@ -636,7 +655,7 @@
                                 <animations/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" showsReorderControl="YES" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MyRoutinTripCell" rowHeight="85" id="Bbh-2h-gbO" customClass="ManageRoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="192" width="414" height="85"/>
+                                <rect key="frame" x="0.0" y="128" width="414" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bbh-2h-gbO" id="k6z-qC-mfr">
                                     <rect key="frame" x="0.0" y="0.0" width="381" height="84.5"/>
@@ -727,7 +746,7 @@
             <objects>
                 <tableViewController title="Ny resa" id="h2d-Hi-2Zo" customClass="EditRoutineTripVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="UAG-r3-izO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.76311598557692306" colorSpace="calibratedRGB"/>
@@ -736,7 +755,7 @@
                             <tableViewSection headerTitle="Namn för den här resan" id="5x3-Rl-oaV">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Tce-EE-HiO">
-                                        <rect key="frame" x="0.0" y="113.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tce-EE-HiO" id="7WL-1V-DPT">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -764,7 +783,7 @@
                             <tableViewSection headerTitle="Mellan vilka stationer åker du?" id="jzR-6r-YTn">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="a2K-Cg-mhO">
-                                        <rect key="frame" x="0.0" y="207.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="143.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a2K-Cg-mhO" id="ran-1g-i0z">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
@@ -818,7 +837,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="o2d-fa-vSp">
-                                        <rect key="frame" x="0.0" y="251.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="187.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o2d-fa-vSp" id="e2Z-R7-Fe1">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
@@ -881,7 +900,7 @@
                             <tableViewSection headerTitle="När åker du oftast?" footerTitle="Appen kommer att lära sig mer om dina vanor, även om resor görs utanför denna beskrivning." id="jL7-gN-erF">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="detailButton" indentationWidth="0.0" id="mfe-YO-7wi" userLabel="Day picker">
-                                        <rect key="frame" x="0.0" y="345.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="281.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mfe-YO-7wi" id="6kN-ix-bJG">
                                             <rect key="frame" x="0.0" y="0.0" width="367" height="43.5"/>
@@ -945,7 +964,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" id="MSY-QG-YjO" userLabel="Time picker">
-                                        <rect key="frame" x="0.0" y="389.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="325.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MSY-QG-YjO" id="hD7-cT-dGJ">
                                             <rect key="frame" x="0.0" y="0.0" width="367" height="43.5"/>
@@ -1045,13 +1064,13 @@
             <objects>
                 <tableViewController title="Välj station" id="WJw-HK-J3L" customClass="SearchLocationVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="NZT-P9-guF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StationSearchResultCell" textLabel="7tf-V3-lvF" detailTextLabel="bGr-Sp-Q9i" imageView="5LW-NO-v49" style="IBUITableViewCellStyleSubtitle" id="UKA-Wl-L3Q">
-                                <rect key="frame" x="0.0" y="92" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UKA-Wl-L3Q" id="Lhl-KO-hdt">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -1084,7 +1103,7 @@
                                 <animations/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoStationsFound" textLabel="nvQ-56-AD8" style="IBUITableViewCellStyleDefault" id="xlT-uq-dXm" userLabel="NoStationsFound">
-                                <rect key="frame" x="0.0" y="136" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xlT-uq-dXm" id="D9T-Dg-c5o">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -1141,7 +1160,7 @@
             <objects>
                 <navigationController id="ogZ-ni-TCn" userLabel="Navigation Routine Trips" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Smart Resa" image="SmartTripIcon" id="g1N-Jd-Vgq"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iNo-3S-NPq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="iNo-3S-NPq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
@@ -1159,7 +1178,7 @@
             <objects>
                 <collectionViewController id="TL9-Eb-L0b" customClass="RoutineTripsVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Krw-YV-CWN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -1171,7 +1190,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="RoutineTripCell" id="opy-Pk-f0A" customClass="RoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="114" width="370" height="120"/>
+                                <rect key="frame" x="22" y="50" width="370" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
@@ -1462,7 +1481,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="SimpleRoutineTripCell" id="duh-gS-XIe" customClass="RoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="244" width="370" height="90"/>
+                                <rect key="frame" x="22" y="180" width="370" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="90"/>
@@ -1628,7 +1647,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="InfoCell" id="37S-3z-DMK" userLabel="InfoCell" customClass="RoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="344" width="370" height="345"/>
+                                <rect key="frame" x="22" y="280" width="370" height="345"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="345"/>
@@ -1811,7 +1830,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <size key="customSize" width="370" height="345"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="LoadingCell" id="l3t-u8-IJZ">
-                                <rect key="frame" x="22" y="699" width="370" height="120"/>
+                                <rect key="frame" x="22" y="635" width="370" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
@@ -1835,7 +1854,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="GjQ-i1-UMc" customClass="RoutineTripHeader" customModule="SL_Smart" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="64" width="414" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eTu-pW-AjU">
@@ -1934,7 +1953,7 @@ Välkommen till ett smartare sätt att pendla.</string>
             <objects>
                 <collectionViewController id="1Cw-O1-Jfo" userLabel="Reseförslag" customClass="TripListVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="y8I-rB-C8h">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -1946,7 +1965,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="TripCell" id="71s-Mx-d6l" userLabel="TripCell" customClass="TripCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="104" width="370" height="100"/>
+                                <rect key="frame" x="22" y="40" width="370" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="100"/>
@@ -2225,7 +2244,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="center" reuseIdentifier="PassedTripCell" id="2MI-Pc-ubI" userLabel="PassedTripCell" customClass="TripCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="207" width="370" height="100"/>
+                                <rect key="frame" x="22" y="143" width="370" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="100"/>
@@ -2498,7 +2517,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="LoadingCell" id="bZc-ja-Cy0">
-                                <rect key="frame" x="22" y="310" width="370" height="120"/>
+                                <rect key="frame" x="22" y="246" width="370" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
@@ -2521,7 +2540,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <size key="customSize" width="370" height="120"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="FoundNoTripsCell" id="Mcb-5M-IbY" userLabel="FoundNoTripsCell">
-                                <rect key="frame" x="22" y="433" width="370" height="120"/>
+                                <rect key="frame" x="22" y="369" width="370" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
@@ -2547,7 +2566,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="DateHeader" id="6Ci-aM-zr7" customClass="TripHeader" customModule="SL_Smart" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="64" width="414" height="35"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fog-xR-L0k">
@@ -2582,7 +2601,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                             </connections>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="LoadMoreFooter" id="SPI-Bo-xvO" userLabel="LoadMoreFooter" customClass="TripFooter" customModule="SL_Smart" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="558" width="414" height="50"/>
+                            <rect key="frame" x="0.0" y="494" width="414" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼  Visa fler resor  ▼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gR2-gH-c4e">
@@ -2629,14 +2648,14 @@ Välkommen till ett smartare sätt att pendla.</string>
             <objects>
                 <tableViewController title="Resedetaljer" id="4Bd-C0-Zjd" customClass="TripDetailsVC" customModule="SL_Smart" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q2W-7V-Yq6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="44" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Header" rowHeight="66" id="I7M-jQ-Rqn" userLabel="Header" customClass="TripDetailsHeaderCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="414" height="66"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I7M-jQ-Rqn" id="R8E-lU-VS7">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="65.5"/>
@@ -2743,7 +2762,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Origin" id="WaZ-2A-eHI" userLabel="Origin" customClass="TripDetailsOriginCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="158" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WaZ-2A-eHI" id="ap3-pH-rn1">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -2795,7 +2814,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Segment" rowHeight="60" id="5bV-hp-Oh4" userLabel="Segment" customClass="TripDetailsSegmentCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="202" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="138" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5bV-hp-Oh4" id="rwZ-DX-ZGT">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
@@ -2894,7 +2913,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubSegment" rowHeight="25" id="iUr-zi-k8u" userLabel="Sub segment">
-                                <rect key="frame" x="0.0" y="262" width="414" height="25"/>
+                                <rect key="frame" x="0.0" y="198" width="414" height="25"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iUr-zi-k8u" id="ql2-Mt-GO2">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="24.5"/>
@@ -2944,7 +2963,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <animations/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Change" rowHeight="60" id="L2B-dE-HV5" userLabel="Change" customClass="TripDetailsChangeCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="287" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="223" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L2B-dE-HV5" id="wQu-HG-jGq">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
@@ -3059,7 +3078,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Destination" id="72z-46-yDK" userLabel="Destination" customClass="TripDetailsDestinationCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="347" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="283" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="72z-46-yDK" id="Rzj-Ms-fM2">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -3126,6 +3145,9 @@ Välkommen till ett smartare sätt att pendla.</string>
     <resources>
         <image name="BUS-BLUE" width="15" height="15"/>
         <image name="BUS-NEUTRAL" width="15" height="15"/>
+        <image name="EventGood" width="25" height="25"/>
+        <image name="EventPlanned" width="25" height="25"/>
+        <image name="RefreshIcon" width="40" height="40"/>
         <image name="SearchTripIcon" width="25" height="25"/>
         <image name="SmartTripIcon" width="25" height="25"/>
         <image name="WarningIcon" width="25" height="25"/>
@@ -3133,8 +3155,6 @@ Välkommen till ett smartare sätt att pendla.</string>
         <image name="destination-icon" width="44" height="44"/>
         <image name="origin-icon" width="44" height="44"/>
         <image name="segment-time-icon" width="44" height="60"/>
-        <image name="situation-info" width="25" height="25"/>
-        <image name="situation-warning" width="25" height="25"/>
         <image name="station-icon" width="25" height="25"/>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>

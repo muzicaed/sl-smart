@@ -10,27 +10,28 @@ import Foundation
 import UIKit
 
 class StyleHelper {
-
+  
   static let sharedInstance = StyleHelper()
   let tintColor = UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 1.0)
-  let mainGreen = UIColor(red: 51/255, green: 143/255, blue: 89/255, alpha: 1.0)
-  let mainGreenLight = UIColor(red: 51/255, green: 143/255, blue: 89/255, alpha: 0.4)
-  let background = UIColor(red: 219/255, green: 235/255, blue: 227/255, alpha: 1.0)
+  let mainGreen = UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 1.0)
+  let mainGreenLight = UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 0.3)
+  let background = UIColor(red: 231/255, green: 237/255, blue: 238/255, alpha: 1.0)
   let cardBackground = UIColor(red: 63/255, green: 73/255, blue: 62/255, alpha: 0.8)
-
+  
   func setupCustomStyle() {
     let navAppearance = UINavigationBar.appearance()
+    navAppearance.translucent = false
     navAppearance.tintColor = UIColor.whiteColor()
     navAppearance.barTintColor = mainGreen
     navAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     
     let tabBarAppearance = UITabBar.appearance()
     tabBarAppearance.tintColor = mainGreen
-
+    
     let searchBarAppearance = UISearchBar.appearance()
     searchBarAppearance.tintColor = tintColor
     searchBarAppearance.barTintColor = mainGreen
-
+    
     UITabBarItem.appearance().setTitleTextAttributes(
       [NSForegroundColorAttributeName: UIColor(white: 0.0, alpha: 0.75)],
       forState: UIControlState.Normal)

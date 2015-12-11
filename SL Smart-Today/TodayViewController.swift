@@ -51,10 +51,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     RoutineService.findRoutineTrip({ routineTrips in
       if routineTrips.count > 0 {
         self.bestRoutineTrip = routineTrips.first!
-        dispatch_async(dispatch_get_main_queue(), {
+        dispatch_async(dispatch_get_main_queue()) {
           self.updateUI()
           completionHandler(NCUpdateResult.NewData)
-        })
+        }
       }
     })
   }

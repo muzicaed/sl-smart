@@ -8,8 +8,22 @@
 
 import Foundation
 import UIKit
+import ResStockholmApiKit
 
 class SituationHeader: UITableViewCell {
 
-
+  @IBOutlet weak var title: UILabel!
+  @IBOutlet weak var statusIcon: UIImageView!
+  @IBOutlet weak var typeIcon: UIImageView!
+  
+  /**
+   * Setup data
+   */
+  func setupData(group: SituationGroup) {
+    title.text = group.name
+    statusIcon.image = UIImage(named: group.statusIcon)
+    typeIcon.image = UIImage(named: group.type)
+  }
+  
+  
 }

@@ -21,11 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
       setupAppleWatchConnection()
-      setupApp()
-      
-      // TODO: Remove test code
-      TrafficSituationService.fetchInformation()
-      
+      setupApp()            
       return true
   }
   

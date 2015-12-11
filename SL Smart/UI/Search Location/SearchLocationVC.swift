@@ -113,7 +113,7 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
       if query.characters.count > 1 {
         self.noResults = false
         LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
-          dispatch_async(dispatch_get_main_queue(), {
+          dispatch_async(dispatch_get_main_queue()) {
             if let error = resTuple.error {
               print("\(error)")
               self.noResults = true
@@ -122,7 +122,7 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
             }
             self.searchResult = resTuple.data
             self.tableView.reloadData()
-          })
+          }
         }
       }
     }

@@ -259,7 +259,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     if let criterions = self.criterions {
       SearchTripService.tripSearch(criterions,
         callback: { resTuple in
-          dispatch_async(dispatch_get_main_queue(), {
+          dispatch_async(dispatch_get_main_queue()) {
             if let error = resTuple.error {
               print("Error: \(error)")
               self.showNetworkErrorAlert()
@@ -274,7 +274,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
             self.footer?.displayLabel()
             self.collectionView?.reloadData()
             self.updateDateCriterions()
-          })
+          }
       })
       return
     }

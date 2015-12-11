@@ -10,7 +10,7 @@ import Foundation
 
 class SLTrafficSituationServiceApi {
   
-  let apiKey = "55ca4dbb5fdb48788fab96e8e4bd4bba"
+  let apiKey = "3cbb0a4852e24020a58ef63a0399ac9b"
   let urlBase = "http://api.sl.se/api2/trafficsituation.json"
   
   /**
