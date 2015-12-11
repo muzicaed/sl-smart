@@ -56,7 +56,6 @@
 		18937E641BFF33FB00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E631BFF33FB00C523C9 /* Assets.xcassets */; };
 		18937E771BFF5D6B00C523C9 /* RoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E761BFF5D6B00C523C9 /* RoutineTripsVC.swift */; };
 		18937E7E1BFF6AB700C523C9 /* RoutineTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E7D1BFF6AB700C523C9 /* RoutineTripCell.swift */; };
-		18937E811BFFABFC00C523C9 /* PlannedTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E801BFFABFC00C523C9 /* PlannedTripsVC.swift */; };
 		18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */; };
 		18946B171C18431500A5829D /* DateTimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18946B161C18431500A5829D /* DateTimePickerVC.swift */; };
 		18946B1D1C1844E700A5829D /* DateTimePickResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */; };
@@ -287,7 +286,6 @@
 		18937E791BFF5F2F00C523C9 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		18937E7B1BFF5F8100C523C9 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		18937E7D1BFF6AB700C523C9 /* RoutineTripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTripCell.swift; sourceTree = "<group>"; };
-		18937E801BFFABFC00C523C9 /* PlannedTripsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannedTripsVC.swift; sourceTree = "<group>"; };
 		18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageRoutineTripsVC.swift; sourceTree = "<group>"; };
 		18937E861C00A17700C523C9 /* RoutineTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTrip.swift; sourceTree = "<group>"; };
 		18946B161C18431500A5829D /* DateTimePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickerVC.swift; sourceTree = "<group>"; };
@@ -571,14 +569,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		18937E7F1BFFABC100C523C9 /* Planned Trips */ = {
-			isa = PBXGroup;
-			children = (
-				18937E801BFFABFC00C523C9 /* PlannedTripsVC.swift */,
-			);
-			path = "Planned Trips";
-			sourceTree = "<group>";
-		};
 		18937E881C01139400C523C9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -597,14 +587,13 @@
 		18937E891C01139E00C523C9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				183D6EB91C1A2E8B00EB7537 /* Traffic Situation */,
+				18937E751BFF5CFC00C523C9 /* Routine Trips */,
 				18BF52241C18302A002B68AD /* Search Location */,
+				18AC9CF61C07AD05007ECFA2 /* Trip List */,
 				188B80AC1C178DB800E7D90C /* Trip Search */,
 				188367671C16EE7A00A8BE16 /* Trip Details */,
+				183D6EB91C1A2E8B00EB7537 /* Traffic Situation */,
 				1827692E1C01163B00655B4B /* Common */,
-				18AC9CF61C07AD05007ECFA2 /* Trip List */,
-				18937E751BFF5CFC00C523C9 /* Routine Trips */,
-				18937E7F1BFFABC100C523C9 /* Planned Trips */,
 				18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */,
 			);
 			path = UI;
@@ -961,7 +950,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				188367751C170E5500A8BE16 /* TripDetailsDestinationCell.swift in Sources */,
-				18937E811BFFABFC00C523C9 /* PlannedTripsVC.swift in Sources */,
 				188B80AE1C178DD900E7D90C /* TripSearchVC.swift in Sources */,
 				18937E771BFF5D6B00C523C9 /* RoutineTripsVC.swift in Sources */,
 				18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */,
