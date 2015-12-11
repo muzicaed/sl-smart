@@ -14,6 +14,7 @@ import ResStockholmApiKit
 class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   
   var window: UIWindow?
+  let notificationCenter = NSNotificationCenter.defaultCenter()
   
   // MARK: UIApplicationDelegate
   
@@ -21,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
       setupAppleWatchConnection()
-      setupApp()            
+      setupApp()
       return true
   }
   
@@ -41,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   
   func applicationDidBecomeActive(application: UIApplication) {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    checkTrafficSituation()
   }
   
   func applicationWillTerminate(application: UIApplication) {
@@ -92,6 +94,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
       let defaultSession = WCSession.defaultSession()
       defaultSession.delegate = self
       defaultSession.activateSession()
+    }
+  }
+  
+  
+  /**
+   * Checks current traffic situation.
+   */
+  private func checkTrafficSituation() {
+    TrafficSituationService.fetchInformation() {data, error in
+      dispatch_async(dispatch_get_main_queue()) {
+        if error != nil {
+          return
+        }
+        
+        var count = 0
+        for group in data {
+          for situation in group.situations {
+            if situation.statusIcon != "EventGood" && situation.statusIcon != "EventPlanned" {
+              count++
+            }
+          }
+        }
+        self.notificationCenter.postNotificationName("TrafficSituations", object: count)
+      }
     }
   }
 }

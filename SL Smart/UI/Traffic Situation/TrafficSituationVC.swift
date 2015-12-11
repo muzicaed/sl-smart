@@ -19,7 +19,7 @@ class TrafficSituationVC: UITableViewController {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupTableView()
+    setupView()
     loadData()
   }
   
@@ -73,12 +73,15 @@ class TrafficSituationVC: UITableViewController {
   
   // MARK: Private
   
-  private func setupTableView() {
+  private func setupView() {
     view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     tableView.separatorInset = UIEdgeInsetsZero
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 130
+    
+    let items = self.tabBarController?.tabBar.items!
+    items![2].badgeValue = nil
   }
   
   
@@ -87,10 +90,8 @@ class TrafficSituationVC: UITableViewController {
    */
   private func loadData() {
     if situationGroups.count == 0 {
-      print("search data")
       TrafficSituationService.fetchInformation() {data, error in
         dispatch_async(dispatch_get_main_queue()) {
-          print("got data")
           if error != nil {
             // TODO: Better error handeling here
             fatalError("ERROR!!")
@@ -101,6 +102,5 @@ class TrafficSituationVC: UITableViewController {
         }
       }
     }
-    
   }
 }
