@@ -12,11 +12,11 @@ import WatchConnectivity
 class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
   
   let notificationCenter = NSNotificationCenter.defaultCenter()
+  let session = WCSession.defaultSession()
   
   override init() {
     print("ExtensionDelegate init()")
     super.init()
-    let session = WCSession.defaultSession()
     session.delegate = self
     session.activateSession()
   }
