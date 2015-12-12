@@ -16,6 +16,17 @@ class GlanceController: SmartTripIC {
   @IBOutlet var contentGroup: WKInterfaceGroup!
   @IBOutlet var departureLabel: WKInterfaceLabel!
   
+  var currentDepartureText: String?
+  
+  /**
+   * Interface disappear.
+   */
+  override func willDisappear() {
+    print("GlanceController willDisappear")
+    super.willDisappear()
+    hideLiveData()
+  }
+  
   /**
    * Updates UI using data from iPhone
    */
@@ -26,9 +37,10 @@ class GlanceController: SmartTripIC {
       let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
       let lines = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
       
+      currentDepartureText = DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String)
       originLabel.setText(bestRoutine["ori"] as? String)
       destinationLabel.setText(bestRoutine["des"] as? String)
-      departureLabel.setText(DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String))
+      departureLabel.setText(currentDepartureText)
       subTitleLabel.setText(bestRoutine["tit"] as? String)
       createTripIcons(icons, lines: lines)
     }
@@ -70,4 +82,21 @@ class GlanceController: SmartTripIC {
       }
     }
   }
+  
+  // MARK: Private
+  
+  /**
+  * Hides live data when user leaves glance or lock screen.
+  * We do this to not have the view displaying old data
+  * for a second, when UI is reloaded when the glance
+  * is reactivaed.
+  */
+  func hideLiveData() {
+    if let text = currentDepartureText {
+      if text.rangeOfString("Om") != nil {
+        departureLabel.setText("Uppdaterar")
+      }
+    }
+  }
+  
 }

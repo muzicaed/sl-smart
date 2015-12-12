@@ -47,6 +47,7 @@ class SmartTripIC: WKInterfaceController {
   var routineData: Dictionary<String, AnyObject>?
   var isLoading = false
   var timer: NSTimer?
+  var retryTimer: NSTimer?
   
   /**
    * About to show on screen.
@@ -102,8 +103,9 @@ class SmartTripIC: WKInterfaceController {
         errorHandler: messageErrorHandler)
     } else {
       // TODO: How to handle this??
-      NSTimer.scheduledTimerWithTimeInterval(
-        NSTimeInterval(2), target: self, selector: "reloadRoutineTripData", userInfo: nil, repeats: false)
+
+      retryTimer = NSTimer.scheduledTimerWithTimeInterval(
+        NSTimeInterval(1.5), target: self, selector: "reloadRoutineTripData", userInfo: nil, repeats: false)
       /*
       displayError(
       "Kan inte nå din iPhone",
@@ -117,8 +119,10 @@ class SmartTripIC: WKInterfaceController {
    */
   func requestRoutineTripsHandler(reply: Dictionary<String, AnyObject>) {
     print("SmartTripIC requestRoutineTripsHandler (reply handler)")
+    stopRefreshTimer()
     isLoading = false
     let hasData = reply["foundData"] as! Bool
+    // TODO: Validate reply, sometime get back freaky data like "Unable to read data" (Not as an error)
     if hasData {
       routineData = reply
       showContentUIState()
@@ -353,5 +357,7 @@ class SmartTripIC: WKInterfaceController {
     print("SmartTripIC stopRefreshTimer")
     timer?.invalidate()
     timer = nil
+    retryTimer?.invalidate()
+    retryTimer = nil
   }
 }
