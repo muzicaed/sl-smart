@@ -72,6 +72,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         vc.criterions = criterions
         vc.title = routineTrip.title
+      } else if segue.identifier == "ManageRoutineTrips" {
+        // Force a reload when returning to this VC
+        lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
       }
     }
   }
