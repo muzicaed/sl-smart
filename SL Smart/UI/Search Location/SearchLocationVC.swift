@@ -122,17 +122,25 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
               return
             }
             self.searchResult = resTuple.data
-              self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
+            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
           }
         }
       }
     }
   }
   
+  /**
+   * Fix for broken search bar when tranlucent navbar is off.
+   * TODO: Remove if future update fixes this.
+   */
   func willPresentSearchController(searchController: UISearchController) {
     navigationController?.navigationBar.translucent = true
   }
   
+  /**
+   * Fix for broken search bar when tranlucent navbar is off.
+   * TODO: Remove if future update fixes this.
+   */
   func willDismissSearchController(searchController: UISearchController) {
     navigationController?.navigationBar.translucent = false
   }

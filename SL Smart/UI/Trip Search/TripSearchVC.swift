@@ -12,13 +12,15 @@ import ResStockholmApiKit
 
 class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePickResponder {
   
-  var isSearchingOriginLocation = false
+  var searchLocationType: String?
   var selectedDate = NSDate()
   var criterions: TripSearchCriterion?
   var dimmer: UIView?
+  var isViaSelected = false
   
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
+  @IBOutlet weak var viaLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var destinationArrivalSegmented: UISegmentedControl!
   
@@ -27,6 +29,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
    */
   override func viewDidLoad() {
     super.viewDidLoad()
+    tableView.editing = true
     view.backgroundColor = StyleHelper.sharedInstance.background
     criterions = TripSearchCriterion(origin: nil, dest: nil)
     pickedDate(NSDate())
@@ -52,12 +55,17 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
       vc.searchOnlyForStations = false
-      isSearchingOriginLocation = true
+      searchLocationType = "Origin"
     } else if segue.identifier == "SearchDestinationLocation" {
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
       vc.searchOnlyForStations = false
-      isSearchingOriginLocation = false
+      searchLocationType = "Destination"
+    } else if segue.identifier == "SearchViaLocation" {
+      let vc = segue.destinationViewController as! SearchLocationVC
+      vc.delegate = self
+      vc.searchOnlyForStations = true
+      searchLocationType = "Via"
     } else if segue.identifier == "ShowTripList" {
       let vc = segue.destinationViewController as! TripListVC
       vc.criterions = criterions
@@ -65,7 +73,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
       let vc = segue.destinationViewController as! DateTimePickerVC
       vc.selectedDate = selectedDate
       vc.delegate = self
-      UIView.animateWithDuration(0.4, animations: {
+      UIView.animateWithDuration(0.45, animations: {
         self.dimmer?.alpha = 0.7
       })
     }
@@ -102,13 +110,21 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   * Triggered when location is selected on location search VC.
   */
   func selectedLocationFromSearch(location: Location) {
-    if let crit = criterions {
-      if isSearchingOriginLocation {
+    if let crit = criterions, locationType = searchLocationType {
+      switch locationType {
+      case "Origin":
         crit.origin = location
         originLabel.text = location.name
-      } else {
+      case "Destination":
         crit.dest = location
         destinationLabel.text = location.name
+      case "Via":
+        crit.viaId = location.siteId
+        viaLabel.text = location.name
+        isViaSelected = true
+        tableView.reloadData()
+      default:
+        print("Error: searchLocationType")
       }
     }
   }
@@ -134,13 +150,42 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   // MARK: UITableViewController
   
   /**
-  * Green highlight on selected row.
+  * Can row be edited?
   */
+  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return (indexPath.section == 0 && indexPath.row == 2 && isViaSelected)
+  }
+  
+  /**
+   * Editing style
+   */
+  override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+    return (indexPath.section == 0 && indexPath.row == 2) ? .Delete : .None
+  }
+  
+  /**
+   * Green highlight on selected row.
+   */
   override func tableView(tableView: UITableView,
     willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
       let bgColorView = UIView()
       bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
       cell.selectedBackgroundView = bgColorView
+  }
+  
+  /**
+   * Edit actions. (Only used for clear Via station)
+   */
+  override func tableView(tableView: UITableView,
+    editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+      return [UITableViewRowAction(
+        style: UITableViewRowActionStyle.Normal,
+        title: "Rensa") { (_, _) -> Void in
+          self.viaLabel.text = "(Välj station)"
+          self.criterions?.viaId = nil
+          self.isViaSelected = false
+          tableView.reloadData()
+        }]
   }
   
   /**

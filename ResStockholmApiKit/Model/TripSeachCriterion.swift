@@ -16,6 +16,7 @@ public class TripSearchCriterion {
   public var originId = 0
   public var destId = 0
   public var origin: Location?
+  public var viaId: Int?
   public var dest: Location?
   public var date: String?
   public var time: String?
@@ -67,7 +68,8 @@ public class TripSearchCriterion {
     
     query += createOriginQuery()
     query += createDestinationQuery()
-    
+
+    query += (viaId != nil) ? "&viaId=\(viaId!)" : ""
     query += (date != nil) ? "&date=\(date!)" : ""
     query += (time != nil) ? "&time=\(time!)" : ""
     query += (numChg != nil) ? "&numChg=\(numChg!)" : ""
