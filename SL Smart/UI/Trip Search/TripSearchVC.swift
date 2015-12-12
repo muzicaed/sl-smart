@@ -17,6 +17,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   var criterions: TripSearchCriterion?
   var dimmer: UIView?
   var isViaSelected = false
+  var isAdvancedMode = false
   
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
@@ -92,6 +93,11 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
     return true
   }
   
+  @IBAction func onAdvancedButtonTap(sender: UIBarButtonItem) {
+    isAdvancedMode = !isAdvancedMode
+    sender.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
+    tableView.reloadData()
+  }
   /**
    * Changed if departure time or arrival time
    */
@@ -150,17 +156,33 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   // MARK: UITableViewController
   
   /**
-  * Can row be edited?
-  */
-  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return (indexPath.section == 0 && indexPath.row == 2 && isViaSelected)
+   * Height for rows. 
+   * (Will hide some rows when in simple mode)
+   */
+  override func tableView(tableView: UITableView,
+    heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+      if !isAdvancedMode {
+        if indexPath.section == 0 && indexPath.row == 2 {
+          return 0
+        }
+      }
+      return 44
+  }
+  
+  /**
+   * Can row be edited?
+   */
+  override func tableView(tableView: UITableView,
+    canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+      return (indexPath.section == 0 && indexPath.row == 2 && isViaSelected)
   }
   
   /**
    * Editing style
    */
-  override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-    return (indexPath.section == 0 && indexPath.row == 2) ? .Delete : .None
+  override func tableView(tableView: UITableView,
+    editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+      return (indexPath.section == 0 && indexPath.row == 2) ? .Delete : .None
   }
   
   /**
@@ -191,8 +213,9 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   /**
    * Deselect selected row.
    */
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  override func tableView(tableView: UITableView,
+    didSelectRowAtIndexPath indexPath: NSIndexPath) {
+      tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
   // MARK: Private

@@ -161,17 +161,17 @@
                                                                 <constraint firstAttribute="width" constant="15" id="b04-BN-ZUu"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Via" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTh-lr-zHI">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="Via" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTh-lr-zHI">
                                                             <rect key="frame" x="15" y="0.0" width="50" height="28"/>
                                                             <animations/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="agX-Id-GvN"/>
+                                                                <constraint firstAttribute="width" priority="999" constant="50" id="agX-Id-GvN"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXM-ao-ulO">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXM-ao-ulO">
                                                             <rect key="frame" x="65" y="0.0" width="308" height="28"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -184,10 +184,10 @@
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstItem="AQV-On-quD" firstAttribute="leading" secondItem="39F-M2-7S2" secondAttribute="leading" id="Fkv-bW-IB4"/>
-                                                <constraint firstItem="AQV-On-quD" firstAttribute="top" secondItem="39F-M2-7S2" secondAttribute="topMargin" id="XWo-cN-Nxc"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="AQV-On-quD" secondAttribute="bottom" id="p31-wc-VZ3"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="AQV-On-quD" secondAttribute="trailing" id="uzB-58-pAl"/>
+                                                <constraint firstItem="AQV-On-quD" firstAttribute="leading" relation="lessThanOrEqual" secondItem="39F-M2-7S2" secondAttribute="leading" id="Fkv-bW-IB4"/>
+                                                <constraint firstItem="AQV-On-quD" firstAttribute="top" relation="lessThanOrEqual" secondItem="39F-M2-7S2" secondAttribute="topMargin" id="XWo-cN-Nxc"/>
+                                                <constraint firstAttribute="bottomMargin" relation="lessThanOrEqual" secondItem="AQV-On-quD" secondAttribute="bottom" id="p31-wc-VZ3"/>
+                                                <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="AQV-On-quD" secondAttribute="trailing" id="uzB-58-pAl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
@@ -290,7 +290,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Sök resa" id="glH-7o-VC8">
-                        <barButtonItem key="leftBarButtonItem" title="Avancerat" id="ddt-6P-8PN"/>
+                        <barButtonItem key="leftBarButtonItem" title="Avancerad" id="ddt-6P-8PN">
+                            <connections>
+                                <action selector="onAdvancedButtonTap:" destination="Hg1-8K-Ui9" id="Yse-Pp-DQH"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Sök" style="done" id="cLP-J8-IqA">
                             <connections>
                                 <segue destination="1Cw-O1-Jfo" kind="show" identifier="ShowTripList" id="p87-eE-sWT"/>
