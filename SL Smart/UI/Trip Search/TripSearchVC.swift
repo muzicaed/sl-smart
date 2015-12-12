@@ -72,6 +72,19 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   }
   
   /**
+   * Validate if segue should be performed.
+   */
+  override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    if identifier == "ShowTripList" {
+      if criterions?.dest == nil || criterions?.origin == nil  {
+        showInvalidLocationAlert()
+        return false
+      }
+    }
+    return true
+  }
+  
+  /**
    * Changed if departure time or arrival time
    */
   @IBAction func onDepartureArrivalChanged(sender: UISegmentedControl) {
@@ -139,10 +152,23 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   
   // MARK: Private
   
+  /**
+  * Show a invalid location alert
+  */
+  private func showInvalidLocationAlert() {
+    let invalidLocationAlert = UIAlertController(
+      title: "Station saknas",
+      message: "Du behöver ange stationer för \"från\" och \"till\".",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    invalidLocationAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+    
+    presentViewController(invalidLocationAlert, animated: true, completion: nil)
+  }
   
   /**
-  * Creates a screen dimmer for date/time picker.
-  */
+   * Creates a screen dimmer for date/time picker.
+   */
   private func createDimmer() {
     dimmer = UIView(frame: CGRect(origin: CGPoint.zero, size: view.bounds.size))
     dimmer!.userInteractionEnabled = false
