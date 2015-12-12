@@ -13,7 +13,6 @@ public class RoutineService {
   /**
    * Finds the all routine trip based on
    * current position, time and week day.
-   * TODO: Refactoring....
    */
   public static func findRoutineTrip(callback: ([RoutineTrip]) -> Void) {
     MyLocationHelper.sharedInstance.requestLocationUpdate { location in
@@ -26,34 +25,8 @@ public class RoutineService {
         }
         
         let allRoutineTrips = DataStore.sharedInstance.retriveRoutineTrips()
-        let todayTimeTuple = createTimeTuple()
-        
-        for trip in allRoutineTrips {
-          print("---------------------------------")
-          print("\(trip.title!)")
-          var multiplier = multiplierBasedOnProximityToLocation(trip, locations: resTuple.data)
-          multiplier += multiplierBasedOnProximityToScorePostLocation(trip)
-          trip.score = scoreBasedOnRoutineSchedule(trip, today: todayTimeTuple)
-          trip.score = (trip.score == 0) ? multiplier * 5: trip.score * multiplier
-          print("Multiplier: \(multiplier)")
-          print("TOTAL: \(trip.score)")
-        }
-        
-        let prioList = allRoutineTrips.sort {$0.score > $1.score}
-        if prioList.count > 10 {
-          callback(Array(prioList[0..<10]) as [RoutineTrip])
-          return
-        }
-        if prioList.count > 0 {
-          searchTripsForBestRoutine(prioList[0]) { trips in
-            if trips.count > 0 {
-              prioList[0].trips = trips
-            }
-            callback(prioList)
-          }
-          return
-        }
-        callback(prioList)
+        scoreRoutineTrips(allRoutineTrips, lcations: resTuple.data)
+        createPrioList(allRoutineTrips, callback: callback)
       }
     }
   }
@@ -61,40 +34,83 @@ public class RoutineService {
   // MARK: Private methods
   
   /**
-  * Searches trips data for best RoutineTrip
+  * Calcualtes and assinges search score
+  * for the found routine trips.
   */
-  static private func searchTripsForBestRoutine(bestRoutineTrip: RoutineTrip?, callback: ([Trip]) -> Void) {
-    if let routineTrip = bestRoutineTrip {
-      let criterions = TripSearchCriterion(
-        origin: routineTrip.origin!, dest: routineTrip.destination!)
-      criterions.date = DateUtils.dateAsDateString(NSDate())
-      criterions.time = DateUtils.dateAsTimeString(NSDate())
-      criterions.numTrips = 1
-      
-      SearchTripService.tripSearch(criterions, callback: { resTuple in
-        if let _ = resTuple.error {
-          callback([Trip]())
-        }
-        callback(resTuple.data)
-      })
-      return
+  private static func scoreRoutineTrips(routineTrips: [RoutineTrip], lcations: [(id: Int, dist: Int)]) {
+    let todayTimeTuple = createTimeTuple()
+    
+    for trip in routineTrips {
+      print("---------------------------------")
+      print("\(trip.title!)")
+      var multiplier = multiplierBasedOnProximityToLocation(trip, locations: lcations)
+      multiplier += multiplierBasedOnProximityToScorePostLocation(trip)
+      trip.score = scoreBasedOnRoutineSchedule(trip, today: todayTimeTuple)
+      trip.score = (trip.score == 0) ? multiplier * 5: trip.score * multiplier
+      print("Multiplier: \(multiplier)")
+      print("TOTAL: \(trip.score)")
     }
-    callback([Trip]())
+  }
+  
+  /**
+   * Creates a prioritized routine trip list.
+   */
+  private static func createPrioList(
+    routineTrips: [RoutineTrip], callback: ([RoutineTrip]) -> Void) {
+      let prioList = routineTrips.sort {$0.score > $1.score}
+      if prioList.count > 10 {
+        callback(Array(prioList[0..<10]) as [RoutineTrip])
+        return
+      }
+      if prioList.count > 0 {
+        searchTripsForBestRoutine(prioList[0]) { trips in
+          if trips.count > 0 {
+            prioList[0].trips = trips
+          }
+          callback(prioList)
+        }
+        return
+      }
+      callback(prioList)
+  }
+  
+  /**
+   * Searches trips data for best RoutineTrip
+   */
+  static private func searchTripsForBestRoutine(
+    bestRoutineTrip: RoutineTrip?, callback: ([Trip]) -> Void) {
+      if let routineTrip = bestRoutineTrip {
+        let criterions = TripSearchCriterion(
+          origin: routineTrip.origin!, dest: routineTrip.destination!)
+        criterions.date = DateUtils.dateAsDateString(NSDate())
+        criterions.time = DateUtils.dateAsTimeString(NSDate())
+        criterions.numTrips = 1
+        
+        SearchTripService.tripSearch(criterions, callback: { resTuple in
+          if let _ = resTuple.error {
+            callback([Trip]())
+          }
+          callback(resTuple.data)
+        })
+        return
+      }
+      callback([Trip]())
   }
   
   /**
    * Score multiplier based on proximity to location.
    */
-  static private func multiplierBasedOnProximityToLocation(trip: RoutineTrip, locations: [(id: Int, dist: Int)]) -> Float {
-    for location in locations {
-      if trip.origin!.siteId == location.id {
-        var tempMultiplier = Float(1000 - location.dist)
-        tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
-        print("Prox to loc mult: \(tempMultiplier)")
-        return tempMultiplier
+  static private func multiplierBasedOnProximityToLocation(
+    trip: RoutineTrip, locations: [(id: Int, dist: Int)]) -> Float {
+      for location in locations {
+        if trip.origin!.siteId == location.id {
+          var tempMultiplier = Float(1000 - location.dist)
+          tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
+          print("Prox to loc mult: \(tempMultiplier)")
+          return tempMultiplier
+        }
       }
-    }
-    return 0.0
+      return 0.0
   }
   
   
