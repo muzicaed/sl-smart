@@ -40,6 +40,8 @@ class SmartTripIC: WKInterfaceController {
   
   let session = WCSession.defaultSession()
   let notificationCenter = NSNotificationCenter.defaultCenter()
+  let ReloadRateMinutes = 5
+  
   var icons = [WKInterfaceImage]()
   var iconLables = [WKInterfaceLabel]()
   var iconGroups = [WKInterfaceGroup]()
@@ -48,6 +50,9 @@ class SmartTripIC: WKInterfaceController {
   var isLoading = false
   var timer: NSTimer?
   var retryTimer: NSTimer?
+  var currentDepartureText: String?
+  var currentTitleText: String?
+  
   
   /**
    * About to show on screen.
@@ -55,13 +60,16 @@ class SmartTripIC: WKInterfaceController {
   override func willActivate() {
     print("SmartTripIC willActivate")
     super.willActivate()
-    
-    // Initial load
-    if routineData == nil {
-      refreshData()
-    } else {
-      showContentUIState()
-    }
+    refreshData()
+  }
+  
+  /**
+   * Interface disappear.
+   */
+  override func willDisappear() {
+    print("GlanceController willDisappear")
+    super.willDisappear()
+    hideLiveData()
   }
   
   /**
@@ -102,15 +110,8 @@ class SmartTripIC: WKInterfaceController {
         replyHandler: requestRoutineTripsHandler,
         errorHandler: messageErrorHandler)
     } else {
-      // TODO: How to handle this??
-
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
         NSTimeInterval(1.5), target: self, selector: "reloadRoutineTripData", userInfo: nil, repeats: false)
-      /*
-      displayError(
-      "Kan inte nå din iPhone",
-      message: "Kontrollera att din iPhone är påslagen, i närheten och att den är ansluten till internet.")
-      */
     }
   }
   
@@ -139,9 +140,18 @@ class SmartTripIC: WKInterfaceController {
    * Handles any session send messages errors.
    */
   func messageErrorHandler(error: NSError) {
-    // TODO: How to handle this error??
-    isLoading = false
     print("Error Code: \(error.code)\n\(error.localizedDescription)")
+    
+    // TODO: WTF?. Check future releases for fix on error 7014, and remove this...
+    if error.code == 7014 {
+
+      // Retry after 1.5 seconds...
+      retryTimer = NSTimer.scheduledTimerWithTimeInterval(
+        NSTimeInterval(1.5), target: self, selector: "reloadRoutineTripData", userInfo: nil, repeats: false)
+      return
+    }
+
+    isLoading = false
     displayError("\(error.localizedDescription) (\(error.code))",
       message: "\(error.localizedDescription)")
   }
@@ -156,12 +166,23 @@ class SmartTripIC: WKInterfaceController {
       let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
       let lines = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
       
-      titleLabel.setText(bestRoutine["tit"] as? String)
-      originLabel.setText(bestRoutine["ori"] as? String)
-      destinationLabel.setText(bestRoutine["des"] as? String)
-      departureTimeLabel.setText(DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String))
-      createTripIcons(icons, lines: lines)
-      updateOtherTable(data["other"] as! [Dictionary<String, AnyObject>])
+      
+      let tempDepartureText = DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String)
+      if tempDepartureText != currentDepartureText {
+        currentDepartureText = tempDepartureText
+        departureTimeLabel.setText(currentDepartureText)
+      }
+
+      let tempTitleText = bestRoutine["tit"] as? String
+      if tempTitleText != currentTitleText {
+        currentTitleText = tempTitleText
+        titleLabel.setText(currentTitleText)
+        originLabel.setText(bestRoutine["ori"] as? String)
+        destinationLabel.setText(bestRoutine["des"] as? String)
+        
+        createTripIcons(icons, lines: lines)
+        updateOtherTable(data["other"] as! [Dictionary<String, AnyObject>])
+      }
     }
   }
   
@@ -333,10 +354,24 @@ class SmartTripIC: WKInterfaceController {
    */
   private func shouldReloadData() -> Bool {
     return (
-      NSDate().timeIntervalSinceDate(lastUpdated) > (60 * 5) ||
+      NSDate().timeIntervalSinceDate(lastUpdated) > Double(60 * ReloadRateMinutes) ||
         routineData == nil ||
         checkIfTripPassed()
     )
+  }
+  
+  /**
+   * Hides live data when user leaves glance or lock screen.
+   * We do this to not have the view displaying old data
+   * for a second, when UI is reloaded when the glance
+   * is reactivaed.
+   */
+  func hideLiveData() {
+    if let text = currentDepartureText {
+      if text.rangeOfString("Om") != nil {
+        departureTimeLabel.setText("Uppdaterar")
+      }
+    }
   }
   
   /**

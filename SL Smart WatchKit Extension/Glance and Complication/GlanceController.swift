@@ -16,17 +16,6 @@ class GlanceController: SmartTripIC {
   @IBOutlet var contentGroup: WKInterfaceGroup!
   @IBOutlet var departureLabel: WKInterfaceLabel!
   
-  var currentDepartureText: String?
-  
-  /**
-   * Interface disappear.
-   */
-  override func willDisappear() {
-    print("GlanceController willDisappear")
-    super.willDisappear()
-    hideLiveData()
-  }
-  
   /**
    * Updates UI using data from iPhone
    */
@@ -37,12 +26,21 @@ class GlanceController: SmartTripIC {
       let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
       let lines = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
       
-      currentDepartureText = DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String)
-      originLabel.setText(bestRoutine["ori"] as? String)
-      destinationLabel.setText(bestRoutine["des"] as? String)
-      departureLabel.setText(currentDepartureText)
-      subTitleLabel.setText(bestRoutine["tit"] as? String)
-      createTripIcons(icons, lines: lines)
+      let tempDepartureText = DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String)
+      if tempDepartureText != currentDepartureText {
+        currentDepartureText = tempDepartureText
+        destinationLabel.setText(currentDepartureText)
+      }
+      
+      let tempTitleText = bestRoutine["tit"] as? String
+      if tempTitleText != currentTitleText {
+        currentTitleText = tempTitleText
+        subTitleLabel.setText(currentTitleText)
+        originLabel.setText(bestRoutine["ori"] as? String)
+        destinationLabel.setText(bestRoutine["des"] as? String)
+        departureLabel.setText(currentDepartureText)
+        createTripIcons(icons, lines: lines)
+      }
     }
   }
   
@@ -91,12 +89,11 @@ class GlanceController: SmartTripIC {
   * for a second, when UI is reloaded when the glance
   * is reactivaed.
   */
-  func hideLiveData() {
+  override func hideLiveData() {
     if let text = currentDepartureText {
       if text.rangeOfString("Om") != nil {
         departureLabel.setText("Uppdaterar")
       }
     }
   }
-  
 }
