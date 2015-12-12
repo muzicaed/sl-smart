@@ -9,14 +9,21 @@
 import Foundation
 
 public class RoutineTrip: NSObject, NSCoding, NSCopying {
+  public let id: String
   public var title: String?
   public var routine: Routine?
+  
   public var origin: Location?
   public var destination: Location?
   public var trips = [Trip]()
   public var score = Float(0.0)
   
-  public init(title: String?, origin: Location?, destination: Location?, routine: Routine?) {
+  public init(id: String?, title: String?, origin: Location?, destination: Location?, routine: Routine?) {
+    if let id = id {
+      self.id = id
+    } else {
+      self.id = NSUUID().UUIDString
+    }
     self.title = title
     self.routine = routine
     self.origin = origin
@@ -24,6 +31,7 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   }
   
   override public init() {
+    self.id = NSUUID().UUIDString
     super.init()
     self.routine = Routine()
   }
@@ -62,17 +70,19 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   // MARK: NSCoding
   
   required convenience public init?(coder aDecoder: NSCoder) {
+    let id = aDecoder.decodeObjectForKey(PropertyKey.id) as! String
     let title = aDecoder.decodeObjectForKey(PropertyKey.title) as? String
     let routine = aDecoder.decodeObjectForKey(PropertyKey.routine) as? Routine
     let origin = aDecoder.decodeObjectForKey(PropertyKey.origin) as? Location
     let destination = aDecoder.decodeObjectForKey(PropertyKey.destination) as? Location
-    self.init(title: title, origin: origin, destination: destination, routine: routine)
+    self.init(id: id, title: title, origin: origin, destination: destination, routine: routine)
   }
   
   /**
    * Encode this object
    */
   public func encodeWithCoder(aCoder: NSCoder) {
+    aCoder.encodeObject(PropertyKey.id)
     aCoder.encodeObject(title, forKey: PropertyKey.title)
     aCoder.encodeObject(routine, forKey: PropertyKey.routine)
     aCoder.encodeObject(origin, forKey: PropertyKey.origin)
@@ -80,6 +90,7 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   }
   
   struct PropertyKey {
+    static let id = "id"
     static let title = "title"
     static let routine = "routine"
     static let origin = "origin"
@@ -93,7 +104,7 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   */
   public func copyWithZone(zone: NSZone) -> AnyObject {
     let copy =  RoutineTrip(
-      title: title, origin: origin?.copy() as! Location?,
+      id: id, title: title, origin: origin?.copy() as! Location?,
       destination: destination?.copy() as! Location?, routine: routine?.copy() as! Routine?)
     copy.score = score
     
