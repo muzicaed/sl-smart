@@ -23,8 +23,8 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var viaLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
-  @IBOutlet weak var destinationArrivalSegmented: UISegmentedControl!
-  
+  @IBOutlet weak var destinationArrivalSegmented: UISegmentedControl!  
+  @IBOutlet weak var advancedToggleButton: UIBarButtonItem!
   /**
    * View did load
    */
@@ -32,9 +32,8 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
     super.viewDidLoad()
     tableView.editing = true
     view.backgroundColor = StyleHelper.sharedInstance.background
-    criterions = TripSearchCriterion(origin: nil, dest: nil)
-    pickedDate(NSDate())
-    
+    criterions = DataStore.sharedInstance.retrieveSearchCriterions()
+    restoreUIFromCriterions()
     createDimmer()
   }
   
@@ -57,19 +56,26 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
       vc.delegate = self
       vc.searchOnlyForStations = false
       searchLocationType = "Origin"
+      
     } else if segue.identifier == "SearchDestinationLocation" {
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
       vc.searchOnlyForStations = false
       searchLocationType = "Destination"
+      
     } else if segue.identifier == "SearchViaLocation" {
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
       vc.searchOnlyForStations = true
       searchLocationType = "Via"
+      
     } else if segue.identifier == "ShowTripList" {
       let vc = segue.destinationViewController as! TripListVC
       vc.criterions = criterions
+      if let crit = criterions {
+        DataStore.sharedInstance.writeLastSearchCriterions(crit)
+      }
+      
     } else if segue.identifier == "ShowDateTimePicker" {
       let vc = segue.destinationViewController as! DateTimePickerVC
       vc.selectedDate = selectedDate
@@ -96,6 +102,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   @IBAction func onAdvancedButtonTap(sender: UIBarButtonItem) {
     isAdvancedMode = !isAdvancedMode
     sender.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
+    criterions?.isAdvanced = isAdvancedMode
     if !isAdvancedMode {
       resetViaStation()
     }
@@ -128,7 +135,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
         crit.dest = location
         destinationLabel.text = location.name
       case "Via":
-        crit.viaId = location.siteId
+        crit.via = location
         viaLabel.text = location.name
         isViaSelected = true
         tableView.reloadData()
@@ -136,6 +143,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
         print("Error: searchLocationType")
       }
     }
+    searchLocationType = nil
   }
   
   // MARK: DateTimePickResponder
@@ -222,8 +230,32 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   // MARK: Private
   
   /**
-  * Show a invalid location alert
+  * Restores UI from criterions.
   */
+  private func restoreUIFromCriterions() {
+    if let crit = criterions {
+      isAdvancedMode = crit.isAdvanced
+      advancedToggleButton.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
+      if crit.origin != nil {
+        originLabel.text = crit.origin!.name
+      }
+      if crit.dest != nil {
+        destinationLabel.text = crit.dest!.name
+      }
+      if crit.via != nil {
+        viaLabel.text = crit.via!.name
+        isViaSelected = true
+      }
+    }
+    
+    criterions?.searchForArrival = false
+    pickedDate(NSDate())
+    tableView.reloadData()
+  }
+  
+  /**
+   * Show a invalid location alert
+   */
   private func showInvalidLocationAlert() {
     let invalidLocationAlert = UIAlertController(
       title: "Station saknas",
@@ -252,6 +284,6 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   private func resetViaStation() {
     self.isViaSelected = false
     self.viaLabel.text = "(Välj station)"
-    self.criterions?.viaId = nil
+    self.criterions?.via = nil
   }
 }

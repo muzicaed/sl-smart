@@ -13,6 +13,7 @@ public class DataStore {
   private let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
   private var cachedRoutineTrips = [RoutineTrip]()
   private var cachedScorePosts = [ScorePost]()
+  private var cachedSearchCriterions: TripSearchCriterion?
   
   // Singelton pattern
   public static let sharedInstance = DataStore()
@@ -110,6 +111,33 @@ public class DataStore {
     defaults.synchronize()
   }
   
+  /**
+   * Retrive "LastSearchCriterions" from data store
+   */
+  public func retrieveSearchCriterions() -> TripSearchCriterion {
+    if cachedSearchCriterions == nil {
+      
+      if let unarchivedObject = defaults.objectForKey(
+        PropertyKey.LastSearchCriterions) as? NSData {          
+          if let crit = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? TripSearchCriterion {
+            cachedSearchCriterions = crit
+            return cachedSearchCriterions!
+          }
+      }
+    }
+    return TripSearchCriterion(origin: nil, dest: nil)
+  }
+  
+  /**
+   * Store "LastSearchCriterions" in data store.
+   */
+  public func writeLastSearchCriterions(criterions: TripSearchCriterion) {
+    let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(criterions)
+    defaults.setObject(archivedObject, forKey: PropertyKey.LastSearchCriterions)
+    cachedSearchCriterions = criterions
+    defaults.synchronize()
+  }
+  
   // MARK: Private
   
   /**
@@ -137,5 +165,6 @@ public class DataStore {
   struct PropertyKey {
     static let MyRoutineTrips = "MyRoutineTrips"
     static let ScoreList = "ScoreList"
+    static let LastSearchCriterions = "LastSearchCriterions"
   }
 }
