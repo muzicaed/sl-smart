@@ -96,6 +96,9 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   @IBAction func onAdvancedButtonTap(sender: UIBarButtonItem) {
     isAdvancedMode = !isAdvancedMode
     sender.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
+    if !isAdvancedMode {
+      resetViaStation()
+    }
     tableView.reloadData()
   }
   /**
@@ -156,9 +159,9 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   // MARK: UITableViewController
   
   /**
-   * Height for rows. 
-   * (Will hide some rows when in simple mode)
-   */
+  * Height for rows.
+  * (Will hide some rows when in simple mode)
+  */
   override func tableView(tableView: UITableView,
     heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
       if !isAdvancedMode {
@@ -203,9 +206,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
       return [UITableViewRowAction(
         style: UITableViewRowActionStyle.Normal,
         title: "Rensa") { (_, _) -> Void in
-          self.viaLabel.text = "(Välj station)"
-          self.criterions?.viaId = nil
-          self.isViaSelected = false
+          self.resetViaStation()
           tableView.reloadData()
         }]
   }
@@ -243,5 +244,14 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
     dimmer!.backgroundColor = UIColor.blackColor()
     dimmer!.alpha = 0.0
     view.addSubview(dimmer!)
+  }
+  
+  /**
+   * Resets the via station selector.
+   */
+  private func resetViaStation() {
+    self.isViaSelected = false
+    self.viaLabel.text = "(Välj station)"
+    self.criterions?.viaId = nil
   }
 }

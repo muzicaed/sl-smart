@@ -29,7 +29,7 @@ class GlanceController: SmartTripIC {
       let tempDepartureText = DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String)
       if tempDepartureText != currentDepartureText {
         currentDepartureText = tempDepartureText
-        destinationLabel.setText(currentDepartureText)
+        departureLabel.setText(currentDepartureText)
       }
       
       let tempTitleText = bestRoutine["tit"] as? String
