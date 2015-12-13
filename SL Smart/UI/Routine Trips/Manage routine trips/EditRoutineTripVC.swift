@@ -12,8 +12,6 @@ import ResStockholmApiKit
 
 class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextFieldDelegate {
   
-  @IBOutlet weak var timeSegmentControl: UISegmentedControl!
-  @IBOutlet weak var weekRoutineSegmentControl: UISegmentedControl!
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var tripTitleTextField: UITextField!
@@ -58,7 +56,6 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   override func viewWillDisappear(animated: Bool) {
     super.viewDidDisappear(animated)
     if !isNewTrip && routineTrip != nil && hasChanged {
-      ScorePostHelper.giveScoreForUpdatedRoutineTrip(routineTrip!, oldRoutineTrip: routineTripCopy!)
       DataStore.sharedInstance.updateRoutineTrip(routineTripIndex, trip: routineTrip!)
     }
   }
@@ -88,24 +85,6 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   }
   
   /**
-   * Time picker segment changed.
-   */
-  @IBAction func onTimeSegmentChange(sender: UISegmentedControl) {
-    hasChanged = true
-    routineTrip?.routine?.time = RoutineTime(
-      rawValue: timeSegmentControl.selectedSegmentIndex)!
-  }
-  
-  /**
-   * Time picker segment changed.
-   */
-  @IBAction func onWeekSegmentChange(sender: UISegmentedControl) {
-    hasChanged = true
-    routineTrip?.routine?.week = RoutineWeek(
-      rawValue: weekRoutineSegmentControl.selectedSegmentIndex)!
-  }
-  
-  /**
    * On trip title text field change.
    */
   func textFieldDidChange(textField: UITextField) {
@@ -120,12 +99,14 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    * On navbar back tap.
    */
   func onBackTap() {
-    if tripTitleTextField.text == nil || tripTitleTextField.text == "" {
-      showInvalidTitleAlert()
-      return
-    } else if isInvalidLocationData() {
-      showInvalidLocationAlert()
-      return
+    if !isNewTrip {
+      if tripTitleTextField.text == nil || tripTitleTextField.text == "" {
+        showInvalidTitleAlert()
+        return
+      } else if isInvalidLocationData() {
+        showInvalidLocationAlert()
+        return
+      }
     }
     navigationController?.popViewControllerAnimated(true)
   }
@@ -211,11 +192,6 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       tripTitleTextField.text = trip.title
       originLabel.text = trip.criterions.origin?.name
       destinationLabel.text = trip.criterions.dest?.name
-      
-      if let routine = trip.routine {
-        weekRoutineSegmentControl.selectedSegmentIndex = routine.week.rawValue
-        timeSegmentControl.selectedSegmentIndex = routine.time.rawValue
-      }
     }
   }
   
@@ -294,7 +270,6 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     }
     
     DataStore.sharedInstance.addRoutineTrip(routineTrip!)
-    ScorePostHelper.giveScoreForNewRoutineTrip(routineTrip!)
     performSegueWithIdentifier("unwindToManageRoutineTrips", sender: self)
   }
   

@@ -111,7 +111,7 @@ class ManageRoutineTripsVC: UITableViewController {
       if trips.count == 0 {
         return 100
       }
-      return 85
+      return 70
   }
   
   /**
@@ -132,9 +132,6 @@ class ManageRoutineTripsVC: UITableViewController {
       
       cell.tripTitleLabel.text = trip.title
       cell.routeTextLabel.text = "\(trip.criterions.origin!.cleanName) » \(trip.criterions.dest!.cleanName)"
-      if let routine = trip.routine {
-        cell.scheduleLabel.text = "\(routine.time.toFriendlyString()) på \(routine.week.toFriendlyString())"
-      }
       
       return cell
   }

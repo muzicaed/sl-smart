@@ -12,21 +12,18 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   public let id: String
   public var title: String?
   public var criterions = TripSearchCriterion(origin: nil, dest: nil)
-  public var routine: Routine?
   public var trips = [Trip]()
   public var score = Float(0.0)
   
-  public init(id: String, title: String?, criterions: TripSearchCriterion, routine: Routine?) {
+  public init(id: String, title: String?, criterions: TripSearchCriterion) {
     self.id = id
     self.title = title
-    self.routine = routine
     self.criterions = criterions
   }
   
   override public init() {
     self.id = NSUUID().UUIDString
     super.init()
-    self.routine = Routine()
   }
   
   /**
@@ -64,10 +61,9 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   required convenience public init?(coder aDecoder: NSCoder) {
     let id = aDecoder.decodeObjectForKey(PropertyKey.id) as! String
     let title = aDecoder.decodeObjectForKey(PropertyKey.title) as? String
-    let routine = aDecoder.decodeObjectForKey(PropertyKey.routine) as? Routine
     let criterions = aDecoder.decodeObjectForKey(PropertyKey.criterions) as! TripSearchCriterion
     
-    self.init(id: id, title: title, criterions: criterions, routine: routine)
+    self.init(id: id, title: title, criterions: criterions)
   }
   
   /**
@@ -76,14 +72,12 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   public func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodeObject(id, forKey: PropertyKey.id)
     aCoder.encodeObject(title, forKey: PropertyKey.title)
-    aCoder.encodeObject(routine, forKey: PropertyKey.routine)
     aCoder.encodeObject(criterions, forKey: PropertyKey.criterions)
   }
   
   struct PropertyKey {
     static let id = "id"
     static let title = "title"
-    static let routine = "routine"
     static let criterions = "criterions"
   }
   
@@ -95,8 +89,7 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   public func copyWithZone(zone: NSZone) -> AnyObject {
     let copy =  RoutineTrip(
       id: id, title: title,
-      criterions: criterions.copy() as! TripSearchCriterion,
-      routine: routine?.copy() as! Routine?)
+      criterions: criterions.copy() as! TripSearchCriterion)
     copy.score = score
     
     for trip in trips {

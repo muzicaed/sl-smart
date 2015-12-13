@@ -13,5 +13,4 @@ class ManageRoutineTripCell: UITableViewCell {
   
   @IBOutlet weak var tripTitleLabel: UILabel!
   @IBOutlet weak var routeTextLabel: UILabel!
-  @IBOutlet weak var scheduleLabel: UILabel!
 }

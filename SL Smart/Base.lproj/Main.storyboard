@@ -759,34 +759,27 @@
                                 </tableViewCellContentView>
                                 <animations/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" showsReorderControl="YES" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MyRoutinTripCell" rowHeight="85" id="Bbh-2h-gbO" customClass="ManageRoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="128" width="414" height="85"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" showsReorderControl="YES" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MyRoutinTripCell" rowHeight="70" id="Bbh-2h-gbO" customClass="ManageRoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="128" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bbh-2h-gbO" id="k6z-qC-mfr">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="84.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ioa-h7-glF">
-                                            <rect key="frame" x="18" y="8" width="355" height="68"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ioa-h7-glF">
+                                            <rect key="frame" x="18" y="8" width="355" height="54"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Trip Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZJU-sG-500">
-                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="22"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="27"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Stockholm central » Karlberg station" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OIZ-VO-n8V">
-                                                    <rect key="frame" x="0.0" y="22" width="355" height="29"/>
+                                                    <rect key="frame" x="0.0" y="27" width="355" height="27"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWz-Mt-5Oe">
-                                                    <rect key="frame" x="0.0" y="51" width="355" height="17"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -805,7 +798,6 @@
                                 <animations/>
                                 <connections>
                                     <outlet property="routeTextLabel" destination="OIZ-VO-n8V" id="u9O-lx-tSz"/>
-                                    <outlet property="scheduleLabel" destination="pWz-Mt-5Oe" id="eMq-NC-kx7"/>
                                     <outlet property="tripTitleLabel" destination="ZJU-sG-500" id="5E0-Tc-146"/>
                                 </connections>
                             </tableViewCell>
@@ -886,6 +878,9 @@
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Mellan vilka stationer åker du?" id="jzR-6r-YTn">
+                                <mutableString key="footerTitle">Appen kommer själv att lära sig dina vanor. Redan efter ett par dagar kommer appen automatiskt att söka resinformation för exakt den resan du planerade att söka efter. 
+Försök ha lite tålamod första dagarna då appen försöker lära sig dina vanor. 😃 
+ Välkomen till ett smartare sätt att resa!</mutableString>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="a2K-Cg-mhO">
                                         <rect key="frame" x="0.0" y="143.5" width="414" height="44"/>
@@ -1002,141 +997,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="När åker du oftast?" footerTitle="Appen kommer att lära sig mer om dina vanor, även om resor görs utanför denna beskrivning." id="jL7-gN-erF">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="detailButton" indentationWidth="0.0" id="mfe-YO-7wi" userLabel="Day picker">
-                                        <rect key="frame" x="0.0" y="281.5" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mfe-YO-7wi" id="6kN-ix-bJG">
-                                            <rect key="frame" x="0.0" y="0.0" width="367" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4T-YN-KMI">
-                                                    <rect key="frame" x="0.0" y="8" width="367" height="28"/>
-                                                    <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Dm-yZ-xoS">
-                                                            <rect key="frame" x="0.0" y="0.0" width="367" height="28"/>
-                                                            <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXw-ZH-xvy">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="15" height="28"/>
-                                                                    <animations/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="15" id="Qx8-yR-vNX"/>
-                                                                    </constraints>
-                                                                </view>
-                                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1gg-c6-hoE">
-                                                                    <rect key="frame" x="15" y="0.0" width="337" height="29"/>
-                                                                    <animations/>
-                                                                    <segments>
-                                                                        <segment title="Vardagar"/>
-                                                                        <segment title="Helger"/>
-                                                                    </segments>
-                                                                    <connections>
-                                                                        <action selector="onWeekSegmentChange:" destination="h2d-Hi-2Zo" eventType="valueChanged" id="28G-Oo-f8V"/>
-                                                                    </connections>
-                                                                </segmentedControl>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L0A-fe-soL">
-                                                                    <rect key="frame" x="352" y="0.0" width="15" height="28"/>
-                                                                    <animations/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="15" id="5XZ-V1-q9B"/>
-                                                                    </constraints>
-                                                                </view>
-                                                            </subviews>
-                                                            <animations/>
-                                                        </stackView>
-                                                    </subviews>
-                                                    <animations/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstItem="1Dm-yZ-xoS" firstAttribute="top" secondItem="I4T-YN-KMI" secondAttribute="top" id="0AR-MK-LuW"/>
-                                                        <constraint firstAttribute="bottom" secondItem="1Dm-yZ-xoS" secondAttribute="bottom" id="dAd-zz-qua"/>
-                                                        <constraint firstAttribute="trailing" secondItem="1Dm-yZ-xoS" secondAttribute="trailing" id="jo2-QK-DN2"/>
-                                                        <constraint firstItem="1Dm-yZ-xoS" firstAttribute="leading" secondItem="I4T-YN-KMI" secondAttribute="leading" id="zCG-5f-df7"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="I4T-YN-KMI" secondAttribute="trailing" id="3fi-cW-EyV"/>
-                                                <constraint firstItem="I4T-YN-KMI" firstAttribute="leading" secondItem="6kN-ix-bJG" secondAttribute="leading" id="Z1D-d7-aG2"/>
-                                                <constraint firstItem="I4T-YN-KMI" firstAttribute="top" secondItem="6kN-ix-bJG" secondAttribute="topMargin" id="ogF-Jg-SNY"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="I4T-YN-KMI" secondAttribute="bottom" id="sWB-lb-0w4"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" id="MSY-QG-YjO" userLabel="Time picker">
-                                        <rect key="frame" x="0.0" y="325.5" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MSY-QG-YjO" id="hD7-cT-dGJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="367" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ts-jv-sKA">
-                                                    <rect key="frame" x="0.0" y="0.0" width="367" height="44"/>
-                                                    <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Kn-vK-ct1">
-                                                            <rect key="frame" x="0.0" y="8" width="367" height="28"/>
-                                                            <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Q7-v9-9YZ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="15" height="28"/>
-                                                                    <animations/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="15" id="tyQ-ud-n6i"/>
-                                                                    </constraints>
-                                                                </view>
-                                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nRR-Hz-dUx">
-                                                                    <rect key="frame" x="15" y="0.0" width="337" height="29"/>
-                                                                    <animations/>
-                                                                    <segments>
-                                                                        <segment title="Morgon"/>
-                                                                        <segment title="Dag"/>
-                                                                        <segment title="Kväll"/>
-                                                                        <segment title="Natt"/>
-                                                                    </segments>
-                                                                    <connections>
-                                                                        <action selector="onTimeSegmentChange:" destination="h2d-Hi-2Zo" eventType="valueChanged" id="5RY-hL-2rs"/>
-                                                                    </connections>
-                                                                </segmentedControl>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OFY-Ty-RmB">
-                                                                    <rect key="frame" x="352" y="0.0" width="15" height="28"/>
-                                                                    <animations/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="15" id="dX1-JB-m0C"/>
-                                                                    </constraints>
-                                                                </view>
-                                                            </subviews>
-                                                            <animations/>
-                                                        </stackView>
-                                                    </subviews>
-                                                    <animations/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="4Kn-vK-ct1" secondAttribute="trailing" id="7Rf-2F-962"/>
-                                                        <constraint firstItem="4Kn-vK-ct1" firstAttribute="leading" secondItem="3ts-jv-sKA" secondAttribute="leading" id="fOk-TT-1Ee"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="4Kn-vK-ct1" secondAttribute="bottom" id="kYi-IZ-7Ep"/>
-                                                        <constraint firstItem="4Kn-vK-ct1" firstAttribute="top" secondItem="3ts-jv-sKA" secondAttribute="topMargin" id="qAz-dw-efm"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstItem="3ts-jv-sKA" firstAttribute="top" secondItem="hD7-cT-dGJ" secondAttribute="top" id="BLq-SZ-slM"/>
-                                                <constraint firstAttribute="trailing" secondItem="3ts-jv-sKA" secondAttribute="trailing" id="LFD-yV-fqD"/>
-                                                <constraint firstItem="3ts-jv-sKA" firstAttribute="centerX" secondItem="hD7-cT-dGJ" secondAttribute="centerX" id="gAR-u6-8Kh"/>
-                                                <constraint firstItem="3ts-jv-sKA" firstAttribute="leading" secondItem="hD7-cT-dGJ" secondAttribute="leading" id="k8b-py-IGm"/>
-                                                <constraint firstAttribute="bottom" secondItem="3ts-jv-sKA" secondAttribute="bottom" id="qO1-94-9gD"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="h2d-Hi-2Zo" id="2fO-nw-A8I"/>
@@ -1153,9 +1013,7 @@
                     <connections>
                         <outlet property="destinationLabel" destination="i5j-V2-bdx" id="C3V-y8-eOC"/>
                         <outlet property="originLabel" destination="X91-GZ-AOv" id="T4x-MK-HhU"/>
-                        <outlet property="timeSegmentControl" destination="nRR-Hz-dUx" id="A2Q-kB-8an"/>
                         <outlet property="tripTitleTextField" destination="UcP-ws-VIP" id="BIK-HD-BAZ"/>
-                        <outlet property="weekRoutineSegmentControl" destination="1gg-c6-hoE" id="17C-rQ-chh"/>
                         <segue destination="nJN-i3-Vhd" kind="unwind" identifier="unwindToManageRoutineTrips" unwindAction="unwindToManageRoutineTripsVC:" id="iVD-3d-eeQ"/>
                     </connections>
                 </tableViewController>
@@ -3264,8 +3122,8 @@ Välkommen till ett smartare sätt att pendla.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="8tl-aE-z6t"/>
         <segue reference="6zU-Tw-atf"/>
-        <segue reference="ssG-K5-unq"/>
-        <segue reference="p87-eE-sWT"/>
+        <segue reference="zAQ-4U-scN"/>
     </inferredMetricsTieBreakers>
 </document>
