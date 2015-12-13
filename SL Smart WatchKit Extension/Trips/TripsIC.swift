@@ -96,8 +96,7 @@ class TripsIC: WKInterfaceController {
       session.sendMessage(
         [
           "action": "SearchTrips",
-          "oid": data!["oid"] as! Int,
-          "did": data!["did"] as! Int
+          "id": data!["id"] as! String
         ],
         replyHandler: searchTripsHandler,
         errorHandler: { error in

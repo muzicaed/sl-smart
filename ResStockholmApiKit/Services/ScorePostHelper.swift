@@ -104,12 +104,12 @@ public class ScorePostHelper {
         for hourOfDay in createHourRange(routineTrip.routine!.time) {
           changeScore(
             dayInWeek, hourOfDay: hourOfDay,
-            siteId: routineTrip.origin!.siteId,
+            siteId: routineTrip.criterions.origin!.siteId,
             isOrigin: true, scoreMod: scoreMod,
             location: location, scorePosts: &scorePosts)
           changeScore(
             dayInWeek, hourOfDay: hourOfDay,
-            siteId: routineTrip.destination!.siteId,
+            siteId: routineTrip.criterions.dest!.siteId,
             isOrigin: false, scoreMod: scoreMod,
             location: location, scorePosts: &scorePosts)
           
@@ -119,12 +119,12 @@ public class ScorePostHelper {
           for hourOfDay in 0...4 {
             changeScore(
               dayInWeek, hourOfDay: hourOfDay,
-              siteId: routineTrip.origin!.siteId,
+              siteId: routineTrip.criterions.origin!.siteId,
               isOrigin: true, scoreMod: scoreMod,
               location: location, scorePosts: &scorePosts)
             changeScore(
               dayInWeek, hourOfDay: hourOfDay,
-              siteId: routineTrip.destination!.siteId,
+              siteId: routineTrip.criterions.dest!.siteId,
               isOrigin: false, scoreMod: scoreMod,
               location: location, scorePosts: &scorePosts)
           }

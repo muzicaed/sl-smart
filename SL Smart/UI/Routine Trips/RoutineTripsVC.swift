@@ -62,16 +62,16 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if let routineTrip = selectedRoutineTrip {
       if segue.identifier == showTripListSegue {
-        let vc = segue.destinationViewController as! TripListVC
-        let criterions = TripSearchCriterion(
-          origin: routineTrip.origin!, dest: routineTrip.destination!)
+        if let crit = routineTrip.criterions.copy() as? TripSearchCriterion {
+          let date = NSDate(timeIntervalSinceNow: (60 * 5) * -1)
+          crit.date = DateUtils.dateAsDateString(date)
+          crit.time = DateUtils.dateAsTimeString(date)
+          
+          let vc = segue.destinationViewController as! TripListVC
+          vc.criterions = crit
+          vc.title = routineTrip.title
+        }
         
-        let date = NSDate(timeIntervalSinceNow: (60 * 5) * -1)
-        criterions.date = DateUtils.dateAsDateString(date)
-        criterions.time = DateUtils.dateAsTimeString(date)
-        
-        vc.criterions = criterions
-        vc.title = routineTrip.title
       } else if segue.identifier == "ManageRoutineTrips" {
         // Force a reload when returning to this VC
         lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
@@ -225,8 +225,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
         
         ScorePostHelper.addScoreForSelectedRoutineTrip(
-          selectedRoutineTrip!.origin!.siteId,
-          destinationId: selectedRoutineTrip!.destination!.siteId)
+          selectedRoutineTrip!.criterions.origin!.siteId,
+          destinationId: selectedRoutineTrip!.criterions.dest!.siteId)
         performSegueWithIdentifier(showTripListSegue, sender: self)
       }
   }

@@ -80,19 +80,20 @@ public class RoutineService {
   static private func searchTripsForBestRoutine(
     bestRoutineTrip: RoutineTrip?, callback: ([Trip]) -> Void) {
       if let routineTrip = bestRoutineTrip {
-        let criterions = TripSearchCriterion(
-          origin: routineTrip.origin!, dest: routineTrip.destination!)
-        criterions.date = DateUtils.dateAsDateString(NSDate())
-        criterions.time = DateUtils.dateAsTimeString(NSDate())
-        criterions.numTrips = 1
         
-        SearchTripService.tripSearch(criterions, callback: { resTuple in
-          if let _ = resTuple.error {
-            callback([Trip]())
-          }
-          callback(resTuple.data)
-        })
-        return
+        if let searchCrit = routineTrip.criterions.copy() as? TripSearchCriterion {
+          searchCrit.date = DateUtils.dateAsDateString(NSDate())
+          searchCrit.time = DateUtils.dateAsTimeString(NSDate())
+          searchCrit.numTrips = 1
+          
+          SearchTripService.tripSearch(searchCrit, callback: { resTuple in
+            if let _ = resTuple.error {
+              callback([Trip]())
+            }
+            callback(resTuple.data)
+          })
+          return
+        }
       }
       callback([Trip]())
   }
@@ -103,7 +104,7 @@ public class RoutineService {
   static private func multiplierBasedOnProximityToLocation(
     trip: RoutineTrip, locations: [(id: Int, dist: Int)]) -> Float {
       for location in locations {
-        if trip.origin!.siteId == location.id {
+        if trip.criterions.origin!.siteId == location.id {
           var tempMultiplier = Float(1000 - location.dist)
           tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
           print("Prox to loc mult: \(tempMultiplier)")
@@ -123,8 +124,8 @@ public class RoutineService {
       let scorePosts = DataStore.sharedInstance.retrieveScorePosts()
       var score = Float(0)
       for post in scorePosts {
-        if post.isOrigin && post.siteId == trip.origin!.siteId ||
-          !post.isOrigin && post.siteId == trip.destination!.siteId {
+        if post.isOrigin && post.siteId == trip.criterions.origin!.siteId ||
+          !post.isOrigin && post.siteId == trip.criterions.dest!.siteId {
             
             if post.dayInWeek == today.dayInWeek {
               score += (post.score * 0.3)

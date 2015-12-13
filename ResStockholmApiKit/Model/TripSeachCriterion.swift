@@ -11,7 +11,7 @@ import Foundation
 /**
  * Simple data object.
  */
-public class TripSearchCriterion: NSObject, NSCoding {
+public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
 
   public var originId = 0
   public var destId = 0
@@ -169,6 +169,39 @@ public class TripSearchCriterion: NSObject, NSCoding {
     static let numTrips = "numTrips"
     static let realtime = "realtime"
     static let isAdvanced = "isAdvanced"
+  }
+  
+  // MARK: NSCopying
+  
+  /**
+  * Copy self
+  */
+  public func copyWithZone(zone: NSZone) -> AnyObject {
+    let copy = TripSearchCriterion(
+      origin: self.origin?.copy() as! Location?,
+      dest: self.dest?.copy() as! Location?)
+    
+    copy.originId = originId
+    copy.destId = destId
+    copy.via = via?.copy() as! Location?
+    copy.date = date
+    copy.time = time
+    copy.numChg = numChg
+    copy.minChgTime = minChgTime
+    copy.searchForArrival = searchForArrival
+    copy.unsharp = unsharp
+    copy.maxWalkDist = maxWalkDist
+    copy.useTrain = useTrain
+    copy.useMetro = useMetro
+    copy.useTram = useTram
+    copy.useBus = useBus
+    copy.useFerry = useFerry
+    copy.useShip = useShip
+    copy.numTrips = numTrips
+    copy.realtime = realtime
+    copy.isAdvanced = isAdvanced
+
+    return copy
   }
   
   // MARK: Private methods

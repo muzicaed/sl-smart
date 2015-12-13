@@ -72,8 +72,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
       titleLabel.text = routine.title
       departureTimeLabel.text = DateUtils.dateAsTimeString(firstSegment.departureDateTime)
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(lastSegment.arrivalDateTime)
-      departureDescLabel.text = " \(routine.origin!.cleanName)"
-      arrivalDescLabel.text = " \(routine.destination!.cleanName)"
+      departureDescLabel.text = " \(routine.criterions.origin!.cleanName)"
+      arrivalDescLabel.text = " \(routine.criterions.dest!.cleanName)"
       travelTimeLabel.text = "Restid: \(trip.durationMin) min"
       
       createTripSegmentIcons(trip)

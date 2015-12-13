@@ -131,7 +131,7 @@ class ManageRoutineTripsVC: UITableViewController {
         cellIdentifier, forIndexPath: indexPath) as! ManageRoutineTripCell
       
       cell.tripTitleLabel.text = trip.title
-      cell.routeTextLabel.text = "\(trip.origin!.cleanName) » \(trip.destination!.cleanName)"
+      cell.routeTextLabel.text = "\(trip.criterions.origin!.cleanName) » \(trip.criterions.dest!.cleanName)"
       if let routine = trip.routine {
         cell.scheduleLabel.text = "\(routine.time.toFriendlyString()) på \(routine.week.toFriendlyString())"
       }

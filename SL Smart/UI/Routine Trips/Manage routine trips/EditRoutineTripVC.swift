@@ -122,10 +122,10 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   func selectedLocationFromSearch(location: Location) {
     hasChanged = true
     if isSearchingOriginLocation {
-      routineTrip?.origin = location
+      routineTrip?.criterions.origin = location
       originLabel.text = location.name
     } else {
-      routineTrip?.destination = location
+      routineTrip?.criterions.dest = location
       destinationLabel.text = location.name
     }
   }
@@ -154,17 +154,19 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       }
   }
   
-  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-    
-    let bgColorView = UIView()
-    bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
-    cell.selectedBackgroundView = bgColorView
+  override func tableView(tableView: UITableView,
+    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+      
+      let bgColorView = UIView()
+      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+      cell.selectedBackgroundView = bgColorView
   }
   
   /**
    * Deselect selected row.
    */
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(tableView: UITableView,
+    didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
@@ -177,10 +179,10 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   
   func textField(textField: UITextField,
     shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-    guard let text = textField.text else { return true }
-    
-    let newLength = text.characters.count + string.characters.count - range.length
-    return newLength <= 30
+      guard let text = textField.text else { return true }
+      
+      let newLength = text.characters.count + string.characters.count - range.length
+      return newLength <= 30
   }
   
   // MARK: Private methods
@@ -191,8 +193,8 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   private func setupEditData() {
     if let trip = routineTrip {
       tripTitleTextField.text = trip.title
-      originLabel.text = trip.origin?.name
-      destinationLabel.text = trip.destination?.name
+      originLabel.text = trip.criterions.origin?.name
+      destinationLabel.text = trip.criterions.dest?.name
       
       if let routine = trip.routine {
         weekRoutineSegmentControl.selectedSegmentIndex = routine.week.rawValue
@@ -202,8 +204,8 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   }
   
   /**
-  * Show a invalid title alert
-  */
+   * Show a invalid title alert
+   */
   private func showInvalidTitleAlert() {
     let invalidTitleAlert = UIAlertController(
       title: "Title saknas",
@@ -256,8 +258,8 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     
     presentViewController(invalidLocationAlert, animated: true, completion: nil)
   }
-
-  /** 
+  
+  /**
    * Creats and persists a routine trip based
    * on data on current form. Also navigates back.
    */
@@ -270,9 +272,11 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       routineTrip?.title = tripTitleTextField.text
     }
     
-    if routineTrip == nil || routineTrip?.origin == nil || routineTrip?.destination == nil {
-      showInvalidLocationAlert()
-      return
+    if routineTrip == nil ||
+      routineTrip?.criterions.origin == nil ||
+      routineTrip?.criterions.dest == nil {
+        showInvalidLocationAlert()
+        return
     }
     
     DataStore.sharedInstance.addRoutineTrip(routineTrip!)

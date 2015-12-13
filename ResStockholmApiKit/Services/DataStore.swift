@@ -71,6 +71,17 @@ public class DataStore {
   }
   
   /**
+   * Delete a routine trip from data store
+   */
+  public func retriveRoutineTripOnId(id: String) -> RoutineTrip? {
+    let trips = retriveRoutineTrips()
+    if let index = trips.indexOf({$0.id == id}) {
+      return trips[index].copy() as? RoutineTrip
+    }
+    return nil
+  }
+  
+  /**
    * Retrieves all routine trips from data store
    */
   public func retriveRoutineTrips() -> [RoutineTrip] {

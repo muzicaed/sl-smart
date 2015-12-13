@@ -48,30 +48,43 @@ class WatchService {
    * Search for trips
    */
   static func searchTrips(
-    originId: Int, destinationId: Int,
+    routineTripId: String,
     callback: (Dictionary<String, AnyObject>) -> Void) {
       
-      ScorePostHelper.addScoreForSelectedRoutineTrip(originId, destinationId: destinationId)
       var response: Dictionary<String, AnyObject> = [
         "error": false
       ]
-      let date = NSDate(timeIntervalSinceNow: (60 * 5) * -1)
-      let criterions = TripSearchCriterion(originId: originId, destId: destinationId)
-      criterions.date = DateUtils.dateAsDateString(date)
-      criterions.time = DateUtils.dateAsTimeString(date)
       
-      SearchTripService.tripSearch(criterions,
-        callback: { resTuple in
-          if resTuple.error != nil {
-            response["error"] = true
-          }
-          
-          var foundTrips = [Dictionary<String, AnyObject>]()
-          for trip in resTuple.data {
-            foundTrips.append(trip.watchTransferData())
-          }
-          response["trips"] = foundTrips
-          callback(response)
-      })
+      if let routineTrip = DataStore.sharedInstance.retriveRoutineTripOnId(routineTripId) {
+        
+        ScorePostHelper.addScoreForSelectedRoutineTrip(
+          routineTrip.criterions.origin!.siteId,
+          destinationId: routineTrip.criterions.dest!.siteId)
+                
+        let crit = routineTrip.criterions.copy() as! TripSearchCriterion
+        let date = NSDate(timeIntervalSinceNow: (60 * 5) * -1)
+        crit.date = DateUtils.dateAsDateString(date)
+        crit.time = DateUtils.dateAsTimeString(date)
+        
+        SearchTripService.tripSearch(crit,
+          callback: { resTuple in
+            if resTuple.error != nil {
+              response["error"] = true
+            }
+            
+            var foundTrips = [Dictionary<String, AnyObject>]()
+            for trip in resTuple.data {
+              foundTrips.append(trip.watchTransferData())
+            }
+            response["trips"] = foundTrips
+            callback(response)
+            
+        })
+        
+      } else {
+        print("Error Could not find routine trip")
+        response["error"] = true
+        callback(response)
+      }
   }
 }

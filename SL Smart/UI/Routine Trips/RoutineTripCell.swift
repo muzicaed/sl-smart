@@ -49,8 +49,8 @@ class RoutineTripCell: UICollectionViewCell {
    */
   func setupData(routineTrip: RoutineTrip) {
     tripTitleLabel.text = routineTrip.title! + " [\(String(routineTrip.score))]"
-    originLabel.text = routineTrip.origin?.cleanName
-    destinationLabel.text = routineTrip.destination?.cleanName
+    originLabel.text = routineTrip.criterions.origin?.cleanName
+    destinationLabel.text = routineTrip.criterions.dest?.cleanName
     
     if let trip = routineTrip.trips.first {
       setupTripData(trip)
