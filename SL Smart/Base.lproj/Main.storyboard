@@ -237,44 +237,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Avresa eller Ankomst" id="Iin-ag-WRW" userLabel="Avresetid eller ankomsttid">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimeSearchTypeRow" id="QfG-cZ-sfK" userLabel="Time Search Type Row">
-                                        <rect key="frame" x="0.0" y="218.5" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QfG-cZ-sfK" id="2Q9-La-InF">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="068-l7-XTW">
-                                                    <rect key="frame" x="-2" y="-1" width="418" height="46"/>
-                                                    <animations/>
-                                                    <segments>
-                                                        <segment title="Tidigast åka"/>
-                                                        <segment title="Senast framme"/>
-                                                    </segments>
-                                                    <connections>
-                                                        <action selector="onDepartureArrivalChanged:" destination="Hg1-8K-Ui9" eventType="valueChanged" id="aYH-Ki-QrT"/>
-                                                    </connections>
-                                                </segmentedControl>
-                                            </subviews>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="068-l7-XTW" secondAttribute="bottom" id="5zL-oh-s6F"/>
-                                                <constraint firstItem="068-l7-XTW" firstAttribute="top" secondItem="2Q9-La-InF" secondAttribute="top" constant="-1" id="7Kg-c0-Fcc"/>
-                                                <constraint firstItem="068-l7-XTW" firstAttribute="leading" secondItem="2Q9-La-InF" secondAttribute="leading" constant="-2" id="OPf-Uw-Y0h"/>
-                                                <constraint firstAttribute="trailing" secondItem="068-l7-XTW" secondAttribute="trailing" constant="-2" id="gUP-t8-sDZ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Tid och datum" id="IL2-mU-feH" userLabel="Time">
-                                <string key="footerTitle">"Tidigast åka" söker resor med avgång efter vald tid. "Senast framme" söker resor som anländer vid destinationen en tid innan vald tid.</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TimePickerRow" id="12f-Dj-YYm" userLabel="Time Picker Row">
-                                        <rect key="frame" x="0.0" y="299.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="218.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="12f-Dj-YYm" id="2FO-Zu-i92">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
@@ -321,6 +287,40 @@
                                         <connections>
                                             <segue destination="TZ1-ux-qDf" kind="presentation" identifier="ShowDateTimePicker" modalPresentationStyle="overFullScreen" modalTransitionStyle="coverVertical" id="6ui-Sw-M7b"/>
                                         </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Avresa eller Ankomst" id="Iin-ag-WRW" userLabel="Avresetid eller ankomsttid">
+                                <string key="footerTitle">"Tidigast åka" söker resor med avgång efter vald tid. "Senast framme" söker resor som anländer vid destinationen en tid innan vald tid.</string>
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimeSearchTypeRow" id="QfG-cZ-sfK" userLabel="Time Search Type Row">
+                                        <rect key="frame" x="0.0" y="299.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QfG-cZ-sfK" id="2Q9-La-InF">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="068-l7-XTW">
+                                                    <rect key="frame" x="-2" y="-1" width="418" height="46"/>
+                                                    <animations/>
+                                                    <segments>
+                                                        <segment title="Tidigast åka"/>
+                                                        <segment title="Senast framme"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="onDepartureArrivalChanged:" destination="Hg1-8K-Ui9" eventType="valueChanged" id="aYH-Ki-QrT"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="068-l7-XTW" secondAttribute="bottom" id="5zL-oh-s6F"/>
+                                                <constraint firstItem="068-l7-XTW" firstAttribute="top" secondItem="2Q9-La-InF" secondAttribute="top" constant="-1" id="7Kg-c0-Fcc"/>
+                                                <constraint firstItem="068-l7-XTW" firstAttribute="leading" secondItem="2Q9-La-InF" secondAttribute="leading" constant="-2" id="OPf-Uw-Y0h"/>
+                                                <constraint firstAttribute="trailing" secondItem="068-l7-XTW" secondAttribute="trailing" constant="-2" id="gUP-t8-sDZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>

@@ -112,9 +112,15 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
     isAdvancedMode = !isAdvancedMode
     sender.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
     criterions?.isAdvanced = isAdvancedMode
-    if !isAdvancedMode {
+    if isAdvancedMode {
+      tableView.insertRowsAtIndexPaths(
+        [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
+    } else {
       resetViaStation()
+      tableView.deleteRowsAtIndexPaths(
+        [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
     }
+    
     tableView.endUpdates()
   }
   /**
@@ -207,9 +213,20 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   // MARK: UITableViewController
   
   /**
-  * Height for rows.
-  * (Will hide some rows when in simple mode)
+  * Row count in section
   */
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if section == 0 {
+      return (isAdvancedMode) ? 2 : 1
+    }
+    
+    return 1
+  }
+  
+  /**
+   * Height for rows.
+   * (Will hide some rows when in simple mode)
+   */
   override func tableView(tableView: UITableView,
     heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
       
