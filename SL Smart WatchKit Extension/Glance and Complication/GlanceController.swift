@@ -39,15 +39,16 @@ class GlanceController: SmartTripIC {
    * Updates UI for departure time.
    */
   override func updateDepatureUI() {
-    print("GlanceController updateDepatureUI")
+    print("SmartTripIC updateDepatureUI")
     if let data = routineData {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
-      let tempDepartureText = DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String)
-      if tempDepartureText != currentDepartureText {
-        currentDepartureText = tempDepartureText
-        departureLabel.setText(currentDepartureText)
-      }
+      currentDepartureText = DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String)
+      departureLabel.setText(currentDepartureText)
+      return
     }
+    // Retry after 1.5 seconds...
+    retryTimer = NSTimer.scheduledTimerWithTimeInterval(
+      NSTimeInterval(1.5), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
   }
   
   /**

@@ -125,7 +125,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     layout collectionViewLayout: UICollectionViewLayout,
     referenceSizeForHeaderInSection section: Int) -> CGSize {
       
-      if isLoading || trips.count > 0  {
+      if isLoading || trips.count == 0  {
         return CGSizeMake(0, 0)
       }
       

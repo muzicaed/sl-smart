@@ -41,6 +41,14 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     tableView.tableFooterView = UIView()
   }
   
+  /**
+   * View about to disappper
+   */
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    navigationController?.popViewControllerAnimated(false)
+  }
+  
   deinit {
     if let superView = searchController?.view.superview {
       superView.removeFromSuperview()
@@ -111,7 +119,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   
   @objc func updateSearchResultsForSearchController(searchController: UISearchController) {
     if let query = searchController.searchBar.text {
-      if query.characters.count % 2 == 0 {
+      if query.characters.count % 2 == 0 && query.characters.count > 1 {
         self.noResults = false
         LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
           dispatch_async(dispatch_get_main_queue()) {

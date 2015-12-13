@@ -58,7 +58,14 @@ public class DateUtils {
     let formatter = getSwedishFormatter()
     
     formatter.dateFormat = "EEEE"
-    let weekDay = (formatter.stringFromDate(date) + "en").capitalizedString
+    var weekDay = formatter.stringFromDate(date)
+    if formatter.stringFromDate(NSDate()) == weekDay {
+      weekDay = "Idag, " + (weekDay + "en").capitalizedString
+    } else if formatter.stringFromDate(NSDate(timeIntervalSinceNow: 86400)) == weekDay {
+      weekDay = "imorgon, " + (weekDay + "en").capitalizedString
+    } else {
+      weekDay = (weekDay + "en").capitalizedString
+    }
     
     formatter.dateFormat = "d"
     var day = formatter.stringFromDate(date)
