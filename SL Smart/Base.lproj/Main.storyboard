@@ -505,7 +505,7 @@
                                 <rect key="frame" x="0.0" y="72" width="414" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wZf-ZO-dcC" id="Lu7-6b-Tzz">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="109.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MkM-FS-wOU">
@@ -546,7 +546,7 @@
                                                             <rect key="frame" x="0.0" y="8" width="365" height="20"/>
                                                             <animations/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="OZk-Id-pj6"/>
+                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="20" id="OZk-Id-pj6"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                             <nil key="highlightedColor"/>
@@ -556,12 +556,15 @@
                                                             <animations/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="5" id="jCg-gf-YHh"/>
+                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="5" id="jCg-gf-YHh"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeR-n2-xLr" userLabel="Text">
                                                             <rect key="frame" x="0.0" y="33" width="365" height="69"/>
                                                             <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="69" id="Vbl-qI-r54"/>
+                                                            </constraints>
                                                             <string key="text">Soluta torquatos ius et, eu sed impetus discere repudiandae. Enim admodum eos te, est eu omnes dicam. Eum no essent nostrud vocibus. Oblique periculis efficiantur per ea, autem sanctus ut mel. Ornatus consetetur eu ius, eu qui feugiat perfecto.</string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -572,14 +575,17 @@
                                                             <animations/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="8" id="WfF-pl-bCP"/>
+                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="8" id="WfF-pl-bCP"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
                                                     <animations/>
                                                     <constraints>
+                                                        <constraint firstItem="3El-EF-z4f" firstAttribute="top" secondItem="DeR-n2-xLr" secondAttribute="bottom" id="4Lb-ck-6mG"/>
                                                         <constraint firstItem="sBa-sE-uaU" firstAttribute="leading" secondItem="enh-Ca-2rB" secondAttribute="leading" id="OIS-CV-y0l"/>
                                                         <constraint firstAttribute="trailing" secondItem="sBa-sE-uaU" secondAttribute="trailing" id="U84-y1-Fa0"/>
+                                                        <constraint firstItem="3El-EF-z4f" firstAttribute="top" secondItem="DeR-n2-xLr" secondAttribute="bottom" id="ghO-Bl-NGA"/>
+                                                        <constraint firstItem="DeR-n2-xLr" firstAttribute="top" secondItem="sBa-sE-uaU" secondAttribute="bottom" id="uk3-Ia-2VJ"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>

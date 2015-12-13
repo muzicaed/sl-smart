@@ -60,9 +60,9 @@ public class DateUtils {
     formatter.dateFormat = "EEEE"
     var weekDay = formatter.stringFromDate(date)
     if formatter.stringFromDate(NSDate()) == weekDay {
-      weekDay = "Idag, " + (weekDay + "en").capitalizedString
+      weekDay = "Idag, \(weekDay)en"
     } else if formatter.stringFromDate(NSDate(timeIntervalSinceNow: 86400)) == weekDay {
-      weekDay = "imorgon, " + (weekDay + "en").capitalizedString
+      weekDay = "Imorgon, \(weekDay)en"
     } else {
       weekDay = (weekDay + "en").capitalizedString
     }

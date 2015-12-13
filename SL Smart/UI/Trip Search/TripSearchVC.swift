@@ -11,7 +11,8 @@ import UIKit
 import ResStockholmApiKit
 
 class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePickResponder {
-  
+
+  let notificationCenter = NSNotificationCenter.defaultCenter()
   var searchLocationType: String?
   var selectedDate = NSDate()
   var criterions: TripSearchCriterion?
@@ -25,6 +26,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var destinationArrivalSegmented: UISegmentedControl!
   @IBOutlet weak var advancedToggleButton: UIBarButtonItem!
+
   /**
    * View did load
    */
@@ -35,8 +37,12 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
     criterions = DataStore.sharedInstance.retrieveSearchCriterions()
     restoreUIFromCriterions()
     createDimmer()
+    createNotificationListners()
   }
   
+  /**
+   * View about to appear
+   */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     if let crit = criterions {
@@ -229,12 +235,10 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
       tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
-  // MARK: Private
-  
   /**
-  * Restores UI from criterions.
-  */
-  private func restoreUIFromCriterions() {
+   * Restores UI from criterions.
+   */
+  func restoreUIFromCriterions() {
     if let crit = criterions {
       isAdvancedMode = crit.isAdvanced
       advancedToggleButton.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
@@ -254,6 +258,8 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
     pickedDate(NSDate())
     tableView.reloadData()
   }
+  
+  // MARK: Private
   
   /**
    * Show a invalid location alert
@@ -287,5 +293,22 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
     self.isViaSelected = false
     self.viaLabel.text = "(Välj station)"
     self.criterions?.via = nil
+  }
+  
+  /**
+   * Add listners for notfication events.
+   */
+  private func createNotificationListners() {
+    notificationCenter.addObserver(self,
+      selector: Selector("restoreUIFromCriterions"),
+      name: UIApplicationDidBecomeActiveNotification, object: nil)
+  }
+  
+  /**
+   * Deinit
+   */
+  deinit {
+    notificationCenter.removeObserver(self,
+      name: UIApplicationDidBecomeActiveNotification, object: nil)
   }
 }
