@@ -223,7 +223,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   private func showInvalidLocationAlert() {
     let invalidLocationAlert = UIAlertController(
       title: "Station saknas",
-      message: "Du behöver ange de två stationerna du åker till och från för din resa.",
+      message: "Du behöver ange två olika stationerna som du brukar åka mellan.",
       preferredStyle: UIAlertControllerStyle.Alert)
     invalidLocationAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
@@ -274,7 +274,8 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     
     if routineTrip == nil ||
       routineTrip?.criterions.origin == nil ||
-      routineTrip?.criterions.dest == nil {
+      routineTrip?.criterions.dest == nil ||
+      routineTrip?.criterions.origin?.siteId == routineTrip?.criterions.dest?.siteId {
         showInvalidLocationAlert()
         return
     }

@@ -40,7 +40,7 @@ class SmartTripIC: WKInterfaceController {
   
   let session = WCSession.defaultSession()
   let notificationCenter = NSNotificationCenter.defaultCenter()
-  let ReloadRateMinutes = 5
+  let ReloadRateMinutes = 2
   
   var icons = [WKInterfaceImage]()
   var iconLables = [WKInterfaceLabel]()
@@ -50,7 +50,13 @@ class SmartTripIC: WKInterfaceController {
   var isLoading = false
   var timer: NSTimer?
   var retryTimer: NSTimer?
-  var currentDepartureText: String?  
+  var currentDepartureText: String?
+  
+  override func awakeWithContext(context: AnyObject?) {
+    print("SmartTripIC awakeWithContext")
+    super.awakeWithContext(context)
+    prepareIcons()
+  }
   
   /**
    * About to show on screen.
@@ -108,9 +114,11 @@ class SmartTripIC: WKInterfaceController {
       session.sendMessage(["action": "RequestRoutineTrips"],
         replyHandler: requestRoutineTripsHandler,
         errorHandler: messageErrorHandler)
+      retryTimer = NSTimer.scheduledTimerWithTimeInterval(
+        NSTimeInterval(10), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
     } else {
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-        NSTimeInterval(1.5), target: self, selector: "reloadRoutineTripData", userInfo: nil, repeats: false)
+        NSTimeInterval(1.5), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
     }
   }
   
@@ -122,13 +130,15 @@ class SmartTripIC: WKInterfaceController {
     stopRefreshTimer()
     isLoading = false
     let hasData = reply["foundData"] as! Bool
-    // TODO: Validate reply, sometime get back freaky data like "Unable to read data" (Not as an error)
+    // TODO: Validate reply?, sometime get back freaky data like "Unable to read data" (Not as an error)
     if hasData {
       routineData = reply
       showContentUIState()
       lastUpdated = NSDate()
       startRefreshTimer()
+      WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Success)
     } else {
+      print("requestRoutineTripsHandler error: Found no data")
       displayError(
         "Hittade inga Smarta Resor",
         message: "Du hanterar dina rutinresor från din iPhone.\nOm du redan gjort detta, kontrollera din iPhones internetanslutning.")
@@ -146,11 +156,12 @@ class SmartTripIC: WKInterfaceController {
       
       // Retry after 1.5 seconds...
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-        NSTimeInterval(1.5), target: self, selector: "reloadRoutineTripData", userInfo: nil, repeats: false)
+        NSTimeInterval(1.5), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
       return
     }
     
     isLoading = false
+    WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Failure)
     displayError("\(error.localizedDescription) (\(error.code))",
       message: "\(error.localizedDescription)")
   }
@@ -182,12 +193,13 @@ class SmartTripIC: WKInterfaceController {
     print("SmartTripIC updateDepatureUI")
     if let data = routineData {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
-      let tempDepartureText = DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String)
-      if tempDepartureText != currentDepartureText {
-        currentDepartureText = tempDepartureText
-        departureTimeLabel.setText(currentDepartureText)
-      }
+      currentDepartureText = DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String)
+      departureTimeLabel.setText(currentDepartureText)
+      return
     }
+    // Retry after 1.5 seconds...
+    retryTimer = NSTimer.scheduledTimerWithTimeInterval(
+      NSTimeInterval(1.5), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
   }
   
   /**
@@ -270,6 +282,7 @@ class SmartTripIC: WKInterfaceController {
   func showContentUIState() {
     print("SmartTripIC showContentUIState")
     if !isLoading {
+      print(" - Not loading, show content")
       updateUIData()
       containerGroup.setHidden(false)
       loadingLabel.setHidden(true)
@@ -280,16 +293,19 @@ class SmartTripIC: WKInterfaceController {
    * Checks if the best trip have departed allreay.
    */
   func checkIfTripPassed() -> Bool {
+    print("SmartTripIC checkIfTripPassed")
     if let data = routineData {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
       let depTime = bestRoutine["dep"] as! String
       let departureDate = DateUtils.convertDateString(depTime)
       let diffMin = Int((departureDate.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
       if diffMin < 0 {
+        print(" - Yes")
         return true
       }
     }
     
+    print(" - No")
     return false
   }
   
@@ -325,6 +341,7 @@ class SmartTripIC: WKInterfaceController {
   * Updates the other routine trips table.
   */
   private func updateOtherTable(otherTripsData: [Dictionary<String, AnyObject>]) {
+    print("SmartTripIC updateOtherTable")
     if otherTripsData.count > 0 {
       otherRoutinesTable.setNumberOfRows(otherTripsData.count, withRowType: "RoutineRow")
       for (index, data) in otherTripsData.enumerate() {
@@ -345,10 +362,11 @@ class SmartTripIC: WKInterfaceController {
   private func perfromRefreshData(force: Bool) {
     print("SmartTripIC perfromRefreshData")
     if shouldReloadData() || force {
+      print("Reloading data...")
       setLoadingUIState()
-      prepareIcons()
       reloadRoutineTripData()
     } else {
+      print("No reload, only deaprture UI update")
       updateDepatureUI()
     }
   }
@@ -357,6 +375,9 @@ class SmartTripIC: WKInterfaceController {
    * Checks if data should be reloaded.
    */
   private func shouldReloadData() -> Bool {
+    print("SmartTripIC shouldReloadData")
+    print(" - Routine data: \(routineData)")
+    print(" - Sience update: \(NSDate().timeIntervalSinceDate(lastUpdated) > Double(60 * ReloadRateMinutes))")
     return (
       NSDate().timeIntervalSinceDate(lastUpdated) > Double(60 * ReloadRateMinutes) ||
         routineData == nil ||
@@ -385,7 +406,7 @@ class SmartTripIC: WKInterfaceController {
     print("SmartTripIC startRefreshTimer")
     timer = NSTimer.scheduledTimerWithTimeInterval(
       10, target: self,
-      selector: Selector("updateUIData"),
+      selector: Selector("updateDepatureUI"),
       userInfo: nil, repeats: true)
   }
   

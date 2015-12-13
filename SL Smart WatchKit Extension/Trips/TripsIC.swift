@@ -84,6 +84,7 @@ class TripsIC: WKInterfaceController {
     } else {
       loadingLabel.setText("Hittade inga resor.")
     }
+    WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Success)    
   }
   
   // MARK: Private
@@ -161,6 +162,7 @@ class TripsIC: WKInterfaceController {
    * Displays an error
    */
   private func displayError(title: String, message: String?) {
+    WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Failure)
     let okAction = WKAlertAction(title: "Försök igen", style: .Default, handler: {})
     presentAlertControllerWithTitle(title,
       message: message, preferredStyle: .Alert, actions: [okAction])
