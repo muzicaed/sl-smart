@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePickResponder {
-
+class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePickResponder, PickLocationResponder {
+  
   let notificationCenter = NSNotificationCenter.defaultCenter()
   var searchLocationType: String?
   var selectedDate = NSDate()
@@ -20,13 +20,12 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   var isViaSelected = false
   var isAdvancedMode = false
   
-  @IBOutlet weak var originLabel: UILabel!
-  @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var viaLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var destinationArrivalSegmented: UISegmentedControl!
   @IBOutlet weak var advancedToggleButton: UIBarButtonItem!
-
+  @IBOutlet weak var locationPickerRow: LocationPickerRow!
+  
   /**
    * View did load
    */
@@ -38,6 +37,8 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
     restoreUIFromCriterions()
     createDimmer()
     createNotificationListners()
+    locationPickerRow.delegate = self
+    locationPickerRow.prepareGestures()
   }
   
   /**
@@ -138,10 +139,10 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
       switch locationType {
       case "Origin":
         crit.origin = location
-        originLabel.text = location.name
+        locationPickerRow.originLabel.text = location.name
       case "Destination":
         crit.dest = location
-        destinationLabel.text = location.name
+        locationPickerRow.destinationLabel.text = location.name
       case "Via":
         crit.via = location
         viaLabel.text = location.name
@@ -172,6 +173,19 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
     })
   }
   
+  // MARK: PickLocationResponder
+  
+  /**
+   * Called when user taped on orign or destination row.
+   */
+  func pickLocation(isOrigin: Bool) {
+    if isOrigin {
+      performSegueWithIdentifier("SearchOriginLocation", sender: self)
+    } else {
+      performSegueWithIdentifier("SearchDestinationLocation", sender: self)
+    }
+  }
+  
   // MARK: UITableViewController
   
   /**
@@ -181,9 +195,13 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   override func tableView(tableView: UITableView,
     heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
       if !isAdvancedMode {
-        if indexPath.section == 0 && indexPath.row == 2 {
+        if indexPath.section == 0 && indexPath.row == 1 {
           return 0
         }
+      }
+      
+      if indexPath.section == 0 && indexPath.row == 0 {
+        return 88
       }
       return 44
   }
@@ -243,10 +261,10 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
       isAdvancedMode = crit.isAdvanced
       advancedToggleButton.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
       if crit.origin != nil {
-        originLabel.text = crit.origin!.name
+        locationPickerRow.originLabel.text = crit.origin!.name
       }
       if crit.dest != nil {
-        destinationLabel.text = crit.dest!.name
+        locationPickerRow.destinationLabel.text = crit.dest!.name
       }
       if crit.via != nil {
         viaLabel.text = crit.via!.name
@@ -262,8 +280,8 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   // MARK: Private
   
   /**
-   * Show a invalid location alert
-   */
+  * Show a invalid location alert
+  */
   private func showInvalidLocationAlert() {
     let invalidLocationAlert = UIAlertController(
       title: "Station saknas",

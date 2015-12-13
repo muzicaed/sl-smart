@@ -28,6 +28,7 @@
 		185D8DBF1C18A73500300890 /* ResStockholmApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; };
 		185D8DC11C18AFE200300890 /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185D8DC01C18AFE200300890 /* TripIcons.swift */; };
 		185D8DC31C18B00A00300890 /* Assests.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185D8DC21C18B00A00300890 /* Assests.xcassets */; };
+		1869E2991C1E0E36001FE4B2 /* PickLocationResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */; };
 		188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367681C16EEA000A8BE16 /* TripDetailsVC.swift */; };
 		1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */; };
 		1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */; };
@@ -91,6 +92,7 @@
 		18AC9CF81C07AD4D007ECFA2 /* TripListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF71C07AD4D007ECFA2 /* TripListVC.swift */; };
 		18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF91C07AE63007ECFA2 /* TripCell.swift */; };
 		18AC9D001C08B5B4007ECFA2 /* TripFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFF1C08B5B4007ECFA2 /* TripFooter.swift */; };
+		18CB35B21C1E08BA0084CA27 /* LocationPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */; };
 		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
 		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
 		18EAF4E91C0F8A0F0014701B /* SwiftHTTP.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 18EAF4E11C0F89990014701B /* SwiftHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -243,6 +245,7 @@
 		185BCC911C09389E00A2C6DB /* TripHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHeader.swift; sourceTree = "<group>"; };
 		185D8DC01C18AFE200300890 /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
 		185D8DC21C18B00A00300890 /* Assests.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assests.xcassets; sourceTree = "<group>"; };
+		1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickLocationResponder.swift; sourceTree = "<group>"; };
 		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchService.swift; sourceTree = "<group>"; };
 		188367681C16EEA000A8BE16 /* TripDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsVC.swift; sourceTree = "<group>"; };
 		1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCellProtocol.swift; sourceTree = "<group>"; };
@@ -298,6 +301,7 @@
 		18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchNearbyStationsApi.swift; sourceTree = "<group>"; };
 		18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLocationHelper.swift; sourceTree = "<group>"; };
 		18AC9CFF1C08B5B4007ECFA2 /* TripFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripFooter.swift; sourceTree = "<group>"; };
+		18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerRow.swift; sourceTree = "<group>"; };
 		18CE5CC61C025E3E00E1F5A9 /* Routine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleHelper.swift; sourceTree = "<group>"; };
 		18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabVC.swift; sourceTree = "<group>"; };
@@ -436,6 +440,7 @@
 				188B80AD1C178DD900E7D90C /* TripSearchVC.swift */,
 				18946B161C18431500A5829D /* DateTimePickerVC.swift */,
 				18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */,
+				1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */,
 			);
 			path = "Trip Search";
 			sourceTree = "<group>";
@@ -627,6 +632,7 @@
 			children = (
 				18232CAB1C01EC2F006334D1 /* SearchLocationVC.swift */,
 				1806037B1C02165000AC1841 /* LocationSearchResponder.swift */,
+				18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */,
 			);
 			path = "Search Location";
 			sourceTree = "<group>";
@@ -1025,7 +1031,9 @@
 				18946B171C18431500A5829D /* DateTimePickerVC.swift in Sources */,
 				183D6EBB1C1A2F2900EB7537 /* TrafficSituationVC.swift in Sources */,
 				183D6EBD1C1A352100EB7537 /* SituationHeader.swift in Sources */,
+				1869E2991C1E0E36001FE4B2 /* PickLocationResponder.swift in Sources */,
 				188367711C170E1800A8BE16 /* TripDetailsChangeCell.swift in Sources */,
+				18CB35B21C1E08BA0084CA27 /* LocationPickerRow.swift in Sources */,
 				188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */,
 				185D8DBE1C189D0200300890 /* WatchService.swift in Sources */,
 				188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */,

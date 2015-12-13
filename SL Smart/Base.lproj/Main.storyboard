@@ -39,111 +39,150 @@
                         <sections>
                             <tableViewSection headerTitle="Mellan vilka stationer?" id="le3-KJ-PGv">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Xyy-yp-POa">
-                                        <rect key="frame" x="0.0" y="49.5" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" rowHeight="88" id="5Jg-gi-BNC" userLabel="Location Picker Row" customClass="LocationPickerRow" customModule="SL_Smart" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="49.5" width="414" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xyy-yp-POa" id="ehb-9p-dzI">
-                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Jg-gi-BNC" id="is0-Cg-CRg">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="87.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1N-3x-c9N">
-                                                    <rect key="frame" x="0.0" y="8" width="373" height="28"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gd4-hR-JTF">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KjU-5e-3C6">
-                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="28"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GNc-hM-LTT">
+                                                            <rect key="frame" x="0.0" y="0.0" width="354" height="88"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgj-os-zMr" userLabel="Origin">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="43"/>
+                                                                    <subviews>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7g2-MB-BCb">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="43"/>
+                                                                            <animations/>
+                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="15" id="hxK-gX-UrC"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Till" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYg-yt-zzw">
+                                                                            <rect key="frame" x="15" y="0.0" width="50" height="43"/>
+                                                                            <animations/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="50" id="p2G-MX-RBK"/>
+                                                                            </constraints>
+                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station eller adress)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPS-FX-rVJ">
+                                                                            <rect key="frame" x="65" y="0.0" width="289" height="43"/>
+                                                                            <animations/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <animations/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="43" id="ovA-Om-xOF"/>
+                                                                    </constraints>
+                                                                </stackView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVV-eZ-1A3" userLabel="Line">
+                                                                    <rect key="frame" x="0.0" y="43" width="354" height="1"/>
+                                                                    <subviews>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJX-wK-r17">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="1"/>
+                                                                            <animations/>
+                                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="15" id="1c2-Ol-QV5"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                        <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mkU-YS-WHA">
+                                                                            <rect key="frame" x="15" y="0.0" width="339" height="1"/>
+                                                                            <animations/>
+                                                                            <color key="backgroundColor" red="0.64313725490196083" green="0.63529411764705879" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="1" id="bWS-vb-tjf"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                    </subviews>
+                                                                    <animations/>
+                                                                </stackView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Gf-lo-yzC" userLabel="Destination">
+                                                                    <rect key="frame" x="0.0" y="44" width="354" height="44"/>
+                                                                    <subviews>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="efg-pt-LRb">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="44"/>
+                                                                            <animations/>
+                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="15" id="xgM-LS-cie"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Från" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGk-Hf-Axa">
+                                                                            <rect key="frame" x="15" y="0.0" width="50" height="44"/>
+                                                                            <animations/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="50" id="VGM-XO-MyH"/>
+                                                                            </constraints>
+                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station eller adress)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zn-BF-oMG">
+                                                                            <rect key="frame" x="65" y="0.0" width="289" height="44"/>
+                                                                            <animations/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <animations/>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <animations/>
+                                                        </stackView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QiU-iy-svH">
+                                                            <rect key="frame" x="354" y="0.0" width="60" height="88"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwitchRow" translatesAutoresizingMaskIntoConstraints="NO" id="Za6-oU-QKd">
+                                                                    <rect key="frame" x="15" y="29.5" width="30" height="30"/>
+                                                                    <animations/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="30" id="9ue-N2-vOH"/>
+                                                                        <constraint firstAttribute="height" constant="30" id="DKx-X7-BPb"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                            </subviews>
                                                             <animations/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="15" id="QzM-ey-LDE"/>
+                                                                <constraint firstItem="Za6-oU-QKd" firstAttribute="centerY" secondItem="QiU-iy-svH" secondAttribute="centerY" id="LZl-bk-YZa"/>
+                                                                <constraint firstAttribute="width" constant="60" id="R6s-lb-MIx"/>
+                                                                <constraint firstItem="Za6-oU-QKd" firstAttribute="centerX" secondItem="QiU-iy-svH" secondAttribute="centerX" id="bBG-Qw-bpT"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Från" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6e-ev-APg">
-                                                            <rect key="frame" x="15" y="0.0" width="50" height="28"/>
-                                                            <animations/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="SAr-Sj-24S"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station eller adress)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbw-ZD-CnG">
-                                                            <rect key="frame" x="65" y="0.0" width="308" height="28"/>
-                                                            <animations/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                     </subviews>
                                                     <animations/>
                                                 </stackView>
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstItem="Q1N-3x-c9N" firstAttribute="leading" secondItem="ehb-9p-dzI" secondAttribute="leading" id="4KC-Oy-xsJ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Q1N-3x-c9N" secondAttribute="trailing" id="9Mj-hZ-23d"/>
-                                                <constraint firstItem="Q1N-3x-c9N" firstAttribute="top" secondItem="ehb-9p-dzI" secondAttribute="topMargin" id="MJa-zu-Kql"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Q1N-3x-c9N" secondAttribute="bottom" id="QSC-sQ-nNE"/>
+                                                <constraint firstAttribute="trailing" secondItem="Gd4-hR-JTF" secondAttribute="trailing" id="VHi-jk-8yw"/>
+                                                <constraint firstItem="Gd4-hR-JTF" firstAttribute="leading" secondItem="is0-Cg-CRg" secondAttribute="leading" id="Yz7-9U-fFc"/>
+                                                <constraint firstItem="Gd4-hR-JTF" firstAttribute="top" secondItem="is0-Cg-CRg" secondAttribute="top" id="dEV-OU-9S3"/>
+                                                <constraint firstAttribute="bottom" secondItem="Gd4-hR-JTF" secondAttribute="bottom" id="osm-Kc-fnb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="WJw-HK-J3L" kind="show" identifier="SearchOriginLocation" id="52i-vc-COQ"/>
+                                            <outlet property="destinationLabel" destination="1zn-BF-oMG" id="1LQ-f0-7xT"/>
+                                            <outlet property="destinationStackView" destination="1Gf-lo-yzC" id="gYp-Q6-q4n"/>
+                                            <outlet property="originLabel" destination="yPS-FX-rVJ" id="lLC-cC-mUE"/>
+                                            <outlet property="originStackView" destination="fgj-os-zMr" id="Kbm-NW-0zA"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="5ee-y1-l7X">
-                                        <rect key="frame" x="0.0" y="93.5" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5ee-y1-l7X" id="NFv-mc-lJ3">
-                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfY-92-XdH">
-                                                    <rect key="frame" x="0.0" y="8" width="373" height="28"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qSD-l6-TVz">
-                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="28"/>
-                                                            <animations/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="15" id="pTl-Wu-gyt"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Till" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YoD-AW-fNX">
-                                                            <rect key="frame" x="15" y="0.0" width="50" height="28"/>
-                                                            <animations/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="Nbm-Kd-C6P"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station eller adress)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgc-fR-mDo">
-                                                            <rect key="frame" x="65" y="0.0" width="308" height="28"/>
-                                                            <animations/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <animations/>
-                                                </stackView>
-                                            </subviews>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstItem="vfY-92-XdH" firstAttribute="top" secondItem="NFv-mc-lJ3" secondAttribute="topMargin" id="3GB-qY-siV"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="vfY-92-XdH" secondAttribute="trailing" id="j9I-Tf-Rvf"/>
-                                                <constraint firstItem="vfY-92-XdH" firstAttribute="leading" secondItem="NFv-mc-lJ3" secondAttribute="leading" id="tqV-iG-iHB"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="vfY-92-XdH" secondAttribute="bottom" id="yHG-r2-A00"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                        <connections>
-                                            <segue destination="WJw-HK-J3L" kind="show" identifier="SearchDestinationLocation" id="Sda-vE-i9s"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="28c-oH-lMU">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="28c-oH-lMU" userLabel="Via Location Row">
                                         <rect key="frame" x="0.0" y="137.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="28c-oH-lMU" id="39F-M2-7S2">
@@ -156,7 +195,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JSj-8e-NfC">
                                                             <rect key="frame" x="0.0" y="0.0" width="15" height="28"/>
                                                             <animations/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="b04-BN-ZUu"/>
                                                             </constraints>
@@ -304,10 +343,11 @@
                     <connections>
                         <outlet property="advancedToggleButton" destination="ddt-6P-8PN" id="But-vT-Yls"/>
                         <outlet property="destinationArrivalSegmented" destination="068-l7-XTW" id="4EV-7d-hUV"/>
-                        <outlet property="destinationLabel" destination="Hgc-fR-mDo" id="odM-3o-LDM"/>
-                        <outlet property="originLabel" destination="Nbw-ZD-CnG" id="mR4-Gr-Xs9"/>
+                        <outlet property="locationPickerRow" destination="5Jg-gi-BNC" id="lQk-tU-9PV"/>
                         <outlet property="timeLabel" destination="aCt-QJ-mxP" id="khP-tq-igr"/>
                         <outlet property="viaLabel" destination="zXM-ao-ulO" id="vZr-gc-hHg"/>
+                        <segue destination="WJw-HK-J3L" kind="show" identifier="SearchOriginLocation" id="wql-iI-rP3"/>
+                        <segue destination="WJw-HK-J3L" kind="show" identifier="SearchDestinationLocation" id="ssG-K5-unq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Xm-jb-YxA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -505,7 +545,7 @@
                                 <rect key="frame" x="0.0" y="72" width="414" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wZf-ZO-dcC" id="Lu7-6b-Tzz">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="109.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MkM-FS-wOU">
@@ -3213,6 +3253,7 @@ Välkommen till ett smartare sätt att pendla.</string>
         <image name="METRO-NEUTRAL" width="15" height="15"/>
         <image name="SearchTripIcon" width="25" height="25"/>
         <image name="SmartTripIcon" width="25" height="25"/>
+        <image name="SwitchRow" width="30" height="30"/>
         <image name="WarningIcon" width="25" height="25"/>
         <image name="change-icon" width="44" height="60"/>
         <image name="destination-icon" width="44" height="44"/>
