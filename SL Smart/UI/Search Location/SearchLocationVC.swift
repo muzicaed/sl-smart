@@ -41,14 +41,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     tableView.tableFooterView = UIView()
   }
   
-  /**
-   * View about to disappper
-   */
-  override func viewWillDisappear(animated: Bool) {
-    super.viewWillDisappear(animated)
-    navigationController?.popViewControllerAnimated(false)
-  }
-  
   deinit {
     if let superView = searchController?.view.superview {
       superView.removeFromSuperview()
