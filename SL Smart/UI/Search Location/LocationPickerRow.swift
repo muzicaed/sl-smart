@@ -39,7 +39,7 @@ class LocationPickerRow: UITableViewCell {
   /**
    * On origin tap
    */
-  func onOriginTap() {
+  func onOriginTap() {    
     if let del = delegate {
       del.pickLocation(true)
     }
