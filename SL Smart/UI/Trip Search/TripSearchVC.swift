@@ -23,7 +23,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var viaLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
-  @IBOutlet weak var destinationArrivalSegmented: UISegmentedControl!  
+  @IBOutlet weak var destinationArrivalSegmented: UISegmentedControl!
   @IBOutlet weak var advancedToggleButton: UIBarButtonItem!
   /**
    * View did load
@@ -91,9 +91,10 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
    */
   override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
     if identifier == "ShowTripList" {
-      if criterions?.dest == nil || criterions?.origin == nil  {
-        showInvalidLocationAlert()
-        return false
+      if criterions?.dest == nil || criterions?.origin == nil ||
+        (criterions?.origin?.siteId == criterions?.dest?.siteId && criterions?.origin?.siteId != 0) {
+          showInvalidLocationAlert()
+          return false
       }
     }
     return true
@@ -259,7 +260,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   private func showInvalidLocationAlert() {
     let invalidLocationAlert = UIAlertController(
       title: "Station saknas",
-      message: "Du behöver ange stationer för \"från\" och \"till\".",
+      message: "Du behöver ange två olika stationer för \"från\" och \"till\".",
       preferredStyle: UIAlertControllerStyle.Alert)
     invalidLocationAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
