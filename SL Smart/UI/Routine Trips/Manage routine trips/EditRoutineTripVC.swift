@@ -32,6 +32,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = StyleHelper.sharedInstance.background
+    createFakeBackButton()
     
     if routineTrip == nil {
       title = "Ny vanlig resa"
@@ -66,6 +67,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    * Before seque is triggred.
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    print(segue.identifier)
     tripTitleTextField.resignFirstResponder()
     if segue.identifier == "SearchOriginLocation" {
       isSearchingOriginLocation = true
@@ -112,6 +114,20 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     if !isNewTrip {
       title = routineTrip!.title
     }
+  }
+  
+  /**
+   * On navbar back tap.
+   */
+  func onBackTap() {
+    if tripTitleTextField.text == nil || tripTitleTextField.text == "" {
+      showInvalidTitleAlert()
+      return
+    } else if isInvalidLocationData() {
+      showInvalidLocationAlert()
+      return
+    }
+    navigationController?.popViewControllerAnimated(true)
   }
   
   // MARK: LocationSearchResponder
@@ -167,7 +183,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    */
   override func tableView(tableView: UITableView,
     didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+      tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
   // MARK: UITextFieldDelegate
@@ -272,17 +288,34 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       routineTrip?.title = tripTitleTextField.text
     }
     
-    if routineTrip == nil ||
-      routineTrip?.criterions.origin == nil ||
-      routineTrip?.criterions.dest == nil ||
-      routineTrip?.criterions.origin?.siteId == routineTrip?.criterions.dest?.siteId {
-        showInvalidLocationAlert()
-        return
+    if isInvalidLocationData() {
+      showInvalidLocationAlert()
+      return
     }
     
     DataStore.sharedInstance.addRoutineTrip(routineTrip!)
     ScorePostHelper.giveScoreForNewRoutineTrip(routineTrip!)
     performSegueWithIdentifier("unwindToManageRoutineTrips", sender: self)
+  }
+  
+  /**
+   * Checks if user entred location data is valid.
+   */
+  private func isInvalidLocationData() -> Bool {
+    return (routineTrip == nil ||
+      routineTrip?.criterions.origin == nil ||
+      routineTrip?.criterions.dest == nil ||
+      routineTrip?.criterions.origin?.siteId == routineTrip?.criterions.dest?.siteId)
+  }
+  
+  /**
+   * Replaces the navbar back button so
+   * that it is possible to trap back tap event.
+   */
+  private func createFakeBackButton() {
+    let backButton = UIBarButtonItem(
+      title: "Tillbaka", style: .Plain, target: self, action: Selector("onBackTap"))
+    self.navigationItem.leftBarButtonItem = backButton
   }
   
   deinit {
