@@ -26,20 +26,26 @@ class GlanceController: SmartTripIC {
       let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
       let lines = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
       
+      updateDepatureUI()
+      subTitleLabel.setText(bestRoutine["tit"] as? String)
+      originLabel.setText(bestRoutine["ori"] as? String)
+      destinationLabel.setText(bestRoutine["des"] as? String)
+      departureLabel.setText(currentDepartureText)
+      createTripIcons(icons, lines: lines)
+    }
+  }
+  
+  /**
+   * Updates UI for departure time.
+   */
+  override func updateDepatureUI() {
+    print("GlanceController updateDepatureUI")
+    if let data = routineData {
+      let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
       let tempDepartureText = DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String)
       if tempDepartureText != currentDepartureText {
         currentDepartureText = tempDepartureText
         departureLabel.setText(currentDepartureText)
-      }
-      
-      let tempTitleText = bestRoutine["tit"] as? String
-      if tempTitleText != currentTitleText {
-        currentTitleText = tempTitleText
-        subTitleLabel.setText(currentTitleText)
-        originLabel.setText(bestRoutine["ori"] as? String)
-        destinationLabel.setText(bestRoutine["des"] as? String)
-        departureLabel.setText(currentDepartureText)
-        createTripIcons(icons, lines: lines)
       }
     }
   }

@@ -50,9 +50,7 @@ class SmartTripIC: WKInterfaceController {
   var isLoading = false
   var timer: NSTimer?
   var retryTimer: NSTimer?
-  var currentDepartureText: String?
-  var currentTitleText: String?
-  
+  var currentDepartureText: String?  
   
   /**
    * About to show on screen.
@@ -67,7 +65,7 @@ class SmartTripIC: WKInterfaceController {
    * Interface disappear.
    */
   override func willDisappear() {
-    print("GlanceController willDisappear")
+    print("SmartTripIC willDisappear")
     super.willDisappear()
     hideLiveData()
   }
@@ -144,13 +142,13 @@ class SmartTripIC: WKInterfaceController {
     
     // TODO: WTF?. Check future releases for fix on error 7014, and remove this...
     if error.code == 7014 {
-
+      
       // Retry after 1.5 seconds...
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
         NSTimeInterval(1.5), target: self, selector: "reloadRoutineTripData", userInfo: nil, repeats: false)
       return
     }
-
+    
     isLoading = false
     displayError("\(error.localizedDescription) (\(error.code))",
       message: "\(error.localizedDescription)")
@@ -166,22 +164,27 @@ class SmartTripIC: WKInterfaceController {
       let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
       let lines = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
       
+      updateDepatureUI()
+      titleLabel.setText(bestRoutine["tit"] as? String)
+      originLabel.setText(bestRoutine["ori"] as? String)
+      destinationLabel.setText(bestRoutine["des"] as? String)
       
+      createTripIcons(icons, lines: lines)
+      updateOtherTable(data["other"] as! [Dictionary<String, AnyObject>])
+    }
+  }
+  
+  /**
+   * Updates UI for departure time.
+   */
+  func updateDepatureUI() {
+    print("SmartTripIC updateDepatureUI")
+    if let data = routineData {
+      let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
       let tempDepartureText = DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String)
       if tempDepartureText != currentDepartureText {
         currentDepartureText = tempDepartureText
         departureTimeLabel.setText(currentDepartureText)
-      }
-
-      let tempTitleText = bestRoutine["tit"] as? String
-      if tempTitleText != currentTitleText {
-        currentTitleText = tempTitleText
-        titleLabel.setText(currentTitleText)
-        originLabel.setText(bestRoutine["ori"] as? String)
-        destinationLabel.setText(bestRoutine["des"] as? String)
-        
-        createTripIcons(icons, lines: lines)
-        updateOtherTable(data["other"] as! [Dictionary<String, AnyObject>])
       }
     }
   }
@@ -345,7 +348,7 @@ class SmartTripIC: WKInterfaceController {
       prepareIcons()
       reloadRoutineTripData()
     } else {
-      showContentUIState()
+      updateDepatureUI()
     }
   }
   
