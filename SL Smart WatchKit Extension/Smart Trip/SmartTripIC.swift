@@ -77,6 +77,7 @@ class SmartTripIC: WKInterfaceController {
     print("SmartTripIC didDeactivate")
     super.didDeactivate()
     stopRefreshTimer()
+    isLoading = false
   }
   
   /**
