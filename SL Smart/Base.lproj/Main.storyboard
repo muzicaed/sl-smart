@@ -37,10 +37,10 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.55447716349999998" colorSpace="calibratedRGB"/>
                         <sections>
-                            <tableViewSection id="le3-KJ-PGv" userLabel="Locations">
+                            <tableViewSection headerTitle="Resan" id="le3-KJ-PGv" userLabel="Locations">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="LocationPickerRow" rowHeight="88" id="5Jg-gi-BNC" userLabel="Location Picker Row" customClass="LocationPickerRow" customModule="SL_Smart" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="35" width="414" height="88"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="414" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Jg-gi-BNC" id="is0-Cg-CRg">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="87.5"/>
@@ -184,7 +184,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ViaLocationRow" id="28c-oH-lMU" userLabel="Via Location Row">
-                                        <rect key="frame" x="0.0" y="123" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="137.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="28c-oH-lMU" id="39F-M2-7S2">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
@@ -237,10 +237,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="Iin-ag-WRW" userLabel="Avresetid eller ankomsttid">
+                            <tableViewSection headerTitle="Avresa eller Ankomst" id="Iin-ag-WRW" userLabel="Avresetid eller ankomsttid">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimeSearchTypeRow" id="QfG-cZ-sfK" userLabel="Time Search Type Row">
-                                        <rect key="frame" x="0.0" y="190" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="218.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QfG-cZ-sfK" id="2Q9-La-InF">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -270,10 +270,11 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="IL2-mU-feH" userLabel="Time">
+                            <tableViewSection headerTitle="Tid och datum" id="IL2-mU-feH" userLabel="Time">
+                                <string key="footerTitle">"Tidigast åka" söker resor med avgång efter vald tid. "Senast framme" söker resor som anländer vid destinationen en tid innan vald tid.</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TimePickerRow" id="12f-Dj-YYm" userLabel="Time Picker Row">
-                                        <rect key="frame" x="0.0" y="257" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="299.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="12f-Dj-YYm" id="2FO-Zu-i92">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
