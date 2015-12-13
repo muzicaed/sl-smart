@@ -107,6 +107,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
     if !isAdvancedMode {
       resetViaStation()
     }
+    
     tableView.reloadData()
   }
   /**
