@@ -12,5 +12,4 @@ import ResStockholmApiKit
 protocol LocationSearchResponder {
 
   func selectedLocationFromSearch(location: Location) -> Void
-  
 }

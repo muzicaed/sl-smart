@@ -145,7 +145,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QiU-iy-svH">
                                                             <rect key="frame" x="354" y="0.0" width="60" height="88"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwitchRow" translatesAutoresizingMaskIntoConstraints="NO" id="Za6-oU-QKd">
+                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwitchRow" translatesAutoresizingMaskIntoConstraints="NO" id="Za6-oU-QKd">
                                                                     <rect key="frame" x="15" y="29.5" width="30" height="30"/>
                                                                     <animations/>
                                                                     <constraints>
@@ -155,7 +155,7 @@
                                                                 </imageView>
                                                             </subviews>
                                                             <animations/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstItem="Za6-oU-QKd" firstAttribute="centerY" secondItem="QiU-iy-svH" secondAttribute="centerY" id="LZl-bk-YZa"/>
                                                                 <constraint firstAttribute="width" constant="60" id="R6s-lb-MIx"/>
@@ -180,6 +180,7 @@
                                             <outlet property="destinationStackView" destination="1Gf-lo-yzC" id="gYp-Q6-q4n"/>
                                             <outlet property="originLabel" destination="yPS-FX-rVJ" id="lLC-cC-mUE"/>
                                             <outlet property="originStackView" destination="fgj-os-zMr" id="Kbm-NW-0zA"/>
+                                            <outlet property="switchImage" destination="Za6-oU-QKd" id="13b-iT-M2f"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ViaLocationRow" id="28c-oH-lMU" userLabel="Via Location Row">

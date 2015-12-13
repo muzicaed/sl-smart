@@ -186,6 +186,24 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
     }
   }
   
+  /**
+   * User tapped switch location.
+   */
+  func switchTapped() {
+    tableView.beginUpdates()
+    if let crit = criterions {
+      let oldOrigin = crit.origin
+      let oldOriginId = crit.originId
+      crit.origin = crit.dest
+      crit.originId = crit.destId
+      crit.dest = oldOrigin
+      crit.destId = oldOriginId
+      locationPickerRow.originLabel.text = crit.origin?.name
+      locationPickerRow.destinationLabel.text = crit.dest?.name
+    }
+    tableView.endUpdates()
+  }
+  
   // MARK: UITableViewController
   
   /**

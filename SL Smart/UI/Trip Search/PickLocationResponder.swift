@@ -12,4 +12,5 @@ import Foundation
 protocol PickLocationResponder {
   
   func pickLocation(isOrigin: Bool)
+  func switchTapped() -> Void    
 }
