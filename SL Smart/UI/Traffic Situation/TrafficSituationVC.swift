@@ -35,12 +35,8 @@ class TrafficSituationVC: UITableViewController {
     } else {
       sender.title = "Dölj planerade"
     }
-    showPlanned = !showPlanned
-    
-    tableView.reloadSections(
-      NSIndexSet(indexesInRange: NSRange.init(location: 0, length: situationGroups.count)),
-      withRowAnimation: .Automatic)
-    
+    showPlanned = !showPlanned  
+    tableView.reloadData()
   }
   
   // MARK: UITableViewController
@@ -133,10 +129,6 @@ class TrafficSituationVC: UITableViewController {
           self.situationGroups = data
           self.filteredSituationGroups = self.filterSituationsOnPlanned(data)
           self.tableView.reloadData()
-          self.tableView.reloadSections(
-            NSIndexSet(
-              indexesInRange: NSRange.init(location: 0, length: self.situationGroups.count)),
-            withRowAnimation: UITableViewRowAnimation.Left)
         }
       }
     }

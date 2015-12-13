@@ -108,14 +108,14 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   }
   
   @IBAction func onAdvancedButtonTap(sender: UIBarButtonItem) {
+    tableView.beginUpdates()
     isAdvancedMode = !isAdvancedMode
     sender.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
     criterions?.isAdvanced = isAdvancedMode
     if !isAdvancedMode {
       resetViaStation()
     }
-    
-    tableView.reloadData()
+    tableView.endUpdates()
   }
   /**
    * Changed if departure time or arrival time
@@ -176,8 +176,8 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   // MARK: PickLocationResponder
   
   /**
-   * Called when user taped on orign or destination row.
-   */
+  * Called when user taped on orign or destination row.
+  */
   func pickLocation(isOrigin: Bool) {
     if isOrigin {
       performSegueWithIdentifier("SearchOriginLocation", sender: self)
@@ -194,11 +194,13 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   */
   override func tableView(tableView: UITableView,
     heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+      
       if !isAdvancedMode {
         if indexPath.section == 0 && indexPath.row == 1 {
           return 0
         }
       }
+      
       
       if indexPath.section == 0 && indexPath.row == 0 {
         return 88
@@ -211,7 +213,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
    */
   override func tableView(tableView: UITableView,
     canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-      return (indexPath.section == 0 && indexPath.row == 2 && isViaSelected)
+      return (indexPath.section == 0 && indexPath.row == 2 && isViaSelected && isAdvancedMode)
   }
   
   /**
