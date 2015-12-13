@@ -193,16 +193,8 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQV-On-quD">
                                                     <rect key="frame" x="0.0" y="8" width="373" height="28"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JSj-8e-NfC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="28"/>
-                                                            <animations/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="15" id="b04-BN-ZUu"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="Via" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTh-lr-zHI">
-                                                            <rect key="frame" x="15" y="0.0" width="50" height="28"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" misplaced="YES" text="Via" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTh-lr-zHI">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="28"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" priority="999" constant="50" id="agX-Id-GvN"/>
@@ -211,8 +203,8 @@
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXM-ao-ulO">
-                                                            <rect key="frame" x="65" y="0.0" width="308" height="28"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" misplaced="YES" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXM-ao-ulO">
+                                                            <rect key="frame" x="50" y="0.0" width="323" height="28"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -221,6 +213,14 @@
                                                     </subviews>
                                                     <animations/>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSj-8e-NfC">
+                                                    <rect key="frame" x="0.0" y="8" width="15" height="28"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="15" id="b04-BN-ZUu"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <animations/>
                                             <constraints>
@@ -878,11 +878,8 @@
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Mellan vilka stationer åker du?" id="jzR-6r-YTn">
-                                <string key="footerTitle">Appen kommer själv att lära sig dina vanor. Redan efter ett par dagar kommer appen automatiskt att söka resinformation för exakt den resan du planerade att söka efter. 
-Försök ha lite tålamod första dagarna då appen försöker lära sig dina vanor. 😃 
- Välkomen till ett smartare sätt att resa!</string>
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="a2K-Cg-mhO">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="a2K-Cg-mhO" userLabel="Origin Location">
                                         <rect key="frame" x="0.0" y="143.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a2K-Cg-mhO" id="ran-1g-i0z">
@@ -936,7 +933,7 @@ Försök ha lite tålamod första dagarna då appen försöker lära sig dina va
                                             <segue destination="WJw-HK-J3L" kind="show" identifier="SearchOriginLocation" id="BSf-cG-wcV"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="o2d-fa-vSp">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="o2d-fa-vSp" userLabel="Destination Location">
                                         <rect key="frame" x="0.0" y="187.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o2d-fa-vSp" id="e2Z-R7-Fe1">
@@ -994,6 +991,88 @@ Försök ha lite tålamod första dagarna då appen försöker lära sig dina va
                                         <connections>
                                             <segue destination="WJw-HK-J3L" kind="show" identifier="SearchDestinationLocation" id="zAQ-4U-scN"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ViaLocationRow" id="9Ya-la-RQt" userLabel="Via Location Row">
+                                        <rect key="frame" x="0.0" y="231.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Ya-la-RQt" id="YaT-TA-cqe">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IC1-Ue-nwS">
+                                                    <rect key="frame" x="0.0" y="8" width="373" height="27.5"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iFn-dD-HMC">
+                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="27.5"/>
+                                                            <animations/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="MNb-TR-CdR"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="Via" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="and-h0-FpJ">
+                                                            <rect key="frame" x="15" y="0.0" width="50" height="27.5"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" priority="999" constant="50" id="ysn-M4-KH7"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IX7-Pa-pBT">
+                                                            <rect key="frame" x="65" y="0.0" width="308" height="27.5"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <animations/>
+                                                </stackView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="IC1-Ue-nwS" firstAttribute="top" relation="lessThanOrEqual" secondItem="YaT-TA-cqe" secondAttribute="topMargin" id="1sH-uo-jc0"/>
+                                                <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="IC1-Ue-nwS" secondAttribute="trailing" id="Isd-Ro-KhY"/>
+                                                <constraint firstItem="IC1-Ue-nwS" firstAttribute="leading" relation="lessThanOrEqual" secondItem="YaT-TA-cqe" secondAttribute="leading" id="aOA-Xm-OaH"/>
+                                                <constraint firstAttribute="bottomMargin" relation="lessThanOrEqual" secondItem="IC1-Ue-nwS" secondAttribute="bottom" id="nMJ-xw-vQz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Avancerade inställningar" id="K0a-5r-Ndg">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ViaLocationRow" id="hsK-8n-i54" userLabel="Show advanced">
+                                        <rect key="frame" x="0.0" y="325.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hsK-8n-i54" id="k8M-ML-fbX">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="sxt-yU-DKz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sc6-6Y-rvP">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                                            <animations/>
+                                                            <state key="normal" title="Visa avancerade inställningar"/>
+                                                        </button>
+                                                    </subviews>
+                                                    <animations/>
+                                                </stackView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="sxt-yU-DKz" secondAttribute="trailing" id="2Qh-Cs-6vD"/>
+                                                <constraint firstItem="sxt-yU-DKz" firstAttribute="top" secondItem="k8M-ML-fbX" secondAttribute="top" id="ChP-ki-Q4r"/>
+                                                <constraint firstAttribute="bottom" secondItem="sxt-yU-DKz" secondAttribute="bottom" id="Lyt-pX-yDi"/>
+                                                <constraint firstItem="sxt-yU-DKz" firstAttribute="leading" secondItem="k8M-ML-fbX" secondAttribute="leading" id="PM7-4Z-NDc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -3122,8 +3201,8 @@ Välkommen till ett smartare sätt att pendla.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8tl-aE-z6t"/>
         <segue reference="6zU-Tw-atf"/>
         <segue reference="zAQ-4U-scN"/>
+        <segue reference="p87-eE-sWT"/>
     </inferredMetricsTieBreakers>
 </document>
