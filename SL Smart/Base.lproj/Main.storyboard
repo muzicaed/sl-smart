@@ -191,10 +191,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQV-On-quD">
-                                                    <rect key="frame" x="0.0" y="8" width="373" height="28"/>
+                                                    <rect key="frame" x="0.0" y="8" width="373" height="27.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" misplaced="YES" text="Via" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTh-lr-zHI">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="28"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFE-Rz-VFF">
+                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="27.5"/>
+                                                            <animations/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="1mL-uC-NOv"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="Via" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTh-lr-zHI">
+                                                            <rect key="frame" x="15" y="0.0" width="50" height="27.5"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" priority="999" constant="50" id="agX-Id-GvN"/>
@@ -203,8 +211,8 @@
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" misplaced="YES" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXM-ao-ulO">
-                                                            <rect key="frame" x="50" y="0.0" width="323" height="28"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXM-ao-ulO">
+                                                            <rect key="frame" x="65" y="0.0" width="308" height="27.5"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -213,14 +221,6 @@
                                                     </subviews>
                                                     <animations/>
                                                 </stackView>
-                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSj-8e-NfC">
-                                                    <rect key="frame" x="0.0" y="8" width="15" height="28"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="15" id="b04-BN-ZUu"/>
-                                                    </constraints>
-                                                </view>
                                             </subviews>
                                             <animations/>
                                             <constraints>
@@ -3202,7 +3202,7 @@ Välkommen till ett smartare sätt att pendla.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6zU-Tw-atf"/>
-        <segue reference="zAQ-4U-scN"/>
         <segue reference="p87-eE-sWT"/>
+        <segue reference="ypq-Up-6Af"/>
     </inferredMetricsTieBreakers>
 </document>
