@@ -93,18 +93,53 @@ class RoutineTripCell: UICollectionViewCell {
    * Handles advaned options.
    */
   private func createAdvancedLabel(routineTrip: RoutineTrip) {
-    print("createAdvancedLabel")
-    advancedLabel.text = ""
+    var isHidden = true
+    var text = ""
     if routineTrip.criterions.isAdvanced {
-      advancedView.hidden = false
+      isHidden = false
       if let via = routineTrip.criterions.via {
-        advancedLabel.text = "Via \(via.name)"
+        text = "Via \(via.name)"
       }
-      return
     }
-
-    print(advancedLabel.text)
-    advancedView.hidden = true
+    
+    let travelTypesString = createTravelTypeString(routineTrip)
+    if text != "" && travelTypesString != "" {
+      text = "\(text) med \(travelTypesString)"
+    } else {
+      text = text + travelTypesString
+    }
+    
+    advancedLabel.text = text
+    advancedView.hidden = isHidden
+  }
+  
+  /**
+   * Creates human readable travel type string
+   */
+  private func createTravelTypeString(routineTrip: RoutineTrip) -> String {
+    var travelTypesString = ""
+    if routineTrip.criterions.useMetro {
+      travelTypesString += "Tunnelbana, "
+    }
+    if routineTrip.criterions.useTrain {
+      travelTypesString += "Pendeltåg, "
+    }
+    if routineTrip.criterions.useTram {
+      travelTypesString += "Spårvagn/Lokalbana, "
+    }
+    if routineTrip.criterions.useBus {
+      travelTypesString += "Buss, "
+    }
+    if routineTrip.criterions.useFerry {
+      travelTypesString += "Båtar, "
+    }
+    
+    if travelTypesString != "" {
+      travelTypesString = travelTypesString.substringToIndex(
+        travelTypesString.endIndex.predecessor().predecessor())
+    }
+    
+    return travelTypesString
   }
   
   /**
