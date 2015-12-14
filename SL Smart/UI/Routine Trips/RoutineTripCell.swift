@@ -20,6 +20,8 @@ class RoutineTripCell: UICollectionViewCell {
   @IBOutlet weak var iconAreaView: UIView!
   @IBOutlet weak var tripDurationLabel: UILabel!
   @IBOutlet weak var inAboutLabel: UILabel!
+  @IBOutlet weak var advancedView: UIView!
+  @IBOutlet weak var advancedLabel: UILabel!
   
   let normalColor = UIColor(red: 63/255, green: 73/255, blue: 62/255, alpha: 0.6)
   
@@ -55,6 +57,7 @@ class RoutineTripCell: UICollectionViewCell {
     if let trip = routineTrip.trips.first {
       setupTripData(trip)
     }
+    createAdvancedLabel(routineTrip)
   }
   
   /**
@@ -84,6 +87,24 @@ class RoutineTripCell: UICollectionViewCell {
       createTripSegmentIcons(trip)
       return
     }
+  }
+  
+  /**
+   * Handles advaned options.
+   */
+  private func createAdvancedLabel(routineTrip: RoutineTrip) {
+    print("createAdvancedLabel")
+    advancedLabel.text = ""
+    if routineTrip.criterions.isAdvanced {
+      advancedView.hidden = false
+      if let via = routineTrip.criterions.via {
+        advancedLabel.text = "Via \(via.name)"
+      }
+      return
+    }
+
+    print(advancedLabel.text)
+    advancedView.hidden = true
   }
   
   /**

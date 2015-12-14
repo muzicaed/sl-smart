@@ -77,7 +77,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     } else if segue.identifier == "ManageRoutineTrips" {
       // Force a reload when returning to this VC
       lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
-      print("Reset last updated")
     }
   }
   
@@ -191,11 +190,16 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
           return CGSizeMake(screenSize.width - 20, collectionView.bounds.height - 49 - 64 - 20)
         } else if isShowInfo {
           return CGSizeMake(screenSize.width - 20, 345)
+        } else if bestRoutineTrip!.criterions.isAdvanced {
+          return CGSizeMake(screenSize.width - 20, 160)
         }
-        return CGSizeMake(screenSize.width - 20, 125)
+        return CGSizeMake(screenSize.width - 20, 135)
       }
-      
-      return CGSizeMake(screenSize.width - 20, 90)
+
+      if otherRoutineTrips[indexPath.row].criterions.isAdvanced {
+        return CGSizeMake(screenSize.width - 20, 110)
+      }
+      return CGSizeMake(screenSize.width - 20, 85)
   }
   
   /**
@@ -318,7 +322,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Checks if data should be reloaded.
    */
   private func shouldReload() -> Bool {
-    print("Time: \(NSDate().timeIntervalSinceDate(lastUpdated))")
     return (NSDate().timeIntervalSinceDate(lastUpdated) > 60)
   }
   

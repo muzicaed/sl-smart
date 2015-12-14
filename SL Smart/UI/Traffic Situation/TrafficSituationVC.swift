@@ -35,8 +35,25 @@ class TrafficSituationVC: UITableViewController {
     } else {
       sender.title = "Dölj planerade"
     }
-    showPlanned = !showPlanned  
-    tableView.reloadData()
+    showPlanned = !showPlanned
+    
+    var indexPaths = [NSIndexPath]()
+    for (index, group) in situationGroups.enumerate() {
+      let diff = group.situations.count - filteredSituationGroups[index].situations.count
+      if diff > 0 {
+        for i in 1...diff {
+          indexPaths.append(NSIndexPath(forItem: i, inSection: index))
+        }
+      }
+    }
+    
+    tableView.beginUpdates()
+    if showPlanned {
+      tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+    } else {
+      tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+    }
+    tableView.endUpdates()
   }
   
   // MARK: UITableViewController

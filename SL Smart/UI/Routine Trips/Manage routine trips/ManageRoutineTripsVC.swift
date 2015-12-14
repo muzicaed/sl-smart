@@ -111,7 +111,7 @@ class ManageRoutineTripsVC: UITableViewController {
       if trips.count == 0 {
         return 100
       }
-      return 70
+      return 80
   }
   
   /**
@@ -130,9 +130,7 @@ class ManageRoutineTripsVC: UITableViewController {
       let cell =  tableView.dequeueReusableCellWithIdentifier(
         cellIdentifier, forIndexPath: indexPath) as! ManageRoutineTripCell
       
-      cell.tripTitleLabel.text = trip.title
-      cell.routeTextLabel.text = "\(trip.criterions.origin!.cleanName) » \(trip.criterions.dest!.cleanName)"
-      
+      cell.setData(trip)      
       return cell
   }
   
