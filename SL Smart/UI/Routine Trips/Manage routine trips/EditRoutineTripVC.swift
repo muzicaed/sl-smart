@@ -10,13 +10,14 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextFieldDelegate {
+class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextFieldDelegate, TravelTypesResponder {
   
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var viaLabel: UILabel!
   @IBOutlet weak var tripTitleTextField: UITextField!
   @IBOutlet weak var advancedButton: UIButton!
+  @IBOutlet weak var travelTypesPickerRow: TravelTypesPickerRow!
   
   var routineTrip: RoutineTrip?
   var routineTripCopy: RoutineTrip?
@@ -75,15 +76,25 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       locationSearchType = "Origin"
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
+      
     } else if segue.identifier == "SearchDestinationLocation" {
       locationSearchType = "Destination"
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
+      
     } else if segue.identifier == "SearchViaLocation" {
       locationSearchType = "Via"
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
+      
+    } else if segue.identifier == "ShowTravelTypesPicker" {
+      let vc = segue.destinationViewController as! TravelTypesVC
+      vc.delegate = self
+      if let crit = routineTrip?.criterions {
+        vc.setData(crit)
+      }
     }
+    
     
   }
   
@@ -95,17 +106,16 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     isAdvancedMode = !isAdvancedMode
     routineTrip?.criterions.isAdvanced = isAdvancedMode
     
-    tableView.beginUpdates()
     if isAdvancedMode {
       viaLabel.text = "(Välj station)"
-      tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 1)], withRowAnimation: .Automatic)
       advancedButton.setTitle("Ta bort avancerade inställningar", forState: UIControlState.Normal)
     } else {
       resetViaStation()
-      tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 1)], withRowAnimation: .Automatic)
+      resetTravelType()
       advancedButton.setTitle("Visa avancerade inställningar", forState: UIControlState.Normal)
     }
-    tableView.endUpdates()
+    travelTypesPickerRow.updateLabel(routineTrip!.criterions)
+    animateAdvancedToggle()
   }
   
   /**
@@ -142,6 +152,9 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     navigationController?.popViewControllerAnimated(true)
   }
   
+  @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
+  @IBAction func unwindToTripTypePickerParent(segue: UIStoryboardSegue) {}
+  
   // MARK: LocationSearchResponder
   
   /**
@@ -163,7 +176,25 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     }
   }
   
-  @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
+  // MARK: TravelTypesResponder
+  
+  /**
+  * User selected travel types.
+  */
+  func selectedTravelType(
+    useMetro: Bool, useTrain: Bool, useTram: Bool,
+    useBus: Bool, useBoat: Bool) {
+      if let crit = routineTrip?.criterions {
+        hasChanged = true
+        crit.useMetro = useMetro
+        crit.useTrain = useTrain
+        crit.useTram = useTram
+        crit.useBus = useBus
+        crit.useFerry = useBoat
+        crit.useShip = useBoat
+        travelTypesPickerRow.updateLabel(crit)
+      }
+  }
   
   // MARK: UITableViewController
   
@@ -171,7 +202,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   * Section count
   */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 3
+    return (isAdvancedMode) ? 4 : 3
   }
   
   /**
@@ -190,7 +221,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    */
   override func tableView(tableView: UITableView,
     willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-      if indexPath.section != 1 {
+      if indexPath.section == 0 {
         return nil
       }
       return indexPath
@@ -230,7 +261,6 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    */
   override func tableView(tableView: UITableView,
     willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-      
       let bgColorView = UIView()
       bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
       cell.selectedBackgroundView = bgColorView
@@ -269,6 +299,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       tripTitleTextField.text = trip.title
       originLabel.text = trip.criterions.origin?.name
       destinationLabel.text = trip.criterions.dest?.name
+      travelTypesPickerRow.updateLabel(trip.criterions)
       
       if trip.criterions.isAdvanced {
         advancedButton.setTitle("Ta bort avancerade inställningar", forState: UIControlState.Normal)
@@ -352,12 +383,39 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   }
   
   /**
+   * Animates table view on Advacned toggle.
+   */
+  private func animateAdvancedToggle() {
+    tableView.beginUpdates()
+    if isAdvancedMode {
+      tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 1)], withRowAnimation: .Automatic)
+      tableView.insertSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
+    } else {
+      tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 1)], withRowAnimation: .Automatic)
+      tableView.deleteSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
+    }
+    tableView.endUpdates()
+  }
+  
+  /**
    * Clear via location
    */
   private func resetViaStation() {
     isViaSelected = false
     routineTrip?.criterions.via = nil
     self.viaLabel.text = "(Välj station)"
+  }
+  
+  /**
+   * Resets the tabel type criterions
+   */
+  private func resetTravelType() {
+    routineTrip?.criterions.useBus = true
+    routineTrip?.criterions.useFerry = true
+    routineTrip?.criterions.useMetro = true
+    routineTrip?.criterions.useShip = true
+    routineTrip?.criterions.useTrain = true
+    routineTrip?.criterions.useTram = true
   }
   
   deinit {

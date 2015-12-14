@@ -94,11 +94,9 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       })
       
     } else if segue.identifier == "ShowTravelTypesPicker" {
-      print("ShowTravelTypesPicker segue")
       let vc = segue.destinationViewController as! TravelTypesVC
       vc.delegate = self
       if let crit = criterions {
-        print(" - Set data")
         vc.setData(crit)
       }
     }
@@ -223,8 +221,6 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   
   func selectedTravelType(useMetro: Bool, useTrain: Bool,
     useTram: Bool, useBus: Bool, useBoat: Bool) {
-      
-      print("selectedTravelType")
       criterions?.useMetro = useMetro
       criterions?.useTrain = useTrain
       criterions?.useTram = useTram
