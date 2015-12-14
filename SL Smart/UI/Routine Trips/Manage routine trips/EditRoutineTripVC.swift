@@ -22,6 +22,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   var isSearchingOriginLocation = true
   var isNewTrip = true
   var hasChanged = false
+  var isAdvanced = false
   
   
   /**
@@ -78,6 +79,14 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   }
   
   /**
+   * Tap on Show Advanced button.
+   */
+  @IBAction func onAdvancedButtonTap(sender: UIButton) {
+    isAdvanced = true
+    tableView.reloadData()
+  }
+  
+  /**
    * Tap on Add Routine Trip button in navigation bar
    */
   @IBAction func onRoutineTripNavAddTap(sender: UIBarButtonItem) {
@@ -131,6 +140,32 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   
   // MARK: UITableViewController
   
+  /**
+  * Section count
+  */
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    if isAdvanced {
+      return 2
+    }
+    return 3
+  }
+  
+  /**
+   * Row count for section
+   */
+  override func tableView(tableView: UITableView,
+    numberOfRowsInSection section: Int) -> Int {
+      
+      if section == 1 {
+        return (isAdvanced) ? 3 : 2
+      }
+      
+      return 1
+  }
+  
+  /**
+   * Will select row at index.
+   */
   override func tableView(tableView: UITableView,
     willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
       if indexPath.section != 1 {
@@ -139,18 +174,9 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       return indexPath
   }
   
-  
-  override func tableView(tableView: UITableView,
-    accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-      if indexPath.section == 2 {
-        if indexPath.row == 0 {
-          showWeekInfoAlert()
-        } else {
-          showTimeInfoAlert()
-        }
-      }
-  }
-  
+  /**
+   * Will display row at index
+   */
   override func tableView(tableView: UITableView,
     willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
       
@@ -216,34 +242,6 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     let invalidLocationAlert = UIAlertController(
       title: "Station saknas",
       message: "Du behöver ange två olika stationerna som du brukar åka mellan.",
-      preferredStyle: UIAlertControllerStyle.Alert)
-    invalidLocationAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
-    
-    presentViewController(invalidLocationAlert, animated: true, completion: nil)
-  }
-  
-  /**
-   * Show a week info alert
-   */
-  private func showWeekInfoAlert() {
-    let invalidLocationAlert = UIAlertController(
-      title: "Förklaring",
-      message: "Välj hur du oftast åker denna resa - vardagar eller helger.\n\nAppen lär sig dina vanor även när du reser utanför denna rutin. ",
-      preferredStyle: UIAlertControllerStyle.Alert)
-    invalidLocationAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
-    
-    presentViewController(invalidLocationAlert, animated: true, completion: nil)
-  }
-  
-  /**
-   * Show a time info alert
-   */
-  private func showTimeInfoAlert() {
-    let invalidLocationAlert = UIAlertController(
-      title: "Förklaring",
-      message: "Morgon: 05:00 - 10.59\nDag: 11:00 - 17:59\nKväll: 18:00 - 21:59\nNatt: 22:00 - 04:59\n\nAppen lär sig dina vanor även när du reser utanför dessa tider.",
       preferredStyle: UIAlertControllerStyle.Alert)
     invalidLocationAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
