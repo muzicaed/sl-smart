@@ -252,7 +252,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gXV-Ij-Gsz">
                                                             <rect key="frame" x="0.0" y="0.0" width="15" height="28"/>
                                                             <animations/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="CPy-ub-gof"/>
                                                             </constraints>
@@ -290,64 +290,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Tid och datum" id="az7-RH-pU2" userLabel="Travel Types">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TimePickerRow" id="SEc-aa-VUt" userLabel="Travel Time Picker">
-                                        <rect key="frame" x="0.0" y="299.5" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SEc-aa-VUt" id="7hP-qX-pLr">
-                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3g7-Yy-zrL">
-                                                    <rect key="frame" x="0.0" y="8" width="373" height="28"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="06d-Pf-918">
-                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="28"/>
-                                                            <animations/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="15" id="Opl-Ck-cBH"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Frädmedel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRO-gJ-TBz" userLabel="Frädmedel">
-                                                            <rect key="frame" x="15" y="0.0" width="75" height="28"/>
-                                                            <animations/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Samtliga" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mui-Pd-jl1" userLabel="Tid">
-                                                            <rect key="frame" x="90" y="0.0" width="283" height="28"/>
-                                                            <animations/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <animations/>
-                                                </stackView>
-                                            </subviews>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstItem="3g7-Yy-zrL" firstAttribute="trailing" secondItem="7hP-qX-pLr" secondAttribute="trailingMargin" id="2B5-C0-Ed1"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="3g7-Yy-zrL" secondAttribute="bottom" id="IBk-a0-evN"/>
-                                                <constraint firstItem="3g7-Yy-zrL" firstAttribute="leading" secondItem="7hP-qX-pLr" secondAttribute="leading" id="NGy-Rd-B6H"/>
-                                                <constraint firstItem="3g7-Yy-zrL" firstAttribute="top" secondItem="7hP-qX-pLr" secondAttribute="topMargin" id="pgf-gd-w8G"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                        <connections>
-                                            <segue destination="Tm1-9I-jjs" kind="show" id="V2Z-ue-vlu"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Avresa eller Ankomst" id="Iin-ag-WRW" userLabel="Avresetid eller ankomsttid">
-                                <string key="footerTitle">"Tidigast åka" söker resor med avgång efter vald tid. "Senast framme" söker resor som anländer vid destinationen en tid innan vald tid.</string>
+                            <tableViewSection id="Iin-ag-WRW" userLabel="Avresetid eller ankomsttid">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimeSearchTypeRow" id="QfG-cZ-sfK" userLabel="Time Search Type Row">
-                                        <rect key="frame" x="0.0" y="380.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="285.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QfG-cZ-sfK" id="2Q9-La-InF">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -377,6 +323,39 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Färdmedel" id="az7-RH-pU2" userLabel="Travel Types">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TimePickerRow" id="SEc-aa-VUt" userLabel="Travel Types Picker" customClass="TravelTypesPickerRow" customModule="SL_Smart">
+                                        <rect key="frame" x="0.0" y="366.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SEc-aa-VUt" id="7hP-qX-pLr">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alla färdmedel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRO-gJ-TBz" userLabel="Färdmedel">
+                                                    <rect key="frame" x="16" y="8.5" width="357" height="27"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="DRO-gJ-TBz" secondAttribute="bottom" id="Ol1-rL-OUF"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="DRO-gJ-TBz" secondAttribute="trailing" id="boa-EB-VPP"/>
+                                                <constraint firstItem="DRO-gJ-TBz" firstAttribute="leading" secondItem="7hP-qX-pLr" secondAttribute="leadingMargin" constant="8" id="cuf-m2-moK"/>
+                                                <constraint firstItem="DRO-gJ-TBz" firstAttribute="top" secondItem="7hP-qX-pLr" secondAttribute="topMargin" id="t3d-15-k3u"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="tripTypeLabel" destination="DRO-gJ-TBz" id="nmF-L8-BYe"/>
+                                            <segue destination="Tm1-9I-jjs" kind="show" identifier="ShowTravelTypesPicker" id="V2Z-ue-vlu"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="Hg1-8K-Ui9" id="8QL-Sq-d7c"/>
@@ -400,6 +379,7 @@
                         <outlet property="destinationArrivalSegmented" destination="068-l7-XTW" id="4EV-7d-hUV"/>
                         <outlet property="locationPickerRow" destination="5Jg-gi-BNC" id="lQk-tU-9PV"/>
                         <outlet property="timeLabel" destination="aCt-QJ-mxP" id="khP-tq-igr"/>
+                        <outlet property="travelTypePicker" destination="SEc-aa-VUt" id="Hx0-Wv-qyU"/>
                         <outlet property="viaLabel" destination="zXM-ao-ulO" id="vZr-gc-hHg"/>
                         <segue destination="WJw-HK-J3L" kind="show" identifier="SearchOriginLocation" id="wql-iI-rP3"/>
                         <segue destination="WJw-HK-J3L" kind="show" identifier="SearchDestinationLocation" id="ssG-K5-unq"/>
@@ -1302,9 +1282,19 @@
                             <outlet property="delegate" destination="Tm1-9I-jjs" id="fXa-kO-eHW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Välj färdmedel" id="ppu-s7-bWw"/>
+                    <navigationItem key="navigationItem" title="Välj färdmedel" id="ppu-s7-bWw">
+                        <barButtonItem key="rightBarButtonItem" title="Klar" style="done" id="gFV-Y3-vQC">
+                            <connections>
+                                <action selector="onDoneTap:" destination="Tm1-9I-jjs" id="uvi-zd-Hqh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="NP3-8J-72D" kind="unwind" identifier="unwindToTripTypePickerParent" unwindAction="unwindToTripTypePickerParent:" id="wGw-4L-Db1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbR-fi-LTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="NP3-8J-72D" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3735" y="2313"/>
         </scene>

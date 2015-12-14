@@ -8,11 +8,37 @@
 
 import Foundation
 import UIKit
+import ResStockholmApiKit
 
 class TravelTypesVC: UITableViewController {
   
-  var checkArr = [false, true, false, true, false]
-  var titels = ["Tunnelbana", "Pendeltåg", "Lokalbana", "Bussar", "Båtar"]
+  var delegate: TravelTypesResponder?
+  private var checkArr = [false, true, false, true, false]
+  private let titels = ["Tunnelbana", "Pendeltåg", "Lokalbana/Spårvagn", "Bussar", "Båtar"]
+  
+  /**
+   * Set initial data.
+   */
+  func setData(criterions: TripSearchCriterion) {
+    checkArr = [
+      criterions.useMetro,
+      criterions.useTrain,
+      criterions.useTram,
+      criterions.useBus,
+      criterions.useFerry
+    ]
+  }
+  
+  /**
+   * User taps done.
+   */
+  @IBAction func onDoneTap(sender: UIBarButtonItem) {
+    delegate?.selectedTravelType(
+      checkArr[0], useTrain: checkArr[1],
+      useTram: checkArr[2], useBus: checkArr[3],
+      useBoat: checkArr[4])
+    performSegueWithIdentifier("unwindToTripTypePickerParent", sender: self)
+  }
   
   // MARK: UITableViewController
   

@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePickResponder, PickLocationResponder {
+class TripSearchVC: UITableViewController, LocationSearchResponder,
+DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   
   let notificationCenter = NSNotificationCenter.defaultCenter()
   var searchLocationType: String?
@@ -25,6 +26,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   @IBOutlet weak var destinationArrivalSegmented: UISegmentedControl!
   @IBOutlet weak var advancedToggleButton: UIBarButtonItem!
   @IBOutlet weak var locationPickerRow: LocationPickerRow!
+  @IBOutlet weak var travelTypePicker:  TravelTypesPickerRow!
   
   /**
    * View did load
@@ -90,6 +92,13 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
       UIView.animateWithDuration(0.45, animations: {
         self.dimmer?.alpha = 0.7
       })
+      
+    } else if segue.identifier == "ShowTravelTypesPicker" {
+      let vc = segue.destinationViewController as! TravelTypesVC
+      vc.delegate = self
+      if let crit = criterions {
+        vc.setData(crit)
+      }      
     }
   }
   
@@ -135,6 +144,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   
   
   @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
+  @IBAction func unwindToTripTypePickerParent(segue: UIStoryboardSegue) {}
   
   // MARK: LocationSearchResponder
   
@@ -209,6 +219,13 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
       locationPickerRow.destinationLabel.text = crit.dest?.name
     }
     tableView.endUpdates()
+  }
+  
+  // MARK: TravelTypesResponder
+  
+  func selectedTravelType(useMetro: Bool, useTrain: Bool,
+    useTram: Bool, useBus: Bool, useBoat: Bool) {
+      print("selectedTravelType")
   }
   
   // MARK: UITableViewController
