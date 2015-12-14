@@ -15,7 +15,7 @@ class LocationPickerRow: UITableViewCell {
   @IBOutlet var destinationLabel: UILabel!
   @IBOutlet var originStackView: UIStackView!
   @IBOutlet var destinationStackView: UIStackView!
-  @IBOutlet var switchImage: UIImageView!
+  @IBOutlet var switchImage: UIView!
   
   var delegate: PickLocationResponder?
   
