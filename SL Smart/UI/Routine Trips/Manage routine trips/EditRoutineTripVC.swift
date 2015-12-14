@@ -14,16 +14,18 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
+  @IBOutlet weak var viaLabel: UILabel!
   @IBOutlet weak var tripTitleTextField: UITextField!
   @IBOutlet weak var advancedButton: UIButton!
   
   var routineTrip: RoutineTrip?
   var routineTripCopy: RoutineTrip?
   var routineTripIndex = -1
-  var isSearchingOriginLocation = true
+  var locationSearchType: String?
   var isNewTrip = true
   var hasChanged = false
-  var isAdvanced = false
+  var isAdvancedMode = false
+  var isViaSelected = false
   
   
   /**
@@ -31,6 +33,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    */
   override func viewDidLoad() {
     super.viewDidLoad()
+    tableView.editing = true
     view.backgroundColor = StyleHelper.sharedInstance.background
     createFakeBackButton()
     
@@ -69,27 +72,36 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     print(segue.identifier)
     tripTitleTextField.resignFirstResponder()
     if segue.identifier == "SearchOriginLocation" {
-      isSearchingOriginLocation = true
+      locationSearchType = "Origin"
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
     } else if segue.identifier == "SearchDestinationLocation" {
-      isSearchingOriginLocation = false
+      locationSearchType = "Destination"
+      let vc = segue.destinationViewController as! SearchLocationVC
+      vc.delegate = self
+    } else if segue.identifier == "SearchViaLocation" {
+      locationSearchType = "Via"
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
     }
+    
   }
   
   /**
    * Tap on Show Advanced button.
    */
   @IBAction func onAdvancedButtonTap(sender: UIButton) {
-    isAdvanced = !isAdvanced
+    hasChanged = true
+    isAdvancedMode = !isAdvancedMode
+    routineTrip?.criterions.isAdvanced = isAdvancedMode
     
     tableView.beginUpdates()
-    if isAdvanced {
+    if isAdvancedMode {
+      viaLabel.text = "(Välj station)"
       tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 1)], withRowAnimation: .Automatic)
-      advancedButton.setTitle("Dölj avancerade inställningar", forState: UIControlState.Normal)
+      advancedButton.setTitle("Ta bort avancerade inställningar", forState: UIControlState.Normal)
     } else {
+      resetViaStation()
       tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 1)], withRowAnimation: .Automatic)
       advancedButton.setTitle("Visa avancerade inställningar", forState: UIControlState.Normal)
     }
@@ -137,12 +149,17 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   */
   func selectedLocationFromSearch(location: Location) {
     hasChanged = true
-    if isSearchingOriginLocation {
+    if locationSearchType == "Origin" {
       routineTrip?.criterions.origin = location
       originLabel.text = location.name
-    } else {
+    } else if locationSearchType == "Destination" {
       routineTrip?.criterions.dest = location
       destinationLabel.text = location.name
+    } else if locationSearchType == "Via" {
+      routineTrip?.criterions.via = location
+      viaLabel.text = location.name
+      isViaSelected = true
+      tableView.reloadData()
     }
   }
   
@@ -162,11 +179,9 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    */
   override func tableView(tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
-      
       if section == 1 {
-        return (isAdvanced) ? 3 : 2
+        return (isAdvancedMode) ? 3 : 2
       }
-      
       return 1
   }
   
@@ -179,6 +194,35 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
         return nil
       }
       return indexPath
+  }
+  
+  /**
+   * Can row be edited?
+   */
+  override func tableView(tableView: UITableView,
+    canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+      return (indexPath.section == 1 && indexPath.row == 2 && isViaSelected && isAdvancedMode)
+  }
+  
+  /**
+   * Editing style
+   */
+  override func tableView(tableView: UITableView,
+    editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+      return (indexPath.section == 1 && indexPath.row == 2) ? .Delete : .None
+  }
+  
+  /**
+   * Edit actions. (Only used for clear Via station)
+   */
+  override func tableView(tableView: UITableView,
+    editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+      return [UITableViewRowAction(
+        style: UITableViewRowActionStyle.Normal,
+        title: "Rensa") { (_, _) -> Void in
+          self.resetViaStation()
+          tableView.reloadData()
+        }]
   }
   
   /**
@@ -225,6 +269,15 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       tripTitleTextField.text = trip.title
       originLabel.text = trip.criterions.origin?.name
       destinationLabel.text = trip.criterions.dest?.name
+      
+      if trip.criterions.isAdvanced {
+        advancedButton.setTitle("Ta bort avancerade inställningar", forState: UIControlState.Normal)
+        isAdvancedMode = true
+        if trip.criterions.via != nil {
+          isViaSelected = true
+          viaLabel.text = trip.criterions.via?.name
+        }
+      }
     }
   }
   
@@ -296,6 +349,15 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     let backButton = UIBarButtonItem(
       title: "Tillbaka", style: .Plain, target: self, action: Selector("onBackTap"))
     self.navigationItem.leftBarButtonItem = backButton
+  }
+  
+  /**
+   * Clear via location
+   */
+  private func resetViaStation() {
+    isViaSelected = false
+    routineTrip?.criterions.via = nil
+    self.viaLabel.text = "(Välj station)"
   }
   
   deinit {

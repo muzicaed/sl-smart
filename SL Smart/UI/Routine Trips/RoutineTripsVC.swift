@@ -60,8 +60,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Prepares for segue
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let routineTrip = selectedRoutineTrip {
-      if segue.identifier == showTripListSegue {
+    
+    if segue.identifier == showTripListSegue {
+      if let routineTrip = selectedRoutineTrip {
         if let crit = routineTrip.criterions.copy() as? TripSearchCriterion {
           let date = NSDate(timeIntervalSinceNow: (60 * 5) * -1)
           crit.date = DateUtils.dateAsDateString(date)
@@ -71,11 +72,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
           vc.criterions = crit
           vc.title = routineTrip.title
         }
-        
-      } else if segue.identifier == "ManageRoutineTrips" {
-        // Force a reload when returning to this VC
-        lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
       }
+      
+    } else if segue.identifier == "ManageRoutineTrips" {
+      // Force a reload when returning to this VC
+      lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
+      print("Reset last updated")
     }
   }
   
@@ -316,6 +318,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Checks if data should be reloaded.
    */
   private func shouldReload() -> Bool {
+    print("Time: \(NSDate().timeIntervalSinceDate(lastUpdated))")
     return (NSDate().timeIntervalSinceDate(lastUpdated) > 60)
   }
   

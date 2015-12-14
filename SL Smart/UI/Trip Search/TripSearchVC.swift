@@ -113,6 +113,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
     sender.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
     criterions?.isAdvanced = isAdvancedMode
     if isAdvancedMode {
+      viaLabel.text = "(Välj station)"
       tableView.insertRowsAtIndexPaths(
         [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
     } else {
@@ -225,18 +226,9 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
   
   /**
    * Height for rows.
-   * (Will hide some rows when in simple mode)
    */
   override func tableView(tableView: UITableView,
     heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-      
-      if !isAdvancedMode {
-        if indexPath.section == 0 && indexPath.row == 1 {
-          return 0
-        }
-      }
-      
-      
       if indexPath.section == 0 && indexPath.row == 0 {
         return 88
       }
@@ -248,7 +240,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
    */
   override func tableView(tableView: UITableView,
     canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-      return (indexPath.section == 0 && indexPath.row == 2 && isViaSelected && isAdvancedMode)
+      return (indexPath.section == 0 && indexPath.row == 1 && isViaSelected && isAdvancedMode)
   }
   
   /**
@@ -256,7 +248,7 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
    */
   override func tableView(tableView: UITableView,
     editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-      return (indexPath.section == 0 && indexPath.row == 2) ? .Delete : .None
+      return (indexPath.section == 0 && indexPath.row == 1) ? .Delete : .None
   }
   
   /**
@@ -346,8 +338,8 @@ class TripSearchVC: UITableViewController, LocationSearchResponder, DateTimePick
    */
   private func resetViaStation() {
     self.isViaSelected = false
-    self.viaLabel.text = "(Välj station)"
     self.criterions?.via = nil
+    self.viaLabel.text = "(Välj station)"
   }
   
   /**

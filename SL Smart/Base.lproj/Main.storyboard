@@ -843,7 +843,7 @@
         <scene sceneID="QHK-jN-CNd">
             <objects>
                 <tableViewController title="Ny resa" id="h2d-Hi-2Zo" customClass="EditRoutineTripVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="UAG-r3-izO">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="UAG-r3-izO">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
@@ -1041,6 +1041,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <segue destination="WJw-HK-J3L" kind="show" identifier="SearchViaLocation" id="pZU-CB-eK9"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1098,6 +1101,7 @@
                         <outlet property="destinationLabel" destination="i5j-V2-bdx" id="C3V-y8-eOC"/>
                         <outlet property="originLabel" destination="X91-GZ-AOv" id="T4x-MK-HhU"/>
                         <outlet property="tripTitleTextField" destination="UcP-ws-VIP" id="BIK-HD-BAZ"/>
+                        <outlet property="viaLabel" destination="IX7-Pa-pBT" id="VoT-cW-wfr"/>
                         <segue destination="nJN-i3-Vhd" kind="unwind" identifier="unwindToManageRoutineTrips" unwindAction="unwindToManageRoutineTripsVC:" id="iVD-3d-eeQ"/>
                     </connections>
                 </tableViewController>
@@ -3208,6 +3212,6 @@ Välkommen till ett smartare sätt att pendla.</string>
     <inferredMetricsTieBreakers>
         <segue reference="p87-eE-sWT"/>
         <segue reference="6zU-Tw-atf"/>
-        <segue reference="zAQ-4U-scN"/>
+        <segue reference="pZU-CB-eK9"/>
     </inferredMetricsTieBreakers>
 </document>
