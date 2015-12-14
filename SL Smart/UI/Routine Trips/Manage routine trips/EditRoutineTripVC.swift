@@ -15,6 +15,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var tripTitleTextField: UITextField!
+  @IBOutlet weak var advancedButton: UIButton!
   
   var routineTrip: RoutineTrip?
   var routineTripCopy: RoutineTrip?
@@ -82,8 +83,17 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    * Tap on Show Advanced button.
    */
   @IBAction func onAdvancedButtonTap(sender: UIButton) {
-    isAdvanced = true
-    tableView.reloadData()
+    isAdvanced = !isAdvanced
+    
+    tableView.beginUpdates()
+    if isAdvanced {
+      tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 1)], withRowAnimation: .Automatic)
+      advancedButton.setTitle("Dölj avancerade inställningar", forState: UIControlState.Normal)
+    } else {
+      tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 1)], withRowAnimation: .Automatic)
+      advancedButton.setTitle("Visa avancerade inställningar", forState: UIControlState.Normal)
+    }
+    tableView.endUpdates()
   }
   
   /**
@@ -144,9 +154,6 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   * Section count
   */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    if isAdvanced {
-      return 2
-    }
     return 3
   }
   
