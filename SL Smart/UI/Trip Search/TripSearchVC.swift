@@ -127,6 +127,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       viaLabel.text = "(Välj station)"
     } else {
       resetViaStation()
+      resetTravelType()
     }
 
     animateAdvancedToggle()
@@ -346,19 +347,16 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   * Animates the table view on advanced toggle.
   */
   private func animateAdvancedToggle() {
+    tableView.beginUpdates()
     if isAdvancedMode {
-      viaLabel.text = "(Välj station)"
       tableView.insertRowsAtIndexPaths(
         [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
       tableView.insertSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
     } else {
-      resetViaStation()
       tableView.deleteRowsAtIndexPaths(
         [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
       tableView.deleteSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
     }
-    
-    
     tableView.endUpdates()
   }
   
@@ -394,6 +392,18 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     self.isViaSelected = false
     self.criterions?.via = nil
     self.viaLabel.text = "(Välj station)"
+  }
+
+  /**
+   * Resets the tabel type criterions
+   */
+  private func resetTravelType() {
+    criterions?.useBus = true
+    criterions?.useFerry = true
+    criterions?.useMetro = true
+    criterions?.useShip = true
+    criterions?.useTrain = true
+    criterions?.useTram = true
   }
   
   /**
