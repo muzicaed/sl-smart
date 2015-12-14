@@ -290,11 +290,64 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Tid och datum" id="az7-RH-pU2" userLabel="Travel Types">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TimePickerRow" id="SEc-aa-VUt" userLabel="Travel Time Picker">
+                                        <rect key="frame" x="0.0" y="299.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SEc-aa-VUt" id="7hP-qX-pLr">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3g7-Yy-zrL">
+                                                    <rect key="frame" x="0.0" y="8" width="373" height="28"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="06d-Pf-918">
+                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="28"/>
+                                                            <animations/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="Opl-Ck-cBH"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Frädmedel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRO-gJ-TBz" userLabel="Frädmedel">
+                                                            <rect key="frame" x="15" y="0.0" width="75" height="28"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Samtliga" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mui-Pd-jl1" userLabel="Tid">
+                                                            <rect key="frame" x="90" y="0.0" width="283" height="28"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <animations/>
+                                                </stackView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="3g7-Yy-zrL" firstAttribute="trailing" secondItem="7hP-qX-pLr" secondAttribute="trailingMargin" id="2B5-C0-Ed1"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="3g7-Yy-zrL" secondAttribute="bottom" id="IBk-a0-evN"/>
+                                                <constraint firstItem="3g7-Yy-zrL" firstAttribute="leading" secondItem="7hP-qX-pLr" secondAttribute="leading" id="NGy-Rd-B6H"/>
+                                                <constraint firstItem="3g7-Yy-zrL" firstAttribute="top" secondItem="7hP-qX-pLr" secondAttribute="topMargin" id="pgf-gd-w8G"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <segue destination="Tm1-9I-jjs" kind="show" id="V2Z-ue-vlu"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Avresa eller Ankomst" id="Iin-ag-WRW" userLabel="Avresetid eller ankomsttid">
                                 <string key="footerTitle">"Tidigast åka" söker resor med avgång efter vald tid. "Senast framme" söker resor som anländer vid destinationen en tid innan vald tid.</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimeSearchTypeRow" id="QfG-cZ-sfK" userLabel="Time Search Type Row">
-                                        <rect key="frame" x="0.0" y="299.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="380.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QfG-cZ-sfK" id="2Q9-La-InF">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -1211,7 +1264,49 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2877" y="1337"/>
+            <point key="canvasLocation" x="3251" y="1337"/>
+        </scene>
+        <!--Travel Types-->
+        <scene sceneID="6nv-mG-FjN">
+            <objects>
+                <tableViewController id="Tm1-9I-jjs" userLabel="Travel Types" customClass="TravelTypesVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nNJ-ce-w8T">
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="TripTypeRow" textLabel="lyl-wI-8aW" style="IBUITableViewCellStyleDefault" id="aes-71-aFG">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aes-71-aFG" id="22D-IN-Hjx">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Färdmedel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lyl-wI-8aW">
+                                            <rect key="frame" x="15" y="0.0" width="360" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Tm1-9I-jjs" id="kR9-Zz-p51"/>
+                            <outlet property="delegate" destination="Tm1-9I-jjs" id="fXa-kO-eHW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Välj färdmedel" id="ppu-s7-bWw"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sbR-fi-LTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3735" y="2313"/>
         </scene>
         <!--Navigation Routine Trips-->
         <scene sceneID="MTA-Lh-djo">
@@ -3286,8 +3381,8 @@ Välkommen till ett smartare sätt att pendla.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8tl-aE-z6t"/>
+        <segue reference="p87-eE-sWT"/>
+        <segue reference="ypq-Up-6Af"/>
         <segue reference="6zU-Tw-atf"/>
-        <segue reference="pZU-CB-eK9"/>
     </inferredMetricsTieBreakers>
 </document>
