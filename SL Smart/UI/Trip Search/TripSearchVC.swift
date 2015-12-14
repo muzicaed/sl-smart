@@ -98,7 +98,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       let vc = segue.destinationViewController as! TravelTypesVC
       vc.delegate = self
       if let crit = criterions {
-        print(" - Set data")        
+        print(" - Set data")
         vc.setData(crit)
       }
     }
@@ -119,21 +119,17 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   }
   
   @IBAction func onAdvancedButtonTap(sender: UIBarButtonItem) {
-    tableView.beginUpdates()
     isAdvancedMode = !isAdvancedMode
     sender.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
     criterions?.isAdvanced = isAdvancedMode
+    travelTypePicker.updateLabel(criterions!)
     if isAdvancedMode {
       viaLabel.text = "(Välj station)"
-      tableView.insertRowsAtIndexPaths(
-        [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
     } else {
       resetViaStation()
-      tableView.deleteRowsAtIndexPaths(
-        [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
     }
-    
-    tableView.endUpdates()
+
+    animateAdvancedToggle()
   }
   /**
    * Changed if departure time or arrival time
@@ -242,11 +238,20 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   // MARK: UITableViewController
   
   /**
-  * Row count in section
+  * Section count
   */
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return (isAdvancedMode) ? 4 : 3
+  }
+  
+  /**
+   * Row count in section
+   */
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if section == 0 {
       return (isAdvancedMode) ? 2 : 1
+    } else if section == 3 && !isAdvancedMode {
+      return 0
     }
     
     return 1
@@ -338,8 +343,28 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   // MARK: Private
   
   /**
-  * Show a invalid location alert
+  * Animates the table view on advanced toggle.
   */
+  private func animateAdvancedToggle() {
+    if isAdvancedMode {
+      viaLabel.text = "(Välj station)"
+      tableView.insertRowsAtIndexPaths(
+        [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
+      tableView.insertSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
+    } else {
+      resetViaStation()
+      tableView.deleteRowsAtIndexPaths(
+        [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
+      tableView.deleteSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
+    }
+    
+    
+    tableView.endUpdates()
+  }
+  
+  /**
+   * Show a invalid location alert
+   */
   private func showInvalidLocationAlert() {
     let invalidLocationAlert = UIAlertController(
       title: "Station saknas",
