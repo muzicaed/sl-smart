@@ -49,6 +49,9 @@ class TravelTypesVC: UITableViewController {
     return 5
   }
   
+  /**
+   * Cells for rows
+   */
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCellWithIdentifier(
@@ -62,5 +65,24 @@ class TravelTypesVC: UITableViewController {
     
     cell.textLabel?.text = titels[indexPath.row]    
     return cell
+  }
+  
+  /**
+   * User selects a row
+   */
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    checkArr[indexPath.row] = !checkArr[indexPath.row]
+    tableView.reloadData()
+  }
+  
+  /**
+   * Green highlight on selected row.
+   */
+  override func tableView(tableView: UITableView,
+    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+      let bgColorView = UIView()
+      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+      cell.selectedBackgroundView = bgColorView
   }
 }

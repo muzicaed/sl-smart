@@ -94,11 +94,13 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       })
       
     } else if segue.identifier == "ShowTravelTypesPicker" {
+      print("ShowTravelTypesPicker segue")
       let vc = segue.destinationViewController as! TravelTypesVC
       vc.delegate = self
       if let crit = criterions {
+        print(" - Set data")        
         vc.setData(crit)
-      }      
+      }
     }
   }
   
@@ -141,7 +143,6 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       crit.searchForArrival = (destinationArrivalSegmented.selectedSegmentIndex == 1)
     }
   }
-  
   
   @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
   @IBAction func unwindToTripTypePickerParent(segue: UIStoryboardSegue) {}
@@ -225,7 +226,17 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   
   func selectedTravelType(useMetro: Bool, useTrain: Bool,
     useTram: Bool, useBus: Bool, useBoat: Bool) {
+      
       print("selectedTravelType")
+      criterions?.useMetro = useMetro
+      criterions?.useTrain = useTrain
+      criterions?.useTram = useTram
+      criterions?.useBus = useBus
+      criterions?.useFerry = useBoat
+      criterions?.useShip = useBoat
+      if let crit = criterions {
+        travelTypePicker.updateLabel(crit)
+      }
   }
   
   // MARK: UITableViewController
@@ -316,6 +327,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
         viaLabel.text = crit.via!.name
         isViaSelected = true
       }
+      travelTypePicker.updateLabel(crit)
     }
     
     criterions?.searchForArrival = false
