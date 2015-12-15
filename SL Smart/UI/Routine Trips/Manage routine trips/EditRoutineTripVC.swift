@@ -148,6 +148,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
         showInvalidLocationAlert()
         return
       }
+      routineTrip?.criterions.isAdvanced = isAdvacedCriterions()
     }
     navigationController?.popViewControllerAnimated(true)
   }
@@ -358,6 +359,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       return
     }
     
+    routineTrip?.criterions.isAdvanced = isAdvacedCriterions()
     DataStore.sharedInstance.addRoutineTrip(routineTrip!)
     performSegueWithIdentifier("unwindToManageRoutineTrips", sender: self)
   }
@@ -401,6 +403,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    * Clear via location
    */
   private func resetViaStation() {
+    hasChanged = true
     isViaSelected = false
     routineTrip?.criterions.via = nil
     self.viaLabel.text = "(Välj station)"
@@ -416,6 +419,28 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     routineTrip?.criterions.useShip = true
     routineTrip?.criterions.useTrain = true
     routineTrip?.criterions.useTram = true
+  }
+  
+  /**
+   * Checks if any advanced settings are actually used.
+   * If not automatically set advanced flag to false.
+   */
+  private func isAdvacedCriterions() -> Bool {
+    if let crit = routineTrip?.criterions {
+      if crit.isAdvanced {
+        return (!isTravelTypeDefault(crit) || crit.via != nil)
+      }
+    }
+    return false
+  }
+  
+  /**
+   * Checks if any travel types
+   * are used.
+   */
+  private func isTravelTypeDefault(crit: TripSearchCriterion) -> Bool {
+    return (crit.useBus && crit.useFerry && crit.useMetro &&
+      crit.useShip && crit.useTrain && crit.useTram)
   }
   
   deinit {
