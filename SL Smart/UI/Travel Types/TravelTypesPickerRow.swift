@@ -32,13 +32,13 @@ class TravelTypesPickerRow: UITableViewCell {
       text += "Pendeltåg, "
     }
     if criterions.useTram {
-      text += "Spårvagn/Lokalbana, "
+      text += "Spårvagn, "
     }
     if criterions.useBus {
       text += "Buss, "
     }
     if criterions.useFerry {
-      text += "Båtar, "
+      text += "Båt, "
     }
     
     if text == "" {

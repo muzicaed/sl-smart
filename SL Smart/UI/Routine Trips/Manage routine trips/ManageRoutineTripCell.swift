@@ -23,23 +23,17 @@ class ManageRoutineTripCell: UITableViewCell {
   func setData(routineTrip: RoutineTrip) {
     tripTitleLabel.text = routineTrip.title
     routeTextLabel.text = "\(routineTrip.criterions.origin!.cleanName) » \(routineTrip.criterions.dest!.cleanName)"
-    createAdvancedText(routineTrip)
+    
+    let advancedText = AdvancedCriterionsHelper.createAdvCriterionText(routineTrip.criterions)
+    if advancedText == "" {
+      advancedLabel.textColor = UIColor.lightGrayColor()
+      advancedLabel.text = "Inga advancerade inställningar"
+      return
+    }
+    
+    advancedLabel.textColor = UIColor.darkGrayColor()
+    advancedLabel.text = advancedText
   }
   
   // MARK: Private
-  
-  
-  /**
-   * Creates text for advanced label based on anvanced
-   * trip options.
-   */
-  func createAdvancedText(routineTrip: RoutineTrip) {
-    var text = "Inga avancerade inställningar"
-    if let via = routineTrip.criterions.via {
-      text = "Via \(via.name)"
-      advancedLabel.textColor = UIColor.darkGrayColor()      
-    }
-    
-    advancedLabel.text = text
-  }
 }

@@ -93,53 +93,9 @@ class RoutineTripCell: UICollectionViewCell {
    * Handles advaned options.
    */
   private func createAdvancedLabel(routineTrip: RoutineTrip) {
-    var isHidden = true
-    var text = ""
-    if routineTrip.criterions.isAdvanced {
-      isHidden = false
-      if let via = routineTrip.criterions.via {
-        text = "Via \(via.name)"
-      }
-    }
-    
-    let travelTypesString = createTravelTypeString(routineTrip)
-    if text != "" && travelTypesString != "" {
-      text = "\(text) med \(travelTypesString)"
-    } else {
-      text = text + travelTypesString
-    }
-    
+    let text = AdvancedCriterionsHelper.createAdvCriterionText(routineTrip.criterions)
     advancedLabel.text = text
-    advancedView.hidden = isHidden
-  }
-  
-  /**
-   * Creates human readable travel type string
-   */
-  private func createTravelTypeString(routineTrip: RoutineTrip) -> String {
-    var travelTypesString = ""
-    if routineTrip.criterions.useMetro {
-      travelTypesString += "Tunnelbana, "
-    }
-    if routineTrip.criterions.useTrain {
-      travelTypesString += "Pendeltåg, "
-    }
-    if routineTrip.criterions.useTram {
-      travelTypesString += "Spårvagn/Lokalbana, "
-    }
-    if routineTrip.criterions.useBus {
-      travelTypesString += "Buss, "
-    }
-    if routineTrip.criterions.useFerry {
-      travelTypesString += "Båtar, "
-    }
-    
-    if travelTypesString != "" {
-      travelTypesString = travelTypesString.substringToIndex(
-        travelTypesString.endIndex.predecessor().predecessor())
-    }
-    
-    return travelTypesString
+    advancedView.frame.size.height = (text == "") ? 0 : 25
   }
   
   /**
