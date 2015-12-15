@@ -191,7 +191,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         } else if isShowInfo {
           return CGSizeMake(screenSize.width - 20, 345)
         } else if bestRoutineTrip!.criterions.isAdvanced {
-          return CGSizeMake(screenSize.width - 20, 160)
+          return CGSizeMake(screenSize.width - 20, 150)
         }
         return CGSizeMake(screenSize.width - 20, 135)
       }
