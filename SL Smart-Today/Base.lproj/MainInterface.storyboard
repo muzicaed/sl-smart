@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Today View Controller-->
@@ -19,21 +19,18 @@
                         <subviews>
                             <activityIndicatorView opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="7bu-m6-248">
                                 <rect key="frame" x="111" y="56" width="37" height="37"/>
-                                <animations/>
                             </activityIndicatorView>
                             <stackView opaque="NO" alpha="0.0" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qPk-lH-4nA">
                                 <rect key="frame" x="0.0" y="20" width="186" height="140"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Söker resa..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsA-hC-88h">
                                         <rect key="frame" x="0.0" y="0.0" width="186" height="29"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                         <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m6C-5d-IFT">
                                         <rect key="frame" x="0.0" y="29" width="186" height="10"/>
-                                        <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="10" id="fRd-mn-Gij"/>
@@ -44,7 +41,6 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="253" text="--:--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeA-2g-oCU">
                                                 <rect key="frame" x="0.0" y="0.0" width="45" height="25"/>
-                                                <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="64n-Rb-Kui"/>
                                                     <constraint firstAttribute="width" constant="45" id="Z0w-En-uSj"/>
@@ -55,7 +51,6 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text=" - åk från station" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IbU-MG-NR2">
                                                 <rect key="frame" x="45" y="0.0" width="141" height="25"/>
-                                                <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="r9c-TD-yTl"/>
                                                 </constraints>
@@ -64,14 +59,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <animations/>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Jp-UM-zTK">
                                         <rect key="frame" x="0.0" y="64" width="186" height="25"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="253" text="--:--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzk-cG-1xZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="45" height="25"/>
-                                                <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="45" id="NxD-ke-SIe"/>
                                                     <constraint firstAttribute="height" constant="25" id="pSR-fi-2dH"/>
@@ -82,7 +75,6 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text=" - framme vid station" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kxy-6M-yci">
                                                 <rect key="frame" x="45" y="0.0" width="141" height="25"/>
-                                                <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="wVl-O6-QvZ"/>
                                                 </constraints>
@@ -91,11 +83,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <animations/>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cnf-I6-1U8" userLabel="Icon">
                                         <rect key="frame" x="0.0" y="89" width="186" height="35"/>
-                                        <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="d8M-j2-AHo" userLabel="height = 30"/>
@@ -103,19 +93,16 @@
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Res tid: 1h 33m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g04-Fg-6Jm">
                                         <rect key="frame" x="0.0" y="124" width="186" height="16"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="DdG-Wf-VOr"/>
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <animations/>
                         <constraints>
                             <constraint firstItem="qPk-lH-4nA" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="J4d-Zg-qY2"/>
                             <constraint firstItem="7bu-m6-248" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" constant="-30" id="PoJ-aL-JPe"/>

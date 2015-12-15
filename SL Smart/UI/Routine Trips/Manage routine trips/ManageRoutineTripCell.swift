@@ -25,6 +25,7 @@ class ManageRoutineTripCell: UITableViewCell {
     routeTextLabel.text = "\(routineTrip.criterions.origin!.cleanName) » \(routineTrip.criterions.dest!.cleanName)"
     
     let advancedText = AdvancedCriterionsHelper.createAdvCriterionText(routineTrip.criterions)
+    print(advancedText)
     if advancedText == "" {
       advancedLabel.textColor = UIColor.lightGrayColor()
       advancedLabel.text = "Inga advancerade inställningar"

@@ -57,7 +57,7 @@ class RoutineTripCell: UICollectionViewCell {
     if let trip = routineTrip.trips.first {
       setupTripData(trip)
     }
-    createAdvancedLabel(routineTrip)
+    advancedLabel.text = AdvancedCriterionsHelper.createAdvCriterionText(routineTrip.criterions)
   }
   
   /**
@@ -87,15 +87,6 @@ class RoutineTripCell: UICollectionViewCell {
       createTripSegmentIcons(trip)
       return
     }
-  }
-  
-  /**
-   * Handles advaned options.
-   */
-  private func createAdvancedLabel(routineTrip: RoutineTrip) {
-    let text = AdvancedCriterionsHelper.createAdvCriterionText(routineTrip.criterions)
-    advancedLabel.text = text
-    advancedView.frame.size.height = (text == "") ? 0 : 25
   }
   
   /**

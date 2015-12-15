@@ -38,6 +38,7 @@
 		188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */; };
 		188367751C170E5500A8BE16 /* TripDetailsDestinationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */; };
 		1883677B1C1717AD00A8BE16 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1883677A1C1717AD00A8BE16 /* MapKit.framework */; };
+		1885ED001C20BD7A000E803D /* UILabelExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885ECFF1C20BD7A000E803D /* UILabelExtention.swift */; };
 		188B80451C175D9600E7D90C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188B80441C175D9600E7D90C /* NotificationCenter.framework */; };
 		188B80481C175D9600E7D90C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B80471C175D9600E7D90C /* TodayViewController.swift */; };
 		188B804B1C175D9600E7D90C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188B80491C175D9600E7D90C /* MainInterface.storyboard */; };
@@ -259,6 +260,7 @@
 		188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsSegmentCell.swift; sourceTree = "<group>"; };
 		188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsDestinationCell.swift; sourceTree = "<group>"; };
 		1883677A1C1717AD00A8BE16 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		1885ECFF1C20BD7A000E803D /* UILabelExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtention.swift; sourceTree = "<group>"; };
 		188B80421C175D9600E7D90C /* SL Smart-Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SL Smart-Today.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		188B80441C175D9600E7D90C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		188B80471C175D9600E7D90C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				1854E1981C065EB70070C545 /* StandardGradient.swift */,
 				185073741C09CE84005D0D7E /* TripIcons.swift */,
 				18353DDF1C1F70590011CDEA /* AdvancedCriterionsHelper.swift */,
+				1885ECFF1C20BD7A000E803D /* UILabelExtention.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1049,6 +1052,7 @@
 				183D6EBB1C1A2F2900EB7537 /* TrafficSituationVC.swift in Sources */,
 				183D6EBD1C1A352100EB7537 /* SituationHeader.swift in Sources */,
 				1869E2991C1E0E36001FE4B2 /* PickLocationResponder.swift in Sources */,
+				1885ED001C20BD7A000E803D /* UILabelExtention.swift in Sources */,
 				188367711C170E1800A8BE16 /* TripDetailsChangeCell.swift in Sources */,
 				1892BA3A1C1F188700BC191A /* TravelTypesVC.swift in Sources */,
 				18CB35B21C1E08BA0084CA27 /* LocationPickerRow.swift in Sources */,
