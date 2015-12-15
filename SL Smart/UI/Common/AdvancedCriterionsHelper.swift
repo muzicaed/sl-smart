@@ -39,10 +39,6 @@ class AdvancedCriterionsHelper {
       travelTypeString = createNotIncludedTravelTypeString(criterions)
     }
     
-    if let lastRange = travelTypeString.rangeOfString(", ",
-      options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil) {
-        travelTypeString.replaceRange(lastRange, with: " och ")
-    }    
     return travelTypeString
   }
   
@@ -97,6 +93,10 @@ class AdvancedCriterionsHelper {
         travelTypesString = "Ej med " + travelTypesString.substringToIndex(
           travelTypesString.endIndex.predecessor().predecessor()) + "."
       }
+      if let lastRange = travelTypesString.rangeOfString(", ",
+        options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil) {
+          travelTypesString.replaceRange(lastRange, with: " eller ")
+      }
       return travelTypesString
   }
   
@@ -127,6 +127,10 @@ class AdvancedCriterionsHelper {
       if travelTypesString != "" {
         travelTypesString = "Endast med " + travelTypesString.substringToIndex(
           travelTypesString.endIndex.predecessor().predecessor()) + "."
+      }
+      if let lastRange = travelTypesString.rangeOfString(", ",
+        options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil) {
+          travelTypesString.replaceRange(lastRange, with: " och ")
       }
       return travelTypesString
   }
