@@ -75,12 +75,12 @@ class TripCell: UICollectionViewCell {
         let label = UILabel()
         label.text = data.short
         label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont.systemFontOfSize(6.5)
+        label.font = UIFont.systemFontOfSize(7)
         label.textColor = UIColor.darkGrayColor()
         label.sizeToFit()
-        label.frame.size.width = 28
-        label.center = CGPointMake((23 / 2), 21)
-        label.adjustsFontSizeToFitWidth = true
+        label.frame.size.width = 25
+        label.center = CGPointMake((23 / 2), 22)
+        label.lineBreakMode = .ByTruncatingTail
         
         let wrapperView = UIView(
           frame:CGRect(

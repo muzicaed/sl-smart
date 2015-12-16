@@ -159,7 +159,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
       if isLoading {
         return CGSizeMake(screenSize.width - 10, collectionView.bounds.height - 49 - 64 - 20)
       }
-      return CGSizeMake(screenSize.width - 10, 90)
+      return CGSizeMake(screenSize.width - 10, 105)
   }
   
   /**

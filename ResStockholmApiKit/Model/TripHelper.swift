@@ -37,25 +37,25 @@ public class TripHelper {
       return ("Färja", "Sjövägen (Pendelbåt)", "SHIP-NEUTRAL")
     case .Tram:
       if lineNumber == "7" {
-        return ("Spårväg", "Spårvagn linje 7", "TRAM-RAIL")
+        return ("Spår", "Spårvagn linje 7", "TRAM-RAIL")
       } else if lineNumber == "12" {
-        return ("Spårväg", "Nockebybanan 12", "TRAM-RAIL")
+        return ("Spår", "Nockebybanan 12", "TRAM-RAIL")
       } else if lineNumber == "21" {
-        return ("Spårväg", "Lidingöbanan 21", "TRAM-RAIL")
+        return ("Spår", "Lidingöbanan 21", "TRAM-RAIL")
       } else if lineNumber == "22" {
-        return ("Tvärbana", "Tvärbana 22", "TRAM-RAIL")
+        return ("Tvär", "Tvärbana 22", "TRAM-RAIL")
       } else if lineNumber == "25" {
-        return ("Lokaltåg", "Saltsjöbanan 25", "TRAM-LOCAL")
+        return ("Lokal", "Saltsjöbanan 25", "TRAM-LOCAL")
       } else if lineNumber == "26" {
-        return ("Lokaltåg", "Saltsjöbanan 26", "TRAM-LOCAL")
+        return ("Lokal", "Saltsjöbanan 26", "TRAM-LOCAL")
       } else if lineNumber == "27" {
-        return ("Lokaltåg", "Roslagsbanan, Kårstalinjen", "TRAM-LOCAL")
+        return ("Lokal", "Roslagsbanan, Kårstalinjen", "TRAM-LOCAL")
       } else if lineNumber == "28" {
-        return ("Lokaltåg", "Roslagsbanan, Österskärslinjen", "TRAM-LOCAL")
+        return ("Lokal", "Roslagsbanan, Österskärslinjen", "TRAM-LOCAL")
       } else if lineNumber == "29" {
-        return ("Lokaltåg", "Roslagsbanan, Näsbyparkslinjen", "TRAM-LOCAL")
+        return ("Lokal", "Roslagsbanan, Näsbyparkslinjen", "TRAM-LOCAL")
       }
-      return ("Spårväg", "Spårvagn linje \(lineNumber!)", "TRAM-RAIL")
+      return ("Spår", "Spårvagn linje \(lineNumber!)", "TRAM-RAIL")
     case .Bus:
       if segment.name.lowercaseString.rangeOfString("blåbuss") != nil {
         return ("\(lineNumber!)", "Blåbuss \(lineNumber!)", "BUS-BLUE")
