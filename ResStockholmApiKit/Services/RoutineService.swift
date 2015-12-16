@@ -135,12 +135,12 @@ public class RoutineService {
             }
         }
       }
-      print("Sched score: \(score)")
+      print("Schedule score: \(score)")
       return score
   }
   
   /**
-   * Score based on current locatiosn proximity to locations logged with ScorePost.
+   * Score based on current location proximity to locations logged with ScorePost.
    */
   static private func multiplierBasedOnProximityToScorePostLocation(trip: RoutineTrip) -> Float {
     var highestMulitplier = Float(0.0)
@@ -155,7 +155,7 @@ public class RoutineService {
         }
       }
     }
-    print("Prox to post mult: \(highestMulitplier)")
+    print("Prox to post pos mult: \(highestMulitplier)")
     return highestMulitplier
   }
   

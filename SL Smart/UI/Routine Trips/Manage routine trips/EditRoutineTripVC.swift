@@ -16,7 +16,6 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var viaLabel: UILabel!
   @IBOutlet weak var tripTitleTextField: UITextField!
-  @IBOutlet weak var advancedButton: UIButton!
   @IBOutlet weak var travelTypesPickerRow: TravelTypesPickerRow!
   
   var routineTrip: RoutineTrip?
@@ -96,26 +95,6 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     }
     
     
-  }
-  
-  /**
-   * Tap on Show Advanced button.
-   */
-  @IBAction func onAdvancedButtonTap(sender: UIButton) {
-    hasChanged = true
-    isAdvancedMode = !isAdvancedMode
-    routineTrip?.criterions.isAdvanced = isAdvancedMode
-    
-    if isAdvancedMode {
-      viaLabel.text = "(Välj station)"
-      advancedButton.setTitle("Ta bort avancerade inställningar", forState: UIControlState.Normal)
-    } else {
-      resetViaStation()
-      resetTravelType()
-      advancedButton.setTitle("Visa avancerade inställningar", forState: UIControlState.Normal)
-    }
-    travelTypesPickerRow.updateLabel(routineTrip!.criterions)
-    animateAdvancedToggle()
   }
   
   /**
@@ -200,19 +179,12 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   // MARK: UITableViewController
   
   /**
-  * Section count
+  * Row count for section
   */
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return (isAdvancedMode) ? 4 : 3
-  }
-  
-  /**
-   * Row count for section
-   */
   override func tableView(tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
       if section == 1 {
-        return (isAdvancedMode) ? 3 : 2
+        return 3
       }
       return 1
   }
@@ -302,13 +274,9 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       destinationLabel.text = trip.criterions.dest?.name
       travelTypesPickerRow.updateLabel(trip.criterions)
       
-      if trip.criterions.isAdvanced {
-        advancedButton.setTitle("Ta bort avancerade inställningar", forState: UIControlState.Normal)
-        isAdvancedMode = true
-        if trip.criterions.via != nil {
-          isViaSelected = true
-          viaLabel.text = trip.criterions.via?.name
-        }
+      if trip.criterions.via != nil {
+        isViaSelected = true
+        viaLabel.text = trip.criterions.via?.name
       }
     }
   }
@@ -385,28 +353,13 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   }
   
   /**
-   * Animates table view on Advacned toggle.
-   */
-  private func animateAdvancedToggle() {
-    tableView.beginUpdates()
-    if isAdvancedMode {
-      tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 1)], withRowAnimation: .Automatic)
-      tableView.insertSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
-    } else {
-      tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 1)], withRowAnimation: .Automatic)
-      tableView.deleteSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
-    }
-    tableView.endUpdates()
-  }
-  
-  /**
    * Clear via location
    */
   private func resetViaStation() {
     hasChanged = true
     isViaSelected = false
     routineTrip?.criterions.via = nil
-    self.viaLabel.text = "(Välj station)"
+    self.viaLabel.text = "(Välj station) - Valfri"
   }
   
   /**
@@ -427,9 +380,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    */
   private func isAdvacedCriterions() -> Bool {
     if let crit = routineTrip?.criterions {
-      if crit.isAdvanced {
-        return (!isTravelTypeDefault(crit) || crit.via != nil)
-      }
+      return (!isTravelTypeDefault(crit) || crit.via != nil)
     }
     return false
   }

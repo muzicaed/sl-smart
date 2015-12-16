@@ -48,12 +48,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    if let crit = criterions {
-      crit.searchForArrival = (destinationArrivalSegmented.selectedSegmentIndex == 1)
-      let dateTimeTuple = DateUtils.dateAsStringTuple(selectedDate)
-      crit.date = dateTimeTuple.date
-      crit.time = dateTimeTuple.time
-    }
+    pickedDate(NSDate())
   }
   
   /**
@@ -127,7 +122,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       resetViaStation()
       resetTravelType()
     }
-
+    
     animateAdvancedToggle()
   }
   /**
@@ -389,7 +384,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     self.criterions?.via = nil
     self.viaLabel.text = "(Välj station)"
   }
-
+  
   /**
    * Resets the tabel type criterions
    */
