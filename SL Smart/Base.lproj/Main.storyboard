@@ -687,7 +687,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWJ-Ip-1PH">
                                                     <rect key="frame" x="0.0" y="23" width="398" height="60"/>
                                                     <attributedString key="attributedText">
-                                                        <fragment content="Du har inte skapat några vanliga resor.  Peka på &quot;">
+                                                        <fragment content="Du har inte skapat några rutiner.  Peka på &quot;">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <font key="NSFont" size="16" name="HelveticaNeue"/>
@@ -701,7 +701,7 @@
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
-                                                        <fragment content="&quot; för att beskriva resor.">
+                                                        <fragment content="&quot; för att skapa en rutin.">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <font key="NSFont" size="16" name="HelveticaNeue"/>
@@ -1703,20 +1703,20 @@
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="275"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UXU-pJ-Ubo">
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXU-pJ-Ubo">
                                             <rect key="frame" x="8" y="8" width="354" height="259"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gmF-6r-5Wd" userLabel="Space">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gmF-6r-5Wd" userLabel="Space">
                                                     <rect key="frame" x="0.0" y="0.0" width="10" height="259"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="10" id="5iJ-4z-02Q"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Onu-FY-s8t">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Onu-FY-s8t">
                                                     <rect key="frame" x="10" y="0.0" width="339" height="259"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lQ0-PD-kjF">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lQ0-PD-kjF">
                                                             <rect key="frame" x="0.0" y="0.0" width="339" height="259"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iLu-LU-qdT">
@@ -1732,7 +1732,7 @@
                                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-tn-fDB">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-tn-fDB">
                                                                     <rect key="frame" x="0.0" y="33" width="339" height="226"/>
                                                                     <attributedString key="attributedText">
                                                                         <fragment content="För att kunna använda ">
@@ -1826,7 +1826,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                         <constraint firstAttribute="bottom" secondItem="lQ0-PD-kjF" secondAttribute="bottom" id="wRx-7t-7wd"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FSe-FJ-35A" userLabel="Space">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSe-FJ-35A" userLabel="Space">
                                                     <rect key="frame" x="349" y="0.0" width="5" height="259"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
