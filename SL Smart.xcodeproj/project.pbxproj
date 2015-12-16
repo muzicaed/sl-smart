@@ -26,9 +26,6 @@
 		1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854E1981C065EB70070C545 /* StandardGradient.swift */; };
 		185BCC921C09389E00A2C6DB /* TripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BCC911C09389E00A2C6DB /* TripHeader.swift */; };
 		185D8DBE1C189D0200300890 /* WatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367611C16264200A8BE16 /* WatchService.swift */; };
-		185D8DBF1C18A73500300890 /* ResStockholmApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; };
-		185D8DC11C18AFE200300890 /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185D8DC01C18AFE200300890 /* TripIcons.swift */; };
-		185D8DC31C18B00A00300890 /* Assests.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185D8DC21C18B00A00300890 /* Assests.xcassets */; };
 		1869E2991C1E0E36001FE4B2 /* PickLocationResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */; };
 		188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367681C16EEA000A8BE16 /* TripDetailsVC.swift */; };
 		1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */; };
@@ -39,10 +36,6 @@
 		188367751C170E5500A8BE16 /* TripDetailsDestinationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */; };
 		1883677B1C1717AD00A8BE16 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1883677A1C1717AD00A8BE16 /* MapKit.framework */; };
 		1885ED001C20BD7A000E803D /* UILabelExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885ECFF1C20BD7A000E803D /* UILabelExtention.swift */; };
-		188B80451C175D9600E7D90C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188B80441C175D9600E7D90C /* NotificationCenter.framework */; };
-		188B80481C175D9600E7D90C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B80471C175D9600E7D90C /* TodayViewController.swift */; };
-		188B804B1C175D9600E7D90C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188B80491C175D9600E7D90C /* MainInterface.storyboard */; };
-		188B804F1C175D9600E7D90C /* SL Smart-Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 188B80421C175D9600E7D90C /* SL Smart-Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		188B80AE1C178DD900E7D90C /* TripSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B80AD1C178DD900E7D90C /* TripSearchVC.swift */; };
 		188B856A1C15B03400098B00 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85691C15B03400098B00 /* DateUtils.swift */; };
 		188B856E1C15BFA000098B00 /* OtherRoutinesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B856D1C15BFA000098B00 /* OtherRoutinesRow.swift */; };
@@ -103,20 +96,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		188B804D1C175D9600E7D90C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 188B80411C175D9600E7D90C;
-			remoteInfo = "SL Smart-Today";
-		};
-		188B80981C17816800E7D90C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 18937E301BFF33FA00C523C9;
-			remoteInfo = "SL Smart";
-		};
 		18937E451BFF33FB00C523C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
@@ -187,7 +166,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				188B804F1C175D9600E7D90C /* SL Smart-Today.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,8 +226,6 @@
 		185073741C09CE84005D0D7E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
 		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
 		185BCC911C09389E00A2C6DB /* TripHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHeader.swift; sourceTree = "<group>"; };
-		185D8DC01C18AFE200300890 /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
-		185D8DC21C18B00A00300890 /* Assests.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assests.xcassets; sourceTree = "<group>"; };
 		1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickLocationResponder.swift; sourceTree = "<group>"; };
 		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchService.swift; sourceTree = "<group>"; };
 		188367681C16EEA000A8BE16 /* TripDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsVC.swift; sourceTree = "<group>"; };
@@ -261,12 +237,7 @@
 		188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsDestinationCell.swift; sourceTree = "<group>"; };
 		1883677A1C1717AD00A8BE16 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1885ECFF1C20BD7A000E803D /* UILabelExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtention.swift; sourceTree = "<group>"; };
-		188B80421C175D9600E7D90C /* SL Smart-Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SL Smart-Today.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		188B80441C175D9600E7D90C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		188B80471C175D9600E7D90C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		188B804A1C175D9600E7D90C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		188B804C1C175D9600E7D90C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		188B80961C177E0700E7D90C /* SL Smart-Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SL Smart-Today.entitlements"; sourceTree = "<group>"; };
 		188B80971C177E9E00E7D90C /* SL Smart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SL Smart.entitlements"; sourceTree = "<group>"; };
 		188B80AD1C178DD900E7D90C /* TripSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSearchVC.swift; sourceTree = "<group>"; };
 		188B85651C14ADF100098B00 /* SLNetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLNetworkError.swift; sourceTree = "<group>"; };
@@ -317,15 +288,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		188B803F1C175D9600E7D90C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				185D8DBF1C18A73500300890 /* ResStockholmApiKit.framework in Frameworks */,
-				188B80451C175D9600E7D90C /* NotificationCenter.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		18937E2E1BFF33FA00C523C9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -431,19 +393,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		188B80461C175D9600E7D90C /* SL Smart-Today */ = {
-			isa = PBXGroup;
-			children = (
-				188B80961C177E0700E7D90C /* SL Smart-Today.entitlements */,
-				188B80471C175D9600E7D90C /* TodayViewController.swift */,
-				188B80491C175D9600E7D90C /* MainInterface.storyboard */,
-				188B804C1C175D9600E7D90C /* Info.plist */,
-				185D8DC01C18AFE200300890 /* TripIcons.swift */,
-				185D8DC21C18B00A00300890 /* Assests.xcassets */,
-			);
-			path = "SL Smart-Today";
-			sourceTree = "<group>";
-		};
 		188B80AC1C178DB800E7D90C /* Trip Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,7 +449,6 @@
 				18937E331BFF33FA00C523C9 /* SL Smart */,
 				18937E471BFF33FB00C523C9 /* SL Smart WatchKit App */,
 				18937E561BFF33FB00C523C9 /* SL Smart WatchKit Extension */,
-				188B80461C175D9600E7D90C /* SL Smart-Today */,
 				18A9E8481C18993B008F97C8 /* ResStockholmApiKit */,
 				188B80431C175D9600E7D90C /* Frameworks */,
 				18937E321BFF33FA00C523C9 /* Products */,
@@ -513,7 +461,6 @@
 				18937E311BFF33FA00C523C9 /* SL Smart.app */,
 				18937E431BFF33FB00C523C9 /* SL Smart.app */,
 				18937E521BFF33FB00C523C9 /* SL Smart.appex */,
-				188B80421C175D9600E7D90C /* SL Smart-Today.appex */,
 				18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */,
 			);
 			name = Products;
@@ -690,26 +637,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		188B80411C175D9600E7D90C /* SL Smart-Today */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 188B80561C175D9600E7D90C /* Build configuration list for PBXNativeTarget "SL Smart-Today" */;
-			buildPhases = (
-				188B803E1C175D9600E7D90C /* Sources */,
-				188B803F1C175D9600E7D90C /* Frameworks */,
-				188B80401C175D9600E7D90C /* Resources */,
-				18F948361C1C781D008C1B59 /* ShellScript */,
-				18F9483B1C1C78A5008C1B59 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				188B80991C17816800E7D90C /* PBXTargetDependency */,
-			);
-			name = "SL Smart-Today";
-			productName = "SL Smart-Today";
-			productReference = 188B80421C175D9600E7D90C /* SL Smart-Today.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		18937E301BFF33FA00C523C9 /* SL Smart */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18937E701BFF33FB00C523C9 /* Build configuration list for PBXNativeTarget "SL Smart" */;
@@ -727,7 +654,6 @@
 			);
 			dependencies = (
 				18937E461BFF33FB00C523C9 /* PBXTargetDependency */,
-				188B804E1C175D9600E7D90C /* PBXTargetDependency */,
 				18A9E84D1C18993B008F97C8 /* PBXTargetDependency */,
 			);
 			name = "SL Smart";
@@ -799,15 +725,6 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Mikael Hellman";
 				TargetAttributes = {
-					188B80411C175D9600E7D90C = {
-						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = 43E7S6Y435;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-						};
-					};
 					18937E301BFF33FA00C523C9 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 43E7S6Y435;
@@ -853,7 +770,6 @@
 				18937E301BFF33FA00C523C9 /* SL Smart */,
 				18937E421BFF33FB00C523C9 /* SL Smart WatchKit App */,
 				18937E511BFF33FB00C523C9 /* SL Smart WatchKit Extension */,
-				188B80411C175D9600E7D90C /* SL Smart-Today */,
 				18A9E8461C18993B008F97C8 /* ResStockholmApiKit */,
 			);
 		};
@@ -891,15 +807,6 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		188B80401C175D9600E7D90C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				185D8DC31C18B00A00300890 /* Assests.xcassets in Resources */,
-				188B804B1C175D9600E7D90C /* MainInterface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		18937E2F1BFF33FA00C523C9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -963,32 +870,6 @@
 			shellPath = /bin/sh;
 			shellScript = "VERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nNEWSUBVERSION=`echo $VERSIONNUM | awk -F \".\" '{print $3}'`\nNEWSUBVERSION=$(($NEWSUBVERSION + 1))\nNEWVERSIONSTRING=`echo $VERSIONNUM | awk -F \".\" '{print $1 \".\" $2 \".'$NEWSUBVERSION'\" }'`\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"$SRCROOT/${PRODUCT_NAME} WatchKit Extension/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"$SRCROOT/${PRODUCT_NAME} WatchKit App/Info.plist\"";
 		};
-		18F948361C1C781D008C1B59 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$SRCROOT/SL Smart-Today/Info.plist\"";
-		};
-		18F9483B1C1C78A5008C1B59 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "VERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nNEWSUBVERSION=`echo $VERSIONNUM | awk -F \".\" '{print $3}'`\nNEWSUBVERSION=$(($NEWSUBVERSION + 1))\nNEWVERSIONSTRING=`echo $VERSIONNUM | awk -F \".\" '{print $1 \".\" $2 \".'$NEWSUBVERSION'\" }'`\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"$SRCROOT/${INFOPLIST_FILE}\"";
-		};
 		18F9483C1C1C78F3008C1B59 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1018,15 +899,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		188B803E1C175D9600E7D90C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				188B80481C175D9600E7D90C /* TodayViewController.swift in Sources */,
-				185D8DC11C18AFE200300890 /* TripIcons.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		18937E2D1BFF33FA00C523C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1123,16 +995,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		188B804E1C175D9600E7D90C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 188B80411C175D9600E7D90C /* SL Smart-Today */;
-			targetProxy = 188B804D1C175D9600E7D90C /* PBXContainerItemProxy */;
-		};
-		188B80991C17816800E7D90C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 18937E301BFF33FA00C523C9 /* SL Smart */;
-			targetProxy = 188B80981C17816800E7D90C /* PBXContainerItemProxy */;
-		};
 		18937E461BFF33FB00C523C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 18937E421BFF33FB00C523C9 /* SL Smart WatchKit App */;
@@ -1151,14 +1013,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		188B80491C175D9600E7D90C /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				188B804A1C175D9600E7D90C /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 		18937E381BFF33FA00C523C9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1186,36 +1040,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		188B80501C175D9600E7D90C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "SL Smart-Today/SL Smart-Today.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "SL Smart-Today/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.SL-Smart-Today";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		188B80511C175D9600E7D90C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "SL Smart-Today/SL Smart-Today.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "SL Smart-Today/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.SL-Smart-Today";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 		18937E661BFF33FB00C523C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1448,15 +1272,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		188B80561C175D9600E7D90C /* Build configuration list for PBXNativeTarget "SL Smart-Today" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				188B80501C175D9600E7D90C /* Debug */,
-				188B80511C175D9600E7D90C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		18937E2C1BFF33FA00C523C9 /* Build configuration list for PBXProject "SL Smart" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
