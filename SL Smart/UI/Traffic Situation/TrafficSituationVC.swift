@@ -26,6 +26,15 @@ class TrafficSituationVC: UITableViewController {
     loadData()
   }
   
+  /** 
+   * View did to appear
+   */
+  override func viewDidAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    let items = self.tabBarController?.tabBar.items!
+    items![2].badgeValue = nil
+  }
+  
   /**
    * Toggle show planned situations
    */
@@ -124,9 +133,6 @@ class TrafficSituationVC: UITableViewController {
     tableView.separatorInset = UIEdgeInsetsZero
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 130
-    
-    let items = self.tabBarController?.tabBar.items!
-    items![2].badgeValue = nil
   }
   
   
