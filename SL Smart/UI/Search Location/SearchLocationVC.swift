@@ -110,8 +110,19 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   // MARK: UISearchResultsUpdating
   
   @objc func updateSearchResultsForSearchController(searchController: UISearchController) {
-    if let query = searchController.searchBar.text {
-      if query.characters.count % 2 == 0 && query.characters.count > 1 {
+    NSObject.cancelPreviousPerformRequestsWithTarget(
+      self, selector: Selector("searchLocation"), object: nil)
+    self.performSelector(Selector("searchLocation"), withObject: nil, afterDelay: 0.4)
+  }
+  
+  /**
+   * Executes a search
+   */
+  func searchLocation() {
+    
+    if let query = searchController!.searchBar.text {
+      print("Search")
+      if query.characters.count > 1 {
         self.noResults = false
         LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
           dispatch_async(dispatch_get_main_queue()) {
@@ -146,6 +157,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   }
   
   // MARK: Private
+  
   
   /**
   * Show a network error alert
