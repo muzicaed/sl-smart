@@ -34,7 +34,6 @@
 		188367711C170E1800A8BE16 /* TripDetailsChangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367701C170E1800A8BE16 /* TripDetailsChangeCell.swift */; };
 		188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */; };
 		188367751C170E5500A8BE16 /* TripDetailsDestinationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */; };
-		1883677B1C1717AD00A8BE16 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1883677A1C1717AD00A8BE16 /* MapKit.framework */; };
 		1885ED001C20BD7A000E803D /* UILabelExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885ECFF1C20BD7A000E803D /* UILabelExtention.swift */; };
 		188B80AE1C178DD900E7D90C /* TripSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B80AD1C178DD900E7D90C /* TripSearchVC.swift */; };
 		188B856A1C15B03400098B00 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85691C15B03400098B00 /* DateUtils.swift */; };
@@ -235,7 +234,6 @@
 		188367701C170E1800A8BE16 /* TripDetailsChangeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsChangeCell.swift; sourceTree = "<group>"; };
 		188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsSegmentCell.swift; sourceTree = "<group>"; };
 		188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsDestinationCell.swift; sourceTree = "<group>"; };
-		1883677A1C1717AD00A8BE16 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1885ECFF1C20BD7A000E803D /* UILabelExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtention.swift; sourceTree = "<group>"; };
 		188B80441C175D9600E7D90C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		188B80971C177E9E00E7D90C /* SL Smart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SL Smart.entitlements"; sourceTree = "<group>"; };
@@ -292,7 +290,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1883677B1C1717AD00A8BE16 /* MapKit.framework in Frameworks */,
 				18A9E84E1C18993B008F97C8 /* ResStockholmApiKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,7 +441,6 @@
 		18937E281BFF33FA00C523C9 = {
 			isa = PBXGroup;
 			children = (
-				1883677A1C1717AD00A8BE16 /* MapKit.framework */,
 				18CE5CCC1C0329DA00E1F5A9 /* Libraries */,
 				18937E331BFF33FA00C523C9 /* SL Smart */,
 				18937E471BFF33FB00C523C9 /* SL Smart WatchKit App */,

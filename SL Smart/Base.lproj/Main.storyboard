@@ -1697,36 +1697,43 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="InfoCell" id="37S-3z-DMK" userLabel="InfoCell" customClass="RoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="355" width="370" height="345"/>
+                                <rect key="frame" x="22" y="355" width="370" height="275"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="345"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="275"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXU-pJ-Ubo">
-                                            <rect key="frame" x="8" y="8" width="354" height="329"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UXU-pJ-Ubo">
+                                            <rect key="frame" x="8" y="8" width="354" height="259"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gmF-6r-5Wd" userLabel="Space">
-                                                    <rect key="frame" x="0.0" y="0.0" width="10" height="329"/>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gmF-6r-5Wd" userLabel="Space">
+                                                    <rect key="frame" x="0.0" y="0.0" width="10" height="259"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="10" id="5iJ-4z-02Q"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Onu-FY-s8t">
-                                                    <rect key="frame" x="10" y="0.0" width="339" height="329"/>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Onu-FY-s8t">
+                                                    <rect key="frame" x="10" y="0.0" width="339" height="259"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lQ0-PD-kjF">
-                                                            <rect key="frame" x="0.0" y="0.0" width="339" height="329"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lQ0-PD-kjF">
+                                                            <rect key="frame" x="0.0" y="0.0" width="339" height="259"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Smartare reseföslag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLm-xw-Eh5">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="339" height="23"/>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iLu-LU-qdT">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="339" height="10"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="10" id="qbg-yr-pu1"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Smartare reseförslag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLm-xw-Eh5">
+                                                                    <rect key="frame" x="0.0" y="10" width="339" height="23"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-tn-fDB">
-                                                                    <rect key="frame" x="0.0" y="23" width="339" height="306"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-tn-fDB">
+                                                                    <rect key="frame" x="0.0" y="33" width="339" height="226"/>
                                                                     <attributedString key="attributedText">
                                                                         <fragment content="För att kunna använda ">
                                                                             <attributes>
@@ -1742,7 +1749,7 @@
                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                             </attributes>
                                                                         </fragment>
-                                                                        <fragment content=" behöver beskriv dina resevanor genom att peka på &quot;">
+                                                                        <fragment content=" behöver du beskriva dina resevanor genom att peka på &quot;">
                                                                             <attributes>
                                                                                 <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <font key="NSFont" size="16" name="HelveticaNeue"/>
@@ -1767,7 +1774,7 @@
                                                                         <fragment>
                                                                             <string key="content">". 
 
-När du beskrivit dina rutinresor kommer denna vy automatiskt att förslå resor baserat på tidpunkt samt vart du är. Genom att kontinuerligt analysera dina resvanor, kommer appen dessutom bli bättre och bättre på att ge smarta förlag!  </string>
+Appen lär sig dina vanor och visar automatiskt den resan du vill göra härnäst!  </string>
                                                                             <attributes>
                                                                                 <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <font key="NSFont" size="16" name="HelveticaNeue"/>
@@ -1795,36 +1802,8 @@ När du beskrivit dina rutinresor kommer denna vy automatiskt att förslå resor
                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                             </attributes>
                                                                         </fragment>
-                                                                        <fragment content=" på klockan - både som ">
-                                                                            <attributes>
-                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                            </attributes>
-                                                                        </fragment>
-                                                                        <fragment content="Överblick">
-                                                                            <attributes>
-                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                <font key="NSFont" size="16" name="HelveticaNeue-Italic"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                            </attributes>
-                                                                        </fragment>
-                                                                        <fragment content=" och ">
-                                                                            <attributes>
-                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                            </attributes>
-                                                                        </fragment>
-                                                                        <fragment content="Komplikation">
-                                                                            <attributes>
-                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                <font key="NSFont" size="16" name="HelveticaNeue-Italic"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                            </attributes>
-                                                                        </fragment>
                                                                         <fragment>
-                                                                            <string key="content">.
+                                                                            <string key="content"> även på klockan.
 
 Välkommen till ett smartare sätt att pendla.</string>
                                                                             <attributes>
@@ -1847,8 +1826,8 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                         <constraint firstAttribute="bottom" secondItem="lQ0-PD-kjF" secondAttribute="bottom" id="wRx-7t-7wd"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSe-FJ-35A" userLabel="Space">
-                                                    <rect key="frame" x="349" y="0.0" width="5" height="329"/>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FSe-FJ-35A" userLabel="Space">
+                                                    <rect key="frame" x="349" y="0.0" width="5" height="259"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="5" id="90Y-cd-Ggm"/>
@@ -1868,10 +1847,10 @@ Välkommen till ett smartare sätt att pendla.</string>
                                     <constraint firstAttribute="trailingMargin" secondItem="UXU-pJ-Ubo" secondAttribute="trailing" id="vbb-uy-F3H"/>
                                     <constraint firstItem="UXU-pJ-Ubo" firstAttribute="leading" secondItem="37S-3z-DMK" secondAttribute="leadingMargin" id="wOD-qF-s2b"/>
                                 </constraints>
-                                <size key="customSize" width="370" height="345"/>
+                                <size key="customSize" width="370" height="275"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="LoadingCell" id="l3t-u8-IJZ">
-                                <rect key="frame" x="22" y="710" width="370" height="120"/>
+                                <rect key="frame" x="22" y="640" width="370" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
@@ -2620,17 +2599,17 @@ Välkommen till ett smartare sätt att pendla.</string>
                                             <rect key="frame" x="11" y="0.0" width="395" height="66"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QaQ-dB-dXd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="119" height="66"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="395" height="66"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lTT-4S-XGb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="119" height="6"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="395" height="6"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="6" id="ayH-z4-9rJ" userLabel="height = 6"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Idag Tisdag bla bla" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cb-iK-Mp9">
-                                                            <rect key="frame" x="0.0" y="6" width="119" height="18"/>
+                                                            <rect key="frame" x="0.0" y="6" width="395" height="18"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="no4-fc-YWu"/>
                                                             </constraints>
@@ -2639,7 +2618,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stockholms södra" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVk-DQ-Fsf">
-                                                            <rect key="frame" x="0.0" y="24" width="119" height="18"/>
+                                                            <rect key="frame" x="0.0" y="24" width="395" height="18"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="bnA-CP-tbN"/>
                                                             </constraints>
@@ -2647,7 +2626,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arlanda" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pml-VN-3hz">
-                                                            <rect key="frame" x="0.0" y="42" width="119" height="18"/>
+                                                            <rect key="frame" x="0.0" y="42" width="395" height="18"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="U7C-tx-LtM"/>
                                                             </constraints>
@@ -2655,7 +2634,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S76-Ia-cBl">
-                                                            <rect key="frame" x="0.0" y="60" width="119" height="6"/>
+                                                            <rect key="frame" x="0.0" y="60" width="395" height="6"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="6" id="I62-R9-1Mi" userLabel="height = 6"/>
@@ -2666,29 +2645,9 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                         <constraint firstAttribute="height" constant="66" id="kxW-Qg-Opj"/>
                                                     </constraints>
                                                 </stackView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWj-9U-i5l">
-                                                    <rect key="frame" x="329" y="0.0" width="66" height="66"/>
-                                                    <subviews>
-                                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="O4e-f6-JpH">
-                                                            <rect key="frame" x="8" y="8" width="50" height="50"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="H2n-eC-H9k"/>
-                                                                <constraint firstAttribute="width" constant="50" id="jr7-OF-a9J"/>
-                                                            </constraints>
-                                                        </mapView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstItem="O4e-f6-JpH" firstAttribute="centerX" secondItem="CWj-9U-i5l" secondAttribute="centerX" id="Gcr-jg-4ES"/>
-                                                        <constraint firstAttribute="height" constant="66" id="TBy-m9-ZWl"/>
-                                                        <constraint firstAttribute="width" constant="66" id="iJ7-pJ-rxW"/>
-                                                        <constraint firstItem="O4e-f6-JpH" firstAttribute="centerY" secondItem="CWj-9U-i5l" secondAttribute="centerY" id="vkJ-XK-KN8"/>
-                                                    </constraints>
-                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="66" id="QXj-1m-2Yf"/>
-                                                <constraint firstItem="CWj-9U-i5l" firstAttribute="trailing" secondItem="5Y3-WT-CuR" secondAttribute="trailingMargin" id="Uob-KC-ORz"/>
                                             </constraints>
                                         </stackView>
                                     </subviews>
@@ -2701,7 +2660,6 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <connections>
                                     <outlet property="dateTimeLabel" destination="1cb-iK-Mp9" id="V0p-2x-uLQ"/>
                                     <outlet property="destinationLabel" destination="pml-VN-3hz" id="DeP-zs-nJq"/>
-                                    <outlet property="miniMap" destination="O4e-f6-JpH" id="qhf-Ya-DfS"/>
                                     <outlet property="originLabel" destination="oVk-DQ-Fsf" id="JCh-kX-W6f"/>
                                 </connections>
                             </tableViewCell>
@@ -3062,8 +3020,8 @@ Välkommen till ett smartare sätt att pendla.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="V2Z-ue-vlu"/>
+        <segue reference="8tl-aE-z6t"/>
         <segue reference="6zU-Tw-atf"/>
-        <segue reference="p87-eE-sWT"/>
         <segue reference="ypq-Up-6Af"/>
     </inferredMetricsTieBreakers>
 </document>
