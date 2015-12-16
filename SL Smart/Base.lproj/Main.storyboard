@@ -2434,29 +2434,17 @@ Välkommen till ett smartare sätt att pendla.</string>
                             <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fog-xR-L0k">
-                                    <rect key="frame" x="0.0" y="10" width="414" height="25"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Måndagen den 24:e januari" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9HV-hm-dNp">
-                                            <rect key="frame" x="8" y="0.0" width="414" height="25"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="9HV-hm-dNp" firstAttribute="leading" secondItem="Fog-xR-L0k" secondAttribute="leadingMargin" id="VD3-vA-RLi"/>
-                                        <constraint firstAttribute="trailing" secondItem="9HV-hm-dNp" secondAttribute="trailingMargin" id="W6L-9N-xuM"/>
-                                        <constraint firstAttribute="bottom" secondItem="9HV-hm-dNp" secondAttribute="bottom" id="asJ-5L-UcO"/>
-                                        <constraint firstItem="9HV-hm-dNp" firstAttribute="top" secondItem="Fog-xR-L0k" secondAttribute="top" id="fQa-t3-67G"/>
-                                    </constraints>
-                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Måndagen den 24:e januari" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9HV-hm-dNp">
+                                    <rect key="frame" x="8" y="8.5" width="398" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="Fog-xR-L0k" firstAttribute="leading" secondItem="6Ci-aM-zr7" secondAttribute="leading" id="0CI-LX-S0r"/>
-                                <constraint firstAttribute="trailingMargin" secondItem="Fog-xR-L0k" secondAttribute="trailingMargin" id="Mma-0J-Df3"/>
-                                <constraint firstItem="Fog-xR-L0k" firstAttribute="top" secondItem="6Ci-aM-zr7" secondAttribute="top" constant="10" id="ND7-ed-L5f"/>
-                                <constraint firstAttribute="bottomMargin" secondItem="Fog-xR-L0k" secondAttribute="bottomMargin" id="WXz-Ko-NSx"/>
+                                <constraint firstItem="9HV-hm-dNp" firstAttribute="leading" secondItem="6Ci-aM-zr7" secondAttribute="leadingMargin" id="NVf-tF-gfF"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="9HV-hm-dNp" secondAttribute="trailing" id="VA6-NR-n5u"/>
+                                <constraint firstItem="9HV-hm-dNp" firstAttribute="centerY" secondItem="6Ci-aM-zr7" secondAttribute="centerY" id="iRI-eR-9tI"/>
                             </constraints>
                             <connections>
                                 <outlet property="titleLabel" destination="9HV-hm-dNp" id="iIt-hL-dip"/>
