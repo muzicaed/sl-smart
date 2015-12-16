@@ -23,7 +23,7 @@ class TripDetailsHeaderCell: UITableViewCell, TripCellProtocol {
    */
   func setData(indexPath: NSIndexPath, trip: Trip) {
     dateTimeLabel.text = DateUtils.friendlyDate(trip.tripSegments.last!.arrivalDateTime)
-    originLabel.text = trip.tripSegments.first!.origin.cleanName
-    destinationLabel.text = trip.tripSegments.last!.destination.cleanName
+    originLabel.text = "Från \(trip.tripSegments.first!.origin.cleanName)"
+    destinationLabel.text = "Till \(trip.tripSegments.last!.destination.cleanName)"
   }
 }
