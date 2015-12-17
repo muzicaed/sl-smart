@@ -127,6 +127,8 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       } else if isInvalidLocationData() {
         showInvalidLocationAlert()
         return
+      } else if isInvalidViaLocation() {
+        showInvalidViaAlert()
       }
       routineTrip?.criterions.isAdvanced = isAdvacedCriterions()
     }
@@ -311,6 +313,20 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   }
   
   /**
+   * Show a invalid via location alert
+   */
+  private func showInvalidViaAlert() {
+    let invalidLocationAlert = UIAlertController(
+      title: "Felaktig \"Via station\"",
+      message: "Via kan ej vara samma station som Från eller Till station.",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    invalidLocationAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+    
+    presentViewController(invalidLocationAlert, animated: true, completion: nil)
+  }
+  
+  /**
    * Creats and persists a routine trip based
    * on data on current form. Also navigates back.
    */
@@ -328,6 +344,11 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       return
     }
     
+    if isInvalidViaLocation() {
+      showInvalidViaAlert()
+      return
+    }
+    
     routineTrip?.criterions.isAdvanced = isAdvacedCriterions()
     DataStore.sharedInstance.addRoutineTrip(routineTrip!)
     performSegueWithIdentifier("unwindToManageRoutineTrips", sender: self)
@@ -342,9 +363,24 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       routineTrip?.criterions.dest == nil ||
       (
         routineTrip?.criterions.origin?.siteId == routineTrip?.criterions.dest?.siteId &&
-        routineTrip?.criterions.origin?.siteId != 0
+          routineTrip?.criterions.origin?.siteId != 0
       )
     )
+  }
+  
+  /**
+   * Checks if user entred via location is valid.
+   */
+  private func isInvalidViaLocation() -> Bool {
+    if let crit = routineTrip?.criterions {
+      return (crit.via != nil &&
+        (
+          crit.via?.siteId == crit.origin?.siteId ||
+            crit.via?.siteId == crit.dest?.siteId
+        )
+      )
+    }
+    return true
   }
   
   /**
