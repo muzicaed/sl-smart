@@ -24,7 +24,6 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   var locationSearchType: String?
   var isNewTrip = true
   var hasChanged = false
-  var isAdvancedMode = false
   var isViaSelected = false
   
   
@@ -75,11 +74,13 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       locationSearchType = "Origin"
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
+      vc.searchOnlyForStations = false
       
     } else if segue.identifier == "SearchDestinationLocation" {
       locationSearchType = "Destination"
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
+      vc.searchOnlyForStations = false
       
     } else if segue.identifier == "SearchViaLocation" {
       locationSearchType = "Via"
@@ -205,7 +206,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    */
   override func tableView(tableView: UITableView,
     canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-      return (indexPath.section == 1 && indexPath.row == 2 && isViaSelected && isAdvancedMode)
+      return (indexPath.section == 1 && indexPath.row == 2 && isViaSelected)
   }
   
   /**
@@ -339,7 +340,11 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     return (routineTrip == nil ||
       routineTrip?.criterions.origin == nil ||
       routineTrip?.criterions.dest == nil ||
-      routineTrip?.criterions.origin?.siteId == routineTrip?.criterions.dest?.siteId)
+      (
+        routineTrip?.criterions.origin?.siteId == routineTrip?.criterions.dest?.siteId &&
+        routineTrip?.criterions.origin?.siteId != 0
+      )
+    )
   }
   
   /**

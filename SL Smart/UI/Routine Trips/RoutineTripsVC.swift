@@ -195,7 +195,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
         return CGSizeMake(screenSize.width - 20, 145)
       }
-
+      
       if otherRoutineTrips[indexPath.row].criterions.isAdvanced {
         return CGSizeMake(screenSize.width - 20, 115)
       }
@@ -293,6 +293,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       isShowInfo = true
       isLoading = false
       self.refreshButton?.enabled = false
+      self.collectionView?.reloadSections(NSIndexSet(indexesInRange: NSRange.init(location: 0, length: 1)))
     } else if shouldReload() || force {
       otherRoutineTrips = [RoutineTrip]()
       bestRoutineTrip = nil

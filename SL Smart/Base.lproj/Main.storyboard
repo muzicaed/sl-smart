@@ -690,21 +690,22 @@
                                                         <fragment content="Du har inte skapat några rutiner.  Peka på &quot;">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                                <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                         <fragment content="+">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <font key="NSFont" size="20" name="HelveticaNeue-Medium"/>
+                                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                                <font key="NSOriginalFont" size="16" name="HelveticaNeue"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                         <fragment content="&quot; för att skapa en rutin.">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                                <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -848,17 +849,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vfc-Bp-BtL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="381" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="366" height="43"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQs-hH-31h">
-                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="43"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="15" id="ShY-jj-o7E"/>
-                                                            </constraints>
-                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Från: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAa-c3-h6x">
-                                                            <rect key="frame" x="15" y="0.0" width="50" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="43"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="Tpp-BZ-tSw"/>
                                                             </constraints>
@@ -866,8 +860,8 @@
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X91-GZ-AOv">
-                                                            <rect key="frame" x="65" y="0.0" width="316" height="43"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station eller adress)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X91-GZ-AOv">
+                                                            <rect key="frame" x="50" y="0.0" width="316" height="43"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -876,9 +870,8 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Vfc-Bp-BtL" firstAttribute="leading" secondItem="ran-1g-i0z" secondAttribute="leading" id="5nj-CR-D5o"/>
+                                                <constraint firstItem="Vfc-Bp-BtL" firstAttribute="leading" secondItem="ran-1g-i0z" secondAttribute="leading" constant="15" id="5nj-CR-D5o"/>
                                                 <constraint firstAttribute="bottom" secondItem="Vfc-Bp-BtL" secondAttribute="bottom" id="GvK-JQ-Ugw"/>
-                                                <constraint firstItem="Vfc-Bp-BtL" firstAttribute="centerX" secondItem="ran-1g-i0z" secondAttribute="centerX" id="Hme-qs-Gux"/>
                                                 <constraint firstItem="Vfc-Bp-BtL" firstAttribute="centerY" secondItem="ran-1g-i0z" secondAttribute="centerY" id="No7-x5-X8C"/>
                                                 <constraint firstAttribute="trailing" secondItem="Vfc-Bp-BtL" secondAttribute="trailing" id="v9T-ME-Uv6"/>
                                                 <constraint firstItem="Vfc-Bp-BtL" firstAttribute="top" secondItem="ran-1g-i0z" secondAttribute="top" id="xde-nJ-sBW"/>
@@ -896,17 +889,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CqF-Cv-3K3">
-                                                    <rect key="frame" x="0.0" y="0.0" width="381" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="366" height="43"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vF9-fU-WhF">
-                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="43"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="15" id="7j0-P0-Lj0"/>
-                                                            </constraints>
-                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Till:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTZ-oc-Akg">
-                                                            <rect key="frame" x="15" y="0.0" width="50" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="43"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="Jx2-bl-5e1"/>
                                                             </constraints>
@@ -914,8 +900,8 @@
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5j-V2-bdx">
-                                                            <rect key="frame" x="65" y="0.0" width="316" height="43"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station eller adress)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5j-V2-bdx">
+                                                            <rect key="frame" x="50" y="0.0" width="316" height="43"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -924,18 +910,12 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="CqF-Cv-3K3" firstAttribute="leading" secondItem="e2Z-R7-Fe1" secondAttribute="leading" id="UkM-fK-Y42"/>
-                                                <constraint firstItem="CqF-Cv-3K3" firstAttribute="centerX" secondItem="e2Z-R7-Fe1" secondAttribute="centerX" id="VZ6-Wk-BHH"/>
+                                                <constraint firstItem="CqF-Cv-3K3" firstAttribute="leading" secondItem="e2Z-R7-Fe1" secondAttribute="leading" constant="15" id="UkM-fK-Y42"/>
                                                 <constraint firstAttribute="bottom" secondItem="CqF-Cv-3K3" secondAttribute="bottom" id="Xpo-ho-d8h"/>
                                                 <constraint firstItem="CqF-Cv-3K3" firstAttribute="centerY" secondItem="e2Z-R7-Fe1" secondAttribute="centerY" id="dEZ-y6-MyK"/>
                                                 <constraint firstItem="CqF-Cv-3K3" firstAttribute="top" secondItem="e2Z-R7-Fe1" secondAttribute="top" id="ljH-AD-sl4"/>
                                                 <constraint firstAttribute="trailing" secondItem="CqF-Cv-3K3" secondAttribute="trailing" id="w9E-P6-aho"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="dEZ-y6-MyK"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="WJw-HK-J3L" kind="show" identifier="SearchDestinationLocation" id="zAQ-4U-scN"/>
@@ -949,17 +929,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IC1-Ue-nwS">
-                                                    <rect key="frame" x="0.0" y="8" width="373" height="28"/>
+                                                    <rect key="frame" x="15" y="8" width="358" height="28"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iFn-dD-HMC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="28"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="15" id="MNb-TR-CdR"/>
-                                                            </constraints>
-                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="Via" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="and-h0-FpJ">
-                                                            <rect key="frame" x="15" y="0.0" width="50" height="28"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="28"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" priority="999" constant="50" id="ysn-M4-KH7"/>
                                                             </constraints>
@@ -968,7 +941,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="(Välj station) - Valfri" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IX7-Pa-pBT">
-                                                            <rect key="frame" x="65" y="0.0" width="308" height="28"/>
+                                                            <rect key="frame" x="50" y="0.0" width="308" height="28"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -979,7 +952,7 @@
                                             <constraints>
                                                 <constraint firstItem="IC1-Ue-nwS" firstAttribute="top" relation="lessThanOrEqual" secondItem="YaT-TA-cqe" secondAttribute="topMargin" id="1sH-uo-jc0"/>
                                                 <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="IC1-Ue-nwS" secondAttribute="trailing" id="Isd-Ro-KhY"/>
-                                                <constraint firstItem="IC1-Ue-nwS" firstAttribute="leading" relation="lessThanOrEqual" secondItem="YaT-TA-cqe" secondAttribute="leading" id="aOA-Xm-OaH"/>
+                                                <constraint firstItem="IC1-Ue-nwS" firstAttribute="leading" relation="lessThanOrEqual" secondItem="YaT-TA-cqe" secondAttribute="leading" constant="15" id="aOA-Xm-OaH"/>
                                                 <constraint firstAttribute="bottomMargin" relation="lessThanOrEqual" secondItem="IC1-Ue-nwS" secondAttribute="bottom" id="nMJ-xw-vQz"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1707,7 +1680,22 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-tn-fDB">
                                                                     <rect key="frame" x="0.0" y="33" width="339" height="226"/>
                                                                     <attributedString key="attributedText">
-                                                                        <fragment content="För att kunna använda Smart Resa behöver du beskriva dina resevanor genom att peka på &quot;">
+                                                                        <fragment content="För att kunna använda ">
+                                                                            <attributes>
+                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                        <fragment content="Smart Resa">
+                                                                            <attributes>
+                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue-ThinItalic"/>
+                                                                                <font key="NSOriginalFont" size="16" name="HelveticaNeue-ThinItalic"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                        <fragment content=" behöver du beskriva dina resevanor genom att peka på &quot;">
                                                                             <attributes>
                                                                                 <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
@@ -1717,15 +1705,53 @@
                                                                         <fragment content="Mina ">
                                                                             <attributes>
                                                                                 <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
                                                                                 <font key="NSOriginalFont" size="16" name="HelveticaNeue-Medium"/>
                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                             </attributes>
                                                                         </fragment>
+                                                                        <fragment content="rutiner">
+                                                                            <attributes>
+                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                            </attributes>
+                                                                        </fragment>
                                                                         <fragment>
-                                                                            <string key="content">rutiner". 
+                                                                            <string key="content">". 
 
-Appen lär sig dina vanor och visar automatiskt den resan du vill göra härnäst!  Tips: Har du en Apple Watch kan du snabbt och enkelt se Smart Resa även på klockan.
+Appen lär sig dina vanor och visar automatiskt den resan du vill göra härnäst!  </string>
+                                                                            <attributes>
+                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                        <fragment content="Tips:">
+                                                                            <attributes>
+                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                                                <font key="NSOriginalFont" size="16" name="HelveticaNeue"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                        <fragment content=" Har du en Apple Watch kan du snabbt och enkelt se ">
+                                                                            <attributes>
+                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                        <fragment content="Smart Resa">
+                                                                            <attributes>
+                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue-ThinItalic"/>
+                                                                                <font key="NSOriginalFont" size="16" name="HelveticaNeue-ThinItalic"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                        <fragment>
+                                                                            <string key="content"> även på klockan.
 
 Välkommen till ett smartare sätt att pendla.</string>
                                                                             <attributes>
@@ -2933,9 +2959,9 @@ Välkommen till ett smartare sätt att pendla.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="L0K-5H-KeJ"/>
+        <segue reference="p87-eE-sWT"/>
         <segue reference="6zU-Tw-atf"/>
-        <segue reference="8tl-aE-z6t"/>
+        <segue reference="L0K-5H-KeJ"/>
         <segue reference="zAQ-4U-scN"/>
     </inferredMetricsTieBreakers>
 </document>
