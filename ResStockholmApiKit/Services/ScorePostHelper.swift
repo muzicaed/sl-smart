@@ -14,12 +14,13 @@ public class ScorePostHelper {
   public static let BestTapCountScore = Float(3)
   public static let OtherTapCountScore = Float(2)
   public static let NotBestTripScore = Float(-0.5)
+  public static let WideScoreMod = Float(0.5)
   private static let RequiredDistance = Double(400)
   
   /**
    * Adds score for selected routine trip.
    */
-  public static func changeScoreForRoutineTrip(originId: Int, destinationId: Int, scoreMod: Float) {
+  public static func changeScoreForRoutineTrip(originId: Int, destinationId: Int, score: Float) {
     var scorePosts = DataStore.sharedInstance.retrieveScorePosts()
     let currentLocation = MyLocationHelper.sharedInstance.currentLocation
     let dayOfWeek = DateUtils.getDayOfWeek()
@@ -28,10 +29,10 @@ public class ScorePostHelper {
     let destinationId = destinationId
     
     ScorePostHelper.changeScore(dayOfWeek, hourOfDay: hourOfDay,
-      siteId: originId, isOrigin: true, scoreMod: scoreMod,
+      siteId: originId, isOrigin: true, score: score,
       location: currentLocation, scorePosts: &scorePosts)
     ScorePostHelper.changeScore(dayOfWeek, hourOfDay: hourOfDay,
-      siteId: destinationId, isOrigin: false, scoreMod: scoreMod,
+      siteId: destinationId, isOrigin: false, score: score,
       location: currentLocation, scorePosts: &scorePosts)
     DataStore.sharedInstance.writeScorePosts(scorePosts)
   }
@@ -41,11 +42,11 @@ public class ScorePostHelper {
    */
   private static func changeScore(
     dayInWeek: Int, hourOfDay: Int,
-    siteId: Int, isOrigin: Bool, scoreMod: Float,
+    siteId: Int, isOrigin: Bool, score: Float,
     location: CLLocation?, inout scorePosts: [ScorePost]) {
       
       applyScore(dayInWeek, hourOfDay: hourOfDay,
-        siteId: siteId, isOrigin: isOrigin, scoreMod: scoreMod,
+        siteId: siteId, isOrigin: isOrigin, score: score,
         location: location, scorePosts: &scorePosts)
       
       var daysRange = 1...5
@@ -58,7 +59,7 @@ public class ScorePostHelper {
           if hour > 0 && hour <= 24 {
             print("Extra score: D:\(day) H:\(hour)")
             applyScore(day, hourOfDay: hour,
-              siteId: siteId, isOrigin: isOrigin, scoreMod: (scoreMod * 0.2),
+              siteId: siteId, isOrigin: isOrigin, score: (score * WideScoreMod),
               location: location, scorePosts: &scorePosts)
           }
         }
@@ -74,17 +75,17 @@ public class ScorePostHelper {
   */
   private static func applyScore(
     dayInWeek: Int, hourOfDay: Int,
-    siteId: Int, isOrigin: Bool, scoreMod: Float,
+    siteId: Int, isOrigin: Bool, score: Float,
     location: CLLocation?, inout scorePosts: [ScorePost]) {
       if !modifyScorePost(
         dayInWeek, hourOfDay: hourOfDay, siteId: siteId,
         isOrigin: isOrigin, location: location,
-        allPosts: &scorePosts, scoreMod: scoreMod) {
+        allPosts: &scorePosts, score: score) {
           
           let newScorePost = ScorePost(
             dayInWeek: dayInWeek, hourOfDay: hourOfDay,
-            siteId: siteId, score: scoreMod, isOrigin: isOrigin, location: location)
-          print("Created new score post (Score: \(scoreMod)).")
+            siteId: siteId, score: score, isOrigin: isOrigin, location: location)
+          print("Created new score post (Score: \(score)).")
           print(" - DW: \(dayInWeek), HD: \(hourOfDay), ID: \(siteId), isOri: \(isOrigin)")
           scorePosts.append(newScorePost)
       }
@@ -96,7 +97,7 @@ public class ScorePostHelper {
    */
   private static func modifyScorePost(
     dayInWeek: Int, hourOfDay: Int, siteId: Int, isOrigin: Bool,
-    location: CLLocation?, inout allPosts: [ScorePost], scoreMod: Float) -> Bool {
+    location: CLLocation?, inout allPosts: [ScorePost], score: Float) -> Bool {
       
       for post in allPosts {
         if post.dayInWeek == dayInWeek && post.hourOfDay == hourOfDay &&
@@ -105,7 +106,7 @@ public class ScorePostHelper {
             if let location = location, postLocation = post.location {
               if location.distanceFromLocation(postLocation) < RequiredDistance {
                 print("Found post within distance")
-                post.score += scoreMod
+                post.score += score
                 print("Modified score post (Score: \(post.score)).")
                 return true
               }
