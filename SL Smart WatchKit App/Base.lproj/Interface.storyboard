@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pz1-TM-aL5">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pz1-TM-aL5">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9019"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
     </dependencies>
     <scenes>
         <!--Res Smart-->
@@ -14,6 +14,7 @@
                             <items>
                                 <label alignment="center" verticalAlignment="center" text="Söker resa..." id="8YZ-WO-QNP">
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" pointSize="16"/>
                                 </label>
                                 <group width="1" alignment="left" verticalAlignment="center" layout="vertical" id="2eR-Jh-VnR">
                                     <items>
@@ -30,13 +31,13 @@
                                                     </label>
                                                     <group width="1" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="7Xa-W2-V96" userLabel="Stations">
                                                         <items>
-                                                            <label width="1" alignment="left" text="Testvägen" textAlignment="center" id="QqC-Jn-KFB" userLabel="Karlberg">
+                                                            <label width="1" alignment="left" text="Testvägen" textAlignment="center" minimumScaleFactor="0.90000000000000002" id="QqC-Jn-KFB" userLabel="Karlberg">
                                                                 <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="font" type="system" weight="light" pointSize="11"/>
+                                                                <fontDescription key="font" type="system" weight="light" pointSize="12"/>
                                                             </label>
-                                                            <label width="1" alignment="left" text="Låtsasvägen" textAlignment="center" id="Tmi-wm-EQ3" userLabel="Karlberg">
+                                                            <label width="1" alignment="left" text="Låtsasvägen" textAlignment="center" minimumScaleFactor="0.90000000000000002" id="Tmi-wm-EQ3" userLabel="Karlberg">
                                                                 <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="font" type="system" weight="light" pointSize="11"/>
+                                                                <fontDescription key="font" type="system" weight="light" pointSize="12"/>
                                                             </label>
                                                         </items>
                                                         <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
@@ -110,13 +111,13 @@
                                                                 <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="font" type="system" weight="light" pointSize="14"/>
                                                             </label>
-                                                            <label width="1" alignment="left" text="Kälvestavägen" textAlignment="left" id="GEm-9g-MGo" userLabel="Karlberg">
+                                                            <label width="1" alignment="left" text="Kälvestavägen" textAlignment="left" minimumScaleFactor="0.90000000000000002" id="GEm-9g-MGo" userLabel="Karlberg">
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <fontDescription key="font" type="system" weight="light" pointSize="11"/>
+                                                                <fontDescription key="font" type="system" weight="light" pointSize="12"/>
                                                             </label>
-                                                            <label width="1" alignment="left" text="Karlberg" textAlignment="left" id="y87-G0-DR9" userLabel="Karlberg">
+                                                            <label width="1" alignment="left" text="Karlberg" textAlignment="left" minimumScaleFactor="0.90000000000000002" id="y87-G0-DR9" userLabel="Karlberg">
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <fontDescription key="font" type="system" weight="light" pointSize="11"/>
+                                                                <fontDescription key="font" type="system" weight="light" pointSize="12"/>
                                                             </label>
                                                             <separator alignment="left" id="vwd-Bn-weI">
                                                                 <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -186,19 +187,19 @@
                         </separator>
                         <group width="1" height="0.0" alignment="left" layout="vertical" spacing="2" id="Ha4-Tt-f0c">
                             <items>
-                                <label width="1" alignment="left" text="Placeholder" textAlignment="left" minimumScaleFactor="0.69999999999999996" id="2CW-tm-7mt">
+                                <label width="1" alignment="left" text="Placeholder" textAlignment="left" minimumScaleFactor="0.80000000000000004" id="2CW-tm-7mt">
                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                 </label>
                                 <group width="1" alignment="left" layout="vertical" spacing="0.0" id="BXG-nZ-jcb" userLabel="Origin &lt;-&gt; Destination">
                                     <items>
-                                        <label width="1" alignment="left" text="Testvägen" textAlignment="left" id="fS8-Zo-4gH" userLabel="Origin">
+                                        <label width="1" alignment="left" text="Testvägen" textAlignment="left" minimumScaleFactor="0.90000000000000002" id="fS8-Zo-4gH" userLabel="Origin">
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="font" type="system" weight="light" pointSize="11"/>
+                                            <fontDescription key="font" type="system" weight="light" pointSize="12"/>
                                         </label>
-                                        <label width="1" alignment="left" text="Låtsasvägen" textAlignment="left" id="Wo9-B8-JBH" userLabel="Destination">
+                                        <label width="1" alignment="left" text="Låtsasvägen" textAlignment="left" minimumScaleFactor="0.90000000000000002" id="Wo9-B8-JBH" userLabel="Destination">
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="font" type="system" weight="light" pointSize="11"/>
+                                            <fontDescription key="font" type="system" weight="light" pointSize="12"/>
                                         </label>
                                     </items>
                                 </group>
@@ -209,7 +210,7 @@
                         </separator>
                         <label width="1" alignment="left" text="Söker resor..." textAlignment="center" id="p41-mJ-ZVz">
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="font" type="system" pointSize="14"/>
+                            <fontDescription key="font" type="system" pointSize="16"/>
                         </label>
                         <table alignment="left" spacing="6" id="127-3q-0Gz">
                             <items>
@@ -221,11 +222,11 @@
                                             </separator>
                                             <label width="1" alignment="left" text="00:00 → 23:59" textAlignment="center" id="wna-Ru-M1o" userLabel="Om 6 min">
                                                 <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                                <fontDescription key="font" type="system" pointSize="15"/>
                                             </label>
-                                            <label width="1" alignment="left" text="Restid: xx min" textAlignment="center" id="uBR-S0-BU4" userLabel="Om 6 min">
+                                            <label width="1" alignment="left" text="Restid: xx min" textAlignment="center" minimumScaleFactor="0.90000000000000002" id="uBR-S0-BU4" userLabel="Om 6 min">
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="font" type="system" pointSize="11"/>
+                                                <fontDescription key="font" type="system" pointSize="12"/>
                                             </label>
                                             <group alignment="center" verticalAlignment="center" radius="3" spacing="0.0" id="8N0-G7-wcP" userLabel="Travel type icons">
                                                 <items>
@@ -332,13 +333,13 @@
                                         </label>
                                         <group width="1" height="27" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="6E4-OE-RCg" userLabel="Stations">
                                             <items>
-                                                <label width="1" alignment="left" text="Testvägen" textAlignment="center" id="LoS-cI-Lw2" userLabel="Karlberg">
+                                                <label width="1" alignment="left" text="Testvägen" textAlignment="center" minimumScaleFactor="0.90000000000000002" id="LoS-cI-Lw2" userLabel="Karlberg">
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="font" type="system" weight="light" pointSize="11"/>
+                                                    <fontDescription key="font" type="system" weight="light" pointSize="12"/>
                                                 </label>
-                                                <label width="1" alignment="left" text="Låtsasvägen" textAlignment="center" id="uUk-p3-VO4" userLabel="Karlberg">
+                                                <label width="1" alignment="left" text="Låtsasvägen" textAlignment="center" minimumScaleFactor="0.90000000000000002" id="uUk-p3-VO4" userLabel="Karlberg">
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="font" type="system" weight="light" pointSize="11"/>
+                                                    <fontDescription key="font" type="system" weight="light" pointSize="12"/>
                                                 </label>
                                             </items>
                                             <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
