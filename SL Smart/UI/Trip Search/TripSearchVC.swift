@@ -213,10 +213,10 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       locationPickerRow.originLabel.text = crit.origin?.name
       locationPickerRow.destinationLabel.text = crit.dest?.name
       if locationPickerRow.originLabel.text == nil {
-        locationPickerRow.originLabel.text = "(Välj station)"
+        locationPickerRow.originLabel.text = "(Välj station eller adress)"
       }
       if locationPickerRow.destinationLabel.text == nil {
-        locationPickerRow.destinationLabel.text = "(Välj station)"
+        locationPickerRow.destinationLabel.text = "(Välj station eller adress)"
       }
     }
     tableView.endUpdates()
