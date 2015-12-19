@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextFieldDelegate, TravelTypesResponder {
+class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextFieldDelegate,
+TravelTypesResponder, PickLocationResponder {
   
-  @IBOutlet weak var originLabel: UILabel!
-  @IBOutlet weak var destinationLabel: UILabel!
+  @IBOutlet weak var locationPickerRow: LocationPickerRow!
   @IBOutlet weak var viaLabel: UILabel!
   @IBOutlet weak var tripTitleTextField: UITextField!
   @IBOutlet weak var travelTypesPickerRow: TravelTypesPickerRow!
@@ -48,6 +48,8 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       self.navigationItem.rightBarButtonItems!.removeFirst()
     }
     
+    locationPickerRow.delegate = self
+    locationPickerRow.prepareGestures()
     tripTitleTextField.delegate = self
     tripTitleTextField.addTarget(self,
       action: "textFieldDidChange:",
@@ -133,6 +135,37 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     navigationController?.popViewControllerAnimated(true)
   }
   
+  // MARK: PickLocationResponder
+  
+  /**
+   * Called when user taped on orign or destination row.
+   */
+  func pickLocation(isOrigin: Bool) {
+    if isOrigin {
+      performSegueWithIdentifier("SearchOriginLocation", sender: self)
+    } else {
+      performSegueWithIdentifier("SearchDestinationLocation", sender: self)
+    }
+  }
+  
+  /**
+   * User tapped switch location.
+   */
+  func switchTapped() {
+    hasChanged = true
+    tableView.beginUpdates()
+    let crit = routineTrip!.criterions
+    let oldOrigin = crit.origin
+    let oldOriginId = crit.originId
+    crit.origin = crit.dest
+    crit.originId = crit.destId
+    crit.dest = oldOrigin
+    crit.destId = oldOriginId
+    locationPickerRow.originLabel.text = crit.origin?.name
+    locationPickerRow.destinationLabel.text = crit.dest?.name
+    tableView.endUpdates()
+  }
+  
   @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
   @IBAction func unwindToTripTypePickerParent(segue: UIStoryboardSegue) {}
   
@@ -145,10 +178,10 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
     hasChanged = true
     if locationSearchType == "Origin" {
       routineTrip?.criterions.origin = location
-      originLabel.text = location.name
+      locationPickerRow.originLabel.text = location.name
     } else if locationSearchType == "Destination" {
       routineTrip?.criterions.dest = location
-      destinationLabel.text = location.name
+      locationPickerRow.destinationLabel.text = location.name
     } else if locationSearchType == "Via" {
       routineTrip?.criterions.via = location
       viaLabel.text = location.name
@@ -185,7 +218,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   override func tableView(tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
       if section == 1 {
-        return 3
+        return 2
       }
       return 1
   }
@@ -195,7 +228,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    */
   override func tableView(tableView: UITableView,
     willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-      if indexPath.section == 0 {
+      if indexPath.section == 0 || (indexPath.section == 1 && indexPath.row == 1) {
         return nil
       }
       return indexPath
@@ -206,7 +239,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    */
   override func tableView(tableView: UITableView,
     canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-      return (indexPath.section == 1 && indexPath.row == 2 && isViaSelected)
+      return (indexPath.section == 1 && indexPath.row == 1 && isViaSelected)
   }
   
   /**
@@ -214,7 +247,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
    */
   override func tableView(tableView: UITableView,
     editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-      return (indexPath.section == 1 && indexPath.row == 2) ? .Delete : .None
+      return (indexPath.section == 1 && indexPath.row == 1) ? .Delete : .None
   }
   
   /**
@@ -271,8 +304,8 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
   private func setupEditData() {
     if let trip = routineTrip {
       tripTitleTextField.text = trip.title
-      originLabel.text = trip.criterions.origin?.name
-      destinationLabel.text = trip.criterions.dest?.name
+      locationPickerRow.originLabel.text = trip.criterions.origin?.name
+      locationPickerRow.destinationLabel.text = trip.criterions.dest?.name
       travelTypesPickerRow.updateLabel(trip.criterions)
       
       if trip.criterions.via != nil {

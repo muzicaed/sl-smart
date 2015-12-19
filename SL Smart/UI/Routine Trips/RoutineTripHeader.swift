@@ -12,7 +12,6 @@ import UIKit
 class RoutineTripHeader: UICollectionReusableView {
   
   @IBOutlet weak var titleLabel: UILabel!
-  @IBOutlet weak var arrowLabel: UILabel!
   
   override init(frame: CGRect) {
     super.init(frame: frame)

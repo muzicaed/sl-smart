@@ -22,7 +22,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   var bestRoutineTrip: RoutineTrip?
   var otherRoutineTrips = [RoutineTrip]()
   var selectedRoutineTrip: RoutineTrip?
-  var isShowMore = false
   var isLoading = true
   var isShowInfo = false
   var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
@@ -44,16 +43,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     loadTripData(false)
-  }
-  
-  /**
-   * Title tap
-   */
-  func onMoreTap() {
-    if !self.isLoading {
-      isShowMore = !isShowMore
-      self.collectionView?.reloadSections(NSIndexSet(index: 1))
-    }
   }
   
   /**
@@ -122,11 +111,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         return bestCount
       }
       
-      if isShowMore {
-        return otherRoutineTrips.count
-      }
-      
-      return 0
+      return otherRoutineTrips.count
   }
   
   /**
@@ -159,21 +144,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       withReuseIdentifier: headerCellIdentifier,
       forIndexPath: indexPath) as! RoutineTripHeader
     
-    if indexPath.section == 0 {
-      return reusableView
-    }
-    
-    reusableView.gestureRecognizers = [
-      UITapGestureRecognizer(target: self, action: Selector("onMoreTap"))
-    ]
-    
-    if isShowMore {
-      reusableView.titleLabel.text = "Fler rutiner"
-      reusableView.arrowLabel.text = "▲"
-    } else {
-      reusableView.titleLabel.text = "Visa fler rutiner"
-      reusableView.arrowLabel.text = "▼"
-    }
     return reusableView
   }
   
@@ -298,7 +268,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       otherRoutineTrips = [RoutineTrip]()
       bestRoutineTrip = nil
       selectedRoutineTrip = nil
-      isShowMore = false
       isShowInfo = false
       self.isLoading = true
       refreshButton?.enabled = false
