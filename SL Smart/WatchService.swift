@@ -57,10 +57,11 @@ class WatchService {
       
       if let routineTrip = DataStore.sharedInstance.retriveRoutineTripOnId(routineTripId) {
         
-        ScorePostHelper.addScoreForSelectedRoutineTrip(
+        ScorePostHelper.changeScoreForRoutineTrip(
           routineTrip.criterions.origin!.siteId,
-          destinationId: routineTrip.criterions.dest!.siteId)
-                
+          destinationId: routineTrip.criterions.dest!.siteId,
+          scoreMod: ScorePostHelper.BestTapCountScore)
+        
         let crit = routineTrip.criterions.copy() as! TripSearchCriterion
         let date = NSDate(timeIntervalSinceNow: (60 * 5) * -1)
         crit.date = DateUtils.dateAsDateString(date)

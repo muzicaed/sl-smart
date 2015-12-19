@@ -194,15 +194,24 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func collectionView(
     collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
       if !isShowInfo && !isLoading {
-        if indexPath.section == 0 {
-          selectedRoutineTrip = bestRoutineTrip
-        } else {
+        
+        selectedRoutineTrip = bestRoutineTrip
+        var scoreMod = ScorePostHelper.BestTapCountScore
+        
+        if indexPath.section != 0 {
           selectedRoutineTrip = otherRoutineTrips[indexPath.row]
+          scoreMod = ScorePostHelper.OtherTapCountScore
+          
+          ScorePostHelper.changeScoreForRoutineTrip(
+            bestRoutineTrip!.criterions.origin!.siteId,
+            destinationId: bestRoutineTrip!.criterions.dest!.siteId,
+            scoreMod: ScorePostHelper.NotBestTripScore)
         }
         
-        ScorePostHelper.addScoreForSelectedRoutineTrip(
+        ScorePostHelper.changeScoreForRoutineTrip(
           selectedRoutineTrip!.criterions.origin!.siteId,
-          destinationId: selectedRoutineTrip!.criterions.dest!.siteId)
+          destinationId: selectedRoutineTrip!.criterions.dest!.siteId,
+          scoreMod: scoreMod)
         performSegueWithIdentifier(showTripListSegue, sender: self)
       }
   }
