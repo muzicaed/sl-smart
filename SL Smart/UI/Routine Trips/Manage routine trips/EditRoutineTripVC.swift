@@ -74,13 +74,11 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
       locationSearchType = "Origin"
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
-      vc.searchOnlyForStations = false
       
     } else if segue.identifier == "SearchDestinationLocation" {
       locationSearchType = "Destination"
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
-      vc.searchOnlyForStations = false
       
     } else if segue.identifier == "SearchViaLocation" {
       locationSearchType = "Via"
@@ -128,7 +126,7 @@ class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextF
         showInvalidLocationAlert()
         return
       } else if isInvalidViaLocation() {
-        showInvalidViaAlert()
+        showInvalidViaAlert() 
       }
       routineTrip?.criterions.isAdvanced = isAdvacedCriterions()
     }

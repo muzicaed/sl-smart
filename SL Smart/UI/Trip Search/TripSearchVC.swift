@@ -106,6 +106,10 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
         (criterions?.origin?.siteId == criterions?.dest?.siteId && criterions?.origin?.siteId != 0) {
           showInvalidLocationAlert()
           return false
+      } else if criterions?.via != nil && (
+        criterions?.via?.siteId == criterions?.origin?.siteId ||
+          criterions?.via?.siteId == criterions?.dest?.siteId) {
+            showInvalidViaAlert()
       }
     }
     return true
@@ -358,6 +362,20 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     let invalidLocationAlert = UIAlertController(
       title: "Station saknas",
       message: "Du behöver ange två olika stationer för \"från\" och \"till\".",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    invalidLocationAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+    
+    presentViewController(invalidLocationAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Show a invalid via location alert
+   */
+  private func showInvalidViaAlert() {
+    let invalidLocationAlert = UIAlertController(
+      title: "Felaktig \"Via station\"",
+      message: "Via kan ej vara samma station som Från eller Till station.",
       preferredStyle: UIAlertControllerStyle.Alert)
     invalidLocationAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
