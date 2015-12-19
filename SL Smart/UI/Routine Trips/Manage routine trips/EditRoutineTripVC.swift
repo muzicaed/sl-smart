@@ -128,7 +128,7 @@ TravelTypesResponder, PickLocationResponder {
         showInvalidLocationAlert()
         return
       } else if isInvalidViaLocation() {
-        showInvalidViaAlert() 
+        showInvalidViaAlert()
       }
       routineTrip?.criterions.isAdvanced = isAdvacedCriterions()
     }
@@ -138,8 +138,8 @@ TravelTypesResponder, PickLocationResponder {
   // MARK: PickLocationResponder
   
   /**
-   * Called when user taped on orign or destination row.
-   */
+  * Called when user taped on orign or destination row.
+  */
   func pickLocation(isOrigin: Bool) {
     if isOrigin {
       performSegueWithIdentifier("SearchOriginLocation", sender: self)
@@ -163,6 +163,13 @@ TravelTypesResponder, PickLocationResponder {
     crit.destId = oldOriginId
     locationPickerRow.originLabel.text = crit.origin?.name
     locationPickerRow.destinationLabel.text = crit.dest?.name
+    if locationPickerRow.originLabel.text == nil {
+      locationPickerRow.originLabel.text = "(Välj station)"
+    }
+    if locationPickerRow.destinationLabel.text == nil {
+      locationPickerRow.destinationLabel.text = "(Välj station)"
+    }
+    
     tableView.endUpdates()
   }
   
