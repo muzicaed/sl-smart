@@ -1960,7 +1960,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="0.0" id="GFr-Rc-OsQ">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="0.0" id="GFr-Rc-OsQ">
                             <size key="itemSize" width="370" height="90"/>
                             <size key="headerReferenceSize" width="50" height="35"/>
                             <size key="footerReferenceSize" width="50" height="50"/>
@@ -2216,7 +2216,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="center" reuseIdentifier="PassedTripCell" id="2MI-Pc-ubI" userLabel="PassedTripCell" customClass="TripCell" customModule="SL_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="148" width="370" height="105"/>
+                                <rect key="frame" x="22" y="149" width="370" height="105"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="105"/>
@@ -2457,7 +2457,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="LoadingCell" id="bZc-ja-Cy0">
-                                <rect key="frame" x="22" y="256" width="370" height="120"/>
+                                <rect key="frame" x="22" y="258" width="370" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
@@ -2477,7 +2477,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <size key="customSize" width="370" height="120"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="FoundNoTripsCell" id="Mcb-5M-IbY" userLabel="FoundNoTripsCell">
-                                <rect key="frame" x="22" y="379" width="370" height="120"/>
+                                <rect key="frame" x="22" y="382" width="370" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
@@ -2522,7 +2522,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                             </connections>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LoadMoreFooter" id="SPI-Bo-xvO" userLabel="LoadMoreFooter" customClass="TripFooter" customModule="SL_Smart" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="504" width="414" height="50"/>
+                            <rect key="frame" x="0.0" y="507" width="414" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gR2-gH-c4e">

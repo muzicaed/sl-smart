@@ -21,6 +21,24 @@ class TripCell: UICollectionViewCell {
   @IBOutlet weak var leftBarView: UIView!
   @IBOutlet weak var inAboutLabel: UILabel!
   
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    setup()
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    setup()
+  }
+  
+  /**
+   * Shared init code.
+   */
+  func setup() {
+    layer.cornerRadius = 8.0
+    clipsToBounds = false
+  }
+  
   /**
    * Populate cell data based on passed RoutineTrip
    */

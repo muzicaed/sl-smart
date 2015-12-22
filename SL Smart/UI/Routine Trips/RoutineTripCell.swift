@@ -40,10 +40,12 @@ class RoutineTripCell: UICollectionViewCell {
    */
   func setup() {
     layer.masksToBounds = false
-    layer.shadowOffset = CGSizeMake(2, 2)
-    layer.shadowRadius = 3.5
+    layer.shadowOffset = CGSizeMake(1, 1)
+    layer.shadowRadius = 2.0
     layer.shadowColor = UIColor.blackColor().CGColor
-    layer.shadowOpacity = 0.3
+    layer.shadowOpacity = 0.15
+    layer.cornerRadius = 8.0
+    clipsToBounds = false
   }
   
   /**
