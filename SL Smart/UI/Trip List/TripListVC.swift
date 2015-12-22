@@ -75,7 +75,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
       footer?.displaySpinner(1.0)
       let trip = trips[keys.last!]!.last!
       criterions?.time = DateUtils.dateAsTimeString(
-        trip.tripSegments.last!.departureDateTime.dateByAddingTimeInterval(60))
+        trip.tripSegments.first!.departureDateTime.dateByAddingTimeInterval(60))
       loadTripData()
     }
   }

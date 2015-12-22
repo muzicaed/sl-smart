@@ -12,7 +12,7 @@ import ResStockholmApiKit
 
 class CustomTabVC: UITabBarController {
   
-    let notificationCenter = NSNotificationCenter.defaultCenter()
+  let notificationCenter = NSNotificationCenter.defaultCenter()
   
   /**
    * View is done loading.
@@ -38,6 +38,8 @@ class CustomTabVC: UITabBarController {
   @objc func onTrafficSituations(notification: NSNotification) {
     let count = notification.object as! Int
     let items = self.tabBar.items!
-    items[2].badgeValue = String(count)
+    if count > 0 {
+      items[2].badgeValue = String(count)
+    }
   }
 }
