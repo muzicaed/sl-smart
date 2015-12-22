@@ -44,7 +44,7 @@ class RoutineTripCell: UICollectionViewCell {
     layer.shadowRadius = 2.0
     layer.shadowColor = UIColor.blackColor().CGColor
     layer.shadowOpacity = 0.15
-    layer.cornerRadius = 8.0
+    layer.cornerRadius = 4.0
     clipsToBounds = false
   }
   

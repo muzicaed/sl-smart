@@ -35,7 +35,7 @@ class TripCell: UICollectionViewCell {
    * Shared init code.
    */
   func setup() {
-    layer.cornerRadius = 8.0
+    layer.cornerRadius = 4.0
     clipsToBounds = false
   }
   
