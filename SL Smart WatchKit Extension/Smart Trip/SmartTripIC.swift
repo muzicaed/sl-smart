@@ -150,20 +150,24 @@ class SmartTripIC: WKInterfaceController {
    */
   func messageErrorHandler(error: NSError) {
     print("Error Code: \(error.code)\n\(error.localizedDescription)")
+    isLoading = false
+    WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Failure)
     
     // TODO: WTF?. Check future releases for fix on error 7014, and remove this...
-    if error.code == 7014 {
-      
+    if error.code == WCErrorCode.DeliveryFailed.rawValue {
       // Retry after 1.5 seconds...
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
         NSTimeInterval(1.5), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
       return
+    } else if error.code == WCErrorCode.NotReachable.rawValue {
+      displayError(
+        "Kan inte nå din iPhone",
+        message: "Kontrollera att din iPhone är i närheten och påslagen.")
+        return
     }
     
-    isLoading = false
-    WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Failure)
-    displayError("\(error.localizedDescription) (\(error.code))",
-      message: "\(error.localizedDescription)")
+    displayError("Någon gick fel",
+      message: "Ett okänt fel inträffade. Kontrollera att din iPhone kan nå internet.")
   }
   
   /**
@@ -392,6 +396,7 @@ class SmartTripIC: WKInterfaceController {
    * is reactivaed.
    */
   func hideLiveData() {
+    isLoading = false
     if let text = currentDepartureText {
       if text.rangeOfString("Om") != nil {
         departureTimeLabel.setText("Uppdaterar")

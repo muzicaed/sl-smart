@@ -97,6 +97,7 @@ class GlanceController: SmartTripIC {
   * is reactivaed.
   */
   override func hideLiveData() {
+    isLoading = false
     if let text = currentDepartureText {
       if text.rangeOfString("Om") != nil {
         departureLabel.setText("Uppdaterar")
