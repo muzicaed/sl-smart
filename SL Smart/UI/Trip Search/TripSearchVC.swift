@@ -44,14 +44,6 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   }
   
   /**
-   * View about to appear
-   */
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    pickedDate(NSDate())
-  }
-  
-  /**
    * Before seque is triggred.
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -334,11 +326,12 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
         viaLabel.text = crit.via!.name
         isViaSelected = true
       }
+      
       travelTypePicker.updateLabel(crit)
+      crit.searchForArrival = false
+      destinationArrivalSegmented.selectedSegmentIndex = (crit.searchForArrival) ? 1 : 0
+      pickedDate(NSDate())
     }
-    
-    criterions?.searchForArrival = false
-    pickedDate(NSDate())
     tableView.reloadData()
   }
   

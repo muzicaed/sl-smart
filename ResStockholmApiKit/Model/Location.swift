@@ -61,6 +61,7 @@ public class Location: NSObject, NSCoding, NSCopying {
     nameString: String, type: LocationType) -> (name: String, area: String) {
       
       if type == .Station {
+        print(nameString)
         let res = nameString.rangeOfString("(", options: NSStringCompareOptions.BackwardsSearch)
         if let res = res {
           let name = nameString.substringToIndex(res.startIndex)
@@ -79,8 +80,8 @@ public class Location: NSObject, NSCoding, NSCopying {
       let nameSegments = nameString.characters.split{$0 == ","}.map(String.init)
       if nameSegments.count > 1 {
         return (
-          nameSegments[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()),
-          nameSegments[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + " (Adress)"
+          nameSegments[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()),
+          nameSegments[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + " (Adress)"
         )
       }
       return (nameString, "")
