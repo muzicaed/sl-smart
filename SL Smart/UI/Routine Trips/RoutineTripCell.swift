@@ -84,7 +84,7 @@ class RoutineTripCell: UICollectionViewCell {
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
       inAboutLabel.text = createAboutTimeText(first.departureDateTime)
       
-      tripDurationLabel.text = "Restid: \(trip.durationMin) min"
+      tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
       
       createTripSegmentIcons(trip)
       return

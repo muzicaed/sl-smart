@@ -131,6 +131,21 @@ public class DateUtils {
     return Int(formatter.stringFromDate(NSDate()))!
   }
   
+  /**
+   * Creates human friendly trip duration string.
+   */
+  public static func createTripDurationString(min: Int) -> String {
+    if min < 60 {
+      return "Restid: \(min) min"
+    }
+    
+    var remainder = String(min % 60)
+    if remainder.characters.count <= 1 {
+      remainder = "0" + remainder
+    }
+    return "Restid: \(min / 60):\(remainder) tim"
+  }
+  
   // MARK: Private
   
   private static func getSwedishFormatter() -> NSDateFormatter {

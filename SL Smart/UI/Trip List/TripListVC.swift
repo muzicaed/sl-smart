@@ -37,8 +37,10 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     view.backgroundColor = StyleHelper.sharedInstance.background
     collectionView?.delegate = self
     if trips.count == 0 {
+      print("Loading data")
       loadTripData()
     } else {
+      print("Not reloading")
       isLoading = false
       self.collectionView?.reloadData()
     }

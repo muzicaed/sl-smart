@@ -43,6 +43,7 @@ class TripCell: UICollectionViewCell {
    * Populate cell data based on passed RoutineTrip
    */
   func setupData(trip: Trip) {
+    print("Setup data")
     originLabel.text = trip.tripSegments.first?.origin.cleanName
     destinationLabel.text = trip.tripSegments.last?.destination.cleanName
     if trip.tripSegments.count > 0 {
@@ -54,7 +55,7 @@ class TripCell: UICollectionViewCell {
       inAboutLabel.text = createAboutTimeText(
         trip.tripSegments.first!.departureDateTime)
       
-      tripDurationLabel.text = "Restid: \(trip.durationMin) min"
+      tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
       
       createTripSegmentIcons(trip)
     }
@@ -63,8 +64,8 @@ class TripCell: UICollectionViewCell {
   // MARK: Private methods
   
   /**
-   * Creates an "(om xx min)" for depature time.
-   */
+  * Creates an "(om xx min)" for depature time.
+  */
   private func createAboutTimeText(departure: NSDate) -> String {
     let diffMin = Int((departure.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
     if diffMin <= 30 {
@@ -79,7 +80,7 @@ class TripCell: UICollectionViewCell {
    * Creates trip type icon per segment.
    */
   private func createTripSegmentIcons(trip: Trip) {
-    iconAreaView.subviews.forEach({ $0.removeFromSuperview() })    
+    iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
     var count = 0
     for (_, segment) in trip.tripSegments.enumerate() {
       if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
