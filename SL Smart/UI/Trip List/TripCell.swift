@@ -43,7 +43,6 @@ class TripCell: UICollectionViewCell {
    * Populate cell data based on passed RoutineTrip
    */
   func setupData(trip: Trip) {
-    print("Setup data")
     originLabel.text = trip.tripSegments.first?.origin.cleanName
     destinationLabel.text = trip.tripSegments.last?.destination.cleanName
     if trip.tripSegments.count > 0 {
