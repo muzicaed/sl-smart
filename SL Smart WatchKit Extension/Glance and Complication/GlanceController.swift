@@ -17,6 +17,21 @@ class GlanceController: SmartTripIC {
   @IBOutlet var departureLabel: WKInterfaceLabel!
   
   /**
+   * Updates UI if no trips was found
+   * for best routine.
+   */
+  override func updateUINoTripsFound(bestRoutine: Dictionary<String, AnyObject>) {
+    subTitleLabel.setText(bestRoutine["tit"] as? String)
+    departureLabel.setText("Ingen resa")
+    originLabel.setText("")
+    destinationLabel.setText("")
+    contentGroup.setHidden(false)
+    for (index, _) in icons.enumerate() {
+      iconGroups[index].setHidden(true)
+    }
+  }
+  
+  /**
    * Updates UI using data from iPhone
    */
   override func updateUIData() {

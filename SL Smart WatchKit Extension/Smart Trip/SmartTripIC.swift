@@ -131,12 +131,15 @@ class SmartTripIC: WKInterfaceController {
     isLoading = false
     let hasData = reply["foundData"] as! Bool
     // TODO: Validate reply?, sometime get back freaky data like "Unable to read data" (Not as an error)
+    print(reply)
     if hasData {
       routineData = reply
-      showContentUIState()
-      lastUpdated = NSDate()
-      startRefreshTimer()
-      WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Success)
+      if !handleEmptyTripResponse() {
+        showContentUIState()
+        lastUpdated = NSDate()
+        startRefreshTimer()
+        WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Success)
+      }
     } else {
       print("requestRoutineTripsHandler error: Found no data")
       displayError(
@@ -163,11 +166,47 @@ class SmartTripIC: WKInterfaceController {
       displayError(
         "Kan inte nå din iPhone",
         message: "Kontrollera att din iPhone är i närheten och påslagen.")
-        return
+      return
     }
     
     displayError("Någon gick fel",
       message: "Ett okänt fel inträffade. Kontrollera att din iPhone kan nå internet.")
+  }
+  
+  /**
+   * Checks if no trips was found for best routine,
+   * and updates UI in this case.
+   * Returns true if no trips was found.
+   */
+  func handleEmptyTripResponse() -> Bool {
+    if let data = routineData {
+      let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
+      let trips = bestRoutine["trp"] as! [Dictionary<String, AnyObject>]
+      
+      if trips.count == 0 {
+        WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Failure)
+        updateUINoTripsFound(bestRoutine)
+        return true
+      }
+    }
+    
+    return false
+  }
+  
+  /**
+   * Updates UI if no trips was found
+   * for best routine.
+   */
+  func updateUINoTripsFound(bestRoutine: Dictionary<String, AnyObject>) {
+    titleLabel.setText(bestRoutine["tit"] as? String)
+    departureTimeLabel.setText("Ingen resa")
+    originLabel.setText("")
+    destinationLabel.setText("")
+    containerGroup.setHidden(false)
+    loadingLabel.setHidden(true)
+    for (index, _) in icons.enumerate() {
+      iconGroups[index].setHidden(true)
+    }
   }
   
   /**
@@ -381,7 +420,7 @@ class SmartTripIC: WKInterfaceController {
   private func shouldReloadData() -> Bool {
     print("SmartTripIC shouldReloadData")
     print(" - Routine data: \(routineData)")
-    print(" - Sience update: \(NSDate().timeIntervalSinceDate(lastUpdated) > Double(60 * ReloadRateMinutes))")
+    print(" - Since update: \(NSDate().timeIntervalSinceDate(lastUpdated) > Double(60 * ReloadRateMinutes))")
     return (
       NSDate().timeIntervalSinceDate(lastUpdated) > Double(60 * ReloadRateMinutes) ||
         routineData == nil ||

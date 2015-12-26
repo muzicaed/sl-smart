@@ -16,8 +16,7 @@ public class RoutineService {
    */
   public static func findRoutineTrip(callback: ([RoutineTrip]) -> Void) {
     MyLocationHelper.sharedInstance.requestLocationUpdate { location in
-      LocationSearchService.searchNearby(location) { resTuple in
-        
+      LocationSearchService.searchNearby(location) { resTuple in        
         if let error = resTuple.error {
           if error != SLNetworkError.NoDataFound {
             callback([RoutineTrip]())

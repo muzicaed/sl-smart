@@ -19,6 +19,11 @@ public class SearchTripService {
     criterion: TripSearchCriterion,
     callback: (data: [Trip], error: SLNetworkError?) -> Void) {
       api.tripSearch(criterion) { resTuple in
+        
+        // TODO: Remove test code
+        callback(data: [Trip](), error: resTuple.error)
+        return
+        
         var trips = [Trip]()
         if let data = resTuple.data {
           if data.length == 0 {
