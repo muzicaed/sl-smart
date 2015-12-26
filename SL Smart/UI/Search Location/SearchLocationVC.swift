@@ -51,12 +51,32 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   // MARK: UITableViewController
   
   /**
-  * Number of rows
+  * Number of section
   */
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return 1
+  }
+  
+  /**
+   * Section titles
+   */
+  override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    if searchResult.count == 0 {
+      return "Senaste platser"
+    }
+    
+    return "Sökresultat"
+  }
+  
+  /**
+   * Number of rows
+   */
   override func tableView(tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
       if noResults {
         return 1
+      } else if searchResult.count == 0 {
+        return 2
       }
       return searchResult.count
   }
@@ -70,21 +90,14 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
         let cell = tableView.dequeueReusableCellWithIdentifier(cellNotFoundId,
           forIndexPath: indexPath)
         return cell
+      } else if searchResult.count == 0 {
+        let location = Location(id: 1, name: "Test", type: "ST", lat: "0.0", lon: "0.0")
+        
+        return createLocationCell(indexPath, location: location)
       }
       
       let location = searchResult[indexPath.row]
-      let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
-        forIndexPath: indexPath)
-      cell.textLabel?.text = location.name
-      cell.detailTextLabel?.text = location.area
-      if location.type == .Station {
-        cell.imageView?.image = UIImage(named: "station-icon")
-      } else {
-        cell.imageView?.image = UIImage(named: "address-icon")
-      }
-      cell.imageView?.alpha = 0.4
-      
-      return cell
+      return createLocationCell(indexPath, location: location)
   }
   
   /**
@@ -159,9 +172,29 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   // MARK: Private
   
   
+  
   /**
-  * Show a network error alert
+  * Create location cell.
   */
+  private func createLocationCell(
+    indexPath: NSIndexPath, location: Location) -> UITableViewCell {
+      let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
+        forIndexPath: indexPath)
+      
+      cell.textLabel?.text = location.name
+      cell.detailTextLabel?.text = location.area
+      if location.type == .Station {
+        cell.imageView?.image = UIImage(named: "station-icon")
+      } else {
+        cell.imageView?.image = UIImage(named: "address-icon")
+      }
+      cell.imageView?.alpha = 0.4
+      return cell
+  }
+  
+  /**
+   * Show a network error alert
+   */
   private func showNetworkErrorAlert() {
     let networkErrorAlert = UIAlertController(
       title: "Tjänsten är otillgänglig",
