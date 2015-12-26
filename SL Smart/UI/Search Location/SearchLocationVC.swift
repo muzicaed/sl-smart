@@ -29,6 +29,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    */
   override func viewDidLoad() {
     super.viewDidLoad()
+    MyLocationHelper.sharedInstance.requestLocationUpdate { (_) -> () in
+      self.tableView.reloadData()
+    }
     view.backgroundColor = StyleHelper.sharedInstance.background
     
     if searchOnlyForStations {
@@ -129,25 +132,22 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    */
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
+    var selectedLocation: Location?
     if allowCurrentPosition &&
       !isDisplayingSearchResult &&
       indexPath.section == 0 && indexPath.row == 0 {
-        
-        delegate?.selectedCurrentLocation?()
-        searchController?.active = false
-        performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
-    }
-    
-    var selectedLocation: Location?
-    if isDisplayingSearchResult {
+        selectedLocation = MyLocationHelper.sharedInstance.getCurrentLocation()
+    } else if isDisplayingSearchResult {
       selectedLocation = searchResult[indexPath.row]
     } else {
       selectedLocation = latestLocations[indexPath.row]
     }
-    LatestLocationsStore.sharedInstance.addLatestLocation(selectedLocation!)
-    delegate?.selectedLocationFromSearch(selectedLocation!)
-    searchController?.active = false
-    performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
+    if let loc = selectedLocation {
+      LatestLocationsStore.sharedInstance.addLatestLocation(loc)
+      delegate?.selectedLocationFromSearch(loc)
+      searchController?.active = false
+      performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
+    }
   }
   
   /**
@@ -240,11 +240,17 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    * Create location cell.
    */
   private func createCurrentLocationCell(indexPath: NSIndexPath) -> UITableViewCell {
+    
+    let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation()
     let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
       forIndexPath: indexPath)
-    
-    cell.textLabel?.text = "Nuvarande plats"
-    cell.detailTextLabel?.text = "Använd din nuvarande GPS position som plats."
+    if let loc = currentLocation {
+      cell.textLabel?.text = "Nuvarande plats"
+      cell.detailTextLabel?.text = "\(loc.cleanName), \(loc.area)"
+    } else {
+      cell.textLabel?.text = "Söker nuvarande plats..."
+      cell.detailTextLabel?.text = nil
+    }
     cell.imageView?.image = UIImage(named: "current-position-icon")
     cell.imageView?.alpha = 0.4
     return cell
@@ -279,7 +285,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     
     tableView.deleteSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
     tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
-
+    
     var insIndexPaths = [NSIndexPath]()
     for i in 0..<searchResult.count {
       insIndexPaths.append(NSIndexPath(forRow: i, inSection: 0))
