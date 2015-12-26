@@ -23,8 +23,8 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
       locationManager.delegate = self
       locationManager.requestWhenInUseAuthorization()
       locationManager.pausesLocationUpdatesAutomatically = true
-      locationManager.desiredAccuracy = 30
-      locationManager.distanceFilter = 30
+      locationManager.desiredAccuracy = 10
+      locationManager.distanceFilter = 5
       locationManager.startUpdatingLocation()
     } else {
       fatalError("SignificatLoationChange not available.")
