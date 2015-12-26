@@ -21,7 +21,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   var searchOnlyForStations = true
   var noResults = false
   var isDisplayingSearchResult = false
-  var allowCurrentPosition = true
+  var allowCurrentPosition = false
   var lastCount = 0
   
   /**
@@ -94,7 +94,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
       if noResults {
         return 1
       } else if !isDisplayingSearchResult {
-        if section == 0 {
+        if section == 0 && allowCurrentPosition {
           return 1
         }
         return latestLocations.count
@@ -181,7 +181,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
       } else if query.characters.count == 0 {
         self.isDisplayingSearchResult = false
         self.noResults = false
-        self.lastCount = latestLocations.count  
+        self.lastCount = latestLocations.count
         self.tableView.reloadData()
       }
     }
@@ -260,25 +260,22 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    */
   private func reloadTableAnimated() {
     tableView.beginUpdates()
-    var section = 0
     if !isDisplayingSearchResult {
       isDisplayingSearchResult = true
-      section = 1
-      tableView.deleteSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+      if allowCurrentPosition {
+        tableView.deleteSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
+      }
     }
     
-    var delIndexPaths = [NSIndexPath]()
-    for i in 0..<lastCount {
-      delIndexPaths.append(NSIndexPath(forRow: i, inSection: section))
-    }
-    tableView.deleteRowsAtIndexPaths(delIndexPaths, withRowAnimation: .Fade)
-    
+    tableView.deleteSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
+    tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
+
     var insIndexPaths = [NSIndexPath]()
     for i in 0..<searchResult.count {
       insIndexPaths.append(NSIndexPath(forRow: i, inSection: 0))
     }
     tableView.insertRowsAtIndexPaths(insIndexPaths, withRowAnimation: .Fade)
-
+    
     lastCount = searchResult.count
     tableView.endUpdates()
   }

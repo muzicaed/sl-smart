@@ -51,12 +51,14 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
       vc.searchOnlyForStations = false
+      vc.allowCurrentPosition = true
       searchLocationType = "Origin"
       
     } else if segue.identifier == "SearchDestinationLocation" {
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
       vc.searchOnlyForStations = false
+      vc.allowCurrentPosition = true      
       searchLocationType = "Destination"
       
     } else if segue.identifier == "SearchViaLocation" {
