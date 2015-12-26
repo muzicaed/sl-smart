@@ -9,7 +9,8 @@
 import Foundation
 import ResStockholmApiKit
 
-protocol LocationSearchResponder {
+@objc protocol LocationSearchResponder {
 
   func selectedLocationFromSearch(location: Location) -> Void
+  optional func selectedCurrentLocation() -> Void
 }

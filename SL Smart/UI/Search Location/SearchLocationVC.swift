@@ -128,6 +128,16 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    * User selects row
    */
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    if allowCurrentPosition &&
+      !isDisplayingSearchResult &&
+      indexPath.section == 0 && indexPath.row == 0 {
+        
+        delegate?.selectedCurrentLocation?()
+        searchController?.active = false
+        performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
+    }
+    
     var selectedLocation: Location?
     if isDisplayingSearchResult {
       selectedLocation = searchResult[indexPath.row]
