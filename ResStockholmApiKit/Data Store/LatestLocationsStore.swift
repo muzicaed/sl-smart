@@ -42,6 +42,18 @@ public class LatestLocationsStore {
   }
   
   /**
+   * Retrive "LatestLocations" filtered on stations from data store
+   */
+  public func retrieveLatestStationsOnly() -> [Location] {
+    return cachedLocations.filter() {
+      if $0.type == LocationType.Station {
+        return true
+      }
+      return false
+    }
+  }
+  
+  /**
    * Add a location to latest location list.
    */
   public func addLatestLocation(location: Location) {

@@ -37,7 +37,6 @@ public class Location: NSObject, NSCoding, NSCopying {
     } else {
       self.siteId = id!
     }
-    print(self.siteId)
     
     let nameAreaTuple = Location.extractNameAndArea(name, type: self.type)
     self.name = nameAreaTuple.name

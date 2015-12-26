@@ -75,11 +75,13 @@ TravelTypesResponder, PickLocationResponder {
     if segue.identifier == "SearchOriginLocation" {
       locationSearchType = "Origin"
       let vc = segue.destinationViewController as! SearchLocationVC
+      vc.searchOnlyForStations = false      
       vc.delegate = self
       
     } else if segue.identifier == "SearchDestinationLocation" {
       locationSearchType = "Destination"
       let vc = segue.destinationViewController as! SearchLocationVC
+      vc.searchOnlyForStations = false
       vc.delegate = self
       
     } else if segue.identifier == "SearchViaLocation" {
@@ -164,10 +166,10 @@ TravelTypesResponder, PickLocationResponder {
     locationPickerRow.originLabel.text = crit.origin?.name
     locationPickerRow.destinationLabel.text = crit.dest?.name
     if locationPickerRow.originLabel.text == nil {
-      locationPickerRow.originLabel.text = "(Välj station)"
+      locationPickerRow.originLabel.text = "(Välj station eller adress)"
     }
     if locationPickerRow.destinationLabel.text == nil {
-      locationPickerRow.destinationLabel.text = "(Välj station)"
+      locationPickerRow.destinationLabel.text = "(Välj station eller adress)"
     }
     
     tableView.endUpdates()

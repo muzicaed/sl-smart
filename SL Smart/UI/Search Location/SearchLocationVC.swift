@@ -29,6 +29,10 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     super.viewDidLoad()
     view.backgroundColor = StyleHelper.sharedInstance.background
     
+    if searchOnlyForStations {
+      latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestStationsOnly()
+    }
+    
     searchController = UISearchController(searchResultsController: nil)
     searchController!.searchResultsUpdater = self
     searchController!.delegate = self
