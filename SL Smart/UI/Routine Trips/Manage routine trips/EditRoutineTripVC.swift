@@ -401,7 +401,7 @@ TravelTypesResponder, PickLocationResponder {
       routineTrip?.criterions.dest == nil ||
       (
         routineTrip?.criterions.origin?.siteId == routineTrip?.criterions.dest?.siteId &&
-          routineTrip?.criterions.origin?.siteId != 0
+          routineTrip?.criterions.origin?.siteId != "0"
       )
     )
   }

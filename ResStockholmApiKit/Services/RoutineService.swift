@@ -36,7 +36,7 @@ public class RoutineService {
   * Calcualtes and assinges search score
   * for the found routine trips.
   */
-  private static func scoreRoutineTrips(routineTrips: [RoutineTrip], lcations: [(id: Int, dist: Int)]) {
+  private static func scoreRoutineTrips(routineTrips: [RoutineTrip], lcations: [(id: String, dist: Int)]) {
     let todayTimeTuple = createTimeTuple()
     
     for trip in routineTrips {
@@ -101,7 +101,7 @@ public class RoutineService {
    * Score multiplier based on proximity to location.
    */
   static private func multiplierBasedOnProximityToLocation(
-    trip: RoutineTrip, locations: [(id: Int, dist: Int)]) -> Float {
+    trip: RoutineTrip, locations: [(id: String, dist: Int)]) -> Float {
       for location in locations {
         if trip.criterions.origin!.siteId == location.id {
           var tempMultiplier = Float(1000 - location.dist)

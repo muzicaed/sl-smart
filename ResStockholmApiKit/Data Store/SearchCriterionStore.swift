@@ -12,13 +12,13 @@ public class SearchCriterionStore {
   
   private let LastSearchCriterions = "LastSearchCriterions"
   private let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
-  private var cachedSearchCriterions: TripSearchCriterion?
+  private var cachedSearchCriterions = TripSearchCriterion(originId: "0", destId: "0")
   
   // Singelton pattern
   public static let sharedInstance = SearchCriterionStore()
   
   /**
-   * Preloads routine trip data.
+   * Preloads search criterion
    */
   public func preload() {
     cachedSearchCriterions = retrieveSearchCriterions()
@@ -28,17 +28,17 @@ public class SearchCriterionStore {
    * Retrive "LastSearchCriterions" from data store
    */
   public func retrieveSearchCriterions() -> TripSearchCriterion {
-    if cachedSearchCriterions == nil {
+    if cachedSearchCriterions.origin == nil && cachedSearchCriterions.dest == nil {
       
       if let unarchivedObject = defaults.objectForKey(
         LastSearchCriterions) as? NSData {
           if let crit = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? TripSearchCriterion {
             cachedSearchCriterions = crit
-            return cachedSearchCriterions!
+            return cachedSearchCriterions
           }
       }
     }
-    return cachedSearchCriterions!
+    return cachedSearchCriterions
   }
   
   /**
@@ -47,7 +47,7 @@ public class SearchCriterionStore {
   public func writeLastSearchCriterions(criterions: TripSearchCriterion) {
     let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(criterions)
     defaults.setObject(archivedObject, forKey: LastSearchCriterions)
-    cachedSearchCriterions = criterions
+    cachedSearchCriterions = criterions.copy() as! TripSearchCriterion
     defaults.synchronize()
   }
 }

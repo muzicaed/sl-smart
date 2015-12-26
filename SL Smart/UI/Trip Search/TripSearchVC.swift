@@ -95,7 +95,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
     if identifier == "ShowTripList" {
       if criterions?.dest == nil || criterions?.origin == nil ||
-        (criterions?.origin?.siteId == criterions?.dest?.siteId && criterions?.origin?.siteId != 0) {
+        (criterions?.origin?.siteId == criterions?.dest?.siteId && criterions?.origin?.siteId != "0") {
           showInvalidLocationAlert()
           return false
       } else if criterions?.via != nil && (

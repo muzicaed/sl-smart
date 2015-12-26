@@ -18,7 +18,7 @@ public class ScorePostStore {
   public static let sharedInstance = ScorePostStore()
   
   /**
-   * Preloads routine trip data.
+   * Preloads score post data.
    */
   public func preload() {
     cachedScorePosts = retrieveScorePosts()

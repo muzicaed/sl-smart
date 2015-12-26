@@ -16,9 +16,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   let cellNotFoundId = "NoStationsFound"
   var searchController: UISearchController?
   var searchResult = [Location]()
+  var latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestLocations()
   var delegate: LocationSearchResponder?
   var searchOnlyForStations = true
   var noResults = false
+  var isDisplayingSearchResult = false
   
   /**
    * View is done loading.
@@ -61,11 +63,13 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    * Section titles
    */
   override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if searchResult.count == 0 {
+    if !isDisplayingSearchResult && latestLocations.count > 0 {
       return "Senaste platser"
+    } else if searchResult.count > 0 {
+      return "Sökresultat"
     }
     
-    return "Sökresultat"
+    return nil
   }
   
   /**
@@ -75,9 +79,10 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     numberOfRowsInSection section: Int) -> Int {
       if noResults {
         return 1
-      } else if searchResult.count == 0 {
-        return 2
+      } else if !isDisplayingSearchResult && latestLocations.count > 0 {
+        return latestLocations.count
       }
+      
       return searchResult.count
   }
   
@@ -90,9 +95,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
         let cell = tableView.dequeueReusableCellWithIdentifier(cellNotFoundId,
           forIndexPath: indexPath)
         return cell
-      } else if searchResult.count == 0 {
-        let location = Location(id: 1, name: "Test", type: "ST", lat: "0.0", lon: "0.0")
-        
+      } else if !isDisplayingSearchResult {
+        let location = latestLocations[indexPath.row]
         return createLocationCell(indexPath, location: location)
       }
       
@@ -104,8 +108,14 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    * User selects row
    */
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let selectedLocation = searchResult[indexPath.row]
-    delegate?.selectedLocationFromSearch(selectedLocation)
+    var selectedLocation: Location?
+    if isDisplayingSearchResult {
+      selectedLocation = searchResult[indexPath.row]
+    } else {
+      selectedLocation = latestLocations[indexPath.row]
+    }
+    LatestLocationsStore.sharedInstance.addLatestLocation(selectedLocation!)
+    delegate?.selectedLocationFromSearch(selectedLocation!)
     searchController?.active = false
     performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
   }
@@ -145,10 +155,14 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
               self.tableView.reloadData()
               return
             }
+            self.isDisplayingSearchResult = true
             self.searchResult = resTuple.data
             self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
           }
         }
+      } else if query.characters.count == 0 {
+        self.isDisplayingSearchResult = false
+        self.noResults = false
       }
     }
   }

@@ -58,8 +58,8 @@ class WatchService {
       if let routineTrip = RoutineTripsStore.sharedInstance.retriveRoutineTripOnId(routineTripId) {
         
         ScorePostHelper.changeScoreForRoutineTrip(
-          routineTrip.criterions.origin!.siteId,
-          destinationId: routineTrip.criterions.dest!.siteId,
+          routineTrip.criterions.origin!.siteId!,
+          destinationId: routineTrip.criterions.dest!.siteId!,
           score: ScorePostHelper.BestTapCountScore)
         
         let crit = routineTrip.criterions.copy() as! TripSearchCriterion

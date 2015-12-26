@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 public class ScorePostHelper {
-
+  
   public static let BestTapCountScore = Float(1.5)
   public static let OtherTapCountScore = Float(1)
   public static let NotBestTripScore = Float(-0.5)
@@ -20,21 +20,23 @@ public class ScorePostHelper {
   /**
    * Adds score for selected routine trip.
    */
-  public static func changeScoreForRoutineTrip(originId: Int, destinationId: Int, score: Float) {
-    var scorePosts = ScorePostStore.sharedInstance.retrieveScorePosts()
-    let currentLocation = MyLocationHelper.sharedInstance.currentLocation
-    let dayOfWeek = DateUtils.getDayOfWeek()
-    let hourOfDay = DateUtils.getHourOfDay()
-    let originId = originId
-    let destinationId = destinationId
-    
-    ScorePostHelper.changeScore(dayOfWeek, hourOfDay: hourOfDay,
-      siteId: originId, isOrigin: true, score: score,
-      location: currentLocation, scorePosts: &scorePosts)
-    ScorePostHelper.changeScore(dayOfWeek, hourOfDay: hourOfDay,
-      siteId: destinationId, isOrigin: false, score: score,
-      location: currentLocation, scorePosts: &scorePosts)
-    ScorePostStore.sharedInstance.writeScorePosts(scorePosts)
+  public static func changeScoreForRoutineTrip(
+    originId: String, destinationId: String, score: Float) {
+      
+      var scorePosts = ScorePostStore.sharedInstance.retrieveScorePosts()
+      let currentLocation = MyLocationHelper.sharedInstance.currentLocation
+      let dayOfWeek = DateUtils.getDayOfWeek()
+      let hourOfDay = DateUtils.getHourOfDay()
+      let originId = originId
+      let destinationId = destinationId
+      
+      ScorePostHelper.changeScore(dayOfWeek, hourOfDay: hourOfDay,
+        siteId: originId, isOrigin: true, score: score,
+        location: currentLocation, scorePosts: &scorePosts)
+      ScorePostHelper.changeScore(dayOfWeek, hourOfDay: hourOfDay,
+        siteId: destinationId, isOrigin: false, score: score,
+        location: currentLocation, scorePosts: &scorePosts)
+      ScorePostStore.sharedInstance.writeScorePosts(scorePosts)
   }
   
   /**
@@ -42,7 +44,7 @@ public class ScorePostHelper {
    */
   private static func changeScore(
     dayInWeek: Int, hourOfDay: Int,
-    siteId: Int, isOrigin: Bool, score: Float,
+    siteId: String, isOrigin: Bool, score: Float,
     location: CLLocation?, inout scorePosts: [ScorePost]) {
       
       applyScore(dayInWeek, hourOfDay: hourOfDay,
@@ -75,7 +77,7 @@ public class ScorePostHelper {
   */
   private static func applyScore(
     dayInWeek: Int, hourOfDay: Int,
-    siteId: Int, isOrigin: Bool, score: Float,
+    siteId: String, isOrigin: Bool, score: Float,
     location: CLLocation?, inout scorePosts: [ScorePost]) {
       if !modifyScorePost(
         dayInWeek, hourOfDay: hourOfDay, siteId: siteId,
@@ -96,7 +98,7 @@ public class ScorePostHelper {
    * Finds existing score post
    */
   private static func modifyScorePost(
-    dayInWeek: Int, hourOfDay: Int, siteId: Int, isOrigin: Bool,
+    dayInWeek: Int, hourOfDay: Int, siteId: String, isOrigin: Bool,
     location: CLLocation?, inout allPosts: [ScorePost], score: Float) -> Bool {
       
       for post in allPosts {

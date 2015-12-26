@@ -85,13 +85,13 @@ public class SearchTripService {
       for segmentJson in segmentsArr {
         
         let segment = convertJsonToTripSegment(segmentJson)
-        if !(segment.type == .Walk && segment.distance! < 350) {
+        if !(segment.type == .Walk && segment.distance! < 250) {
           tripSegments.append(segment)
         }
       }
     } else {
       let segment = convertJsonToTripSegment(segmentsJson)
-      if !(segment.type == .Walk && segment.distance! < 350) {
+      if !(segment.type == .Walk && segment.distance! < 250) {
         tripSegments.append(segment)
       }
     }
@@ -123,14 +123,9 @@ public class SearchTripService {
   /**
    * Converts json to location object.
    */
-  private static func convertJsonToLocation(locationJson: JSON) -> Location {
-    var id = 0
-    if let idStr = locationJson["id"].string {
-      id = Int(idStr)!
-    }
-    
+  private static func convertJsonToLocation(locationJson: JSON) -> Location {    
     return Location(
-      id: id,
+      id: locationJson["id"].string,
       name: ensureUTF8(locationJson["name"].string!),
       type: locationJson["type"].string!,
       lat: locationJson["lat"].string!,

@@ -10,7 +10,7 @@ import Foundation
 
 public class Location: NSObject, NSCoding, NSCopying {
   
-  public let siteId: Int
+  public let siteId: String?
   public let name: String
   public let cleanName: String
   public let area: String
@@ -21,8 +21,7 @@ public class Location: NSObject, NSCoding, NSCopying {
   /**
    * Standard init
    */
-  public init(id: Int, name: String, type: String, lat: String, lon: String) {
-    self.siteId = id
+  public init(id: String?, name: String, type: String, lat: String, lon: String) {
     self.lat = Location.convertCoordinateFormat(lat)
     self.lon = Location.convertCoordinateFormat(lon)
     if let enumType = LocationType(rawValue: type) {
@@ -33,6 +32,13 @@ public class Location: NSObject, NSCoding, NSCopying {
       self.type = LocationType.Station
     }
     
+    if self.type == LocationType.Address || id == nil {
+      self.siteId = name
+    } else {
+      self.siteId = id!
+    }
+    print(self.siteId)
+    
     let nameAreaTuple = Location.extractNameAndArea(name, type: self.type)
     self.name = nameAreaTuple.name
     self.area = nameAreaTuple.area
@@ -42,7 +48,7 @@ public class Location: NSObject, NSCoding, NSCopying {
   /**
    * Standard init
    */
-  public init(id: Int, name: String, cleanName: String,
+  public init(id: String, name: String, cleanName: String,
     area: String, type: LocationType, lat: String, lon: String) {
       self.siteId = id
       self.name = name
@@ -118,7 +124,7 @@ public class Location: NSObject, NSCoding, NSCopying {
   * Decoder init
   */
   required convenience public init?(coder aDecoder: NSCoder) {
-    let siteId = aDecoder.decodeIntegerForKey(PropertyKey.siteId)
+    let siteId = aDecoder.decodeObjectForKey(PropertyKey.siteId) as! String
     let name = aDecoder.decodeObjectForKey(PropertyKey.name) as! String
     let cleanName = aDecoder.decodeObjectForKey(PropertyKey.cleanName) as! String
     let area = aDecoder.decodeObjectForKey(PropertyKey.area) as! String
@@ -136,7 +142,7 @@ public class Location: NSObject, NSCoding, NSCopying {
    * Encode this object
    */
   public func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodeInteger(siteId, forKey: PropertyKey.siteId)
+    aCoder.encodeObject(siteId, forKey: PropertyKey.siteId)
     aCoder.encodeObject(name, forKey: PropertyKey.name)
     aCoder.encodeObject(cleanName, forKey: PropertyKey.cleanName)
     aCoder.encodeObject(area, forKey: PropertyKey.area)
@@ -162,7 +168,7 @@ public class Location: NSObject, NSCoding, NSCopying {
   */
   public func copyWithZone(zone: NSZone) -> AnyObject {
     return Location(
-      id: siteId, name: name, cleanName: cleanName,
+      id: siteId!, name: name, cleanName: cleanName,
       area: area, type: LocationType(rawValue: type.rawValue)!,
       lat: lat, lon: lon)
   }

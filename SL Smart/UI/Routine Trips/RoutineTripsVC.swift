@@ -203,14 +203,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
           scoreMod = ScorePostHelper.OtherTapCountScore
           
           ScorePostHelper.changeScoreForRoutineTrip(
-            bestRoutineTrip!.criterions.origin!.siteId,
-            destinationId: bestRoutineTrip!.criterions.dest!.siteId,
+            bestRoutineTrip!.criterions.origin!.siteId!,
+            destinationId: bestRoutineTrip!.criterions.dest!.siteId!,
             score: ScorePostHelper.NotBestTripScore)
         }
         
         ScorePostHelper.changeScoreForRoutineTrip(
-          selectedRoutineTrip!.criterions.origin!.siteId,
-          destinationId: selectedRoutineTrip!.criterions.dest!.siteId,
+          selectedRoutineTrip!.criterions.origin!.siteId!,
+          destinationId: selectedRoutineTrip!.criterions.dest!.siteId!,
           score: scoreMod)
         performSegueWithIdentifier(showTripListSegue, sender: self)
       }

@@ -13,8 +13,8 @@ import Foundation
  */
 public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
 
-  public var originId = 0
-  public var destId = 0
+  public var originId = "0"
+  public var destId = "0"
   public var origin: Location?
   public var dest: Location?
   public var via: Location?
@@ -50,7 +50,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   /**
    * Standard init
    */
-  public init(originId: Int, destId: Int) {
+  public init(originId: String, destId: String) {
     self.originId = originId
     self.destId = destId
   }
@@ -59,7 +59,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
    * Query string.
    */
   public func generateQueryString(beginsWithQuestionMark: Bool) -> String {
-    if (origin == nil && originId == 0) || (dest == nil && destId == 0) {
+    if (origin == nil && originId == "0") || (dest == nil && destId == "0") {
       fatalError("TripSearchCriterion: Can not generate query without origin/destination")
     }
     
@@ -69,7 +69,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     query += createOriginQuery()
     query += createDestinationQuery()
 
-    query += (via != nil) ? "&viaId=\(via!.siteId)" : ""
+    query += (via != nil) ? "&viaId=\(via!.siteId!)" : ""
     query += (date != nil) ? "&date=\(date!)" : ""
     query += (time != nil) ? "&time=\(time!)" : ""
     query += (numChg != 0) ? "&numChg=\(numChg)" : ""
@@ -97,8 +97,8 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   // MARK: NSCoding
   
   required public init?(coder aDecoder: NSCoder) {
-    self.originId = aDecoder.decodeIntegerForKey(PropertyKey.originId)
-    self.destId = aDecoder.decodeIntegerForKey(PropertyKey.destId)
+    self.originId = aDecoder.decodeObjectForKey(PropertyKey.originId) as! String
+    self.destId = aDecoder.decodeObjectForKey(PropertyKey.destId) as! String
     self.origin = aDecoder.decodeObjectForKey(PropertyKey.origin) as! Location?
     self.dest = aDecoder.decodeObjectForKey(PropertyKey.dest) as! Location?
     self.via = aDecoder.decodeObjectForKey(PropertyKey.via) as! Location?
@@ -124,8 +124,8 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
    * Encode this object
    */
   public func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodeInteger(originId, forKey: PropertyKey.originId)
-    aCoder.encodeInteger(destId, forKey: PropertyKey.destId)
+    aCoder.encodeObject(originId, forKey: PropertyKey.originId)
+    aCoder.encodeObject(destId, forKey: PropertyKey.destId)
     aCoder.encodeObject(origin, forKey: PropertyKey.origin)
     aCoder.encodeObject(dest, forKey: PropertyKey.dest)
     aCoder.encodeObject(via, forKey: PropertyKey.via)
@@ -214,7 +214,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     if origin == nil {
       return "&originId=\(originId)"
     } else if origin!.type == .Station {
-      return "&originId=\(origin!.siteId)"
+      return "&originId=\(origin!.siteId!)"
     }
     return "&originCoordLat=\(origin!.lat)&originCoordLong=\(origin!.lon)&originCoordName=\(origin!.name)"
   }
@@ -227,7 +227,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     if dest == nil {
       return "&destId=\(destId)"
     } else if dest!.type == .Station {
-      return "&destId=\(dest!.siteId)"
+      return "&destId=\(dest!.siteId!)"
     }
 
     return "&destCoordLat=\(dest!.lat)&destCoordLong=\(dest!.lon)&destCoordName=\(dest!.name)"
