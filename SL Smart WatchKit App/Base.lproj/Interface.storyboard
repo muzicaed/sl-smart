@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pz1-TM-aL5">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pz1-TM-aL5">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
@@ -331,13 +331,13 @@
                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="font" type="system" weight="light" pointSize="22"/>
                                         </label>
-                                        <group width="1" height="27" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="6E4-OE-RCg" userLabel="Stations">
+                                        <group width="1" height="30" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="6E4-OE-RCg" userLabel="Stations">
                                             <items>
-                                                <label width="1" alignment="left" text=" " textAlignment="center" minimumScaleFactor="0.90000000000000002" id="LoS-cI-Lw2" userLabel="Karlberg">
+                                                <label width="1" alignment="left" text=" Karlberg" textAlignment="center" minimumScaleFactor="0.90000000000000002" id="LoS-cI-Lw2" userLabel="Karlberg">
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="font" type="system" weight="light" pointSize="12"/>
                                                 </label>
-                                                <label width="1" alignment="left" text=" " textAlignment="center" minimumScaleFactor="0.90000000000000002" id="uUk-p3-VO4" userLabel="Karlberg">
+                                                <label width="1" alignment="left" text=" Sture jjjyyyggg" textAlignment="center" minimumScaleFactor="0.90000000000000002" id="uUk-p3-VO4" userLabel="Karlberg">
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="font" type="system" weight="light" pointSize="12"/>
                                                 </label>
@@ -346,13 +346,14 @@
                                         </group>
                                         <group alignment="center" verticalAlignment="center" radius="3" spacing="0.0" id="Ppi-Em-UFZ" userLabel="Travel type icons">
                                             <items>
-                                                <group width="25" alignment="left" hidden="YES" layout="vertical" spacing="0.0" id="fuw-vj-hyW" userLabel="Icon1">
+                                                <group width="25" alignment="left" layout="vertical" spacing="0.0" id="fuw-vj-hyW" userLabel="Icon1">
                                                     <items>
                                                         <imageView width="15" height="15" alignment="center" id="rE4-6S-gD0" userLabel="Image 1"/>
                                                         <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="A0g-vs-I2R" userLabel="Label 1">
                                                             <fontDescription key="font" type="system" pointSize="7"/>
                                                         </label>
                                                     </items>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </group>
                                                 <group width="25" alignment="left" hidden="YES" layout="vertical" spacing="0.0" id="Pi5-kS-S9h" userLabel="Icon2">
                                                     <items>
@@ -387,7 +388,7 @@
                                                     </items>
                                                 </group>
                                             </items>
-                                            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <edgeInsets key="margins" left="1" right="1" top="4" bottom="2"/>
                                         </group>
                                     </items>
