@@ -57,8 +57,9 @@ public class DataStore {
    * Update a routine trip in data store
    */
   public func updateRoutineTrip(index: Int, trip: RoutineTrip) {
+    cachedRoutineTrips = retrieveRoutineTripsFromStore()    
     trip.trips = [Trip]()
-    cachedRoutineTrips[index] = trip
+    cachedRoutineTrips[index] = trip.copy() as! RoutineTrip
     writeRoutineTripsToStore()
   }
   
@@ -66,6 +67,7 @@ public class DataStore {
    * Delete a routine trip from data store
    */
   public func deleteRoutineTrip(index: Int) {
+    cachedRoutineTrips = retrieveRoutineTripsFromStore()
     cachedRoutineTrips.removeAtIndex(index)
     writeRoutineTripsToStore()
   }

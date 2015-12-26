@@ -58,6 +58,8 @@ class RoutineTripCell: UICollectionViewCell {
     
     if let trip = routineTrip.trips.first {
       setupTripData(trip)
+    } else {
+      setNoTripsUI()
     }
     advancedLabel.text = AdvancedCriterionsHelper.createAdvCriterionText(routineTrip.criterions)
   }
@@ -143,5 +145,19 @@ class RoutineTripCell: UICollectionViewCell {
         count++
       }
     }
+  }
+  
+  
+  /**
+   * Sets no trips found UI
+   */
+  private func setNoTripsUI() {
+    iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
+    
+    departureTimeLabel.text = "00:00"
+    arrivalTimeLabel.text = "00:00"
+    inAboutLabel.text = ""
+    
+    tripDurationLabel.text = "Hittade ingen resa..."
   }
 }

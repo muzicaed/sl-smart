@@ -39,7 +39,6 @@ public class SearchTripService {
   private static func convertJsonResponse(jsonDataString: NSData) -> [Trip] {
     var result = [Trip]()
     let data = JSON(data: jsonDataString)
-    
     if checkErrors(data) {
       return [Trip]()
     }
