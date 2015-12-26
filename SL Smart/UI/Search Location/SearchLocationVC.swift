@@ -21,6 +21,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   var searchOnlyForStations = true
   var noResults = false
   var isDisplayingSearchResult = false
+  var allowCurrentPosition = true
+  var lastCount = 0
   
   /**
    * View is done loading.
@@ -32,6 +34,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     if searchOnlyForStations {
       latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestStationsOnly()
     }
+    lastCount = latestLocations.count
     
     searchController = UISearchController(searchResultsController: nil)
     searchController!.searchResultsUpdater = self
@@ -60,6 +63,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   * Number of section
   */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    if allowCurrentPosition && !isDisplayingSearchResult && !noResults {
+      return 2
+    }
     return 1
   }
   
@@ -67,10 +73,13 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    * Section titles
    */
   override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if !isDisplayingSearchResult && latestLocations.count > 0 {
-      return "Senaste platser"
-    } else if searchResult.count > 0 {
+    if isDisplayingSearchResult && searchResult.count > 0 {
       return "Sökresultat"
+    } else if !isDisplayingSearchResult {
+      if (allowCurrentPosition && section == 1) || (!allowCurrentPosition && section == 0){
+        return "Senaste platser"
+      }
+      return nil
     }
     
     return nil
@@ -81,9 +90,13 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    */
   override func tableView(tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
+      
       if noResults {
         return 1
-      } else if !isDisplayingSearchResult && latestLocations.count > 0 {
+      } else if !isDisplayingSearchResult {
+        if section == 0 {
+          return 1
+        }
         return latestLocations.count
       }
       
@@ -100,6 +113,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
           forIndexPath: indexPath)
         return cell
       } else if !isDisplayingSearchResult {
+        if allowCurrentPosition && indexPath.section == 0 {
+          return createCurrentLocationCell(indexPath)
+        }
         let location = latestLocations[indexPath.row]
         return createLocationCell(indexPath, location: location)
       }
@@ -148,8 +164,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   func searchLocation() {
     
     if let query = searchController!.searchBar.text {
-      print("Search")
-      if query.characters.count > 1 {
+      if query.characters.count > 0 {
         self.noResults = false
         LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
           dispatch_async(dispatch_get_main_queue()) {
@@ -159,14 +174,15 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
               self.tableView.reloadData()
               return
             }
-            self.isDisplayingSearchResult = true
             self.searchResult = resTuple.data
-            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
+            self.reloadTableAnimated()
           }
         }
       } else if query.characters.count == 0 {
         self.isDisplayingSearchResult = false
         self.noResults = false
+        self.lastCount = latestLocations.count  
+        self.tableView.reloadData()
       }
     }
   }
@@ -211,6 +227,20 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   }
   
   /**
+   * Create location cell.
+   */
+  private func createCurrentLocationCell(indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
+      forIndexPath: indexPath)
+    
+    cell.textLabel?.text = "Nuvarande plats"
+    cell.detailTextLabel?.text = "Använd din nuvarande GPS position som plats."
+    cell.imageView?.image = UIImage(named: "current-position-icon")
+    cell.imageView?.alpha = 0.4
+    return cell
+  }
+  
+  /**
    * Show a network error alert
    */
   private func showNetworkErrorAlert() {
@@ -222,5 +252,34 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
     
     presentViewController(networkErrorAlert, animated: true, completion: nil)
+  }
+  
+  
+  /**
+   * Reloads table data animated.
+   */
+  private func reloadTableAnimated() {
+    tableView.beginUpdates()
+    var section = 0
+    if !isDisplayingSearchResult {
+      isDisplayingSearchResult = true
+      section = 1
+      tableView.deleteSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+    }
+    
+    var delIndexPaths = [NSIndexPath]()
+    for i in 0..<lastCount {
+      delIndexPaths.append(NSIndexPath(forRow: i, inSection: section))
+    }
+    tableView.deleteRowsAtIndexPaths(delIndexPaths, withRowAnimation: .Fade)
+    
+    var insIndexPaths = [NSIndexPath]()
+    for i in 0..<searchResult.count {
+      insIndexPaths.append(NSIndexPath(forRow: i, inSection: 0))
+    }
+    tableView.insertRowsAtIndexPaths(insIndexPaths, withRowAnimation: .Fade)
+
+    lastCount = searchResult.count
+    tableView.endUpdates()
   }
 }
