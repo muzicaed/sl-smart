@@ -67,7 +67,7 @@ class TripCell: UICollectionViewCell {
   */
   private func createAboutTimeText(departure: NSDate) -> String {
     let diffMin = Int((departure.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
-    if diffMin <= 30 {
+    if diffMin <= 60 {
       let diffMinStr = (diffMin + 1 <= 1) ? "Avgår nu" : "om \(diffMin + 1) min"
       return diffMinStr
     }
