@@ -85,13 +85,13 @@ public class SearchTripService {
       for segmentJson in segmentsArr {
         
         let segment = convertJsonToTripSegment(segmentJson)
-        if !(segment.type == .Walk && segment.distance! < 125) {
+        if !(segment.type == .Walk && segment.distance! < 350) {
           tripSegments.append(segment)
         }
       }
     } else {
       let segment = convertJsonToTripSegment(segmentsJson)
-      if !(segment.type == .Walk && segment.distance! < 125) {
+      if !(segment.type == .Walk && segment.distance! < 350) {
         tripSegments.append(segment)
       }
     }
