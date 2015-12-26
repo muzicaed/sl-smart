@@ -268,7 +268,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Will show big spinner when loading.
    */
   private func loadTripData(force: Bool) {
-    if DataStore.sharedInstance.isRoutineTripsEmpty() {
+    if RoutineTripsStore.sharedInstance.isRoutineTripsEmpty() {
       isShowInfo = true
       isLoading = false
       self.refreshButton?.enabled = false

@@ -62,7 +62,7 @@ TravelTypesResponder, PickLocationResponder {
   override func viewWillDisappear(animated: Bool) {
     super.viewDidDisappear(animated)
     if !isNewTrip && routineTrip != nil && hasChanged {
-      DataStore.sharedInstance.updateRoutineTrip(routineTripIndex, trip: routineTrip!)
+      RoutineTripsStore.sharedInstance.updateRoutineTrip(routineTripIndex, trip: routineTrip!)
     }
   }
   
@@ -388,7 +388,7 @@ TravelTypesResponder, PickLocationResponder {
     }
     
     routineTrip?.criterions.isAdvanced = isAdvacedCriterions()
-    DataStore.sharedInstance.addRoutineTrip(routineTrip!)
+    RoutineTripsStore.sharedInstance.addRoutineTrip(routineTrip!)
     performSegueWithIdentifier("unwindToManageRoutineTrips", sender: self)
   }
   

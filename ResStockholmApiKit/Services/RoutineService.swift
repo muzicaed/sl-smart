@@ -23,7 +23,7 @@ public class RoutineService {
           }
         }
         
-        let allRoutineTrips = DataStore.sharedInstance.retriveRoutineTrips()
+        let allRoutineTrips = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
         scoreRoutineTrips(allRoutineTrips, lcations: resTuple.data)
         createPrioList(allRoutineTrips, callback: callback)
       }
@@ -120,7 +120,7 @@ public class RoutineService {
   static private func scoreBasedOnRoutineSchedule(
     trip: RoutineTrip, today: (dayInWeek: Int, hourOfDay: Int)) -> Float {
       
-      let scorePosts = DataStore.sharedInstance.retrieveScorePosts()
+      let scorePosts = ScorePostStore.sharedInstance.retrieveScorePosts()
       var score = Float(0)
       for post in scorePosts {
         if post.isOrigin && post.siteId == trip.criterions.origin!.siteId ||
@@ -144,7 +144,7 @@ public class RoutineService {
   static private func multiplierBasedOnProximityToScorePostLocation(trip: RoutineTrip) -> Float {
     var highestMulitplier = Float(0.0)
     if let currentLocation = MyLocationHelper.sharedInstance.currentLocation {
-      let scorePosts = DataStore.sharedInstance.retrieveScorePosts()
+      let scorePosts = ScorePostStore.sharedInstance.retrieveScorePosts()
       for post in scorePosts {
         if let postLocation = post.location {
           let distance = postLocation.distanceFromLocation(currentLocation)

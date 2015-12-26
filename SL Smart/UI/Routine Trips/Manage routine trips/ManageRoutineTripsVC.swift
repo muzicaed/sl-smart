@@ -43,7 +43,7 @@ class ManageRoutineTripsVC: UITableViewController {
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    trips = DataStore.sharedInstance.retriveRoutineTrips()
+    trips = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
     tableView.reloadData()
     if trips.count == 0 && navigationItem.rightBarButtonItems?.count > 1 {
       navigationItem.rightBarButtonItems?.removeAtIndex(1)
@@ -142,7 +142,7 @@ class ManageRoutineTripsVC: UITableViewController {
     forRowAtIndexPath indexPath: NSIndexPath) {
       switch editingStyle {
       case .Delete:
-        DataStore.sharedInstance.deleteRoutineTrip(indexPath.row)
+        RoutineTripsStore.sharedInstance.deleteRoutineTrip(indexPath.row)
         trips.removeAtIndex(indexPath.row)
         
         tableView.beginUpdates()
@@ -162,7 +162,7 @@ class ManageRoutineTripsVC: UITableViewController {
   override func tableView(tableView: UITableView,
     moveRowAtIndexPath sourceIndexPath: NSIndexPath,
     toIndexPath destinationIndexPath: NSIndexPath) {
-      DataStore.sharedInstance.moveRoutineTrip(
+      RoutineTripsStore.sharedInstance.moveRoutineTrip(
         sourceIndexPath.row, targetIndex: destinationIndexPath.row)
       let moveTrip = trips.removeAtIndex(sourceIndexPath.row)
       trips.insert(moveTrip, atIndex: destinationIndexPath.row)

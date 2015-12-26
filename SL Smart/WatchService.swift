@@ -55,7 +55,7 @@ class WatchService {
         "error": false
       ]
       
-      if let routineTrip = DataStore.sharedInstance.retriveRoutineTripOnId(routineTripId) {
+      if let routineTrip = RoutineTripsStore.sharedInstance.retriveRoutineTripOnId(routineTripId) {
         
         ScorePostHelper.changeScoreForRoutineTrip(
           routineTrip.criterions.origin!.siteId,

@@ -81,7 +81,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   private func setupApp() {
     StyleHelper.sharedInstance.setupCustomStyle()
     window?.tintColor = StyleHelper.sharedInstance.tintColor
-    DataStore.sharedInstance.preload()
+    SearchCriterionStore.sharedInstance.preload()
+    RoutineTripsStore.sharedInstance.preload()
+    ScorePostStore.sharedInstance.preload()
     MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
   }
   

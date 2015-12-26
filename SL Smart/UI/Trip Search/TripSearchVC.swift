@@ -35,7 +35,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     super.viewDidLoad()
     tableView.editing = true
     view.backgroundColor = StyleHelper.sharedInstance.background
-    criterions = DataStore.sharedInstance.retrieveSearchCriterions()
+    criterions = SearchCriterionStore.sharedInstance.retrieveSearchCriterions()
     restoreUIFromCriterions()
     createDimmer()
     createNotificationListners()
@@ -69,7 +69,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       let vc = segue.destinationViewController as! TripListVC
       vc.criterions = criterions
       if let crit = criterions {
-        DataStore.sharedInstance.writeLastSearchCriterions(crit)
+        SearchCriterionStore.sharedInstance.writeLastSearchCriterions(crit)
       }
       
     } else if segue.identifier == "ShowDateTimePicker" {
