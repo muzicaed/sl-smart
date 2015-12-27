@@ -248,10 +248,10 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
       cell.textLabel?.text = "Nuvarande plats"
       cell.detailTextLabel?.text = "\(loc.cleanName), \(loc.area)"
     } else {
-      cell.textLabel?.text = "Söker nuvarande plats..."
+      cell.textLabel?.text = "Hittar inte nuvarande plats"
       cell.detailTextLabel?.text = nil
     }
-    cell.imageView?.image = UIImage(named: "current-position-icon")
+    cell.imageView?.image = UIImage(named: "current-location-icon")
     cell.imageView?.alpha = 0.4
     return cell
   }
