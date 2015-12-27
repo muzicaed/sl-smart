@@ -94,7 +94,7 @@ class DateUtils {
     let departureDate = DateUtils.convertDateString(departureTime)
     let diffMin = Int((departureDate.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
     if diffMin < 31 {
-      return (diffMin + 1 <= 1) ? "Avgår nu" : "Om \(diffMin + 1) min"
+      return (diffMin + 1 <= 1) ? "Avgår nu" : "Om \(diffMin + 1)m"
     }
     
     return DateUtils.dateAsTimeString(departureDate)

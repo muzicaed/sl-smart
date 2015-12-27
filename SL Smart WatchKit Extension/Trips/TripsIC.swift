@@ -81,8 +81,12 @@ class TripsIC: WKInterfaceController {
       updateTripTable()
       loadingLabel.setHidden(true)
       tripTable.setHidden(false)
+      if data == nil {
+        originLabel.setText(tripData[0]["origin"] as? String)
+        destinationLabel.setText(tripData[0]["destination"] as? String)
+      }
     } else {
-      loadingLabel.setText("Hittade inga resor.")
+      loadingLabel.setText("Inga resor")
     }
     WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Success)    
   }
@@ -93,11 +97,17 @@ class TripsIC: WKInterfaceController {
   * Loads trip data from partner iPhone
   */
   private func loadData() {
+    var id = ""
+    var action = "SearchLastTrip"
+    if let data = data {
+      id = data["id"] as! String
+      action = "SearchTrips"
+    }
     if session.reachable {
       session.sendMessage(
         [
-          "action": "SearchTrips",
-          "id": data!["id"] as! String
+          "action": action,
+          "id": id
         ],
         replyHandler: searchTripsHandler,
         errorHandler: { error in
@@ -118,6 +128,10 @@ class TripsIC: WKInterfaceController {
       titleLabel.setText(data["tit"] as? String)
       originLabel.setText(data["ori"] as? String)
       destinationLabel.setText(data["des"] as? String)
+    } else {
+      titleLabel.setText("Senaste sökning")
+      originLabel.setText("")
+      destinationLabel.setText("")
     }
   }
   
@@ -163,7 +177,9 @@ class TripsIC: WKInterfaceController {
    */
   private func displayError(title: String, message: String?) {
     WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Failure)
-    let okAction = WKAlertAction(title: "Försök igen", style: .Default, handler: {})
+    let okAction = WKAlertAction(title: "Försök igen", style: .Default, handler: {
+      self.popToRootController()
+    })
     presentAlertControllerWithTitle(title,
       message: message, preferredStyle: .Alert, actions: [okAction])
   }

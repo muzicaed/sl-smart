@@ -96,6 +96,13 @@
                                                 <segue destination="KjQ-iU-gEp" kind="push" identifier="ShowTrips" id="0tW-Xe-cdF"/>
                                             </connections>
                                         </button>
+                                        <button width="1" alignment="left" title="Senaste sökningen gjord på din iPhone" id="3yO-um-ygW">
+                                            <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="0.34999999999999998" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="12"/>
+                                            <connections>
+                                                <segue destination="KjQ-iU-gEp" kind="push" identifier="ShowLastSearch" id="QyD-HE-uvv"/>
+                                            </connections>
+                                        </button>
                                         <label alignment="left" text="Fler rutiner" id="QX7-yk-ayb">
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
@@ -426,4 +433,7 @@
             <point key="canvasLocation" x="235" y="672"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="QyD-HE-uvv"/>
+    </inferredMetricsTieBreakers>
 </document>

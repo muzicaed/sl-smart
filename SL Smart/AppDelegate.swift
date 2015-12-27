@@ -67,6 +67,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         WatchService.searchTrips(routineTripId) { response in
           replyHandler(response)
         }
+      case "SearchLastTrip":
+        WatchService.lastTripSearch() { response in
+          replyHandler(response)
+        }
       default:
         fatalError("Unknown WCSession message.")
       }

@@ -374,6 +374,8 @@ class SmartTripIC: WKInterfaceController {
       if let data = routineData {
         return data["best"] as! Dictionary<String, AnyObject>
       }
+    } else if segueIdentifier == "ShowLastSearch" {
+      return nil
     }
     return nil
   }

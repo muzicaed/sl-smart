@@ -88,4 +88,34 @@ class WatchService {
         callback(response)
       }
   }
+  
+  /**
+   * Search last trip made on phone.
+   */
+  static func lastTripSearch(callback: (Dictionary<String, AnyObject>) -> Void) {
+    let crit = SearchCriterionStore.sharedInstance.retrieveSearchCriterions()
+    var response: Dictionary<String, AnyObject> = [
+      "error": false
+    ]
+    
+    if crit.origin == nil || crit.dest == nil {
+      response["trips"] = [Dictionary<String, AnyObject>]()
+      callback(response)
+      return
+    }
+    
+    SearchTripService.tripSearch(crit,
+      callback: { resTuple in
+        if resTuple.error != nil {
+          response["error"] = true
+        }
+        
+        var foundTrips = [Dictionary<String, AnyObject>]()
+        for trip in resTuple.data {
+          foundTrips.append(trip.watchTransferData())
+        }
+        response["trips"] = foundTrips
+        callback(response)
+    })
+  }
 }
