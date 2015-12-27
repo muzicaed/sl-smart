@@ -51,14 +51,14 @@ class RoutineTripCell: UICollectionViewCell {
   /**
    * Populate cell data based on passed RoutineTrip
    */
-  func setupData(routineTrip: RoutineTrip) {
-    tripTitleLabel.text = routineTrip.title! //+ " [\(String(routineTrip.score))]"
+  func setupData(routineTrip: RoutineTrip, isBest: Bool) {
+    tripTitleLabel.text = routineTrip.title! + " [\(String(routineTrip.score))]"
     originLabel.text = routineTrip.criterions.origin?.cleanName
     destinationLabel.text = routineTrip.criterions.dest?.cleanName
     
     if let trip = routineTrip.trips.first {
       setupTripData(trip)
-    } else {
+    } else if isBest {
       setNoTripsUI()
     }
     advancedLabel.text = AdvancedCriterionsHelper.createAdvCriterionText(routineTrip.criterions)

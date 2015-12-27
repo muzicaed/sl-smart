@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 public class RoutineService {
   
@@ -16,7 +17,7 @@ public class RoutineService {
    */
   public static func findRoutineTrip(callback: ([RoutineTrip]) -> Void) {
     MyLocationHelper.sharedInstance.requestLocationUpdate { location in
-      LocationSearchService.searchNearby(location) { resTuple in        
+      LocationSearchService.searchNearby(location) { resTuple in
         if let error = resTuple.error {
           if error != SLNetworkError.NoDataFound {
             callback([RoutineTrip]())
@@ -40,6 +41,7 @@ public class RoutineService {
     let todayTimeTuple = createTimeTuple()
     
     for trip in routineTrips {
+      print("")
       print("---------------------------------")
       print("\(trip.title!)")
       var multiplier = multiplierBasedOnProximityToLocation(trip, locations: lcations)
@@ -48,6 +50,8 @@ public class RoutineService {
       trip.score = (trip.score == 0) ? multiplier * 5: trip.score * multiplier
       print("Multiplier: \(multiplier)")
       print("TOTAL: \(trip.score)")
+      print("---------------------------------")
+      print("")
     }
   }
   
@@ -102,17 +106,40 @@ public class RoutineService {
    */
   static private func multiplierBasedOnProximityToLocation(
     trip: RoutineTrip, locations: [(id: String, dist: Int)]) -> Float {
-      for location in locations {
-        if trip.criterions.origin!.siteId == location.id {
-          var tempMultiplier = Float(1000 - location.dist)
-          tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
-          print("Prox to loc mult: \(tempMultiplier)")
-          return tempMultiplier
+      
+      if trip.criterions.origin?.type == LocationType.Station {
+        print("Proximity check for station")
+        for location in locations {
+          if trip.criterions.origin!.siteId == location.id {
+            return calcMultiplierBasedOnProximityToLocation(location.dist)
+          }
         }
+      } else {
+        print("Proximity check for address")
+        if let currentLocation = MyLocationHelper.sharedInstance.currentLocation {
+          let tripLocation = CLLocation(
+            latitude: Double(trip.criterions.origin!.lat)!,
+            longitude: Double(trip.criterions.origin!.lon)!)
+          
+          let distance = Int(currentLocation.distanceFromLocation(tripLocation))
+          return calcMultiplierBasedOnProximityToLocation(distance)
+        }
+        
       }
+      
+      print("Proximity to location: 0.0")
       return 0.0
   }
   
+  /**
+   * Calculates score multiplier based on distance to location.
+   */
+  static private func calcMultiplierBasedOnProximityToLocation(distance: Int) -> Float {
+    var tempMultiplier = Float(1000 - distance)
+    tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
+    print("Proximity to location: \(tempMultiplier)")
+    return tempMultiplier
+  }
   
   /**
    * Score based on routine scheudle score.
@@ -154,7 +181,7 @@ public class RoutineService {
         }
       }
     }
-    print("Prox to post pos mult: \(highestMulitplier)")
+    print("Proximity to logged post position: \(highestMulitplier)")
     return highestMulitplier
   }
   

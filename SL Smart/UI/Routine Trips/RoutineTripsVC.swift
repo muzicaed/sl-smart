@@ -320,7 +320,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   private func createRoutineTripCell(trip: RoutineTrip, type: String, indexPath: NSIndexPath) -> RoutineTripCell {
     let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(type,
       forIndexPath: indexPath) as! RoutineTripCell
-    cell.setupData(trip)
+    
+    let isBest = (type == cellIdentifier) ? true : false
+    cell.setupData(trip, isBest: isBest)
     return cell
   }
   
