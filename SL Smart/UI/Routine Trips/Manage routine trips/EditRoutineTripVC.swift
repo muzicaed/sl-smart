@@ -237,7 +237,8 @@ TravelTypesResponder, PickLocationResponder {
    */
   override func tableView(tableView: UITableView,
     willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-      if indexPath.section == 0 || (indexPath.section == 1 && indexPath.row == 1) {
+      print("Will select")
+      if indexPath.section == 0 || (indexPath.section == 1 && indexPath.row == 0) {
         return nil
       }
       return indexPath
@@ -288,6 +289,10 @@ TravelTypesResponder, PickLocationResponder {
   override func tableView(tableView: UITableView,
     didSelectRowAtIndexPath indexPath: NSIndexPath) {
       tableView.deselectRowAtIndexPath(indexPath, animated: true)
+      print(indexPath)
+      if indexPath.section == 0 && indexPath.row == 1 {
+        print("Selected via")
+      }
   }
   
   // MARK: UITextFieldDelegate
