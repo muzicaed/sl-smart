@@ -57,7 +57,8 @@ class GlanceController: SmartTripIC {
     print("SmartTripIC updateDepatureUI")
     if let data = routineData {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
-      currentDepartureText = DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String)
+      currentDepartureText = DateUtils.createDepartureTimeString(
+        bestRoutine["dep"] as! String, isWalk: checkIfWalk(bestRoutine))
       departureLabel.setText(currentDepartureText)
       return
     }

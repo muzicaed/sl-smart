@@ -84,26 +84,14 @@ class RoutineTripCell: UICollectionViewCell {
     if let first = trip.tripSegments.first, last = trip.tripSegments.last  {
       departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
-      inAboutLabel.text = createAboutTimeText(first.departureDateTime)
+      inAboutLabel.text = DateUtils.createAboutTimeText(
+        first.departureDateTime, isWalk: first.type == TripType.Walk)
       
       tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
       
       createTripSegmentIcons(trip)
       return
     }
-  }
-  
-  /**
-   * Creates an "(om xx min)" for depature time.
-   */
-  private func createAboutTimeText(departure: NSDate) -> String {
-    let diffMin = Int((departure.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
-    if diffMin <= 60 {
-      let diffMinStr = (diffMin + 1 <= 1) ? " Avgår nu" : " om \(diffMin + 1) min"
-      return diffMinStr
-    }
-    
-    return ""
   }
   
   /**

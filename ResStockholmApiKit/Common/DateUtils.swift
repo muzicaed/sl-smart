@@ -105,6 +105,24 @@ public class DateUtils {
   }
   
   /**
+   * Creates an "(om xx min)" for depature time.
+   */
+  public static func createAboutTimeText(departure: NSDate, isWalk: Bool) -> String {
+    var aboutStr = "Om"
+    if isWalk {
+      aboutStr = "Gå om"
+    }
+    
+    let diffMin = Int((departure.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
+    if diffMin <= 60 {
+      let diffMinStr = (diffMin + 1 <= 1) ? "Avgår nu" : "\(aboutStr) \(diffMin + 1) min"
+      return diffMinStr
+    }
+    
+    return ""
+  }
+  
+  /**
    * Converts a NSDate to a swedish local tuple with
    * date and time string
    * eg. "2015-02-06" and "17:04"

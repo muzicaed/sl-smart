@@ -61,6 +61,33 @@ class DateUtils {
   }
   
   /**
+   * Converts a NSDate to a swedish local friendly
+   * date string.
+   */
+  static func friendlyDateAndTime(date: NSDate) -> String {
+    let formatter = getSwedishFormatter()
+    
+    formatter.dateFormat = "d"
+    var day = formatter.stringFromDate(date)
+    day = (day == "1" || day == "2") ? day + ":a" : day + ":e"
+    
+    formatter.dateFormat = "MMMM"
+    let month = formatter.stringFromDate(date)
+    
+    formatter.dateFormat = "EEEE"
+    var weekDay = formatter.stringFromDate(date)
+    if formatter.stringFromDate(NSDate()) == weekDay {
+      weekDay = "Idag"
+    } else if formatter.stringFromDate(NSDate(timeIntervalSinceNow: 86400)) == weekDay {
+      weekDay = "imorgon"
+    } else {
+      weekDay = "\(day) \(month)"
+    }
+    
+    return ("\(weekDay)")
+  }
+  
+  /**
    * Converts a NSDate to a swedish local tuple with
    * date and time string
    * eg. "2015-02-06" and "17:04"
@@ -90,11 +117,16 @@ class DateUtils {
   /**
    * Creates a human friendly deparure time.
    */
-  static func createDepartureTimeString(departureTime: String) -> String {
+  static func createDepartureTimeString(departureTime: String, isWalk: Bool) -> String {
+    var aboutStr = "Om"
+    if isWalk {
+      aboutStr = "Gå om"
+    }
+    
     let departureDate = DateUtils.convertDateString(departureTime)
     let diffMin = Int((departureDate.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
     if diffMin < 31 {
-      return (diffMin + 1 <= 1) ? "Avgår nu" : "Om \(diffMin + 1) min"
+      return (diffMin + 1 <= 1) ? "Avgår nu" : "\(aboutStr) \(diffMin + 1) min"
     }
     
     return DateUtils.dateAsTimeString(departureDate)

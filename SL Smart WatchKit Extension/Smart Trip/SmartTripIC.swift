@@ -236,7 +236,8 @@ class SmartTripIC: WKInterfaceController {
     print("SmartTripIC updateDepatureUI")
     if let data = routineData {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
-      currentDepartureText = DateUtils.createDepartureTimeString(bestRoutine["dep"] as! String)
+      currentDepartureText = DateUtils.createDepartureTimeString(
+        bestRoutine["dep"] as! String, isWalk: checkIfWalk(bestRoutine))
       departureTimeLabel.setText(currentDepartureText)
       return
     }
@@ -350,6 +351,14 @@ class SmartTripIC: WKInterfaceController {
     
     print(" - No")
     return false
+  }
+  
+  /**
+   * Check if first segment is a walk.
+   */
+  func checkIfWalk(data: Dictionary<String, AnyObject>) -> Bool {
+    let icons = (data["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
+    return (icons.first! == "WALK-NEUTRAL")
   }
   
   /**

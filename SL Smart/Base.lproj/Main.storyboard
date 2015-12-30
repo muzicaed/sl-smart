@@ -1315,7 +1315,7 @@
                                                                                                         <constraint firstAttribute="width" constant="5" id="tFF-GK-Mxw"/>
                                                                                                     </constraints>
                                                                                                 </view>
-                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N69-hk-MJW">
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N69-hk-MJW">
                                                                                                     <rect key="frame" x="50" y="0.0" width="102" height="30"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="height" constant="30" id="ODc-Fi-rjS"/>
@@ -2025,7 +2025,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                                         <constraint firstAttribute="width" constant="5" id="mUJ-dc-5SL"/>
                                                                                                     </constraints>
                                                                                                 </view>
-                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text=" ❨om 15 min❩" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfu-nL-1gC">
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text=" ❨om 15 min❩" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kfu-nL-1gC">
                                                                                                     <rect key="frame" x="55.5" y="0.0" width="84.5" height="30"/>
                                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                                     <constraints>
@@ -3005,9 +3005,9 @@ Välkommen till ett smartare sätt att pendla.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="p87-eE-sWT"/>
-        <segue reference="6zU-Tw-atf"/>
         <segue reference="L0K-5H-KeJ"/>
+        <segue reference="6zU-Tw-atf"/>
+        <segue reference="8tl-aE-z6t"/>
         <segue reference="yy0-ry-irx"/>
     </inferredMetricsTieBreakers>
 </document>

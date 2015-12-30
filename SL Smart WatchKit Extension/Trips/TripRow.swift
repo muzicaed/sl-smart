@@ -40,16 +40,39 @@ class TripRow: NSObject {
    * Set data for row
    */
   func setData(data: Dictionary<String, AnyObject>) {
-    let depDateString = "Gå " + DateUtils.createDepartureTimeString(data["originTime"] as! String)
+    let depDateString = DateUtils.createDepartureTimeString(
+      data["originTime"] as! String, isWalk: checkIfWalk(data))
     let arrivalDate = DateUtils.convertDateString(data["destinationTime"] as! String)
     let humanTripDuration = createHumanTripDuration(data["dur"] as! Int)
     
+    handleTravelDateLabel(data["originTime"] as! String)
     scheduleLabel.setText("\(depDateString) → \(DateUtils.dateAsTimeString(arrivalDate))")
     travelTimeLabel.setText("Restid: \(humanTripDuration)")
     createTripIcons(data["icn"] as! [String], lines: data["lns"] as! [String])
   }
   
   // MARK: Private
+  
+  /**
+   * Handle travel date label
+   */
+  private func handleTravelDateLabel(dateStr: String) {
+    let date = DateUtils.convertDateString(dateStr)
+    if NSCalendar.currentCalendar().isDateInToday(date) {
+      travelDateLabel.setHidden(true)
+    } else {
+      travelDateLabel.setHidden(false)
+      travelDateLabel.setText(DateUtils.friendlyDateAndTime(date))
+    }
+  }
+  
+  /**
+   * Check if first segment is a walk.
+   */
+  private func checkIfWalk(data: Dictionary<String, AnyObject>) -> Bool {
+    let first = (data["icn"] as! [String]).first!
+    return (first == "WALK-NEUTRAL")
+  }
   
   /**
    * Creates trip icons
