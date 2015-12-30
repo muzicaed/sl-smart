@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import ResStockholmApiKit
+import CoreLocation
 
 class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
   
@@ -42,6 +43,15 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    if CLLocationManager.authorizationStatus() == .Denied || !CLLocationManager.locationServicesEnabled() {
+      showLocationServicesNotAllowed()
+      MyLocationHelper.sharedInstance.isStarted = false
+      return
+    } else if !MyLocationHelper.sharedInstance.isStarted {
+      print("Starting location manager")
+      MyLocationHelper.sharedInstance.startLocationManager()
+      MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
+    }
     loadTripData(false)
   }
   
@@ -73,6 +83,15 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Triggered when returning from background.
    */
   func didBecomeActive() {
+    if CLLocationManager.authorizationStatus() == .Denied || !CLLocationManager.locationServicesEnabled() {
+      showLocationServicesNotAllowed()
+      MyLocationHelper.sharedInstance.isStarted = false
+      return
+    } else if !MyLocationHelper.sharedInstance.isStarted {
+      print("Starting location manager")
+      MyLocationHelper.sharedInstance.startLocationManager()
+      MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
+    }
     loadTripData(true)
   }
   
@@ -340,6 +359,20 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   private func createInfoTripCell(indexPath: NSIndexPath) -> UICollectionViewCell {
     return collectionView!.dequeueReusableCellWithReuseIdentifier(infoCellIdentifier,
       forIndexPath: indexPath)
+  }
+  
+  /**
+   * Show no location servie popup
+   */
+  private func showLocationServicesNotAllowed() {
+    let invalidLocationAlert = UIAlertController(
+      title: "Platstjänster ej aktiverad",
+      message: "Kontrollera att platstjänster är aktiverade och att de tillåts för Res Smart.\n\n(Inställningar -> Integritetsskydd -> Platstjänster)",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    invalidLocationAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+    
+    presentViewController(invalidLocationAlert, animated: true, completion: nil)
   }
   
   deinit {

@@ -28,13 +28,7 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
         } else {
           locationManager.requestWhenInUseAuthorization()
         }
-        
-      } else {
-        print("Not authorized...")
-        print(CLLocationManager.authorizationStatus().rawValue)
       }
-    } else {
-      fatalError("locationServices not enabled.")
     }
   }
   
@@ -84,7 +78,7 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
       if status == .AuthorizedWhenInUse {
         startLocationManager()
       } else if status == .Denied {
-        print("USER DID NOT ALLOW!!!")
+        isStarted = false
       }
   }
   
@@ -93,8 +87,24 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
    */
   public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
     if error.code != 0 {
-      fatalError(error.debugDescription)
+      print(error.localizedDescription)
+      isStarted = false
     }
+  }
+  
+  /**
+   * Starts the location manager
+   */
+  public func startLocationManager() {
+    if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+      locationManager.pausesLocationUpdatesAutomatically = true
+      locationManager.desiredAccuracy = 10
+      locationManager.distanceFilter = 5
+      locationManager.startUpdatingLocation()
+      isStarted = true
+      return
+    }
+    isStarted = false
   }
   
   /**
@@ -120,17 +130,6 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
         print("Problem with the data received from geocoder")
       }
     }
-  }
-  
-  /**
-   * Starts the location manager
-   */
-  private func startLocationManager() {
-    locationManager.pausesLocationUpdatesAutomatically = true
-    locationManager.desiredAccuracy = 10
-    locationManager.distanceFilter = 5
-    locationManager.startUpdatingLocation()
-    isStarted = true
   }
   
   /**
