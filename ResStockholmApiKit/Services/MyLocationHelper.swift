@@ -123,9 +123,9 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
       
       if let mark = placemarks?.first {
         if let street = mark.thoroughfare {
-          self.currentStreet = mark.locality! + ", " + street
+          self.currentStreet =  street + ", " + mark.locality!
         } else if let sub = mark.subLocality {
-          self.currentStreet = mark.locality! + ", " + sub
+          self.currentStreet = sub + ", " + mark.locality!
         }
       } else {
         print("Problem with the data received from geocoder")
