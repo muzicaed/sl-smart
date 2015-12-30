@@ -47,10 +47,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       showLocationServicesNotAllowed()
       MyLocationHelper.sharedInstance.isStarted = false
       return
-    } else if !MyLocationHelper.sharedInstance.isStarted {
-      print("Starting location manager")
-      MyLocationHelper.sharedInstance.startLocationManager()
-      MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
     }
     loadTripData(false)
   }
@@ -87,10 +83,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       showLocationServicesNotAllowed()
       MyLocationHelper.sharedInstance.isStarted = false
       return
-    } else if !MyLocationHelper.sharedInstance.isStarted {
-      print("Starting location manager")
-      MyLocationHelper.sharedInstance.startLocationManager()
-      MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
     }
     loadTripData(true)
   }

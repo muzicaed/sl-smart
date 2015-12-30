@@ -88,7 +88,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     SearchCriterionStore.sharedInstance.preload()
     RoutineTripsStore.sharedInstance.preload()
     ScorePostStore.sharedInstance.preload()
-    MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
+    
+    //MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
   }
   
   /**

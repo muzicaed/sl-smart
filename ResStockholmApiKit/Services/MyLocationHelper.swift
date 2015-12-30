@@ -36,10 +36,14 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
    * Request a force updat of current location.
    */
   public func requestLocationUpdate(callback: ((location: CLLocation) -> ())?) {
+    print(currentLocation)
     if let location = currentLocation {
       callback?(location: location)
+      self.callback = nil
+      return
     }
     
+    locationManager.requestLocation()
     self.callback = callback
   }
   
@@ -74,8 +78,7 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
         return
       }
       
-      print(CLLocationManager.authorizationStatus().rawValue)
-      if status == .AuthorizedWhenInUse {
+      if status == .AuthorizedWhenInUse && !isStarted {
         startLocationManager()
       } else if status == .Denied {
         isStarted = false
@@ -97,6 +100,7 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
    */
   public func startLocationManager() {
     if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+      print("Start location manager")
       locationManager.pausesLocationUpdatesAutomatically = true
       locationManager.desiredAccuracy = 10
       locationManager.distanceFilter = 5
@@ -123,9 +127,6 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
         } else if let sub = mark.subLocality {
           self.currentStreet = mark.locality! + ", " + sub
         }
-        print(self.currentStreet)
-        print("Sub: \(mark.subLocality)")
-        print("St: \(mark.thoroughfare)")
       } else {
         print("Problem with the data received from geocoder")
       }
