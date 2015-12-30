@@ -143,34 +143,11 @@ class TripsIC: WKInterfaceController {
       tripTable.setNumberOfRows(tripData.count, withRowType: "TripRow")
       for (index, data) in tripData.enumerate() {
         let row = tripTable.rowControllerAtIndex(index) as! TripRow
-        let depDateString = DateUtils.createDepartureTimeString(data["originTime"] as! String)
-        let arrivalDate = DateUtils.convertDateString(data["destinationTime"] as! String)
-        let humanTripDuration = createHumanTripDuration(data["dur"] as! Int)
-        
-        row.scheduleLabel.setText("\(depDateString) → \(DateUtils.dateAsTimeString(arrivalDate))")
-        row.travelTimeLabel.setText("Restid: \(humanTripDuration)")
-        row.createTripIcons(data["icn"] as! [String], lines: data["lns"] as! [String])
-        
+        row.setData(data)
       }
     }
     loadingLabel.setHidden(true)
-  }
-  
-  /**
-   * Creates a human readable trip duration string.
-   * eg "1:32" eller "20 minuter"
-   */
-  private func createHumanTripDuration(duration: Int) -> String {
-    if duration < 60 {
-      return "\(duration) minuter"
-    }
-    
-    var remainder = String(duration % 60)
-    if remainder.characters.count <= 1 {
-      remainder = "0" + remainder
-    }
-    return "\(duration / 60):\(remainder)h"
-  }
+  }  
   
   /**
    * Displays an error

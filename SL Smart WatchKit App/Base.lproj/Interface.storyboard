@@ -109,11 +109,8 @@
                                         <table alignment="left" spacing="6" id="fRr-Pe-7eK">
                                             <items>
                                                 <tableRow identifier="RoutineRow" id="pX4-Ta-K8Y" customClass="OtherRoutinesRow" customModule="SL_Smart">
-                                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" radius="0.0" spacing="1" id="P5p-Mh-lmm">
+                                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="1" id="P5p-Mh-lmm">
                                                         <items>
-                                                            <separator alignment="left" id="uxc-jB-BJb">
-                                                                <color key="color" red="0.88965606689453125" green="0.19124263525009155" blue="0.94072139263153076" alpha="1" colorSpace="calibratedRGB"/>
-                                                            </separator>
                                                             <label width="1" alignment="left" text="Hem från jobbet" textAlignment="left" id="BWu-h1-71D">
                                                                 <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="font" type="system" weight="light" pointSize="14"/>
@@ -126,12 +123,9 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="font" type="system" weight="light" pointSize="12"/>
                                                             </label>
-                                                            <separator alignment="left" id="vwd-Bn-weI">
-                                                                <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            </separator>
                                                         </items>
                                                         <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
-                                                        <edgeInsets key="margins" left="2" right="2" top="0.0" bottom="0.0"/>
+                                                        <edgeInsets key="margins" left="4" right="4" top="2" bottom="2"/>
                                                     </group>
                                                     <connections>
                                                         <outlet property="destinationLabel" destination="y87-G0-DR9" id="1w8-6b-y1m"/>
@@ -224,18 +218,19 @@
                                 <tableRow identifier="TripRow" selectable="NO" id="IQa-Qh-Uig" customClass="TripRow" customModule="SL_Smart">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="1" id="OJI-g6-70X">
                                         <items>
-                                            <separator alignment="left" id="AK8-x4-8we">
-                                                <color key="color" red="0.88965606689999999" green="0.19124263529999999" blue="0.94072139259999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            </separator>
-                                            <label width="1" alignment="left" text="00:00 → 23:59" textAlignment="center" id="wna-Ru-M1o" userLabel="Om 6 min">
+                                            <label width="1" alignment="left" text="00:00 → 23:59" textAlignment="left" minimumScaleFactor="0.80000000000000004" id="wna-Ru-M1o" userLabel="Om 6 min">
                                                 <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="font" type="system" pointSize="14"/>
                                             </label>
-                                            <label width="1" alignment="left" text="Restid: xx min" textAlignment="center" minimumScaleFactor="0.90000000000000002" id="uBR-S0-BU4" userLabel="Om 6 min">
+                                            <label width="1" alignment="left" text="Imorgon" textAlignment="left" minimumScaleFactor="0.90000000000000002" id="wee-4e-Rtu" userLabel="Day">
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="font" type="system" pointSize="12"/>
                                             </label>
-                                            <group alignment="center" verticalAlignment="center" radius="3" spacing="0.0" id="8N0-G7-wcP" userLabel="Travel type icons">
+                                            <label width="1" alignment="left" text="Restid: xx min" textAlignment="left" minimumScaleFactor="0.90000000000000002" id="uBR-S0-BU4" userLabel="Travel time">
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                            </label>
+                                            <group alignment="left" verticalAlignment="center" radius="3" spacing="0.0" id="8N0-G7-wcP" userLabel="Travel type icons">
                                                 <items>
                                                     <group width="25" alignment="left" layout="vertical" spacing="0.0" id="Ehp-Yn-pzv" userLabel="Icon1">
                                                         <items>
@@ -282,8 +277,7 @@
                                                 <edgeInsets key="margins" left="1" right="1" top="4" bottom="2"/>
                                             </group>
                                         </items>
-                                        <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
-                                        <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                        <edgeInsets key="margins" left="0.0" right="0.0" top="2" bottom="2"/>
                                     </group>
                                     <connections>
                                         <outlet property="icnGrp1" destination="Ehp-Yn-pzv" id="b1M-ST-UHy"/>
@@ -302,6 +296,7 @@
                                         <outlet property="icon4" destination="7g6-jP-NdE" id="jLe-En-2Yy"/>
                                         <outlet property="icon5" destination="Iwn-jN-xUH" id="6Bg-yg-tuE"/>
                                         <outlet property="scheduleLabel" destination="wna-Ru-M1o" id="yh7-Xx-kXl"/>
+                                        <outlet property="travelDateLabel" destination="wee-4e-Rtu" id="NmH-ta-ztG"/>
                                         <outlet property="travelTimeLabel" destination="uBR-S0-BU4" id="Ih5-yN-Ulc"/>
                                     </connections>
                                 </tableRow>

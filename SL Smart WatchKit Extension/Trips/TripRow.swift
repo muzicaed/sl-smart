@@ -14,6 +14,7 @@ class TripRow: NSObject {
   
   @IBOutlet var scheduleLabel: WKInterfaceLabel!
   @IBOutlet var travelTimeLabel: WKInterfaceLabel!
+  @IBOutlet var travelDateLabel: WKInterfaceLabel!
   
   @IBOutlet var icon1: WKInterfaceImage!
   @IBOutlet var icon2: WKInterfaceImage!
@@ -36,9 +37,24 @@ class TripRow: NSObject {
   var iconGroups = [WKInterfaceGroup]()
 
   /**
+   * Set data for row
+   */
+  func setData(data: Dictionary<String, AnyObject>) {
+    let depDateString = "Gå " + DateUtils.createDepartureTimeString(data["originTime"] as! String)
+    let arrivalDate = DateUtils.convertDateString(data["destinationTime"] as! String)
+    let humanTripDuration = createHumanTripDuration(data["dur"] as! Int)
+    
+    scheduleLabel.setText("\(depDateString) → \(DateUtils.dateAsTimeString(arrivalDate))")
+    travelTimeLabel.setText("Restid: \(humanTripDuration)")
+    createTripIcons(data["icn"] as! [String], lines: data["lns"] as! [String])
+  }
+  
+  // MARK: Private
+  
+  /**
    * Creates trip icons
    */
-  func createTripIcons(iconNames: [String], lines: [String]) {
+  private func createTripIcons(iconNames: [String], lines: [String]) {
     prepareIcons()
     let nameCount = iconNames.count
     for (index, iconImage) in icons.enumerate() {
@@ -57,13 +73,11 @@ class TripRow: NSObject {
     }
   }
   
-  // MARK: Private
-  
   /**
   * Stores all trip icons in a array
   * for easier manipulation.
   */
-  func prepareIcons() {
+  private func prepareIcons() {
     icons = [WKInterfaceImage]()
     icons.append(icon1)
     icons.append(icon2)
@@ -82,5 +96,21 @@ class TripRow: NSObject {
     iconGroups.append(icnGrp3)
     iconGroups.append(icnGrp4)
     iconGroups.append(icnGrp5)
-  }  
+  }
+  
+  /**
+   * Creates a human readable trip duration string.
+   * eg "1:32" eller "20 minuter"
+   */
+  private func createHumanTripDuration(duration: Int) -> String {
+    if duration < 60 {
+      return "\(duration) minuter"
+    }
+    
+    var remainder = String(duration % 60)
+    if remainder.characters.count <= 1 {
+      remainder = "0" + remainder
+    }
+    return "\(duration / 60):\(remainder)h"
+  }
 }
