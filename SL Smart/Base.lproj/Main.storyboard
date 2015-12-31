@@ -1921,6 +1921,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                     </navigationItem>
                     <connections>
                         <segue destination="1Cw-O1-Jfo" kind="show" identifier="ShowTripList" id="8tl-aE-z6t"/>
+                        <segue destination="9oH-AC-RT9" kind="presentation" identifier="ShowSubscribe" id="eSZ-pd-E0u"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZAh-Kv-8Zr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1946,6 +1947,127 @@ Välkommen till ett smartare sätt att pendla.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EdR-la-kgO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="340" y="1857"/>
+        </scene>
+        <!--Prenumerera-->
+        <scene sceneID="Hmy-Fs-bl5">
+            <objects>
+                <collectionViewController title="Prenumerera" id="9oH-AC-RT9" customClass="SubscribeVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="bLo-Xf-nXV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fJS-hl-452">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InfoRow" id="wdM-5H-c4m">
+                                <rect key="frame" x="22" y="20" width="370" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bla bla" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbz-vX-7Gw">
+                                            <rect key="frame" x="159.5" y="15" width="51.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="Nbz-vX-7Gw" firstAttribute="centerX" secondItem="wdM-5H-c4m" secondAttribute="centerX" id="ZMV-6z-VFr"/>
+                                    <constraint firstItem="Nbz-vX-7Gw" firstAttribute="centerY" secondItem="wdM-5H-c4m" secondAttribute="centerY" id="fd8-SC-BpC"/>
+                                </constraints>
+                                <size key="customSize" width="370" height="50"/>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SubscriptionRow" id="qfs-Dm-H33">
+                                <rect key="frame" x="22" y="80" width="370" height="210"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="210"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Betala varje månad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uY9-C4-SdB">
+                                            <rect key="frame" x="8" y="18" width="354" height="21.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10kr / mån" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6D-UG-yKm">
+                                            <rect key="frame" x="8" y="49.5" width="354" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prova gratis en vecka" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drh-G9-r3L">
+                                            <rect key="frame" x="8" y="149" width="354" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kan avslutas direkt från din iPhone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOB-Pm-snD">
+                                            <rect key="frame" x="8" y="167" width="354" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq0-kD-DXn">
+                                            <rect key="frame" x="28" y="89.5" width="314" height="40"/>
+                                            <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="O7H-UG-rmM"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <state key="normal" title="Börja prenumerera">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="0.20104720740000001" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="aOB-Pm-snD" firstAttribute="centerX" secondItem="qfs-Dm-H33" secondAttribute="centerX" id="1zX-ZC-3Fb"/>
+                                    <constraint firstItem="aOB-Pm-snD" firstAttribute="leading" secondItem="qfs-Dm-H33" secondAttribute="leadingMargin" id="48V-bj-lqr"/>
+                                    <constraint firstItem="uY9-C4-SdB" firstAttribute="top" secondItem="qfs-Dm-H33" secondAttribute="topMargin" constant="10" id="5GE-Oe-t0p"/>
+                                    <constraint firstItem="R6D-UG-yKm" firstAttribute="trailing" secondItem="qfs-Dm-H33" secondAttribute="trailingMargin" id="93g-7K-fuD"/>
+                                    <constraint firstItem="aOB-Pm-snD" firstAttribute="trailing" secondItem="qfs-Dm-H33" secondAttribute="trailingMargin" id="Dq2-Gx-dfu"/>
+                                    <constraint firstItem="uY9-C4-SdB" firstAttribute="centerX" secondItem="qfs-Dm-H33" secondAttribute="centerX" id="IiB-2q-y0U"/>
+                                    <constraint firstItem="drh-G9-r3L" firstAttribute="leading" secondItem="qfs-Dm-H33" secondAttribute="leadingMargin" id="JyU-kh-em4"/>
+                                    <constraint firstItem="uY9-C4-SdB" firstAttribute="leading" secondItem="qfs-Dm-H33" secondAttribute="leadingMargin" id="L6K-EJ-4Z6"/>
+                                    <constraint firstItem="uY9-C4-SdB" firstAttribute="trailing" secondItem="qfs-Dm-H33" secondAttribute="trailingMargin" id="Lso-gw-hcq"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="aq0-kD-DXn" secondAttribute="trailing" constant="20" id="MHf-o0-MDw"/>
+                                    <constraint firstItem="drh-G9-r3L" firstAttribute="top" secondItem="aq0-kD-DXn" secondAttribute="bottom" constant="20" id="Ts4-4x-oW5"/>
+                                    <constraint firstItem="aq0-kD-DXn" firstAttribute="leading" secondItem="qfs-Dm-H33" secondAttribute="leadingMargin" constant="20" id="Vc8-C1-UWW"/>
+                                    <constraint firstItem="R6D-UG-yKm" firstAttribute="top" secondItem="uY9-C4-SdB" secondAttribute="bottom" constant="10" id="bBE-tJ-gBM"/>
+                                    <constraint firstItem="R6D-UG-yKm" firstAttribute="leading" secondItem="qfs-Dm-H33" secondAttribute="leadingMargin" id="fpb-Hu-Yhb"/>
+                                    <constraint firstItem="R6D-UG-yKm" firstAttribute="centerX" secondItem="qfs-Dm-H33" secondAttribute="centerX" id="kB7-g9-3pj"/>
+                                    <constraint firstItem="drh-G9-r3L" firstAttribute="centerX" secondItem="qfs-Dm-H33" secondAttribute="centerX" id="qBa-Bj-rut"/>
+                                    <constraint firstItem="aOB-Pm-snD" firstAttribute="top" secondItem="drh-G9-r3L" secondAttribute="bottom" id="vJR-Hc-vL1"/>
+                                    <constraint firstItem="drh-G9-r3L" firstAttribute="trailing" secondItem="qfs-Dm-H33" secondAttribute="trailingMargin" id="vJk-av-Cva"/>
+                                    <constraint firstItem="aq0-kD-DXn" firstAttribute="top" secondItem="R6D-UG-yKm" secondAttribute="bottom" constant="10" id="wUZ-E5-RQ7"/>
+                                    <constraint firstItem="aq0-kD-DXn" firstAttribute="centerX" secondItem="qfs-Dm-H33" secondAttribute="centerX" id="zug-Hk-Yil"/>
+                                </constraints>
+                                <size key="customSize" width="370" height="210"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="9oH-AC-RT9" id="SOz-4N-7iX"/>
+                            <outlet property="delegate" destination="9oH-AC-RT9" id="ANd-C1-Eux"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qIQ-kG-ciQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2211" y="-595"/>
         </scene>
         <!--Reseförslag-->
         <scene sceneID="jaS-qV-xeR">

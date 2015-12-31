@@ -49,6 +49,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       return
     }
     loadTripData(false)
+    performSegueWithIdentifier("ShowSubscribe", sender: self)
   }
   
   /**
