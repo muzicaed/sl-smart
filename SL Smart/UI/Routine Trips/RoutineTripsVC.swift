@@ -49,7 +49,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       return
     }
     loadTripData(false)
-    performSegueWithIdentifier("ShowSubscribe", sender: self)
+    
+    // TODO: Remove test code
+    //performSegueWithIdentifier("ShowSubscribe", sender: self)
   }
   
   /**

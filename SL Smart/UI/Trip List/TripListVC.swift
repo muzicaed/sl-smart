@@ -28,6 +28,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   var isLoading = true
   var isLoadingMoreBlocked = false
   var isLoadingMore = false
+  var refreshTimer: NSTimer?
   
   /**
    * View is done loading
@@ -52,6 +53,23 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     isLoadingMoreBlocked = false
+  }
+  
+  /**
+   * View about to disappear
+   */
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    refreshTimer?.invalidate()
+    refreshTimer = nil
+  }
+  
+  /**
+   * Refresh collection view.
+   */
+  func refreshUI() {
+    print("Refresh")
+    self.collectionView?.reloadData()
   }
   
   /**
@@ -276,6 +294,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
             self.footer?.displayLabel()
             self.collectionView?.reloadData()
             self.updateDateCriterions()
+            self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "refreshUI", userInfo: nil, repeats: true)
           }
       })
       return
