@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1801A3FC1C392DE60068E1FC /* SubscriptionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801A3FB1C392DE60068E1FC /* SubscriptionStore.swift */; };
+		1801A3FE1C39317C0068E1FC /* SubscribeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801A3FD1C39317C0068E1FC /* SubscribeDelegate.swift */; };
 		180603641C01FCBE00AC1841 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180603631C01FCBE00AC1841 /* SwiftyJSON.swift */; };
 		1806037C1C02165000AC1841 /* LocationSearchResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037B1C02165000AC1841 /* LocationSearchResponder.swift */; };
 		181BD4161C047AA900651D0F /* RoutineTripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4151C047AA900651D0F /* RoutineTripHeader.swift */; };
+		181CFD051C396FDE004637F9 /* ReceiptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CFD041C396FDE004637F9 /* ReceiptManager.swift */; };
 		18232CA41C01D46A006334D1 /* EditRoutineTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */; };
 		18232CA61C01DB81006334D1 /* StyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA51C01DB81006334D1 /* StyleButton.swift */; };
 		18232CAC1C01EC2F006334D1 /* SearchLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAB1C01EC2F006334D1 /* SearchLocationVC.swift */; };
@@ -200,6 +203,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1801A3FB1C392DE60068E1FC /* SubscriptionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionStore.swift; sourceTree = "<group>"; };
+		1801A3FD1C39317C0068E1FC /* SubscribeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeDelegate.swift; sourceTree = "<group>"; };
 		180603631C01FCBE00AC1841 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		180603651C0201A100AC1841 /* HttpRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHelper.swift; sourceTree = "<group>"; };
 		180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftHTTP.xcodeproj; path = /Users/mikaelhellman/Documents/Development/SwiftHTTP/SwiftHTTP.xcodeproj; sourceTree = "<absolute>"; };
@@ -213,6 +218,7 @@
 		181B9AF71C03B3FB00B9145A /* TripHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHelper.swift; sourceTree = "<group>"; };
 		181B9AF91C03D64000B9145A /* RoutineService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineService.swift; sourceTree = "<group>"; };
 		181BD4151C047AA900651D0F /* RoutineTripHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTripHeader.swift; sourceTree = "<group>"; };
+		181CFD041C396FDE004637F9 /* ReceiptManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptManager.swift; sourceTree = "<group>"; };
 		18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRoutineTripVC.swift; sourceTree = "<group>"; };
 		18232CA51C01DB81006334D1 /* StyleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleButton.swift; sourceTree = "<group>"; };
 		18232CA91C01EA15006334D1 /* LocationSearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
@@ -324,6 +330,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1801A3F61C392D880068E1FC /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				1851F2DC1C36D71B0013CD6A /* SubscriptionManager.swift */,
+				1801A3FB1C392DE60068E1FC /* SubscriptionStore.swift */,
+				1801A3FD1C39317C0068E1FC /* SubscribeDelegate.swift */,
+				181CFD041C396FDE004637F9 /* ReceiptManager.swift */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
 		181B9AF41C03A9BC00B9145A /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,6 +494,7 @@
 		18937E331BFF33FA00C523C9 /* SL Smart */ = {
 			isa = PBXGroup;
 			children = (
+				1801A3F61C392D880068E1FC /* Lib */,
 				188B80971C177E9E00E7D90C /* SL Smart.entitlements */,
 				18937E891C01139E00C523C9 /* UI */,
 				18937E341BFF33FA00C523C9 /* AppDelegate.swift */,
@@ -584,9 +602,8 @@
 			children = (
 				1894A6FD1C354ABD00CDF905 /* SubscribeVC.swift */,
 				1851F2D61C35F56C0013CD6A /* SubscriptionCell.swift */,
-				1851F2DC1C36D71B0013CD6A /* SubscriptionManager.swift */,
 			);
-			name = Subscription;
+			path = Subscription;
 			sourceTree = "<group>";
 		};
 		18A9E8481C18993B008F97C8 /* ResStockholmApiKit */ = {
@@ -939,8 +956,10 @@
 				18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */,
 				180603641C01FCBE00AC1841 /* SwiftyJSON.swift in Sources */,
 				1806037C1C02165000AC1841 /* LocationSearchResponder.swift in Sources */,
+				1801A3FE1C39317C0068E1FC /* SubscribeDelegate.swift in Sources */,
 				18232CAE1C01F1CA006334D1 /* ManageRoutineTripCell.swift in Sources */,
 				18AC9D001C08B5B4007ECFA2 /* TripFooter.swift in Sources */,
+				1801A3FC1C392DE60068E1FC /* SubscriptionStore.swift in Sources */,
 				18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */,
 				1894A6FE1C354ABD00CDF905 /* SubscribeVC.swift in Sources */,
 				18232CA61C01DB81006334D1 /* StyleButton.swift in Sources */,
@@ -953,6 +972,7 @@
 				1851F2D71C35F56C0013CD6A /* SubscriptionCell.swift in Sources */,
 				1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */,
 				18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */,
+				181CFD051C396FDE004637F9 /* ReceiptManager.swift in Sources */,
 				18946B171C18431500A5829D /* DateTimePickerVC.swift in Sources */,
 				183D6EBB1C1A2F2900EB7537 /* TrafficSituationVC.swift in Sources */,
 				183D6EBD1C1A352100EB7537 /* SituationHeader.swift in Sources */,

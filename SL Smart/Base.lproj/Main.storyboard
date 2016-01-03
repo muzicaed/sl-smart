@@ -1682,7 +1682,7 @@
                                     <outlet property="tripTitleLabel" destination="Dqp-N2-sug" id="mD5-hN-3gl"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="InfoCell" id="37S-3z-DMK" userLabel="InfoCell" customClass="RoutineTripCell" customModule="SL_Smart" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="InfoCell" id="37S-3z-DMK" userLabel="InfoCell">
                                 <rect key="frame" x="22" y="355" width="370" height="275"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1860,6 +1860,286 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </constraints>
                                 <size key="customSize" width="370" height="120"/>
                             </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SubscriptionInfoCell" id="Ovm-fK-jZf" userLabel="SubscriptionInfoCell">
+                                <rect key="frame" x="22" y="770" width="370" height="275"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="275"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L9j-7Y-kwJ">
+                                            <rect key="frame" x="8" y="8" width="354" height="259"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWL-fE-bsG" userLabel="Space">
+                                                    <rect key="frame" x="0.0" y="0.0" width="10" height="259"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="10" id="Mhy-wK-OOa"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SO4-Ka-NKH">
+                                                    <rect key="frame" x="10" y="0.0" width="339" height="259"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="X0Q-ct-S2g">
+                                                            <rect key="frame" x="0.0" y="0.0" width="339" height="259"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZu-th-Qv1">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="339" height="10"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="10" id="N0N-LO-TiK"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Smartare reseförslag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjN-eh-EaF">
+                                                                    <rect key="frame" x="0.0" y="10" width="339" height="23"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                                                    <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YW8-Gc-pDf">
+                                                                    <rect key="frame" x="0.0" y="33" width="339" height="151.5"/>
+                                                                    <attributedString key="attributedText">
+                                                                        <fragment>
+                                                                            <string key="content">Appen lär sig dina vanor och visar automatiskt den resan du vill göra härnäst!
+
+</string>
+                                                                            <attributes>
+                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                        <fragment content="Tips:">
+                                                                            <attributes>
+                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                                                <font key="NSOriginalFont" size="16" name="HelveticaNeue"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                        <fragment content=" Har du en Apple Watch kan du snabbt och enkelt se ">
+                                                                            <attributes>
+                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                        <fragment content="Smart Resa">
+                                                                            <attributes>
+                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue-ThinItalic"/>
+                                                                                <font key="NSOriginalFont" size="16" name="HelveticaNeue-ThinItalic"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                        <fragment>
+                                                                            <string key="content"> även på klockan.
+
+</string>
+                                                                            <attributes>
+                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                        <fragment content="För att kunna använda ">
+                                                                            <attributes>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                                    <tabStops>
+                                                                                        <textTab alignment="left" location="28">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="56">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="84">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="112">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="140">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="168">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="196">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="224">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="252">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="280">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="308">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="336">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                    </tabStops>
+                                                                                </paragraphStyle>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                        <fragment content="Smart Resa och Apple Watch">
+                                                                            <attributes>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue-ThinItalic"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                                    <tabStops>
+                                                                                        <textTab alignment="left" location="28">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="56">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="84">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="112">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="140">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="168">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="196">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="224">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="252">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="280">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="308">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="336">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                    </tabStops>
+                                                                                </paragraphStyle>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                        <fragment content=" behöver du en prenumeration.">
+                                                                            <attributes>
+                                                                                <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                                    <tabStops>
+                                                                                        <textTab alignment="left" location="28">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="56">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="84">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="112">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="140">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="168">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="196">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="224">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="252">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="280">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="308">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                        <textTab alignment="left" location="336">
+                                                                                            <options/>
+                                                                                        </textTab>
+                                                                                    </tabStops>
+                                                                                </paragraphStyle>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                    </attributedString>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjv-rA-0Gi">
+                                                                    <rect key="frame" x="0.0" y="184" width="339" height="74.5"/>
+                                                                    <subviews>
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wm-te-znF" userLabel="Prova gratis och börja prenumera">
+                                                                            <rect key="frame" x="20" y="16" width="299" height="44"/>
+                                                                            <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="44" id="gBa-2D-BXc"/>
+                                                                            </constraints>
+                                                                            <state key="normal">
+                                                                                <string key="title">Prova gratis och börja prenumera 
+</string>
+                                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            </state>
+                                                                            <connections>
+                                                                                <action selector="onSubscribeTap:" destination="TL9-Eb-L0b" eventType="touchUpInside" id="uuS-0Y-uK3"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="5Wm-te-znF" firstAttribute="leading" secondItem="gjv-rA-0Gi" secondAttribute="leading" constant="20" id="5Io-D2-qU4"/>
+                                                                        <constraint firstItem="5Wm-te-znF" firstAttribute="centerY" secondItem="gjv-rA-0Gi" secondAttribute="centerY" id="9Ux-vb-5ot"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="5Wm-te-znF" secondAttribute="trailing" constant="20" id="cH6-sH-FJR"/>
+                                                                    </constraints>
+                                                                </view>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="X0Q-ct-S2g" secondAttribute="trailing" id="FDB-wR-L2C"/>
+                                                        <constraint firstItem="X0Q-ct-S2g" firstAttribute="leading" secondItem="SO4-Ka-NKH" secondAttribute="leading" id="KGX-3n-ZSE"/>
+                                                        <constraint firstItem="X0Q-ct-S2g" firstAttribute="top" secondItem="SO4-Ka-NKH" secondAttribute="top" id="Ko5-hy-Agl"/>
+                                                        <constraint firstAttribute="bottom" secondItem="X0Q-ct-S2g" secondAttribute="bottom" id="rFc-w4-b95"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49u-jR-jh9" userLabel="Space">
+                                                    <rect key="frame" x="349" y="0.0" width="5" height="259"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="5" id="sJ2-qy-jjz"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottomMargin" secondItem="L9j-7Y-kwJ" secondAttribute="bottom" id="6PU-GC-2Na"/>
+                                    <constraint firstItem="L9j-7Y-kwJ" firstAttribute="centerY" secondItem="Ovm-fK-jZf" secondAttribute="centerY" id="NpJ-ua-Vht"/>
+                                    <constraint firstItem="L9j-7Y-kwJ" firstAttribute="leading" secondItem="Ovm-fK-jZf" secondAttribute="leadingMargin" id="Pau-qQ-zbr"/>
+                                    <constraint firstItem="L9j-7Y-kwJ" firstAttribute="centerX" secondItem="Ovm-fK-jZf" secondAttribute="centerX" id="RGW-SB-gsi"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="L9j-7Y-kwJ" secondAttribute="trailing" id="ahA-6a-c4e"/>
+                                    <constraint firstItem="L9j-7Y-kwJ" firstAttribute="top" secondItem="Ovm-fK-jZf" secondAttribute="topMargin" id="z46-9O-7iF"/>
+                                </constraints>
+                                <size key="customSize" width="370" height="275"/>
+                            </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="GjQ-i1-UMc" customClass="RoutineTripHeader" customModule="SL_Smart" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -2009,12 +2289,12 @@ Välkommen till ett smartare sätt att pendla.</string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?? kr / månad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6D-UG-yKm">
-                                            <rect key="frame" x="8" y="44.5" width="354" height="30"/>
+                                            <rect key="frame" x="8" y="44.5" width="354" height="31"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="shadowOffset" width="1" height="0.0"/>
+                                            <size key="shadowOffset" width="-1" height="-1"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prova en vecka gratis" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drh-G9-r3L">
                                             <rect key="frame" x="8" y="144.5" width="354" height="17"/>
@@ -2090,12 +2370,12 @@ direkt från din iPhone</string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prova gratis en månad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6A3-uG-BcN">
-                                            <rect key="frame" x="8" y="144" width="354" height="18"/>
+                                            <rect key="frame" x="8" y="145" width="354" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ust-ci-qjV">
-                                            <rect key="frame" x="28" y="84" width="314" height="40"/>
+                                            <rect key="frame" x="28" y="85" width="314" height="40"/>
                                             <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="Pvn-0v-fSk"/>
@@ -2111,7 +2391,7 @@ direkt från din iPhone</string>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Obj-aa-Yx8">
-                                            <rect key="frame" x="8" y="162.5" width="354" height="54"/>
+                                            <rect key="frame" x="8" y="163.5" width="354" height="54"/>
                                             <string key="text">Du betalar först när provperioden är över 
 och prenumerationen kan avbrytas 
 direkt från din iPhone</string>
@@ -2119,12 +2399,12 @@ direkt från din iPhone</string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?? kr / månad *" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQ6-SZ-vqG">
-                                            <rect key="frame" x="8" y="44" width="354" height="30"/>
+                                            <rect key="frame" x="8" y="44" width="354" height="31"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="shadowOffset" width="1" height="0.0"/>
+                                            <size key="shadowOffset" width="-1" height="-1"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2163,7 +2443,7 @@ direkt från din iPhone</string>
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="iAI-i7-Bzc">
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="iAI-i7-Bzc">
                                             <rect key="frame" x="166.5" y="16.5" width="37" height="37"/>
                                             <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </activityIndicatorView>
@@ -2189,6 +2469,9 @@ direkt från din iPhone</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="noThanksButton" destination="dQj-YS-vA5" id="AIY-Zu-fl3"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qIQ-kG-ciQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3268,9 +3551,9 @@ direkt från din iPhone</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="L0K-5H-KeJ"/>
-        <segue reference="6zU-Tw-atf"/>
         <segue reference="8tl-aE-z6t"/>
+        <segue reference="6zU-Tw-atf"/>
+        <segue reference="L0K-5H-KeJ"/>
         <segue reference="yy0-ry-irx"/>
     </inferredMetricsTieBreakers>
 </document>

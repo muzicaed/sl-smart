@@ -19,10 +19,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   let headerCellIdentifier = "HeaderView"
   let showTripListSegue = "ShowTripList"
   let infoCellIdentifier = "InfoCell"
+  let subscriptionInfoCellIdentifier = "SubscriptionInfoCell"
   
   var bestRoutineTrip: RoutineTrip?
   var otherRoutineTrips = [RoutineTrip]()
   var selectedRoutineTrip: RoutineTrip?
+  var isSubscribing = false
   var isLoading = true
   var isShowInfo = false
   var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
@@ -43,15 +45,19 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    if CLLocationManager.authorizationStatus() == .Denied || !CLLocationManager.locationServicesEnabled() {
-      showLocationServicesNotAllowed()
-      MyLocationHelper.sharedInstance.isStarted = false
+    isSubscribing = SubscriptionStore.sharedInstance.isSubscribed()
+    if isSubscribing {
+      navigationItem.rightBarButtonItem?.enabled = true
+      if CLLocationManager.authorizationStatus() == .Denied || !CLLocationManager.locationServicesEnabled() {
+        showLocationServicesNotAllowed()
+        MyLocationHelper.sharedInstance.isStarted = false
+        return
+      }
+      loadTripData(false)
       return
     }
-    loadTripData(false)
-    
-    // TODO: Remove test code
-    //performSegueWithIdentifier("ShowSubscribe", sender: self)
+    navigationItem.rightBarButtonItem?.enabled = false
+    refreshButton?.enabled = false
   }
   
   /**
@@ -98,6 +104,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   /**
+   * On user taps subscribe button
+   */
+  @IBAction func onSubscribeTap(sender: UIButton) {
+    performSegueWithIdentifier("ShowSubscribe", sender: self)
+  }
+  
+  
+  /**
    * Unwind (back) to this view.
    */
   @IBAction func unwindToRoutineTripsVC(segue: UIStoryboardSegue) {}
@@ -118,7 +132,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func collectionView(collectionView: UICollectionView,
     numberOfItemsInSection section: Int) -> Int {
       if section == 0 {
-        if isLoading || isShowInfo {
+        if isLoading || isShowInfo || !isSubscribing {
           return 1
         }
         let bestCount = (bestRoutineTrip == nil ? 0 : 1)
@@ -134,7 +148,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func collectionView(collectionView: UICollectionView,
     cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
       if indexPath.section == 0 {
-        if isLoading {
+        if !isSubscribing {
+          return createSubscriptionInfoCell(indexPath)
+        } else if isLoading {
           return createLoadingTripCell(indexPath)
         } else if isShowInfo {
           return createInfoTripCell(indexPath)
@@ -170,7 +186,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       
       let screenSize = UIScreen.mainScreen().bounds.size
       if indexPath.section == 0 {
-        if isLoading {
+        if !isSubscribing {
+          return CGSizeMake(screenSize.width - 20, 280)
+        } else if isLoading {
           return CGSizeMake(screenSize.width - 20, collectionView.bounds.height - 49 - 64 - 20)
         } else if isShowInfo {
           return CGSizeMake(screenSize.width - 20, 275)
@@ -353,6 +371,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   private func createInfoTripCell(indexPath: NSIndexPath) -> UICollectionViewCell {
     return collectionView!.dequeueReusableCellWithReuseIdentifier(infoCellIdentifier,
+      forIndexPath: indexPath)
+  }
+  
+  /**
+   * Create subscription info trip cell
+   */
+  private func createSubscriptionInfoCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+    return collectionView!.dequeueReusableCellWithReuseIdentifier(subscriptionInfoCellIdentifier,
       forIndexPath: indexPath)
   }
   
