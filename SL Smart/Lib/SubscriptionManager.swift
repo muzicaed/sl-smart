@@ -8,6 +8,7 @@
 
 import Foundation
 import StoreKit
+import ResStockholmApiKit
 
 class SubscriptionManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
   
@@ -31,9 +32,28 @@ class SubscriptionManager: NSObject, SKProductsRequestDelegate, SKPaymentTransac
   }
   
   /**
-   * Ensure an instace in created
+   * Check for valid subscription.
    */
-  func touch() {}
+  func isValid() {
+    ReceiptManager.validateReceipt { (isValid, date) -> Void in
+      print("SubscriptionManager.isValid()")
+      print(" - isValid \(isValid)")
+      print(" - date \(DateUtils.dateAsDateAndTimeString(date))")
+      
+      if isValid {
+        print("Time since now: \(date.timeIntervalSinceNow)")
+        if date.timeIntervalSinceNow < 0 {
+          print("EXPIRED")
+          SubscriptionStore.sharedInstance.setSubscribed(false,
+            endDate: NSDate(timeIntervalSince1970: 0))
+        }
+        return
+      }
+      
+      SubscriptionStore.sharedInstance.setSubscribed(false,
+        endDate: NSDate(timeIntervalSince1970: 0))
+    }
+  }
   
   /**
    * Request products from App Store.
@@ -52,10 +72,20 @@ class SubscriptionManager: NSObject, SKProductsRequestDelegate, SKPaymentTransac
     delegate?.subscriptionError(SubscriptionError.CanNotMakePayments)
   }
   
+  /**
+   * Execute payment request
+   */
   func executePayment(product: SKProduct) {
     let payment = SKPayment(product: product)
     payment
     SKPaymentQueue.defaultQueue().addPayment(payment)
+  }
+  
+  /**
+   * Restore subscription.
+   */
+  func restoreSubscription() {
+    SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
   }
   
   // MARK: SKProductsRequestDelegate
@@ -83,35 +113,42 @@ class SubscriptionManager: NSObject, SKProductsRequestDelegate, SKPaymentTransac
     
     print("Updated Transactions")
     for transaction:AnyObject in transactions {
-      if let trans = transaction as? SKPaymentTransaction {
-        switch trans.transactionState {
-        case .Purchased:
-          print("Purchased")
-          handlePurchase(transaction as! SKPaymentTransaction)
-          break
-        case .Failed:
-          print("Failed")
-          handleFailedPurchase(transaction as! SKPaymentTransaction)
-          break
-        case .Restored:
-          print("Restored:")
-          if let restored = trans.originalTransaction {
-            switch restored.transactionState {
-            case .Purchased:
-              handlePurchase(restored)
-              break
-            case .Failed:
-              handleFailedPurchase(restored)
-              break
-            default:
-              break
-            }
-          }
-          break
-        default:
-          print("Unhandled transaction state: \(trans.transactionState.rawValue)")
-          break
+      let trans = transaction as! SKPaymentTransaction
+      switch trans.transactionState {
+      case .Purchased:
+        print("Purchased")
+        handlePurchase(trans) {
+          SKPaymentQueue.defaultQueue().finishTransaction(trans)
         }
+        break
+      case .Failed:
+        print("Failed")
+        handleFailedPurchase(trans)
+        SKPaymentQueue.defaultQueue().finishTransaction(trans)
+        break
+      case .Restored:
+        print("Restored:")
+        if let restored = trans.originalTransaction {
+          switch restored.transactionState {
+          case .Purchased:
+            print(" - Purchased")
+            handlePurchase(restored) {
+              SKPaymentQueue.defaultQueue().finishTransaction(trans) // Note: Should be "trans"!
+            }
+            break
+          case .Failed:
+            print(" - Failed")
+            handleFailedPurchase(restored)
+            SKPaymentQueue.defaultQueue().finishTransaction(trans) // Note: Should be "trans"!
+            break
+          default:
+            break
+          }
+        }
+        break
+      default:
+        print("Unhandled transaction state: \(trans.transactionState.rawValue)")
+        break
       }
     }
   }
@@ -121,21 +158,28 @@ class SubscriptionManager: NSObject, SKProductsRequestDelegate, SKPaymentTransac
   /**
   * Handels successfull purchase
   */
-  private func handlePurchase(transaction: SKPaymentTransaction) {
-    print("Product Purchased")
-    
-    ReceiptManager.validateReceipt({ isValid, date in
-      if isValid {
-        // DATE!!!
-        SubscriptionStore.sharedInstance.setSubscribed(true, endDate: date)
-        SKPaymentQueue.defaultQueue().finishTransaction(transaction)
-        self.delegate?.subscriptionSuccessful()
-        return
-      }
-      SubscriptionStore.sharedInstance.setSubscribed(false, endDate: date)
-      SKPaymentQueue.defaultQueue().finishTransaction(transaction)
-      self.delegate?.subscriptionError(SubscriptionError.PaymentError)
-    })
+  private func handlePurchase(
+    transaction: SKPaymentTransaction, doneCallback: () -> Void) {
+      print("Product Purchased")
+      
+      ReceiptManager.validateReceipt({ isValid, date in
+        if isValid {
+          print("Receipt is valid: \(DateUtils.dateAsDateAndTimeString(date))")
+          SubscriptionStore.sharedInstance.setSubscribed(true, endDate: date)
+          if SubscriptionStore.sharedInstance.isSubscribed() {
+            self.delegate?.subscriptionSuccessful()
+            doneCallback()
+            return
+          }
+          self.delegate?.subscriptionError(SubscriptionError.PaymentError)
+          doneCallback()
+          return
+        }
+        print("Receipt NOT valid: \(DateUtils.dateAsDateAndTimeString(date))")
+        SubscriptionStore.sharedInstance.setSubscribed(false, endDate: date)
+        self.delegate?.subscriptionError(SubscriptionError.PaymentError)
+        doneCallback()
+      })
   }
   
   /**
@@ -145,7 +189,6 @@ class SubscriptionManager: NSObject, SKProductsRequestDelegate, SKPaymentTransac
     print("Purchased Failed")
     print("\(transaction.error?.localizedDescription)")
     SubscriptionStore.sharedInstance.setSubscribed(false, endDate: NSDate(timeIntervalSince1970: 0))
-    SKPaymentQueue.defaultQueue().finishTransaction(transaction)
     delegate?.subscriptionError(SubscriptionError.PaymentError)
   }
 }

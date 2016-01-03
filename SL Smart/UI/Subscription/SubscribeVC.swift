@@ -41,6 +41,7 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   @IBAction func onBuyMonthTap(sender: UIButton) {
     if !isBuying {
       sender.enabled = false
+      noThanksButton.enabled = false
       isBuying = true
       self.collectionView?.reloadData()
       SubscriptionManager.sharedInstance.executePayment(products[0])
@@ -53,6 +54,7 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   @IBAction func onBuyHalfYearTap(sender: UIButton) {
     if !isBuying {
       sender.enabled = false
+      noThanksButton.enabled = false
       isBuying = true
       self.collectionView?.reloadData()
       SubscriptionManager.sharedInstance.executePayment(products[1])

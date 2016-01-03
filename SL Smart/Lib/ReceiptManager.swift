@@ -45,7 +45,6 @@ class ReceiptManager {
           
           // 0 if the receipt is valid
         } else if status == 0 {
-          // TODO: FIX REAL DATE HERE!!!
           onCompletion(true, date)
         } else {
           onCompletion(false, date)
@@ -118,7 +117,7 @@ class ReceiptManager {
                 if let reciept = reciepts.last as? [String: String] {
                   print("Found reciept")
                   if let timeStr = reciept["expires_date_ms"] {
-                    date = NSDate(timeIntervalSince1970: Double(timeStr)!)
+                    date = NSDate(timeIntervalSince1970: Double(timeStr)! / 1000)
                   }
                 }
               }

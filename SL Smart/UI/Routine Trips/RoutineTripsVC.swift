@@ -58,6 +58,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     navigationItem.rightBarButtonItem?.enabled = false
     refreshButton?.enabled = false
+    collectionView?.reloadData()
   }
   
   /**
@@ -110,6 +111,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     performSegueWithIdentifier("ShowSubscribe", sender: self)
   }
   
+  /**
+   * On user taps restore button
+   */
+  @IBAction func onRestoreSubscription(sender: UIButton) {
+    showRestoreSubscriptionAlert()
+  }
   
   /**
    * Unwind (back) to this view.
@@ -187,7 +194,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       let screenSize = UIScreen.mainScreen().bounds.size
       if indexPath.section == 0 {
         if !isSubscribing {
-          return CGSizeMake(screenSize.width - 20, 280)
+          return CGSizeMake(screenSize.width - 20, 330)
         } else if isLoading {
           return CGSizeMake(screenSize.width - 20, collectionView.bounds.height - 49 - 64 - 20)
         } else if isShowInfo {
@@ -394,6 +401,30 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
     
     presentViewController(invalidLocationAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Show restore subscription alert
+   */
+  private func showRestoreSubscriptionAlert() {
+    let restoreAlert = UIAlertController(
+      title: "Försöker återuppta prenumeration",
+      message: "Om en aktiv prenumeration finns kommer denna automatiskt att aktiveras.\n\nDu kan själv kontrollera dina prenumerationer på din iPhone under Inställningar -> App Store och iTunes Store -> Tryck på ditt Apple-ID -> Visa Apple-ID",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    restoreAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: { _ in
+        self.isLoading = true
+        self.isSubscribing = true
+        self.collectionView?.reloadData()
+        SubscriptionManager.sharedInstance.restoreSubscription()
+        let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10.0 * Double(NSEC_PER_SEC)))
+        dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+          self.isSubscribing = false
+          self.viewWillAppear(true)
+        })
+      }))
+    
+    presentViewController(restoreAlert, animated: true, completion: nil)
   }
   
   deinit {

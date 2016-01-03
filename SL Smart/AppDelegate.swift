@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   * Prepares the app.
   */
   private func setupApp() {
-    SubscriptionManager.sharedInstance.touch()
+    SubscriptionManager.sharedInstance.isValid()
     StyleHelper.sharedInstance.setupCustomStyle()
     window?.tintColor = StyleHelper.sharedInstance.tintColor
     SearchCriterionStore.sharedInstance.preload()

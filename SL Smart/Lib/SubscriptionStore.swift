@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ResStockholmApiKit
 
 public class SubscriptionStore {
   
@@ -44,9 +45,15 @@ public class SubscriptionStore {
   }
   
   /**
-   * Store "LatestLocations" in data store.
+   * Store in data store.
    */
-  func setSubscribed(isSubscribed: Bool, endDate: NSDate) {
+  func setSubscribed(var isSubscribed: Bool, endDate: NSDate) {
+    print("------------")
+    print(DateUtils.dateAsDateAndTimeString(endDate))
+    print(endDate.timeIntervalSinceNow)
+    if endDate.timeIntervalSinceNow < 0 {
+      isSubscribed = false
+    }
     defaults.setBool(isSubscribed, forKey: SubscriptionState)
     defaults.setObject(endDate, forKey: SubscriptionEndDate)
     defaults.synchronize()
