@@ -36,7 +36,6 @@ public class RoutineTripsStore {
    */
   public func addRoutineTrip(trip: RoutineTrip) {
     trip.trips = [Trip]()
-    cachedRoutineTrips = retrieveRoutineTripsFromStore()
     cachedRoutineTrips.append(trip)
     writeRoutineTripsToStore()
   }
@@ -45,7 +44,6 @@ public class RoutineTripsStore {
    * Moves a routine trip in data store
    */
   public func moveRoutineTrip(index: Int, targetIndex: Int) {
-    cachedRoutineTrips = retrieveRoutineTripsFromStore()
     let moveTrip = cachedRoutineTrips.removeAtIndex(index)
     cachedRoutineTrips.insert(moveTrip, atIndex: targetIndex)
     writeRoutineTripsToStore()
@@ -55,7 +53,6 @@ public class RoutineTripsStore {
    * Update a routine trip in data store
    */
   public func updateRoutineTrip(index: Int, trip: RoutineTrip) {
-    cachedRoutineTrips = retrieveRoutineTripsFromStore()
     trip.trips = [Trip]()
     cachedRoutineTrips[index] = trip.copy() as! RoutineTrip
     writeRoutineTripsToStore()
@@ -71,7 +68,7 @@ public class RoutineTripsStore {
   }
   
   /**
-   * Delete a routine trip from data store
+   * Retrieve a routine trip from data store for a id
    */
   public func retriveRoutineTripOnId(id: String) -> RoutineTrip? {
     let trips = retriveRoutineTrips()
@@ -114,5 +111,6 @@ public class RoutineTripsStore {
     let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(cachedRoutineTrips as NSArray)
     defaults.setObject(archivedObject, forKey: MyRoutineTrips)
     defaults.synchronize()
+    cachedRoutineTrips = retrieveRoutineTripsFromStore()
   }
 }

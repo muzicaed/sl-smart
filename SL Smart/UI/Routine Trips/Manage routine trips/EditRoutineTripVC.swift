@@ -96,8 +96,6 @@ TravelTypesResponder, PickLocationResponder {
         vc.setData(crit)
       }
     }
-    
-    
   }
   
   /**
@@ -237,7 +235,6 @@ TravelTypesResponder, PickLocationResponder {
    */
   override func tableView(tableView: UITableView,
     willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-      print("Will select")
       if indexPath.section == 0 || (indexPath.section == 1 && indexPath.row == 0) {
         return nil
       }
