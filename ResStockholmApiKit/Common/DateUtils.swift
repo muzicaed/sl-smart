@@ -109,13 +109,15 @@ public class DateUtils {
    */
   public static func createAboutTimeText(departure: NSDate, isWalk: Bool) -> String {
     var aboutStr = "Om"
+    var nowStr = "Avgår nu"
     if isWalk {
       aboutStr = "Gå om"
+      nowStr = "Gå nu"
     }
     
     let diffMin = Int((departure.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
     if diffMin <= 60 {
-      let diffMinStr = (diffMin + 1 <= 1) ? "Avgår nu" : "\(aboutStr) \(diffMin + 1) min"
+      let diffMinStr = (diffMin + 1 <= 1) ? "\(nowStr)" : "\(aboutStr) \(diffMin + 1) min"
       return diffMinStr
     }
     

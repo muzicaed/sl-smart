@@ -35,7 +35,7 @@ class TripRow: NSObject {
   var icons = [WKInterfaceImage]()
   var iconLables = [WKInterfaceLabel]()
   var iconGroups = [WKInterfaceGroup]()
-
+  
   /**
    * Set data for row
    */
@@ -45,17 +45,17 @@ class TripRow: NSObject {
     let arrivalDate = DateUtils.convertDateString(data["destinationTime"] as! String)
     let humanTripDuration = createHumanTripDuration(data["dur"] as! Int)
     
-    handleTravelDateLabel(data["originTime"] as! String)
     scheduleLabel.setText("\(depDateString) → \(DateUtils.dateAsTimeString(arrivalDate))")
     travelTimeLabel.setText("Restid: \(humanTripDuration)")
+    handleTravelDateLabel(data["originTime"] as! String)
     createTripIcons(data["icn"] as! [String], lines: data["lns"] as! [String])
   }
   
   // MARK: Private
   
   /**
-   * Handle travel date label
-   */
+  * Handle travel date label
+  */
   private func handleTravelDateLabel(dateStr: String) {
     let date = DateUtils.convertDateString(dateStr)
     if NSCalendar.currentCalendar().isDateInToday(date) {
@@ -63,6 +63,11 @@ class TripRow: NSObject {
     } else {
       travelDateLabel.setHidden(false)
       travelDateLabel.setText(DateUtils.friendlyDateAndTime(date))
+    }
+    
+    if date.timeIntervalSinceNow < 0 {
+      travelTimeLabel.setText("Redan avgått")
+      scheduleLabel.setTextColor(UIColor.lightGrayColor())
     }
   }
   
@@ -97,9 +102,9 @@ class TripRow: NSObject {
   }
   
   /**
-  * Stores all trip icons in a array
-  * for easier manipulation.
-  */
+   * Stores all trip icons in a array
+   * for easier manipulation.
+   */
   private func prepareIcons() {
     icons = [WKInterfaceImage]()
     icons.append(icon1)

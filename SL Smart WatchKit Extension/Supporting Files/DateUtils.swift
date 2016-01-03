@@ -119,14 +119,16 @@ class DateUtils {
    */
   static func createDepartureTimeString(departureTime: String, isWalk: Bool) -> String {
     var aboutStr = "Om"
+    var nowStr = "Avgår nu"
     if isWalk {
       aboutStr = "Gå om"
+      nowStr = "Gå nu"
     }
     
     let departureDate = DateUtils.convertDateString(departureTime)
     let diffMin = Int((departureDate.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
-    if diffMin < 31 {
-      return (diffMin + 1 <= 1) ? "Avgår nu" : "\(aboutStr) \(diffMin + 1) min"
+    if diffMin < 31 && diffMin > -1 {
+      return (diffMin + 1 <= 1) ? "\(nowStr)" : "\(aboutStr) \(diffMin + 1) min"
     }
     
     return DateUtils.dateAsTimeString(departureDate)

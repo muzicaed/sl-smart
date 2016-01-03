@@ -28,7 +28,7 @@ class ManageRoutineTripCell: UITableViewCell {
     print(advancedText)
     if advancedText == "" {
       advancedLabel.textColor = UIColor.lightGrayColor()
-      advancedLabel.text = "Inga advancerade inställningar"
+      advancedLabel.text = "Inga avancerade inställningar"
       return
     }
     
