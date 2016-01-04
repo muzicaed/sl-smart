@@ -17,15 +17,15 @@ class HttpRequestHelper {
      */
     static func makeGetRequest(url: String,
         callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
-            print("GET: \(url)")
+            //print("GET: \(url)")
             let operationQueue = NSOperationQueue()
             operationQueue.maxConcurrentOperationCount = 4
             do {
                 let opt = try HTTP.New(url, method: .GET)
                 opt.onFinish = { response in
                     if let error = response.error {
-                        print(error.code)
-                        print(error.localizedDescription)
+                        //print(error.code)
+                        //print(error.localizedDescription)
                         callback((nil, SLNetworkError.NetworkError))
                     }
 

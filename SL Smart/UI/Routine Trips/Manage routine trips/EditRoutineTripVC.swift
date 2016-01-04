@@ -70,7 +70,6 @@ TravelTypesResponder, PickLocationResponder {
    * Before seque is triggred.
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    print(segue.identifier)
     tripTitleTextField.resignFirstResponder()
     if segue.identifier == "SearchOriginLocation" {
       locationSearchType = "Origin"
@@ -286,10 +285,6 @@ TravelTypesResponder, PickLocationResponder {
   override func tableView(tableView: UITableView,
     didSelectRowAtIndexPath indexPath: NSIndexPath) {
       tableView.deselectRowAtIndexPath(indexPath, animated: true)
-      print(indexPath)
-      if indexPath.section == 0 && indexPath.row == 1 {
-        print("Selected via")
-      }
   }
   
   // MARK: UITextFieldDelegate
@@ -475,9 +470,5 @@ TravelTypesResponder, PickLocationResponder {
   private func isTravelTypeDefault(crit: TripSearchCriterion) -> Bool {
     return (crit.useBus && crit.useFerry && crit.useMetro &&
       crit.useShip && crit.useTrain && crit.useTram)
-  }
-  
-  deinit {
-    print("Deinit: EditRoutineTripVC")
   }
 }

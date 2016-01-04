@@ -59,7 +59,6 @@ public class ScorePostHelper {
       for day in daysRange {
         for hour in (hourOfDay-1)...(hourOfDay+1) {
           if hour > 0 && hour <= 24 {
-            print("Extra score: D:\(day) H:\(hour)")
             applyScore(day, hourOfDay: hour,
               siteId: siteId, isOrigin: isOrigin, score: (score * WideScoreMod),
               location: location, scorePosts: &scorePosts)
@@ -87,8 +86,6 @@ public class ScorePostHelper {
           let newScorePost = ScorePost(
             dayInWeek: dayInWeek, hourOfDay: hourOfDay,
             siteId: siteId, score: score, isOrigin: isOrigin, location: location)
-          print("Created new score post (Score: \(score)).")
-          print(" - DW: \(dayInWeek), HD: \(hourOfDay), ID: \(siteId), isOri: \(isOrigin)")
           scorePosts.append(newScorePost)
       }
   }
@@ -104,12 +101,9 @@ public class ScorePostHelper {
       for post in allPosts {
         if post.dayInWeek == dayInWeek && post.hourOfDay == hourOfDay &&
           post.siteId == siteId && post.isOrigin == isOrigin {
-            print("Found post on id & time")
             if let location = location, postLocation = post.location {
               if location.distanceFromLocation(postLocation) < RequiredDistance {
-                print("Found post within distance")
                 post.score += score
-                print("Modified score post (Score: \(post.score)).")
                 return true
               }
             }

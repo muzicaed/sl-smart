@@ -41,17 +41,17 @@ public class RoutineService {
     let todayTimeTuple = createTimeTuple()
     
     for trip in routineTrips {
-      print("")
-      print("---------------------------------")
-      print("\(trip.title!)")
+      //print("")
+      //print("---------------------------------")
+      //print("\(trip.title!)")
       var multiplier = multiplierBasedOnProximityToLocation(trip, locations: lcations)
       multiplier += multiplierBasedOnProximityToScorePostLocation(trip)
       trip.score = scoreBasedOnRoutineSchedule(trip, today: todayTimeTuple)
       trip.score = (trip.score == 0) ? multiplier * 1: trip.score * multiplier
-      print("Multiplier: \(multiplier)")
-      print("TOTAL: \(trip.score)")
-      print("---------------------------------")
-      print("")
+      //print("Multiplier: \(multiplier)")
+      //print("TOTAL: \(trip.score)")
+      //print("---------------------------------")
+      //print("")
     }
   }
   
@@ -108,14 +108,12 @@ public class RoutineService {
     trip: RoutineTrip, locations: [(id: String, dist: Int)]) -> Float {
       
       if trip.criterions.origin?.type == LocationType.Station {
-        print("Proximity check for station")
         for location in locations {
           if trip.criterions.origin!.siteId == location.id {
             return calcMultiplierBasedOnProximityToLocation(location.dist)
           }
         }
       } else {
-        print("Proximity check for address")
         if let currentLocation = MyLocationHelper.sharedInstance.currentLocation {
           let tripLocation = CLLocation(
             latitude: Double(trip.criterions.origin!.lat)!,
@@ -127,7 +125,6 @@ public class RoutineService {
         
       }
       
-      print("Proximity to location: 0.0")
       return 0.0
   }
   
@@ -137,7 +134,6 @@ public class RoutineService {
   static private func calcMultiplierBasedOnProximityToLocation(distance: Int) -> Float {
     var tempMultiplier = Float(1000 - distance)
     tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
-    print("Proximity to location: \(tempMultiplier)")
     return tempMultiplier
   }
   
@@ -161,7 +157,6 @@ public class RoutineService {
             }
         }
       }
-      print("Schedule score: \(score + 1)")
       return score + 1
   }
   
@@ -181,7 +176,6 @@ public class RoutineService {
         }
       }
     }
-    print("Proximity to logged post position: \(highestMulitplier)")
     return highestMulitplier
   }
   

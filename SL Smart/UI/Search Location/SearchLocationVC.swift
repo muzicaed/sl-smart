@@ -57,7 +57,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     if let superView = searchController?.view.superview {
       superView.removeFromSuperview()
     }
-    print("Deinit: SearchLocationVC")
   }
   
   // MARK: UITableViewController
@@ -179,7 +178,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
         LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
           dispatch_async(dispatch_get_main_queue()) {
             if let error = resTuple.error {
-              print("\(error)")
               self.noResults = true
               self.tableView.reloadData()
               return

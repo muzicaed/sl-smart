@@ -58,8 +58,7 @@ public class SearchTripService {
    * Checks if service returned error.
    */
   private static func checkErrors(data: JSON) -> Bool {
-    if let errorCode = data["TripList"]["errorCode"].string {
-      print("SearchTripService got error: \(data["TripList"]["errorText"].string!) (Code: \(errorCode))")
+    if data["TripList"]["errorCode"].string != nil {
       return true
     }
     return false

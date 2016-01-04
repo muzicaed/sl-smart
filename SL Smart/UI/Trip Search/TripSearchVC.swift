@@ -154,8 +154,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
         viaLabel.text = location.name
         isViaSelected = true
         tableView.reloadData()
-      default:
-        print("Error: searchLocationType")
+      default: break
       }
     }
     searchLocationType = nil

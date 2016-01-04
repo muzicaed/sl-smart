@@ -190,8 +190,4 @@ class ManageRoutineTripsVC: UITableViewController {
       bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
       cell.selectedBackgroundView = bgColorView
   }
-  
-  deinit {
-    print("Deinit: ManageRoutineTripsVC")
-  }
 }

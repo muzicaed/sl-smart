@@ -69,11 +69,9 @@ class ReceiptManager {
       let requestData = try NSJSONSerialization.dataWithJSONObject(requestContents, options: [])
       return requestData
     }
-    catch let error as NSError {
-      print(error)
+    catch {
+      return nil
     }
-    
-    return nil
   }
   
   /**
@@ -122,8 +120,7 @@ class ReceiptManager {
             }
             onCompletion(statusCode, date)
           }
-          catch let error as NSError {
-            print(error)
+          catch {
             onCompletion(nil, errorDate)
           }
       })

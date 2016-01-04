@@ -53,8 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   
   func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
     
-    print("Received message: \(message["action"] as! String)")
-    
     let action = message["action"] as! String
     dispatch_async(dispatch_get_main_queue()) {
       switch action {

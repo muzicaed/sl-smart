@@ -83,7 +83,6 @@ class WatchService {
         })
         
       } else {
-        print("Error Could not find routine trip")
         response["error"] = true
         callback(response)
       }

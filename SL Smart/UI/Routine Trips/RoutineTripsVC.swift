@@ -427,8 +427,4 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     presentViewController(restoreAlert, animated: true, completion: nil)
   }
-  
-  deinit {
-    print("Deinit: RoutineTripsVC")
-  }
 }

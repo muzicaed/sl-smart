@@ -38,10 +38,8 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     view.backgroundColor = StyleHelper.sharedInstance.background
     collectionView?.delegate = self
     if trips.count == 0 {
-      print("Loading data")
       loadTripData()
     } else {
-      print("Not reloading")
       isLoading = false
       self.collectionView?.reloadData()
     }
@@ -68,7 +66,6 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
    * Refresh collection view.
    */
   func refreshUI() {
-    print("Refresh")
     self.collectionView?.reloadData()
   }
   
@@ -281,7 +278,6 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
         callback: { resTuple in
           dispatch_async(dispatch_get_main_queue()) {
             if let error = resTuple.error {
-              print("Error: \(error)")
               self.showNetworkErrorAlert()
               self.isLoading = false
               self.collectionView?.reloadData()
@@ -394,9 +390,5 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
     
     presentViewController(networkErrorAlert, animated: true, completion: nil)
-  }
-  
-  deinit {
-    print("Deinit: TipListVC")
   }
 }

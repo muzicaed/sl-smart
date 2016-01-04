@@ -140,7 +140,6 @@ class TrafficSituationVC: UITableViewController {
    */
   private func loadData() {
     if shouldReload() {
-      print("Reload!")
       TrafficSituationService.fetchInformation() {data, error in
         dispatch_async(dispatch_get_main_queue()) {
           if error != nil {

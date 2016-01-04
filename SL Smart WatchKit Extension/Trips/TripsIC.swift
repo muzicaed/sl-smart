@@ -29,7 +29,6 @@ class TripsIC: WKInterfaceController {
    */
   override func awakeWithContext(context: AnyObject?) {
     super.awakeWithContext(context)
-    print("TripsIC awakeWithContext")
     tripTable.setHidden(true)
     data = context as? Dictionary<String, AnyObject>
   }
@@ -39,7 +38,6 @@ class TripsIC: WKInterfaceController {
    */
   override func willActivate() {
     super.willActivate()
-    print("TripsIC willActivate")
     if checkOldData() {
       // Go back
       popToRootController()

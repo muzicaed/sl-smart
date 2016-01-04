@@ -36,7 +36,6 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
    * Request a force updat of current location.
    */
   public func requestLocationUpdate(callback: ((location: CLLocation) -> ())?) {
-    print(currentLocation)
     if let location = currentLocation {
       callback?(location: location)
       self.callback = nil
@@ -90,7 +89,6 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
    */
   public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
     if error.code != 0 {
-      print(error.localizedDescription)
       isStarted = false
     }
   }
@@ -100,7 +98,6 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
    */
   public func startLocationManager() {
     if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
-      print("Start location manager")
       locationManager.pausesLocationUpdatesAutomatically = true
       locationManager.desiredAccuracy = 10
       locationManager.distanceFilter = 5
@@ -116,8 +113,7 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
    */
   private func updateAddressForCurrentLocation() {
     CLGeocoder().reverseGeocodeLocation(currentLocation!) { (placemarks, error) -> Void in
-      if let err = error {
-        print("Reverse geocode error: \(err.localizedDescription)")
+      if error != nil {
         return
       }
       
@@ -127,8 +123,6 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
         } else if let sub = mark.subLocality {
           self.currentStreet = sub + ", " + mark.locality!
         }
-      } else {
-        print("Problem with the data received from geocoder")
       }
     }
   }
