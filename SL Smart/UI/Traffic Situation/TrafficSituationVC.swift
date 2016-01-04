@@ -143,8 +143,7 @@ class TrafficSituationVC: UITableViewController {
       TrafficSituationService.fetchInformation() {data, error in
         dispatch_async(dispatch_get_main_queue()) {
           if error != nil {
-            // TODO: Better error handeling here
-            fatalError("ERROR!!")
+            return
           }
           
           self.lastUpdated = NSDate()

@@ -12,6 +12,9 @@ public class TrafficSituationService {
   
   private static let api = SLTrafficSituationServiceApi()
   
+  /**
+   * Fetch trafic situation data
+   */
   public static func fetchInformation(
     callback: (data: [SituationGroup], error: SLNetworkError?) -> Void) {
       api.fetchInformation { resTuple -> Void in

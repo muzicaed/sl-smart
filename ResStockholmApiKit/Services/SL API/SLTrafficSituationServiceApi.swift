@@ -17,9 +17,9 @@ class SLTrafficSituationServiceApi {
    * Search for location.
    */
   func fetchInformation(callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
-      HttpRequestHelper.makeGetRequest(createApiUrl()) { resTuple in
-        callback(resTuple)
-      }
+    HttpRequestHelper.makeGetRequest(createApiUrl()) { resTuple in
+      callback(resTuple)
+    }
   }
   
   /**
