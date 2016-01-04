@@ -73,16 +73,33 @@ public class LocationSearchService {
     let data = JSON(data: jsonData)
     
     for (_,locationJson):(String, JSON) in data["ResponseData"] {
-      let location = Location(
-        id: locationJson["SiteId"].string!,
-        name: locationJson["Name"].string!,
-        type: locationJson["Type"].string!,
-        lat: locationJson["Y"].string!,
-        lon: locationJson["X"].string!
-      )
-      result.append(location)
+      if !isCodeLocation(locationJson) {
+        let location = Location(
+          id: locationJson["SiteId"].string!,
+          name: locationJson["Name"].string!,
+          type: locationJson["Type"].string!,
+          lat: locationJson["Y"].string!,
+          lon: locationJson["X"].string!
+        )
+        result.append(location)
+      }
+      if result.count > 15 {
+        break
+      }
     }
     
     return result
+  }
+  
+  /**
+   * Check if location is "code location" eg. SPA, TERT
+   */
+  private static func isCodeLocation(locationJson: JSON) -> Bool {
+    let name = locationJson["Name"].string!
+    if name == name.uppercaseString && name.characters.count < 5 {
+      print("Removed: \(name)")
+      return true
+    }
+    return false
   }
 }

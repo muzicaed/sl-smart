@@ -183,7 +183,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
               return
             }
             self.searchResult = resTuple.data
-            self.reloadTableAnimated()
+            if resTuple.data.count > 0 {
+              self.reloadTableAnimated()
+            }
           }
         }
       } else if query.characters.count == 0 {
