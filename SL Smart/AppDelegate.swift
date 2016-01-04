@@ -83,7 +83,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   * Prepares the app.
   */
   private func setupApp() {
-    SubscriptionManager.sharedInstance.isValid()
+    if SubscriptionStore.sharedInstance.hasExpired() {
+      SubscriptionManager.sharedInstance.checkValidSubscription()
+    }
     StyleHelper.sharedInstance.setupCustomStyle()
     window?.tintColor = StyleHelper.sharedInstance.tintColor
     SearchCriterionStore.sharedInstance.preload()

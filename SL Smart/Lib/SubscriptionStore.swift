@@ -14,7 +14,7 @@ public class SubscriptionStore {
   private let SubscriptionState = "SubscriptionState"
   private let SubscriptionEndDate = "SubscriptionEndDate"
   private let defaults = NSUserDefaults.standardUserDefaults()
-  private var cache: Bool?
+  private var isSubscribedCache: Bool?
   
   // Singelton pattern
   static let sharedInstance = SubscriptionStore()
@@ -23,22 +23,22 @@ public class SubscriptionStore {
    * Check if user have a active subscription.
    */
   func isSubscribed() -> Bool {
-    if cache == nil {
-      cache = defaults.boolForKey(SubscriptionState)
+    if isSubscribedCache == nil {
+      isSubscribedCache = defaults.boolForKey(SubscriptionState)
     }
-    return cache!
+    
+    return isSubscribedCache!
   }
   
   /**
-   * Check if subscription has expired
+   * Check if expired date have passed.
    */
-  func hasSubscriptionExpired() -> Bool {
-    if isSubscribed() {
-      if let endDate = defaults.objectForKey(SubscriptionEndDate) as? NSDate {
-        if NSDate().timeIntervalSinceDate(endDate) > 0 {
-          cache = false
-          return true
-        }
+  func hasExpired() -> Bool {
+    if let endDate = defaults.objectForKey(SubscriptionEndDate) as? NSDate {
+      print("Stored end date: \(DateUtils.dateAsDateAndTimeString(endDate))")
+      if NSDate().timeIntervalSinceDate(endDate) > 0 {
+        print("EXPIRED")
+        return true
       }
     }
     return false
@@ -47,16 +47,10 @@ public class SubscriptionStore {
   /**
    * Store in data store.
    */
-  func setSubscribed(var isSubscribed: Bool, endDate: NSDate) {
-    print("------------")
-    print(DateUtils.dateAsDateAndTimeString(endDate))
-    print(endDate.timeIntervalSinceNow)
-    if endDate.timeIntervalSinceNow < 0 {
-      isSubscribed = false
-    }
+  func setSubscribed(isSubscribed: Bool, endDate: NSDate) {
+    isSubscribedCache = isSubscribed
     defaults.setBool(isSubscribed, forKey: SubscriptionState)
     defaults.setObject(endDate, forKey: SubscriptionEndDate)
     defaults.synchronize()
-    cache = isSubscribed
   }
 }

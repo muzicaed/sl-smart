@@ -10,7 +10,8 @@ import Foundation
 import StoreKit
 import ResStockholmApiKit
 
-class SubscriptionManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
+class SubscriptionManager: NSObject, SKProductsRequestDelegate,
+SKPaymentTransactionObserver, SKRequestDelegate {
   
   // Singelton pattern
   static let sharedInstance = SubscriptionManager()
@@ -32,27 +33,17 @@ class SubscriptionManager: NSObject, SKProductsRequestDelegate, SKPaymentTransac
   }
   
   /**
+   * Make sure instance exists.
+   */
+  func touch() {}
+  
+  /**
    * Check for valid subscription.
    */
-  func isValid() {
-    ReceiptManager.validateReceipt { (isValid, date) -> Void in
-      print("SubscriptionManager.isValid()")
-      print(" - isValid \(isValid)")
-      print(" - date \(DateUtils.dateAsDateAndTimeString(date))")
-      
-      if isValid {
-        print("Time since now: \(date.timeIntervalSinceNow)")
-        if date.timeIntervalSinceNow < 0 {
-          print("EXPIRED")
-          SubscriptionStore.sharedInstance.setSubscribed(false,
-            endDate: NSDate(timeIntervalSince1970: 0))
-        }
-        return
-      }
-      
-      SubscriptionStore.sharedInstance.setSubscribed(false,
-        endDate: NSDate(timeIntervalSince1970: 0))
-    }
+  func checkValidSubscription() {
+    let refresh = SKReceiptRefreshRequest()
+    refresh.delegate = self
+    refresh.start()
   }
   
   /**
@@ -151,6 +142,32 @@ class SubscriptionManager: NSObject, SKProductsRequestDelegate, SKPaymentTransac
         break
       }
     }
+  }
+  
+  // MARK: SKRequestDelegate
+  
+  func requestDidFinish(request: SKRequest) {
+    print("Refresh did finish")
+    ReceiptManager.validateReceipt { (foundReceipt, date) -> Void in
+      print("SubscriptionManager.isValid()")
+      print(" - foundReceipt \(foundReceipt)")
+      print(" - date \(DateUtils.dateAsDateAndTimeString(date))")
+      
+      if foundReceipt {
+        print("Time left: \(date.timeIntervalSinceNow)")
+        if date.timeIntervalSinceNow < 0 {
+          print("EXPIRED")
+          SubscriptionStore.sharedInstance.setSubscribed(false,
+            endDate: NSDate(timeIntervalSince1970: 0))
+          return
+        }
+        SubscriptionStore.sharedInstance.setSubscribed(true, endDate: date)
+        return
+      }
+      
+      SubscriptionStore.sharedInstance.setSubscribed(false,
+        endDate: NSDate(timeIntervalSince1970: 0))
+    }    
   }
   
   // MARK: Private method

@@ -112,15 +112,14 @@ class ReceiptManager {
             
             var date = errorDate
             if statusCode == 0 {
-              if let reciepts = json["latest_receipt_info"] as? Array<[String: AnyObject]> {
-                print("Found all reciepts")
-                if let reciept = reciepts.last as? [String: String] {
-                  print("Found reciept")
+              if let reciepts = json["latest_receipt_info"] as? Array<[String: String]> {
+                if let reciept = reciepts.last {
                   if let timeStr = reciept["expires_date_ms"] {
                     date = NSDate(timeIntervalSince1970: Double(timeStr)! / 1000)
                   }
                 }
               }
+
             }
             onCompletion(statusCode, date)
           }
