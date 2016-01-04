@@ -23,7 +23,7 @@ class HttpRequestHelper {
             do {
                 let opt = try HTTP.New(url, method: .GET)
                 opt.onFinish = { response in
-                    if let error = response.error {
+                    if response.error != nil {
                         //print(error.code)
                         //print(error.localizedDescription)
                         callback((nil, SLNetworkError.NetworkError))

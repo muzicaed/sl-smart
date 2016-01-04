@@ -177,7 +177,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
         self.noResults = false
         LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
           dispatch_async(dispatch_get_main_queue()) {
-            if let error = resTuple.error {
+            if resTuple.error != nil {
               self.noResults = true
               self.tableView.reloadData()
               return

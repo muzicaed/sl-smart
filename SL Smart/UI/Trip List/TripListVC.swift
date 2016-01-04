@@ -277,7 +277,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
       SearchTripService.tripSearch(criterions,
         callback: { resTuple in
           dispatch_async(dispatch_get_main_queue()) {
-            if let error = resTuple.error {
+            if resTuple.error != nil {
               self.showNetworkErrorAlert()
               self.isLoading = false
               self.collectionView?.reloadData()
