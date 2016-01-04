@@ -664,7 +664,7 @@
             <objects>
                 <tableViewController id="06E-RP-qJs" userLabel="My Routine Trips" customClass="ManageRoutineTripsVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bNx-rF-zNd">
-                        <rect key="frame" x="0.0" y="64" width="414" height="1436"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -809,7 +809,7 @@
             <objects>
                 <tableViewController title="Ny resa" id="h2d-Hi-2Zo" customClass="EditRoutineTripVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="UAG-r3-izO">
-                        <rect key="frame" x="0.0" y="64" width="414" height="1436"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.76311598557692306" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.55447716346153841" colorSpace="calibratedRGB"/>
@@ -1079,7 +1079,7 @@
             <objects>
                 <tableViewController title="Välj station" id="WJw-HK-J3L" customClass="SearchLocationVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="NZT-P9-guF">
-                        <rect key="frame" x="0.0" y="64" width="414" height="1436"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1167,7 +1167,7 @@
             <objects>
                 <tableViewController id="Tm1-9I-jjs" userLabel="Travel Types" customClass="TravelTypesVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nNJ-ce-w8T">
-                        <rect key="frame" x="0.0" y="64" width="414" height="1436"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1232,7 +1232,7 @@
             <objects>
                 <collectionViewController id="TL9-Eb-L0b" customClass="RoutineTripsVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Krw-YV-CWN">
-                        <rect key="frame" x="0.0" y="64" width="414" height="1436"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="buw-4c-nAR">
@@ -1945,136 +1945,19 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                         <fragment content="För att kunna använda ">
                                                                             <attributes>
                                                                                 <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                                                    <tabStops>
-                                                                                        <textTab alignment="left" location="28">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="56">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="84">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="112">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="140">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="168">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="196">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="224">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="252">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="280">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="308">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="336">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                    </tabStops>
-                                                                                </paragraphStyle>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                                             </attributes>
                                                                         </fragment>
                                                                         <fragment content="Smart Resa och Apple Watch">
                                                                             <attributes>
                                                                                 <font key="NSFont" size="16" name="HelveticaNeue-ThinItalic"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                                                    <tabStops>
-                                                                                        <textTab alignment="left" location="28">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="56">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="84">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="112">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="140">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="168">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="196">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="224">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="252">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="280">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="308">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="336">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                    </tabStops>
-                                                                                </paragraphStyle>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                                             </attributes>
                                                                         </fragment>
                                                                         <fragment content=" behöver du en prenumeration.">
                                                                             <attributes>
                                                                                 <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                                                    <tabStops>
-                                                                                        <textTab alignment="left" location="28">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="56">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="84">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="112">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="140">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="168">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="196">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="224">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="252">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="280">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="308">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                        <textTab alignment="left" location="336">
-                                                                                            <options/>
-                                                                                        </textTab>
-                                                                                    </tabStops>
-                                                                                </paragraphStyle>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                                             </attributes>
                                                                         </fragment>
                                                                     </attributedString>
@@ -2231,8 +2114,6 @@ Välkommen till ett smartare sätt att pendla.</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="1500"/>
                     <connections>
                         <segue destination="1Cw-O1-Jfo" kind="show" identifier="ShowTripList" id="8tl-aE-z6t"/>
                         <segue destination="50x-Hl-bek" kind="presentation" identifier="ShowSubscribe" id="yHv-yX-6Ka"/>
@@ -2330,7 +2211,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                             <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <size key="shadowOffset" width="-1" height="-1"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prova en vecka gratis" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drh-G9-r3L">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ny kund - Prova en vecka gratis" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drh-G9-r3L">
                                             <rect key="frame" x="8" y="144.5" width="354" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2403,7 +2284,7 @@ direkt från din iPhone</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prova gratis en månad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6A3-uG-BcN">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ny kund - Prova gratis en månad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6A3-uG-BcN">
                                             <rect key="frame" x="8" y="145" width="354" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
@@ -2532,7 +2413,7 @@ direkt från din iPhone</string>
             <objects>
                 <collectionViewController id="1Cw-O1-Jfo" userLabel="Reseförslag" customClass="TripListVC" customModule="SL_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="y8I-rB-C8h">
-                        <rect key="frame" x="0.0" y="64" width="414" height="1436"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="0.0" id="GFr-Rc-OsQ">
@@ -3141,7 +3022,7 @@ direkt från din iPhone</string>
             <objects>
                 <tableViewController title="Resedetaljer" id="4Bd-C0-Zjd" customClass="TripDetailsVC" customModule="SL_Smart" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q2W-7V-Yq6">
-                        <rect key="frame" x="0.0" y="64" width="414" height="1436"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>

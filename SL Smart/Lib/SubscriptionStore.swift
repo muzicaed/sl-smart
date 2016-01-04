@@ -23,6 +23,9 @@ public class SubscriptionStore {
    * Check if user have a active subscription.
    */
   func isSubscribed() -> Bool {
+    // TODO: REMOVE THIS BETA TEST CODE!!!!
+    return true
+    
     if isSubscribedCache == nil {
       isSubscribedCache = defaults.boolForKey(SubscriptionState)
     }
@@ -47,7 +50,14 @@ public class SubscriptionStore {
   /**
    * Store in data store.
    */
-  func setSubscribed(isSubscribed: Bool, endDate: NSDate) {
+  func setSubscribedDate(endDate: NSDate) {
+    var isSubscribed = false
+    print("Set end date: \(DateUtils.dateAsDateAndTimeString(endDate))")
+    print(endDate.timeIntervalSinceNow)
+    if endDate.timeIntervalSinceNow > 0 {
+      isSubscribed = true
+    }
+    
     isSubscribedCache = isSubscribed
     defaults.setBool(isSubscribed, forKey: SubscriptionState)
     defaults.setObject(endDate, forKey: SubscriptionEndDate)

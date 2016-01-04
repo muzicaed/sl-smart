@@ -36,7 +36,6 @@ class ReceiptManager {
               
               // 0 if the receipt is valid
               if statusValue == 0 {
-                // TODO: FIX REAL DATE HERE!!!
                 onCompletion(true, date)
               } else {
                 onCompletion(false, date)

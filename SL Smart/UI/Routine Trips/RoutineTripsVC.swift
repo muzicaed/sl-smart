@@ -409,7 +409,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   private func showRestoreSubscriptionAlert() {
     let restoreAlert = UIAlertController(
       title: "Försöker återuppta prenumeration",
-      message: "Om en aktiv prenumeration finns kommer denna automatiskt att aktiveras.\n\nDu kan själv kontrollera dina prenumerationer på din iPhone under Inställningar -> App Store och iTunes Store -> Tryck på ditt Apple-ID -> Visa Apple-ID",
+      message: "Om en aktiv prenumeration finns kommer denna automatiskt att aktiveras för denna enhet.\n\nDu kan själv kontrollera dina prenumerationer på din iPhone under Inställningar -> App Store och iTunes Store -> Tryck på ditt Apple-ID -> Visa Apple-ID",
       preferredStyle: UIAlertControllerStyle.Alert)
     restoreAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: { _ in
@@ -420,6 +420,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10.0 * Double(NSEC_PER_SEC)))
         dispatch_after(dispatchTime, dispatch_get_main_queue(), {
           self.isSubscribing = false
+          self.isLoading = false
           self.viewWillAppear(true)
         })
       }))

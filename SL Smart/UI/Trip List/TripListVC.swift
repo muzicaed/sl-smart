@@ -294,7 +294,9 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
             self.footer?.displayLabel()
             self.collectionView?.reloadData()
             self.updateDateCriterions()
-            self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "refreshUI", userInfo: nil, repeats: true)
+            self.refreshTimer?.invalidate()
+            self.refreshTimer = nil
+            self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: "refreshUI", userInfo: nil, repeats: true)
           }
       })
       return

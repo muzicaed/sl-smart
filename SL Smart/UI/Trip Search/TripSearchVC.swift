@@ -69,7 +69,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       
     } else if segue.identifier == "ShowTripList" {
       let vc = segue.destinationViewController as! TripListVC
-      vc.criterions = criterions
+      vc.criterions = criterions?.copy() as? TripSearchCriterion
       if let crit = criterions {
         SearchCriterionStore.sharedInstance.writeLastSearchCriterions(crit)
       }

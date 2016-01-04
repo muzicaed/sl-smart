@@ -135,7 +135,6 @@ class TrafficSituationVC: UITableViewController {
     tableView.estimatedRowHeight = 130
   }
   
-  
   /**
    * Loads traffic situation data.
    */

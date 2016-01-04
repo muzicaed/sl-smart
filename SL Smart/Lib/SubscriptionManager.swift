@@ -157,16 +157,14 @@ SKPaymentTransactionObserver, SKRequestDelegate {
         print("Time left: \(date.timeIntervalSinceNow)")
         if date.timeIntervalSinceNow < 0 {
           print("EXPIRED")
-          SubscriptionStore.sharedInstance.setSubscribed(false,
-            endDate: NSDate(timeIntervalSince1970: 0))
+          SubscriptionStore.sharedInstance.setSubscribedDate(NSDate(timeIntervalSince1970: 0))
           return
         }
-        SubscriptionStore.sharedInstance.setSubscribed(true, endDate: date)
+        SubscriptionStore.sharedInstance.setSubscribedDate(date)
         return
       }
       
-      SubscriptionStore.sharedInstance.setSubscribed(false,
-        endDate: NSDate(timeIntervalSince1970: 0))
+      SubscriptionStore.sharedInstance.setSubscribedDate(NSDate(timeIntervalSince1970: 0))
     }    
   }
   
@@ -182,7 +180,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
       ReceiptManager.validateReceipt({ isValid, date in
         if isValid {
           print("Receipt is valid: \(DateUtils.dateAsDateAndTimeString(date))")
-          SubscriptionStore.sharedInstance.setSubscribed(true, endDate: date)
+          SubscriptionStore.sharedInstance.setSubscribedDate(date)
           if SubscriptionStore.sharedInstance.isSubscribed() {
             self.delegate?.subscriptionSuccessful()
             doneCallback()
@@ -193,7 +191,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
           return
         }
         print("Receipt NOT valid: \(DateUtils.dateAsDateAndTimeString(date))")
-        SubscriptionStore.sharedInstance.setSubscribed(false, endDate: date)
+        SubscriptionStore.sharedInstance.setSubscribedDate(date)
         self.delegate?.subscriptionError(SubscriptionError.PaymentError)
         doneCallback()
       })
@@ -205,7 +203,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   private func handleFailedPurchase(transaction: SKPaymentTransaction) {
     print("Purchased Failed")
     print("\(transaction.error?.localizedDescription)")
-    SubscriptionStore.sharedInstance.setSubscribed(false, endDate: NSDate(timeIntervalSince1970: 0))
+    SubscriptionStore.sharedInstance.setSubscribedDate(NSDate(timeIntervalSince1970: 0))
     delegate?.subscriptionError(SubscriptionError.PaymentError)
   }
 }
