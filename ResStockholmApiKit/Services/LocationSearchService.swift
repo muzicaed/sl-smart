@@ -97,7 +97,6 @@ public class LocationSearchService {
   private static func isCodeLocation(locationJson: JSON) -> Bool {
     let name = locationJson["Name"].string!
     if name == name.uppercaseString && name.characters.count < 5 {
-      print("Removed: \(name)")
       return true
     }
     return false

@@ -24,7 +24,7 @@ public class SubscriptionStore {
    */
   func isSubscribed() -> Bool {
     // TODO: REMOVE THIS BETA TEST CODE!!!!
-    return true
+    //return true
     
     if isSubscribedCache == nil {
       isSubscribedCache = defaults.boolForKey(SubscriptionState)
@@ -32,35 +32,42 @@ public class SubscriptionStore {
     
     return isSubscribedCache!
   }
-  
+ 
   /**
-   * Check if expired date have passed.
+   * Get local expire date.
    */
-  func hasExpired() -> Bool {
-    if let endDate = defaults.objectForKey(SubscriptionEndDate) as? NSDate {
-      print("Stored end date: \(DateUtils.dateAsDateAndTimeString(endDate))")
-      if NSDate().timeIntervalSinceDate(endDate) > 0 {
-        print("EXPIRED")
-        return true
-      }
+  func getLocalExpireDate() -> NSDate? {
+    let endDate = defaults.objectForKey(SubscriptionEndDate) as? NSDate
+    
+    // TODO: REMOVE TEST OUTPUT
+    if let date = endDate {
+      print("getLocalExpireDate: \(DateUtils.dateAsDateAndTimeString(date))")
+    } else {
+      print("getLocalExpireDate: None")    
     }
-    return false
+    return endDate
   }
   
   /**
-   * Store in data store.
+   * Set a renewed subscription date.
    */
-  func setSubscribedDate(endDate: NSDate) {
-    var isSubscribed = false
+  func setNewSubscriptionDate(endDate: NSDate) {
     print("Set end date: \(DateUtils.dateAsDateAndTimeString(endDate))")
     print(endDate.timeIntervalSinceNow)
-    if endDate.timeIntervalSinceNow > 0 {
-      isSubscribed = true
-    }
-    
-    isSubscribedCache = isSubscribed
-    defaults.setBool(isSubscribed, forKey: SubscriptionState)
+    isSubscribedCache = true
+    defaults.setBool(isSubscribedCache!, forKey: SubscriptionState)
     defaults.setObject(endDate, forKey: SubscriptionEndDate)
+    defaults.synchronize()
+  }
+  
+  /**
+   * Set subscription have expired.
+   */
+  func setSubscriptionHaveExpired() {
+    print("Set subscription expired.")
+    isSubscribedCache = false
+    defaults.setBool(isSubscribedCache!, forKey: SubscriptionState)
+    defaults.setObject(nil, forKey: SubscriptionEndDate)
     defaults.synchronize()
   }
 }

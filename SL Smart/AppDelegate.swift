@@ -81,16 +81,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   * Prepares the app.
   */
   private func setupApp() {
-    if SubscriptionStore.sharedInstance.hasExpired() {
-      SubscriptionManager.sharedInstance.checkValidSubscription()
-    }
+    SubscriptionManager.sharedInstance.validateSubscription()
     StyleHelper.sharedInstance.setupCustomStyle()
     window?.tintColor = StyleHelper.sharedInstance.tintColor
     SearchCriterionStore.sharedInstance.preload()
     RoutineTripsStore.sharedInstance.preload()
     ScorePostStore.sharedInstance.preload()
     
-    //MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
+    MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
   }
   
   /**
