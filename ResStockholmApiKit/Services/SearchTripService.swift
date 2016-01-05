@@ -106,17 +106,19 @@ public class SearchTripService {
     let destination = convertJsonToLocation(segmentJson["Destination"])
     
     let distString = (segmentJson["dist"].string != nil) ? segmentJson["dist"].string! : ""
+    let dateTimeTuple = extractTimeDate(segmentJson)
+    
     return TripSegment(
       index: Int(segmentJson["idx"].string!)!,
       name: segmentJson["name"].string!,
       type: segmentJson["type"].string!,
       directionText: segmentJson["dir"].string, lineNumber: segmentJson["line"].string,
       origin: origin, destination: destination,
-      departureTime: segmentJson["Origin"]["time"].string!,
-      arrivalTime: segmentJson["Destination"]["time"].string!,
-      departureDate: segmentJson["Origin"]["date"].string!,
-      arrivalDate: segmentJson["Destination"]["date"].string!,
-      distance: Int(distString))
+      departureTime: dateTimeTuple.depTime,
+      arrivalTime: dateTimeTuple.arrTime,
+      departureDate: dateTimeTuple.depDate,
+      arrivalDate: dateTimeTuple.arrDate,
+      distance: Int(distString), isRealtime: dateTimeTuple.isRealtime)
   }
   
   /**
@@ -144,4 +146,44 @@ public class SearchTripService {
     
     return string
   }
+  
+  /**
+   * Extracts departure date/time and arriaval date/time. 
+   * Uses realtime data if available.
+   */
+  private static func extractTimeDate(segment: JSON)
+    -> (isRealtime: Bool, depDate: String, depTime: String, arrDate: String, arrTime: String) {
+
+      var isRealtime = false
+      var depDate = segment["Origin"]["date"].string!
+      var depTime = segment["Origin"]["time"].string!
+      var arrDate = segment["Destination"]["date"].string!
+      var arrTime = segment["Destination"]["time"].string!
+      
+      if let rtDate = segment["Origin"]["rtDate"].string {
+        isRealtime = true
+        depDate = rtDate
+      }
+      if let rtTime = segment["Origin"]["rtTime"].string {
+        isRealtime = true
+        depTime = rtTime
+      }
+      
+      if let rtDate = segment["Destination"]["rtDate"].string {
+        isRealtime = true
+        arrDate = rtDate
+      }
+      if let rtTime = segment["Destination"]["rtTime"].string {
+        isRealtime = true
+        arrTime = rtTime
+      }
+      
+      // TODO: Remove test output
+      if isRealtime {
+        print("Real: \(segment)")
+      }
+      
+      return (isRealtime, depDate, depTime, arrDate, arrTime)
+  }
+  
 }
