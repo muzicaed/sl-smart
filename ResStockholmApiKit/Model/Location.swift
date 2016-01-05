@@ -84,8 +84,8 @@ public class Location: NSObject, NSCoding, NSCopying {
       let nameSegments = nameString.characters.split{$0 == ","}.map(String.init)
       if nameSegments.count > 1 {
         return (
-          nameSegments[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()),
-          nameSegments[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + " (Adress)"
+          nameSegments[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()),
+          nameSegments[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + " (Adress)"
         )
       }
       return (nameString, "")

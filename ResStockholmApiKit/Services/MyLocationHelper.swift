@@ -11,23 +11,30 @@ import CoreLocation
 
 public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   
-  public  static let sharedInstance = MyLocationHelper()
+  public static let sharedInstance = MyLocationHelper()
   public let locationManager = CLLocationManager()
   public var currentLocation: CLLocation?
   public var currentStreet: String?
   public var callback: ((CLLocation) -> Void)?
+  public var isStarted = false
   
   override public init() {
     super.init()
     if CLLocationManager.locationServicesEnabled() {
-      locationManager.delegate = self
-      locationManager.requestWhenInUseAuthorization()
-      locationManager.pausesLocationUpdatesAutomatically = true
-      locationManager.desiredAccuracy = 10
-      locationManager.distanceFilter = 5
-      locationManager.startUpdatingLocation()
+      if isAllowed() {
+        locationManager.delegate = self
+        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+          startLocationManager()
+        } else {
+          locationManager.requestWhenInUseAuthorization()
+        }
+        
+      } else {
+        print("Not authorized...")
+        print(CLLocationManager.authorizationStatus().rawValue)
+      }
     } else {
-      fatalError("SignificatLoationChange not available.")
+      fatalError("locationServices not enabled.")
     }
   }
   
@@ -67,6 +74,20 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
     updateAddressForCurrentLocation()
   }
   
+  public func locationManager(
+    manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+      if status == .NotDetermined {
+        return
+      }
+      
+      print(CLLocationManager.authorizationStatus().rawValue)
+      if status == .AuthorizedWhenInUse {
+        startLocationManager()
+      } else if status == .Denied {
+        print("USER DID NOT ALLOW!!!")
+      }
+  }
+  
   /**
    * On error
    */
@@ -99,5 +120,26 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
         print("Problem with the data received from geocoder")
       }
     }
+  }
+  
+  /**
+   * Starts the location manager
+   */
+  private func startLocationManager() {
+    locationManager.pausesLocationUpdatesAutomatically = true
+    locationManager.desiredAccuracy = 10
+    locationManager.distanceFilter = 5
+    locationManager.startUpdatingLocation()
+    isStarted = true
+  }
+  
+  /**
+   * Checks if Location features are allowed.
+   */
+  private func isAllowed() -> Bool {
+    return  (
+      CLLocationManager.authorizationStatus() != .Restricted &&
+        CLLocationManager.authorizationStatus() != .Denied
+    )
   }
 }
