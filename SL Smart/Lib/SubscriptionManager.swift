@@ -41,8 +41,6 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    * Validate subscription
    */
   func validateSubscription() {
-    // TODO: REMOVE TEST CODE
-    return false
     if shouldCheckForNewReciept() {
       let refresh = SKReceiptRefreshRequest()
       refresh.delegate = self
@@ -182,6 +180,9 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   * Check if it is needed to check for a renewed subscription.
   */
   private func shouldCheckForNewReciept() -> Bool {
+    // TODO: REMOVE TEST CODE
+    return false
+    
     if let localEndDate = SubscriptionStore.sharedInstance.getLocalExpireDate() {
       if localEndDate.timeIntervalSinceNow < 0 {
         print("Local end date passed, check for renewed subscription.")
