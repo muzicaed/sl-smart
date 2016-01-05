@@ -69,7 +69,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     if segue.identifier == showTripListSegue {
       if let routineTrip = selectedRoutineTrip {
         if let crit = routineTrip.criterions.copy() as? TripSearchCriterion {
-          let date = NSDate(timeIntervalSinceNow: (60 * 5) * -1)
+          let date = NSDate(timeIntervalSinceNow: (60 * 2) * -1)
           crit.date = DateUtils.dateAsDateString(date)
           crit.time = DateUtils.dateAsTimeString(date)
           

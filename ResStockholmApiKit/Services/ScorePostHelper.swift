@@ -89,8 +89,7 @@ public class ScorePostHelper {
           scorePosts.append(newScorePost)
       }
   }
-  
-  
+    
   /**
    * Finds existing score post
    */
@@ -99,11 +98,10 @@ public class ScorePostHelper {
     location: CLLocation?, inout allPosts: [ScorePost], score: Float) -> Bool {
       
       for post in allPosts {
-        if post.dayInWeek == dayInWeek && post.hourOfDay == hourOfDay &&
-          post.siteId == siteId && post.isOrigin == isOrigin {
+        if post.dayInWeek == dayInWeek && post.hourOfDay == hourOfDay && post.siteId == siteId {
             if let location = location, postLocation = post.location {
               if location.distanceFromLocation(postLocation) < RequiredDistance {
-                post.score += score
+                post.score = (post.isOrigin == isOrigin) ? score : score * 0.75
                 return true
               }
             }
