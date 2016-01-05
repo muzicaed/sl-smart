@@ -24,7 +24,7 @@ public class SubscriptionStore {
    */
   func isSubscribed() -> Bool {
     // TODO: REMOVE THIS BETA TEST CODE!!!!
-    //return true
+    return true
     
     if isSubscribedCache == nil {
       isSubscribedCache = defaults.boolForKey(SubscriptionState)

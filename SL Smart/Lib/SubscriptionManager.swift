@@ -41,6 +41,8 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    * Validate subscription
    */
   func validateSubscription() {
+    // TODO: REMOVE TEST CODE
+    return false
     if shouldCheckForNewReciept() {
       let refresh = SKReceiptRefreshRequest()
       refresh.delegate = self
