@@ -8,7 +8,7 @@
         <!--Res Smart-->
         <scene sceneID="z0c-D7-TRq">
             <objects>
-                <controller title="Res Smart" id="pz1-TM-aL5" customClass="SmartTripIC" customModule="SL_Smart">
+                <controller title="Res Smart" id="pz1-TM-aL5" customClass="SmartTripIC" customModule="Res_Smart">
                     <items>
                         <group width="1" alignment="left" verticalAlignment="center" animationDuration="0.29999999999999999" layout="vertical" id="naW-Us-NIZ">
                             <items>
@@ -108,7 +108,7 @@
                                         </label>
                                         <table alignment="left" spacing="6" id="fRr-Pe-7eK">
                                             <items>
-                                                <tableRow identifier="RoutineRow" id="pX4-Ta-K8Y" customClass="OtherRoutinesRow" customModule="SL_Smart">
+                                                <tableRow identifier="RoutineRow" id="pX4-Ta-K8Y" customClass="OtherRoutinesRow" customModule="Res_Smart">
                                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="1" id="P5p-Mh-lmm">
                                                         <items>
                                                             <label width="1" alignment="left" text="Hem från jobbet" textAlignment="left" id="BWu-h1-71D">
@@ -180,7 +180,7 @@
         <!--Resor-->
         <scene sceneID="3Lq-WI-dKH">
             <objects>
-                <controller identifier="Trips" title="Resor" id="KjQ-iU-gEp" customClass="TripsIC" customModule="SL_Smart">
+                <controller identifier="Trips" title="Resor" id="KjQ-iU-gEp" customClass="TripsIC" customModule="Res_Smart">
                     <items>
                         <separator alignment="left" id="FhQ-0L-sZt">
                             <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -214,7 +214,7 @@
                         </label>
                         <table alignment="left" spacing="6" id="127-3q-0Gz">
                             <items>
-                                <tableRow identifier="TripRow" selectable="NO" id="IQa-Qh-Uig" customClass="TripRow" customModule="SL_Smart">
+                                <tableRow identifier="TripRow" selectable="NO" id="IQa-Qh-Uig" customClass="TripRow" customModule="Res_Smart">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="1" id="OJI-g6-70X">
                                         <items>
                                             <label width="1" alignment="left" text="00:00 → 23:59" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="wna-Ru-M1o" userLabel="Om 6 min">
@@ -316,7 +316,7 @@
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">
             <objects>
-                <glanceController spacing="0.0" hidesWhenLoading="NO" topTemplateType="mediumBody1" id="0uZ-2p-rRc" customClass="GlanceController" customModule="SL_Smart">
+                <glanceController spacing="0.0" hidesWhenLoading="NO" topTemplateType="mediumBody1" id="0uZ-2p-rRc" customClass="GlanceController" customModule="Res_Smart">
                     <items>
                         <label alignment="left" text="Res Smart" id="brv-oZ-oj4" userLabel="I">
                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
