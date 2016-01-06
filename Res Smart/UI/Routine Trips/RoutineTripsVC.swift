@@ -126,6 +126,15 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   /**
+   * On user taps help
+   */
+  @IBAction func onHelpTap(sender: AnyObject) {
+    if let url = NSURL(string: "http://www.ressmartapp.se/faq.php") {
+      UIApplication.sharedApplication().openURL(url)
+    }
+  }
+  
+  /**
    * On user taps subscribe button
    */
   @IBAction func onSubscribeTap(sender: UIButton) {
@@ -233,12 +242,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
           if indexPath.row == 0 {
             return CGSizeMake(screenSize.width - 20, 160)
           }
-          return CGSizeMake(screenSize.width - 20, 40)
+          return CGSizeMake(screenSize.width - 20, 60)
         }
         if indexPath.row == 0 && bestRoutineTrip != nil {
           return CGSizeMake(screenSize.width - 20, 145)
         }
-        return CGSizeMake(screenSize.width - 20, 40)
+        return CGSizeMake(screenSize.width - 20, 60)
       }
       
       if otherRoutineTrips[indexPath.row].criterions.isAdvanced {
@@ -459,7 +468,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       hereToThereCellIdentifier, forIndexPath: indexPath) as! HereToThereCell
     
     if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
-      cell.hereToThereLabel.text = "Från \(currentLocation.name) till..."
+      cell.hereToThereLabel.text = "Från \(currentLocation.name)"
     }
     
     return cell

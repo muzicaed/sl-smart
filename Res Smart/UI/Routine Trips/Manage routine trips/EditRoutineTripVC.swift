@@ -37,7 +37,7 @@ TravelTypesResponder, PickLocationResponder {
     createFakeBackButton()
     
     if routineTrip == nil {
-      title = "Ny vanlig resa"
+      title = "Ny rutin"
       routineTrip = RoutineTrip()
       isNewTrip = true
     } else {

@@ -664,7 +664,7 @@
             <objects>
                 <tableViewController id="06E-RP-qJs" userLabel="My Routine Trips" customClass="ManageRoutineTripsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bNx-rF-zNd">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="1436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -809,7 +809,7 @@
             <objects>
                 <tableViewController title="Ny resa" id="h2d-Hi-2Zo" customClass="EditRoutineTripVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="UAG-r3-izO">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="1436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.76311598557692306" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.55447716346153841" colorSpace="calibratedRGB"/>
@@ -1052,7 +1052,7 @@
                             <outlet property="delegate" destination="h2d-Hi-2Zo" id="XDz-7Y-DGf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Ny vanlig resa" id="odw-Pm-t92">
+                    <navigationItem key="navigationItem" title="Ny rutin" id="odw-Pm-t92">
                         <barButtonItem key="rightBarButtonItem" title="Lägg till" id="L2e-4p-e76">
                             <connections>
                                 <action selector="onRoutineTripNavAddTap:" destination="h2d-Hi-2Zo" id="3Jx-8M-Fdl"/>
@@ -1079,7 +1079,7 @@
             <objects>
                 <tableViewController title="Välj station" id="WJw-HK-J3L" customClass="SearchLocationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="NZT-P9-guF">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="1436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1167,7 +1167,7 @@
             <objects>
                 <tableViewController id="Tm1-9I-jjs" userLabel="Travel Types" customClass="TravelTypesVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nNJ-ce-w8T">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="1436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1232,7 +1232,7 @@
             <objects>
                 <collectionViewController id="TL9-Eb-L0b" customClass="RoutineTripsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Krw-YV-CWN">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="1436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="buw-4c-nAR">
@@ -2056,23 +2056,34 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <size key="customSize" width="370" height="330"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HereToThereCell" id="esv-Pr-9mX" customClass="HereToThereCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="1110" width="370" height="40"/>
+                                <rect key="frame" x="22" y="1110" width="370" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="40"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y1K-Xh-Fl8">
-                                            <rect key="frame" x="18" y="8" width="334" height="24"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Y1K-Xh-Fl8">
+                                            <rect key="frame" x="18" y="8" width="334" height="44"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Ta mig härifrån till..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVP-oh-zq9">
-                                                    <rect key="frame" x="0.0" y="0.0" width="324" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                    <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="❯" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sg4-02-LGM">
-                                                    <rect key="frame" x="324" y="0.0" width="11" height="24"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="240" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="chj-Ff-Ru2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="308" height="44"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Ta mig till..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVP-oh-zq9">
+                                                            <rect key="frame" x="0.0" y="0.0" width="308" height="24.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Från: Nuvarande plats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wn-4P-85B">
+                                                            <rect key="frame" x="0.0" y="24" width="308" height="19.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="❯" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sg4-02-LGM">
+                                                    <rect key="frame" x="308" y="0.0" width="26" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -2084,14 +2095,14 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </view>
                                 <color key="backgroundColor" red="1" green="0.99989593029022217" blue="0.99996614456176758" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottomMargin" secondItem="Y1K-Xh-Fl8" secondAttribute="bottom" id="0nM-Xf-2li"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="Y1K-Xh-Fl8" secondAttribute="trailing" constant="10" id="Ewb-r6-NMI"/>
-                                    <constraint firstItem="Y1K-Xh-Fl8" firstAttribute="leading" secondItem="esv-Pr-9mX" secondAttribute="leadingMargin" constant="10" id="LmO-r1-rWr"/>
-                                    <constraint firstItem="Y1K-Xh-Fl8" firstAttribute="top" secondItem="esv-Pr-9mX" secondAttribute="topMargin" id="bGK-Xd-RNm"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="Y1K-Xh-Fl8" secondAttribute="bottom" id="1Qg-3B-LFe"/>
+                                    <constraint firstItem="Y1K-Xh-Fl8" firstAttribute="top" secondItem="esv-Pr-9mX" secondAttribute="topMargin" id="JEI-e9-nkQ"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Y1K-Xh-Fl8" secondAttribute="trailing" constant="10" id="ct3-vF-NVQ"/>
+                                    <constraint firstItem="Y1K-Xh-Fl8" firstAttribute="leading" secondItem="esv-Pr-9mX" secondAttribute="leadingMargin" constant="10" id="xJ9-sp-qyo"/>
                                 </constraints>
-                                <size key="customSize" width="370" height="40"/>
+                                <size key="customSize" width="370" height="60"/>
                                 <connections>
-                                    <outlet property="hereToThereLabel" destination="fVP-oh-zq9" id="Ahv-Bi-yYr"/>
+                                    <outlet property="hereToThereLabel" destination="2Wn-4P-85B" id="Id1-QY-Wxa"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -2142,17 +2153,26 @@ Välkommen till ett smartare sätt att pendla.</string>
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Smart" id="9vb-OE-0pW">
-                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="vDb-rr-do9">
-                            <connections>
-                                <action selector="onRefreshTap:" destination="TL9-Eb-L0b" id="Tsg-BQ-9eB"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="vDb-rr-do9">
+                                <connections>
+                                    <action selector="onRefreshTap:" destination="TL9-Eb-L0b" id="Tsg-BQ-9eB"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Hjälp" id="rbu-cd-GBJ">
+                                <connections>
+                                    <action selector="onHelpTap:" destination="TL9-Eb-L0b" id="tIn-dM-i0t"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Mina rutiner" id="KgG-WF-SzF">
                             <connections>
                                 <segue destination="06E-RP-qJs" kind="show" identifier="ManageRoutineTrips" id="plm-BT-rVX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="1500"/>
                     <connections>
                         <segue destination="1Cw-O1-Jfo" kind="show" identifier="ShowTripList" id="8tl-aE-z6t"/>
                         <segue destination="50x-Hl-bek" kind="presentation" identifier="ShowSubscribe" id="yHv-yX-6Ka"/>
@@ -2453,7 +2473,7 @@ direkt från din iPhone</string>
             <objects>
                 <collectionViewController id="1Cw-O1-Jfo" userLabel="Reseförslag" customClass="TripListVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="y8I-rB-C8h">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="1436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="0.0" id="GFr-Rc-OsQ">
@@ -3062,7 +3082,7 @@ direkt från din iPhone</string>
             <objects>
                 <tableViewController title="Resedetaljer" id="4Bd-C0-Zjd" customClass="TripDetailsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q2W-7V-Yq6">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="1436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -3506,8 +3526,8 @@ direkt från din iPhone</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8tl-aE-z6t"/>
         <segue reference="fPH-Xr-GVg"/>
+        <segue reference="8tl-aE-z6t"/>
         <segue reference="6zU-Tw-atf"/>
         <segue reference="L0K-5H-KeJ"/>
     </inferredMetricsTieBreakers>
