@@ -20,6 +20,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   let showTripListSegue = "ShowTripList"
   let infoCellIdentifier = "InfoCell"
   let subscriptionInfoCellIdentifier = "SubscriptionInfoCell"
+  let hereToThereCellIdentifier = "HereToThere"
   
   var bestRoutineTrip: RoutineTrip?
   var otherRoutineTrips = [RoutineTrip]()
@@ -142,7 +143,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         if isLoading || isShowInfo || !isSubscribing {
           return 1
         }
-        let bestCount = (bestRoutineTrip == nil ? 0 : 1)
+        let bestCount = (bestRoutineTrip == nil ? 1 : 2)
         return bestCount
       }
       
@@ -163,8 +164,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
           return createInfoTripCell(indexPath)
         }
         
-        if let routineTrip = bestRoutineTrip {
-          return createRoutineTripCell(routineTrip, type: cellIdentifier, indexPath: indexPath)
+        if indexPath.row == 0 {
+          if let routineTrip = bestRoutineTrip {
+            return createRoutineTripCell(routineTrip, type: cellIdentifier, indexPath: indexPath)
+          } else {
+            return createHereToThereCell(indexPath)
+          }
+        } else if indexPath.row == 1 {
+          return createHereToThereCell(indexPath)
         }
         fatalError("Could not create cell.")
       }
@@ -200,9 +207,15 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         } else if isShowInfo {
           return CGSizeMake(screenSize.width - 20, 275)
         } else if bestRoutineTrip!.criterions.isAdvanced {
-          return CGSizeMake(screenSize.width - 20, 160)
+          if indexPath.row == 0 {
+            return CGSizeMake(screenSize.width - 20, 160)
+          }
+          return CGSizeMake(screenSize.width - 20, 40)
         }
-        return CGSizeMake(screenSize.width - 20, 145)
+        if indexPath.row == 0 && bestRoutineTrip != nil {
+          return CGSizeMake(screenSize.width - 20, 145)
+        }
+        return CGSizeMake(screenSize.width - 20, 40)
       }
       
       if otherRoutineTrips[indexPath.row].criterions.isAdvanced {
@@ -387,6 +400,23 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   private func createSubscriptionInfoCell(indexPath: NSIndexPath) -> UICollectionViewCell {
     return collectionView!.dequeueReusableCellWithReuseIdentifier(subscriptionInfoCellIdentifier,
       forIndexPath: indexPath)
+  }
+  
+  /**
+   * Create "From here to there" cell
+   */
+  private func createHereToThereCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(hereToThereCellIdentifier,
+      forIndexPath: indexPath)
+    cell.layer.masksToBounds = false
+    cell.layer.shadowOffset = CGSizeMake(1, 1)
+    cell.layer.shadowRadius = 2.0
+    cell.layer.shadowColor = UIColor.blackColor().CGColor
+    cell.layer.shadowOpacity = 0.15
+    cell.layer.cornerRadius = 4.0
+    cell.clipsToBounds = false
+    
+    return cell
   }
   
   /**
