@@ -11,16 +11,19 @@ import UIKit
 import ResStockholmApiKit
 import CoreLocation
 
-class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, LocationSearchResponder {
   
   let cellIdentifier = "RoutineTripCell"
   let simpleCellIdentifier = "SimpleRoutineTripCell"
   let loadingCellIdentifier = "LoadingCell"
   let headerCellIdentifier = "HeaderView"
-  let showTripListSegue = "ShowTripList"
   let infoCellIdentifier = "InfoCell"
   let subscriptionInfoCellIdentifier = "SubscriptionInfoCell"
-  let hereToThereCellIdentifier = "HereToThere"
+  let hereToThereCellIdentifier = "HereToThereCell"
+  
+  let showTripListSegue = "ShowTripList"
+  let fromHereToThereSegue = "FromHereToThere"
+  let manageRoutineTripsSegue = "ManageRoutineTrips"
   
   var bestRoutineTrip: RoutineTrip?
   var otherRoutineTrips = [RoutineTrip]()
@@ -30,6 +33,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   var isShowInfo = false
   var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
   var refreshButton: UIBarButtonItem?
+  
+  var hereToThereCriterion: TripSearchCriterion?
   
   /**
    * View is done loading
@@ -67,8 +72,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
+    print(segue.identifier)
+    print(hereToThereCriterion)
+    
     if segue.identifier == showTripListSegue {
-      if let routineTrip = selectedRoutineTrip {
+      if let crit = hereToThereCriterion {
+        let vc = segue.destinationViewController as! TripListVC
+        vc.criterions = crit.copy() as? TripSearchCriterion
+      } else if let routineTrip = selectedRoutineTrip {
         if let crit = routineTrip.criterions.copy() as? TripSearchCriterion {
           let date = NSDate(timeIntervalSinceNow: (60 * 2) * -1)
           crit.date = DateUtils.dateAsDateString(date)
@@ -80,9 +91,16 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
       }
       
-    } else if segue.identifier == "ManageRoutineTrips" {
+    } else if segue.identifier == manageRoutineTripsSegue {
       // Force a reload when returning to this VC
       lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
+      
+    } else if segue.identifier == fromHereToThereSegue {
+      let vc = segue.destinationViewController as! SearchLocationVC
+      vc.title = "Välj destination"
+      vc.delegate = self
+      vc.searchOnlyForStations = false
+      vc.allowCurrentPosition = false
     }
   }
   
@@ -143,7 +161,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         if isLoading || isShowInfo || !isSubscribing {
           return 1
         }
-        let bestCount = (bestRoutineTrip == nil ? 1 : 2)
+        var bestCount = (bestRoutineTrip == nil ? 0 : 1)
+        if MyLocationHelper.sharedInstance.getCurrentLocation() != nil {
+          bestCount++
+        }
         return bestCount
       }
       
@@ -245,8 +266,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func collectionView(
     collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+      
       if !isShowInfo && !isLoading {
+        if indexPath.section == 0 && (indexPath.row == 1 || bestRoutineTrip == nil) {
+          performSegueWithIdentifier(fromHereToThereSegue, sender: self)
+          return
+        }
         
+        hereToThereCriterion = nil
         selectedRoutineTrip = bestRoutineTrip
         var scoreMod = ScorePostHelper.BestTapCountScore
         
@@ -276,6 +303,26 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       let bgColorView = UIView()
       bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
       cell.selectedBackgroundView = bgColorView
+  }
+  
+  // MARK: LocationSearchResponder
+  
+  @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
+  
+  /**
+   * User selected location (for From here to there feature)
+   */
+  func selectedLocationFromSearch(location: Location) {
+    print("Here to there: \(location.name)")
+    if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
+      print("Current: \(currentLocation.name)")
+      let crit = TripSearchCriterion(origin: currentLocation, dest: location)
+      let date = NSDate(timeIntervalSinceNow: (60 * 2) * -1)
+      crit.date = DateUtils.dateAsDateString(date)
+      crit.time = DateUtils.dateAsTimeString(date)
+      self.hereToThereCriterion = crit
+      self.performSegueWithIdentifier(self.showTripListSegue, sender: self)
+    }    
   }
   
   // MARK: Private methods
@@ -370,8 +417,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Create best trip cell
    */
   private func createRoutineTripCell(trip: RoutineTrip, type: String, indexPath: NSIndexPath) -> RoutineTripCell {
-    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(type,
-      forIndexPath: indexPath) as! RoutineTripCell
+    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(
+      type, forIndexPath: indexPath) as! RoutineTripCell
     
     let isBest = (type == cellIdentifier) ? true : false
     cell.setupData(trip, isBest: isBest)
@@ -382,39 +429,36 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Create loading trip cell
    */
   private func createLoadingTripCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-    return collectionView!.dequeueReusableCellWithReuseIdentifier(loadingCellIdentifier,
-      forIndexPath: indexPath)
+    return collectionView!.dequeueReusableCellWithReuseIdentifier(
+      loadingCellIdentifier, forIndexPath: indexPath)
   }
   
   /**
    * Create info trip cell
    */
   private func createInfoTripCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-    return collectionView!.dequeueReusableCellWithReuseIdentifier(infoCellIdentifier,
-      forIndexPath: indexPath)
+    return collectionView!.dequeueReusableCellWithReuseIdentifier(
+      infoCellIdentifier, forIndexPath: indexPath)
   }
   
   /**
    * Create subscription info trip cell
    */
   private func createSubscriptionInfoCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-    return collectionView!.dequeueReusableCellWithReuseIdentifier(subscriptionInfoCellIdentifier,
-      forIndexPath: indexPath)
+    return collectionView!.dequeueReusableCellWithReuseIdentifier(
+      subscriptionInfoCellIdentifier, forIndexPath: indexPath)
   }
   
   /**
    * Create "From here to there" cell
    */
   private func createHereToThereCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(hereToThereCellIdentifier,
-      forIndexPath: indexPath)
-    cell.layer.masksToBounds = false
-    cell.layer.shadowOffset = CGSizeMake(1, 1)
-    cell.layer.shadowRadius = 2.0
-    cell.layer.shadowColor = UIColor.blackColor().CGColor
-    cell.layer.shadowOpacity = 0.15
-    cell.layer.cornerRadius = 4.0
-    cell.clipsToBounds = false
+    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(
+      hereToThereCellIdentifier, forIndexPath: indexPath) as! HereToThereCell
+    
+    if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
+      cell.hereToThereLabel.text = "Från \(currentLocation.name) till..."
+    }
     
     return cell
   }

@@ -143,9 +143,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     }
     if let loc = selectedLocation {
       LatestLocationsStore.sharedInstance.addLatestLocation(loc)
-      delegate?.selectedLocationFromSearch(loc)
       searchController?.active = false
       performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
+      delegate?.selectedLocationFromSearch(loc)
     }
   }
   
@@ -214,8 +214,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   }
   
   // MARK: Private
-  
-  
   
   /**
   * Create location cell.

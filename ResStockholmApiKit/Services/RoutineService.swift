@@ -41,17 +41,17 @@ public class RoutineService {
     let todayTimeTuple = createTimeTuple()
     
     for trip in routineTrips {
-      print("")
-      print("---------------------------------")
-      print("\(trip.title!)")
+      //print("")
+      //print("---------------------------------")
+      //print("\(trip.title!)")
       var multiplier = multiplierBasedOnProximityToLocation(trip, locations: lcations)
       multiplier += multiplierBasedOnProximityToScorePostLocation(trip)
       trip.score = scoreBasedOnRoutineSchedule(trip, today: todayTimeTuple)
       multiplier = (multiplier == 0) ? 1 : multiplier
       trip.score = (trip.score < 2) ? multiplier * 2: trip.score * multiplier
-      print("Multiplier: \(multiplier)")
-      print("TOTAL: \(trip.score)")
-      print("---------------------------------")
+      //print("Multiplier: \(multiplier)")
+      //print("TOTAL: \(trip.score)")
+      //print("---------------------------------")
     }
   }
   
@@ -130,7 +130,7 @@ public class RoutineService {
   static private func calcMultiplierBasedOnProximityToLocation(distance: Int) -> Float {
     var tempMultiplier = Float(2000 - distance)
     tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
-    print("Mult Based On Proximity To Location: \(tempMultiplier)")
+    //print("Mult Based On Proximity To Location: \(tempMultiplier)")
     return tempMultiplier
   }
   
@@ -154,7 +154,7 @@ public class RoutineService {
             }
         }
       }
-      print("Score Based On Schedule: \(score + 1)")
+      ////print("Score Based On Schedule: \(score + 1)")
       return score + 1
   }
   
@@ -169,8 +169,8 @@ public class RoutineService {
         if post.isOrigin {
           if let postLocation = post.location {
             let distance = postLocation.distanceFromLocation(currentLocation)
-            print("Dist: \(distance)")
-            print("Post: \(post.siteId)")
+            //print("Dist: \(distance)")
+            //print("Post: \(post.siteId)")
             var tempMultiplier = Float(800 - distance)
             tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
             highestMulitplier = (tempMultiplier > highestMulitplier) ? tempMultiplier : highestMulitplier
@@ -178,7 +178,7 @@ public class RoutineService {
         }
       }
     }
-    print("Mult Based On Score Post: \(highestMulitplier)")
+    //print("Mult Based On Score Post: \(highestMulitplier)")
     return highestMulitplier
   }
   
