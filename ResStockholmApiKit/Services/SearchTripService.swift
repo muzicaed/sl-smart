@@ -178,11 +178,6 @@ public class SearchTripService {
         arrTime = rtTime
       }
       
-      // TODO: Remove test output
-      if isRealtime {
-        print("Real: \(segment)")
-      }
-      
       return (isRealtime, depDate, depTime, arrDate, arrTime)
   }
   

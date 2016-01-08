@@ -23,6 +23,7 @@ public class ScorePostHelper {
   public static func changeScoreForRoutineTrip(
     originId: String, destinationId: String, score: Float) {
       
+      print("Score change.")
       var scorePosts = ScorePostStore.sharedInstance.retrieveScorePosts()
       let currentLocation = MyLocationHelper.sharedInstance.currentLocation
       let dayOfWeek = DateUtils.getDayOfWeek()
@@ -46,7 +47,7 @@ public class ScorePostHelper {
     dayInWeek: Int, hourOfDay: Int,
     siteId: String, isOrigin: Bool, score: Float,
     location: CLLocation?, inout scorePosts: [ScorePost]) {
-      
+            
       applyScore(dayInWeek, hourOfDay: hourOfDay,
         siteId: siteId, isOrigin: isOrigin, score: score,
         location: location, scorePosts: &scorePosts)
@@ -101,7 +102,7 @@ public class ScorePostHelper {
         if post.dayInWeek == dayInWeek && post.hourOfDay == hourOfDay && post.siteId == siteId {
             if let location = location, postLocation = post.location {
               if location.distanceFromLocation(postLocation) < RequiredDistance {
-                post.score = (post.isOrigin == isOrigin) ? score : score * 0.75
+                post.score += (post.isOrigin == isOrigin) ? score : score * 0.75
                 return true
               }
             }

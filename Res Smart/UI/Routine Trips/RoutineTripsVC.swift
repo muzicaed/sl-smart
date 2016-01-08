@@ -289,9 +289,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         var scoreMod = ScorePostHelper.BestTapCountScore
         
         if indexPath.section != 0 {
+          print("Mod other")          
           selectedRoutineTrip = otherRoutineTrips[indexPath.row]
           scoreMod = ScorePostHelper.OtherTapCountScore
           
+          print("Mod not best")
           ScorePostHelper.changeScoreForRoutineTrip(
             bestRoutineTrip!.criterions.origin!.siteId!,
             destinationId: bestRoutineTrip!.criterions.dest!.siteId!,
