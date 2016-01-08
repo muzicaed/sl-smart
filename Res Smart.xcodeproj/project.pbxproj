@@ -696,7 +696,6 @@
 				18937E2F1BFF33FA00C523C9 /* Resources */,
 				18937E6F1BFF33FB00C523C9 /* Embed Watch Content */,
 				18937E731BFF344600C523C9 /* ShellScript */,
-				18937E741BFF346F00C523C9 /* ShellScript */,
 				180603771C02045C00AC1841 /* Copy Frameworks */,
 				188B80571C175D9600E7D90C /* Embed App Extensions */,
 			);
@@ -906,19 +905,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$SRCROOT/Res Smart/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$SRCROOT/Res Smart WatchKit Extension/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$SRCROOT/Res Smart WatchKit App/Info.plist\"";
-		};
-		18937E741BFF346F00C523C9 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "VERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$SRCROOT/Res Smart/Info.plist\")\nNEWSUBVERSION=`echo $VERSIONNUM | awk -F \".\" '{print $3}'`\nNEWSUBVERSION=$(($NEWSUBVERSION + 1))\nNEWVERSIONSTRING=`echo $VERSIONNUM | awk -F \".\" '{print $1 \".\" $2 \".'$NEWSUBVERSION'\" }'`\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"$SRCROOT/Res Smart/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"$SRCROOT/Res Smart WatchKit Extension/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"$SRCROOT/Res Smart WatchKit App/Info.plist\"";
 		};
 		18F9483C1C1C78F3008C1B59 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

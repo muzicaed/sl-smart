@@ -2063,19 +2063,19 @@ Välkommen till ett smartare sätt att pendla.</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Y1K-Xh-Fl8">
-                                            <rect key="frame" x="18" y="8" width="334" height="44"/>
+                                            <rect key="frame" x="13" y="8" width="344" height="44"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="240" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="chj-Ff-Ru2">
-                                                    <rect key="frame" x="0.0" y="0.0" width="308" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="317" height="44"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Ta mig till..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVP-oh-zq9">
-                                                            <rect key="frame" x="0.0" y="0.0" width="308" height="24.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="317" height="24.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Från: Nuvarande plats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wn-4P-85B">
-                                                            <rect key="frame" x="0.0" y="24" width="308" height="19.5"/>
+                                                            <rect key="frame" x="0.0" y="24.5" width="317" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -2083,7 +2083,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="❯" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sg4-02-LGM">
-                                                    <rect key="frame" x="308" y="0.0" width="26" height="44"/>
+                                                    <rect key="frame" x="317" y="0.0" width="27" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -2093,12 +2093,12 @@ Välkommen till ett smartare sätt att pendla.</string>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="1" green="0.99989593029022217" blue="0.99996614456176758" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottomMargin" secondItem="Y1K-Xh-Fl8" secondAttribute="bottom" id="1Qg-3B-LFe"/>
                                     <constraint firstItem="Y1K-Xh-Fl8" firstAttribute="top" secondItem="esv-Pr-9mX" secondAttribute="topMargin" id="JEI-e9-nkQ"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="Y1K-Xh-Fl8" secondAttribute="trailing" constant="10" id="ct3-vF-NVQ"/>
-                                    <constraint firstItem="Y1K-Xh-Fl8" firstAttribute="leading" secondItem="esv-Pr-9mX" secondAttribute="leadingMargin" constant="10" id="xJ9-sp-qyo"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Y1K-Xh-Fl8" secondAttribute="trailing" constant="5" id="ct3-vF-NVQ"/>
+                                    <constraint firstItem="Y1K-Xh-Fl8" firstAttribute="leading" secondItem="esv-Pr-9mX" secondAttribute="leadingMargin" constant="5" id="xJ9-sp-qyo"/>
                                 </constraints>
                                 <size key="customSize" width="370" height="60"/>
                                 <connections>

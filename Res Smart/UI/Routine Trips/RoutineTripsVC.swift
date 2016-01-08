@@ -345,7 +345,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   */
   private func setupCollectionView() {
     let flowLayout = UICollectionViewFlowLayout()
-    flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 10, 0)
+    flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
     
     collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
     collectionView?.collectionViewLayout = flowLayout
