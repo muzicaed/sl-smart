@@ -11,8 +11,8 @@ import CoreLocation
 
 public class ScorePostHelper {
   
-  public static let BestTapCountScore = Float(1.5)
-  public static let OtherTapCountScore = Float(1)
+  public static let BestTapCountScore = Float(1.0)
+  public static let OtherTapCountScore = Float(0.5)
   public static let NotBestTripScore = Float(-0.5)
   public static let WideScoreMod = Float(0.25)
   private static let RequiredDistance = Double(400)

@@ -17,7 +17,7 @@ class HttpRequestHelper {
    */
   static func makeGetRequest(url: String,
     callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
-      //print("GET: \(url)")
+      print("GET: \(url)")
       let operationQueue = NSOperationQueue()
       operationQueue.maxConcurrentOperationCount = 4
       

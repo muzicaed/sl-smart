@@ -41,17 +41,17 @@ public class RoutineService {
     let todayTimeTuple = createTimeTuple()
     
     for trip in routineTrips {
-      //print("")
-      //print("---------------------------------")
-      //print("\(trip.title!)")
+      print("")
+      print("---------------------------------")
+      print("\(trip.title!)")
       var multiplier = multiplierBasedOnProximityToLocation(trip, locations: lcations)
       multiplier += multiplierBasedOnProximityToScorePostLocation(trip)
       trip.score = scoreBasedOnRoutineSchedule(trip, today: todayTimeTuple)
-      trip.score = (trip.score == 0) ? multiplier * 1: trip.score * multiplier
-      //print("Multiplier: \(multiplier)")
-      //print("TOTAL: \(trip.score)")
-      //print("---------------------------------")
-      //print("")
+      multiplier = (multiplier == 0) ? 1 : multiplier
+      trip.score = (trip.score < 2) ? multiplier * 2: trip.score * multiplier
+      print("Multiplier: \(multiplier)")
+      print("TOTAL: \(trip.score)")
+      print("---------------------------------")
     }
   }
   
@@ -61,10 +61,6 @@ public class RoutineService {
   private static func createPrioList(
     routineTrips: [RoutineTrip], callback: ([RoutineTrip]) -> Void) {
       let prioList = routineTrips.sort {$0.score > $1.score}
-      if prioList.count > 10 {
-        callback(Array(prioList[0..<10]) as [RoutineTrip])
-        return
-      }
       if prioList.count > 0 {
         searchTripsForBestRoutine(prioList[0]) { trips in
           if trips.count > 0 {
@@ -132,8 +128,9 @@ public class RoutineService {
    * Calculates score multiplier based on distance to location.
    */
   static private func calcMultiplierBasedOnProximityToLocation(distance: Int) -> Float {
-    var tempMultiplier = Float(1000 - distance)
+    var tempMultiplier = Float(2000 - distance)
     tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
+    print("Mult Based On Proximity To Location: \(tempMultiplier)")
     return tempMultiplier
   }
   
@@ -150,13 +147,14 @@ public class RoutineService {
           !post.isOrigin && post.siteId == trip.criterions.dest!.siteId {
             
             if post.dayInWeek == today.dayInWeek {
-              score += (post.score * 0.3)
+              score += (post.score * 0.2)
               if post.hourOfDay == today.hourOfDay {
-                score += (post.isOrigin) ? (post.score * 0.7) : (post.score)
+                score += (post.isOrigin) ? (post.score * 0.6) : (post.score)
               }
             }
         }
       }
+      print("Score Based On Schedule: \(score + 1)")
       return score + 1
   }
   
@@ -168,14 +166,19 @@ public class RoutineService {
     if let currentLocation = MyLocationHelper.sharedInstance.currentLocation {
       let scorePosts = ScorePostStore.sharedInstance.retrieveScorePosts()
       for post in scorePosts {
-        if let postLocation = post.location {
-          let distance = postLocation.distanceFromLocation(currentLocation)
-          var tempMultiplier = Float(1000 - distance)
-          tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
-          highestMulitplier = (tempMultiplier > highestMulitplier) ? tempMultiplier : highestMulitplier
+        if post.isOrigin {
+          if let postLocation = post.location {
+            let distance = postLocation.distanceFromLocation(currentLocation)
+            print("Dist: \(distance)")
+            print("Post: \(post.siteId)")
+            var tempMultiplier = Float(800 - distance)
+            tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
+            highestMulitplier = (tempMultiplier > highestMulitplier) ? tempMultiplier : highestMulitplier
+          }
         }
       }
     }
+    print("Mult Based On Score Post: \(highestMulitplier)")
     return highestMulitplier
   }
   
