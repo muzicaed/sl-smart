@@ -28,6 +28,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   override func viewDidLoad() {
     super.viewDidLoad()
     print("View did load")
+    let gesture = UITapGestureRecognizer(target: self, action: Selector("onTap"))
+    view.addGestureRecognizer(gesture)
   }
   
   /**
@@ -40,6 +42,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
       completionHandler(NCUpdateResult.NewData)
     }
   }
+  
+  func onTap() {
+    print("Tap")
+    extensionContext?.openURL(NSURL(string: "ressmart://")!, completionHandler: nil)    
+  }
+  
+  // MARK: Private
   
   /**
    * Loads trip data and updates UI
