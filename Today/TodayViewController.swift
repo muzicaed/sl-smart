@@ -20,6 +20,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   @IBOutlet weak var arrivalStationLabel: UILabel!
   @IBOutlet weak var travelTimeLabel: UILabel!
   @IBOutlet weak var iconWrapperView: UIView!
+  @IBOutlet weak var inAboutLabel: UILabel!
   
   /**
    * View loaded for the first time.
@@ -45,18 +46,21 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * Loads trip data and updates UI
    */
   private func loadTripData(callback: (() -> Void)?) {
-    view.hidden = true
     RoutineService.findRoutineTrip({ routineTrips in
       if let bestRoutineTrip = routineTrips.first {
         if let trip = bestRoutineTrip.trips.first {
           dispatch_async(dispatch_get_main_queue()) {
-            self.view.hidden = false
             self.titleLabel.text = bestRoutineTrip.title
             self.departureStationLabel.text = trip.tripSegments.first?.origin.name
             self.departureTimeLabel.text = DateUtils.dateAsTimeString(trip.tripSegments.first!.departureDateTime)
             self.arrivalStationLabel.text = trip.tripSegments.last?.destination.name
             self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(trip.tripSegments.last!.arrivalDateTime)
             self.travelTimeLabel.text = DateUtils.createTripDurationString(trip.durationMin)
+            
+            self.inAboutLabel.text = "  " + DateUtils.createAboutTimeText(
+              trip.tripSegments.first!.departureDateTime,
+              isWalk: (trip.tripSegments.first!.type == TripType.Walk))
+            
             self.createTripSegmentIcons(trip)
             callback?()
           }
@@ -84,7 +88,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         label.text = data.short
         label.textAlignment = NSTextAlignment.Center
         label.font = UIFont.systemFontOfSize(7)
-        label.textColor = UIColor.darkGrayColor()
+        label.textColor = UIColor.lightGrayColor()
         label.sizeToFit()
         label.frame.size.width = 25
         label.center = CGPointMake((23 / 2), 22)
@@ -92,9 +96,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         let wrapperView = UIView(
           frame:CGRect(
-            origin: CGPointMake(0, 0),
+            origin: CGPointMake((23 * CGFloat(count)), 12),
             size: CGSizeMake(23, 30)))
-        wrapperView.frame.origin = CGPointMake((23 * CGFloat(count)), 0)
         
         wrapperView.addSubview(iconView)
         wrapperView.addSubview(label)
@@ -109,8 +112,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * Set custom insets
    */
   func widgetMarginInsetsForProposedMarginInsets(var defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-    defaultMarginInsets.bottom = 20
-    defaultMarginInsets.top = 20
+    defaultMarginInsets.top = 10
+    defaultMarginInsets.bottom = 30
     return defaultMarginInsets
   }
   
