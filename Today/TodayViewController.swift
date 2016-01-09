@@ -28,11 +28,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   override func viewDidLoad() {
     super.viewDidLoad()
     print("View did load")
-    loadTripData(nil)
   }
   
   /**
-   * Update data request. 
+   * Update data request.
    * OS Controlled.
    */
   func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
@@ -41,7 +40,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
       completionHandler(NCUpdateResult.NewData)
     }
   }
-
+  
   /**
    * Loads trip data and updates UI
    */
@@ -66,6 +65,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
           }
         }
       }
+      else {
+        self.titleLabel.text = "Hittade inga rutiner."
+      }
     })
   }
   
@@ -78,7 +80,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     for (_, segment) in trip.tripSegments.enumerate() {
       if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
         if count > 5 { return }
-        let data = TripHelper.friendlyLineData(segment)        
+        let data = TripHelper.friendlyLineData(segment)
         
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
         iconView.frame.size = CGSizeMake(15, 15)
@@ -117,4 +119,5 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     return defaultMarginInsets
   }
   
+
 }
