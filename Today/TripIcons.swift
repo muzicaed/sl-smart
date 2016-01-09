@@ -1,5 +1,15 @@
 //
 //  TripIcons.swift
+//  Res Smart
+//
+//  Created by Mikael Hellman on 2016-01-09.
+//  Copyright © 2016 Mikael Hellman. All rights reserved.
+//
+
+import Foundation
+
+//
+//  TripIcons.swift
 //  SL Smart
 //
 //  Created by Mikael Hellman on 2015-11-28.
@@ -10,7 +20,7 @@ import Foundation
 import UIKit
 
 class TripIcons {
-  
+
   static let icons = [
     "SHIP-NEUTRAL": UIImage(named: "SHIP-NEUTRAL"),
     
@@ -30,4 +40,3 @@ class TripIcons {
     "WALK-NEUTRAL": UIImage(named: "WALK-NEUTRAL"),
   ]
 }
-
