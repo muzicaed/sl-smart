@@ -47,7 +47,7 @@ public class RoutineService {
       var multiplier = multiplierBasedOnProximityToLocation(trip, locations: lcations)
       multiplier += multiplierBasedOnProximityToScorePostLocation(trip)
       trip.score = scoreBasedOnRoutineSchedule(trip, today: todayTimeTuple)
-      trip.score = (trip.score == 0) ? multiplier * 5: trip.score * multiplier
+      trip.score = (trip.score == 0) ? multiplier * 1: trip.score * multiplier
       print("Multiplier: \(multiplier)")
       print("TOTAL: \(trip.score)")
       print("---------------------------------")
@@ -161,8 +161,8 @@ public class RoutineService {
             }
         }
       }
-      print("Schedule score: \(score)")
-      return score
+      print("Schedule score: \(score + 1)")
+      return score + 1
   }
   
   /**
