@@ -43,6 +43,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
   }
   
+  /**
+   * User tap widget
+   */
   func onTap() {
     print("Tap")
     extensionContext?.openURL(NSURL(string: "ressmart://")!, completionHandler: nil)    
@@ -127,6 +130,4 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     defaultMarginInsets.bottom = 30
     return defaultMarginInsets
   }
-  
-
 }
