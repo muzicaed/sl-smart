@@ -190,4 +190,14 @@ class ManageRoutineTripsVC: UITableViewController {
       bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
       cell.selectedBackgroundView = bgColorView
   }
+  
+  /**
+   * Edit actions. (Only used for clear Via station)
+   */
+  override func tableView(tableView: UITableView,
+    editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+      return [UITableViewRowAction(
+        style: UITableViewRowActionStyle.Destructive,
+        title: "Ta bort", handler: {_,_ in })]
+  }
 }
