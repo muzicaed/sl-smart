@@ -34,7 +34,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   public var useShip = true
   
   public var numTrips = 8
-  public var realtime = true
+  public var realtime = false
   
   public var isAdvanced = false
   
