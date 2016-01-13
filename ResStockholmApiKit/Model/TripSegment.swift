@@ -31,7 +31,11 @@ public class TripSegment: NSObject, NSCopying {
       self.index = index
       self.name = name
       self.type = TripType(rawValue: type)!
-      self.directionText = directionText
+      if let dir = directionText {
+        self.directionText = StringUtils.fixBrokenEncoding(dir)
+      } else {
+        self.directionText = nil
+      }
       self.lineNumber = lineNumber
       self.origin = origin
       self.destination = destination

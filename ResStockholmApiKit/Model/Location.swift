@@ -38,7 +38,7 @@ public class Location: NSObject, NSCoding, NSCopying {
       self.siteId = id!
     }
     
-    let nameAreaTuple = Location.extractNameAndArea(name, type: self.type)
+    let nameAreaTuple = Location.extractNameAndArea(StringUtils.fixBrokenEncoding(name), type: self.type)
     self.name = nameAreaTuple.name
     self.area = nameAreaTuple.area
     self.cleanName = Location.createCleanName(nameAreaTuple.name)

@@ -104,6 +104,7 @@
 		18AC9CF81C07AD4D007ECFA2 /* TripListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF71C07AD4D007ECFA2 /* TripListVC.swift */; };
 		18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF91C07AE63007ECFA2 /* TripCell.swift */; };
 		18AC9D001C08B5B4007ECFA2 /* TripFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFF1C08B5B4007ECFA2 /* TripFooter.swift */; };
+		18B2902B1C46D8BC00DCE585 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2902A1C46D8BC00DCE585 /* StringUtils.swift */; };
 		18CB35B21C1E08BA0084CA27 /* LocationPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */; };
 		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
 		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
@@ -327,6 +328,8 @@
 		18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchNearbyStationsApi.swift; sourceTree = "<group>"; };
 		18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLocationHelper.swift; sourceTree = "<group>"; };
 		18AC9CFF1C08B5B4007ECFA2 /* TripFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripFooter.swift; sourceTree = "<group>"; };
+		18B2902A1C46D8BC00DCE585 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		18B290301C46D9D900DCE585 /* Res Smart Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Res Smart Playground.playground"; sourceTree = "<group>"; };
 		18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerRow.swift; sourceTree = "<group>"; };
 		18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleHelper.swift; sourceTree = "<group>"; };
 		18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabVC.swift; sourceTree = "<group>"; };
@@ -399,6 +402,7 @@
 			children = (
 				180603631C01FCBE00AC1841 /* SwiftyJSON.swift */,
 				181B9AF51C03A9E100B9145A /* DateUtils.swift */,
+				18B2902A1C46D8BC00DCE585 /* StringUtils.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -523,6 +527,7 @@
 		18937E281BFF33FA00C523C9 = {
 			isa = PBXGroup;
 			children = (
+				18B290301C46D9D900DCE585 /* Res Smart Playground.playground */,
 				18CE5CCC1C0329DA00E1F5A9 /* Libraries */,
 				18937E331BFF33FA00C523C9 /* Res Smart */,
 				18937E471BFF33FB00C523C9 /* Res Smart WatchKit App */,
@@ -1138,6 +1143,7 @@
 				18A9E8691C1899E7008F97C8 /* SLNetworkError.swift in Sources */,
 				18A9E86A1C1899ED008F97C8 /* Trip.swift in Sources */,
 				18A9E8671C1899E7008F97C8 /* HttpRequestHelper.swift in Sources */,
+				18B2902B1C46D8BC00DCE585 /* StringUtils.swift in Sources */,
 				18A9E86C1C1899ED008F97C8 /* RoutineTrip.swift in Sources */,
 				183D6EB21C19DBF000EB7537 /* TrafficSituationService.swift in Sources */,
 				18A9E85F1C189998008F97C8 /* LocationSearchService.swift in Sources */,
