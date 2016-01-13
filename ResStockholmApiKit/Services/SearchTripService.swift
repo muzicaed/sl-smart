@@ -18,7 +18,7 @@ public class SearchTripService {
   public static func tripSearch(
     criterion: TripSearchCriterion,
     callback: (data: [Trip], error: SLNetworkError?) -> Void) {
-      api.tripSearch(criterion) { resTuple in        
+      api.tripSearch(criterion) { resTuple in
         var trips = [Trip]()
         if let data = resTuple.data {
           if data.length == 0 {
@@ -80,21 +80,25 @@ public class SearchTripService {
    */
   private static func convertJsonToSegments(segmentsJson: JSON) -> [TripSegment] {
     var tripSegments = [TripSegment]()
-    if let segmentsArr = segmentsJson.array  {
-      for segmentJson in segmentsArr {
-        
-        let segment = convertJsonToTripSegment(segmentJson)
-        if !(segment.type == .Walk && segment.distance! < 250) {
-          tripSegments.append(segment)
+    if segmentsJson.isExists() {
+      if let segmentsArr = segmentsJson.array  {
+        for segmentJson in segmentsArr {
+          if segmentsJson.isExists() {
+            let segment = convertJsonToTripSegment(segmentJson)
+            if !(segment.type == .Walk && segment.distance! < 250) {
+              tripSegments.append(segment)
+            }
+          }
+        }
+      } else {
+        if segmentsJson.isExists() {
+          let segment = convertJsonToTripSegment(segmentsJson)
+          if !(segment.type == .Walk && segment.distance! < 250) {
+            tripSegments.append(segment)
+          }
         }
       }
-    } else {
-      let segment = convertJsonToTripSegment(segmentsJson)
-      if !(segment.type == .Walk && segment.distance! < 250) {
-        tripSegments.append(segment)
-      }
     }
-    
     return tripSegments
   }
   
@@ -124,7 +128,7 @@ public class SearchTripService {
   /**
    * Converts json to location object.
    */
-  private static func convertJsonToLocation(locationJson: JSON) -> Location {    
+  private static func convertJsonToLocation(locationJson: JSON) -> Location {
     return Location(
       id: locationJson["id"].string,
       name: ensureUTF8(locationJson["name"].string!),
@@ -148,12 +152,12 @@ public class SearchTripService {
   }
   
   /**
-   * Extracts departure date/time and arriaval date/time. 
+   * Extracts departure date/time and arriaval date/time.
    * Uses realtime data if available.
    */
   private static func extractTimeDate(segment: JSON)
     -> (isRealtime: Bool, depDate: String, depTime: String, arrDate: String, arrTime: String) {
-
+      
       var isRealtime = false
       var depDate = segment["Origin"]["date"].string!
       var depTime = segment["Origin"]["time"].string!
