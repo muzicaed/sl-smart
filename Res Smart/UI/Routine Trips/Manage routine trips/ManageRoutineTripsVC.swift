@@ -192,12 +192,10 @@ class ManageRoutineTripsVC: UITableViewController {
   }
   
   /**
-   * Edit actions. (Only used for clear Via station)
+   * Title for delete button.
    */
   override func tableView(tableView: UITableView,
-    editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-      return [UITableViewRowAction(
-        style: UITableViewRowActionStyle.Destructive,
-        title: "Ta bort", handler: {_,_ in })]
+    titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
+    return "Ta bort"
   }
 }
