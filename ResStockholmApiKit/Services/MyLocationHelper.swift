@@ -20,9 +20,9 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   
   override public init() {
     super.init()
+    locationManager.delegate = self
     if CLLocationManager.locationServicesEnabled() {
       if isAllowed() {
-        locationManager.delegate = self
         if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
           startLocationManager()
         } else {

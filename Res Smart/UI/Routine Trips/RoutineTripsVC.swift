@@ -55,8 +55,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     if isSubscribing {
       navigationItem.rightBarButtonItem?.enabled = true
       if CLLocationManager.authorizationStatus() == .Denied || !CLLocationManager.locationServicesEnabled() {
+        isLoading = false
         showLocationServicesNotAllowed()
         MyLocationHelper.sharedInstance.isStarted = false
+        collectionView?.reloadData()
         return
       }
       loadTripData(false)
