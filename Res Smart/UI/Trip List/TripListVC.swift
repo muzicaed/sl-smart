@@ -82,21 +82,6 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     }
   }
   
-  
-  /**
-   * On footer tap
-   */
-  func footerTap() {
-    if trips.count > 0 && !isLoadingMore {
-      isLoadingMore = true
-      footer?.displaySpinner(1.0)
-      let trip = trips[keys.last!]!.last!
-      criterions?.time = DateUtils.dateAsTimeString(
-        trip.tripSegments.first!.departureDateTime.dateByAddingTimeInterval(60))
-      loadTripData()
-    }
-  }
-  
   // MARK: UICollectionViewController
   
   /**
@@ -214,11 +199,6 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
         withReuseIdentifier: footerIdentifier,
         forIndexPath: indexPath) as? TripFooter
       
-      let tapGesture = UITapGestureRecognizer(target: self, action: Selector("footerTap"))
-      tapGesture.delaysTouchesBegan = true
-      tapGesture.numberOfTapsRequired = 1
-      footer?.addGestureRecognizer(tapGesture)
-      
       return footer!
   }
   
@@ -247,8 +227,8 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
       }
       
       if overflow > 0 && !isLoadingMore && !isLoadingMoreBlocked {
-        footer?.displaySpinner(overflow / 60)
-        if overflow >= 60 {
+        footer?.displaySpinner(overflow / 8)
+        if overflow >= 8 {
           if trips.count > 0 {
             isLoadingMore = true
             footer?.displaySpinner(1.0)
@@ -284,10 +264,10 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
               return
             }
             
-            self.appendToDictionary(resTuple.data)
+            self.appendToDictionary(resTuple.data, shouldAppend: true)
             self.isLoading = false
             self.isLoadingMore = false
-            self.footer?.displayLabel()
+            self.footer?.hideSpinner()
             self.collectionView?.reloadData()
             self.updateDateCriterions()
             self.refreshTimer?.invalidate()
@@ -303,14 +283,18 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   /**
    * Appends search result to dictionary
    */
-  private func appendToDictionary(tripsArr: [Trip]) {
+  private func appendToDictionary(tripsArr: [Trip], shouldAppend: Bool) {
     for trip in tripsArr {
       let destDateString = DateUtils.dateAsDateString(trip.tripSegments.last!.departureDateTime)
       if !keys.contains(destDateString) {
         keys.append(destDateString)
         trips[destDateString] = [Trip]()
       }
-      trips[destDateString]!.append(trip)
+      if shouldAppend {
+        trips[destDateString]!.append(trip)
+      } else {
+        trips[destDateString]!.insert(trip, atIndex: 0)
+      }
     }
   }
   

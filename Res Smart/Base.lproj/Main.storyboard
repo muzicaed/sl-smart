@@ -3039,12 +3039,6 @@ direkt från din iPhone</string>
                             <rect key="frame" x="0.0" y="501" width="414" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gR2-gH-c4e">
-                                    <rect key="frame" x="196" y="12" width="23" height="27"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Gdl-88-DmY">
                                     <rect key="frame" x="197" y="15" width="20" height="20"/>
                                     <color key="color" white="0.33333333333333331" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
@@ -3052,13 +3046,10 @@ direkt från din iPhone</string>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="Gdl-88-DmY" firstAttribute="centerY" secondItem="SPI-Bo-xvO" secondAttribute="centerY" id="4Lh-nx-hPU"/>
-                                <constraint firstItem="gR2-gH-c4e" firstAttribute="centerX" secondItem="SPI-Bo-xvO" secondAttribute="centerX" id="Euw-7m-79x"/>
-                                <constraint firstItem="gR2-gH-c4e" firstAttribute="centerY" secondItem="SPI-Bo-xvO" secondAttribute="centerY" id="byt-om-ZRO"/>
                                 <constraint firstItem="Gdl-88-DmY" firstAttribute="centerX" secondItem="SPI-Bo-xvO" secondAttribute="centerX" id="mb6-Rh-ywv"/>
                             </constraints>
                             <connections>
                                 <outlet property="spinnerView" destination="Gdl-88-DmY" id="41M-hu-fD8"/>
-                                <outlet property="titleLabel" destination="gR2-gH-c4e" id="xzI-ok-1cw"/>
                             </connections>
                         </collectionReusableView>
                         <connections>
