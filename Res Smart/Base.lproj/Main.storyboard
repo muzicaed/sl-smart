@@ -3019,19 +3019,25 @@ direkt från din iPhone</string>
                             <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
+                                <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="MOt-Mi-n9H">
+                                    <rect key="frame" x="386" y="7.5" width="20" height="20"/>
+                                    <color key="color" white="0.33333333329999998" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                                </activityIndicatorView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Måndagen den 24:e januari" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9HV-hm-dNp">
-                                    <rect key="frame" x="8" y="8.5" width="398" height="18"/>
+                                    <rect key="frame" x="8" y="9" width="184.5" height="18"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="9HV-hm-dNp" firstAttribute="leading" secondItem="6Ci-aM-zr7" secondAttribute="leadingMargin" id="NVf-tF-gfF"/>
-                                <constraint firstAttribute="trailingMargin" secondItem="9HV-hm-dNp" secondAttribute="trailing" id="VA6-NR-n5u"/>
-                                <constraint firstItem="9HV-hm-dNp" firstAttribute="centerY" secondItem="6Ci-aM-zr7" secondAttribute="centerY" id="iRI-eR-9tI"/>
+                                <constraint firstItem="9HV-hm-dNp" firstAttribute="leading" secondItem="6Ci-aM-zr7" secondAttribute="leadingMargin" id="HBL-bY-tiR"/>
+                                <constraint firstItem="MOt-Mi-n9H" firstAttribute="centerY" secondItem="6Ci-aM-zr7" secondAttribute="centerY" id="Pns-kF-IMP"/>
+                                <constraint firstItem="9HV-hm-dNp" firstAttribute="centerY" secondItem="6Ci-aM-zr7" secondAttribute="centerY" id="mDL-tU-Cvv"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="MOt-Mi-n9H" secondAttribute="trailing" id="pI1-Ul-TZm"/>
                             </constraints>
                             <connections>
+                                <outlet property="spinner" destination="MOt-Mi-n9H" id="Sw9-vo-ZCn"/>
                                 <outlet property="titleLabel" destination="9HV-hm-dNp" id="iIt-hL-dip"/>
                             </connections>
                         </collectionReusableView>

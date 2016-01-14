@@ -20,7 +20,8 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   let footerIdentifier = "LoadMoreFooter"
   let showDetailsSegue = "ShowDetails"
   
-  var footer: TripFooter?
+  var firstHeader: TripHeader?
+  var lastFooter: TripFooter?
   var criterions: TripSearchCriterion?
   var keys = [String]()
   var trips = Dictionary<String, [Trip]>()
@@ -38,7 +39,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     view.backgroundColor = StyleHelper.sharedInstance.background
     collectionView?.delegate = self
     if trips.count == 0 {
-      loadTripData()
+      loadTripData(true)
     } else {
       isLoading = false
       self.collectionView?.reloadData()
@@ -191,15 +192,20 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
           let date = DateUtils.convertDateString("\(keys[indexPath.section]) 00:00")
           header.titleLabel.text = DateUtils.friendlyDate(date)
         }
+        if indexPath.section == 0 {
+          firstHeader = header
+        }
         return header
       }
       
-      footer = collectionView.dequeueReusableSupplementaryViewOfKind(
+      let footer = collectionView.dequeueReusableSupplementaryViewOfKind(
         UICollectionElementKindSectionFooter,
         withReuseIdentifier: footerIdentifier,
-        forIndexPath: indexPath) as? TripFooter
+        forIndexPath: indexPath) as! TripFooter
       
-      return footer!
+      
+      lastFooter = (indexPath.section == keys.count - 1) ? footer : nil
+      return footer
   }
   
   /**
@@ -226,21 +232,22 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
         overflow =  scrollView.contentInset.top + scrollView.contentOffset.y
       }
       
-      if overflow > 0 && !isLoadingMore && !isLoadingMoreBlocked {
-        footer?.displaySpinner(overflow / 8)
-        if overflow >= 8 {
-          if trips.count > 0 {
-            isLoadingMore = true
-            footer?.displaySpinner(1.0)
-            
-            let trip = trips[keys.last!]!.last!
-            if criterions!.searchForArrival {
-              criterions!.searchForArrival = false
+      if !isLoadingMore && !isLoadingMoreBlocked {
+        if overflow > 0 {
+          lastFooter?.displaySpinner(overflow / 8)
+          if overflow >= 8 {
+            if trips.count > 0 {
+              loadMoreTrips()
             }
-            criterions?.time = DateUtils.dateAsTimeString(
-              trip.tripSegments.last!.departureDateTime.dateByAddingTimeInterval(60))
-            loadTripData()
           }
+        } else if scrollView.contentOffset.y < 0 {
+          firstHeader?.displaySpinner((scrollView.contentOffset.y / 25) * -1)
+          if scrollView.contentOffset.y < -25 {
+            loadEarlierTrips()
+          }
+        } else {
+          firstHeader?.hideSpinner()
+          lastFooter?.hideSpinner()
         }
       }
     }
@@ -252,7 +259,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   * Loading the trip data, and starting background
   * collection of time table data.
   */
-  private func loadTripData() {
+  private func loadTripData(shouldAppend: Bool) {
     if let criterions = self.criterions {
       SearchTripService.tripSearch(criterions,
         callback: { resTuple in
@@ -263,12 +270,12 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
               self.collectionView?.reloadData()
               return
             }
-            
-            self.appendToDictionary(resTuple.data, shouldAppend: true)
+            self.appendToDictionary(resTuple.data, shouldAppend: shouldAppend)
+            self.collectionView?.reloadData()
             self.isLoading = false
             self.isLoadingMore = false
-            self.footer?.hideSpinner()
-            self.collectionView?.reloadData()
+            self.lastFooter?.hideSpinner()
+            self.firstHeader?.hideSpinner()
             self.updateDateCriterions()
             self.refreshTimer?.invalidate()
             self.refreshTimer = nil
@@ -281,13 +288,54 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   }
   
   /**
+   * Load more trips when user scrolls
+   * to the bottom of the list.
+   */
+  private func loadMoreTrips() {
+    isLoadingMore = true
+    lastFooter?.displaySpinner(1.0)
+    
+    let trip = trips[keys.last!]!.last!
+    criterions!.searchForArrival = false
+    criterions?.time = DateUtils.dateAsTimeString(
+      trip.tripSegments.last!.departureDateTime.dateByAddingTimeInterval(60))
+    loadTripData(true)
+  }
+  
+  /**
+   * Load earlier trips when user scrolls
+   * to the top of the list.
+   */
+  private func loadEarlierTrips() {
+    isLoadingMore = true
+    firstHeader?.displaySpinner(1.0)
+    
+    let trip = trips[keys.first!]!.first!
+    criterions?.searchForArrival = true
+
+    let dateTuple = DateUtils.dateAsStringTuple(
+      trip.tripSegments.first!.arrivalDateTime.dateByAddingTimeInterval(-60))
+    criterions?.date = dateTuple.date
+    criterions?.time = dateTuple.time
+
+    loadTripData(false)
+  }
+  
+  /**
    * Appends search result to dictionary
    */
-  private func appendToDictionary(tripsArr: [Trip], shouldAppend: Bool) {
+  private func appendToDictionary(var tripsArr: [Trip], shouldAppend: Bool) {
+    if !shouldAppend {
+      tripsArr = tripsArr.reverse()
+    }
     for trip in tripsArr {
       let destDateString = DateUtils.dateAsDateString(trip.tripSegments.last!.departureDateTime)
       if !keys.contains(destDateString) {
-        keys.append(destDateString)
+        if shouldAppend {
+          keys.append(destDateString)
+        } else {
+          keys.insert(destDateString, atIndex: 0)
+        }
         trips[destDateString] = [Trip]()
       }
       if shouldAppend {
