@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 import CoreLocation
+import SafariServices
 
 class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, LocationSearchResponder {
   
@@ -74,9 +75,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
-    print(segue.identifier)
-    print(hereToThereCriterion)
-    
     if segue.identifier == showTripListSegue {
       if let crit = hereToThereCriterion {
         let vc = segue.destinationViewController as! TripListVC
@@ -132,7 +130,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   @IBAction func onHelpTap(sender: AnyObject) {
     if let url = NSURL(string: "http://www.ressmartapp.se/faq.php") {
-      UIApplication.sharedApplication().openURL(url)
+      let svc = SFSafariViewController(URL: url)
+      self.presentViewController(svc, animated: true, completion: nil)
     }
   }
   
@@ -291,7 +290,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         var scoreMod = ScorePostHelper.BestTapCountScore
         
         if indexPath.section != 0 {
-          print("Mod other")          
+          print("Mod other")
           selectedRoutineTrip = otherRoutineTrips[indexPath.row]
           scoreMod = ScorePostHelper.OtherTapCountScore
           
@@ -337,7 +336,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       crit.time = DateUtils.dateAsTimeString(date)
       self.hereToThereCriterion = crit
       self.performSegueWithIdentifier(self.showTripListSegue, sender: self)
-    }    
+    }
   }
   
   // MARK: Private methods
