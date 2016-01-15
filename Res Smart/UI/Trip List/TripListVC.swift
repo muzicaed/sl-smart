@@ -152,10 +152,12 @@ class TripListVC: UITableViewController {
       if section == 0 {
         count++
       }
+      if (section + 1) == trips.count {
+        count++
+      }
       print("No rows: \(count) for sec \(section)")
       return count
   }
-  
   
   /**
    * Create cells for each data post.
@@ -166,8 +168,10 @@ class TripListVC: UITableViewController {
         return createLoadingTripCell(indexPath)
       } else if trips.count == 0 {
         return createNoTripsFoundCell(indexPath)
-      } else if isLoadMoreRow(indexPath) {
+      } else if isLoadMoreEarlierRow(indexPath) {
         return createLoadMoreEarlierCell(indexPath)
+      } else if isLoadMoreLaterRow(indexPath) {
+        return createLoadMoreLaterCell(indexPath)
       }
       
       return createTripCell(indexPath)
@@ -199,7 +203,7 @@ class TripListVC: UITableViewController {
     heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
       if isLoading {
         return tableView.bounds.height - 49 - 64 - 20
-      } else if isLoadMoreRow(indexPath) {
+      } else if isLoadMoreEarlierRow(indexPath) || isLoadMoreLaterRow(indexPath) {
         return 40
       }
       return 105
@@ -210,9 +214,11 @@ class TripListVC: UITableViewController {
    */
   override func tableView(tableView: UITableView,
     didSelectRowAtIndexPath indexPath: NSIndexPath) {
-      let key = keys[indexPath.section]
-      selectedTrip = trips[key]![indexPath.row]
-      performSegueWithIdentifier(showDetailsSegue, sender: self)
+      if false {
+        let key = keys[indexPath.section]
+        selectedTrip = trips[key]![indexPath.row]
+        performSegueWithIdentifier(showDetailsSegue, sender: self)
+      }
   }
   
   /**
@@ -262,12 +268,7 @@ class TripListVC: UITableViewController {
       
       if !isLoadingMore && !isLoadingMoreBlocked {
         if overflow > 0 {
-          loadMoreLater?.displaySpinner(overflow / 8)
-          if overflow >= 8 {
-            if trips.count > 0 {
-              loadMoreTrips()
-            }
-          }
+          loadMoreTrips()
         } else if scrollView.contentOffset.y < 0 {
           loadMoreEarlier?.displaySpinner((scrollView.contentOffset.y / 25) * -1)
           if scrollView.contentOffset.y < -25 {
@@ -373,6 +374,7 @@ class TripListVC: UITableViewController {
       if indexPath.section == 0 {
         idx = idx - 1
       }
+      
       let trip = trips[key]![idx]
       
       if checkInPast(trip) {
@@ -432,6 +434,23 @@ class TripListVC: UITableViewController {
   }
   
   /**
+   * Create "Load more" cell
+   */
+  private func createLoadMoreLaterCell(
+    indexPath: NSIndexPath) -> UITableViewCell {
+      if loadMoreLater == nil {
+        loadMoreLater = tableView!.dequeueReusableCellWithIdentifier(loadMoreLaterIdentifier,
+          forIndexPath: indexPath) as? LoadMoreCell
+        
+        loadMoreLater!.loadButton.addTarget(self,
+          action: Selector("loadMoreTrips"),
+          forControlEvents: UIControlEvents.TouchUpInside)
+      }
+      
+      return loadMoreLater!
+  }
+  
+  /**
    * Show a network error alert
    */
   private func showNetworkErrorAlert() {
@@ -448,7 +467,20 @@ class TripListVC: UITableViewController {
   /**
    * Checks if row is a "load more" row.
    */
-  private func isLoadMoreRow(indexPath: NSIndexPath) -> Bool {
+  private func isLoadMoreEarlierRow(indexPath: NSIndexPath) -> Bool {
     return (indexPath.section == 0 && indexPath.row == 0)
+  }
+  
+  /**
+   * Checks if row is a "load more" row.
+   */
+  private func isLoadMoreLaterRow(indexPath: NSIndexPath) -> Bool {
+    var rowCount = trips[keys[indexPath.section]]!.count
+    if indexPath.section == 0 {
+      rowCount = rowCount + 1
+    }
+    
+    return (indexPath.section + 1) == trips.count &&
+      (indexPath.row) == rowCount
   }
 }

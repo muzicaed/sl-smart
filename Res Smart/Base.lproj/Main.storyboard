@@ -3029,7 +3029,6 @@ direkt från din iPhone</string>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oDc-XG-R4I">
                                             <rect key="frame" x="8" y="7" width="398" height="30"/>
-                                            <state key="normal" title="Visa fler resor"/>
                                         </button>
                                         <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="fqT-X0-g37">
                                             <rect key="frame" x="197" y="12" width="20" height="20"/>
@@ -3044,6 +3043,7 @@ direkt från din iPhone</string>
                                         <constraint firstItem="oDc-XG-R4I" firstAttribute="centerY" secondItem="Xhy-8t-uDi" secondAttribute="centerY" id="wfs-s7-cid"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="loadButton" destination="oDc-XG-R4I" id="fbo-E4-jX4"/>
                                     <outlet property="spinnerView" destination="fqT-X0-g37" id="cZt-vO-86z"/>
