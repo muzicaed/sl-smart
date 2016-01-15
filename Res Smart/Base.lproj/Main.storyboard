@@ -331,7 +331,11 @@
                                 <action selector="onAdvancedButtonTap:" destination="Hg1-8K-Ui9" id="Yse-Pp-DQH"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Sök" style="done" id="cLP-J8-IqA"/>
+                        <barButtonItem key="rightBarButtonItem" title="Sök" style="done" id="cLP-J8-IqA">
+                            <connections>
+                                <segue destination="sEV-FQ-PQe" kind="show" identifier="ShowTripList" id="4rE-Hc-22D"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="advancedToggleButton" destination="ddt-6P-8PN" id="But-vT-Yls"/>
@@ -342,7 +346,6 @@
                         <outlet property="viaLabel" destination="zXM-ao-ulO" id="vZr-gc-hHg"/>
                         <segue destination="WJw-HK-J3L" kind="show" identifier="SearchOriginLocation" id="wql-iI-rP3"/>
                         <segue destination="WJw-HK-J3L" kind="show" identifier="SearchDestinationLocation" id="ssG-K5-unq"/>
-                        <segue destination="sEV-FQ-PQe" kind="show" identifier="ShowTripList" id="RCh-Xy-gOv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Xm-jb-YxA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3514,8 +3517,8 @@ direkt från din iPhone</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="V2Z-ue-vlu"/>
+        <segue reference="4rE-Hc-22D"/>
         <segue reference="ypq-Up-6Af"/>
-        <segue reference="RCh-Xy-gOv"/>
         <segue reference="6zU-Tw-atf"/>
     </inferredMetricsTieBreakers>
 </document>
