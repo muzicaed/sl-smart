@@ -15,9 +15,9 @@ class TripListVC: UITableViewController {
   let cellIdentifier = "TripCell"
   let pastCellIdentifier = "PassedTripCell"
   let loadingCellIdentifier = "LoadingCell"
+  let loadMoreIdentifier = "LoadMoreRow"
   let noTripsFoundCell = "FoundNoTripsCell"
-  let headerIdentifier = "DateHeader"
-  let footerIdentifier = "LoadMoreFooter"
+
   let showDetailsSegue = "ShowDetails"
   
   var firstHeader: TripHeader?
@@ -31,6 +31,7 @@ class TripListVC: UITableViewController {
   var isLoadingMore = false
   var refreshTimer: NSTimer?
   var oldTripSearchCount = 0
+  var headerHight = CGFloat(25)
   
   /**
    * View is done loading
@@ -135,7 +136,7 @@ class TripListVC: UITableViewController {
       if isLoading || trips.count == 0  {
         return 0
       }
-      return 35
+      return headerHight
   }
   
   /**
@@ -143,13 +144,7 @@ class TripListVC: UITableViewController {
    */
   override func tableView(tableView: UITableView,
     heightForFooterInSection section: Int) -> CGFloat {
-      
       return 0
-      
-      if isLoading  {
-        return 0
-      }
-      return (section == keys.count - 1) ? 50 : 0
   }
   
   /**
@@ -173,26 +168,16 @@ class TripListVC: UITableViewController {
       performSegueWithIdentifier(showDetailsSegue, sender: self)
   }
   
-  /*
-  override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-  var title = ""
-  if trips.count > 0 {
-  let date = DateUtils.convertDateString("\(keys[section]) 00:00")
-  title = DateUtils.friendlyDate(date)
-  }
-  
-  return title
-  }
-  */
-  
   /**
   * View for header
   */
   override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 18))
-    let label = UILabel(frame: CGRectMake(10, 8, tableView.frame.size.width, 18))
+    let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, headerHight))
+    let label = UILabel(frame: CGRectMake(0, 0, tableView.frame.size.width, headerHight))
     label.font = UIFont.systemFontOfSize(12)
     label.textColor = UIColor.whiteColor()
+    label.textAlignment = NSTextAlignment.Center
+    
     if trips.count > 0 {
       let date = DateUtils.convertDateString("\(keys[section]) 00:00")
       label.text = DateUtils.friendlyDate(date)
@@ -204,40 +189,6 @@ class TripListVC: UITableViewController {
     return view
   }
   
-  /**
-   * View for header
-   */
-   /*
-   override func tableView(tableView: UITableView,
-   viewForHeaderInSection section: Int) -> UIView? {
-   
-   let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(
-   headerIdentifier) as! TripHeader
-   
-   if trips.count > 0 {
-   let date = DateUtils.convertDateString("\(keys[section]) 00:00")
-   //header.titleLabel.text = DateUtils.friendlyDate(date)
-   }
-   if section == 0 {
-   firstHeader = header
-   }
-   return header
-   }
-   
-   /**
-   * View for footer
-   */
-   override func tableView(tableView: UITableView,
-   viewForFooterInSection section: Int) -> UIView? {
-   
-   let footer = tableView.dequeueReusableHeaderFooterViewWithIdentifier(
-   footerIdentifier) as! TripFooter
-   
-   lastFooter = (section == keys.count - 1) ? footer : nil
-   return footer
-   }
-   */
-   
    /**
    * Green highlight on selected row.
    */
