@@ -109,6 +109,9 @@
 		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
 		18D6521E1C3D9C510067FC60 /* HereToThereCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6521D1C3D9C510067FC60 /* HereToThereCell.swift */; };
 		18EAF4E91C0F8A0F0014701B /* SwiftHTTP.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 18EAF4E11C0F89990014701B /* SwiftHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		18FA99941C492BDC0075C4C2 /* SLJourneyDetailsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */; };
+		18FA999A1C492E3F0075C4C2 /* JournyDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */; };
+		18FA999C1C49321C0075C4C2 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA999B1C49321C0075C4C2 /* Stop.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -333,6 +336,9 @@
 		18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabVC.swift; sourceTree = "<group>"; };
 		18D1953E1C07964900FB1A93 /* TripSeachCriterion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSeachCriterion.swift; sourceTree = "<group>"; };
 		18D6521D1C3D9C510067FC60 /* HereToThereCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HereToThereCell.swift; sourceTree = "<group>"; };
+		18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLJourneyDetailsApi.swift; sourceTree = "<group>"; };
+		18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournyDetailsService.swift; sourceTree = "<group>"; };
+		18FA999B1C49321C0075C4C2 /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +431,7 @@
 				183D6EB31C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift */,
 				180603651C0201A100AC1841 /* HttpRequestHelper.swift */,
 				188B85651C14ADF100098B00 /* SLNetworkError.swift */,
+				18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */,
 			);
 			path = "SL API";
 			sourceTree = "<group>";
@@ -621,6 +628,7 @@
 				180FD8B41C0B087E0095C790 /* ScorePost.swift */,
 				183D6EB51C19DEF400EB7537 /* SituationGroup.swift */,
 				183D6EB71C19DF0800EB7537 /* Situation.swift */,
+				18FA999B1C49321C0075C4C2 /* Stop.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -635,6 +643,7 @@
 				183D6EB11C19DBF000EB7537 /* TrafficSituationService.swift */,
 				18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */,
 				180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */,
+				18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1128,10 +1137,13 @@
 				18A9E8701C1899ED008F97C8 /* TripSeachCriterion.swift in Sources */,
 				18AAC9301C2EE3DF00022C54 /* RoutineTripsStore.swift in Sources */,
 				18A9E8721C1899F3008F97C8 /* DateUtils.swift in Sources */,
+				18FA99941C492BDC0075C4C2 /* SLJourneyDetailsApi.swift in Sources */,
 				183D6EB41C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift in Sources */,
+				18FA999A1C492E3F0075C4C2 /* JournyDetailsService.swift in Sources */,
 				18A9E8711C1899ED008F97C8 /* ScorePost.swift in Sources */,
 				18AAC9321C2EE61000022C54 /* ScorePostStore.swift in Sources */,
 				18A9E8621C189998008F97C8 /* ScorePostHelper.swift in Sources */,
+				18FA999C1C49321C0075C4C2 /* Stop.swift in Sources */,
 				18A9E8651C1899E7008F97C8 /* SLSearchLocationApi.swift in Sources */,
 				18A9E8681C1899E7008F97C8 /* SLSearchNearbyStationsApi.swift in Sources */,
 				18AAC92F1C2EE3DF00022C54 /* SearchCriterionStore.swift in Sources */,
