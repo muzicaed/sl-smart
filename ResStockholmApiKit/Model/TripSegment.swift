@@ -20,13 +20,14 @@ public class TripSegment: NSObject, NSCopying {
   public let arrivalDateTime: NSDate
   public let distance: Int?
   public let isRealtime: Bool
+  public let journyRef: String?
   
   public init(
     index: Int, name: String, type: String, directionText: String?,
     lineNumber: String?, origin: Location, destination: Location,
     departureTime: String, arrivalTime: String,
     departureDate: String, arrivalDate: String,
-    distance: Int?, isRealtime: Bool) {
+    distance: Int?, isRealtime: Bool, journyRef: String?) {
       
       self.index = index
       self.name = name
@@ -43,6 +44,7 @@ public class TripSegment: NSObject, NSCopying {
       self.arrivalDateTime =  DateUtils.convertDateString("\(arrivalDate) \(arrivalTime)")
       self.distance = distance
       self.isRealtime = isRealtime
+      self.journyRef = journyRef
   }
   
   // MARK: NSCopying
@@ -60,6 +62,6 @@ public class TripSegment: NSObject, NSCopying {
       arrivalTime: DateUtils.dateAsTimeString(arrivalDateTime),
       departureDate: DateUtils.dateAsDateString(departureDateTime),
       arrivalDate: DateUtils.dateAsDateString(departureDateTime),
-      distance: distance, isRealtime: isRealtime)
+      distance: distance, isRealtime: isRealtime, journyRef: journyRef)
   }
 }
