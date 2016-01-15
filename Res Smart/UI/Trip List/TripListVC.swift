@@ -214,9 +214,15 @@ class TripListVC: UITableViewController {
    */
   override func tableView(tableView: UITableView,
     didSelectRowAtIndexPath indexPath: NSIndexPath) {
-      if false {
+      
+      if !isLoadMoreEarlierRow(indexPath) && !isLoadMoreLaterRow(indexPath) {
         let key = keys[indexPath.section]
-        selectedTrip = trips[key]![indexPath.row]
+        var rowIdx = indexPath.row
+        if indexPath.section == 0 {
+          rowIdx = rowIdx - 1
+        }
+        
+        selectedTrip = trips[key]![rowIdx]
         performSegueWithIdentifier(showDetailsSegue, sender: self)
       }
   }
