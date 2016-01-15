@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TripFooter: UICollectionReusableView {
+class TripFooter: UITableViewHeaderFooterView {
   
   @IBOutlet weak var spinnerView: UIActivityIndicatorView!
   

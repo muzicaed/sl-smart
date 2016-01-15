@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class TripCell: UICollectionViewCell {
+class TripCell: UITableViewCell {
   
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
@@ -18,18 +18,20 @@ class TripCell: UICollectionViewCell {
   @IBOutlet weak var arrivalTimeLabel: UILabel!
   @IBOutlet weak var iconAreaView: UIView!
   @IBOutlet weak var tripDurationLabel: UILabel!
-  @IBOutlet weak var leftBarView: UIView!
   @IBOutlet weak var inAboutLabel: UILabel!
   
-  override init(frame: CGRect) {
-    super.init(frame: frame)
+  /**
+   * Init
+   */
+  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
     setup()
   }
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setup()
-  }
+  }    
   
   /**
    * Shared init code.
@@ -64,8 +66,8 @@ class TripCell: UICollectionViewCell {
   // MARK: Private methods
   
   /**
-   * Creates trip type icon per segment.
-   */
+  * Creates trip type icon per segment.
+  */
   private func createTripSegmentIcons(trip: Trip) {
     iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
     var count = 0

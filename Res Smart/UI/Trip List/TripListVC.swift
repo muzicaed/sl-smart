@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class TripListVC: UITableViewController {
   
   let cellIdentifier = "TripCell"
   let pastCellIdentifier = "PassedTripCell"
@@ -30,6 +30,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   var isLoadingMoreBlocked = false
   var isLoadingMore = false
   var refreshTimer: NSTimer?
+  var oldTripSearchCount = 0
   
   /**
    * View is done loading
@@ -37,12 +38,12 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = StyleHelper.sharedInstance.background
-    collectionView?.delegate = self
+    oldTripSearchCount = criterions!.numTrips
     if trips.count == 0 {
       loadTripData(true)
     } else {
       isLoading = false
-      self.collectionView?.reloadData()
+      self.tableView?.reloadData()
     }
   }
   
@@ -67,7 +68,7 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
    * Refresh collection view.
    */
   func refreshUI() {
-    self.collectionView?.reloadData()
+    self.tableView?.reloadData()
   }
   
   /**
@@ -83,35 +84,40 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     }
   }
   
-  // MARK: UICollectionViewController
+  // MARK: UITableViewController
   
   /**
   * Number of sections
   */
-  override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     if isLoading || trips.count == 0 {
+      print("No sections: \(1)")
       return 1
     }
+    print("No sections: \(keys.count)")
     return keys.count
   }
   
   /**
    * Item count for section
    */
-  override func collectionView(collectionView: UICollectionView,
-    numberOfItemsInSection section: Int) -> Int {
+  override func tableView(tableView: UITableView,
+    numberOfRowsInSection section: Int) -> Int {
       if isLoading || trips.count == 0 {
+        print("No rows: \(1) for sec \(section)")
         return 1
       }
       
+      print("No rows: \(trips[keys[section]]!.count) for sec \(section)")
       return trips[keys[section]]!.count
   }
+  
   
   /**
    * Create cells for each data post.
    */
-  override func collectionView(collectionView: UICollectionView,
-    cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+  override func tableView(tableView: UITableView,
+    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       if isLoading {
         return createLoadingTripCell(indexPath)
       } else if trips.count == 0 {
@@ -124,95 +130,119 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   /**
    * Size for headers.
    */
-  func collectionView(collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    referenceSizeForHeaderInSection section: Int) -> CGSize {
-      
+  override func tableView(tableView: UITableView,
+    heightForHeaderInSection section: Int) -> CGFloat {
       if isLoading || trips.count == 0  {
-        return CGSizeMake(0, 0)
+        return 0
       }
-      
-      let screenSize = UIScreen.mainScreen().bounds.size
-      return CGSizeMake(screenSize.width - 10, 35)
+      return 35
   }
   
   /**
    * Size for footers.
    */
-  func collectionView(collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    referenceSizeForFooterInSection section: Int) -> CGSize {
+  override func tableView(tableView: UITableView,
+    heightForFooterInSection section: Int) -> CGFloat {
+      
+      return 0
       
       if isLoading  {
-        return CGSizeMake(0, 0)
+        return 0
       }
-      
-      let screenSize = UIScreen.mainScreen().bounds.size
-      return (section == keys.count - 1) ? CGSizeMake(screenSize.width - 10, 50) : CGSizeMake(0, 0)
+      return (section == keys.count - 1) ? 50 : 0
   }
   
   /**
-   * Size for items.
+   * Size for rows.
    */
-  func collectionView(collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-      
-      let screenSize = UIScreen.mainScreen().bounds.size
+  override func tableView(tableView: UITableView,
+    heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
       if isLoading {
-        return CGSizeMake(screenSize.width - 10, collectionView.bounds.height - 49 - 64 - 20)
+        return tableView.bounds.height - 49 - 64 - 20
       }
-      return CGSizeMake(screenSize.width - 10, 105)
+      return 105
   }
   
   /**
-   * User tapped a item.
+   * User tapped a row.
    */
-  override func collectionView(collectionView: UICollectionView,
-    didSelectItemAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(tableView: UITableView,
+    didSelectRowAtIndexPath indexPath: NSIndexPath) {
       let key = keys[indexPath.section]
       selectedTrip = trips[key]![indexPath.row]
       performSegueWithIdentifier(showDetailsSegue, sender: self)
   }
   
+  /*
+  override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+  var title = ""
+  if trips.count > 0 {
+  let date = DateUtils.convertDateString("\(keys[section]) 00:00")
+  title = DateUtils.friendlyDate(date)
+  }
+  
+  return title
+  }
+  */
+  
   /**
-   * View for supplementary (header/footer)
-   */
-  override func collectionView(collectionView: UICollectionView,
-    viewForSupplementaryElementOfKind kind: String,
-    atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-      
-      if kind == UICollectionElementKindSectionHeader {
-        let header = collectionView.dequeueReusableSupplementaryViewOfKind(
-          UICollectionElementKindSectionHeader,
-          withReuseIdentifier: headerIdentifier,
-          forIndexPath: indexPath) as! TripHeader
-        
-        if trips.count > 0 {
-          let date = DateUtils.convertDateString("\(keys[indexPath.section]) 00:00")
-          header.titleLabel.text = DateUtils.friendlyDate(date)
-        }
-        if indexPath.section == 0 {
-          firstHeader = header
-        }
-        return header
-      }
-      
-      let footer = collectionView.dequeueReusableSupplementaryViewOfKind(
-        UICollectionElementKindSectionFooter,
-        withReuseIdentifier: footerIdentifier,
-        forIndexPath: indexPath) as! TripFooter
-      
-      
-      lastFooter = (indexPath.section == keys.count - 1) ? footer : nil
-      return footer
+  * View for header
+  */
+  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 18))
+    let label = UILabel(frame: CGRectMake(10, 8, tableView.frame.size.width, 18))
+    label.font = UIFont.systemFontOfSize(12)
+    label.textColor = UIColor.whiteColor()
+    if trips.count > 0 {
+      let date = DateUtils.convertDateString("\(keys[section]) 00:00")
+      label.text = DateUtils.friendlyDate(date)
+    }
+    
+    view.addSubview(label)
+    let color = StyleHelper.sharedInstance.mainGreen
+    view.backgroundColor = color.colorWithAlphaComponent(0.95)
+    return view
   }
   
   /**
+   * View for header
+   */
+   /*
+   override func tableView(tableView: UITableView,
+   viewForHeaderInSection section: Int) -> UIView? {
+   
+   let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(
+   headerIdentifier) as! TripHeader
+   
+   if trips.count > 0 {
+   let date = DateUtils.convertDateString("\(keys[section]) 00:00")
+   //header.titleLabel.text = DateUtils.friendlyDate(date)
+   }
+   if section == 0 {
+   firstHeader = header
+   }
+   return header
+   }
+   
+   /**
+   * View for footer
+   */
+   override func tableView(tableView: UITableView,
+   viewForFooterInSection section: Int) -> UIView? {
+   
+   let footer = tableView.dequeueReusableHeaderFooterViewWithIdentifier(
+   footerIdentifier) as! TripFooter
+   
+   lastFooter = (section == keys.count - 1) ? footer : nil
+   return footer
+   }
+   */
+   
+   /**
    * Green highlight on selected row.
    */
-  override func collectionView(collectionView: UICollectionView,
-    willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(tableView: UITableView,
+    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
       let bgColorView = UIView()
       bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
       cell.selectedBackgroundView = bgColorView
@@ -234,20 +264,20 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
       
       if !isLoadingMore && !isLoadingMoreBlocked {
         if overflow > 0 {
-          lastFooter?.displaySpinner(overflow / 8)
+          //lastFooter?.displaySpinner(overflow / 8)
           if overflow >= 8 {
             if trips.count > 0 {
               loadMoreTrips()
             }
           }
         } else if scrollView.contentOffset.y < 0 {
-          firstHeader?.displaySpinner((scrollView.contentOffset.y / 25) * -1)
+          //firstHeader?.displaySpinner((scrollView.contentOffset.y / 25) * -1)
           if scrollView.contentOffset.y < -25 {
             loadEarlierTrips()
           }
         } else {
-          firstHeader?.hideSpinner()
-          lastFooter?.hideSpinner()
+          //firstHeader?.hideSpinner()
+          //lastFooter?.hideSpinner()
         }
       }
     }
@@ -260,22 +290,25 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   * collection of time table data.
   */
   private func loadTripData(shouldAppend: Bool) {
+    print("Load data")
     if let criterions = self.criterions {
       SearchTripService.tripSearch(criterions,
         callback: { resTuple in
           dispatch_async(dispatch_get_main_queue()) {
             if resTuple.error != nil {
+              print("Error")
               self.showNetworkErrorAlert()
               self.isLoading = false
-              self.collectionView?.reloadData()
+              self.tableView?.reloadData()
               return
             }
+            print("Loading done.")
             self.appendToDictionary(resTuple.data, shouldAppend: shouldAppend)
-            self.collectionView?.reloadData()
             self.isLoading = false
             self.isLoadingMore = false
-            self.lastFooter?.hideSpinner()
-            self.firstHeader?.hideSpinner()
+            self.tableView?.reloadData()
+            //self.lastFooter?.hideSpinner()
+            //self.firstHeader?.hideSpinner()
             self.updateDateCriterions()
             self.refreshTimer?.invalidate()
             self.refreshTimer = nil
@@ -293,10 +326,11 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
    */
   private func loadMoreTrips() {
     isLoadingMore = true
-    lastFooter?.displaySpinner(1.0)
+    //lastFooter?.displaySpinner(1.0)
     
     let trip = trips[keys.last!]!.last!
     criterions!.searchForArrival = false
+    criterions!.numTrips = oldTripSearchCount
     criterions?.time = DateUtils.dateAsTimeString(
       trip.tripSegments.last!.departureDateTime.dateByAddingTimeInterval(60))
     loadTripData(true)
@@ -312,12 +346,13 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     
     let trip = trips[keys.first!]!.first!
     criterions?.searchForArrival = true
-
+    criterions!.numTrips = 3
+    
     let dateTuple = DateUtils.dateAsStringTuple(
       trip.tripSegments.first!.arrivalDateTime.dateByAddingTimeInterval(-60))
     criterions?.date = dateTuple.date
     criterions?.time = dateTuple.time
-
+    
     loadTripData(false)
   }
   
@@ -374,13 +409,13 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     let trip = trips[key]![indexPath.row]
     
     if checkInPast(trip) {
-      let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(pastCellIdentifier,
+      let cell = tableView!.dequeueReusableCellWithIdentifier(pastCellIdentifier,
         forIndexPath: indexPath) as! TripCell
       cell.setupData(trip)
       return cell
     }
     
-    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(cellIdentifier,
+    let cell = tableView!.dequeueReusableCellWithIdentifier(cellIdentifier,
       forIndexPath: indexPath) as! TripCell
     cell.setupData(trip)
     return cell
@@ -397,16 +432,16 @@ class TripListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
   /**
    * Create loading trip cell
    */
-  private func createLoadingTripCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-    return collectionView!.dequeueReusableCellWithReuseIdentifier(loadingCellIdentifier,
+  private func createLoadingTripCell(indexPath: NSIndexPath) -> UITableViewCell {
+    return tableView!.dequeueReusableCellWithIdentifier(loadingCellIdentifier,
       forIndexPath: indexPath)
   }
   
   /**
    * Create "No trips found" trip cell
    */
-  private func createNoTripsFoundCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-    return collectionView!.dequeueReusableCellWithReuseIdentifier(noTripsFoundCell,
+  private func createNoTripsFoundCell(indexPath: NSIndexPath) -> UITableViewCell {
+    return tableView!.dequeueReusableCellWithIdentifier(noTripsFoundCell,
       forIndexPath: indexPath)
   }
   

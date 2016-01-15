@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TripHeader: UICollectionReusableView {
+class TripHeader: UITableViewHeaderFooterView {
   
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var spinner: UIActivityIndicatorView!
