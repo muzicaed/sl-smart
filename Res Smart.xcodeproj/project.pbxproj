@@ -34,7 +34,6 @@
 		1851F2D71C35F56C0013CD6A /* SubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851F2D61C35F56C0013CD6A /* SubscriptionCell.swift */; };
 		1851F2DD1C36D71B0013CD6A /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851F2DC1C36D71B0013CD6A /* SubscriptionManager.swift */; };
 		1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854E1981C065EB70070C545 /* StandardGradient.swift */; };
-		185BCC921C09389E00A2C6DB /* TripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BCC911C09389E00A2C6DB /* TripHeader.swift */; };
 		185D8DBE1C189D0200300890 /* WatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367611C16264200A8BE16 /* WatchService.swift */; };
 		186235FD1C411C2B0056338E /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186235FC1C411C2B0056338E /* TripIcons.swift */; };
 		186236011C411CE40056338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186236001C411CE40056338E /* Assets.xcassets */; };
@@ -103,7 +102,7 @@
 		18AAC9341C2EE7BC00022C54 /* LatestLocationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC9331C2EE7BC00022C54 /* LatestLocationsStore.swift */; };
 		18AC9CF81C07AD4D007ECFA2 /* TripListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF71C07AD4D007ECFA2 /* TripListVC.swift */; };
 		18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF91C07AE63007ECFA2 /* TripCell.swift */; };
-		18AC9D001C08B5B4007ECFA2 /* TripFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFF1C08B5B4007ECFA2 /* TripFooter.swift */; };
+		18AC9D001C08B5B4007ECFA2 /* LoadMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFF1C08B5B4007ECFA2 /* LoadMoreCell.swift */; };
 		18B2902B1C46D8BC00DCE585 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2902A1C46D8BC00DCE585 /* StringUtils.swift */; };
 		18CB35B21C1E08BA0084CA27 /* LocationPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */; };
 		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
@@ -266,7 +265,6 @@
 		1851F2D61C35F56C0013CD6A /* SubscriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionCell.swift; sourceTree = "<group>"; };
 		1851F2DC1C36D71B0013CD6A /* SubscriptionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
-		185BCC911C09389E00A2C6DB /* TripHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHeader.swift; sourceTree = "<group>"; };
 		186235FC1C411C2B0056338E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
 		186236001C411CE40056338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickLocationResponder.swift; sourceTree = "<group>"; };
@@ -327,7 +325,7 @@
 		18AC9CF91C07AE63007ECFA2 /* TripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCell.swift; sourceTree = "<group>"; };
 		18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchNearbyStationsApi.swift; sourceTree = "<group>"; };
 		18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLocationHelper.swift; sourceTree = "<group>"; };
-		18AC9CFF1C08B5B4007ECFA2 /* TripFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripFooter.swift; sourceTree = "<group>"; };
+		18AC9CFF1C08B5B4007ECFA2 /* LoadMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreCell.swift; sourceTree = "<group>"; };
 		18B2902A1C46D8BC00DCE585 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		18B290301C46D9D900DCE585 /* Res Smart Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Res Smart Playground.playground"; sourceTree = "<group>"; };
 		18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerRow.swift; sourceTree = "<group>"; };
@@ -696,8 +694,7 @@
 			children = (
 				18AC9CF71C07AD4D007ECFA2 /* TripListVC.swift */,
 				18AC9CF91C07AE63007ECFA2 /* TripCell.swift */,
-				18AC9CFF1C08B5B4007ECFA2 /* TripFooter.swift */,
-				185BCC911C09389E00A2C6DB /* TripHeader.swift */,
+				18AC9CFF1C08B5B4007ECFA2 /* LoadMoreCell.swift */,
 			);
 			path = "Trip List";
 			sourceTree = "<group>";
@@ -1063,7 +1060,7 @@
 				1806037C1C02165000AC1841 /* LocationSearchResponder.swift in Sources */,
 				1801A3FE1C39317C0068E1FC /* SubscribeDelegate.swift in Sources */,
 				18232CAE1C01F1CA006334D1 /* ManageRoutineTripCell.swift in Sources */,
-				18AC9D001C08B5B4007ECFA2 /* TripFooter.swift in Sources */,
+				18AC9D001C08B5B4007ECFA2 /* LoadMoreCell.swift in Sources */,
 				1801A3FC1C392DE60068E1FC /* SubscriptionStore.swift in Sources */,
 				18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */,
 				1894A6FE1C354ABD00CDF905 /* SubscribeVC.swift in Sources */,
@@ -1071,7 +1068,6 @@
 				1851F2DD1C36D71B0013CD6A /* SubscriptionManager.swift in Sources */,
 				18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */,
 				183D6EBF1C1A354F00EB7537 /* SituationRow.swift in Sources */,
-				185BCC921C09389E00A2C6DB /* TripHeader.swift in Sources */,
 				18946B1D1C1844E700A5829D /* DateTimePickResponder.swift in Sources */,
 				181BD4161C047AA900651D0F /* RoutineTripHeader.swift in Sources */,
 				1851F2D71C35F56C0013CD6A /* SubscriptionCell.swift in Sources */,

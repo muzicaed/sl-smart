@@ -2472,8 +2472,38 @@ direkt från din iPhone</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadMoreEarlierRow" id="n2L-rG-56W" customClass="LoadMoreCell" customModule="Res_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n2L-rG-56W" id="DrD-Jb-E7r">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvp-JC-c5x">
+                                            <rect key="frame" x="8" y="7" width="398" height="30"/>
+                                            <state key="normal" title="Visa tidigare resor"/>
+                                        </button>
+                                        <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="NCI-xK-2yo">
+                                            <rect key="frame" x="197" y="12" width="20" height="20"/>
+                                            <color key="color" white="0.33333333329999998" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="yvp-JC-c5x" firstAttribute="leading" secondItem="DrD-Jb-E7r" secondAttribute="leadingMargin" id="1Jh-c2-095"/>
+                                        <constraint firstItem="NCI-xK-2yo" firstAttribute="centerX" secondItem="DrD-Jb-E7r" secondAttribute="centerX" id="dFm-cl-BI4"/>
+                                        <constraint firstItem="yvp-JC-c5x" firstAttribute="centerY" secondItem="DrD-Jb-E7r" secondAttribute="centerY" id="hOP-CU-gkI"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="yvp-JC-c5x" secondAttribute="trailing" id="kWf-tB-A1I"/>
+                                        <constraint firstItem="NCI-xK-2yo" firstAttribute="centerY" secondItem="DrD-Jb-E7r" secondAttribute="centerY" id="m0a-aL-fd1"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="loadButton" destination="yvp-JC-c5x" id="7jF-lK-g64"/>
+                                    <outlet property="spinnerView" destination="NCI-xK-2yo" id="O1r-Za-M7v"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripCell" rowHeight="120" id="VFe-5o-iNk" customClass="TripCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="120"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VFe-5o-iNk" id="OEG-ls-o5Y">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
@@ -2718,7 +2748,7 @@ direkt från din iPhone</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PassedTripCell" rowHeight="120" id="IKz-zE-uix" customClass="TripCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="148" width="414" height="120"/>
+                                <rect key="frame" x="0.0" y="192" width="414" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IKz-zE-uix" id="vip-oj-iiv">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
@@ -2951,7 +2981,7 @@ direkt från din iPhone</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCell" rowHeight="120" id="fP0-7u-TBk">
-                                <rect key="frame" x="0.0" y="268" width="414" height="120"/>
+                                <rect key="frame" x="0.0" y="312" width="414" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fP0-7u-TBk" id="ISh-6H-CPN">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
@@ -2970,7 +3000,7 @@ direkt från din iPhone</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FoundNoTripsCell" id="oXT-sA-ytl">
-                                <rect key="frame" x="0.0" y="388" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="432" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oXT-sA-ytl" id="G9x-2b-fJR">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -2990,25 +3020,33 @@ direkt från din iPhone</string>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadMoreRow" id="n2L-rG-56W" customClass="TripFooter" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="432" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadMoreLaterRow" id="yTS-3g-5WV" customClass="LoadMoreCell" customModule="Res_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="476" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n2L-rG-56W" id="DrD-Jb-E7r">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yTS-3g-5WV" id="Xhy-8t-uDi">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="NCI-xK-2yo">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oDc-XG-R4I">
+                                            <rect key="frame" x="8" y="7" width="398" height="30"/>
+                                            <state key="normal" title="Visa fler resor"/>
+                                        </button>
+                                        <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="fqT-X0-g37">
                                             <rect key="frame" x="197" y="12" width="20" height="20"/>
                                             <color key="color" white="0.33333333329999998" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
                                         </activityIndicatorView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="NCI-xK-2yo" firstAttribute="centerX" secondItem="DrD-Jb-E7r" secondAttribute="centerX" id="J68-9E-e30"/>
-                                        <constraint firstItem="NCI-xK-2yo" firstAttribute="centerY" secondItem="DrD-Jb-E7r" secondAttribute="centerY" id="s34-Rn-win"/>
+                                        <constraint firstItem="fqT-X0-g37" firstAttribute="centerX" secondItem="Xhy-8t-uDi" secondAttribute="centerX" id="A3o-mX-apW"/>
+                                        <constraint firstItem="fqT-X0-g37" firstAttribute="centerY" secondItem="Xhy-8t-uDi" secondAttribute="centerY" id="F1K-VS-3sv"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="oDc-XG-R4I" secondAttribute="trailing" id="VQe-sw-18c"/>
+                                        <constraint firstItem="oDc-XG-R4I" firstAttribute="leading" secondItem="Xhy-8t-uDi" secondAttribute="leadingMargin" id="ryH-n3-HK9"/>
+                                        <constraint firstItem="oDc-XG-R4I" firstAttribute="centerY" secondItem="Xhy-8t-uDi" secondAttribute="centerY" id="wfs-s7-cid"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="spinnerView" destination="NCI-xK-2yo" id="S3c-rR-stu"/>
+                                    <outlet property="loadButton" destination="oDc-XG-R4I" id="fbo-E4-jX4"/>
+                                    <outlet property="spinnerView" destination="fqT-X0-g37" id="cZt-vO-86z"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -3168,7 +3206,7 @@ direkt från din iPhone</string>
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BIJ-v0-c0c">
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BIJ-v0-c0c">
                                             <rect key="frame" x="0.0" y="-1" width="414" height="60"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="segment-time-icon" translatesAutoresizingMaskIntoConstraints="NO" id="tOP-vM-zg2">
@@ -3197,17 +3235,17 @@ direkt från din iPhone</string>
                                                         <constraint firstAttribute="width" constant="60" id="tzx-To-BZ6"/>
                                                     </constraints>
                                                 </view>
-                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="v0u-Qt-tcm">
+                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="v0u-Qt-tcm">
                                                     <rect key="frame" x="104" y="0.0" width="310" height="60"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jfu-dv-rIM">
+                                                        <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jfu-dv-rIM">
                                                             <rect key="frame" x="0.0" y="0.0" width="310" height="10"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="E8C-Wt-GYs"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" misplaced="YES" text="Blå buss 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pz8-em-IcL" userLabel="Location">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="Blå buss 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pz8-em-IcL" userLabel="Location">
                                                             <rect key="frame" x="0.0" y="10" width="310" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="eCd-JB-ipB"/>
@@ -3216,7 +3254,7 @@ direkt från din iPhone</string>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Mot T-Centralen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaz-Pu-tBq" userLabel="Location">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Mot T-Centralen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaz-Pu-tBq" userLabel="Location">
                                                             <rect key="frame" x="0.0" y="30" width="310" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="TO6-im-HX5"/>
@@ -3225,7 +3263,7 @@ direkt från din iPhone</string>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rAd-pS-Wln">
+                                                        <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rAd-pS-Wln">
                                                             <rect key="frame" x="0.0" y="50" width="310" height="10"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>

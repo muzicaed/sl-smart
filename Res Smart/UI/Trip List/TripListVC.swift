@@ -15,13 +15,12 @@ class TripListVC: UITableViewController {
   let cellIdentifier = "TripCell"
   let pastCellIdentifier = "PassedTripCell"
   let loadingCellIdentifier = "LoadingCell"
-  let loadMoreIdentifier = "LoadMoreRow"
+  let loadMoreEarlierIdentifier = "LoadMoreEarlierRow"
+  let loadMoreLaterIdentifier = "LoadMoreLaterRow"
   let noTripsFoundCell = "FoundNoTripsCell"
-
+  
   let showDetailsSegue = "ShowDetails"
   
-  var firstHeader: TripHeader?
-  var lastFooter: TripFooter?
   var criterions: TripSearchCriterion?
   var keys = [String]()
   var trips = Dictionary<String, [Trip]>()
@@ -32,6 +31,9 @@ class TripListVC: UITableViewController {
   var refreshTimer: NSTimer?
   var oldTripSearchCount = 0
   var headerHight = CGFloat(25)
+  
+  var loadMoreEarlier: LoadMoreCell?
+  var loadMoreLater: LoadMoreCell?
   
   /**
    * View is done loading
@@ -85,6 +87,43 @@ class TripListVC: UITableViewController {
     }
   }
   
+  /**
+   * Load more trips when user scrolls
+   * to the bottom of the list.
+   */
+  func loadMoreTrips() {
+    isLoadingMore = true
+    loadMoreLater?.displaySpinner(1.0)
+    
+    let trip = trips[keys.last!]!.last!
+    criterions!.searchForArrival = false
+    criterions!.numTrips = oldTripSearchCount
+    criterions?.time = DateUtils.dateAsTimeString(
+      trip.tripSegments.last!.departureDateTime.dateByAddingTimeInterval(60))
+    loadTripData(true)
+  }
+  
+  /**
+   * Load earlier trips when user scrolls
+   * to the top of the list.
+   */
+  func loadEarlierTrips() {
+    print("Load earlier")
+    isLoadingMore = true
+    loadMoreEarlier?.displaySpinner(1.0)
+    
+    let trip = trips[keys.first!]!.first!
+    criterions?.searchForArrival = true
+    criterions!.numTrips = 3
+    
+    let dateTuple = DateUtils.dateAsStringTuple(
+      trip.tripSegments.first!.arrivalDateTime.dateByAddingTimeInterval(-60))
+    criterions?.date = dateTuple.date
+    criterions?.time = dateTuple.time
+    
+    loadTripData(false)
+  }
+  
   // MARK: UITableViewController
   
   /**
@@ -109,8 +148,12 @@ class TripListVC: UITableViewController {
         return 1
       }
       
-      print("No rows: \(trips[keys[section]]!.count) for sec \(section)")
-      return trips[keys[section]]!.count
+      var count = trips[keys[section]]!.count
+      if section == 0 {
+        count++
+      }
+      print("No rows: \(count) for sec \(section)")
+      return count
   }
   
   
@@ -123,6 +166,8 @@ class TripListVC: UITableViewController {
         return createLoadingTripCell(indexPath)
       } else if trips.count == 0 {
         return createNoTripsFoundCell(indexPath)
+      } else if isLoadMoreRow(indexPath) {
+        return createLoadMoreEarlierCell(indexPath)
       }
       
       return createTripCell(indexPath)
@@ -154,6 +199,8 @@ class TripListVC: UITableViewController {
     heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
       if isLoading {
         return tableView.bounds.height - 49 - 64 - 20
+      } else if isLoadMoreRow(indexPath) {
+        return 40
       }
       return 105
   }
@@ -169,8 +216,8 @@ class TripListVC: UITableViewController {
   }
   
   /**
-  * View for header
-  */
+   * View for header
+   */
   override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, headerHight))
     let label = UILabel(frame: CGRectMake(0, 0, tableView.frame.size.width, headerHight))
@@ -189,7 +236,7 @@ class TripListVC: UITableViewController {
     return view
   }
   
-   /**
+  /**
    * Green highlight on selected row.
    */
   override func tableView(tableView: UITableView,
@@ -215,20 +262,20 @@ class TripListVC: UITableViewController {
       
       if !isLoadingMore && !isLoadingMoreBlocked {
         if overflow > 0 {
-          //lastFooter?.displaySpinner(overflow / 8)
+          loadMoreLater?.displaySpinner(overflow / 8)
           if overflow >= 8 {
             if trips.count > 0 {
               loadMoreTrips()
             }
           }
         } else if scrollView.contentOffset.y < 0 {
-          //firstHeader?.displaySpinner((scrollView.contentOffset.y / 25) * -1)
+          loadMoreEarlier?.displaySpinner((scrollView.contentOffset.y / 25) * -1)
           if scrollView.contentOffset.y < -25 {
             loadEarlierTrips()
           }
         } else {
-          //firstHeader?.hideSpinner()
-          //lastFooter?.hideSpinner()
+          loadMoreEarlier?.hideSpinner()
+          loadMoreLater?.hideSpinner()
         }
       }
     }
@@ -257,54 +304,18 @@ class TripListVC: UITableViewController {
             self.appendToDictionary(resTuple.data, shouldAppend: shouldAppend)
             self.isLoading = false
             self.isLoadingMore = false
-            self.tableView?.reloadData()
-            //self.lastFooter?.hideSpinner()
-            //self.firstHeader?.hideSpinner()
+            self.loadMoreEarlier?.hideSpinner()
+            self.loadMoreLater?.hideSpinner()
             self.updateDateCriterions()
             self.refreshTimer?.invalidate()
             self.refreshTimer = nil
             self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: "refreshUI", userInfo: nil, repeats: true)
+            self.tableView?.reloadData()
           }
       })
       return
     }
     fatalError("Criterions not set in TripListVC")
-  }
-  
-  /**
-   * Load more trips when user scrolls
-   * to the bottom of the list.
-   */
-  private func loadMoreTrips() {
-    isLoadingMore = true
-    //lastFooter?.displaySpinner(1.0)
-    
-    let trip = trips[keys.last!]!.last!
-    criterions!.searchForArrival = false
-    criterions!.numTrips = oldTripSearchCount
-    criterions?.time = DateUtils.dateAsTimeString(
-      trip.tripSegments.last!.departureDateTime.dateByAddingTimeInterval(60))
-    loadTripData(true)
-  }
-  
-  /**
-   * Load earlier trips when user scrolls
-   * to the top of the list.
-   */
-  private func loadEarlierTrips() {
-    isLoadingMore = true
-    firstHeader?.displaySpinner(1.0)
-    
-    let trip = trips[keys.first!]!.first!
-    criterions?.searchForArrival = true
-    criterions!.numTrips = 3
-    
-    let dateTuple = DateUtils.dateAsStringTuple(
-      trip.tripSegments.first!.arrivalDateTime.dateByAddingTimeInterval(-60))
-    criterions?.date = dateTuple.date
-    criterions?.time = dateTuple.time
-    
-    loadTripData(false)
   }
   
   /**
@@ -355,21 +366,26 @@ class TripListVC: UITableViewController {
   /**
    * Create trip cell
    */
-  private func createTripCell(indexPath: NSIndexPath) -> TripCell {
-    let key = keys[indexPath.section]
-    let trip = trips[key]![indexPath.row]
-    
-    if checkInPast(trip) {
-      let cell = tableView!.dequeueReusableCellWithIdentifier(pastCellIdentifier,
+  private func createTripCell(
+    indexPath: NSIndexPath) -> TripCell {
+      let key = keys[indexPath.section]
+      var idx = indexPath.row
+      if indexPath.section == 0 {
+        idx = idx - 1
+      }
+      let trip = trips[key]![idx]
+      
+      if checkInPast(trip) {
+        let cell = tableView!.dequeueReusableCellWithIdentifier(pastCellIdentifier,
+          forIndexPath: indexPath) as! TripCell
+        cell.setupData(trip)
+        return cell
+      }
+      
+      let cell = tableView!.dequeueReusableCellWithIdentifier(cellIdentifier,
         forIndexPath: indexPath) as! TripCell
       cell.setupData(trip)
       return cell
-    }
-    
-    let cell = tableView!.dequeueReusableCellWithIdentifier(cellIdentifier,
-      forIndexPath: indexPath) as! TripCell
-    cell.setupData(trip)
-    return cell
   }
   
   /**
@@ -381,19 +397,38 @@ class TripListVC: UITableViewController {
   }
   
   /**
-   * Create loading trip cell
+   * Create loading cell
    */
-  private func createLoadingTripCell(indexPath: NSIndexPath) -> UITableViewCell {
-    return tableView!.dequeueReusableCellWithIdentifier(loadingCellIdentifier,
-      forIndexPath: indexPath)
+  private func createLoadingTripCell(
+    indexPath: NSIndexPath) -> UITableViewCell {
+      return tableView!.dequeueReusableCellWithIdentifier(loadingCellIdentifier,
+        forIndexPath: indexPath)
   }
   
   /**
-   * Create "No trips found" trip cell
+   * Create "No trips found" cell
    */
-  private func createNoTripsFoundCell(indexPath: NSIndexPath) -> UITableViewCell {
-    return tableView!.dequeueReusableCellWithIdentifier(noTripsFoundCell,
-      forIndexPath: indexPath)
+  private func createNoTripsFoundCell(
+    indexPath: NSIndexPath) -> UITableViewCell {
+      return tableView!.dequeueReusableCellWithIdentifier(noTripsFoundCell,
+        forIndexPath: indexPath)
+  }
+  
+  /**
+   * Create "Load more" cell
+   */
+  private func createLoadMoreEarlierCell(
+    indexPath: NSIndexPath) -> UITableViewCell {
+      if loadMoreEarlier == nil {
+        loadMoreEarlier = tableView!.dequeueReusableCellWithIdentifier(loadMoreEarlierIdentifier,
+          forIndexPath: indexPath) as? LoadMoreCell
+        
+        loadMoreEarlier!.loadButton.addTarget(self,
+          action: Selector("loadEarlierTrips"),
+          forControlEvents: UIControlEvents.TouchUpInside)
+      }
+      
+      return loadMoreEarlier!
   }
   
   /**
@@ -408,5 +443,12 @@ class TripListVC: UITableViewController {
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
     
     presentViewController(networkErrorAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Checks if row is a "load more" row.
+   */
+  private func isLoadMoreRow(indexPath: NSIndexPath) -> Bool {
+    return (indexPath.section == 0 && indexPath.row == 0)
   }
 }
