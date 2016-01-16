@@ -213,7 +213,6 @@ class TripDetailsVC: UITableViewController {
    * in between stops.
    */
   private func filterStops(stops: [Stop], segment: TripSegment) -> [Stop] {
-    //    let arrivalTime = segment.arrivalDateTime
     var filterStops = [Stop]()
     for stop in stops {
       if let stopDate = stop.depDate {
