@@ -108,7 +108,6 @@ class TripListVC: UITableViewController {
    * to the top of the list.
    */
   func loadEarlierTrips() {
-    print("Load earlier")
     isLoadingMore = true
     loadMoreEarlier?.displaySpinner(1.0)
     
@@ -131,10 +130,8 @@ class TripListVC: UITableViewController {
   */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     if isLoading || trips.count == 0 {
-      print("No sections: \(1)")
       return 1
     }
-    print("No sections: \(keys.count)")
     return keys.count
   }
   
@@ -144,7 +141,6 @@ class TripListVC: UITableViewController {
   override func tableView(tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
       if isLoading || trips.count == 0 {
-        print("No rows: \(1) for sec \(section)")
         return 1
       }
       
@@ -155,7 +151,6 @@ class TripListVC: UITableViewController {
       if (section + 1) == trips.count {
         count++
       }
-      print("No rows: \(count) for sec \(section)")
       return count
   }
   
@@ -276,8 +271,8 @@ class TripListVC: UITableViewController {
         if overflow > 0 {
           loadMoreTrips()
         } else if scrollView.contentOffset.y < 0 {
-          loadMoreEarlier?.displaySpinner((scrollView.contentOffset.y / 25) * -1)
-          if scrollView.contentOffset.y < -25 {
+          loadMoreEarlier?.displaySpinner((scrollView.contentOffset.y / 45) * -1)
+          if scrollView.contentOffset.y < -45 {
             loadEarlierTrips()
           }
         } else {
@@ -295,19 +290,16 @@ class TripListVC: UITableViewController {
   * collection of time table data.
   */
   private func loadTripData(shouldAppend: Bool) {
-    print("Load data")
     if let criterions = self.criterions {
       SearchTripService.tripSearch(criterions,
         callback: { resTuple in
           dispatch_async(dispatch_get_main_queue()) {
             if resTuple.error != nil {
-              print("Error")
               self.showNetworkErrorAlert()
               self.isLoading = false
               self.tableView?.reloadData()
               return
             }
-            print("Loading done.")
             self.appendToDictionary(resTuple.data, shouldAppend: shouldAppend)
             self.isLoading = false
             self.isLoadingMore = false
