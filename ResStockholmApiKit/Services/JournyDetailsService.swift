@@ -46,6 +46,7 @@ public class JournyDetailsService {
     return Stop(
       id: stopJson["id"].string!,
       name: stopJson["name"].string!,
+      depDate: stopJson["depDate"].string,
       depTime: stopJson["depTime"].string)
   }
 }

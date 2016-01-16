@@ -21,8 +21,8 @@ class TripDetailsChangeCell: UITableViewCell, TripCellProtocol {
    * Set cell data.
    */
   func setData(indexPath: NSIndexPath, trip: Trip) {
-    let beforeSegment = trip.tripSegments[indexPath.section - 2]
-    let segment = trip.tripSegments[indexPath.section - 1]
+    let beforeSegment = trip.tripSegments[indexPath.section - 1]
+    let segment = trip.tripSegments[indexPath.section]
     
     arrivalTimeLabel.text = DateUtils.dateAsTimeString(beforeSegment.arrivalDateTime)
     destinationLabel.text = beforeSegment.destination.cleanName

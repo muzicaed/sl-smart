@@ -3071,91 +3071,80 @@ direkt från din iPhone</string>
         <scene sceneID="bsR-j7-Flu">
             <objects>
                 <tableViewController title="Resedetaljer" id="4Bd-C0-Zjd" customClass="TripDetailsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q2W-7V-Yq6">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q2W-7V-Yq6">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="Header" rowHeight="66" id="I7M-jQ-Rqn" userLabel="Header" customClass="TripDetailsHeaderCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="66"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I7M-jQ-Rqn" id="R8E-lU-VS7">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="65.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="Go6-Fx-gmx">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p0C-qC-p7E">
+                                    <rect key="frame" x="10" y="0.0" width="404" height="66"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="5Y3-WT-CuR">
-                                            <rect key="frame" x="11" y="0.0" width="395" height="66"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QaQ-dB-dXd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="395" height="66"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lTT-4S-XGb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="395" height="6"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="6" id="ayH-z4-9rJ" userLabel="height = 6"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Idag Tisdag bla bla" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cb-iK-Mp9">
-                                                            <rect key="frame" x="0.0" y="6" width="395" height="18"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="18" id="no4-fc-YWu"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stockholms södra" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVk-DQ-Fsf">
-                                                            <rect key="frame" x="0.0" y="24" width="395" height="18"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="18" id="bnA-CP-tbN"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arlanda" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pml-VN-3hz">
-                                                            <rect key="frame" x="0.0" y="42" width="395" height="18"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="18" id="U7C-tx-LtM"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S76-Ia-cBl">
-                                                            <rect key="frame" x="0.0" y="60" width="395" height="6"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="6" id="I62-R9-1Mi" userLabel="height = 6"/>
-                                                            </constraints>
-                                                        </view>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="66" id="kxW-Qg-Opj"/>
-                                                    </constraints>
-                                                </stackView>
-                                            </subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ge-rM-ltZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="404" height="6"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="66" id="QXj-1m-2Yf"/>
+                                                <constraint firstAttribute="height" constant="6" id="yIg-cS-cTs" userLabel="height = 6"/>
                                             </constraints>
-                                        </stackView>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Idag Tisdag bla bla" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vg-xG-Jx7">
+                                            <rect key="frame" x="0.0" y="6" width="404" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="18" id="cDt-8g-Sm5"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stockholms södra" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNu-I4-w7g">
+                                            <rect key="frame" x="0.0" y="24" width="404" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="18" id="tuP-sc-gUC"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arlanda" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIj-6I-znV">
+                                            <rect key="frame" x="0.0" y="42" width="404" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="18" id="ddx-a3-8h1"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1SJ-In-TFK">
+                                            <rect key="frame" x="0.0" y="60" width="404" height="5"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="5" id="0Ja-PC-d8I" userLabel="height = 6"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJa-NV-5e8">
+                                            <rect key="frame" x="0.0" y="65" width="404" height="1"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="Kge-Zd-ovn" userLabel="height = 6"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="5Y3-WT-CuR" firstAttribute="leading" secondItem="R8E-lU-VS7" secondAttribute="leadingMargin" constant="3" id="7Rb-4y-JR6"/>
-                                        <constraint firstItem="5Y3-WT-CuR" firstAttribute="centerY" secondItem="R8E-lU-VS7" secondAttribute="centerY" id="E7w-dA-BCT"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="5Y3-WT-CuR" secondAttribute="trailing" id="Hmy-1J-8cz"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="66" id="1Vl-kT-PvR"/>
                                     </constraints>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <connections>
-                                    <outlet property="dateTimeLabel" destination="1cb-iK-Mp9" id="V0p-2x-uLQ"/>
-                                    <outlet property="destinationLabel" destination="pml-VN-3hz" id="DeP-zs-nJq"/>
-                                    <outlet property="originLabel" destination="oVk-DQ-Fsf" id="JCh-kX-W6f"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Origin" id="WaZ-2A-eHI" userLabel="Origin" customClass="TripDetailsOriginCell" customModule="Res_Smart" customModuleProvider="target">
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="p0C-qC-p7E" secondAttribute="trailing" id="8AP-fh-g5Y"/>
+                                <constraint firstAttribute="bottom" secondItem="p0C-qC-p7E" secondAttribute="bottom" id="Fe8-KV-hX0"/>
+                                <constraint firstItem="p0C-qC-p7E" firstAttribute="leading" secondItem="Go6-Fx-gmx" secondAttribute="leading" constant="10" id="LE7-lk-3AL"/>
+                                <constraint firstItem="p0C-qC-p7E" firstAttribute="top" secondItem="Go6-Fx-gmx" secondAttribute="top" id="wgq-z0-uF1"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Origin" id="WaZ-2A-eHI" userLabel="Origin" customClass="TripDetailsOriginCell" customModule="Res_Smart" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="94" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WaZ-2A-eHI" id="ap3-pH-rn1">
@@ -3202,7 +3191,7 @@ direkt från din iPhone</string>
                                     <outlet property="timeLabel" destination="eiG-yH-VqD" id="o8i-fU-RsO"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Segment" rowHeight="60" id="5bV-hp-Oh4" userLabel="Segment" customClass="TripDetailsSegmentCell" customModule="Res_Smart" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Segment" rowHeight="60" id="5bV-hp-Oh4" userLabel="Segment" customClass="TripDetailsSegmentCell" customModule="Res_Smart" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="138" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5bV-hp-Oh4" id="rwZ-DX-ZGT">
@@ -3239,17 +3228,17 @@ direkt från din iPhone</string>
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="v0u-Qt-tcm">
-                                                    <rect key="frame" x="104" y="0.0" width="310" height="60"/>
+                                                    <rect key="frame" x="104" y="0.0" width="250" height="60"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jfu-dv-rIM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="310" height="10"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="250" height="10"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="E8C-Wt-GYs"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="Blå buss 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pz8-em-IcL" userLabel="Location">
-                                                            <rect key="frame" x="0.0" y="10" width="310" height="20"/>
+                                                            <rect key="frame" x="0.0" y="10" width="250" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="eCd-JB-ipB"/>
                                                             </constraints>
@@ -3258,7 +3247,7 @@ direkt från din iPhone</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Mot T-Centralen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaz-Pu-tBq" userLabel="Location">
-                                                            <rect key="frame" x="0.0" y="30" width="310" height="20"/>
+                                                            <rect key="frame" x="0.0" y="30" width="250" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="TO6-im-HX5"/>
                                                             </constraints>
@@ -3267,7 +3256,7 @@ direkt från din iPhone</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rAd-pS-Wln">
-                                                            <rect key="frame" x="0.0" y="50" width="310" height="10"/>
+                                                            <rect key="frame" x="0.0" y="50" width="250" height="10"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="dhM-Ua-YMJ"/>
@@ -3275,6 +3264,24 @@ direkt från din iPhone</string>
                                                         </view>
                                                     </subviews>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Daw-fa-Bsy">
+                                                    <rect key="frame" x="354" y="0.0" width="60" height="60"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTs-py-aMk">
+                                                            <rect key="frame" x="21.5" y="20.5" width="17" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="OfZ-wA-yuK"/>
+                                                        <constraint firstItem="fTs-py-aMk" firstAttribute="centerX" secondItem="Daw-fa-Bsy" secondAttribute="centerX" id="QZe-9m-Gmz"/>
+                                                        <constraint firstItem="fTs-py-aMk" firstAttribute="centerY" secondItem="Daw-fa-Bsy" secondAttribute="centerY" id="gy9-v2-Epc"/>
+                                                        <constraint firstAttribute="height" constant="60" id="ouh-0O-QCN"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                         </stackView>
                                     </subviews>
@@ -3286,12 +3293,13 @@ direkt från din iPhone</string>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="44" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
+                                    <outlet property="arrowLabel" destination="fTs-py-aMk" id="nla-my-QXU"/>
                                     <outlet property="directionLabel" destination="aaz-Pu-tBq" id="muJ-x8-72s"/>
                                     <outlet property="lineLabel" destination="pz8-em-IcL" id="iQK-B9-iXh"/>
                                     <outlet property="tripTypeIcon" destination="iyl-c3-qGr" id="0DC-lh-Yxq"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubSegment" rowHeight="25" id="iUr-zi-k8u" userLabel="Sub segment">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubSegment" rowHeight="25" id="iUr-zi-k8u" userLabel="Sub segment" customClass="TripDetailsSubSegmentCell" customModule="Res_Smart" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="198" width="414" height="25"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iUr-zi-k8u" id="ql2-Mt-GO2">
@@ -3335,8 +3343,12 @@ direkt från din iPhone</string>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="44" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="locationLabel" destination="5hZ-e8-Nd6" id="O7R-MH-7cC"/>
+                                    <outlet property="timeLabel" destination="lQm-8R-6Z8" id="ign-c2-7n5"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Change" rowHeight="60" id="L2B-dE-HV5" userLabel="Change" customClass="TripDetailsChangeCell" customModule="Res_Smart" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Change" rowHeight="60" id="L2B-dE-HV5" userLabel="Change" customClass="TripDetailsChangeCell" customModule="Res_Smart" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="223" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L2B-dE-HV5" id="wQu-HG-jGq">
@@ -3439,7 +3451,7 @@ direkt från din iPhone</string>
                                     <outlet property="originLabel" destination="nX8-uO-bUw" id="35q-VJ-aXM"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="Destination" id="72z-46-yDK" userLabel="Destination" customClass="TripDetailsDestinationCell" customModule="Res_Smart" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="Destination" id="72z-46-yDK" userLabel="Destination" customClass="TripDetailsDestinationCell" customModule="Res_Smart" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="283" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="72z-46-yDK" id="Rzj-Ms-fM2">
@@ -3493,6 +3505,11 @@ direkt från din iPhone</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Detaljer" id="5Jh-jr-FrC"/>
+                    <connections>
+                        <outlet property="destinationLabel" destination="gIj-6I-znV" id="LgR-Sc-yIa"/>
+                        <outlet property="originLabel" destination="ZNu-I4-w7g" id="qrp-SP-cFI"/>
+                        <outlet property="timeLabel" destination="4vg-xG-Jx7" id="Ux0-TG-0bf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dB-zP-KDF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

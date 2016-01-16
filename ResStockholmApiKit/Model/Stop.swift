@@ -11,11 +11,14 @@ import Foundation
 public class Stop {
   public let id: String
   public let name: String
-  public let depTime: String?
+  public var depDate: NSDate?
   
-  init(id: String, name: String, depTime: String?) {
+  init(id: String, name: String, depDate: String?, depTime: String?) {
     self.id = id
     self.name = name
-    self.depTime = depTime
+    
+    if let date = depDate, time = depTime {
+      self.depDate = DateUtils.convertDateString("\(date) \(time)")
+    }
   }
 }

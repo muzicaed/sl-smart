@@ -22,6 +22,8 @@ public class TripSegment: NSObject, NSCopying {
   public let isRealtime: Bool
   public let journyRef: String?
   
+  public var stops = [Stop]()
+  
   public init(
     index: Int, name: String, type: String, directionText: String?,
     lineNumber: String?, origin: Location, destination: Location,
@@ -50,10 +52,10 @@ public class TripSegment: NSObject, NSCopying {
   // MARK: NSCopying
   
   /**
-  * Copy self
+  * Copy self (Stops are not copied!)
   */
   public func copyWithZone(zone: NSZone) -> AnyObject {
-    return TripSegment(
+    let seg = TripSegment(
       index: index, name: name, type: type.rawValue,
       directionText: directionText, lineNumber: lineNumber,
       origin: origin.copy() as! Location,
@@ -63,5 +65,7 @@ public class TripSegment: NSObject, NSCopying {
       departureDate: DateUtils.dateAsDateString(departureDateTime),
       arrivalDate: DateUtils.dateAsDateString(departureDateTime),
       distance: distance, isRealtime: isRealtime, journyRef: journyRef)
+
+    return seg
   }
 }
