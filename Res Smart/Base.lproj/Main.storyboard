@@ -3144,7 +3144,7 @@ direkt från din iPhone</string>
                                                     <rect key="frame" x="11" y="11" width="44" height="44"/>
                                                     <state key="normal" image="MapIcon"/>
                                                     <connections>
-                                                        <segue destination="ZFd-7N-DcT" kind="show" identifier="ShowMap" id="uNC-CH-DMq"/>
+                                                        <segue destination="ZFd-7N-DcT" kind="presentation" identifier="ShowMap" id="uNC-CH-DMq"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -3544,28 +3544,73 @@ direkt från din iPhone</string>
         <!--Karta-->
         <scene sceneID="oK1-bk-UKv">
             <objects>
-                <viewController title="Karta" id="ZFd-7N-DcT" sceneMemberID="viewController">
+                <viewController title="Karta" id="ZFd-7N-DcT" customClass="TripMapVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XRh-xU-rrZ"/>
                         <viewControllerLayoutGuide type="bottom" id="wNR-l0-fbp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NUO-hH-rJy">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s6b-t8-SQM">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                             </mapView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nrS-qg-13b">
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Karta" id="Gkq-th-Vhg">
+                                        <barButtonItem key="rightBarButtonItem" title="Stäng" style="done" id="xxJ-JW-X3b">
+                                            <connections>
+                                                <action selector="onCloseTap:" destination="ZFd-7N-DcT" id="79J-9I-iBU"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8k5-dy-dsU">
+                                <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem title="Min position" id="sDB-LT-zi7">
+                                        <connections>
+                                            <action selector="myPositionTap:" destination="ZFd-7N-DcT" id="EM8-BQ-57A"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="bTD-tW-EgI"/>
+                                    <barButtonItem style="plain" id="KFF-vP-fkr">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="SJX-uT-jMa">
+                                            <rect key="frame" x="224" y="7" width="170" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Karta"/>
+                                                <segment title="Satelit"/>
+                                                <segment title="Hybrid"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="onSegmentChanged:" destination="ZFd-7N-DcT" eventType="valueChanged" id="ZVo-pY-k67"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="s6b-t8-SQM" firstAttribute="leading" secondItem="NUO-hH-rJy" secondAttribute="leading" id="1Ev-Cl-GYJ"/>
+                            <constraint firstItem="8k5-dy-dsU" firstAttribute="leading" secondItem="NUO-hH-rJy" secondAttribute="leading" id="L9a-8a-nol"/>
+                            <constraint firstItem="nrS-qg-13b" firstAttribute="top" secondItem="XRh-xU-rrZ" secondAttribute="bottom" id="QOr-HF-5LG"/>
+                            <constraint firstItem="nrS-qg-13b" firstAttribute="leading" secondItem="NUO-hH-rJy" secondAttribute="leading" id="RcA-iA-t5f"/>
+                            <constraint firstItem="wNR-l0-fbp" firstAttribute="top" secondItem="8k5-dy-dsU" secondAttribute="bottom" id="T6S-Hg-E84"/>
+                            <constraint firstAttribute="trailing" secondItem="8k5-dy-dsU" secondAttribute="trailing" id="Ted-Qn-9eu"/>
                             <constraint firstAttribute="trailing" secondItem="s6b-t8-SQM" secondAttribute="trailing" id="X0f-3Q-UBi"/>
                             <constraint firstItem="s6b-t8-SQM" firstAttribute="top" secondItem="XRh-xU-rrZ" secondAttribute="bottom" id="gaR-eE-FlP"/>
                             <constraint firstItem="wNR-l0-fbp" firstAttribute="top" secondItem="s6b-t8-SQM" secondAttribute="bottom" id="sZL-06-8wA"/>
+                            <constraint firstAttribute="trailing" secondItem="nrS-qg-13b" secondAttribute="trailing" id="szH-DB-g3B"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Karta" id="tsQ-MV-ejO"/>
+                    <connections>
+                        <outlet property="mapView" destination="s6b-t8-SQM" id="fCd-QD-bt6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yKK-B0-t7g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
