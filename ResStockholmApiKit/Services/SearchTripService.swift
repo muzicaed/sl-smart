@@ -111,7 +111,7 @@ public class SearchTripService {
     
     let distString = (segmentJson["dist"].string != nil) ? segmentJson["dist"].string! : ""
     let dateTimeTuple = extractTimeDate(segmentJson)
-
+    
     return TripSegment(
       index: Int(segmentJson["idx"].string!)!,
       name: segmentJson["name"].string!,
@@ -123,7 +123,8 @@ public class SearchTripService {
       departureDate: dateTimeTuple.depDate,
       arrivalDate: dateTimeTuple.arrDate,
       distance: Int(distString), isRealtime: dateTimeTuple.isRealtime,
-      journyRef: segmentJson["JourneyDetailRef"]["ref"].string)
+      journyRef: segmentJson["JourneyDetailRef"]["ref"].string,
+      geometryRef: segmentJson["GeometryRef"]["ref"].string!)
   }
   
   /**

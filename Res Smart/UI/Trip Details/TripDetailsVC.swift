@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 import ResStockholmApiKit
 
 class TripDetailsVC: UITableViewController {
@@ -33,6 +34,13 @@ class TripDetailsVC: UITableViewController {
     prepareHeader()
     prepareVisualStops()
     loadStops()
+  }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "ShowMap" {
+      let vc = segue.destinationViewController as! TripMapVC
+      vc.trip = trip
+    }
   }
   
   // MARK: UITableViewController
@@ -205,6 +213,12 @@ class TripDetailsVC: UITableViewController {
           }
         }
       }
+      
+      GeometryService.fetchGeometry(segment.geometryRef) { locations, error in
+        if error == nil {
+          segment.routeLineLocations += self.extractLocations(locations, segment: segment)
+        }
+      }
     }
   }
   
@@ -224,6 +238,28 @@ class TripDetailsVC: UITableViewController {
     }
     
     return filterStops
+  }
+  
+  /**
+   * Extracts relevant locations
+   */
+  private func extractLocations(locations: [CLLocation],
+    segment: TripSegment) -> [CLLocation] {
+      
+      var routeLocations = [CLLocation]()      
+      var isPloting = false
+      for location in locations {
+        if location.distanceFromLocation(segment.origin.location) < 5 {
+          isPloting = true
+        } else if location.distanceFromLocation(segment.destination.location) < 5 {
+          break
+        }
+        
+        if isPloting {
+          routeLocations.append(location)
+        }
+      }
+      return routeLocations
   }
   
   /**
@@ -250,7 +286,8 @@ class TripDetailsVC: UITableViewController {
       tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
     }
     
-    let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: section)) as! TripDetailsSegmentCell
+    let cell = tableView.cellForRowAtIndexPath(
+      NSIndexPath(forRow: 1, inSection: section)) as! TripDetailsSegmentCell
     cell.updateStops((isVisible: isVisible, hasStops: true))
   }
 }

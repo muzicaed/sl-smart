@@ -22,8 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
       setupAppleWatchConnection()
-      setupApp()
-      
+      setupApp()      
       return true
   }
   

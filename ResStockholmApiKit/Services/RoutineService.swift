@@ -111,11 +111,7 @@ public class RoutineService {
         }
       } else {
         if let currentLocation = MyLocationHelper.sharedInstance.currentLocation {
-          let tripLocation = CLLocation(
-            latitude: Double(trip.criterions.origin!.lat)!,
-            longitude: Double(trip.criterions.origin!.lon)!)
-          
-          let distance = Int(currentLocation.distanceFromLocation(tripLocation))
+          let distance = Int(currentLocation.distanceFromLocation(trip.criterions.origin!.location))
           return calcMultiplierBasedOnProximityToLocation(distance)
         }
         

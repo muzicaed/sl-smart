@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 public class TripSegment: NSObject, NSCopying {
   public let index: Int
@@ -21,15 +22,18 @@ public class TripSegment: NSObject, NSCopying {
   public let distance: Int?
   public let isRealtime: Bool
   public let journyRef: String?
+  public let geometryRef: String
   
   public var stops = [Stop]()
+  public var routeLineLocations = [CLLocation]()
   
   public init(
     index: Int, name: String, type: String, directionText: String?,
     lineNumber: String?, origin: Location, destination: Location,
     departureTime: String, arrivalTime: String,
     departureDate: String, arrivalDate: String,
-    distance: Int?, isRealtime: Bool, journyRef: String?) {
+    distance: Int?, isRealtime: Bool, journyRef: String?,
+    geometryRef: String) {
       
       self.index = index
       self.name = name
@@ -47,12 +51,13 @@ public class TripSegment: NSObject, NSCopying {
       self.distance = distance
       self.isRealtime = isRealtime
       self.journyRef = journyRef
+      self.geometryRef = geometryRef
   }
   
   // MARK: NSCopying
   
   /**
-  * Copy self (Stops are not copied!)
+  * Copy self (Stops & route line locations are not copied!)
   */
   public func copyWithZone(zone: NSZone) -> AnyObject {
     let seg = TripSegment(
@@ -64,7 +69,8 @@ public class TripSegment: NSObject, NSCopying {
       arrivalTime: DateUtils.dateAsTimeString(arrivalDateTime),
       departureDate: DateUtils.dateAsDateString(departureDateTime),
       arrivalDate: DateUtils.dateAsDateString(departureDateTime),
-      distance: distance, isRealtime: isRealtime, journyRef: journyRef)
+      distance: distance, isRealtime: isRealtime, journyRef: journyRef,
+      geometryRef: geometryRef)
 
     return seg
   }

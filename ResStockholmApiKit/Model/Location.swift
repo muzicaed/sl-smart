@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 public class Location: NSObject, NSCoding, NSCopying {
   
@@ -17,6 +18,7 @@ public class Location: NSObject, NSCoding, NSCopying {
   public let type: LocationType
   public let lat: String
   public let lon: String
+  public let location: CLLocation
   
   /**
    * Standard init
@@ -24,6 +26,11 @@ public class Location: NSObject, NSCoding, NSCopying {
   public init(id: String?, name: String, type: String, lat: String, lon: String) {
     self.lat = Location.convertCoordinateFormat(lat)
     self.lon = Location.convertCoordinateFormat(lon)
+
+    self.location = CLLocation(
+      latitude: Double(self.lat)!,
+      longitude: Double(self.lon)!)
+    
     if let enumType = LocationType(rawValue: type) {
       self.type = enumType
     } else if let enumType = LocationType(fromShort: type){
@@ -56,6 +63,9 @@ public class Location: NSObject, NSCoding, NSCopying {
       self.type = type
       self.lat = lat
       self.lon = lon
+      self.location = CLLocation(
+        latitude: Double(self.lat)!,
+        longitude: Double(self.lon)!)
   }
   
   /**

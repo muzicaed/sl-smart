@@ -13,7 +13,7 @@ public class JournyDetailsService {
   private static let api = SLJourneyDetailsApi()
   
   /**
-   * Fetch trafic situation data
+   * Fetch journy details
    */
   public static func fetchJournyDetails(urlEncRef: String,
     callback: (data: [Stop], error: SLNetworkError?) -> Void) {
@@ -25,7 +25,7 @@ public class JournyDetailsService {
             callback(data: result, error: SLNetworkError.NoDataFound)
             return
           }
-
+          
           let jsonData = JSON(data: d)
           if let stopsJson = jsonData["JourneyDetail"]["Stops"]["Stop"].array {
             for stopJson in stopsJson {
@@ -40,13 +40,15 @@ public class JournyDetailsService {
   // MARK: Private
   
   /**
-  * Converts the raw json string into array of Location.
+  * Converts the raw json string into array of Stops.
   */
   private static func convertStopJson(stopJson: JSON) -> Stop {
     return Stop(
       id: stopJson["id"].string!,
       name: stopJson["name"].string!,
       depDate: stopJson["depDate"].string,
-      depTime: stopJson["depTime"].string)
+      depTime: stopJson["depTime"].string,
+      lat: stopJson["lat"].string!,
+      lon: stopJson["lon"].string!)
   }
 }
