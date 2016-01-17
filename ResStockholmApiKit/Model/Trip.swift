@@ -13,6 +13,7 @@ public class Trip: NSObject, NSCopying {
   public var durationMin = 0
   public var noOfChanges = 0
   public var tripSegments = [TripSegment]()
+  public var allTripSegments = [TripSegment]()
   
   /**
    * Standard init
@@ -21,7 +22,12 @@ public class Trip: NSObject, NSCopying {
     self.durationMin = durationMin
     self.noOfChanges = noOfChanges
     if let segments = tripSegments {
-      self.tripSegments = segments
+      self.allTripSegments = segments
+      for segment in segments {
+        if !(segment.type == .Walk && segment.distance! < 250) {
+          self.tripSegments.append(segment)
+        }
+      }
     }
   }
   

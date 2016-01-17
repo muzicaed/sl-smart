@@ -135,7 +135,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   private func loadRoute() {
     if let trip = trip {
       var allCoords = [CLLocationCoordinate2D]()
-      for segment in trip.tripSegments {        
+      for segment in trip.allTripSegments {
         let coords = plotRoute(segment)
         createOverlays(coords, segment: segment)
         allCoords += coords
@@ -240,12 +240,16 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       coord = findCenterCoordinate(coordinates.first!, coord2: coordinates.last!)
     }
     
-    
     let data = TripHelper.friendlyLineData(segment)
     let pin = TripTypeIconAnnotation()
     pin.coordinate = coord
     pin.imageName = data.icon
     pin.title = data.long
+    if segment.type == .Walk {
+      pin.subtitle = "\(segment.distance!)m"
+    } else {
+      pin.subtitle = "Mot \(segment.directionText!)"
+    }
     
     mapView.addAnnotation(pin)
   }
