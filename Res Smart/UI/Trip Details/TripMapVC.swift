@@ -58,6 +58,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       }
     } else {
       mapView.showsUserLocation = true
+      mapView.setCenterCoordinate(mapView.userLocation.coordinate, animated: true)
     }
   }
   
@@ -86,6 +87,17 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     if let trip = trip {
       var allCoords = [CLLocationCoordinate2D]()
       for segment in trip.tripSegments {
+        
+        let originPin = MKPointAnnotation()
+        originPin.coordinate = segment.origin.location.coordinate
+        originPin.title = segment.origin.name
+        mapView.addAnnotation(originPin)
+        
+        let destPin = MKPointAnnotation()
+        destPin.coordinate = segment.destination.location.coordinate
+        destPin.title = segment.destination.name
+        mapView.addAnnotation(destPin)
+        
         var coords = [CLLocationCoordinate2D]()
         if let lastCoord = allCoords.last {
           coords.append(lastCoord)
@@ -97,6 +109,15 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
         } else {
           for location in segment.routeLineLocations {
             coords.append(location.coordinate)
+          }
+        }
+        
+        if segment.stops.count > 0 {
+          for stop in segment.stops {
+            let stopPin = MKPointAnnotation()
+            stopPin.coordinate = stop.location.coordinate
+            stopPin.title = stop.name
+            mapView.addAnnotation(stopPin)
           }
         }
         
@@ -118,6 +139,6 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   private func plotRoute(var coordinates: [CLLocationCoordinate2D], segment: TripSegment) {
     let polyline = MKPolyline(coordinates: &coordinates, count: coordinates.count)
     mapView.addOverlay(polyline)
-
+    
   }
 }
