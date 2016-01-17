@@ -26,7 +26,9 @@ class RouteRenderer: MKPolylineRenderer {
    * Setup renderer based on trip type
    */
   private func setupRenderer(segment: TripSegment) {
-        self.strokeColor = UIColor(red: 21/255, green: 96/255, blue: 160/255, alpha: 1.0)
+    self.strokeColor = UIColor(red: 21/255, green: 96/255, blue: 160/255, alpha: 1.0)
+    self.fillColor = UIColor(white: 1.0, alpha: 0.8)
+    self.lineJoin = CGLineJoin.Bevel
     self.lineWidth = 4.5
     switch segment.type {
     case .Walk, .Ferry:
