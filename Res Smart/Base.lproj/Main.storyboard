@@ -3140,7 +3140,7 @@ direkt från din iPhone</string>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AbU-Aa-ggf">
                                             <rect key="frame" x="338" y="0.0" width="66" height="66"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTo-4z-Wx5">
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTo-4z-Wx5">
                                                     <rect key="frame" x="11" y="11" width="44" height="44"/>
                                                     <state key="normal" image="MapIcon"/>
                                                     <connections>
@@ -3533,6 +3533,7 @@ direkt från din iPhone</string>
                     <navigationItem key="navigationItem" title="Detaljer" id="5Jh-jr-FrC"/>
                     <connections>
                         <outlet property="destinationLabel" destination="gIj-6I-znV" id="LgR-Sc-yIa"/>
+                        <outlet property="mapButton" destination="bTo-4z-Wx5" id="8Hr-zG-4Yi"/>
                         <outlet property="originLabel" destination="ZNu-I4-w7g" id="qrp-SP-cFI"/>
                         <outlet property="timeLabel" destination="4vg-xG-Jx7" id="Ux0-TG-0bf"/>
                     </connections>

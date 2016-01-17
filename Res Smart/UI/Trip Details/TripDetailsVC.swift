@@ -16,6 +16,7 @@ class TripDetailsVC: UITableViewController {
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
+  @IBOutlet weak var mapButton: UIButton!
   
   let originCellId = "Origin"
   let segmentCellId = "Segment"
@@ -203,6 +204,7 @@ class TripDetailsVC: UITableViewController {
    * Load stop data
    */
   private func loadStops() {
+    var loadCount = 0
     for (index, segment) in trip.tripSegments.enumerate() {
       if let ref = segment.journyRef {
         JournyDetailsService.fetchJournyDetails(ref) { stops, error in
@@ -215,8 +217,14 @@ class TripDetailsVC: UITableViewController {
       }
       
       GeometryService.fetchGeometry(segment.geometryRef) { locations, error in
-        if error == nil {
-          segment.routeLineLocations += self.extractLocations(locations, segment: segment)
+        dispatch_async(dispatch_get_main_queue()) {
+          if error == nil {
+            segment.routeLineLocations += self.extractLocations(locations, segment: segment)
+          }
+          loadCount++
+          if loadCount >= self.trip.tripSegments.count {
+            self.mapButton.enabled = true
+          }
         }
       }
     }
@@ -246,7 +254,7 @@ class TripDetailsVC: UITableViewController {
   private func extractLocations(locations: [CLLocation],
     segment: TripSegment) -> [CLLocation] {
       
-      var routeLocations = [CLLocation]()      
+      var routeLocations = [CLLocation]()
       var isPloting = false
       for location in locations {
         if location.distanceFromLocation(segment.origin.location) < 5 {
