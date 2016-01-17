@@ -64,24 +64,28 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
     
     var reuseId: String? = nil
-    var imageName = ""
+    var image: UIImage? = nil
+    var bgColor = UIColor.clearColor()
+    var isShaddow = false
     
     if annotation.isKindOfClass(BigPin) {
       reuseId = "dot"
-      imageName = "MapDot"
+      image = UIImage(named: "MapDot")!
       
     } else if annotation.isKindOfClass(OriginPin) {
       reuseId = "origin-dot"
-      imageName = "MapOriginDot"
+      image = UIImage(named: "MapOriginDot")!
       
     } else if annotation.isKindOfClass(SmallPin) {
       reuseId = "small-dot"
-      imageName = "MapDotSmall"
+      image = UIImage(named: "MapDotSmall")!
       
     } else if annotation.isKindOfClass(TripTypeIconAnnotation) {
       let tripTypeIcon = annotation as! TripTypeIconAnnotation
       if let name = tripTypeIcon.imageName {
-        imageName = name
+        image = UIImage(named: name)!
+        bgColor = UIColor(white: 1.0, alpha: 0.8)
+        isShaddow = true
       }
     } else {
       return nil
@@ -94,9 +98,20 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     if pinView == nil {
       pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
       pinView!.canShowCallout = true
-      pinView!.image = UIImage(named: imageName)!
       pinView!.centerOffset = CGPointMake(0, 0)
       pinView!.calloutOffset = CGPointMake(0, -3)
+      pinView!.backgroundColor = bgColor
+      if isShaddow {
+        pinView!.layer.masksToBounds = false
+        pinView!.layer.shadowOffset = CGSizeMake(1, 1)
+        pinView!.layer.shadowRadius = 5.0
+        pinView!.layer.shadowColor = UIColor.blackColor().CGColor
+        pinView!.layer.shadowOpacity = 0.45
+        pinView!.clipsToBounds = false
+      }
+      if let img = image {
+        pinView!.image = img
+      }
     }
     return pinView
   }
@@ -168,8 +183,8 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     polyline.segment = segment
     mapView.addOverlay(polyline)
     
-    createLocationPins(segment, coordinates: coordinates)
     createStopPins(segment)
+    createLocationPins(segment, coordinates: coordinates)
     createTripTypeIcon(segment, coordinates: coordinates)
   }
   
