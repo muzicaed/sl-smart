@@ -62,17 +62,50 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   * Annotation views
   */
   func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-    print("viewForAnnotation")
-    return nil
+    
+    var reuseId: String? = nil
+    var imageName = ""
+    
+    if annotation.isKindOfClass(BigPin) {
+      reuseId = "dot"
+      imageName = "MapDot"
+      
+    } else if annotation.isKindOfClass(OriginPin) {
+      reuseId = "origin-dot"
+      imageName = "MapOriginDot"
+      
+    } else if annotation.isKindOfClass(SmallPin) {
+      reuseId = "small-dot"
+      imageName = "MapDotSmall"
+      
+    } else if annotation.isKindOfClass(TripTypeIconAnnotation) {
+      let tripTypeIcon = annotation as! TripTypeIconAnnotation
+      if let name = tripTypeIcon.imageName {
+        imageName = name
+      }
+    } else {
+      return nil
+    }
+    
+    var pinView: MKAnnotationView? = nil
+    if let id = reuseId {
+      pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(id)
+    }
+    if pinView == nil {
+      pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+      pinView!.canShowCallout = true
+      pinView!.image = UIImage(named: imageName)!
+      pinView!.centerOffset = CGPointMake(0, 0)
+      pinView!.calloutOffset = CGPointMake(0, -3)
+    }
+    return pinView
   }
   
   /**
    * Render for map view
    */
   func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-    print("rendererForOverlay")
     if overlay.isKindOfClass(RoutePolyline) {
-      print("RoutePolyLine")
       let render = RouteRenderer(overlay: overlay)
       return render
     }
@@ -135,25 +168,79 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     polyline.segment = segment
     mapView.addOverlay(polyline)
     
+    createLocationPins(segment, coordinates: coordinates)
+    createStopPins(segment)
+    createTripTypeIcon(segment, coordinates: coordinates)
+  }
+  
+  /**
+   * Create location pins for each segment
+   */
+  private func createLocationPins(segment: TripSegment, coordinates: [CLLocationCoordinate2D]) {
     if segment == trip?.tripSegments.first! {
-      let pin = MKPointAnnotation()
+      let pin = OriginPin()
       pin.coordinate = coordinates.first!
-      pin.title = segment.origin.name
-      pin.subtitle = "Avgångstid: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+      pin.title = "Start: " + segment.origin.name
+      pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
       mapView.addAnnotation(pin)
     } else if segment == trip?.tripSegments.last! {
-      let pin = MKPointAnnotation()
+      let pin = BigPin()
       pin.coordinate = coordinates.last!
-      pin.title = segment.destination.name
+      pin.title = "Destination: " + segment.destination.name
       pin.subtitle = "Framme: " + DateUtils.dateAsTimeString(segment.arrivalDateTime)
       mapView.addAnnotation(pin)
     } else {
-      let pin = MKPointAnnotation()
-      pin.coordinate = coordinates.last!
-      pin.title = segment.destination.name
-      pin.subtitle = "Avgångstid: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+      let pin = BigPin()
+      pin.coordinate = coordinates.first!
+      pin.title = segment.origin.name
+      pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+      mapView.addAnnotation(pin)
+      
+      let pin2 = BigPin()
+      pin2.coordinate = coordinates.last!
+      pin2.title = segment.destination.name
+      pin2.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+      mapView.addAnnotation(pin2)
+    }
+  }
+  
+  /**
+   * Create location pins for each stop
+   */
+  private func createStopPins(segment: TripSegment) {
+    for stop in segment.stops {
+      let pin = SmallPin()
+      pin.coordinate = stop.location.coordinate
+      pin.title = stop.name
+      if let depDate = stop.depDate {
+        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(depDate)
+      }
       mapView.addAnnotation(pin)
     }
+  }
+  
+  /**
+   * Create trip type annotation icons.
+   */
+  private func createTripTypeIcon(segment: TripSegment, coordinates: [CLLocationCoordinate2D]) {
+    
+    var coord = CLLocationCoordinate2D()
+    if coordinates.count > 2 {
+      coord = findCenterCoordinate(
+        coordinates[Int(floor(Float(coordinates.count / 2)) - 1)],
+        coord2: coordinates[Int(ceil(Float(coordinates.count / 2)) + 1)])
+    } else {
+      coord = findCenterCoordinate(coordinates.first!, coord2: coordinates.last!)
+    }
+    
+    
+    let data = TripHelper.friendlyLineData(segment)
+    let pin = TripTypeIconAnnotation()
+    pin.coordinate = coord
+    pin.imageName = data.icon
+    pin.title = data.long
+    
+    mapView.addAnnotation(pin)
   }
   
   /**
@@ -165,5 +252,29 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       self.mapView.mapRectThatFits(allPolyline.boundingMapRect),
       edgePadding: UIEdgeInsetsMake(50, 50, 50, 50),
       animated: false)
+  }
+  
+  
+  /**
+   * Find coordinate between two coordinates.
+   */
+  private func findCenterCoordinate(
+    coord1: CLLocationCoordinate2D, coord2: CLLocationCoordinate2D) -> CLLocationCoordinate2D {
+      
+      let lon1 = Double(coord1.longitude) * M_PI / 180
+      let lon2 = Double(coord2.longitude) * M_PI / 180
+      
+      let lat1 = Double(coord1.latitude) * M_PI / 180
+      let lat2 = Double(coord2.latitude) * M_PI / 180
+      
+      let dLon = lon2 - lon1
+      
+      let x = cos(lat2) * cos(dLon)
+      let y = cos(lat2) * sin(dLon)
+      
+      let lat3 = atan2( sin(lat1) + sin(lat2), sqrt((cos(lat1) + x) * (cos(lat1) + x) + y * y) )
+      let lon3 = lon1 + atan2(y, cos(lat1) + x)
+      
+      return CLLocationCoordinate2D(latitude: lat3 * 180 / M_PI, longitude: lon3 * 180 / M_PI)
   }
 }
