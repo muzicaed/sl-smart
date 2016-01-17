@@ -22,6 +22,9 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    */
   override func viewDidLoad() {
     mapView.delegate = self
+    mapView.mapType = MKMapType.Standard
+    mapView.showsBuildings = true
+    mapView.showsCompass = true
     loadRoute()
   }
   
@@ -155,6 +158,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
         coords.append(segment.origin.location.coordinate)
         coords.append(segment.destination.location.coordinate)
       } else {
+        coords.append(segment.origin.location.coordinate)
         for location in segment.routeLineLocations {
           coords.append(location.coordinate)
         }
@@ -246,7 +250,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     pin.imageName = data.icon
     pin.title = data.long
     if segment.type == .Walk {
-      pin.subtitle = "\(segment.distance!)m"
+      pin.subtitle = "\(segment.distance!) meter"
     } else {
       pin.subtitle = "Mot \(segment.directionText!)"
     }

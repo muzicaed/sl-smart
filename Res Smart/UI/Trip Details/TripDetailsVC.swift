@@ -206,6 +206,7 @@ class TripDetailsVC: UITableViewController {
   private func loadStops() {
     var loadCount = 0
     for (index, segment) in trip.tripSegments.enumerate() {
+      segment.routeLineLocations = [CLLocation]()
       if let ref = segment.journyRef {
         JournyDetailsService.fetchJournyDetails(ref) { stops, error in
           dispatch_async(dispatch_get_main_queue()) {
