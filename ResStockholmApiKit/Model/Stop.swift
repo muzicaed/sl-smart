@@ -11,13 +11,15 @@ import CoreLocation
 
 public class Stop {
   public let id: String
+  public let routeIdx: String
   public let name: String
   public var depDate: NSDate?
   public var location: CLLocation
   
-  init(id: String, name: String, depDate: String?,
-    depTime: String?, lat: String, lon: String) {
+  init(id: String, routeIdx: String, name: String,
+    depDate: String?, depTime: String?, lat: String, lon: String) {
       self.id = id
+      self.routeIdx = routeIdx
       self.name = name
       
       if let date = depDate, time = depTime {

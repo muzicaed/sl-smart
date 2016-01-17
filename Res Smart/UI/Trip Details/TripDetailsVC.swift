@@ -236,12 +236,14 @@ class TripDetailsVC: UITableViewController {
    */
   private func filterStops(stops: [Stop], segment: TripSegment) -> [Stop] {
     var filterStops = [Stop]()
+    var foundFirst = false
     for stop in stops {
-      if let stopDate = stop.depDate {
-        if stopDate.timeIntervalSince1970 > segment.departureDateTime.timeIntervalSince1970
-          && stopDate.timeIntervalSince1970 < segment.arrivalDateTime.timeIntervalSince1970 {
-            filterStops.append(stop)
-        }
+      if foundFirst && stop.id == segment.destination.siteId! {
+        break
+      } else if foundFirst {
+        filterStops.append(stop)
+      } else if stop.id == segment.origin.siteId! {
+        foundFirst = true
       }
     }
     

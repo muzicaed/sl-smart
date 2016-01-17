@@ -135,14 +135,8 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   private func loadRoute() {
     if let trip = trip {
       var allCoords = [CLLocationCoordinate2D]()
-      for (index, segment) in trip.tripSegments.enumerate() {
-        var firstCoord: CLLocationCoordinate2D? = nil
-        if (index + 1) < trip.tripSegments.count {
-          let nextSegment = trip.tripSegments[index + 1]
-          firstCoord = nextSegment.origin.location.coordinate
-        }
-        
-        let coords = plotRoute(segment, firstCoordForNext: firstCoord)
+      for segment in trip.tripSegments {        
+        let coords = plotRoute(segment)
         createOverlays(coords, segment: segment)
         allCoords += coords
       }
@@ -154,8 +148,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Plots the coordinates for the route.
    */
-  private func plotRoute(segment: TripSegment,
-    firstCoordForNext: CLLocationCoordinate2D?) -> [CLLocationCoordinate2D] {
+  private func plotRoute(segment: TripSegment) -> [CLLocationCoordinate2D] {
       
       var coords = [CLLocationCoordinate2D]()
       if segment.routeLineLocations.count == 0 {
@@ -165,10 +158,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
         for location in segment.routeLineLocations {
           coords.append(location.coordinate)
         }
-      }
-      
-      if let nextCoord = firstCoordForNext {
-        coords.append(nextCoord)
+        coords.append(segment.destination.location.coordinate)
       }
       
       return coords
@@ -194,29 +184,31 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   private func createLocationPins(segment: TripSegment, coordinates: [CLLocationCoordinate2D]) {
     if segment == trip?.tripSegments.first! {
       let pin = OriginPin()
-      pin.coordinate = coordinates.first!
+      pin.coordinate = segment.origin.location.coordinate
       pin.title = "Start: " + segment.origin.name
       pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
       mapView.addAnnotation(pin)
     } else if segment == trip?.tripSegments.last! {
       let pin = BigPin()
-      pin.coordinate = coordinates.last!
+      pin.coordinate = segment.destination.location.coordinate
       pin.title = "Destination: " + segment.destination.name
       pin.subtitle = "Framme: " + DateUtils.dateAsTimeString(segment.arrivalDateTime)
       mapView.addAnnotation(pin)
+      return
     } else {
       let pin = BigPin()
-      pin.coordinate = coordinates.first!
+      print(segment.origin.name)
+      pin.coordinate = segment.origin.location.coordinate
       pin.title = segment.origin.name
       pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
       mapView.addAnnotation(pin)
-      
-      let pin2 = BigPin()
-      pin2.coordinate = coordinates.last!
-      pin2.title = segment.destination.name
-      pin2.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
-      mapView.addAnnotation(pin2)
     }
+    
+    let destPin = BigPin()
+    destPin.coordinate = segment.destination.location.coordinate
+    destPin.title = segment.destination.name
+    destPin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+    mapView.addAnnotation(destPin)
   }
   
   /**

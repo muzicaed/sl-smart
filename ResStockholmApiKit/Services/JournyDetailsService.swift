@@ -45,6 +45,7 @@ public class JournyDetailsService {
   private static func convertStopJson(stopJson: JSON) -> Stop {
     return Stop(
       id: stopJson["id"].string!,
+      routeIdx: stopJson["routeIdx"].string!,
       name: stopJson["name"].string!,
       depDate: stopJson["depDate"].string,
       depTime: stopJson["depTime"].string,
