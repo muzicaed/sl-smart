@@ -67,10 +67,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
     if segue.identifier == "showRealTime" {
-      // TODO: Code here...
-      print("Will do showRealTime")
       if let realTimeVC = segue.destinationViewController as? RealTimeVC {
         realTimeVC.title = selectedLocation?.name
+        realTimeVC.siteId = Int(selectedLocation!.siteId!)!
       }
     }
   }

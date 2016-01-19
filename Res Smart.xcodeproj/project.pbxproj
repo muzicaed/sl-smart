@@ -38,6 +38,10 @@
 		185D8DBE1C189D0200300890 /* WatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367611C16264200A8BE16 /* WatchService.swift */; };
 		186235FD1C411C2B0056338E /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186235FC1C411C2B0056338E /* TripIcons.swift */; };
 		186236011C411CE40056338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186236001C411CE40056338E /* Assets.xcassets */; };
+		18698AA61C4E91000031D1AD /* RealTimeHeaderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */; };
+		18698AAC1C4E913A0031D1AD /* RealTimeTripRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AAB1C4E913A0031D1AD /* RealTimeTripRow.swift */; };
+		18698AAE1C4EB51B0031D1AD /* RTMetro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AAD1C4EB51B0031D1AD /* RTMetro.swift */; };
+		18698AB01C4EE72C0031D1AD /* RTTrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AAF1C4EE72C0031D1AD /* RTTrain.swift */; };
 		1869E2991C1E0E36001FE4B2 /* PickLocationResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */; };
 		18733C491C4E3D1000F66AEF /* RealTimeNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */; };
 		18733C4B1C4E411900F66AEF /* RealTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C4A1C4E411900F66AEF /* RealTimeVC.swift */; };
@@ -289,6 +293,10 @@
 		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
 		186235FC1C411C2B0056338E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
 		186236001C411CE40056338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeHeaderRow.swift; sourceTree = "<group>"; };
+		18698AAB1C4E913A0031D1AD /* RealTimeTripRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeTripRow.swift; sourceTree = "<group>"; };
+		18698AAD1C4EB51B0031D1AD /* RTMetro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMetro.swift; sourceTree = "<group>"; };
+		18698AAF1C4EE72C0031D1AD /* RTTrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTrain.swift; sourceTree = "<group>"; };
 		1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickLocationResponder.swift; sourceTree = "<group>"; };
 		18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeNavigationVC.swift; sourceTree = "<group>"; };
 		18733C4A1C4E411900F66AEF /* RealTimeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeVC.swift; sourceTree = "<group>"; };
@@ -503,6 +511,8 @@
 			children = (
 				18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */,
 				18733C4A1C4E411900F66AEF /* RealTimeVC.swift */,
+				18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */,
+				18698AAB1C4E913A0031D1AD /* RealTimeTripRow.swift */,
 			);
 			path = "Real time";
 			sourceTree = "<group>";
@@ -692,6 +702,8 @@
 				18733C501C4E4B0C00F66AEF /* RealTimeDepartures.swift */,
 				18733C521C4E4DB800F66AEF /* RTTransportBase.swift */,
 				18733C651C4E56C500F66AEF /* RTBus.swift */,
+				18698AAD1C4EB51B0031D1AD /* RTMetro.swift */,
+				18698AAF1C4EE72C0031D1AD /* RTTrain.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1178,6 +1190,8 @@
 				18353DE01C1F70590011CDEA /* AdvancedCriterionsHelper.swift in Sources */,
 				1892BA3E1C1F26E100BC191A /* TravelTypesPickerRow.swift in Sources */,
 				188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */,
+				18698AA61C4E91000031D1AD /* RealTimeHeaderRow.swift in Sources */,
+				18698AAC1C4E913A0031D1AD /* RealTimeTripRow.swift in Sources */,
 				185D8DBE1C189D0200300890 /* WatchService.swift in Sources */,
 				188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */,
 				1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */,
@@ -1231,6 +1245,7 @@
 				183D6EB41C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift in Sources */,
 				18FA999A1C492E3F0075C4C2 /* JournyDetailsService.swift in Sources */,
 				18A9E8711C1899ED008F97C8 /* ScorePost.swift in Sources */,
+				18698AAE1C4EB51B0031D1AD /* RTMetro.swift in Sources */,
 				18733C4D1C4E472F00F66AEF /* SLRealtimeDepartures.swift in Sources */,
 				18AAC9321C2EE61000022C54 /* ScorePostStore.swift in Sources */,
 				18A9E8621C189998008F97C8 /* ScorePostHelper.swift in Sources */,
@@ -1244,6 +1259,7 @@
 				18A9E8691C1899E7008F97C8 /* SLNetworkError.swift in Sources */,
 				18A9E86A1C1899ED008F97C8 /* Trip.swift in Sources */,
 				18733C511C4E4B0C00F66AEF /* RealTimeDepartures.swift in Sources */,
+				18698AB01C4EE72C0031D1AD /* RTTrain.swift in Sources */,
 				18A9E8671C1899E7008F97C8 /* HttpRequestHelper.swift in Sources */,
 				18733C4F1C4E482F00F66AEF /* RealTimeDeparturesService.swift in Sources */,
 				18B2902B1C46D8BC00DCE585 /* StringUtils.swift in Sources */,

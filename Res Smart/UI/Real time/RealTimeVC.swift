@@ -10,11 +10,23 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class RealTimeVC: UITableViewController {
+class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   
   @IBOutlet weak var topView: UIView!
   
   var realTimeDepartures: RealTimeDepartures?
+  var isLoading = true
+  var firstTimeLoad = true
+  var siteId = 0
+  var lastSelected = 0
+  var busKeys = [String]()
+  var metroGreenKeys = [String]()
+  var metroRedKeys = [String]()
+  var metroBlueKeys = [String]()
+  var trainKeys = [String]()
+  
+  var tabTypesKeys = [String]()
+  var segmentView = SMSegmentView()
   
   /**
    * On load
@@ -22,8 +34,73 @@ class RealTimeVC: UITableViewController {
   override func viewDidLoad() {
     tableView.tableFooterView = UIView()
     view.backgroundColor = StyleHelper.sharedInstance.background
-    topView.frame.size.height = 0
     loadData()
+  }
+  
+  /**
+   * User taps refresh
+   */
+  @IBAction func onRefreshTap(sender: UIBarButtonItem) {
+    if !isLoading {
+      loadData()
+      tableView.reloadData()
+    }
+  }
+  
+  // MARK: UITableViewController
+  
+  /**
+  * Section count
+  */
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    if isLoading {
+      return 1
+    }
+    
+    return calcSectionCount()
+  }
+  
+  /**
+   * Row count
+   */
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if isLoading {
+      return 1
+    }
+    
+    return calcRowCount(section)
+  }
+  
+  /**
+   * Cell on index
+   */
+  override func tableView(tableView: UITableView,
+    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+      if isLoading {
+        return createLoadingCell(indexPath)
+      } else if indexPath.row == 0  {
+        return createHeaderCell(indexPath)
+      }
+      
+      return createBussTripCell(indexPath)
+  }
+  
+  /**
+   * Size for rows.
+   */
+  override func tableView(tableView: UITableView,
+    heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+      if isLoading {
+        return tableView.bounds.height - 49 - 64 - 20
+      }
+      return -1
+  }
+  
+  // MARK: SMSegmentViewDelegate
+  
+  func segmentView(segmentView: SMBasicSegmentView, didSelectSegmentAtIndex index: Int) {
+    lastSelected = index
+    tableView.reloadData()
   }
   
   // MARK: Private
@@ -32,12 +109,17 @@ class RealTimeVC: UITableViewController {
   * Load real time data
   */
   private func loadData() {
-    RealTimeDeparturesService.fetch(1002) { (rtDepartures, error) -> Void in
+    isLoading = true
+    RealTimeDeparturesService.fetch(siteId) { (rtDepartures, error) -> Void in
       if error == nil {
         if let departures = rtDepartures {
-          dispatch_async(dispatch_get_main_queue(),{
+          dispatch_async(dispatch_get_main_queue(), {
+            self.isLoading = false
+            self.firstTimeLoad = false
             self.realTimeDepartures = departures
+            self.setupKeys()
             self.prepareSegmentView()
+            self.tableView.reloadData()
           })
         }
       }
@@ -48,33 +130,238 @@ class RealTimeVC: UITableViewController {
    * Prepares Segment View
    */
   private func prepareSegmentView() {
-    let segmentView = SMSegmentView(
-      frame: CGRect(x: 0, y: 0, width: 100.0, height: 0),
-      separatorColour: UIColor.darkGrayColor(),
-      separatorWidth: 1.0,
+    segmentView.removeFromSuperview()
+    segmentView = SMSegmentView(
+      frame: CGRect(x: 0, y: 0, width: 100.0, height: (firstTimeLoad) ? 0 : 44),
+      separatorColour: UIColor.clearColor(),
+      separatorWidth: 0.0,
       segmentProperties: [
         keySegmentTitleFont: UIFont.systemFontOfSize(12.0),
-        keySegmentOnSelectionColour: StyleHelper.sharedInstance.mainGreen,
+        keySegmentOnSelectionColour: StyleHelper.sharedInstance.mainGreenLight,
         keySegmentOffSelectionColour: UIColor.clearColor(),
-        keyContentVerticalMargin: 5.0])
+        keyContentVerticalMargin: 10.0])
     
     var tabCount = 0
     if realTimeDepartures?.busses.count > 0 {
       tabCount++
+      tabTypesKeys.append("BUS")
       segmentView.addSegmentWithTitle(nil,
         onSelectionImage: UIImage(named: "BUS-NEUTRAL"),
         offSelectionImage: UIImage(named: "BUS-NEUTRAL"))
     }
+    if realTimeDepartures?.greenMetros.count > 0 {
+      tabCount++
+      tabTypesKeys.append("METRO-GREEN")
+      segmentView.addSegmentWithTitle(nil,
+        onSelectionImage: UIImage(named: "METRO-GREEN"),
+        offSelectionImage: UIImage(named: "METRO-GREEN"))
+    }
+    if realTimeDepartures?.redMetros.count > 0 {
+      tabCount++
+      tabTypesKeys.append("METRO-RED")
+      segmentView.addSegmentWithTitle(nil,
+        onSelectionImage: UIImage(named: "METRO-RED"),
+        offSelectionImage: UIImage(named: "METRO-RED"))
+    }
+    if realTimeDepartures?.blueMetros.count > 0 {
+      tabCount++
+      tabTypesKeys.append("METRO-BLUE")
+      segmentView.addSegmentWithTitle(nil,
+        onSelectionImage: UIImage(named: "METRO-BLUE"),
+        offSelectionImage: UIImage(named: "METRO-BLUE"))
+    }
+    if realTimeDepartures?.trains.count > 0 {
+      tabCount++
+      tabTypesKeys.append("TRAIN")
+      segmentView.addSegmentWithTitle(nil,
+        onSelectionImage: UIImage(named: "TRAIN-NEUTRAL"),
+        offSelectionImage: UIImage(named: "TRAIN-NEUTRAL"))
+    }
     
-    if tabCount > 1 {
-      segmentView.selectSegmentAtIndex(0)
-      segmentView.frame.size.width = CGFloat(50 * tabCount)
-      topView.addSubview(segmentView)
-      
-      UIView.animateWithDuration(0.3, animations: {
-        self.topView.frame.size.height = 44
-        segmentView.frame.size.height = 44
+    
+    segmentView.delegate = self
+    segmentView.selectSegmentAtIndex(lastSelected)
+    segmentView.frame.size.width = CGFloat(50 * tabCount)
+    topView.addSubview(segmentView)
+    
+    if firstTimeLoad {
+      UIView.animateWithDuration(0.4, animations: {
+        self.segmentView.frame.size.height = 44
       })
+    }
+  }
+  
+  /**
+   * Create header cell
+   */
+  private func createHeaderCell(indexPath: NSIndexPath) -> RealTimeHeaderRow {
+    let cell = tableView!.dequeueReusableCellWithIdentifier("Header",
+      forIndexPath: indexPath) as! RealTimeHeaderRow
+    
+    setHeaderData(cell, indexPath: indexPath)
+    return cell
+  }
+  
+  /**
+   * Create header cell
+   */
+  private func createBussTripCell(indexPath: NSIndexPath) -> RealTimeTripRow {
+    let cell = tableView!.dequeueReusableCellWithIdentifier("TripRow",
+      forIndexPath: indexPath) as! RealTimeTripRow
+    
+    setRowData(cell, indexPath: indexPath)
+    return cell
+  }
+  
+  /**
+   * Create loading cell
+   */
+  private func createLoadingCell(indexPath: NSIndexPath) -> UITableViewCell {
+    return tableView!.dequeueReusableCellWithIdentifier("LoadingRow",
+      forIndexPath: indexPath)
+  }
+  
+  /**
+   * Setup key arrays
+   */
+  private func setupKeys() {
+    busKeys = [String]()
+    metroGreenKeys = [String]()
+    for (index, _) in realTimeDepartures!.busses {
+      busKeys.append(index)
+    }
+    for (index, _) in realTimeDepartures!.greenMetros {
+      metroGreenKeys.append(index)
+    }
+    for (index, _) in realTimeDepartures!.redMetros {
+      metroRedKeys.append(index)
+    }
+    for (index, _) in realTimeDepartures!.blueMetros {
+      metroBlueKeys.append(index)
+    }
+    for (index, _) in realTimeDepartures!.trains {
+      trainKeys.append(index)
+    }
+  }
+  
+  /**
+   * Calculates the needed sections.
+   */
+  private func calcSectionCount() -> Int {
+    let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
+    switch tabKeys {
+    case "BUS":
+      return realTimeDepartures!.busses.count
+    case "METRO-GREEN":
+      return realTimeDepartures!.greenMetros.count
+    case "METRO-RED":
+      return realTimeDepartures!.redMetros.count
+    case "METRO-BLUE":
+      return realTimeDepartures!.blueMetros.count
+    case "TRAIN":
+      return realTimeDepartures!.trains.count
+    default:
+      return 0
+    }
+  }
+  
+  /**
+   * Calculates the needed rows.
+   */
+  private func calcRowCount(section: Int) -> Int {
+    let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
+    switch tabKeys {
+    case "BUS":
+      return min(realTimeDepartures!.busses[busKeys[section]]!.count + 1, 8)
+    case "METRO-GREEN":
+      return min(realTimeDepartures!.greenMetros[metroGreenKeys[section]]!.count + 1, 5)
+    case "METRO-RED":
+      return min(realTimeDepartures!.redMetros[metroRedKeys[section]]!.count + 1, 5)
+    case "METRO-BLUE":
+      return min(realTimeDepartures!.blueMetros[metroBlueKeys[section]]!.count + 1, 5)
+    case "TRAIN":
+      return min(realTimeDepartures!.trains[trainKeys[section]]!.count + 1, 6)
+    default:
+      return 0
+    }
+  }
+  
+  /**
+   * Set header cell data
+   */
+  private func setHeaderData(cell: RealTimeHeaderRow, indexPath: NSIndexPath) {
+    let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
+    switch tabKeys {
+    case "BUS":
+      let bus = realTimeDepartures!.busses[busKeys[indexPath.section]]!.first!
+      cell.icon.image = UIImage(named: "BUS-NEUTRAL")
+      cell.titleLabel.text = "\(bus.stopAreaName)"
+    case "METRO-GREEN":
+      cell.icon.image = UIImage(named: "METRO-GREEN")
+      cell.titleLabel.text = "Tunnelbanans gröna linje"
+    case "METRO-RED":
+      cell.icon.image = UIImage(named: "METRO-RED")
+      cell.titleLabel.text = "Tunnelbanans röda linje"
+    case "METRO-BLUE":
+      cell.icon.image = UIImage(named: "METRO-BLUE")
+      cell.titleLabel.text = "Tunnelbanans blåa linje"
+    case "TRAIN":
+      let train = realTimeDepartures!.trains[trainKeys[indexPath.section]]!.first!
+      cell.icon.image = UIImage(named: "TRAIN-NEUTRAL")
+      if train.journeyDirection == 1 {
+        cell.titleLabel.text = "Pendeltåg, södergående"
+      } else if train.journeyDirection == 2 {
+        cell.titleLabel.text = "Pendeltåg, norrgående"
+      }
+    default:
+      break
+    }
+  }
+  
+  /**
+   * Set row cell data
+   */
+  private func setRowData(cell: RealTimeTripRow, indexPath: NSIndexPath) {
+    var data: RTTransportBase?
+    let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
+    switch tabKeys {
+    case "BUS":
+      data = realTimeDepartures!.busses[busKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
+    case "METRO-GREEN":
+      data = realTimeDepartures!.greenMetros[metroGreenKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
+    case "METRO-RED":
+      data = realTimeDepartures!.redMetros[metroRedKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
+    case "METRO-BLUE":
+      data = realTimeDepartures!.blueMetros[metroBlueKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
+    case "TRAIN":
+      let train = realTimeDepartures!.trains[trainKeys[indexPath.section]]![indexPath.row - 1]
+      cell.lineLabel.text = train.lineNumber
+      let via = ((train.secondaryDestinationName != nil) ? " via \(train.secondaryDestinationName!)" : "")
+      cell.infoLabel.text = "Mot \(train.destination)" + via
+      if train.displayTime == "Nu" {
+        cell.departureTimeLabel.font = UIFont.boldSystemFontOfSize(17)
+        cell.departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
+      } else {
+        cell.departureTimeLabel.font = UIFont.systemFontOfSize(17)
+        cell.departureTimeLabel.textColor = UIColor.blackColor()
+      }
+      cell.departureTimeLabel.text = train.displayTime
+      return
+    default:
+      break
+    }
+    
+    if let data = data {
+      cell.lineLabel.text = data.lineNumber
+      cell.infoLabel.text = "Mot \(data.destination)"
+      if data.displayTime == "Nu" {
+        cell.departureTimeLabel.font = UIFont.boldSystemFontOfSize(17)
+        cell.departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
+      } else {
+        cell.departureTimeLabel.font = UIFont.systemFontOfSize(17)
+        cell.departureTimeLabel.textColor = UIColor.blackColor()
+      }
+      cell.departureTimeLabel.text = data.displayTime
     }
   }
 }

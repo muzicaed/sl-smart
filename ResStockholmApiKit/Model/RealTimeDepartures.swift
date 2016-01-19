@@ -13,8 +13,10 @@ public class RealTimeDepartures {
   public let latestUpdated: NSDate
   public let dataAge: Int
   public var busses = [String: [RTBus]]()
-  public var metros = [String]()
-  public var trains = [String]()
+  public var greenMetros = [String: [RTMetro]]()
+  public var blueMetros = [String: [RTMetro]]()
+  public var redMetros = [String: [RTMetro]]()
+  public var trains = [String: [RTTrain]]()
   public var trams = [String]()
   public var ships = [String]()
   public var deviations = [String]()
