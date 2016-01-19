@@ -1,5 +1,5 @@
 //
-//  RealtimeVC.swift
+//  RealTimeVC.swift
 //  Res Smart
 //
 //  Created by Mikael Hellman on 2016-01-19.
@@ -12,4 +12,4 @@ import UIKit
 class RealTimeVC: UITableViewController {
 
 
-)
+}

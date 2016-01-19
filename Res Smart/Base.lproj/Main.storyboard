@@ -1156,7 +1156,7 @@
                     <connections>
                         <outlet property="searchDisplayController" destination="yht-XJ-QLo" id="NMx-gN-VTT"/>
                         <segue destination="rrp-UG-kjR" kind="unwind" identifier="unwindToStationSearchParent" unwindAction="unwindToStationSearchParent:" id="6DK-tK-WGl"/>
-                        <segue destination="Tmy-8K-Wz5" kind="show" identifier="showRealtime" id="rzj-uS-OIZ"/>
+                        <segue destination="Tmy-8K-Wz5" kind="show" identifier="showRealTime" id="rzj-uS-OIZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U7o-bb-YDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1228,10 +1228,10 @@
             </objects>
             <point key="canvasLocation" x="3735" y="2312"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Realtid-->
         <scene sceneID="eO9-bS-Yw4">
             <objects>
-                <tableViewController id="Tmy-8K-Wz5" sceneMemberID="viewController">
+                <tableViewController title="Realtid" id="Tmy-8K-Wz5" customClass="RealTimeVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hAL-uQ-u2O">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1251,6 +1251,13 @@
                             <outlet property="delegate" destination="Tmy-8K-Wz5" id="gkR-eb-qQg"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Realtid" id="e06-cF-GAT">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="refresh" id="sac-ml-khB">
+                            <connections>
+                                <action selector="onDoneTap:" destination="Tm1-9I-jjs" id="Gp7-D9-ZcG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0X-4s-aCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

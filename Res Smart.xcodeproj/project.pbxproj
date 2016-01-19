@@ -40,6 +40,7 @@
 		186236011C411CE40056338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186236001C411CE40056338E /* Assets.xcassets */; };
 		1869E2991C1E0E36001FE4B2 /* PickLocationResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */; };
 		18733C491C4E3D1000F66AEF /* RealTimeNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */; };
+		18733C4B1C4E411900F66AEF /* RealTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C4A1C4E411900F66AEF /* RealTimeVC.swift */; };
 		188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367681C16EEA000A8BE16 /* TripDetailsVC.swift */; };
 		1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */; };
 		1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */; };
@@ -281,6 +282,7 @@
 		186236001C411CE40056338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickLocationResponder.swift; sourceTree = "<group>"; };
 		18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeNavigationVC.swift; sourceTree = "<group>"; };
+		18733C4A1C4E411900F66AEF /* RealTimeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeVC.swift; sourceTree = "<group>"; };
 		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchService.swift; sourceTree = "<group>"; };
 		188367681C16EEA000A8BE16 /* TripDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsVC.swift; sourceTree = "<group>"; };
 		1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCellProtocol.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */,
+				18733C4A1C4E411900F66AEF /* RealTimeVC.swift */,
 			);
 			path = "Real time";
 			sourceTree = "<group>";
@@ -1116,6 +1119,7 @@
 				18232CA61C01DB81006334D1 /* StyleButton.swift in Sources */,
 				1899F26B1C4BBE7800534587 /* Pins.swift in Sources */,
 				1851F2DD1C36D71B0013CD6A /* SubscriptionManager.swift in Sources */,
+				18733C4B1C4E411900F66AEF /* RealTimeVC.swift in Sources */,
 				18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */,
 				183D6EBF1C1A354F00EB7537 /* SituationRow.swift in Sources */,
 				18946B1D1C1844E700A5829D /* DateTimePickResponder.swift in Sources */,

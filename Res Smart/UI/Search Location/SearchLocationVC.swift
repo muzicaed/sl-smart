@@ -60,6 +60,17 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     }
   }
   
+  /**
+   * Before segue is performed
+   */
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    if segue.identifier == "showRealTime" {
+      // TODO: Code here...
+      print("Will do showRealTime")
+    }
+  }
+  
   // MARK: UITableViewController
   
   /**
@@ -145,8 +156,12 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     if let loc = selectedLocation {
       LatestLocationsStore.sharedInstance.addLatestLocation(loc)
       searchController?.active = false
-      performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
-      delegate?.selectedLocationFromSearch(loc)
+      if isLocationForRealTimeSearch {
+        performSegueWithIdentifier("showRealTime", sender: self)
+      } else {
+        performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
+        delegate?.selectedLocationFromSearch(loc)
+      }
     }
   }
   
