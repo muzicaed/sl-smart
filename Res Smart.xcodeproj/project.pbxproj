@@ -39,6 +39,7 @@
 		186235FD1C411C2B0056338E /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186235FC1C411C2B0056338E /* TripIcons.swift */; };
 		186236011C411CE40056338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186236001C411CE40056338E /* Assets.xcassets */; };
 		1869E2991C1E0E36001FE4B2 /* PickLocationResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */; };
+		18733C491C4E3D1000F66AEF /* RealTimeNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */; };
 		188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367681C16EEA000A8BE16 /* TripDetailsVC.swift */; };
 		1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */; };
 		1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */; };
@@ -279,6 +280,7 @@
 		186235FC1C411C2B0056338E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
 		186236001C411CE40056338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickLocationResponder.swift; sourceTree = "<group>"; };
+		18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeNavigationVC.swift; sourceTree = "<group>"; };
 		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchService.swift; sourceTree = "<group>"; };
 		188367681C16EEA000A8BE16 /* TripDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsVC.swift; sourceTree = "<group>"; };
 		1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCellProtocol.swift; sourceTree = "<group>"; };
@@ -472,6 +474,14 @@
 				183D6EBE1C1A354F00EB7537 /* SituationRow.swift */,
 			);
 			path = "Traffic Situation";
+			sourceTree = "<group>";
+		};
+		18733C431C4E3CD700F66AEF /* Real time */ = {
+			isa = PBXGroup;
+			children = (
+				18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */,
+			);
+			path = "Real time";
 			sourceTree = "<group>";
 		};
 		188367671C16EE7A00A8BE16 /* Trip Details */ = {
@@ -668,6 +678,7 @@
 		18937E891C01139E00C523C9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				18733C431C4E3CD700F66AEF /* Real time */,
 				1899F2651C4B9B6400534587 /* Map */,
 				1894A6F81C354A9000CDF905 /* Subscription */,
 				1892BA341C1F185500BC191A /* Travel Types */,
@@ -1130,6 +1141,7 @@
 				185D8DBE1C189D0200300890 /* WatchService.swift in Sources */,
 				188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */,
 				1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */,
+				18733C491C4E3D1000F66AEF /* RealTimeNavigationVC.swift in Sources */,
 				1843AC541C4A78020065A462 /* TripDetailsSubSegmentCell.swift in Sources */,
 				18232CAC1C01EC2F006334D1 /* SearchLocationVC.swift in Sources */,
 				18937E7E1BFF6AB700C523C9 /* RoutineTripCell.swift in Sources */,

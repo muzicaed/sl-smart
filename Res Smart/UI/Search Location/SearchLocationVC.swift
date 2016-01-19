@@ -23,6 +23,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   var isDisplayingSearchResult = false
   var allowCurrentPosition = false
   var lastCount = 0
+  var isLocationForRealTimeSearch = false
   
   /**
    * View is done loading.
