@@ -116,7 +116,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     self.useFerry = aDecoder.decodeBoolForKey(PropertyKey.useFerry)
     self.useShip = aDecoder.decodeBoolForKey(PropertyKey.useShip)
     self.numTrips = aDecoder.decodeIntegerForKey(PropertyKey.numTrips)
-    self.realtime = aDecoder.decodeBoolForKey(PropertyKey.realtime)
+    self.realtime = false // TODO: Check here for realtime! aDecoder.decodeBoolForKey(PropertyKey.realtime)
     self.isAdvanced = aDecoder.decodeBoolForKey(PropertyKey.isAdvanced)
   }
   

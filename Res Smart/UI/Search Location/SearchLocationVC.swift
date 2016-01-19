@@ -164,7 +164,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   @objc func updateSearchResultsForSearchController(searchController: UISearchController) {
     NSObject.cancelPreviousPerformRequestsWithTarget(
       self, selector: Selector("searchLocation"), object: nil)
-    self.performSelector(Selector("searchLocation"), withObject: nil, afterDelay: 0.4)
+    self.performSelector(Selector("searchLocation"), withObject: nil, afterDelay: 0.3)
   }
   
   /**

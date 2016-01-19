@@ -29,7 +29,6 @@ class TripListVC: UITableViewController {
   var isLoadingMoreBlocked = false
   var isLoadingMore = false
   var refreshTimer: NSTimer?
-  var oldTripSearchCount = 0
   var headerHight = CGFloat(25)
   
   var loadMoreEarlier: LoadMoreCell?
@@ -41,7 +40,6 @@ class TripListVC: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = StyleHelper.sharedInstance.background
-    oldTripSearchCount = criterions!.numTrips
     if trips.count == 0 {
       loadTripData(true)
     } else {
@@ -97,7 +95,7 @@ class TripListVC: UITableViewController {
     
     let trip = trips[keys.last!]!.last!
     criterions!.searchForArrival = false
-    criterions!.numTrips = oldTripSearchCount
+
     criterions?.time = DateUtils.dateAsTimeString(
       trip.tripSegments.last!.departureDateTime.dateByAddingTimeInterval(60))
     loadTripData(true)
@@ -113,10 +111,9 @@ class TripListVC: UITableViewController {
     
     let trip = trips[keys.first!]!.first!
     criterions?.searchForArrival = true
-    criterions!.numTrips = 3
     
     let dateTuple = DateUtils.dateAsStringTuple(
-      trip.tripSegments.first!.arrivalDateTime.dateByAddingTimeInterval(-60))
+      trip.tripSegments.last!.arrivalDateTime.dateByAddingTimeInterval(-60))
     criterions?.date = dateTuple.date
     criterions?.time = dateTuple.time
     
