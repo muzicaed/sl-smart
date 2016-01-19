@@ -14,7 +14,7 @@ class SLJourneyDetailsApi {
   let urlBase = "http://api.sl.se/api2/TravelplannerV2/journeydetail.json"
   
   /**
-   * Search for trips.
+   * Search for journy details.
    */
   func getDetails(
     urlEncRef: String,
@@ -28,7 +28,7 @@ class SLJourneyDetailsApi {
   // MARK: Private methods.
   
   /**
-  * Creates api url for simple search
+  * Creates api url for journy details search
   */
   private func createJournyDetailsUrl(urlEncRef: String) -> String {
     let decoded = urlEncRef.stringByRemovingPercentEncoding!

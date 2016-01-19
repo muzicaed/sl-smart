@@ -39,7 +39,7 @@ class CustomTabVC: UITabBarController {
     let count = notification.object as! Int
     let items = self.tabBar.items!
     if count > 0 {
-      items[2].badgeValue = String(count)
+      items[3].badgeValue = String(count)
     }
   }
 }

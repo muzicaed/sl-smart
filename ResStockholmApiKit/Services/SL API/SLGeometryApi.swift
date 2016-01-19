@@ -28,7 +28,7 @@ class SLGeometryApi {
   // MARK: Private methods.
   
   /**
-  * Creates api url for simple search
+  * Creates api url for geometry search
   */
   private func createGeometryUrl(urlEncRef: String) -> String {
     let decoded = urlEncRef.stringByRemovingPercentEncoding!

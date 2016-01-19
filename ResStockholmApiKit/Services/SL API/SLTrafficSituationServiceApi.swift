@@ -14,7 +14,7 @@ class SLTrafficSituationServiceApi {
   let urlBase = "http://api.sl.se/api2/trafficsituation.json"
   
   /**
-   * Search for location.
+   * Search for traffic situations.
    */
   func fetchInformation(callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
     HttpRequestHelper.makeGetRequest(createApiUrl()) { resTuple in

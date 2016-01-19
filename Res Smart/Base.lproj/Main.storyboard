@@ -441,11 +441,11 @@
             </objects>
             <point key="canvasLocation" x="2211" y="2224"/>
         </scene>
-        <!--Realtid-->
+        <!--Nästa avgång-->
         <scene sceneID="RHf-Ws-717">
             <objects>
                 <navigationController id="hVd-so-0b5" customClass="RealTimeNavigationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Realtid" image="EventGood" id="WuH-ef-JJ5"/>
+                    <tabBarItem key="tabBarItem" title="Nästa avgång" image="EventGood" id="WuH-ef-JJ5"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b6K-jS-3ta">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1236,9 +1236,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="PP4-K6-3gD">
+                            <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="m1M-CY-SRW">
-                                <rect key="frame" x="0.0" y="92" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="136" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m1M-CY-SRW" id="bcj-rl-tla">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -1251,13 +1256,16 @@
                             <outlet property="delegate" destination="Tmy-8K-Wz5" id="gkR-eb-qQg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Realtid" id="e06-cF-GAT">
+                    <navigationItem key="navigationItem" title="Nästa avgång" id="e06-cF-GAT">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="refresh" id="sac-ml-khB">
                             <connections>
                                 <action selector="onDoneTap:" destination="Tm1-9I-jjs" id="Gp7-D9-ZcG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="topView" destination="PP4-K6-3gD" id="1iD-4U-2qR"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0X-4s-aCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

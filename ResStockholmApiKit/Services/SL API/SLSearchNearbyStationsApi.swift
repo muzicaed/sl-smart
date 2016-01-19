@@ -15,7 +15,7 @@ class SLSearchNearbyStationsApi {
   let urlBase = "http://api.sl.se/api2/nearbystops.json"
   
   /**
-   * Search for station.
+   * Search for nearby stations.
    */
   func search(
     position: CLLocation,
@@ -29,7 +29,7 @@ class SLSearchNearbyStationsApi {
   // MARK: Private methods.
   
   /**
-  * Creates api url for station search
+  * Creates api url for nearby station search
   */
   private func createApiUrl(position: CLLocation) -> String {
     var url = urlBase + "?key=\(apiKey)"
