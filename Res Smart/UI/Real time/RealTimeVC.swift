@@ -280,7 +280,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     case "METRO-BLUE":
       return min(realTimeDepartures!.blueMetros[metroBlueKeys[section]]!.count + 1, 5)
     case "TRAIN":
-      return min(realTimeDepartures!.trains[trainKeys[section]]!.count + 1, 6)
+      return min(realTimeDepartures!.trains[trainKeys[section]]!.count + 1, 5)
     default:
       return 0
     }

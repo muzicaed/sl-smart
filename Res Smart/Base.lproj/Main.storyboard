@@ -441,11 +441,11 @@
             </objects>
             <point key="canvasLocation" x="2211" y="2224"/>
         </scene>
-        <!--Nästa avgång-->
+        <!--Avgångar i realtid-->
         <scene sceneID="RHf-Ws-717">
             <objects>
                 <navigationController id="hVd-so-0b5" customClass="RealTimeNavigationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Nästa avgång" image="EventGood" id="WuH-ef-JJ5"/>
+                    <tabBarItem key="tabBarItem" title="Avgångar i realtid" image="EventGood" id="WuH-ef-JJ5"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b6K-jS-3ta">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1153,7 +1153,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Välj station" id="pj9-MT-dHe">
-                        <barButtonItem key="backBarButtonItem" title="Nästa avgång" id="zlM-y9-B32"/>
+                        <barButtonItem key="backBarButtonItem" title="Realtid" id="zlM-y9-B32"/>
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="yht-XJ-QLo" id="NMx-gN-VTT"/>
