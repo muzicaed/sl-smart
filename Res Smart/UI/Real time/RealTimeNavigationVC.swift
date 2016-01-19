@@ -17,6 +17,7 @@ class RealTimeNavigationVC: UINavigationController {
   override func viewDidLoad() {
     if let rootVC = viewControllers.first as? SearchLocationVC {
       rootVC.isLocationForRealTimeSearch = true
+      rootVC.title = "Realtid"
     }
   }
 }

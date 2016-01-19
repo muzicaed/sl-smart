@@ -18,6 +18,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   var searchResult = [Location]()
   var latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestLocations()
   var delegate: LocationSearchResponder?
+  var selectedLocation: Location?
   var searchOnlyForStations = true
   var noResults = false
   var isDisplayingSearchResult = false
@@ -68,6 +69,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     if segue.identifier == "showRealTime" {
       // TODO: Code here...
       print("Will do showRealTime")
+      if let realTimeVC = segue.destinationViewController as? RealTimeVC {
+        realTimeVC.title = selectedLocation?.name
+      }
     }
   }
   
@@ -141,28 +145,20 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   /**
    * User selects row
    */
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    
-    var selectedLocation: Location?
-    if allowCurrentPosition &&
-      !isDisplayingSearchResult &&
-      indexPath.section == 0 && indexPath.row == 0 {
-        selectedLocation = MyLocationHelper.sharedInstance.getCurrentLocation()
-    } else if isDisplayingSearchResult {
-      selectedLocation = searchResult[indexPath.row]
-    } else {
-      selectedLocation = latestLocations[indexPath.row]
-    }
-    if let loc = selectedLocation {
-      LatestLocationsStore.sharedInstance.addLatestLocation(loc)
-      searchController?.active = false
-      if isLocationForRealTimeSearch {
-        performSegueWithIdentifier("showRealTime", sender: self)
-      } else {
-        performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
-        delegate?.selectedLocationFromSearch(loc)
+  override func tableView(tableView: UITableView,
+    didSelectRowAtIndexPath indexPath: NSIndexPath) {
+      
+      selectLocation(indexPath)
+      if let loc = selectedLocation {
+        searchController?.active = false
+        if isLocationForRealTimeSearch {
+          performSegueWithIdentifier("showRealTime", sender: self)
+        } else {
+          LatestLocationsStore.sharedInstance.addLatestLocation(loc)          
+          performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
+          delegate?.selectedLocationFromSearch(loc)
+        }
       }
-    }
   }
   
   /**
@@ -232,8 +228,23 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   // MARK: Private
   
   /**
-  * Create location cell.
+  * Select loation at index path
   */
+  private func selectLocation(indexPath: NSIndexPath) {
+    if allowCurrentPosition &&
+      !isDisplayingSearchResult &&
+      indexPath.section == 0 && indexPath.row == 0 {
+        selectedLocation = MyLocationHelper.sharedInstance.getCurrentLocation()
+    } else if isDisplayingSearchResult {
+      selectedLocation = searchResult[indexPath.row]
+    } else {
+      selectedLocation = latestLocations[indexPath.row]
+    }
+  }
+  
+  /**
+   * Create location cell.
+   */
   private func createLocationCell(
     indexPath: NSIndexPath, location: Location) -> UITableViewCell {
       let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
@@ -283,7 +294,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     
     presentViewController(networkErrorAlert, animated: true, completion: nil)
   }
-  
   
   /**
    * Reloads table data animated.

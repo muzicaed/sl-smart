@@ -10,6 +10,13 @@ import Foundation
 import UIKit
 
 class RealTimeVC: UITableViewController {
-
+  
+  /**
+   * On load
+   */
+  override func viewDidLoad() {
+    tableView.tableFooterView = UIView()
+    view.backgroundColor = StyleHelper.sharedInstance.background
+  }
 
 }
