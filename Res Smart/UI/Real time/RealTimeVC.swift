@@ -337,7 +337,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       let train = realTimeDepartures!.trains[trainKeys[indexPath.section]]![indexPath.row - 1]
       cell.lineLabel.text = train.lineNumber
       let via = ((train.secondaryDestinationName != nil) ? " via \(train.secondaryDestinationName!)" : "")
-      cell.infoLabel.text = "Mot \(train.destination)" + via
+      cell.infoLabel.text = "\(train.destination)" + via
       if train.displayTime == "Nu" {
         cell.departureTimeLabel.font = UIFont.boldSystemFontOfSize(17)
         cell.departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
@@ -353,7 +353,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     
     if let data = data {
       cell.lineLabel.text = data.lineNumber
-      cell.infoLabel.text = "Mot \(data.destination)"
+      cell.infoLabel.text = "\(data.destination)"
       if data.displayTime == "Nu" {
         cell.departureTimeLabel.font = UIFont.boldSystemFontOfSize(17)
         cell.departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
