@@ -97,7 +97,7 @@ class TripListVC: UITableViewController {
     criterions!.searchForArrival = false
 
     criterions?.time = DateUtils.dateAsTimeString(
-      trip.tripSegments.last!.departureDateTime.dateByAddingTimeInterval(60))
+      trip.tripSegments.first!.departureDateTime.dateByAddingTimeInterval(60))
     loadTripData(true)
   }
   
