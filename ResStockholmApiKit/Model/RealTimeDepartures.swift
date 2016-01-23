@@ -24,8 +24,7 @@ public class RealTimeDepartures {
   /**
    * Init
    */
-  init(lastUpdated: String, dataAge: Int) {
-  
+  init(lastUpdated: String, dataAge: Int) {  
       self.latestUpdated = RealTimeDepartures.convertDate(lastUpdated)
       self.dataAge = dataAge
   }
