@@ -100,9 +100,7 @@ class RoutineTripCell: UICollectionViewCell {
     }
     
     if let second = secondTrip?.tripSegments.first, first = trip.tripSegments.first {
-      print("Bla: \( first.departureDateTime.timeIntervalSinceNow)")
       let depTimeInterval = first.departureDateTime.timeIntervalSinceNow
-      print("Dep time: \(depTimeInterval)")
       if depTimeInterval < (60 * 5) {
         nextInAboutLabel.text = "Nästa: " + DateUtils.createAboutTimeText(
           second.departureDateTime, isWalk: false).lowercaseString

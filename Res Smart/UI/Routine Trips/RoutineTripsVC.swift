@@ -143,7 +143,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   func refreshUI() {
-    print("Refresh UI")
     if NSDate().timeIntervalSinceDate(lastUpdated) > (60 * 3) {
       loadTripData(true)
     }
@@ -331,11 +330,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         var scoreMod = ScorePostHelper.BestTapCountScore
         
         if indexPath.section != 0 {
-          print("Mod other")
           selectedRoutineTrip = otherRoutineTrips[indexPath.row]
           scoreMod = ScorePostHelper.OtherTapCountScore
-          
-          print("Mod not best")
           ScorePostHelper.changeScoreForRoutineTrip(
             bestRoutineTrip!.criterions.origin!.siteId!,
             destinationId: bestRoutineTrip!.criterions.dest!.siteId!,
@@ -368,9 +364,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * User selected location (for From here to there feature)
    */
   func selectedLocationFromSearch(location: Location) {
-    print("Here to there: \(location.name)")
     if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
-      print("Current: \(currentLocation.name)")
       let crit = TripSearchCriterion(origin: currentLocation, dest: location)
       let date = NSDate(timeIntervalSinceNow: (60 * 2) * -1)
       crit.date = DateUtils.dateAsDateString(date)
