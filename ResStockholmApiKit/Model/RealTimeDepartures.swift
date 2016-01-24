@@ -17,7 +17,8 @@ public class RealTimeDepartures {
   public var blueMetros = [String: [RTMetro]]()
   public var redMetros = [String: [RTMetro]]()
   public var trains = [String: [RTTrain]]()
-  public var trams = [String]()
+  public var trams = [String: [RTTram]]()
+  public var localTrams = [String: [RTTram]]()
   public var ships = [String]()
   public var deviations = [String]()
   

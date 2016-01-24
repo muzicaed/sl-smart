@@ -36,23 +36,15 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     }
     view.backgroundColor = StyleHelper.sharedInstance.background
     
-    if searchOnlyForStations {
-      latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestStationsOnly()
-    }
-    lastCount = latestLocations.count
-    
-    searchController = UISearchController(searchResultsController: nil)
-    searchController!.searchResultsUpdater = self
-    searchController!.delegate = self
-    searchController!.dimsBackgroundDuringPresentation = false
-    if searchOnlyForStations {
-      searchController!.searchBar.placeholder = "Skriv namnet på en station"
-    } else {
-      searchController!.searchBar.placeholder = "Skriv stationsnamn eller en adress"
-    }
-    
+    loadLatestLocations()
+    prepareSearchController()
     tableView.tableHeaderView = searchController!.searchBar
     tableView.tableFooterView = UIView()
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    tableView.reloadData()
   }
   
   deinit {
@@ -150,13 +142,14 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
       selectLocation(indexPath)
       if let loc = selectedLocation {
         searchController?.active = false
+        LatestLocationsStore.sharedInstance.addLatestLocation(loc)
         if isLocationForRealTimeSearch {
           performSegueWithIdentifier("showRealTime", sender: self)
         } else {
-          LatestLocationsStore.sharedInstance.addLatestLocation(loc)          
           performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
           delegate?.selectedLocationFromSearch(loc)
         }
+        loadLatestLocations()
       }
   }
   
@@ -292,6 +285,33 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
     
     presentViewController(networkErrorAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Loads list of latest selected locations.
+   */
+  private func loadLatestLocations() {
+    if searchOnlyForStations {
+      latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestStationsOnly()
+    } else {
+      latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestLocations()
+    }
+    lastCount = latestLocations.count
+  }
+  
+  /**
+   * Prepares search controller
+   */
+  private func prepareSearchController() {
+    searchController = UISearchController(searchResultsController: nil)
+    searchController!.searchResultsUpdater = self
+    searchController!.delegate = self
+    searchController!.dimsBackgroundDuringPresentation = false
+    if searchOnlyForStations {
+      searchController!.searchBar.placeholder = "Skriv namnet på en station"
+    } else {
+      searchController!.searchBar.placeholder = "Skriv stationsnamn eller en adress"
+    }
   }
   
   /**

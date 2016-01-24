@@ -37,7 +37,7 @@ public class TripHelper {
       return ("Färja", "Sjövägen (Pendelbåt)", "SHIP-NEUTRAL")
     case .Tram:
       if lineNumber == "7" {
-        return ("Spår", "Spårvagn linje 7", "TRAM-RAIL")
+        return ("Spår", "Spårväg City 7", "TRAM-RAIL")
       } else if lineNumber == "12" {
         return ("Spår", "Nockebybanan 12", "TRAM-RAIL")
       } else if lineNumber == "21" {

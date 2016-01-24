@@ -51,6 +51,8 @@ public class RealTimeDeparturesService {
     departures.redMetros = convertMetrosJson(json["Metros"], lineId: 2)
     departures.blueMetros = convertMetrosJson(json["Metros"], lineId: 3)
     departures.trains = convertTrainsJson(json["Trains"])
+    departures.trams = convertTramsJson(json["Trams"], isLocal: false)
+    departures.localTrams = convertTramsJson(json["Trams"], isLocal: true)
     return departures
   }
   
@@ -127,6 +129,35 @@ public class RealTimeDeparturesService {
         result["\(rtTrain.stopAreaName)-\(rtTrain.journeyDirection)"] = [RTTrain]()
       }
       result["\(rtTrain.stopAreaName)-\(rtTrain.journeyDirection)"]?.append(rtTrain)
+    }
+    
+    return result
+  }
+  
+  /**
+   * Converts the tram json in to objects.
+   */
+  private static func convertTramsJson(json: JSON, isLocal: Bool) -> [String: [RTTram]] {
+    var result = [String: [RTTram]]()
+    
+    for tramJson in json.array! {
+      let lineNo = Int(tramJson["LineNumber"].string!)!
+      if (isLocal && lineNo > 23) || (!isLocal && lineNo < 23) {
+        let rtTram = RTTram(
+          stopAreaName: tramJson["StopAreaName"].string!,
+          lineNumber: tramJson["LineNumber"].string!,
+          destination: tramJson["Destination"].string!,
+          displayTime: tramJson["DisplayTime"].string!,
+          deviations: [String](),
+          journeyDirection: tramJson["JourneyDirection"].int!,
+          stopPointDesignation: tramJson["StopPointDesignation"].string,
+          groupOfLine: tramJson["GroupOfLine"].string!)
+        
+        if result["\(rtTram.groupOfLine)-\(rtTram.journeyDirection)"] == nil {
+          result["\(rtTram.groupOfLine)-\(rtTram.journeyDirection)"] = [RTTram]()
+        }
+        result["\(rtTram.groupOfLine)-\(rtTram.journeyDirection)"]?.append(rtTram)
+      }
     }
     
     return result

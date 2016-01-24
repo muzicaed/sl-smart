@@ -24,6 +24,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   var metroRedKeys = [String]()
   var metroBlueKeys = [String]()
   var trainKeys = [String]()
+  var tramKeys = [String]()
+  var localTramKeys = [String]()
   
   var tabTypesKeys = [String]()
   var segmentView = SMSegmentView()
@@ -177,7 +179,20 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         onSelectionImage: UIImage(named: "TRAIN-NEUTRAL"),
         offSelectionImage: UIImage(named: "TRAIN-NEUTRAL"))
     }
-    
+    if realTimeDepartures?.trams.count > 0 {
+      tabCount++
+      tabTypesKeys.append("TRAM")
+      segmentView.addSegmentWithTitle(nil,
+        onSelectionImage: UIImage(named: "TRAM-RAIL"),
+        offSelectionImage: UIImage(named: "TRAM-RAIL"))
+    }
+    if realTimeDepartures?.localTrams.count > 0 {
+      tabCount++
+      tabTypesKeys.append("LOCAL-TRAM")
+      segmentView.addSegmentWithTitle(nil,
+        onSelectionImage: UIImage(named: "TRAM-LOCAL"),
+        offSelectionImage: UIImage(named: "TRAM-LOCAL"))
+    }
     
     segmentView.delegate = self
     segmentView.selectSegmentAtIndex(lastSelected)
@@ -242,6 +257,12 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     for (index, _) in realTimeDepartures!.trains {
       trainKeys.append(index)
     }
+    for (index, _) in realTimeDepartures!.trams {
+      tramKeys.append(index)
+    }
+    for (index, _) in realTimeDepartures!.localTrams {
+      localTramKeys.append(index)
+    }
   }
   
   /**
@@ -260,6 +281,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       return realTimeDepartures!.blueMetros.count
     case "TRAIN":
       return realTimeDepartures!.trains.count
+    case "TRAM":
+      return realTimeDepartures!.trams.count
+    case "LOCAL-TRAM":
+      return realTimeDepartures!.localTrams.count
     default:
       return 0
     }
@@ -281,6 +306,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       return min(realTimeDepartures!.blueMetros[metroBlueKeys[section]]!.count + 1, 5)
     case "TRAIN":
       return min(realTimeDepartures!.trains[trainKeys[section]]!.count + 1, 5)
+    case "TRAM":
+      return min(realTimeDepartures!.trams[tramKeys[section]]!.count + 1, 5)
+    case "LOCAL-TRAM":
+      return min(realTimeDepartures!.localTrams[localTramKeys[section]]!.count + 1, 5)
     default:
       return 0
     }
@@ -313,6 +342,14 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       } else if train.journeyDirection == 2 {
         cell.titleLabel.text = "Pendeltåg, norrgående"
       }
+    case "TRAM":
+      let tram = realTimeDepartures!.trams[tramKeys[indexPath.section]]!.first!
+      cell.icon.image = UIImage(named: "TRAM-RAIL")
+      cell.titleLabel.text = tram.groupOfLine
+    case "LOCAL-TRAM":
+      let tram = realTimeDepartures!.localTrams[localTramKeys[indexPath.section]]!.first!
+      cell.icon.image = UIImage(named: "TRAM-LOCAL")
+      cell.titleLabel.text = tram.groupOfLine
     default:
       break
     }
@@ -347,6 +384,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       }
       cell.departureTimeLabel.text = train.displayTime
       return
+    case "TRAM":
+      data = realTimeDepartures!.trams[tramKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
+    case "LOCAL-TRAM":
+      data = realTimeDepartures!.localTrams[localTramKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
     default:
       break
     }
