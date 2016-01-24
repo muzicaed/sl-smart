@@ -87,7 +87,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       let tripTypeIcon = annotation as! TripTypeIconAnnotation
       if let name = tripTypeIcon.imageName {
         image = UIImage(named: name)!
-        bgColor = UIColor(white: 1.0, alpha: 0.8)
+        bgColor = UIColor(white: 1.0, alpha: 0.9)
         isShaddow = true
       }
     } else {
@@ -111,6 +111,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
         pinView!.layer.shadowColor = UIColor.blackColor().CGColor
         pinView!.layer.shadowOpacity = 0.45
         pinView!.clipsToBounds = false
+        pinView!.layer.cornerRadius = 6
       }
       if let img = image {
         pinView!.image = img
