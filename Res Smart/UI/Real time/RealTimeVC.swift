@@ -30,6 +30,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   
   var tabTypesKeys = [String]()
   var segmentView = SMSegmentView()
+  var refreshTimmer: NSTimer?
   
   /**
    * On load
@@ -37,16 +38,79 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   override func viewDidLoad() {
     tableView.tableFooterView = UIView()
     view.backgroundColor = StyleHelper.sharedInstance.background
-    loadData()
+    isLoading = true
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive",
+      name: UIApplicationDidBecomeActiveNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeInactive",
+      name: UIApplicationWillResignActiveNotification, object: nil)
   }
   
   /**
-   * User taps refresh
+   * View will appear
    */
-  @IBAction func onRefreshTap(sender: UIBarButtonItem) {
-    if !isLoading {
-      loadData()
-      tableView.reloadData()
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    loadData()
+    startRefreshTimmer()
+  }
+  
+  /**
+   * View did unload
+   */
+  override func viewWillDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    stopRefreshTimmer()
+  }
+  
+  /**
+   * Returned to the app.
+   */
+  func didBecomeActive() {
+    loadData()
+    startRefreshTimmer()
+  }
+
+  /**
+   * Backgrounded.
+   */
+  func didBecomeInactive() {
+    stopRefreshTimmer()
+  }
+  
+  /**
+   * Starts the refresh timmer
+   */
+  func startRefreshTimmer() {
+    stopRefreshTimmer()
+    refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
+      15.0, target: self, selector: Selector("loadData"), userInfo: nil, repeats: true)
+  }
+  
+  /**
+   * Stop the refresh timmer
+   */
+  func stopRefreshTimmer() {
+    refreshTimmer?.invalidate()
+    refreshTimmer = nil
+  }
+  
+  /**
+   * Load real time data
+   */
+  func loadData() {
+    RealTimeDeparturesService.fetch(siteId) { (rtDepartures, error) -> Void in
+      if error == nil {
+        if let departures = rtDepartures {
+          dispatch_async(dispatch_get_main_queue(), {
+            self.isLoading = false
+            self.firstTimeLoad = false
+            self.realTimeDepartures = departures
+            self.setupKeys()
+            self.prepareSegmentView()
+            self.tableView.reloadData()
+          })
+        }
+      }
     }
   }
   
@@ -112,29 +176,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   // MARK: Private
   
   /**
-  * Load real time data
+  * Prepares Segment View
   */
-  private func loadData() {
-    isLoading = true
-    RealTimeDeparturesService.fetch(siteId) { (rtDepartures, error) -> Void in
-      if error == nil {
-        if let departures = rtDepartures {
-          dispatch_async(dispatch_get_main_queue(), {
-            self.isLoading = false
-            self.firstTimeLoad = false
-            self.realTimeDepartures = departures
-            self.setupKeys()
-            self.prepareSegmentView()
-            self.tableView.reloadData()
-          })
-        }
-      }
-    }
-  }
-  
-  /**
-   * Prepares Segment View
-   */
   private func prepareSegmentView() {
     segmentView.removeFromSuperview()
     segmentView = SMSegmentView(
@@ -446,5 +489,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       }
       cell.departureTimeLabel.text = data.displayTime
     }
+  }
+  
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 }
