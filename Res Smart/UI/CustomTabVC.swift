@@ -40,6 +40,8 @@ class CustomTabVC: UITabBarController {
     let items = self.tabBar.items!
     if count > 0 {
       items[3].badgeValue = String(count)
+    } else {
+      items[3].badgeValue = nil
     }
   }
 }

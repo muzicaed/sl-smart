@@ -30,8 +30,6 @@ class TrafficSituationVC: UITableViewController {
    */
   override func viewDidAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    let items = self.tabBarController?.tabBar.items!
-    items![2].badgeValue = nil
     loadData()
   }
   
