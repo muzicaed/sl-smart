@@ -46,6 +46,10 @@ class TripListVC: UITableViewController {
       isLoading = false
       self.tableView?.reloadData()
     }
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive",
+      name: UIApplicationDidBecomeActiveNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeInactive",
+      name: UIApplicationWillResignActiveNotification, object: nil)
   }
   
   /**
@@ -54,6 +58,7 @@ class TripListVC: UITableViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     isLoadingMoreBlocked = false
+    startRefreshTimmer()
   }
   
   /**
@@ -61,14 +66,46 @@ class TripListVC: UITableViewController {
    */
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    refreshTimer?.invalidate()
-    refreshTimer = nil
+    stopRefreshTimmer()
+  }
+  
+  /**
+   * Returned to the app.
+   */
+  func didBecomeActive() {
+    refreshUI()
+    startRefreshTimmer()
+  }
+  
+  /**
+   * Backgrounded.
+   */
+  func didBecomeInactive() {
+    stopRefreshTimmer()
+  }
+  
+  /**
+   * Start refresh timmer
+   */
+  func startRefreshTimmer() {
+    stopRefreshTimmer()
+    self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(
+      15, target: self, selector: "refreshUI", userInfo: nil, repeats: true)
+  }
+  
+  /**
+   * Stop refresh timmer
+   */
+  func stopRefreshTimmer() {
+    self.refreshTimer?.invalidate()
+    self.refreshTimer = nil
   }
   
   /**
    * Refresh collection view.
    */
   func refreshUI() {
+    print("Refresh UI")
     self.tableView?.reloadData()
   }
   
@@ -303,9 +340,6 @@ class TripListVC: UITableViewController {
             self.loadMoreEarlier?.hideSpinner()
             self.loadMoreLater?.hideSpinner()
             self.updateDateCriterions()
-            self.refreshTimer?.invalidate()
-            self.refreshTimer = nil
-            self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: "refreshUI", userInfo: nil, repeats: true)
             self.tableView?.reloadData()
           }
       })
@@ -322,7 +356,7 @@ class TripListVC: UITableViewController {
       tripsArr = tripsArr.reverse()
     }
     for trip in tripsArr {
-      let destDateString = DateUtils.dateAsDateString(trip.tripSegments.last!.departureDateTime)
+      let destDateString = DateUtils.dateAsDateString(trip.tripSegments.first!.departureDateTime)
       if !keys.contains(destDateString) {
         if shouldAppend {
           keys.append(destDateString)
