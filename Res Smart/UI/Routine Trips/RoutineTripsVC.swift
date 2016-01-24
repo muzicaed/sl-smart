@@ -36,6 +36,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   var refreshButton: UIBarButtonItem?
   
   var hereToThereCriterion: TripSearchCriterion?
+  var refreshTimmer: NSTimer?
   
   /**
    * View is done loading
@@ -52,6 +53,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    startRefreshTimmer()
     isSubscribing = SubscriptionStore.sharedInstance.isSubscribed()
     if isSubscribing {
       navigationItem.rightBarButtonItem?.enabled = true
@@ -68,6 +70,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     navigationItem.rightBarButtonItem?.enabled = false
     refreshButton?.enabled = false
     collectionView?.reloadData()
+  }
+  
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    stopRefreshTimmer()
   }
   
   /**
@@ -116,6 +123,39 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       return
     }
     loadTripData(true)
+    startRefreshTimmer()
+  }
+  
+  /**
+   * Backgrounded.
+   */
+  func didBecomeInactive() {
+    stopRefreshTimmer()
+  }
+  
+  /**
+   * Starts the refresh timmer
+   */
+  func startRefreshTimmer() {
+    stopRefreshTimmer()
+    refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
+      10.0, target: self, selector: Selector("refreshUI"), userInfo: nil, repeats: true)
+  }
+  
+  func refreshUI() {
+    print("Refresh UI")
+    if NSDate().timeIntervalSinceDate(lastUpdated) > (60 * 3) {
+      loadTripData(true)
+    }
+    self.collectionView?.reloadData()
+  }
+  
+  /**
+   * Stop the refresh timmer
+   */
+  func stopRefreshTimmer() {
+    refreshTimmer?.invalidate()
+    refreshTimmer = nil
   }
   
   /**
@@ -242,9 +282,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
           return CGSizeMake(screenSize.width - 20, 275)
         } else if bestRoutineTrip!.criterions.isAdvanced {
           if indexPath.row == 0 {
-            return CGSizeMake(screenSize.width - 20, 160)
+            return CGSizeMake(screenSize.width - 20, 165)
           }
-          return CGSizeMake(screenSize.width - 20, 60)
+          return CGSizeMake(screenSize.width - 20, 65)
         }
         if indexPath.row == 0 && bestRoutineTrip != nil {
           return CGSizeMake(screenSize.width - 20, 145)
@@ -374,6 +414,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     NSNotificationCenter.defaultCenter().addObserver(
       self, selector: Selector("didBecomeActive"),
       name: UIApplicationDidBecomeActiveNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(
+      self, selector: "didBecomeInactive",
+      name: UIApplicationWillResignActiveNotification, object: nil)
   }
   
   /**
@@ -407,7 +450,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
       })
     } else {
-      self.collectionView?.reloadData()
+      refreshUI()
     }
   }
   
@@ -515,5 +558,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       }))
     
     presentViewController(restoreAlert, animated: true, completion: nil)
+  }
+  
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 }

@@ -20,6 +20,8 @@ class RoutineTripCell: UICollectionViewCell {
   @IBOutlet weak var iconAreaView: UIView!
   @IBOutlet weak var tripDurationLabel: UILabel!
   @IBOutlet weak var inAboutLabel: UILabel!
+  @IBOutlet weak var nextInAboutLabel: UILabel!
+  
   @IBOutlet weak var advancedView: UIView!
   @IBOutlet weak var advancedLabel: UILabel!
   
@@ -57,7 +59,11 @@ class RoutineTripCell: UICollectionViewCell {
     destinationLabel.text = routineTrip.criterions.dest?.cleanName
     
     if let trip = routineTrip.trips.first {
-      setupTripData(trip)
+      var second: Trip? = nil
+      if routineTrip.trips.count > 1 && isBest {
+        second = routineTrip.trips[1]
+      }
+      setupTripData(trip, secondTrip: second)
     } else if isBest {
       setNoTripsUI()
     }
@@ -80,7 +86,8 @@ class RoutineTripCell: UICollectionViewCell {
   
   // MARK: Private methods
   
-  private func setupTripData(trip: Trip) {
+  private func setupTripData(trip: Trip, secondTrip: Trip?) {
+    nextInAboutLabel.hidden = true
     if let first = trip.tripSegments.first, last = trip.tripSegments.last  {
       departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
@@ -90,7 +97,17 @@ class RoutineTripCell: UICollectionViewCell {
       tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
       
       createTripSegmentIcons(trip)
-      return
+    }
+    
+    if let second = secondTrip?.tripSegments.first, first = trip.tripSegments.first {
+      print("Bla: \( first.departureDateTime.timeIntervalSinceNow)")
+      let depTimeInterval = first.departureDateTime.timeIntervalSinceNow
+      print("Dep time: \(depTimeInterval)")
+      if depTimeInterval < (60 * 5) {
+        nextInAboutLabel.text = "Nästa: " + DateUtils.createAboutTimeText(
+          second.departureDateTime, isWalk: false).lowercaseString
+        nextInAboutLabel.hidden = false
+      }
     }
   }
   

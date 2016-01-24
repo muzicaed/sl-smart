@@ -83,7 +83,7 @@ public class RoutineService {
         if let searchCrit = routineTrip.criterions.copy() as? TripSearchCriterion {
           searchCrit.date = DateUtils.dateAsDateString(NSDate())
           searchCrit.time = DateUtils.dateAsTimeString(NSDate())
-          searchCrit.numTrips = 1
+          searchCrit.numTrips = 2
           
           SearchTripService.tripSearch(searchCrit, callback: { resTuple in
             if let _ = resTuple.error {
