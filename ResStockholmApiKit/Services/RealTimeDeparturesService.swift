@@ -54,6 +54,14 @@ public class RealTimeDeparturesService {
     departures.trams = convertTramsJson(json["Trams"], isLocal: false)
     departures.localTrams = convertTramsJson(json["Trams"], isLocal: true)
     departures.boats = convertBoatsJson(json["Ships"])
+    
+    if json["StopPointDeviations"].array!.count > 0 {
+      for messJson in json["StopPointDeviations"].array! {
+        if let mess = messJson["Deviation"]["Text"].string {
+          departures.deviations.append(mess)
+        }
+      }
+    }
     return departures
   }
   
@@ -70,7 +78,7 @@ public class RealTimeDeparturesService {
         lineNumber: busJson["LineNumber"].string!,
         destination: busJson["Destination"].string!,
         displayTime: busJson["DisplayTime"].string!,
-        deviations: [String](),
+        deviations: extractDeviations(busJson["Deviations"].array),
         journeyDirection: busJson["JourneyDirection"].int!,
         stopPointDesignation: busJson["StopPointDesignation"].string)
       
@@ -91,12 +99,18 @@ public class RealTimeDeparturesService {
     
     for metroJson in json.array! {
       if metroJson["GroupOfLineId"].int! == lineId {
+        
+        var messages = [String]()
+        if let message = metroJson["PlatformMessage"].string {
+          messages.append(message)
+        }
+        
         let rtMetro = RTMetro(
           stopAreaName: metroJson["StopAreaName"].string!,
           lineNumber: metroJson["LineNumber"].string!,
           destination: metroJson["Destination"].string!,
           displayTime: metroJson["DisplayTime"].string!,
-          deviations: [String](),
+          deviations: messages,
           journeyDirection: metroJson["JourneyDirection"].int!,
           platformMessage: metroJson["PlatformMessage"].string)
         
@@ -122,7 +136,7 @@ public class RealTimeDeparturesService {
         lineNumber: trainJson["LineNumber"].string!,
         destination: trainJson["Destination"].string!,
         displayTime: trainJson["DisplayTime"].string!,
-        deviations: [String](),
+        deviations: extractDeviations(trainJson["Deviations"].array),
         journeyDirection: trainJson["JourneyDirection"].int!,
         secondaryDestinationName: trainJson["SecondaryDestinationName"].string)
       
@@ -149,7 +163,7 @@ public class RealTimeDeparturesService {
           lineNumber: tramJson["LineNumber"].string!,
           destination: tramJson["Destination"].string!,
           displayTime: tramJson["DisplayTime"].string!,
-          deviations: [String](),
+          deviations: extractDeviations(tramJson["Deviations"].array),
           journeyDirection: tramJson["JourneyDirection"].int!,
           stopPointDesignation: tramJson["StopPointDesignation"].string,
           groupOfLine: tramJson["GroupOfLine"].string!)
@@ -176,7 +190,7 @@ public class RealTimeDeparturesService {
         lineNumber: boatJson["LineNumber"].string!,
         destination: boatJson["Destination"].string!,
         displayTime: boatJson["DisplayTime"].string!,
-        deviations: [String](),
+        deviations: extractDeviations(boatJson["Deviations"].array),
         journeyDirection: boatJson["JourneyDirection"].int!,
         groupOfLine: boatJson["GroupOfLine"].string!)
       
@@ -186,6 +200,21 @@ public class RealTimeDeparturesService {
       result["\(rtBoat.groupOfLine)-\(rtBoat.journeyDirection)"]?.append(rtBoat)
     }
     
+    return result
+  }
+  
+  /**
+   * Extracts deviation messages.
+   */
+  private static func extractDeviations(messagesJson: [JSON]?) -> [String] {
+    var result = [String]()
+    if let messagesJson = messagesJson {
+      for messJson in messagesJson {
+        if let mess = messJson["Text"].string {
+          result.append(mess)
+        }
+      }
+    }
     return result
   }
 }

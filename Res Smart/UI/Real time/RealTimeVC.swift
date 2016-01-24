@@ -43,6 +43,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       name: UIApplicationDidBecomeActiveNotification, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeInactive",
       name: UIApplicationWillResignActiveNotification, object: nil)
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 44
   }
   
   /**
@@ -466,6 +468,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         cell.departureTimeLabel.textColor = UIColor.blackColor()
       }
       cell.departureTimeLabel.text = train.displayTime
+      cell.deviationsLabel.text = train.deviations.joinWithSeparator(" ")
       return
     case "TRAM":
       data = realTimeDepartures!.trams[tramKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
@@ -488,6 +491,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         cell.departureTimeLabel.textColor = UIColor.blackColor()
       }
       cell.departureTimeLabel.text = data.displayTime
+      cell.deviationsLabel.text = data.deviations.joinWithSeparator(" ")
     }
   }
   

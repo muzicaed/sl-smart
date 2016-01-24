@@ -14,4 +14,5 @@ class RealTimeTripRow: UITableViewCell {
   @IBOutlet weak var lineLabel: UILabel!
   @IBOutlet weak var infoLabel: UILabel!
   @IBOutlet weak var departureTimeLabel: UILabel!
+  @IBOutlet weak var deviationsLabel: UILabel!
 }
