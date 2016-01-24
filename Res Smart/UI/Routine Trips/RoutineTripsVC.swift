@@ -139,7 +139,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   func startRefreshTimmer() {
     stopRefreshTimmer()
     refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
-      10.0, target: self, selector: Selector("refreshUI"), userInfo: nil, repeats: true)
+      5.0, target: self, selector: Selector("refreshUI"), userInfo: nil, repeats: true)
   }
   
   func refreshUI() {
