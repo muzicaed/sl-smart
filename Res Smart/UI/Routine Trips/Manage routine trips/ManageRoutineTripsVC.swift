@@ -47,7 +47,7 @@ class ManageRoutineTripsVC: UITableViewController {
     tableView.reloadData()
     if trips.count == 0 && navigationItem.rightBarButtonItems?.count > 1 {
       navigationItem.rightBarButtonItems?.removeAtIndex(1)
-    } else if trips.count > 0 && navigationItem.rightBarButtonItems?.count == 1 {
+    } else if trips.count > 0 && navigationItem.rightBarButtonItems?.count == 1 && !tableView.editing {
       navigationItem.rightBarButtonItems?.insert(editButton, atIndex: 1)
     }
   }
