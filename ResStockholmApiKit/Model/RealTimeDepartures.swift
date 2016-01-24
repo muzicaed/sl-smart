@@ -19,7 +19,7 @@ public class RealTimeDepartures {
   public var trains = [String: [RTTrain]]()
   public var trams = [String: [RTTram]]()
   public var localTrams = [String: [RTTram]]()
-  public var ships = [String]()
+  public var boats = [String: [RTBoat]]()
   public var deviations = [String]()
   
   /**

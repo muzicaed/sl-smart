@@ -23,7 +23,8 @@ public class RTTram: RTTransportBase {
       self.stopPointDesignation = stopPointDesignation
       self.groupOfLine = groupOfLine
       
-      super.init(stopAreaName: stopAreaName, lineNumber: lineNumber, destination: destination,
-        displayTime: displayTime, deviations: deviations, journeyDirection: journeyDirection)
+      super.init(stopAreaName: stopAreaName, lineNumber: lineNumber,
+        destination: destination.capitalizedString, displayTime: displayTime,
+        deviations: deviations, journeyDirection: journeyDirection)
   }
 }

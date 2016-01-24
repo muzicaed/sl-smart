@@ -1322,8 +1322,33 @@
                                     <outlet property="lineLabel" destination="4th-Df-XzP" id="Qr9-zW-Jxj"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotFoundRow" id="Wdh-LD-zra" userLabel="Not found row" customClass="RealTimeTripRow" customModule="Res_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="245.5" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wdh-LD-zra" id="aj1-Jl-urO">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hittade ingen realtids information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHZ-HP-yxN">
+                                            <rect key="frame" x="8" y="8" width="398" height="27.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="eHZ-HP-yxN" secondAttribute="trailing" id="M81-5Z-Vrw"/>
+                                        <constraint firstItem="eHZ-HP-yxN" firstAttribute="leading" secondItem="aj1-Jl-urO" secondAttribute="leadingMargin" id="TSZ-in-Bs4"/>
+                                        <constraint firstItem="eHZ-HP-yxN" firstAttribute="top" secondItem="aj1-Jl-urO" secondAttribute="topMargin" id="dlr-kV-OiC"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="eHZ-HP-yxN" secondAttribute="bottom" id="gAe-wz-psA"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="infoLabel" destination="eHZ-HP-yxN" id="8S1-So-auA"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="LoadingRow" rowHeight="120" id="FfH-fh-ueB">
-                                <rect key="frame" x="0.0" y="245.5" width="414" height="120"/>
+                                <rect key="frame" x="0.0" y="289.5" width="414" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FfH-fh-ueB" id="QKi-E7-GbU">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="119.5"/>

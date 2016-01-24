@@ -26,6 +26,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   var trainKeys = [String]()
   var tramKeys = [String]()
   var localTramKeys = [String]()
+  var boatKeys = [String]()
   
   var tabTypesKeys = [String]()
   var segmentView = SMSegmentView()
@@ -81,6 +82,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       if isLoading {
         return createLoadingCell(indexPath)
       } else if indexPath.row == 0  {
+        if tabTypesKeys.count == 0 {
+          return createNotFoundCell(indexPath)
+        }
         return createHeaderCell(indexPath)
       }
       
@@ -93,7 +97,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   override func tableView(tableView: UITableView,
     heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
       if isLoading {
-        return tableView.bounds.height - 49 - 64 - 20
+        return tableView.bounds.height - 49 - 64 - 20 + 39
       }
       return -1
   }
@@ -193,16 +197,25 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         onSelectionImage: UIImage(named: "TRAM-LOCAL"),
         offSelectionImage: UIImage(named: "TRAM-LOCAL"))
     }
+    if realTimeDepartures?.boats.count > 0 {
+      tabCount++
+      tabTypesKeys.append("BOAT")
+      segmentView.addSegmentWithTitle(nil,
+        onSelectionImage: UIImage(named: "SHIP-NEUTRAL"),
+        offSelectionImage: UIImage(named: "SHIP-NEUTRAL"))
+    }
     
-    segmentView.delegate = self
-    segmentView.selectSegmentAtIndex(lastSelected)
-    segmentView.frame.size.width = CGFloat(50 * tabCount)
-    topView.addSubview(segmentView)
-    
-    if firstTimeLoad {
-      UIView.animateWithDuration(0.4, animations: {
-        self.segmentView.frame.size.height = 44
-      })
+    if tabCount > 0 {
+      segmentView.delegate = self
+      segmentView.selectSegmentAtIndex(lastSelected)
+      segmentView.frame.size.width = CGFloat(50 * tabCount)
+      topView.addSubview(segmentView)
+      
+      if firstTimeLoad {
+        UIView.animateWithDuration(0.4, animations: {
+          self.segmentView.frame.size.height = 44
+        })
+      }
     }
   }
   
@@ -237,6 +250,14 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   }
   
   /**
+   * Create not found cell
+   */
+  private func createNotFoundCell(indexPath: NSIndexPath) -> UITableViewCell {
+    return tableView!.dequeueReusableCellWithIdentifier("NotFoundRow",
+      forIndexPath: indexPath)
+  }
+  
+  /**
    * Setup key arrays
    */
   private func setupKeys() {
@@ -263,12 +284,19 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     for (index, _) in realTimeDepartures!.localTrams {
       localTramKeys.append(index)
     }
+    for (index, _) in realTimeDepartures!.boats {
+      boatKeys.append(index)
+    }
   }
   
   /**
    * Calculates the needed sections.
    */
   private func calcSectionCount() -> Int {
+    if tabTypesKeys.count == 0 {
+      return 1
+    }
+    
     let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
     switch tabKeys {
     case "BUS":
@@ -285,6 +313,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       return realTimeDepartures!.trams.count
     case "LOCAL-TRAM":
       return realTimeDepartures!.localTrams.count
+    case "BOAT":
+      return realTimeDepartures!.boats.count
     default:
       return 0
     }
@@ -294,6 +324,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Calculates the needed rows.
    */
   private func calcRowCount(section: Int) -> Int {
+    if tabTypesKeys.count == 0 {
+      return 1
+    }
+    
     let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
     switch tabKeys {
     case "BUS":
@@ -310,6 +344,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       return min(realTimeDepartures!.trams[tramKeys[section]]!.count + 1, 5)
     case "LOCAL-TRAM":
       return min(realTimeDepartures!.localTrams[localTramKeys[section]]!.count + 1, 5)
+    case "BOAT":
+      return min(realTimeDepartures!.boats[boatKeys[section]]!.count + 1, 5)
     default:
       return 0
     }
@@ -350,6 +386,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       let tram = realTimeDepartures!.localTrams[localTramKeys[indexPath.section]]!.first!
       cell.icon.image = UIImage(named: "TRAM-LOCAL")
       cell.titleLabel.text = tram.groupOfLine
+    case "BOAT":
+      let boat = realTimeDepartures!.boats[boatKeys[indexPath.section]]!.first!
+      cell.icon.image = UIImage(named: "SHIP-NEUTRAL")
+      cell.titleLabel.text = boat.groupOfLine
     default:
       break
     }
@@ -388,6 +428,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       data = realTimeDepartures!.trams[tramKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
     case "LOCAL-TRAM":
       data = realTimeDepartures!.localTrams[localTramKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
+    case "BOAT":
+      data = realTimeDepartures!.boats[boatKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
     default:
       break
     }

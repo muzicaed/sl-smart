@@ -53,6 +53,7 @@ public class RealTimeDeparturesService {
     departures.trains = convertTrainsJson(json["Trains"])
     departures.trams = convertTramsJson(json["Trams"], isLocal: false)
     departures.localTrams = convertTramsJson(json["Trams"], isLocal: true)
+    departures.boats = convertBoatsJson(json["Ships"])
     return departures
   }
   
@@ -158,6 +159,31 @@ public class RealTimeDeparturesService {
         }
         result["\(rtTram.groupOfLine)-\(rtTram.journeyDirection)"]?.append(rtTram)
       }
+    }
+    
+    return result
+  }
+  
+  /**
+   * Converts the tram json in to objects.
+   */
+  private static func convertBoatsJson(json: JSON) -> [String: [RTBoat]] {
+    var result = [String: [RTBoat]]()
+    
+    for boatJson in json.array! {
+      let rtBoat = RTBoat(
+        stopAreaName: boatJson["StopAreaName"].string!,
+        lineNumber: boatJson["LineNumber"].string!,
+        destination: boatJson["Destination"].string!,
+        displayTime: boatJson["DisplayTime"].string!,
+        deviations: [String](),
+        journeyDirection: boatJson["JourneyDirection"].int!,
+        groupOfLine: boatJson["GroupOfLine"].string!)
+      
+      if result["\(rtBoat.groupOfLine)-\(rtBoat.journeyDirection)"] == nil {
+        result["\(rtBoat.groupOfLine)-\(rtBoat.journeyDirection)"] = [RTBoat]()
+      }
+      result["\(rtBoat.groupOfLine)-\(rtBoat.journeyDirection)"]?.append(rtBoat)
     }
     
     return result
