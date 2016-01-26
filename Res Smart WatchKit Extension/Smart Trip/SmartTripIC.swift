@@ -112,10 +112,8 @@ class SmartTripIC: WKInterfaceController {
       displayError(
         "Kan inte nå din iPhone",
         message: "Kontrollera att din iPhone är i närheten och påslagen.")
-      /*
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-        NSTimeInterval(1.5), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
-      */
+        NSTimeInterval(30), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
     }
   }
   
