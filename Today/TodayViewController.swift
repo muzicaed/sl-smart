@@ -24,6 +24,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   
   var bestRoutine: RoutineTrip?
   var refreshTimmer: NSTimer?
+  var lastUpdated = NSDate(timeIntervalSince1970: 0)
   var isLoading = false
   
   /**
@@ -40,7 +41,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   
   override func viewDidAppear(animated: Bool) {
     super.viewDidDisappear(animated)
-    loadTripData(nil)    
+    print("View did appear")
+    loadTripData(nil)
   }
   
   /**
@@ -94,15 +96,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   * Loads trip data and updates UI
   */
   private func loadTripData(callback: (() -> Void)?) {
-    startRefreshTimmer()
-    if !isLoading {
-      self.isLoading = true
+    print("loadTripData")
+    let minSienceUpdate = (lastUpdated.timeIntervalSinceNow / 60)
+    print("Min since: \(minSienceUpdate)")
+    if minSienceUpdate < 5 && !isLoading {
+      startRefreshTimmer()
+      isLoading = true
       RoutineService.findRoutineTrip({ routineTrips in
         self.isLoading = false
+        self.lastUpdated = NSDate()
         self.bestRoutine = routineTrips.first
         dispatch_async(dispatch_get_main_queue()) {
           if self.bestRoutine != nil {
-            
             self.updateUI()
           }
           else {
@@ -110,11 +115,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
           }
         }
         callback?()
+        return
       })
     } else {
-      self.isLoading = false
-      self.updateUI()
       callback?()
+      self.updateUI()
     }
   }
   

@@ -138,7 +138,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="OQE-PN-E3f" firstAttribute="width" secondItem="sMB-X6-9Vt" secondAttribute="width" id="AcF-Ml-OL1"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="160" id="Oz5-0R-zUH"/>
+                                    <constraint firstAttribute="height" constant="160" id="Oz5-0R-zUH"/>
                                     <constraint firstItem="PKi-Ga-qCe" firstAttribute="width" secondItem="pUt-NV-B2P" secondAttribute="width" id="tdh-yE-6gp"/>
                                 </constraints>
                             </stackView>
@@ -147,6 +147,8 @@
                             <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="sHW-Yu-tuu" secondAttribute="bottom" id="2hn-qH-ewm"/>
                             <constraint firstAttribute="trailing" secondItem="sHW-Yu-tuu" secondAttribute="trailing" id="RO9-MA-Mis"/>
                             <constraint firstItem="sHW-Yu-tuu" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" id="tvW-xr-DBh"/>
+                            <constraint firstItem="sHW-Yu-tuu" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="vrC-WQ-DWh"/>
+                            <constraint firstItem="sHW-Yu-tuu" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="wNR-dF-7qJ"/>
                             <constraint firstItem="sHW-Yu-tuu" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="xQc-TA-Lbr"/>
                         </constraints>
                     </view>

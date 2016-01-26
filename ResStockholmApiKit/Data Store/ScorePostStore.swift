@@ -35,7 +35,6 @@ public class ScorePostStore {
         }
       }
     }
-    print("No. of Score Posts: \(cachedScorePosts.count)")
     return cachedScorePosts.map { ($0.copy() as! ScorePost) }
   }
   
