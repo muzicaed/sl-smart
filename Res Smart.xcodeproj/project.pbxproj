@@ -93,6 +93,7 @@
 		1899F2671C4B9C6200534587 /* RouteRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2661C4B9C6200534587 /* RouteRenderer.swift */; };
 		1899F2691C4B9C9200534587 /* RoutePolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2681C4B9C9200534587 /* RoutePolyline.swift */; };
 		1899F26B1C4BBE7800534587 /* Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F26A1C4BBE7800534587 /* Pins.swift */; };
+		18A5A8D51C57BC54003C4C3B /* DisturbanceTextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5A8D41C57BC54003C4C3B /* DisturbanceTextHelper.swift */; };
 		18A824741C0EE866006190C4 /* SmartTripIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E591BFF33FB00C523C9 /* SmartTripIC.swift */; };
 		18A824751C0EE866006190C4 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */; };
 		18A824771C0EE866006190C4 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5F1BFF33FB00C523C9 /* GlanceController.swift */; };
@@ -365,6 +366,7 @@
 		1899F2661C4B9C6200534587 /* RouteRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteRenderer.swift; sourceTree = "<group>"; };
 		1899F2681C4B9C9200534587 /* RoutePolyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutePolyline.swift; sourceTree = "<group>"; };
 		1899F26A1C4BBE7800534587 /* Pins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pins.swift; sourceTree = "<group>"; };
+		18A5A8D41C57BC54003C4C3B /* DisturbanceTextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisturbanceTextHelper.swift; sourceTree = "<group>"; };
 		18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ResStockholmApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A9E8491C18993B008F97C8 /* ResStockholmApiKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResStockholmApiKit.h; sourceTree = "<group>"; };
 		18A9E84B1C18993B008F97C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				1801A3FB1C392DE60068E1FC /* SubscriptionStore.swift */,
 				1801A3FD1C39317C0068E1FC /* SubscribeDelegate.swift */,
 				181CFD041C396FDE004637F9 /* ReceiptManager.swift */,
+				18A5A8D41C57BC54003C4C3B /* DisturbanceTextHelper.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -1199,6 +1202,7 @@
 				18698AA61C4E91000031D1AD /* RealTimeHeaderRow.swift in Sources */,
 				18698AAC1C4E913A0031D1AD /* RealTimeTripRow.swift in Sources */,
 				185D8DBE1C189D0200300890 /* WatchService.swift in Sources */,
+				18A5A8D51C57BC54003C4C3B /* DisturbanceTextHelper.swift in Sources */,
 				188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */,
 				1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */,
 				18733C491C4E3D1000F66AEF /* RealTimeNavigationVC.swift in Sources */,

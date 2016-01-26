@@ -469,6 +469,11 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       }
       cell.departureTimeLabel.text = train.displayTime
       cell.deviationsLabel.text = train.deviations.joinWithSeparator(" ")
+      if DisturbanceTextHelper.isDisturbance(cell.deviationsLabel.text) {
+        cell.deviationsLabel.textColor = UIColor(red: 173/255, green: 36/255, blue: 62/255, alpha: 1.0)
+      } else {
+        cell.deviationsLabel.textColor = UIColor.darkGrayColor()
+      }
       return
     case "TRAM":
       data = realTimeDepartures!.trams[tramKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
@@ -492,6 +497,11 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       }
       cell.departureTimeLabel.text = data.displayTime
       cell.deviationsLabel.text = data.deviations.joinWithSeparator(" ")
+      if DisturbanceTextHelper.isDisturbance(cell.deviationsLabel.text) {
+        cell.deviationsLabel.textColor = UIColor(red: 173/255, green: 36/255, blue: 62/255, alpha: 1.0)
+      } else {
+        cell.deviationsLabel.textColor = UIColor.darkGrayColor()
+      }
     }
   }
   
