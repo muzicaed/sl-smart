@@ -22,14 +22,27 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   @IBOutlet weak var iconWrapperView: UIView!
   @IBOutlet weak var inAboutLabel: UILabel!
   
+  var bestRoutine: RoutineTrip?
+  var refreshTimmer: NSTimer?
+  
   /**
    * View loaded for the first time.
    */
   override func viewDidLoad() {
     super.viewDidLoad()
     print("View did load")
+    self.preferredContentSize = CGSizeMake(0, 160)
     let gesture = UITapGestureRecognizer(target: self, action: Selector("onTap"))
     view.addGestureRecognizer(gesture)
+  }
+  
+  /**
+   * View did disappear
+   */
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    print("View did disappear")
+    stopRefreshTimmer()
   }
   
   /**
@@ -37,7 +50,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * OS Controlled.
    */
   func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
-    print("Completion handler")
+    print("widgetPerformUpdateWithCompletionHandler")
     loadTripData() {
       completionHandler(NCUpdateResult.NewData)
     }
@@ -48,38 +61,44 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    */
   func onTap() {
     print("Tap")
-    extensionContext?.openURL(NSURL(string: "ressmart://")!, completionHandler: nil)    
+    extensionContext?.openURL(NSURL(string: "ressmart://")!, completionHandler: nil)
+  }
+  
+  /**
+   * Starts the refresh timmer
+   */
+  func startRefreshTimmer() {
+    stopRefreshTimmer()
+    refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
+      10.0, target: self, selector: Selector("updateUI"), userInfo: nil, repeats: true)
+  }
+  
+  /**
+   * Stop the refresh timmer
+   */
+  func stopRefreshTimmer() {
+    refreshTimmer?.invalidate()
+    refreshTimmer = nil
   }
   
   // MARK: Private
   
   /**
-   * Loads trip data and updates UI
-   */
+  * Loads trip data and updates UI
+  */
   private func loadTripData(callback: (() -> Void)?) {
+    startRefreshTimmer()
     RoutineService.findRoutineTrip({ routineTrips in
-      if let bestRoutineTrip = routineTrips.first {
-        if let trip = bestRoutineTrip.trips.first {
-          dispatch_async(dispatch_get_main_queue()) {
-            self.titleLabel.text = bestRoutineTrip.title
-            self.departureStationLabel.text = trip.tripSegments.first?.origin.name
-            self.departureTimeLabel.text = DateUtils.dateAsTimeString(trip.tripSegments.first!.departureDateTime)
-            self.arrivalStationLabel.text = trip.tripSegments.last?.destination.name
-            self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(trip.tripSegments.last!.arrivalDateTime)
-            self.travelTimeLabel.text = DateUtils.createTripDurationString(trip.durationMin)
-            
-            self.inAboutLabel.text = "  " + DateUtils.createAboutTimeText(
-              trip.tripSegments.first!.departureDateTime,
-              isWalk: (trip.tripSegments.first!.type == TripType.Walk))
-            
-            self.createTripSegmentIcons(trip)
-            callback?()
-          }
+      self.bestRoutine = routineTrips.first
+      if self.bestRoutine != nil {
+        dispatch_async(dispatch_get_main_queue()) {
+          self.updateUI()
         }
       }
       else {
         self.titleLabel.text = "Hittade inga rutiner."
       }
+      callback?()
     })
   }
   
@@ -119,6 +138,27 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         iconWrapperView.addSubview(wrapperView)
         count++
       }
+    }
+  }
+  
+  /**
+   * Update widget UI
+   */
+  func updateUI() {
+    print("Update UI")
+    if let bestRoutineTrip = self.bestRoutine, trip = bestRoutineTrip.trips.first {
+      self.titleLabel.text = bestRoutineTrip.title
+      self.departureStationLabel.text = trip.tripSegments.first?.origin.name
+      self.departureTimeLabel.text = DateUtils.dateAsTimeString(trip.tripSegments.first!.departureDateTime)
+      self.arrivalStationLabel.text = trip.tripSegments.last?.destination.name
+      self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(trip.tripSegments.last!.arrivalDateTime)
+      self.travelTimeLabel.text = DateUtils.createTripDurationString(trip.durationMin)
+      
+      self.inAboutLabel.text = "  " + DateUtils.createAboutTimeText(
+        trip.tripSegments.first!.departureDateTime,
+        isWalk: (trip.tripSegments.first!.type == TripType.Walk))
+      
+      self.createTripSegmentIcons(trip)
     }
   }
   
