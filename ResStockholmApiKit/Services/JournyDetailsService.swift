@@ -27,9 +27,11 @@ public class JournyDetailsService {
           }
           
           let jsonData = JSON(data: d)
-          if let stopsJson = jsonData["JourneyDetail"]["Stops"]["Stop"].array {
-            for stopJson in stopsJson {
-              result.append(convertStopJson(stopJson))
+          if jsonData["JourneyDetail"].isExists() {
+            if let stopsJson = jsonData["JourneyDetail"]["Stops"]["Stop"].array {
+              for stopJson in stopsJson {
+                result.append(convertStopJson(stopJson))
+              }
             }
           }
         }

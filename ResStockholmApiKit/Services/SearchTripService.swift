@@ -43,12 +43,14 @@ public class SearchTripService {
       return [Trip]()
     }
     
-    if let tripsJson = data["TripList"]["Trip"].array {
-      for tripJson in tripsJson {
-        result.append(convertJsonToTrip(tripJson))
+    if data["TripList"].isExists() {
+      if let tripsJson = data["TripList"]["Trip"].array {
+        for tripJson in tripsJson {
+          result.append(convertJsonToTrip(tripJson))
+        }
+      } else {
+        result.append(convertJsonToTrip(data["TripList"]["Trip"]))
       }
-    } else {
-      result.append(convertJsonToTrip(data["TripList"]["Trip"]))
     }
     
     return result
@@ -85,7 +87,7 @@ public class SearchTripService {
         for segmentJson in segmentsArr {
           if segmentsJson.isExists() {
             let segment = convertJsonToTripSegment(segmentJson)
-            tripSegments.append(segment)            
+            tripSegments.append(segment)
           }
         }
       } else {

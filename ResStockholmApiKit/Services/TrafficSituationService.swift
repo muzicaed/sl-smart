@@ -24,6 +24,7 @@ public class TrafficSituationService {
             callback(data: situations, error: SLNetworkError.NoDataFound)
             return
           }
+          
           situations = self.convertJsonResponse(data)
         }
         callback(data: situations, error: resTuple.error)
@@ -40,12 +41,13 @@ public class TrafficSituationService {
       return [SituationGroup]()
     }
     
-    if let groupsJson = data["ResponseData"]["TrafficTypes"].array {
-      for groupJson in groupsJson {
-        result.append(convertJsonToGroup(groupJson))
+    if data["ResponseData"].isExists() {
+      if let groupsJson = data["ResponseData"]["TrafficTypes"].array {
+        for groupJson in groupsJson {
+          result.append(convertJsonToGroup(groupJson))
+        }
       }
     }
-    
     return result
   }
   

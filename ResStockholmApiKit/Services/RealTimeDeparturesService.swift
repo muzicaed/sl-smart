@@ -27,8 +27,10 @@ public class RealTimeDeparturesService {
           }
           
           let jsonData = JSON(data: d)
-          let result = convertJson(jsonData["ResponseData"])
-          callback(data: result, error: error)
+          if jsonData["ResponseData"].isExists() {
+            let result = convertJson(jsonData["ResponseData"])
+            callback(data: result, error: error)
+          }
           return
         }
         
