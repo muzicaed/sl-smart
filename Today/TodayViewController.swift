@@ -30,7 +30,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    print("View did load")
     MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
     self.preferredContentSize = CGSizeMake(320, 160)
     let gesture = UITapGestureRecognizer(target: self, action: Selector("onTap"))
@@ -39,7 +38,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   
   override func viewDidAppear(animated: Bool) {
     super.viewDidDisappear(animated)
-    print("View did appear")
     loadTripData(nil)
   }
   
@@ -48,7 +46,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    */
   override func viewDidDisappear(animated: Bool) {
     super.viewDidDisappear(animated)
-    print("View did disappear")
     stopRefreshTimmer()
   }
   
@@ -57,7 +54,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * OS Controlled.
    */
   func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
-    print("widgetPerformUpdateWithCompletionHandler")
     completionHandler(NCUpdateResult.NoData)
   }
   
@@ -65,7 +61,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * User tap widget
    */
   func onTap() {
-    print("Tap")
     extensionContext?.openURL(NSURL(string: "ressmart://")!, completionHandler: nil)
   }
   
@@ -92,7 +87,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   * Loads trip data and updates UI
   */
   private func loadTripData(callback: (() -> Void)?) {
-    print("loadTripData")
     startRefreshTimmer()
     RoutineService.findRoutineTrip({ routineTrips in
       self.bestRoutine = routineTrips.first
@@ -152,7 +146,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * Update widget UI
    */
   func updateUI() {
-    print("Update UI")
     if let bestRoutineTrip = self.bestRoutine, trip = bestRoutineTrip.trips.first {
       self.titleLabel.text = bestRoutineTrip.title
       self.departureStationLabel.text = trip.tripSegments.first?.origin.name
