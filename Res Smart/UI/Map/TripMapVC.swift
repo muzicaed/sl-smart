@@ -266,11 +266,10 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     let allPolyline = MKPolyline(coordinates: &coordinates, count: coordinates.count)
     self.mapView.setVisibleMapRect(
       self.mapView.mapRectThatFits(allPolyline.boundingMapRect),
-      edgePadding: UIEdgeInsetsMake(50, 50, 50, 50),
+      edgePadding: UIEdgeInsets(top: 100, left: 50, bottom: 100, right: 50),
       animated: false)
   }
-  
-  
+    
   /**
    * Find coordinate between two coordinates.
    */
