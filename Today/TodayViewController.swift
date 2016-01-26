@@ -24,8 +24,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   
   var bestRoutine: RoutineTrip?
   var refreshTimmer: NSTimer?
-  var lastUpdated = NSDate(timeIntervalSince1970: 0)
-  var isLoading = false
   
   /**
    * View loaded for the first time.
@@ -34,7 +32,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     super.viewDidLoad()
     print("View did load")
     MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
-    self.preferredContentSize = CGSizeMake(0, 160)
+    self.preferredContentSize = CGSizeMake(320, 160)
     let gesture = UITapGestureRecognizer(target: self, action: Selector("onTap"))
     view.addGestureRecognizer(gesture)
   }
@@ -60,9 +58,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    */
   func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
     print("widgetPerformUpdateWithCompletionHandler")
-    loadTripData() {
-      completionHandler(NCUpdateResult.NewData)
-    }
+    completionHandler(NCUpdateResult.NoData)
   }
   
   /**
@@ -97,30 +93,20 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   */
   private func loadTripData(callback: (() -> Void)?) {
     print("loadTripData")
-    let minSienceUpdate = (lastUpdated.timeIntervalSinceNow / 60)
-    print("Min since: \(minSienceUpdate)")
-    if minSienceUpdate < 5 && !isLoading {
-      startRefreshTimmer()
-      isLoading = true
-      RoutineService.findRoutineTrip({ routineTrips in
-        self.isLoading = false
-        self.lastUpdated = NSDate()
-        self.bestRoutine = routineTrips.first
-        dispatch_async(dispatch_get_main_queue()) {
-          if self.bestRoutine != nil {
-            self.updateUI()
-          }
-          else {
-            self.titleLabel.text = "Hittade inga rutiner."
-          }
+    startRefreshTimmer()
+    RoutineService.findRoutineTrip({ routineTrips in
+      self.bestRoutine = routineTrips.first
+      dispatch_async(dispatch_get_main_queue()) {
+        if self.bestRoutine != nil {
+          self.updateUI()
         }
-        callback?()
-        return
-      })
-    } else {
+        else {
+          self.titleLabel.text = "Hittade inga rutiner."
+        }
+      }
       callback?()
-      self.updateUI()
-    }
+      return
+    })
   }
   
   /**
