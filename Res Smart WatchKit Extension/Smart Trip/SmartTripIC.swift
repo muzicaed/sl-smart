@@ -113,7 +113,7 @@ class SmartTripIC: WKInterfaceController {
         "Kan inte nå din iPhone",
         message: "Kontrollera att din iPhone är i närheten och påslagen.")
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-        NSTimeInterval(30), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
+        NSTimeInterval(10), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
     }
   }
   
@@ -295,6 +295,7 @@ class SmartTripIC: WKInterfaceController {
    * Displays an error
    */
   func displayError(title: String, message: String?) {
+    isLoading = false
     let okAction = WKAlertAction(title: "Försök igen", style: .Default, handler: {})
     presentAlertControllerWithTitle(title,
       message: message, preferredStyle: .Alert, actions: [okAction])
