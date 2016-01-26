@@ -94,6 +94,7 @@
 		1899F2691C4B9C9200534587 /* RoutePolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2681C4B9C9200534587 /* RoutePolyline.swift */; };
 		1899F26B1C4BBE7800534587 /* Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F26A1C4BBE7800534587 /* Pins.swift */; };
 		18A5A8D51C57BC54003C4C3B /* DisturbanceTextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5A8D41C57BC54003C4C3B /* DisturbanceTextHelper.swift */; };
+		18A5A8DB1C580E83003C4C3B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A5A8DA1C580E83003C4C3B /* CoreLocation.framework */; };
 		18A824741C0EE866006190C4 /* SmartTripIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E591BFF33FB00C523C9 /* SmartTripIC.swift */; };
 		18A824751C0EE866006190C4 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */; };
 		18A824771C0EE866006190C4 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5F1BFF33FB00C523C9 /* GlanceController.swift */; };
@@ -367,6 +368,7 @@
 		1899F2681C4B9C9200534587 /* RoutePolyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutePolyline.swift; sourceTree = "<group>"; };
 		1899F26A1C4BBE7800534587 /* Pins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pins.swift; sourceTree = "<group>"; };
 		18A5A8D41C57BC54003C4C3B /* DisturbanceTextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisturbanceTextHelper.swift; sourceTree = "<group>"; };
+		18A5A8DA1C580E83003C4C3B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ResStockholmApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A9E8491C18993B008F97C8 /* ResStockholmApiKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResStockholmApiKit.h; sourceTree = "<group>"; };
 		18A9E84B1C18993B008F97C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A5A8DB1C580E83003C4C3B /* CoreLocation.framework in Frameworks */,
 				1818B2781C405D5B004E3CA3 /* ResStockholmApiKit.framework in Frameworks */,
 				1818B2671C404FE0004E3CA3 /* NotificationCenter.framework in Frameworks */,
 			);
@@ -553,6 +556,7 @@
 		188B80431C175D9600E7D90C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18A5A8DA1C580E83003C4C3B /* CoreLocation.framework */,
 				188B80441C175D9600E7D90C /* NotificationCenter.framework */,
 			);
 			name = Frameworks;

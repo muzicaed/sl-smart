@@ -36,13 +36,13 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
    * Request a force updat of current location.
    */
   public func requestLocationUpdate(callback: ((location: CLLocation) -> ())?) {
+    locationManager.requestLocation()    
     if let location = currentLocation {
       callback?(location: location)
       self.callback = nil
       return
     }
     
-    locationManager.requestLocation()
     self.callback = callback
   }
   

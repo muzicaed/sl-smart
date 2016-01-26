@@ -24,6 +24,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   
   var bestRoutine: RoutineTrip?
   var refreshTimmer: NSTimer?
+  var isLoading = false
   
   /**
    * View loaded for the first time.
@@ -31,9 +32,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   override func viewDidLoad() {
     super.viewDidLoad()
     print("View did load")
+    MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
     self.preferredContentSize = CGSizeMake(0, 160)
     let gesture = UITapGestureRecognizer(target: self, action: Selector("onTap"))
     view.addGestureRecognizer(gesture)
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    loadTripData(nil)    
   }
   
   /**
@@ -88,18 +95,27 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   */
   private func loadTripData(callback: (() -> Void)?) {
     startRefreshTimmer()
-    RoutineService.findRoutineTrip({ routineTrips in
-      self.bestRoutine = routineTrips.first
-      if self.bestRoutine != nil {
+    if !isLoading {
+      self.isLoading = true
+      RoutineService.findRoutineTrip({ routineTrips in
+        self.isLoading = false
+        self.bestRoutine = routineTrips.first
         dispatch_async(dispatch_get_main_queue()) {
-          self.updateUI()
+          if self.bestRoutine != nil {
+            
+            self.updateUI()
+          }
+          else {
+            self.titleLabel.text = "Hittade inga rutiner."
+          }
         }
-      }
-      else {
-        self.titleLabel.text = "Hittade inga rutiner."
-      }
+        callback?()
+      })
+    } else {
+      self.isLoading = false
+      self.updateUI()
       callback?()
-    })
+    }
   }
   
   /**
