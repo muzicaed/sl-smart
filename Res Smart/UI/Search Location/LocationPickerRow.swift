@@ -17,19 +17,24 @@ class LocationPickerRow: UITableViewCell {
   @IBOutlet var destinationStackView: UIStackView!
   @IBOutlet var switchImage: UIView!
   
+  @IBOutlet var originView: UIView!
+  @IBOutlet var destinationView: UIView!
+  
   var delegate: PickLocationResponder?
   
   /**
    * Prepares the tap gestures.
    */
   func prepareGestures() {
-    let originGesture = UITapGestureRecognizer(
-      target: self, action: Selector("onOriginTap"))
-    originStackView.gestureRecognizers = [originGesture]
+    let originTouchGesture = UILongPressGestureRecognizer(
+      target: self, action: Selector("onOriginTouchStart:"))
+    originTouchGesture.minimumPressDuration = 0.001
+    originStackView.gestureRecognizers = [originTouchGesture]
     
-    let destinationGesture = UITapGestureRecognizer(
-      target: self, action: Selector("onDestinationTap"))
-    destinationStackView.gestureRecognizers = [destinationGesture]
+    let destinationTouchGesture = UILongPressGestureRecognizer(
+      target: self, action: Selector("onDestinationTouchStart:"))
+    destinationTouchGesture.minimumPressDuration = 0.001
+    destinationStackView.gestureRecognizers = [destinationTouchGesture]
     
     let switchGesture = UITapGestureRecognizer(
       target: self, action: Selector("onSwitchTap"))
@@ -37,20 +42,35 @@ class LocationPickerRow: UITableViewCell {
   }
   
   /**
-   * On origin tap
+   * On origin touch
    */
-  func onOriginTap() {    
-    if let del = delegate {
-      del.pickLocation(true)
+  func onOriginTouchStart(gesture: UILongPressGestureRecognizer) {
+    if gesture.state == .Began {
+      originView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+    } else if gesture.state == .Ended {
+      UIView.animateWithDuration(0.2, animations: {
+        self.originView.backgroundColor = UIColor.clearColor()
+      })
+      originView.backgroundColor = UIColor.clearColor()
+      if let del = delegate {
+        del.pickLocation(true)
+      }
     }
   }
   
   /**
-   * On destination tap
+   * On destination touch
    */
-  func onDestinationTap() {
-    if let del = delegate {
-      del.pickLocation(false)
+  func onDestinationTouchStart(gesture: UILongPressGestureRecognizer) {
+    if gesture.state == .Began {
+      destinationView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+    } else if gesture.state == .Ended {
+      UIView.animateWithDuration(0.2, animations: {
+        self.destinationView.backgroundColor = UIColor.clearColor()
+      })
+      if let del = delegate {
+        del.pickLocation(false)
+      }
     }
   }
   
