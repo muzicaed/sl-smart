@@ -61,7 +61,7 @@ class TripsIC: WKInterfaceController {
    */
   func checkOldData() -> Bool {
     let diffMin = Int((NSDate().timeIntervalSince1970 - wasLoadedDate.timeIntervalSince1970) / 60)
-    return diffMin > 3
+    return diffMin > 2
   }
   
   /**

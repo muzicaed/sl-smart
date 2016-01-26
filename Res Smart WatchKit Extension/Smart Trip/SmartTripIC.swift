@@ -40,7 +40,7 @@ class SmartTripIC: WKInterfaceController {
   
   let session = WCSession.defaultSession()
   let notificationCenter = NSNotificationCenter.defaultCenter()
-  let ReloadRateMinutes = 8
+  let ReloadRateMinutes = 3
   
   var icons = [WKInterfaceImage]()
   var iconLables = [WKInterfaceLabel]()
@@ -109,8 +109,13 @@ class SmartTripIC: WKInterfaceController {
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
         NSTimeInterval(10), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
     } else {
+      displayError(
+        "Kan inte nå din iPhone",
+        message: "Kontrollera att din iPhone är i närheten och påslagen.")
+      /*
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
         NSTimeInterval(1.5), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
+      */
     }
   }
   
