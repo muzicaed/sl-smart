@@ -16,6 +16,7 @@ class TripDetailsSegmentCell: UITableViewCell {
   @IBOutlet weak var lineLabel: UILabel!
   @IBOutlet weak var directionLabel: UILabel!
   @IBOutlet weak var arrowLabel: UILabel!
+  @IBOutlet weak var warningLabel: UILabel!
   
   /**
    * Set cell data.
@@ -27,9 +28,15 @@ class TripDetailsSegmentCell: UITableViewCell {
       tripTypeIcon.image = UIImage(named: lineData.icon)
       lineLabel.text = lineData.long
       directionLabel.text = TripHelper.friendlyTripSegmentDesc(segment)
+      warningLabel.text = segment.rtuMessages
       
+      if warningLabel.text == nil {
+        warningLabel.hidden = true
+      }
+            
       if segment.type == .Walk {
         lineLabel.hidden = true
+        warningLabel.hidden = true
       }
       updateStops(visual)
   }

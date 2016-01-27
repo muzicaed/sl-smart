@@ -19,7 +19,7 @@ public class TripHelper {
       return "Gå \(segment.distance!) meter"
     }
     
-    return "Mot \(segment.directionText!)"
+    return "Mot \(segment.directionText!.capitalizedString)"
   }
   
   /**

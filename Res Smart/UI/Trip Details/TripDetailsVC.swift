@@ -30,6 +30,9 @@ class TripDetailsVC: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 60
+    tableView.separatorStyle = .None
     view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     prepareHeader()
@@ -88,7 +91,7 @@ class TripDetailsVC: UITableViewController {
         if indexPath.row == 0 {
           return 44
         } else if indexPath.row == 1 {
-          return 60
+          return -1
         }
       } else if indexPath.section == trip.tripSegments.count {
         return 44
@@ -97,7 +100,7 @@ class TripDetailsVC: UITableViewController {
       if indexPath.row == 0 {
         return 60
       } else if indexPath.row == 1 {
-        return 60
+        return -1
       }
       return 25
   }
