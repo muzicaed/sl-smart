@@ -52,6 +52,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       vc.delegate = self
       vc.searchOnlyForStations = false
       vc.allowCurrentPosition = true
+      vc.allowNearbyStations = true
       searchLocationType = "Origin"
       
     } else if segue.identifier == "SearchDestinationLocation" {

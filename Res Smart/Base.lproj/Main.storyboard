@@ -1204,13 +1204,12 @@
                             <outlet property="delegate" destination="WJw-HK-J3L" id="SOb-Nq-ThR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Välj station" id="pj9-MT-dHe">
-                        <barButtonItem key="backBarButtonItem" title="Realtid" id="zlM-y9-B32"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Välj station" id="pj9-MT-dHe"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="yht-XJ-QLo" id="NMx-gN-VTT"/>
                         <segue destination="rrp-UG-kjR" kind="unwind" identifier="unwindToStationSearchParent" unwindAction="unwindToStationSearchParent:" id="6DK-tK-WGl"/>
                         <segue destination="Tmy-8K-Wz5" kind="show" identifier="showRealTime" id="rzj-uS-OIZ"/>
+                        <segue destination="Se4-Xu-rNz" kind="show" identifier="ShowNearbyStations" id="Bes-mC-L6l"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U7o-bb-YDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1233,6 +1232,74 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3251" y="1337"/>
+        </scene>
+        <!--Nearby stations-->
+        <scene sceneID="NKx-Ik-I2t">
+            <objects>
+                <tableViewController title="Närliggande hållplatser" id="Se4-Xu-rNz" userLabel="Nearby stations" customClass="NearbyStationsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YJ5-dV-3UG">
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NearbyStationRow" textLabel="hma-gB-jL6" detailTextLabel="86g-mI-a0z" imageView="3fN-CT-qL9" style="IBUITableViewCellStyleSubtitle" id="iZu-bA-nNW">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iZu-bA-nNW" id="bN1-1J-865">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Centralen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hma-gB-jL6">
+                                            <rect key="frame" x="55" y="6" width="70.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="station-icon" id="3fN-CT-qL9">
+                                            <rect key="frame" x="15" y="9" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="86g-mI-a0z">
+                                            <rect key="frame" x="55" y="25.5" width="40.5" height="13.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCell" rowHeight="120" id="BNF-M1-cOi">
+                                <rect key="frame" x="0.0" y="72" width="414" height="120"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BNF-M1-cOi" id="FRP-8N-1cu">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="119.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LJ6-Ig-4e4">
+                                            <rect key="frame" x="189" y="41.5" width="37" height="37"/>
+                                            <color key="color" white="0.33333333329999998" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="LJ6-Ig-4e4" firstAttribute="centerX" secondItem="FRP-8N-1cu" secondAttribute="centerX" id="7Hh-jY-F0K"/>
+                                        <constraint firstItem="LJ6-Ig-4e4" firstAttribute="centerY" secondItem="FRP-8N-1cu" secondAttribute="centerY" id="KAk-Ma-9FX"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Se4-Xu-rNz" id="5Wo-nG-dET"/>
+                            <outlet property="delegate" destination="Se4-Xu-rNz" id="eLY-UT-EGf"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Närliggande" id="Qq2-MD-87J"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZGM-T5-odS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4181" y="1337"/>
         </scene>
         <!--Travel Types-->
         <scene sceneID="6nv-mG-FjN">

@@ -38,21 +38,29 @@ public class LocationSearchService {
    */
   public static func searchNearby(
     location: CLLocation,
-    callback: (data: [(id: String, dist: Int)], error: SLNetworkError?) -> Void) {
+    callback: (data: [(location: Location, dist: Int)], error: SLNetworkError?) -> Void) {
       nearbyApi.search(location) { resTuple in
-        var result = [(id: String, dist: Int)]()
+        var result = [(location: Location, dist: Int)]()
         if let resData = resTuple.data {
           let data = JSON(data: resData)
           
           if let locationJson = data["LocationList"]["StopLocation"].array {
             for locationJson in locationJson {
               let id = locationJson["id"].string!.stringByReplacingOccurrencesOfString("30010", withString: "")
-              let res = (id: id, dist: Int(locationJson["dist"].string!)!)
+              let location = Location(
+                id: id, name: locationJson["name"].string!, type: "ST",
+                lat: locationJson["lat"].string!, lon: locationJson["lon"].string!)
+              
+              let res = (location: location, dist: Int(locationJson["dist"].string!)!)
               result.append(res)
             }
           } else if let locationJson = data["LocationList"]["StopLocation"].object as? JSON {
             let id = locationJson["id"].string!.stringByReplacingOccurrencesOfString("30010", withString: "")
-            let res = (id: id, dist: Int(locationJson["dist"].string!)!)
+            let location = Location(
+              id: id, name: locationJson["name"].string!, type: "ST",
+              lat: locationJson["lat"].string!, lon: locationJson["lon"].string!)
+            
+            let res = (location: location, dist: Int(locationJson["dist"].string!)!)
             result.append(res)
           }
         }

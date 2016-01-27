@@ -25,7 +25,7 @@ public class RoutineService {
         }
         
         let allRoutineTrips = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
-        scoreRoutineTrips(allRoutineTrips, lcations: resTuple.data)
+        scoreRoutineTrips(allRoutineTrips, locations: resTuple.data)
         createPrioList(allRoutineTrips, callback: callback)
       }
     }
@@ -37,14 +37,14 @@ public class RoutineService {
   * Calcualtes and assinges search score
   * for the found routine trips.
   */
-  private static func scoreRoutineTrips(routineTrips: [RoutineTrip], lcations: [(id: String, dist: Int)]) {
+  private static func scoreRoutineTrips(routineTrips: [RoutineTrip], locations: [(location: Location, dist: Int)]) {
     let todayTimeTuple = createTimeTuple()
     
     for trip in routineTrips {
       //print("")
       //print("---------------------------------")
       //print("\(trip.title!)")
-      var multiplier = multiplierBasedOnProximityToLocation(trip, locations: lcations)
+      var multiplier = multiplierBasedOnProximityToLocation(trip, locations: locations)
       multiplier += multiplierBasedOnProximityToScorePostLocation(trip)
       trip.score = scoreBasedOnRoutineSchedule(trip, today: todayTimeTuple)
       multiplier = (multiplier == 0) ? 1 : multiplier
@@ -101,11 +101,11 @@ public class RoutineService {
    * Score multiplier based on proximity to location.
    */
   static private func multiplierBasedOnProximityToLocation(
-    trip: RoutineTrip, locations: [(id: String, dist: Int)]) -> Float {
+    trip: RoutineTrip, locations: [(location: Location, dist: Int)]) -> Float {
       
       if trip.criterions.origin?.type == LocationType.Station {
         for location in locations {
-          if trip.criterions.origin!.siteId == location.id {
+          if trip.criterions.origin!.siteId == location.location.siteId {
             return calcMultiplierBasedOnProximityToLocation(location.dist)
           }
         }

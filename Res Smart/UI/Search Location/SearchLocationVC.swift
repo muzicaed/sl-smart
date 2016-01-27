@@ -23,6 +23,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   var noResults = false
   var isDisplayingSearchResult = false
   var allowCurrentPosition = false
+  var allowNearbyStations = true
   var lastCount = 0
   var isLocationForRealTimeSearch = false
   
@@ -40,6 +41,12 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     prepareSearchController()
     tableView.tableHeaderView = searchController!.searchBar
     tableView.tableFooterView = UIView()
+    
+    if isLocationForRealTimeSearch {
+      let newBackButton = UIBarButtonItem(title: "Realtid",
+        style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+      self.navigationItem.backBarButtonItem = newBackButton
+    }
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -72,8 +79,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   * Number of section
   */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    if allowCurrentPosition && !isDisplayingSearchResult && !noResults {
-      return 2
+    if !isDisplayingSearchResult && !noResults {
+      return (allowCurrentPosition || allowNearbyStations) ? 2 : 1
     }
     return 1
   }
@@ -103,8 +110,12 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
       if noResults {
         return 1
       } else if !isDisplayingSearchResult {
-        if section == 0 && allowCurrentPosition {
-          return 1
+        if section == 0 {
+          var count = 0
+          count += (allowCurrentPosition) ? 1 : 0
+          count += (allowNearbyStations) ? 1 : 0
+          print("Section count \(count)")
+          return count
         }
         return latestLocations.count
       }
@@ -122,7 +133,20 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
           forIndexPath: indexPath)
         return cell
       } else if !isDisplayingSearchResult {
-        if allowCurrentPosition && indexPath.section == 0 {
+        if indexPath.section == 0 {
+          if allowCurrentPosition && allowNearbyStations {
+            if indexPath.row == 0 {
+              return createCurrentLocationCell(indexPath)
+            } else if indexPath.row == 1 {
+              return createNearbyStationsCell(indexPath)
+            }
+          } else if (allowCurrentPosition || allowNearbyStations) && indexPath.row == 0 {
+            if allowCurrentPosition {
+              return createCurrentLocationCell(indexPath)
+            } else {
+              return createNearbyStationsCell(indexPath)
+            }
+          }
           return createCurrentLocationCell(indexPath)
         }
         let location = latestLocations[indexPath.row]
@@ -138,6 +162,14 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    */
   override func tableView(tableView: UITableView,
     didSelectRowAtIndexPath indexPath: NSIndexPath) {
+      
+      if allowNearbyStations && indexPath.section == 0 {
+        if (allowCurrentPosition && indexPath.row == 1) ||
+          (!allowCurrentPosition && indexPath.row == 0) {
+            performSegueWithIdentifier("ShowNearbyStations", sender: self)
+            return
+        }
+      }
       
       selectLocation(indexPath)
       if let loc = selectedLocation {
@@ -175,7 +207,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    * Executes a search
    */
   func searchLocation() {
-    
     if let query = searchController!.searchBar.text {
       if query.characters.count > 0 {
         self.noResults = false
@@ -274,6 +305,22 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   }
   
   /**
+   * Create nearby stations cell.
+   */
+  private func createNearbyStationsCell(indexPath: NSIndexPath) -> UITableViewCell {
+    
+    let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
+      forIndexPath: indexPath)
+    
+    cell.textLabel?.text = "Närliggande hållplatser"
+    cell.detailTextLabel?.text = nil
+    cell.imageView?.image = UIImage(named: "current-location-icon")
+    cell.imageView?.alpha = 0.4
+    cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+    return cell
+  }
+  
+  /**
    * Show a network error alert
    */
   private func showNetworkErrorAlert() {
@@ -321,7 +368,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     tableView.beginUpdates()
     if !isDisplayingSearchResult {
       isDisplayingSearchResult = true
-      if allowCurrentPosition {
+      if allowCurrentPosition || allowNearbyStations {
         tableView.deleteSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
       }
     }
