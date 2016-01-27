@@ -39,13 +39,14 @@ class GlanceController: SmartTripIC {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
       let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
       let lines = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
+      let warnings = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["war"] as! [Bool]
       
       updateDepatureUI()
       subTitleLabel.setText(bestRoutine["tit"] as? String)
       originLabel.setText(bestRoutine["ori"] as? String)
       destinationLabel.setText(bestRoutine["des"] as? String)
       departureLabel.setText(currentDepartureText)
-      createTripIcons(icons, lines: lines)
+      createTripIcons(icons, lines: lines, warnings: warnings)
     }
   }
   

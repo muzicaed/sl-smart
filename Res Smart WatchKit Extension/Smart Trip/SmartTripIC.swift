@@ -208,13 +208,14 @@ class SmartTripIC: WKInterfaceController {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
       let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
       let lines = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
+      let warnings = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["war"] as! [Bool]
       
       updateDepatureUI()
       titleLabel.setText(bestRoutine["tit"] as? String)
       originLabel.setText(bestRoutine["ori"] as? String)
       destinationLabel.setText(bestRoutine["des"] as? String)
       
-      createTripIcons(icons, lines: lines)
+      createTripIcons(icons, lines: lines, warnings: warnings)
       updateOtherTable(data["other"] as! [Dictionary<String, AnyObject>])
     }
   }
@@ -248,7 +249,7 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Creates trip icons
    */
-  func createTripIcons(iconNames: [String], lines: [String]) {
+  func createTripIcons(iconNames: [String], lines: [String], warnings: [Bool]) {
     let nameCount = iconNames.count
     for (index, iconImage) in icons.enumerate() {
       if index < nameCount {
@@ -256,6 +257,10 @@ class SmartTripIC: WKInterfaceController {
         iconImage.setHidden(false)
         iconLables[index].setHidden(false)
         iconLables[index].setText(lines[index])
+        if warnings[index] {
+          iconLables[index].setTextColor(UIColor.redColor())
+          iconLables[index].setText(lines[index] + "!")
+        }
         iconGroups[index].setHidden(false)
       } else {
         iconImage.setHidden(true)

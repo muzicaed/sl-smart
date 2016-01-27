@@ -48,7 +48,10 @@ class TripRow: NSObject {
     scheduleLabel.setText("\(depDateString) → \(DateUtils.dateAsTimeString(arrivalDate))")
     travelTimeLabel.setText("Restid: \(humanTripDuration)")
     handleTravelDateLabel(data["originTime"] as! String)
-    createTripIcons(data["icn"] as! [String], lines: data["lns"] as! [String])
+    createTripIcons(
+      data["icn"] as! [String],
+      lines: data["lns"] as! [String],
+      warnings: data["war"] as! [Bool])
   }
   
   // MARK: Private
@@ -82,7 +85,7 @@ class TripRow: NSObject {
   /**
    * Creates trip icons
    */
-  private func createTripIcons(iconNames: [String], lines: [String]) {
+  private func createTripIcons(iconNames: [String], lines: [String], warnings: [Bool]) {
     prepareIcons()
     let nameCount = iconNames.count
     for (index, iconImage) in icons.enumerate() {
@@ -91,6 +94,10 @@ class TripRow: NSObject {
         iconImage.setHidden(false)
         iconLables[index].setHidden(false)
         iconLables[index].setText(lines[index])
+        if warnings[index] {
+          iconLables[index].setTextColor(UIColor.redColor())
+          iconLables[index].setText(lines[index] + "!")
+        }
         iconGroups[index].setHidden(false)
       } else {
         iconImage.setHidden(true)

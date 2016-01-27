@@ -112,6 +112,11 @@ public class SearchTripService {
     let distString = (segmentJson["dist"].string != nil) ? segmentJson["dist"].string! : ""
     let dateTimeTuple = extractTimeDate(segmentJson)
     
+    var rtuMessages: String? = nil
+    if segmentJson["RTUMessages"].isExists() {
+      rtuMessages = extractRtuMessages(segmentJson["RTUMessages"])
+    }
+    
     return TripSegment(
       index: Int(segmentJson["idx"].string!)!,
       name: segmentJson["name"].string!,
@@ -124,7 +129,8 @@ public class SearchTripService {
       arrivalDate: dateTimeTuple.arrDate,
       distance: Int(distString), isRealtime: dateTimeTuple.isRealtime,
       journyRef: segmentJson["JourneyDetailRef"]["ref"].string,
-      geometryRef: segmentJson["GeometryRef"]["ref"].string!)
+      geometryRef: segmentJson["GeometryRef"]["ref"].string!,
+      rtuMessages: rtuMessages, notes: "")
   }
   
   /**
@@ -187,4 +193,19 @@ public class SearchTripService {
       return (isRealtime, depDate, depTime, arrDate, arrTime)
   }
   
+  /**
+   * Extract RTU Messages (trip warnings).
+   */
+  private static func extractRtuMessages(data: JSON) -> String {
+    var result = ""
+    if let messages = data.array {
+      for mess in messages {
+        result += " " + mess["$"].string!
+      }
+    } else {
+      result = data["RTUMessage"]["$"].string!
+    }
+    
+    return result
+  }
 }

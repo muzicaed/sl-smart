@@ -95,10 +95,18 @@ class TripCell: UITableViewCell {
             origin: CGPointMake(0, 0),
             size: CGSizeMake(23, 30)))
         wrapperView.frame.origin = CGPointMake((23 * CGFloat(count)), 0)
-        
+
+        wrapperView.clipsToBounds = false
         wrapperView.addSubview(iconView)
         wrapperView.addSubview(label)
-        wrapperView.clipsToBounds = false
+        
+        if segment.rtuMessages != nil {
+          let warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
+          warnIconView.frame.size = CGSizeMake(10, 10)
+          warnIconView.center = CGPointMake((23 / 2) + 5, 4)
+          wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
+        }
+        
         iconAreaView.addSubview(wrapperView)
         count++
       }

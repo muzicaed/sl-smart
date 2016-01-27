@@ -37,16 +37,24 @@ public class Trip: NSObject, NSCopying {
   public func watchTransferData() -> Dictionary<String, AnyObject> {
     var icons = [String]()
     var lines = [String]()
+    var warnings = [Bool]()
     for segment in tripSegments {
       let data = TripHelper.friendlyLineData(segment)
       icons.append(data.icon)
       lines.append(data.short)
+      
+      var isWarning = false
+      if segment.rtuMessages != nil {
+        isWarning = true
+      }
+      warnings.append(isWarning)
     }
     
     return [
       "dur": durationMin,
       "icn": icons,
       "lns": lines,
+      "war": warnings,
       "origin": tripSegments.first!.origin.name,
       "destination": tripSegments.last!.destination.name,
       "originTime": DateUtils.dateAsDateAndTimeString(tripSegments.first!.departureDateTime),
