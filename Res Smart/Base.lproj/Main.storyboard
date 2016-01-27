@@ -1270,25 +1270,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCell" rowHeight="120" id="BNF-M1-cOi">
-                                <rect key="frame" x="0.0" y="72" width="414" height="120"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BNF-M1-cOi" id="FRP-8N-1cu">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="119.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LJ6-Ig-4e4">
-                                            <rect key="frame" x="189" y="41.5" width="37" height="37"/>
-                                            <color key="color" white="0.33333333329999998" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
-                                        </activityIndicatorView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="LJ6-Ig-4e4" firstAttribute="centerX" secondItem="FRP-8N-1cu" secondAttribute="centerX" id="7Hh-jY-F0K"/>
-                                        <constraint firstItem="LJ6-Ig-4e4" firstAttribute="centerY" secondItem="FRP-8N-1cu" secondAttribute="centerY" id="KAk-Ma-9FX"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Se4-Xu-rNz" id="5Wo-nG-dET"/>
@@ -1297,11 +1278,27 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Närliggande" id="Qq2-MD-87J"/>
                     <connections>
+                        <outlet property="spinnerView" destination="lCK-tC-a16" id="3eb-zG-tPk"/>
                         <segue destination="Tmy-8K-Wz5" kind="show" identifier="showRealTime" id="kst-2L-81y"/>
                         <segue destination="HfH-GM-1lM" kind="unwind" identifier="unwindToStationSearchParent" unwindAction="unwindToStationSearchParent:" id="14l-fE-P4e"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZGM-T5-odS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="lCK-tC-a16">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LYX-8h-BqG">
+                            <rect key="frame" x="188.5" y="3.5" width="37" height="37"/>
+                            <color key="color" white="0.33333333329999998" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="LYX-8h-BqG" firstAttribute="centerY" secondItem="lCK-tC-a16" secondAttribute="centerY" id="CK4-C6-gRf"/>
+                        <constraint firstItem="LYX-8h-BqG" firstAttribute="centerX" secondItem="lCK-tC-a16" secondAttribute="centerX" id="jDH-KJ-D2D"/>
+                    </constraints>
+                </view>
                 <exit id="HfH-GM-1lM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4181" y="1337"/>
@@ -1477,7 +1474,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hittade ingen realtids information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHZ-HP-yxN">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hittade inga avgångar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHZ-HP-yxN">
                                             <rect key="frame" x="8" y="8" width="398" height="27.5"/>
                                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1495,37 +1492,6 @@
                                     <outlet property="infoLabel" destination="eHZ-HP-yxN" id="8S1-So-auA"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="LoadingRow" rowHeight="120" id="FfH-fh-ueB">
-                                <rect key="frame" x="0.0" y="241.5" width="414" height="120"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FfH-fh-ueB" id="QKi-E7-GbU">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="119.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PXh-zz-ZSQ">
-                                            <rect key="frame" x="188" y="41" width="37" height="37"/>
-                                            <subviews>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="GSJ-ec-u6R">
-                                                    <rect key="frame" x="-0.5" y="-44" width="37" height="37"/>
-                                                    <color key="color" white="0.33333333329999998" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
-                                                </activityIndicatorView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstItem="GSJ-ec-u6R" firstAttribute="centerX" secondItem="PXh-zz-ZSQ" secondAttribute="centerX" id="8W0-38-y0J"/>
-                                                <constraint firstAttribute="height" constant="37" id="NDN-PO-TUr"/>
-                                                <constraint firstAttribute="width" constant="37" id="nmx-TU-jWd"/>
-                                                <constraint firstItem="GSJ-ec-u6R" firstAttribute="top" secondItem="PXh-zz-ZSQ" secondAttribute="top" constant="-44" id="w7V-Ii-DZd"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="PXh-zz-ZSQ" firstAttribute="centerX" secondItem="QKi-E7-GbU" secondAttribute="centerX" id="Lp4-8o-npR"/>
-                                        <constraint firstItem="PXh-zz-ZSQ" firstAttribute="centerY" secondItem="QKi-E7-GbU" secondAttribute="centerY" id="TEp-RH-yEH"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Tmy-8K-Wz5" id="HYx-uy-yeA"/>
@@ -1534,9 +1500,25 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Nästa avgång" id="e06-cF-GAT"/>
                     <connections>
+                        <outlet property="spinnerView" destination="tRg-Z1-gW5" id="eAg-92-fmE"/>
                         <outlet property="topView" destination="PP4-K6-3gD" id="1iD-4U-2qR"/>
                     </connections>
                 </tableViewController>
+                <view contentMode="scaleToFill" id="tRg-Z1-gW5">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xsk-Lk-MbT">
+                            <rect key="frame" x="188.5" y="3.5" width="37" height="37"/>
+                            <color key="color" white="0.33333333329999998" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="xsk-Lk-MbT" firstAttribute="centerY" secondItem="tRg-Z1-gW5" secondAttribute="centerY" id="Pyt-4S-Sax"/>
+                        <constraint firstItem="xsk-Lk-MbT" firstAttribute="centerX" secondItem="tRg-Z1-gW5" secondAttribute="centerX" id="f4Z-Xk-NF9"/>
+                    </constraints>
+                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0X-4s-aCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3251" y="3183"/>

@@ -13,6 +13,7 @@ import ResStockholmApiKit
 class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   
   @IBOutlet weak var topView: UIView!
+  @IBOutlet var spinnerView: UIView!
   
   var realTimeDepartures: RealTimeDepartures?
   var isLoading = true
@@ -38,7 +39,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   override func viewDidLoad() {
     tableView.tableFooterView = UIView()
     view.backgroundColor = StyleHelper.sharedInstance.background
-    isLoading = true
+    spinnerView.frame.size = tableView.frame.size
+    spinnerView.frame.origin.y -= 84
+    tableView.addSubview(spinnerView)
+
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive",
       name: UIApplicationDidBecomeActiveNotification, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeInactive",
@@ -104,6 +108,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       if error == nil {
         if let departures = rtDepartures {
           dispatch_async(dispatch_get_main_queue(), {
+            self.spinnerView.removeFromSuperview()
             self.isLoading = false
             self.firstTimeLoad = false
             self.realTimeDepartures = departures
@@ -123,7 +128,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     if isLoading {
-      return 1
+      return 0
     }
     
     return calcSectionCount()
@@ -134,7 +139,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if isLoading {
-      return 1
+      return 0
     }
     
     return calcRowCount(section)
@@ -145,9 +150,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   override func tableView(tableView: UITableView,
     cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      if isLoading {
-        return createLoadingCell(indexPath)
-      } else if indexPath.row == 0  {
+      if indexPath.row == 0  {
         if tabTypesKeys.count == 0 {
           return createNotFoundCell(indexPath)
         }
@@ -284,14 +287,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     
     setRowData(cell, indexPath: indexPath)
     return cell
-  }
-  
-  /**
-   * Create loading cell
-   */
-  private func createLoadingCell(indexPath: NSIndexPath) -> UITableViewCell {
-    return tableView!.dequeueReusableCellWithIdentifier("LoadingRow",
-      forIndexPath: indexPath)
   }
   
   /**

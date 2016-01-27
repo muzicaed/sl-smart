@@ -18,9 +18,15 @@ class NearbyStationsVC: UITableViewController {
   var isLocationForRealTimeSearch = false
   var selectedLocation: Location?
   
+  @IBOutlet weak var spinnerView: UIView!
+  
   override func viewDidLoad() {
     view.backgroundColor = StyleHelper.sharedInstance.background
+    tableView.tableFooterView = UIView(frame: CGRectZero)
     loadLocations()
+    spinnerView.frame.size = tableView.frame.size
+    spinnerView.frame.origin.y -= 84
+    tableView.addSubview(spinnerView)
   }
   
   /**
@@ -41,11 +47,9 @@ class NearbyStationsVC: UITableViewController {
   /**
   * Row count
   */
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if isLoading {
-      return 1
-    }
-    return nearbyLocations.count
+  override func tableView(tableView: UITableView,
+    numberOfRowsInSection section: Int) -> Int {
+      return nearbyLocations.count
   }
   
   /**
@@ -53,11 +57,6 @@ class NearbyStationsVC: UITableViewController {
    */
   override func tableView(tableView: UITableView,
     cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      
-      if isLoading {
-        return tableView.dequeueReusableCellWithIdentifier("LoadingCell",
-          forIndexPath: indexPath)
-      }
       
       let locationTuple = nearbyLocations[indexPath.row]
       let cell = tableView.dequeueReusableCellWithIdentifier("NearbyStationRow",
@@ -71,11 +70,9 @@ class NearbyStationsVC: UITableViewController {
   /**
    * Height for row
    */
-  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    if isLoading {
-      return tableView.bounds.height
-    }
-    return 44
+  override func tableView(tableView: UITableView,
+    heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+      return 44
   }
   
   /**
@@ -92,7 +89,7 @@ class NearbyStationsVC: UITableViewController {
    * User selects row
    */
   override func tableView(tableView: UITableView,
-    didSelectRowAtIndexPath indexPath: NSIndexPath) {      
+    didSelectRowAtIndexPath indexPath: NSIndexPath) {
       selectedLocation = nearbyLocations[indexPath.row].location
       LatestLocationsStore.sharedInstance.addLatestLocation(selectedLocation!)
       if isLocationForRealTimeSearch {
@@ -119,6 +116,7 @@ class NearbyStationsVC: UITableViewController {
         self.nearbyLocations = data
         dispatch_async(dispatch_get_main_queue()) {
           self.isLoading = false
+          self.spinnerView.removeFromSuperview()
           self.tableView.reloadData()
         }
       })
