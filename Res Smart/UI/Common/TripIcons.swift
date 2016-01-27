@@ -29,7 +29,8 @@ class TripIcons {
     "TRAIN-NEUTRAL": UIImage(named: "TRAIN-NEUTRAL"),
     "WALK-NEUTRAL": UIImage(named: "WALK-NEUTRAL"),
     
-    "WARNING-ICON": UIImage(named: "WARNING-ICON")
+    "WARNING-ICON": UIImage(named: "WARNING-ICON"),
+    "INFO-ICON": UIImage(named: "INFO-ICON")
   ]
 }
 

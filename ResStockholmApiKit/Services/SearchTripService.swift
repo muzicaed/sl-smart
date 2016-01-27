@@ -117,6 +117,8 @@ public class SearchTripService {
       rtuMessages = extractRtuMessages(segmentJson["RTUMessages"]["RTUMessage"])
     }
     
+    let isWarning = isDisturbance(rtuMessages)
+    
     return TripSegment(
       index: Int(segmentJson["idx"].string!)!,
       name: segmentJson["name"].string!,
@@ -130,7 +132,7 @@ public class SearchTripService {
       distance: Int(distString), isRealtime: dateTimeTuple.isRealtime,
       journyRef: segmentJson["JourneyDetailRef"]["ref"].string,
       geometryRef: segmentJson["GeometryRef"]["ref"].string!,
-      rtuMessages: rtuMessages, notes: "")
+      rtuMessages: rtuMessages, notes: "", isWarning: isWarning)
   }
   
   /**
@@ -208,5 +210,15 @@ public class SearchTripService {
     }
     
     return result
+  }
+  
+  private static func isDisturbance(text: String?) -> Bool {
+    if let text = text {
+      return (text.lowercaseString.rangeOfString("försen") != nil ||
+        text.lowercaseString.rangeOfString("utebli") != nil ||
+        text.lowercaseString.rangeOfString("flyttad") != nil)
+    }
+    
+    return false
   }
 }

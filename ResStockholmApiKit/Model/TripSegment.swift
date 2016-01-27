@@ -25,6 +25,7 @@ public class TripSegment: NSObject, NSCopying {
   public let geometryRef: String
   public let rtuMessages: String?
   public let notes: String?
+  public let isWarning: Bool
   
   public var stops = [Stop]()
   public var routeLineLocations = [CLLocation]()
@@ -35,7 +36,8 @@ public class TripSegment: NSObject, NSCopying {
     departureTime: String, arrivalTime: String,
     departureDate: String, arrivalDate: String,
     distance: Int?, isRealtime: Bool, journyRef: String?,
-    geometryRef: String, rtuMessages: String?, notes: String?) {
+    geometryRef: String, rtuMessages: String?,
+    notes: String?, isWarning: Bool) {
       
       self.index = index
       self.name = name
@@ -56,6 +58,7 @@ public class TripSegment: NSObject, NSCopying {
       self.geometryRef = geometryRef
       self.rtuMessages = rtuMessages
       self.notes = notes
+      self.isWarning = isWarning
   }
   
   // MARK: NSCopying
@@ -74,7 +77,8 @@ public class TripSegment: NSObject, NSCopying {
       departureDate: DateUtils.dateAsDateString(departureDateTime),
       arrivalDate: DateUtils.dateAsDateString(departureDateTime),
       distance: distance, isRealtime: isRealtime, journyRef: journyRef,
-      geometryRef: geometryRef, rtuMessages: rtuMessages, notes: notes)
+      geometryRef: geometryRef, rtuMessages: rtuMessages,
+      notes: notes, isWarning: isWarning)
 
     return seg
   }

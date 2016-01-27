@@ -33,8 +33,10 @@ class TripDetailsSegmentCell: UITableViewCell {
       
       if warningLabel.text == nil {
         warningLabel.hidden = true
+      } else if !segment.isWarning {
+        warningLabel.textColor = UIColor(red: 39/255, green: 44/255, blue: 211/255, alpha: 1.0)
       }
-            
+      
       if segment.type == .Walk {
         lineLabel.hidden = true
         warningLabel.hidden = true
@@ -50,7 +52,7 @@ class TripDetailsSegmentCell: UITableViewCell {
     print("Update stops")
     arrowLabel.hidden = true
     if visual.hasStops {
-      print("Has stops")      
+      print("Has stops")
       userInteractionEnabled = true
       selectionStyle = .Default
       arrowLabel.hidden = false

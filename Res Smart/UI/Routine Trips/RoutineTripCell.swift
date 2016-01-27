@@ -145,9 +145,13 @@ class RoutineTripCell: UICollectionViewCell {
         wrapperView.addSubview(label)
         
         if segment.rtuMessages != nil {
-          let warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
+          var warnIconView = UIImageView(image: TripIcons.icons["INFO-ICON"]!)
+          if segment.isWarning {
+            warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
+          }
           warnIconView.frame.size = CGSizeMake(10, 10)
           warnIconView.center = CGPointMake((23 / 2) + 5, 4)
+          warnIconView.alpha = 0.8
           wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
         }
         
