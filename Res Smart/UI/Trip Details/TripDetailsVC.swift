@@ -240,7 +240,6 @@ class TripDetailsVC: UITableViewController {
   private func filterStops(stops: [Stop], segment: TripSegment) -> [Stop] {
     var filterStops = [Stop]()
     var foundFirst = false
-    print("Org: " + segment.destination.siteId!)
     for stop in stops {
       if foundFirst && stop.id == segment.destination.siteId! {
         break

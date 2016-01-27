@@ -202,7 +202,6 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       return
     } else {
       let pin = BigPin()
-      print(segment.origin.name)
       pin.coordinate = segment.origin.location.coordinate
       pin.title = segment.origin.name
       pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)

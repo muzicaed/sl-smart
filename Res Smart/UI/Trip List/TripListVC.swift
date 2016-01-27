@@ -105,7 +105,6 @@ class TripListVC: UITableViewController {
    * Refresh collection view.
    */
   func refreshUI() {
-    print("Refresh UI")
     self.tableView?.reloadData()
   }
   

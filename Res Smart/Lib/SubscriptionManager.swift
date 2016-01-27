@@ -87,7 +87,6 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   * Response handler for Products request
   */
   func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
-    print("Got products")
     if response.products.count != 0 {
       for product in response.products {
         products.append(product)
@@ -95,7 +94,6 @@ SKPaymentTransactionObserver, SKRequestDelegate {
       delegate?.recievedProducts(products)
     }
     else {
-      print("ERROR: There are no products.")
       delegate?.subscriptionError(SubscriptionError.NoProductsFound)
     }
   }
@@ -104,7 +102,6 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   
   func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
     
-    print("Updated Transactions")
     for transaction:AnyObject in transactions {
       let trans = transaction as! SKPaymentTransaction
       switch trans.transactionState {

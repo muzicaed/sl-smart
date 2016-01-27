@@ -49,10 +49,8 @@ class TripDetailsSegmentCell: UITableViewCell {
    * Update state based on stops
    */
   func updateStops(visual: (isVisible: Bool, hasStops: Bool)) {
-    print("Update stops")
     arrowLabel.hidden = true
     if visual.hasStops {
-      print("Has stops")
       userInteractionEnabled = true
       selectionStyle = .Default
       arrowLabel.hidden = false
