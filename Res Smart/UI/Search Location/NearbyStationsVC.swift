@@ -12,12 +12,28 @@ import ResStockholmApiKit
 
 class NearbyStationsVC: UITableViewController {
   
+  var delegate: LocationSearchResponder?
   var isLoading = true
   var nearbyLocations = [(location: Location, dist: Int)]()
+  var isLocationForRealTimeSearch = false
+  var selectedLocation: Location?
   
   override func viewDidLoad() {
     view.backgroundColor = StyleHelper.sharedInstance.background
     loadLocations()
+  }
+  
+  /**
+   * Before segue is performed
+   */
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    if segue.identifier == "showRealTime" {
+      if let realTimeVC = segue.destinationViewController as? RealTimeVC {
+        realTimeVC.title = selectedLocation?.name
+        realTimeVC.siteId = Int(selectedLocation!.siteId!)!
+      }
+    }
   }
   
   // MARK: UITableViewController
@@ -70,6 +86,21 @@ class NearbyStationsVC: UITableViewController {
       let bgColorView = UIView()
       bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
       cell.selectedBackgroundView = bgColorView
+  }
+  
+  /**
+   * User selects row
+   */
+  override func tableView(tableView: UITableView,
+    didSelectRowAtIndexPath indexPath: NSIndexPath) {      
+      selectedLocation = nearbyLocations[indexPath.row].location
+      LatestLocationsStore.sharedInstance.addLatestLocation(selectedLocation!)
+      if isLocationForRealTimeSearch {
+        performSegueWithIdentifier("showRealTime", sender: self)
+      } else {
+        performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
+        delegate?.selectedLocationFromSearch(selectedLocation!)
+      }
   }
   
   // MARK: Private

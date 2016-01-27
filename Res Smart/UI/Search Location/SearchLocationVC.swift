@@ -70,6 +70,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
         realTimeVC.title = selectedLocation?.name
         realTimeVC.siteId = Int(selectedLocation!.siteId!)!
       }
+    } else if segue.identifier == "ShowNearbyStations" {
+      if let nearbyVC = segue.destinationViewController as? NearbyStationsVC {
+        nearbyVC.delegate = delegate
+        nearbyVC.isLocationForRealTimeSearch = isLocationForRealTimeSearch
+      }
     }
   }
   

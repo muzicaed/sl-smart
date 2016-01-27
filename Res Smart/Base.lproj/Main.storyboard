@@ -1296,8 +1296,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Närliggande" id="Qq2-MD-87J"/>
+                    <connections>
+                        <segue destination="Tmy-8K-Wz5" kind="show" identifier="showRealTime" id="kst-2L-81y"/>
+                        <segue destination="HfH-GM-1lM" kind="unwind" identifier="unwindToStationSearchParent" unwindAction="unwindToStationSearchParent:" id="14l-fE-P4e"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZGM-T5-odS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="HfH-GM-1lM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4181" y="1337"/>
         </scene>
@@ -4015,9 +4020,10 @@ direkt från din iPhone</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ypq-Up-6Af"/>
         <segue reference="6zU-Tw-atf"/>
-        <segue reference="yy0-ry-irx"/>
         <segue reference="L0K-5H-KeJ"/>
         <segue reference="4rE-Hc-22D"/>
+        <segue reference="kst-2L-81y"/>
     </inferredMetricsTieBreakers>
 </document>
