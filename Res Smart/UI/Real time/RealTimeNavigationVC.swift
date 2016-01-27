@@ -18,6 +18,7 @@ class RealTimeNavigationVC: UINavigationController {
     if let rootVC = viewControllers.first as? SearchLocationVC {
       rootVC.isLocationForRealTimeSearch = true
       rootVC.title = "Avgångar i realtid"
+      rootVC.allowNearbyStations = true
     }
   }
 }

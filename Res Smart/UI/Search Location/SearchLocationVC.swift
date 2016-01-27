@@ -23,7 +23,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   var noResults = false
   var isDisplayingSearchResult = false
   var allowCurrentPosition = false
-  var allowNearbyStations = true
+  var allowNearbyStations = false
   var lastCount = 0
   var isLocationForRealTimeSearch = false
   
@@ -115,7 +115,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
       if noResults {
         return 1
       } else if !isDisplayingSearchResult {
-        if section == 0 {
+        if section == 0 && (allowCurrentPosition || allowNearbyStations) {
           var count = 0
           count += (allowCurrentPosition) ? 1 : 0
           count += (allowNearbyStations) ? 1 : 0
@@ -138,7 +138,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
           forIndexPath: indexPath)
         return cell
       } else if !isDisplayingSearchResult {
-        if indexPath.section == 0 {
+        if indexPath.section == 0 && (allowCurrentPosition || allowNearbyStations) {
           if allowCurrentPosition && allowNearbyStations {
             if indexPath.row == 0 {
               return createCurrentLocationCell(indexPath)
