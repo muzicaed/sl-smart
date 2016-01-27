@@ -32,7 +32,6 @@ class TripDetailsVC: UITableViewController {
     super.viewDidLoad()
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 60
-    tableView.separatorStyle = .None
     view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     prepareHeader()
@@ -212,9 +211,9 @@ class TripDetailsVC: UITableViewController {
       segment.routeLineLocations = [CLLocation]()
       if let ref = segment.journyRef {
         JournyDetailsService.fetchJournyDetails(ref) { stops, error in
+          segment.stops = self.filterStops(stops, segment: segment)
+          self.stopsVisual[index] = (isVisible: false, hasStops: (segment.stops.count > 0))
           dispatch_async(dispatch_get_main_queue()) {
-            segment.stops = self.filterStops(stops, segment: segment)
-            self.stopsVisual[index] = (isVisible: false, hasStops: (segment.stops.count > 0))
             self.tableView.reloadData()
           }
         }
@@ -241,6 +240,7 @@ class TripDetailsVC: UITableViewController {
   private func filterStops(stops: [Stop], segment: TripSegment) -> [Stop] {
     var filterStops = [Stop]()
     var foundFirst = false
+    print("Org: " + segment.destination.siteId!)
     for stop in stops {
       if foundFirst && stop.id == segment.destination.siteId! {
         break

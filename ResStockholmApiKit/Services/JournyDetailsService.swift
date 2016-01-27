@@ -26,7 +26,7 @@ public class JournyDetailsService {
             return
           }
           
-          let jsonData = JSON(data: d)
+          let jsonData = JSON(data: d)          
           if jsonData["JourneyDetail"].isExists() {
             if let stopsJson = jsonData["JourneyDetail"]["Stops"]["Stop"].array {
               for stopJson in stopsJson {

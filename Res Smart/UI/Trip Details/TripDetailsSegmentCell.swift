@@ -17,6 +17,7 @@ class TripDetailsSegmentCell: UITableViewCell {
   @IBOutlet weak var directionLabel: UILabel!
   @IBOutlet weak var arrowLabel: UILabel!
   @IBOutlet weak var warningLabel: UILabel!
+  @IBOutlet weak var segmentIcon: UIImageView!
   
   /**
    * Set cell data.
@@ -39,14 +40,17 @@ class TripDetailsSegmentCell: UITableViewCell {
         warningLabel.hidden = true
       }
       updateStops(visual)
+      segmentIcon.frame.size.height += contentView.bounds.size.height + 1
   }
   
   /**
    * Update state based on stops
    */
   func updateStops(visual: (isVisible: Bool, hasStops: Bool)) {
+    print("Update stops")
     arrowLabel.hidden = true
     if visual.hasStops {
+      print("Has stops")      
       userInteractionEnabled = true
       selectionStyle = .Default
       arrowLabel.hidden = false
