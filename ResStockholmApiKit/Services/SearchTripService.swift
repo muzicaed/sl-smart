@@ -114,7 +114,7 @@ public class SearchTripService {
     
     var rtuMessages: String? = nil
     if segmentJson["RTUMessages"].isExists() {
-      rtuMessages = extractRtuMessages(segmentJson["RTUMessages"])
+      rtuMessages = extractRtuMessages(segmentJson["RTUMessages"]["RTUMessage"])
     }
     
     return TripSegment(
@@ -203,7 +203,7 @@ public class SearchTripService {
         result += " " + mess["$"].string!
       }
     } else {
-      result = data["RTUMessage"]["$"].string!
+      result = data["$"].string!
     }
     
     return result
