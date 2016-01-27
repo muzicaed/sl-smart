@@ -200,8 +200,9 @@ public class SearchTripService {
     var result = ""
     if let messages = data.array {
       for mess in messages {
-        result += " " + mess["$"].string!
+        result += mess["$"].string! + "\n\n"
       }
+      result = result.substringToIndex(result.endIndex.predecessor().predecessor())
     } else {
       result = data["$"].string!
     }

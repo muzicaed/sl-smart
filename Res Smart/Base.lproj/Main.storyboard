@@ -3565,7 +3565,7 @@ direkt från din iPhone</string>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Problem problem problem stora störningar, inte bra just nu måste du vara försiktning. Bla bla bla massor av text." lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="EPv-fd-xKI" userLabel="Warning">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Problem problem problem stora störningar, inte bra just nu måste du vara försiktning. Bla bla bla massor av text." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="EPv-fd-xKI" userLabel="Warning">
                                                             <rect key="frame" x="0.0" y="50" width="250" height="45"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="55" id="oan-bL-Kmc"/>
@@ -3576,6 +3576,7 @@ direkt från din iPhone</string>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="default">
                                                                 <mask key="constraints">
+                                                                    <exclude reference="oan-bL-Kmc"/>
                                                                     <exclude reference="svh-ib-VzW"/>
                                                                 </mask>
                                                             </variation>
@@ -3942,7 +3943,7 @@ direkt från din iPhone</string>
         <image name="change-icon" width="44" height="60"/>
         <image name="destination-icon" width="44" height="44"/>
         <image name="origin-icon" width="44" height="44"/>
-        <image name="segment-time-icon" width="44" height="100"/>
+        <image name="segment-time-icon" width="44" height="60"/>
         <image name="station-icon" width="25" height="25"/>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
