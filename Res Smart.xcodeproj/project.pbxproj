@@ -14,7 +14,6 @@
 		1818B2671C404FE0004E3CA3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188B80441C175D9600E7D90C /* NotificationCenter.framework */; };
 		1818B26A1C404FE0004E3CA3 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818B2691C404FE0004E3CA3 /* TodayViewController.swift */; };
 		1818B26D1C404FE0004E3CA3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1818B26B1C404FE0004E3CA3 /* MainInterface.storyboard */; };
-		1818B2711C404FE0004E3CA3 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1818B2661C404FE0004E3CA3 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1818B2781C405D5B004E3CA3 /* ResStockholmApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; };
 		181BD4161C047AA900651D0F /* RoutineTripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4151C047AA900651D0F /* RoutineTripHeader.swift */; };
 		181CFD051C396FDE004637F9 /* ReceiptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CFD041C396FDE004637F9 /* ReceiptManager.swift */; };
@@ -142,13 +141,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1818B26F1C404FE0004E3CA3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1818B2651C404FE0004E3CA3;
-			remoteInfo = Today;
-		};
 		1818B2761C405D55004E3CA3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
@@ -226,7 +218,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				1818B2711C404FE0004E3CA3 /* Today.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -892,7 +883,6 @@
 			dependencies = (
 				18937E461BFF33FB00C523C9 /* PBXTargetDependency */,
 				18A9E84D1C18993B008F97C8 /* PBXTargetDependency */,
-				1818B2701C404FE0004E3CA3 /* PBXTargetDependency */,
 			);
 			name = "Res Smart";
 			productName = "Res i Sverige";
@@ -1297,11 +1287,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1818B2701C404FE0004E3CA3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1818B2651C404FE0004E3CA3 /* Today */;
-			targetProxy = 1818B26F1C404FE0004E3CA3 /* PBXContainerItemProxy */;
-		};
 		1818B2771C405D55004E3CA3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 18A9E8461C18993B008F97C8 /* ResStockholmApiKit */;
