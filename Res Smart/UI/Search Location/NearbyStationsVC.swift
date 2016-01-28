@@ -62,7 +62,7 @@ class NearbyStationsVC: UITableViewController {
       let cell = tableView.dequeueReusableCellWithIdentifier("NearbyStationRow",
         forIndexPath: indexPath)
       cell.textLabel?.text = "\(locationTuple.location.name)"
-      cell.detailTextLabel?.text = "\(locationTuple.dist) meter bort."
+      cell.detailTextLabel?.text = "ca. \(locationTuple.dist) meter bort."
       cell.imageView?.alpha = 0.4
       return cell
   }
@@ -108,17 +108,18 @@ class NearbyStationsVC: UITableViewController {
   */
   private func loadLocations() {
     if let currentPostion = MyLocationHelper.sharedInstance.currentLocation {
-      LocationSearchService.searchNearby(currentPostion, callback: { (data, error) -> Void in
-        if error != nil {
-          // TODO: HANDLE ERROR!!
-          return
-        }
-        self.nearbyLocations = data
-        dispatch_async(dispatch_get_main_queue()) {
-          self.isLoading = false
-          self.spinnerView.removeFromSuperview()
-          self.tableView.reloadData()
-        }
+      LocationSearchService.searchNearby(currentPostion, distance: 750,
+        callback: { (data, error) -> Void in
+          if error != nil {
+            // TODO: HANDLE ERROR!!
+            return
+          }
+          self.nearbyLocations = data
+          dispatch_async(dispatch_get_main_queue()) {
+            self.isLoading = false
+            self.spinnerView.removeFromSuperview()
+            self.tableView.reloadData()
+          }
       })
     }
   }

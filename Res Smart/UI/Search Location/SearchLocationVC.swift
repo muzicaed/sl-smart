@@ -317,9 +317,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
       forIndexPath: indexPath)
     
-    cell.textLabel?.text = "Närliggande hållplatser"
+    cell.textLabel?.text = "Hållplatser nära mig"
     cell.detailTextLabel?.text = nil
-    cell.imageView?.image = UIImage(named: "current-location-icon")
+    cell.imageView?.image = UIImage(named: "near-me-icon")
     cell.imageView?.alpha = 0.4
     cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
     return cell

@@ -37,9 +37,10 @@ public class LocationSearchService {
    * Searches for nearby locations.
    */
   public static func searchNearby(
-    location: CLLocation,
+    location: CLLocation, distance: Int,
     callback: (data: [(location: Location, dist: Int)], error: SLNetworkError?) -> Void) {
-      nearbyApi.search(location) { resTuple in
+      
+      nearbyApi.search(location, distance: distance) { resTuple in
         var result = [(location: Location, dist: Int)]()
         if let resData = resTuple.data {
           let data = JSON(data: resData)
