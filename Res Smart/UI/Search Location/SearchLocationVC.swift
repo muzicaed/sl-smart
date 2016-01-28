@@ -91,20 +91,46 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   }
   
   /**
-   * Section titles
+   * View for header
    */
-  override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 30))
+    let label = UILabel(frame: CGRectMake(0, 7, tableView.frame.size.width, 15))
+    label.font = UIFont.systemFontOfSize(12)
+    label.textColor = UIColor.whiteColor()
+    label.textAlignment = NSTextAlignment.Center
+    view.addSubview(label)
+    let color = StyleHelper.sharedInstance.mainGreen
+    view.backgroundColor = color.colorWithAlphaComponent(0.95)
+    
     if isDisplayingSearchResult && searchResult.count > 0 {
-      return "Sökresultat"
+      label.text = "Sökresultat"
+      return view
     } else if !isDisplayingSearchResult {
       if ((allowCurrentPosition || allowNearbyStations) && section == 1) ||
         ((!allowCurrentPosition && !allowNearbyStations) && section == 0) {
-          return "Senaste platser"
+          label.text = "Senaste platser"
+          return view
       }
-      return nil
     }
     
     return nil
+  }
+  
+  /**
+   * Size for headers.
+   */
+  override func tableView(tableView: UITableView,
+    heightForHeaderInSection section: Int) -> CGFloat {
+      if isDisplayingSearchResult && searchResult.count > 0 {
+        return 30
+      } else if !isDisplayingSearchResult {
+        if ((allowCurrentPosition || allowNearbyStations) && section == 1) ||
+          ((!allowCurrentPosition && !allowNearbyStations) && section == 0) {
+            return 30
+        }
+      }
+      return 0
   }
   
   /**
