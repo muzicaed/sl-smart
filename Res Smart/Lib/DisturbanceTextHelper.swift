@@ -14,6 +14,8 @@ class DisturbanceTextHelper {
     if let text = text {
       return (text.lowercaseString.rangeOfString("försen") != nil ||
         text.lowercaseString.rangeOfString("utebli") != nil ||
+        text.lowercaseString.rangeOfString("signalfel") != nil ||
+        text.lowercaseString.rangeOfString("inställd") != nil ||        
         text.lowercaseString.rangeOfString("flyttad") != nil)
     }
     
