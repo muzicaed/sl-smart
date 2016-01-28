@@ -97,8 +97,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     if isDisplayingSearchResult && searchResult.count > 0 {
       return "Sökresultat"
     } else if !isDisplayingSearchResult {
-      if (allowCurrentPosition && section == 1) || (!allowCurrentPosition && section == 0){
-        return "Senaste platser"
+      if ((allowCurrentPosition || allowNearbyStations) && section == 1) ||
+        ((!allowCurrentPosition && !allowNearbyStations) && section == 0) {
+          return "Senaste platser"
       }
       return nil
     }
@@ -168,9 +169,10 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   override func tableView(tableView: UITableView,
     didSelectRowAtIndexPath indexPath: NSIndexPath) {
       
-      if allowNearbyStations && indexPath.section == 0 {
+      if !isDisplayingSearchResult && allowNearbyStations && indexPath.section == 0 {
         if (allowCurrentPosition && indexPath.row == 1) ||
           (!allowCurrentPosition && indexPath.row == 0) {
+            searchController?.active = false
             performSegueWithIdentifier("ShowNearbyStations", sender: self)
             return
         }
