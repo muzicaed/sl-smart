@@ -95,10 +95,10 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    */
   override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 30))
-    let label = UILabel(frame: CGRectMake(0, 7, tableView.frame.size.width, 15))
-    label.font = UIFont.systemFontOfSize(12)
+    let label = UILabel(frame: CGRectMake(18, 7, tableView.frame.size.width, 15))
+    label.font = UIFont.systemFontOfSize(14)
     label.textColor = UIColor.whiteColor()
-    label.textAlignment = NSTextAlignment.Center
+    label.textAlignment = NSTextAlignment.Left
     view.addSubview(label)
     let color = StyleHelper.sharedInstance.mainGreen
     view.backgroundColor = color.colorWithAlphaComponent(0.95)
@@ -109,7 +109,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     } else if !isDisplayingSearchResult {
       if ((allowCurrentPosition || allowNearbyStations) && section == 1) ||
         ((!allowCurrentPosition && !allowNearbyStations) && section == 0) {
-          label.text = "Senaste platser"
+          label.text = "Senast använda platser"
           return view
       }
     }
@@ -314,6 +314,12 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
         cell.imageView?.image = UIImage(named: "address-icon")
       }
       cell.imageView?.alpha = 0.4
+      if isLocationForRealTimeSearch {
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+      } else {
+        cell.accessoryType = UITableViewCellAccessoryType.None
+      }
+      
       return cell
   }
   
@@ -334,6 +340,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     }
     cell.imageView?.image = UIImage(named: "current-location-icon")
     cell.imageView?.alpha = 0.4
+    cell.accessoryType = UITableViewCellAccessoryType.None
     return cell
   }
   
