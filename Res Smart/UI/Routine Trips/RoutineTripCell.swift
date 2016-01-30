@@ -12,6 +12,9 @@ import ResStockholmApiKit
 
 class RoutineTripCell: UICollectionViewCell {
   
+  
+  @IBOutlet weak var arrowLabel: UILabel!
+  
   @IBOutlet weak var tripTitleLabel: UILabel!
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
@@ -88,6 +91,7 @@ class RoutineTripCell: UICollectionViewCell {
   
   private func setupTripData(trip: Trip, secondTrip: Trip?) {
     nextInAboutLabel.hidden = true
+    arrowLabel.hidden = false
     if let first = trip.tripSegments.first, last = trip.tripSegments.last  {
       departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
@@ -167,11 +171,9 @@ class RoutineTripCell: UICollectionViewCell {
    */
   private func setNoTripsUI() {
     iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
-    
-    departureTimeLabel.text = "00:00"
-    arrivalTimeLabel.text = "00:00"
+    departureTimeLabel.text = "--:--"
+    arrivalTimeLabel.text = "--:--"
     inAboutLabel.text = ""
-    
     tripDurationLabel.text = "Hittade ingen resa..."
   }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z2r-oZ-gqC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z2r-oZ-gqC">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -1831,6 +1831,7 @@
                                     <outlet property="advancedLabel" destination="RdU-lD-UHJ" id="EMD-0S-d2i"/>
                                     <outlet property="advancedView" destination="1a2-Wd-Ets" id="Qyt-AE-rYZ"/>
                                     <outlet property="arrivalTimeLabel" destination="aCY-Bf-tBi" id="Ixc-fw-thj"/>
+                                    <outlet property="arrowLabel" destination="7ef-Be-lV5" id="KFA-oE-RwH"/>
                                     <outlet property="departureTimeLabel" destination="xWu-uO-rQa" id="jpM-5B-gib"/>
                                     <outlet property="destinationLabel" destination="RYo-Ng-Ovo" id="M5z-YT-aKv"/>
                                     <outlet property="iconAreaView" destination="Gdw-Fa-TmJ" id="7ZS-XK-QZs"/>
@@ -4002,10 +4003,10 @@ direkt från din iPhone</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ypq-Up-6Af"/>
+        <segue reference="fPH-Xr-GVg"/>
+        <segue reference="WoO-7G-VaU"/>
         <segue reference="6zU-Tw-atf"/>
         <segue reference="L0K-5H-KeJ"/>
-        <segue reference="4rE-Hc-22D"/>
         <segue reference="kst-2L-81y"/>
     </inferredMetricsTieBreakers>
 </document>
