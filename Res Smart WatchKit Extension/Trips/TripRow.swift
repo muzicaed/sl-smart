@@ -51,7 +51,7 @@ class TripRow: NSObject {
     createTripIcons(
       data["icn"] as! [String],
       lines: data["lns"] as! [String],
-      warnings: data["war"] as! [Bool])
+      warnings: data["war"] as! [String])
   }
   
   // MARK: Private
@@ -85,7 +85,7 @@ class TripRow: NSObject {
   /**
    * Creates trip icons
    */
-  private func createTripIcons(iconNames: [String], lines: [String], warnings: [Bool]) {
+  private func createTripIcons(iconNames: [String], lines: [String], warnings: [String]) {
     prepareIcons()
     let nameCount = iconNames.count
     for (index, iconImage) in icons.enumerate() {
@@ -94,9 +94,12 @@ class TripRow: NSObject {
         iconImage.setHidden(false)
         iconLables[index].setHidden(false)
         iconLables[index].setText(lines[index])
-        if warnings[index] {
+        if warnings[index] == "INFO" {
+          iconLables[index].setTextColor(UIColor(red: 100/255, green: 100/255, blue: 255/255, alpha: 1.0))
+        } else if warnings[index] == "WARN" {
           iconLables[index].setTextColor(UIColor.redColor())
-          iconLables[index].setText(lines[index] + "!")
+        } else {
+          iconLables[index].setTextColor(UIColor.whiteColor())
         }
         iconGroups[index].setHidden(false)
       } else {

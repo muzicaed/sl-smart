@@ -37,17 +37,17 @@ public class Trip: NSObject, NSCopying {
   public func watchTransferData() -> Dictionary<String, AnyObject> {
     var icons = [String]()
     var lines = [String]()
-    var warnings = [Bool]()
+    var warnings = [String]()
     for segment in tripSegments {
       let data = TripHelper.friendlyLineData(segment)
       icons.append(data.icon)
       lines.append(data.short)
       
-      var isWarning = false
+      var warning = ""
       if segment.rtuMessages != nil {
-        isWarning = true
+        warning = (segment.isWarning) ? "WARN" : "INFO"
       }
-      warnings.append(isWarning)
+      warnings.append(warning)
     }
     
     return [

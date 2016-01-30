@@ -170,6 +170,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   @IBAction func onHelpTap(sender: AnyObject) {
     if let url = NSURL(string: "http://www.ressmartapp.se/faq.php") {
       let svc = SFSafariViewController(URL: url)
+      
       svc.navigationController?.navigationBar.barTintColor = StyleHelper.sharedInstance.mainGreen
       self.presentViewController(svc, animated: true, completion: nil)
     }

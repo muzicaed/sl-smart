@@ -39,7 +39,7 @@ class GlanceController: SmartTripIC {
       let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
       let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
       let lines = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
-      let warnings = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["war"] as! [Bool]
+      let warnings = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["war"] as! [String]
       
       updateDepatureUI()
       subTitleLabel.setText(bestRoutine["tit"] as? String)
