@@ -27,6 +27,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   var lastCount = 0
   var isLocationForRealTimeSearch = false
   
+  let loadedTime = NSDate()
+  
   /**
    * View is done loading.
    */
@@ -47,6 +49,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
         style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
       self.navigationItem.backBarButtonItem = newBackButton
     }
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive",
+      name: UIApplicationDidBecomeActiveNotification, object: nil)
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -54,9 +58,13 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     tableView.reloadData()
   }
   
-  deinit {
-    if let superView = searchController?.view.superview {
-      superView.removeFromSuperview()
+  /**
+   * Returned to the app.
+   */
+  func didBecomeActive() {
+    let now = NSDate()
+    if now.timeIntervalSinceDate(loadedTime) > (60 * 30) { // 0.5 hour
+      navigationController?.popToRootViewControllerAnimated(false)
     }
   }
   
@@ -424,5 +432,13 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     
     lastCount = searchResult.count
     tableView.endUpdates()
+  }
+  
+  deinit {
+    print("SearchLocationVC deinit")
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+    if let superView = searchController?.view.superview {
+      superView.removeFromSuperview()
+    }
   }
 }

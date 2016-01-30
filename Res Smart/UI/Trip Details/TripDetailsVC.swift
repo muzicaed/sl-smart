@@ -26,7 +26,8 @@ class TripDetailsVC: UITableViewController {
   
   var trip = Trip(durationMin: 0, noOfChanges: 0, tripSegments: [TripSegment]())
   var stopsVisual = [(isVisible: Bool, hasStops: Bool)]()
-  
+
+  let loadedTime = NSDate()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -37,12 +38,24 @@ class TripDetailsVC: UITableViewController {
     prepareHeader()
     prepareVisualStops()
     loadStops()
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive",
+      name: UIApplicationDidBecomeActiveNotification, object: nil)
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "ShowMap" {
       let vc = segue.destinationViewController as! TripMapVC
       vc.trip = trip
+    }
+  }
+  
+  /**
+   * Returned to the app.
+   */
+  func didBecomeActive() {
+    let now = NSDate()
+    if now.timeIntervalSinceDate(loadedTime) > (60 * 90) { // 1.5 hour
+      navigationController?.popToRootViewControllerAnimated(false)
     }
   }
   
@@ -302,5 +315,10 @@ class TripDetailsVC: UITableViewController {
     let cell = tableView.cellForRowAtIndexPath(
       NSIndexPath(forRow: 1, inSection: section)) as! TripDetailsSegmentCell
     cell.updateStops((isVisible: isVisible, hasStops: true))
+  }
+  
+  deinit {
+    print("TripDetailsVC deinit")
+    NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 }

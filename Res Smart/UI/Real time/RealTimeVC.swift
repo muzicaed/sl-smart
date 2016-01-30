@@ -32,6 +32,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   var tabTypesKeys = [String]()
   var segmentView = SMSegmentView()
   var refreshTimmer: NSTimer?
+  let loadedTime = NSDate()
   
   /**
    * On load
@@ -72,6 +73,11 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Returned to the app.
    */
   func didBecomeActive() {
+    let now = NSDate()
+    if now.timeIntervalSinceDate(loadedTime) > (60 * 30) { // 0.5 hour
+      navigationController?.popToRootViewControllerAnimated(false)
+      return
+    }
     loadData()
     startRefreshTimmer()
   }
@@ -501,6 +507,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   }
   
   deinit {
+    print("RealTimeVC deinit")    
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 }

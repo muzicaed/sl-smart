@@ -34,6 +34,8 @@ class TripListVC: UITableViewController {
   var loadMoreEarlier: LoadMoreCell?
   var loadMoreLater: LoadMoreCell?
   
+  let loadedTime = NSDate()
+  
   /**
    * View is done loading
    */
@@ -73,6 +75,11 @@ class TripListVC: UITableViewController {
    * Returned to the app.
    */
   func didBecomeActive() {
+    let now = NSDate()
+    if now.timeIntervalSinceDate(loadedTime) > (60 * 60) { // 1 hour
+      navigationController?.popToRootViewControllerAnimated(false)
+      return
+    }
     refreshUI()
     startRefreshTimmer()
   }
@@ -131,7 +138,7 @@ class TripListVC: UITableViewController {
     
     let trip = trips[keys.last!]!.last!
     criterions!.searchForArrival = false
-
+    
     criterions?.time = DateUtils.dateAsTimeString(
       trip.tripSegments.first!.departureDateTime.dateByAddingTimeInterval(60))
     loadTripData(true)
@@ -510,5 +517,10 @@ class TripListVC: UITableViewController {
     
     return (indexPath.section + 1) == trips.count &&
       (indexPath.row) == rowCount
+  }
+  
+  deinit {
+    print("TripListVC deinit")
+    NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 }
