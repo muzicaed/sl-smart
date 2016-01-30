@@ -136,7 +136,7 @@ class SmartTripIC: WKInterfaceController {
     } else {
       displayError(
         "Hittade inga Smarta Resor",
-        message: "Du hanterar dina rutinresor från din iPhone.\nOm du redan gjort detta, kontrollera din iPhones internetanslutning.")
+        message: "Du behöver en prenumeration och minst en rutin. Du hanterar dina rutiner på din iPhone.")
     }
   }
   
