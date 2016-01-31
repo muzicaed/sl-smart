@@ -3401,6 +3401,9 @@ direkt från din iPhone</string>
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Gör till rutin"/>
+                                <connections>
+                                    <segue destination="h2d-Hi-2Zo" kind="show" identifier="MakeRoutine" id="Lg4-KG-mN0"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -4016,7 +4019,7 @@ direkt från din iPhone</string>
         <segue reference="V2Z-ue-vlu"/>
         <segue reference="WoO-7G-VaU"/>
         <segue reference="fPH-Xr-GVg"/>
+        <segue reference="Lg4-KG-mN0"/>
         <segue reference="rzj-uS-OIZ"/>
-        <segue reference="6zU-Tw-atf"/>
     </inferredMetricsTieBreakers>
 </document>

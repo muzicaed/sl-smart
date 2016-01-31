@@ -20,6 +20,7 @@ class TripListVC: UITableViewController {
   let noTripsFoundCell = "FoundNoTripsCell"
   
   let showDetailsSegue = "ShowDetails"
+  let makeRoutineSegue = "MakeRoutine"
   
   var criterions: TripSearchCriterion?
   var routineTrip: RoutineTrip?
@@ -54,9 +55,7 @@ class TripListVC: UITableViewController {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeInactive",
       name: UIApplicationWillResignActiveNotification, object: nil)
     
-    if routineTrip != nil && !routineTrip!.isSmartSuggestion {
-      navigationItem.rightBarButtonItem = nil
-    }
+    handleMakeRoutineButton()
   }
   
   /**
@@ -66,6 +65,7 @@ class TripListVC: UITableViewController {
     super.viewWillAppear(animated)
     isLoadingMoreBlocked = false
     startRefreshTimmer()
+    handleMakeRoutineButton()    
   }
   
   /**
@@ -125,11 +125,23 @@ class TripListVC: UITableViewController {
    */
   @IBAction func unwindToTripListVC(segue: UIStoryboardSegue) {}
   
+  @IBAction func unwindToManageRoutineTripsVC(segue: UIStoryboardSegue) {}
+  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     isLoadingMoreBlocked = true
     if segue.identifier == showDetailsSegue {
       let vc = segue.destinationViewController as! TripDetailsVC
       vc.trip = selectedTrip!
+      
+    } else if segue.identifier == makeRoutineSegue {
+      let vc = segue.destinationViewController as! EditRoutineTripVC
+      var routine = routineTrip
+      if routine == nil {
+        routine = RoutineTrip()
+        routine!.criterions = criterions!.copy() as! TripSearchCriterion
+      }
+      vc.routineTrip = routine
+      vc.isMakeRoutine = true
     }
   }
   
@@ -522,6 +534,27 @@ class TripListVC: UITableViewController {
     
     return (indexPath.section + 1) == trips.count &&
       (indexPath.row) == rowCount
+  }
+  
+  /**
+   * Checks if there should be a "Make routine" buttons.
+   */
+  private func handleMakeRoutineButton() {
+    
+    if routineTrip != nil && !routineTrip!.isSmartSuggestion {
+      navigationItem.rightBarButtonItem = nil
+      return
+    }
+    
+    let allRoutines = RoutineTripsStore.sharedInstance.retriveRoutineTripsNoSuggestions()
+    for routine in allRoutines {
+      let testCrit = routine.criterions
+      if testCrit.origin?.siteId == criterions?.origin?.siteId &&
+        testCrit.dest?.siteId == criterions?.dest?.siteId {
+          navigationItem.rightBarButtonItem = nil
+          return
+      }
+    }
   }
   
   deinit {

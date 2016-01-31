@@ -20,11 +20,11 @@ TravelTypesResponder, PickLocationResponder {
   
   var routineTrip: RoutineTrip?
   var routineTripCopy: RoutineTrip?
-  var routineTripIndex = -1
   var locationSearchType: String?
   var isNewTrip = true
   var hasChanged = false
   var isViaSelected = false
+  var isMakeRoutine = false
   
   
   /**
@@ -36,15 +36,25 @@ TravelTypesResponder, PickLocationResponder {
     view.backgroundColor = StyleHelper.sharedInstance.background
     createFakeBackButton()
     
-    if routineTrip == nil {
+    if routineTrip == nil && !isMakeRoutine {
+      print("New routine")
       title = "Ny rutin"
-      routineTrip = RoutineTrip()
       isNewTrip = true
-    } else {
+      routineTrip = RoutineTrip()
+      
+    } else if isMakeRoutine {
+      print("Make routine")
       routineTripCopy = routineTrip!.copy() as? RoutineTrip
-      title = routineTrip!.title
+      setupEditData()
+      title = "Ny rutin"
+      isNewTrip = true
+      
+    } else {
+      print("Edit routine")
+      routineTripCopy = routineTrip!.copy() as? RoutineTrip
       setupEditData()
       isNewTrip = false
+      title = routineTrip!.title
       self.navigationItem.rightBarButtonItems!.removeFirst()
     }
     
@@ -61,8 +71,8 @@ TravelTypesResponder, PickLocationResponder {
    */
   override func viewWillDisappear(animated: Bool) {
     super.viewDidDisappear(animated)
-    if !isNewTrip && routineTrip != nil && hasChanged {
-      RoutineTripsStore.sharedInstance.updateRoutineTrip(routineTripIndex, trip: routineTrip!)
+    if !isNewTrip && routineTrip != nil && hasChanged && !isMakeRoutine {
+      RoutineTripsStore.sharedInstance.updateRoutineTrip(routineTrip!)
     }
   }
   
@@ -74,7 +84,7 @@ TravelTypesResponder, PickLocationResponder {
     if segue.identifier == "SearchOriginLocation" {
       locationSearchType = "Origin"
       let vc = segue.destinationViewController as! SearchLocationVC
-      vc.searchOnlyForStations = false      
+      vc.searchOnlyForStations = false
       vc.delegate = self
       
     } else if segue.identifier == "SearchDestinationLocation" {
@@ -119,7 +129,8 @@ TravelTypesResponder, PickLocationResponder {
    * On navbar back tap.
    */
   func onBackTap() {
-    if !isNewTrip {
+    if !isNewTrip && !isMakeRoutine {
+      print("Save edit")
       if tripTitleTextField.text == nil || tripTitleTextField.text == "" {
         showInvalidTitleAlert()
         return
@@ -368,6 +379,7 @@ TravelTypesResponder, PickLocationResponder {
    * on data on current form. Also navigates back.
    */
   private func createRoutineTrip() {
+    print("Save create")
     tripTitleTextField.resignFirstResponder()
     if tripTitleTextField.text == nil || tripTitleTextField.text == "" {
       showInvalidTitleAlert()
@@ -387,6 +399,7 @@ TravelTypesResponder, PickLocationResponder {
     }
     
     routineTrip?.criterions.isAdvanced = isAdvacedCriterions()
+    routineTrip?.isSmartSuggestion = false
     RoutineTripsStore.sharedInstance.addRoutineTrip(routineTrip!)
     performSegueWithIdentifier("unwindToManageRoutineTrips", sender: self)
   }

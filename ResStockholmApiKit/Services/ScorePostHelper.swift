@@ -23,6 +23,8 @@ public class ScorePostHelper {
   public static func changeScoreForRoutineTrip(
     originId: String, destinationId: String, score: Float) {
 
+      print("CHANGE SCORE: \(score)")
+      
       var scorePosts = ScorePostStore.sharedInstance.retrieveScorePosts()
       let currentLocation = MyLocationHelper.sharedInstance.currentLocation
       let dayOfWeek = DateUtils.getDayOfWeek()
@@ -103,12 +105,14 @@ public class ScorePostHelper {
               if location.distanceFromLocation(postLocation) < RequiredDistance {
                 post.score += (post.isOrigin == isOrigin) ? score : score * 0.75
                 post.score = min(post.score, 8)
+                print("Modify score")
                 return true
               }
             }
         }
       }
       
+      print("Add new score")
       return false
   }
 }

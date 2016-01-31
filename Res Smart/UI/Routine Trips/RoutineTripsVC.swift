@@ -98,6 +98,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
           vc.criterions = crit
           vc.routineTrip = selectedRoutineTrip
           vc.title = routineTrip.title
+          if selectedRoutineTrip!.isSmartSuggestion {
+            vc.title = "Smart vana"
+          }
         }
       }
       

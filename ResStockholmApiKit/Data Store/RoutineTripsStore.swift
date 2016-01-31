@@ -9,7 +9,7 @@
 import Foundation
 
 public class RoutineTripsStore {
-
+  
   private let MyRoutineTrips = "MyRoutineTrips"
   private let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
   private var cachedRoutineTrips = [RoutineTrip]()
@@ -40,7 +40,9 @@ public class RoutineTripsStore {
    * Adds a routine trip to data store
    */
   public func addRoutineTrip(trip: RoutineTrip) {
+    cleanOutMatchingHabitRoutines(trip)
     trip.trips = [Trip]()
+    cachedRoutineTrips = retrieveRoutineTripsFromStore()
     cachedRoutineTrips.append(trip)
     writeRoutineTripsToStore()
   }
@@ -57,19 +59,31 @@ public class RoutineTripsStore {
   /**
    * Update a routine trip in data store
    */
-  public func updateRoutineTrip(index: Int, trip: RoutineTrip) {
+  public func updateRoutineTrip(trip: RoutineTrip) {
     trip.trips = [Trip]()
-    cachedRoutineTrips[index] = trip.copy() as! RoutineTrip
-    writeRoutineTripsToStore()
+    for (index, testRoutine) in cachedRoutineTrips.enumerate() {
+      if testRoutine.id == trip.id {
+        print("Updated routine trip...")
+        cachedRoutineTrips[index] = trip.copy() as! RoutineTrip
+        writeRoutineTripsToStore()
+        cleanOutMatchingHabitRoutines(trip)
+        return
+      }
+    }
   }
   
   /**
    * Delete a routine trip from data store
    */
-  public func deleteRoutineTrip(index: Int) {
+  public func deleteRoutineTrip(id: String) {
     cachedRoutineTrips = retrieveRoutineTripsFromStore()
-    cachedRoutineTrips.removeAtIndex(index)
-    writeRoutineTripsToStore()
+    for (index, routine) in cachedRoutineTrips.enumerate() {
+      if routine.id == id {
+        cachedRoutineTrips.removeAtIndex(index)
+        writeRoutineTripsToStore()
+        return
+      }
+    }
   }
   
   /**
@@ -129,5 +143,19 @@ public class RoutineTripsStore {
     defaults.setObject(archivedObject, forKey: MyRoutineTrips)
     defaults.synchronize()
     cachedRoutineTrips = retrieveRoutineTripsFromStore()
+  }
+  
+  /**
+   * Delete mathing habit routines (Smart suggestions)
+   */
+  private func cleanOutMatchingHabitRoutines(trip: RoutineTrip) {
+    for testRoutine in cachedRoutineTrips {
+      if testRoutine.isSmartSuggestion {
+        if trip.criterions.originId == testRoutine.criterions.originId &&
+          trip.criterions.dest?.siteId == testRoutine.criterions.dest?.siteId {
+            deleteRoutineTrip(testRoutine.id)
+        }
+      }
+    }
   }
 }

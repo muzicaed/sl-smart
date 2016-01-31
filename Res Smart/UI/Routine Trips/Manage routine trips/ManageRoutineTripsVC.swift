@@ -19,7 +19,6 @@ class ManageRoutineTripsVC: UITableViewController {
   
   var trips = [RoutineTrip]()
   var selectedRoutineTrip: RoutineTrip?
-  var selectedRoutineTripIndex = -1
   
   var addButton = UIBarButtonItem()
   var editButton = UIBarButtonItem()
@@ -59,7 +58,6 @@ class ManageRoutineTripsVC: UITableViewController {
     if segue.identifier == showEditTripsSegue {
       let vc = segue.destinationViewController as! EditRoutineTripVC
       vc.routineTrip = selectedRoutineTrip
-      vc.routineTripIndex = selectedRoutineTripIndex
     }
   }
   
@@ -87,7 +85,6 @@ class ManageRoutineTripsVC: UITableViewController {
   
   @IBAction func unwindToManageRoutineTripsVC(segue: UIStoryboardSegue) {
     selectedRoutineTrip = nil
-    selectedRoutineTripIndex = -1
   }
   
   // MARK: UITableViewController
@@ -142,7 +139,8 @@ class ManageRoutineTripsVC: UITableViewController {
     forRowAtIndexPath indexPath: NSIndexPath) {
       switch editingStyle {
       case .Delete:
-        RoutineTripsStore.sharedInstance.deleteRoutineTrip(indexPath.row)
+        let trip = trips[indexPath.row]
+        RoutineTripsStore.sharedInstance.deleteRoutineTrip(trip.id)
         trips.removeAtIndex(indexPath.row)
         
         tableView.beginUpdates()
@@ -178,7 +176,6 @@ class ManageRoutineTripsVC: UITableViewController {
         return
       }
       selectedRoutineTrip = trips[indexPath.row]
-      selectedRoutineTripIndex = indexPath.row
       performSegueWithIdentifier(showEditTripsSegue, sender: self)
   }
   
