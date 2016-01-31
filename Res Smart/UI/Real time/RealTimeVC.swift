@@ -31,6 +31,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   
   var tabTypesKeys = [String]()
   var segmentView = SMSegmentView()
+  var realtimeIndicatorLabel: UILabel?
   var refreshTimmer: NSTimer?
   let loadedTime = NSDate()
   
@@ -43,7 +44,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     spinnerView.frame.size = tableView.frame.size
     spinnerView.frame.origin.y -= 84
     tableView.addSubview(spinnerView)
-
+    
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive",
       name: UIApplicationDidBecomeActiveNotification, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeInactive",
@@ -81,7 +82,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     loadData()
     startRefreshTimmer()
   }
-
+  
   /**
    * Backgrounded.
    */
@@ -264,12 +265,35 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       segmentView.selectSegmentAtIndex(lastSelected)
       segmentView.frame.size.width = CGFloat(50 * tabCount)
       topView.addSubview(segmentView)
-      
+      prepareRealtimeIndicator()
       if firstTimeLoad {
         UIView.animateWithDuration(0.4, animations: {
           self.segmentView.frame.size.height = 44
         })
       }
+    }
+  }
+  
+  /**
+   * Prepares a blinking realtime idicator.
+   */
+  private func prepareRealtimeIndicator() {
+    if realtimeIndicatorLabel == nil {
+      let screenWidth = UIScreen.mainScreen().bounds.width
+      realtimeIndicatorLabel = UILabel(frame: CGRect(x: screenWidth - 75, y: 0, width: 70, height: 44))
+      realtimeIndicatorLabel!.text = "Uppdateras i realtid"
+      realtimeIndicatorLabel!.numberOfLines = 2
+      realtimeIndicatorLabel!.textAlignment = NSTextAlignment.Center
+      realtimeIndicatorLabel!.font = UIFont.systemFontOfSize(12)
+      realtimeIndicatorLabel!.textColor = StyleHelper.sharedInstance.mainGreen
+      
+      UIView.animateWithDuration(0.9, delay: 0.0,
+        options: [.Repeat, .Autoreverse],
+        animations: {
+          self.realtimeIndicatorLabel!.alpha = 0.1
+        }, completion: nil)
+      
+      topView.addSubview(realtimeIndicatorLabel!)
     }
   }
   
@@ -507,7 +531,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   }
   
   deinit {
-    print("RealTimeVC deinit")    
+    print("RealTimeVC deinit")
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 }
