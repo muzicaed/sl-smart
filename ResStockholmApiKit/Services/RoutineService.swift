@@ -40,7 +40,7 @@ public class RoutineService {
     var routine = RoutineTripsStore.sharedInstance.retriveRoutineTripOnId(criterion.smartId())
     
     if routine == nil {
-      print("Created new smart suggestion.")
+      //print("Created new smart suggestion.")
       routine = RoutineTrip(
         id: criterion.smartId(), title: "",
         criterions: criterion, isSmartSuggestion: true)
@@ -63,17 +63,17 @@ public class RoutineService {
     let todayTimeTuple = createTimeTuple()
     
     for trip in routineTrips {
-      print("")
-      print("---------------------------------")
-      print("\(trip.title!)")
+      ////print("")
+      //print("---------------------------------")
+      //print("\(trip.title!)")
       var multiplier = multiplierBasedOnProximityToLocation(trip, locations: locations)
       multiplier += multiplierBasedOnProximityToScorePostLocation(trip)
       trip.score = scoreBasedOnRoutineSchedule(trip, today: todayTimeTuple)
       multiplier = (multiplier == 0) ? 1 : multiplier
       trip.score = (trip.score < 2) ? multiplier * 2: trip.score * multiplier
-      print("Multiplier: \(multiplier)")
-      print("TOTAL: \(trip.score)")
-      print("---------------------------------")
+      //print("Multiplier: \(multiplier)")
+      //print("TOTAL: \(trip.score)")
+      //print("---------------------------------")
     }
   }
   
@@ -105,8 +105,11 @@ public class RoutineService {
       if let routineTrip = bestRoutineTrip {
         
         if let searchCrit = routineTrip.criterions.copy() as? TripSearchCriterion {
-          searchCrit.date = DateUtils.dateAsDateString(NSDate())
-          searchCrit.time = DateUtils.dateAsTimeString(NSDate())
+          let seconds = NSTimeInterval(floor(NSDate().timeIntervalSinceReferenceDate / 300) * 300)
+          let date = NSDate(timeIntervalSinceReferenceDate: seconds)
+          
+          searchCrit.date = DateUtils.dateAsDateString(date)
+          searchCrit.time = DateUtils.dateAsTimeString(date)
           searchCrit.numTrips = 2
           
           SearchTripService.tripSearch(searchCrit, callback: { resTuple in
@@ -150,7 +153,7 @@ public class RoutineService {
   static private func calcMultiplierBasedOnProximityToLocation(distance: Int) -> Float {
     var tempMultiplier = Float(2000 - distance)
     tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
-    print("Mult Based On Proximity To Location: \(tempMultiplier)")
+    //print("Mult Based On Proximity To Location: \(tempMultiplier)")
     return tempMultiplier
   }
   
@@ -174,7 +177,7 @@ public class RoutineService {
             }
         }
       }
-      print("Score Based On Schedule: \(min(score + 1, 20))")
+      //print("Score Based On Schedule: \(min(score + 1, 20))")
       return min(score + 1, 20)
   }
   
@@ -189,8 +192,8 @@ public class RoutineService {
         if post.isOrigin {
           if let postLocation = post.location {
             let distance = postLocation.distanceFromLocation(currentLocation)
-            //print("Dist: \(distance)")
-            //print("Post: \(post.siteId)")
+            ////print("Dist: \(distance)")
+            ////print("Post: \(post.siteId)")
             var tempMultiplier = Float(800 - distance)
             tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
             highestMulitplier = (tempMultiplier > highestMulitplier) ? tempMultiplier : highestMulitplier
@@ -198,7 +201,7 @@ public class RoutineService {
         }
       }
     }
-    print("Mult Based On Score Post: \(highestMulitplier)")
+    //print("Mult Based On Score Post: \(highestMulitplier)")
     return highestMulitplier
   }
   

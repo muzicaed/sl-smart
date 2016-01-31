@@ -99,8 +99,8 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   public func startLocationManager() {
     if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
       locationManager.pausesLocationUpdatesAutomatically = true
-      locationManager.desiredAccuracy = 10
-      locationManager.distanceFilter = 5
+      locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+      locationManager.distanceFilter = 25
       locationManager.startUpdatingLocation()
       isStarted = true
       return
