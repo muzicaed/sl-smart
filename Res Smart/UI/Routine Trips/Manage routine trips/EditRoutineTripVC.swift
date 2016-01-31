@@ -454,18 +454,6 @@ TravelTypesResponder, PickLocationResponder {
   }
   
   /**
-   * Resets the tabel type criterions
-   */
-  private func resetTravelType() {
-    routineTrip?.criterions.useBus = true
-    routineTrip?.criterions.useFerry = true
-    routineTrip?.criterions.useMetro = true
-    routineTrip?.criterions.useShip = true
-    routineTrip?.criterions.useTrain = true
-    routineTrip?.criterions.useTram = true
-  }
-  
-  /**
    * Checks if any advanced settings are actually used.
    * If not automatically set advanced flag to false.
    */

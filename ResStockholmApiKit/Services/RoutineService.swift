@@ -35,14 +35,15 @@ public class RoutineService {
    * Adds a habit routine (Smart suggestion).
    */
   public static func addHabitRoutine(crit: TripSearchCriterion) {
-    crit.resetAdvancedTripTypes()
-    var routine = RoutineTripsStore.sharedInstance.retriveRoutineTripOnId(crit.smartId())
+    let criterion = crit.copy() as! TripSearchCriterion
+    criterion.resetAdvancedTripTypes()
+    var routine = RoutineTripsStore.sharedInstance.retriveRoutineTripOnId(criterion.smartId())
     
     if routine == nil {
       print("Created new smart suggestion.")
       routine = RoutineTrip(
-        id: crit.smartId(), title: "",
-        criterions: crit, isSmartSuggestion: true)
+        id: criterion.smartId(), title: "",
+        criterions: criterion, isSmartSuggestion: true)
       RoutineTripsStore.sharedInstance.addRoutineTrip(routine!)
     } else {
       ScorePostHelper.changeScoreForRoutineTrip(
