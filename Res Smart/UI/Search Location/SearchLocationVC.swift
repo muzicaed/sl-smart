@@ -142,6 +142,14 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   }
   
   /**
+   * Size for headers.
+   */
+  override func tableView(tableView: UITableView,
+    heightForFooterInSection section: Int) -> CGFloat {
+      return 0.01
+  }
+  
+  /**
    * Number of rows
    */
   override func tableView(tableView: UITableView,
@@ -260,7 +268,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
             }
             self.searchResult = resTuple.data
             if resTuple.data.count > 0 {
-              self.reloadTableAnimated()
+              self.isDisplayingSearchResult = true
+              self.tableView.reloadData()
             }
           }
         }
@@ -407,31 +416,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     } else {
       searchController!.searchBar.placeholder = "Skriv stationsnamn eller en adress"
     }
-  }
-  
-  /**
-   * Reloads table data animated.
-   */
-  private func reloadTableAnimated() {
-    tableView.beginUpdates()
-    if !isDisplayingSearchResult {
-      isDisplayingSearchResult = true
-      if allowCurrentPosition || allowNearbyStations {
-        tableView.deleteSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
-      }
-    }
-    
-    tableView.deleteSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
-    tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
-    
-    var insIndexPaths = [NSIndexPath]()
-    for i in 0..<searchResult.count {
-      insIndexPaths.append(NSIndexPath(forRow: i, inSection: 0))
-    }
-    tableView.insertRowsAtIndexPaths(insIndexPaths, withRowAnimation: .Fade)
-    
-    lastCount = searchResult.count
-    tableView.endUpdates()
   }
   
   deinit {

@@ -253,7 +253,7 @@
 		180603651C0201A100AC1841 /* HttpRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHelper.swift; sourceTree = "<group>"; };
 		180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftHTTP.xcodeproj; path = /Users/mikaelhellman/Documents/Development/SwiftHTTP/SwiftHTTP.xcodeproj; sourceTree = "<absolute>"; };
 		1806037B1C02165000AC1841 /* LocationSearchResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchResponder.swift; sourceTree = "<group>"; };
-		180FD8B41C0B087E0095C790 /* ScorePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePost.swift; sourceTree = "<group>"; };
+		180FD8B41C0B087E0095C790 /* ScorePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScorePost.swift; path = ../../Model/ScorePost.swift; sourceTree = "<group>"; };
 		180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePostHelper.swift; sourceTree = "<group>"; };
 		1818B2661C404FE0004E3CA3 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1818B2691C404FE0004E3CA3 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -480,6 +480,7 @@
 				188B85651C14ADF100098B00 /* SLNetworkError.swift */,
 				18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */,
 				1899F2611C4AF88B00534587 /* SLGeometryApi.swift */,
+				180FD8B41C0B087E0095C790 /* ScorePost.swift */,
 				18733C4C1C4E472F00F66AEF /* SLRealtimeDepartures.swift */,
 			);
 			path = "SL API";
@@ -699,7 +700,6 @@
 				181B9AF01C0375DC00B9145A /* TripSegment.swift */,
 				181B9AF71C03B3FB00B9145A /* TripHelper.swift */,
 				18D1953E1C07964900FB1A93 /* TripSeachCriterion.swift */,
-				180FD8B41C0B087E0095C790 /* ScorePost.swift */,
 				183D6EB51C19DEF400EB7537 /* SituationGroup.swift */,
 				183D6EB71C19DF0800EB7537 /* Situation.swift */,
 				18FA999B1C49321C0075C4C2 /* Stop.swift */,

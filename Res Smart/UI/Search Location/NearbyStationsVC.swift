@@ -76,6 +76,22 @@ class NearbyStationsVC: UITableViewController {
   }
   
   /**
+   * Size for headers.
+   */
+  override func tableView(tableView: UITableView,
+    heightForHeaderInSection section: Int) -> CGFloat {
+      return 0.01
+  }
+  
+  /**
+   * Size for headers.
+   */
+  override func tableView(tableView: UITableView,
+    heightForFooterInSection section: Int) -> CGFloat {
+      return 0.01
+  }
+  
+  /**
    * Green highlight on selected row.
    */
   override func tableView(tableView: UITableView,
