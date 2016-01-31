@@ -60,6 +60,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     super.viewWillAppear(animated)
     loadData()
     startRefreshTimmer()
+    prepareRealtimeIndicator()
   }
   
   /**
@@ -265,7 +266,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       segmentView.selectSegmentAtIndex(lastSelected)
       segmentView.frame.size.width = CGFloat(50 * tabCount)
       topView.addSubview(segmentView)
-      prepareRealtimeIndicator()
       if firstTimeLoad {
         UIView.animateWithDuration(0.4, animations: {
           self.segmentView.frame.size.height = 44
@@ -278,23 +278,23 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Prepares a blinking realtime idicator.
    */
   private func prepareRealtimeIndicator() {
-    if realtimeIndicatorLabel == nil {
-      let screenWidth = UIScreen.mainScreen().bounds.width
-      realtimeIndicatorLabel = UILabel(frame: CGRect(x: screenWidth - 75, y: 0, width: 70, height: 44))
-      realtimeIndicatorLabel!.text = "Uppdateras i realtid"
-      realtimeIndicatorLabel!.numberOfLines = 2
-      realtimeIndicatorLabel!.textAlignment = NSTextAlignment.Center
-      realtimeIndicatorLabel!.font = UIFont.systemFontOfSize(12)
-      realtimeIndicatorLabel!.textColor = StyleHelper.sharedInstance.mainGreen
-      
-      UIView.animateWithDuration(0.9, delay: 0.0,
-        options: [.Repeat, .Autoreverse],
-        animations: {
-          self.realtimeIndicatorLabel!.alpha = 0.1
-        }, completion: nil)
-      
-      topView.addSubview(realtimeIndicatorLabel!)
-    }
+    realtimeIndicatorLabel?.layer.removeAllAnimations()
+    realtimeIndicatorLabel?.removeFromSuperview()
+    let screenWidth = UIScreen.mainScreen().bounds.width
+    realtimeIndicatorLabel = UILabel(frame: CGRect(x: screenWidth - 75, y: 0, width: 70, height: 44))
+    realtimeIndicatorLabel!.text = "Uppdateras i realtid"
+    realtimeIndicatorLabel!.numberOfLines = 2
+    realtimeIndicatorLabel!.textAlignment = NSTextAlignment.Center
+    realtimeIndicatorLabel!.font = UIFont.systemFontOfSize(12)
+    realtimeIndicatorLabel!.textColor = StyleHelper.sharedInstance.mainGreen
+    
+    UIView.animateWithDuration(0.9, delay: 0.0,
+      options: [.Repeat, .Autoreverse],
+      animations: {
+        self.realtimeIndicatorLabel!.alpha = 0.1
+      }, completion: nil)
+    
+    topView.addSubview(realtimeIndicatorLabel!)
   }
   
   /**
