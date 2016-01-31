@@ -706,13 +706,13 @@
         <scene sceneID="oBD-r9-4g8">
             <objects>
                 <tableViewController id="06E-RP-qJs" userLabel="My Routine Trips" customClass="ManageRoutineTripsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bNx-rF-zNd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="bNx-rF-zNd">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoRoutineCell" rowHeight="100" id="5eW-1F-79F" userLabel="No routine cell">
-                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="49.5" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5eW-1F-79F" id="6BF-GG-lFv">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
@@ -768,7 +768,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" showsReorderControl="YES" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MyRoutinTripCell" rowHeight="80" id="Bbh-2h-gbO" customClass="ManageRoutineTripCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="128" width="414" height="80"/>
+                                <rect key="frame" x="0.0" y="149.5" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bbh-2h-gbO" id="k6z-qC-mfr">
                                     <rect key="frame" x="0.0" y="0.0" width="381" height="79.5"/>
@@ -1150,7 +1150,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="NZT-P9-guF">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StationSearchResultCell" textLabel="7tf-V3-lvF" detailTextLabel="bGr-Sp-Q9i" imageView="5LW-NO-v49" style="IBUITableViewCellStyleSubtitle" id="UKA-Wl-L3Q">
@@ -1569,7 +1569,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="370" height="30"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Åka hem" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jds-FT-cH4">
-                                                            <rect key="frame" x="11" y="5" width="56" height="20"/>
+                                                            <rect key="frame" x="11" y="5" width="335" height="20"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -1584,6 +1584,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.24667548210000001" green="0.28710690430000002" blue="0.2424794669" alpha="0.80441706729999995" colorSpace="calibratedRGB"/>
                                                     <constraints>
+                                                        <constraint firstItem="NhP-FD-eMY" firstAttribute="leading" secondItem="Jds-FT-cH4" secondAttribute="trailing" id="0mK-uE-Gb7"/>
                                                         <constraint firstAttribute="height" constant="30" id="42Z-Pd-98z"/>
                                                         <constraint firstAttribute="trailingMargin" secondItem="NhP-FD-eMY" secondAttribute="trailing" constant="4" id="Dx0-TX-GmG"/>
                                                         <constraint firstItem="Jds-FT-cH4" firstAttribute="centerY" secondItem="xfG-Zm-Z04" secondAttribute="centerY" id="ckt-iP-DmV"/>
@@ -1856,7 +1857,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="370" height="30"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Åka hem" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dqp-N2-sug">
-                                                            <rect key="frame" x="8" y="5" width="56" height="20"/>
+                                                            <rect key="frame" x="8" y="5" width="346.5" height="20"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1876,26 +1877,27 @@
                                                         <constraint firstItem="Dqp-N2-sug" firstAttribute="leading" secondItem="zLQ-9T-Yjp" secondAttribute="leadingMargin" id="Gev-3P-Lty"/>
                                                         <constraint firstItem="Dqp-N2-sug" firstAttribute="centerY" secondItem="zLQ-9T-Yjp" secondAttribute="centerY" id="N8h-I8-15F"/>
                                                         <constraint firstItem="4UI-m7-xWH" firstAttribute="centerY" secondItem="zLQ-9T-Yjp" secondAttribute="centerY" id="QYN-wC-wwp"/>
+                                                        <constraint firstItem="4UI-m7-xWH" firstAttribute="leading" secondItem="Dqp-N2-sug" secondAttribute="trailing" id="Xmz-dZ-1Kc"/>
                                                         <constraint firstAttribute="height" constant="30" id="iwM-Te-MjB"/>
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="300" verticalCompressionResistancePriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="1WA-wd-hLT" userLabel="Time table">
-                                                    <rect key="frame" x="0.0" y="34" width="370" height="38.5"/>
+                                                    <rect key="frame" x="0.0" y="34" width="370" height="38"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rjl-kO-h9n">
-                                                            <rect key="frame" x="0.0" y="0.0" width="370" height="38.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="370" height="38"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PrE-6Z-8rc">
-                                                                    <rect key="frame" x="8" y="0.0" width="354" height="38.5"/>
+                                                                    <rect key="frame" x="8" y="0.0" width="354" height="38"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="Karlberg super centralen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rp4-xk-kb2" userLabel="Karlberg">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="38.5"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="38"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="247" horizontalCompressionResistancePriority="751" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZn-2K-7NK">
-                                                                            <rect key="frame" x="150" y="0.0" width="30" height="38.5"/>
+                                                                            <rect key="frame" x="150" y="0.0" width="30" height="38"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="30" id="0cP-tF-Mnb"/>
                                                                             </constraints>
@@ -1904,7 +1906,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" text="Stockholm Central" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YQQ-aw-w7p">
-                                                                            <rect key="frame" x="180" y="0.0" width="174" height="38.5"/>
+                                                                            <rect key="frame" x="180" y="0.0" width="174" height="38"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -1937,7 +1939,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="ToE-om-ecG" userLabel="Adv View">
-                                                    <rect key="frame" x="0.0" y="72.5" width="370" height="20"/>
+                                                    <rect key="frame" x="0.0" y="72" width="370" height="20"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="755" text="Avancerade saker här" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="dyC-fF-EFu">
                                                             <rect key="frame" x="8" y="3" width="354" height="14.5"/>
@@ -1955,7 +1957,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RKX-gr-Nla" userLabel="More info">
-                                                    <rect key="frame" x="0.0" y="94.5" width="370" height="14.5"/>
+                                                    <rect key="frame" x="0.0" y="94" width="370" height="15"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peka för tider och mer info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeG-mh-Hh3" userLabel="Peka för mer info">
                                                             <rect key="frame" x="8" y="0.0" width="354" height="14.5"/>
@@ -3393,7 +3395,15 @@ direkt från din iPhone</string>
                             <outlet property="delegate" destination="sEV-FQ-PQe" id="PEP-tS-Ttl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Resor" id="0uZ-f6-13o"/>
+                    <navigationItem key="navigationItem" title="Resor" id="0uZ-f6-13o">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Spi-sN-6xW">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kiD-04-7XX">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Gör till rutin"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="4Bd-C0-Zjd" kind="show" identifier="ShowDetails" id="DT7-xY-faQ"/>
                     </connections>
@@ -4003,10 +4013,10 @@ direkt från din iPhone</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ypq-Up-6Af"/>
-        <segue reference="4rE-Hc-22D"/>
         <segue reference="V2Z-ue-vlu"/>
-        <segue reference="kst-2L-81y"/>
+        <segue reference="WoO-7G-VaU"/>
+        <segue reference="fPH-Xr-GVg"/>
+        <segue reference="rzj-uS-OIZ"/>
         <segue reference="6zU-Tw-atf"/>
     </inferredMetricsTieBreakers>
 </document>

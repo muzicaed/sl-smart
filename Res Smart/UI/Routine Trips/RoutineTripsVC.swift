@@ -96,6 +96,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
           
           let vc = segue.destinationViewController as! TripListVC
           vc.criterions = crit
+          vc.routineTrip = selectedRoutineTrip
           vc.title = routineTrip.title
         }
       }
@@ -372,32 +373,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       crit.time = DateUtils.dateAsTimeString(date)
       hereToThereCriterion = crit
       
-      createSmartSuggestion(crit)
+      RoutineService.addHabitRoutine(crit)
       performSegueWithIdentifier(self.showTripListSegue, sender: self)
     }
   }
   
   // MARK: Private methods
-  
-  /**
-  * Create smart suggestion.
-  */
-  private func createSmartSuggestion(crit: TripSearchCriterion) {
-
-    var routine = RoutineTripsStore.sharedInstance.retriveRoutineTripOnId(crit.smartId())
-    if routine == nil {
-      print("Created new smart suggestion.")
-      routine = RoutineTrip(
-        id: crit.smartId(), title: "Smart förslag",
-        criterions: crit, isSmartSuggestion: true)
-      RoutineTripsStore.sharedInstance.addRoutineTrip(routine!)
-    }
-    
-    ScorePostHelper.changeScoreForRoutineTrip(
-      routine!.criterions.origin!.siteId!,
-      destinationId: routine!.criterions.dest!.siteId!,
-      score: ScorePostHelper.OtherTapCountScore)
-  }
   
   /**
   * Setup collection view properties and layout.

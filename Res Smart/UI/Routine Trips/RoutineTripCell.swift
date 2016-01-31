@@ -57,7 +57,12 @@ class RoutineTripCell: UICollectionViewCell {
    * Populate cell data based on passed RoutineTrip
    */
   func setupData(routineTrip: RoutineTrip, isBest: Bool) {
-    tripTitleLabel.text = routineTrip.title! //+ " [\(String(routineTrip.score))]"
+    var title = routineTrip.title!
+    if routineTrip.isSmartSuggestion {
+      title = "\(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName) (Vana)"
+    }
+    
+    tripTitleLabel.text = title + " [\(String(routineTrip.score))]"
     originLabel.text = routineTrip.criterions.origin?.cleanName
     destinationLabel.text = routineTrip.criterions.dest?.cleanName
     

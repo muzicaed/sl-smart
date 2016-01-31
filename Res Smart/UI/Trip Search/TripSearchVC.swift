@@ -73,7 +73,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       vc.criterions = criterions?.copy() as? TripSearchCriterion
       if let crit = criterions {
         SearchCriterionStore.sharedInstance.writeLastSearchCriterions(crit)
-        createSmartSuggestion(crit)
+        RoutineService.addHabitRoutine(crit)
       }
       
     } else if segue.identifier == "ShowDateTimePicker" {
@@ -120,7 +120,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       viaLabel.text = "(Välj station)"
     } else {
       resetViaStation()
-      resetTravelType()
+      criterions?.resetAdvancedTripTypes()
     }
     
     animateAdvancedToggle()
@@ -406,45 +406,12 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   }
   
   /**
-   * Resets the tabel type criterions
-   */
-  private func resetTravelType() {
-    criterions?.useBus = true
-    criterions?.useFerry = true
-    criterions?.useMetro = true
-    criterions?.useShip = true
-    criterions?.useTrain = true
-    criterions?.useTram = true
-  }
-  
-  /**
    * Add listners for notfication events.
    */
   private func createNotificationListners() {
     notificationCenter.addObserver(self,
       selector: Selector("restoreUIFromCriterions"),
       name: UIApplicationDidBecomeActiveNotification, object: nil)
-  }
-  
-  /**
-   * Store search criterion & create smart suggestion.
-   */
-  private func createSmartSuggestion(crit: TripSearchCriterion) {
-    crit.resetAdvancedTripTypes()
-    var routine = RoutineTripsStore.sharedInstance.retriveRoutineTripOnId(crit.smartId())
-    
-    if routine == nil {
-      print("Created new smart suggestion.")
-      routine = RoutineTrip(
-        id: crit.smartId(), title: "Smart förslag",
-        criterions: crit, isSmartSuggestion: true)
-      RoutineTripsStore.sharedInstance.addRoutineTrip(routine!)
-    }
-    
-    ScorePostHelper.changeScoreForRoutineTrip(
-      routine!.criterions.origin!.siteId!,
-      destinationId: routine!.criterions.dest!.siteId!,
-      score: ScorePostHelper.OtherTapCountScore)
   }
   
   /**

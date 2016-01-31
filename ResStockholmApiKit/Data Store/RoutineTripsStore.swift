@@ -94,6 +94,18 @@ public class RoutineTripsStore {
     return cachedRoutineTrips.map { ($0.copy() as! RoutineTrip) }
   }
   
+  /**
+   * Retrieves all routine trips except for "Smart suggestions" from data store
+   */
+  public func retriveRoutineTripsNoSuggestions() -> [RoutineTrip] {
+    if cachedRoutineTrips.count == 0  {
+      cachedRoutineTrips = retrieveRoutineTripsFromStore()
+    }
+    
+    let filtered = cachedRoutineTrips.filter{ !$0.isSmartSuggestion }
+    return filtered.map { ($0.copy() as! RoutineTrip) }
+  }
+  
   // MARK: Private
   
   /**

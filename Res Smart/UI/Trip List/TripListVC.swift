@@ -22,6 +22,7 @@ class TripListVC: UITableViewController {
   let showDetailsSegue = "ShowDetails"
   
   var criterions: TripSearchCriterion?
+  var routineTrip: RoutineTrip?
   var keys = [String]()
   var trips = Dictionary<String, [Trip]>()
   var selectedTrip: Trip?
@@ -52,6 +53,10 @@ class TripListVC: UITableViewController {
       name: UIApplicationDidBecomeActiveNotification, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeInactive",
       name: UIApplicationWillResignActiveNotification, object: nil)
+    
+    if routineTrip != nil && !routineTrip!.isSmartSuggestion {
+      navigationItem.rightBarButtonItem = nil
+    }
   }
   
   /**

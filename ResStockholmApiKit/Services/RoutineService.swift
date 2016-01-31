@@ -31,6 +31,27 @@ public class RoutineService {
     }
   }
   
+  /**
+   * Adds a habit routine (Smart suggestion).
+   */
+  public static func addHabitRoutine(crit: TripSearchCriterion) {
+    crit.resetAdvancedTripTypes()
+    var routine = RoutineTripsStore.sharedInstance.retriveRoutineTripOnId(crit.smartId())
+    
+    if routine == nil {
+      print("Created new smart suggestion.")
+      routine = RoutineTrip(
+        id: crit.smartId(), title: "",
+        criterions: crit, isSmartSuggestion: true)
+      RoutineTripsStore.sharedInstance.addRoutineTrip(routine!)
+    } else {
+      ScorePostHelper.changeScoreForRoutineTrip(
+        routine!.criterions.origin!.siteId!,
+        destinationId: routine!.criterions.dest!.siteId!,
+        score: ScorePostHelper.OtherTapCountScore)
+    }
+  }
+  
   // MARK: Private methods
   
   /**
@@ -196,7 +217,7 @@ public class RoutineService {
     for (index, routine) in routineTrips.enumerate() {
       if index == 0 && routine.isSmartSuggestion && routine.score > 30 && routineTrips.count > 1 {
         filteredList.append(routineTrips[0])
-      } else if !routine.isSmartSuggestion {
+      } else {//if !routine.isSmartSuggestion {
         filteredList.append(routine)
       }
     }

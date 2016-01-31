@@ -43,7 +43,7 @@ class ManageRoutineTripsVC: UITableViewController {
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    trips = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
+    trips = RoutineTripsStore.sharedInstance.retriveRoutineTripsNoSuggestions()
     tableView.reloadData()
     if trips.count == 0 && navigationItem.rightBarButtonItems?.count > 1 {
       navigationItem.rightBarButtonItems?.removeAtIndex(1)
@@ -130,7 +130,7 @@ class ManageRoutineTripsVC: UITableViewController {
       let cell =  tableView.dequeueReusableCellWithIdentifier(
         cellIdentifier, forIndexPath: indexPath) as! ManageRoutineTripCell
       
-      cell.setData(trip)      
+      cell.setData(trip)
       return cell
   }
   
@@ -171,14 +171,15 @@ class ManageRoutineTripsVC: UITableViewController {
   /**
    * When user selects a row.
    */
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if trips.count == 0 {
-      performSegueWithIdentifier(showAddTripsSegue, sender: self)
-      return
-    }
-    selectedRoutineTrip = trips[indexPath.row]
-    selectedRoutineTripIndex = indexPath.row
-    performSegueWithIdentifier(showEditTripsSegue, sender: self)
+  override func tableView(tableView: UITableView,
+    didSelectRowAtIndexPath indexPath: NSIndexPath) {
+      if trips.count == 0 {
+        performSegueWithIdentifier(showAddTripsSegue, sender: self)
+        return
+      }
+      selectedRoutineTrip = trips[indexPath.row]
+      selectedRoutineTripIndex = indexPath.row
+      performSegueWithIdentifier(showEditTripsSegue, sender: self)
   }
   
   /**
@@ -192,10 +193,18 @@ class ManageRoutineTripsVC: UITableViewController {
   }
   
   /**
+   * Height for header section.
+   */
+  override func tableView(tableView: UITableView,
+    heightForHeaderInSection section: Int) -> CGFloat {
+    return 1
+  }
+  
+  /**
    * Title for delete button.
    */
   override func tableView(tableView: UITableView,
     titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
-    return "Ta bort"
+      return "Ta bort"
   }
 }
