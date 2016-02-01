@@ -45,9 +45,14 @@ class GlanceController: SmartTripIC {
       let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
       let lines = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
       let warnings = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["war"] as! [String]
-      
+
       updateDepatureUI()
-      subTitleLabel.setText(bestRoutine["tit"] as? String)
+      if bestRoutine["hab"] as! Bool {
+//        subTitleLabel.setText("Smart vana")
+        subTitleLabel.setText(bestRoutine["tit"] as? String)
+      } else {
+        subTitleLabel.setText(bestRoutine["tit"] as? String)
+      }
       originLabel.setText(bestRoutine["ori"] as? String)
       destinationLabel.setText(bestRoutine["des"] as? String)
       departureLabel.setText(currentDepartureText)
@@ -97,7 +102,11 @@ class GlanceController: SmartTripIC {
         updateUIData()
         let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
         contentGroup.setHidden(false)
-        subTitleLabel.setText(bestRoutine["tit"] as? String)
+        if bestRoutine["hab"] as! Bool {
+          subTitleLabel.setText("Smart vana")
+        } else {
+          subTitleLabel.setText(bestRoutine["tit"] as? String)
+        }
         subTitleLabel.setTextColor(UIColor.whiteColor())
       }
     }

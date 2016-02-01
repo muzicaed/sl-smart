@@ -189,7 +189,11 @@ class SmartTripIC: WKInterfaceController {
    * for best routine.
    */
   func updateUINoTripsFound(bestRoutine: Dictionary<String, AnyObject>) {
-    titleLabel.setText(bestRoutine["tit"] as? String)
+    if bestRoutine["hab"] as! Bool {
+      titleLabel.setText("Smart vana")
+    } else {
+      titleLabel.setText(bestRoutine["tit"] as? String)
+    }
     departureTimeLabel.setText("Ingen resa")
     originLabel.setText("")
     destinationLabel.setText("")
