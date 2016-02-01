@@ -100,14 +100,11 @@ public class ScorePostHelper {
             if location.distanceFromLocation(postLocation) < RequiredDistance {
               post.score += score
               post.score = min(post.score, 8)
-              print("Modify score")
               return true
             }
           }
         }
       }
-      
-      print("Add new score")
       return false
   }
   

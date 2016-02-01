@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "static ScorePostHelper.(modifyScorePost in _6728054D2D12E2F271334B8530803C41)(Int, hourOfDay : Int, originId : String, destId : String, location : CLLocation?, allPosts : inout [ScorePost], score : Float) -&gt; Bool:ScorePostHelper.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "location.distanceFromLocation(postLocation)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "RealTimeVC.(calcRowCount in _B226C595A5D5C821B5BE041257BFF6DC)(Int) -&gt; Int:RealTimeVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -15,14 +23,6 @@
       </ContextState>
       <ContextState
          contextName = "static RoutineService.(createPrioList in _957912F42AD63CD77FCE46F85CE1F294)([RoutineTrip], callback : ([RoutineTrip]) -&gt; ()) -&gt; ():RoutineService.swift">
-      </ContextState>
-      <ContextState
-         contextName = "GlanceController.updateUIData() -&gt; ():GlanceController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "bestRoutine[&quot;hab&quot;] as? Bool">
-            </PersistentString>
-         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "TripListVC.(updateCollectionViewAnimated in _11586A2CB2510038DE3093C1A74CAAA7)() -&gt; ():TripListVC.swift">

@@ -62,17 +62,17 @@ public class RoutineService {
     let todayTimeTuple = createTimeTuple()
     
     for trip in routineTrips {
-      ////print("")
-      //print("---------------------------------")
-      //print("\(trip.title!)")
+      print("")
+      print("---------------------------------")
+      print("\(trip.title!)")
       var multiplier = multiplierBasedOnProximityToLocation(trip, locations: locations)
       multiplier += multiplierBasedOnProximityToScorePostLocation(trip)
       trip.score = scoreBasedOnRoutineSchedule(trip, today: todayTimeTuple)
       multiplier = (multiplier == 0) ? 1 : multiplier
       trip.score = (trip.score < 2) ? multiplier * 2: trip.score * multiplier
-      //print("Multiplier: \(multiplier)")
-      //print("TOTAL: \(trip.score)")
-      //print("---------------------------------")
+      print("Multiplier: \(multiplier)")
+      print("TOTAL: \(trip.score)")
+      print("---------------------------------")
     }
   }
   
@@ -148,7 +148,7 @@ public class RoutineService {
   static private func calcMultiplierBasedOnProximityToLocation(distance: Int) -> Float {
     var tempMultiplier = Float(2000 - distance)
     tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
-    //print("Mult Based On Proximity To Location: \(tempMultiplier)")
+    print("Mult Based On Proximity To Location: \(tempMultiplier)")
     return tempMultiplier
   }
   
@@ -162,15 +162,15 @@ public class RoutineService {
       var score = Float(0)
       for post in scorePosts {
         if checkMatch(post, trip: trip) {
-            if post.dayInWeek == today.dayInWeek {
-              score += (post.score * 0.2)
-              if post.hourOfDay == today.hourOfDay {
-                score += post.score
-              }
+          if post.dayInWeek == today.dayInWeek {
+            score += (post.score * 0.2)
+            if post.hourOfDay == today.hourOfDay {
+              score += post.score
             }
+          }
         }
       }
-      //print("Score Based On Schedule: \(min(score + 1, 20))")
+      print("Score Based On Schedule: \(min(score + 1, 20))")
       return min(score + 1, 20)
   }
   
@@ -185,8 +185,6 @@ public class RoutineService {
         if checkMatch(post, trip: trip) {
           if let postLocation = post.location {
             let distance = postLocation.distanceFromLocation(currentLocation)
-            ////print("Dist: \(distance)")
-            ////print("Post: \(post.siteId)")
             var tempMultiplier = Float(800 - distance)
             tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
             highestMulitplier = (tempMultiplier > highestMulitplier) ? tempMultiplier : highestMulitplier
@@ -194,7 +192,7 @@ public class RoutineService {
         }
       }
     }
-    //print("Mult Based On Score Post: \(highestMulitplier)")
+    print("Mult Based On Score Post: \(highestMulitplier)")
     return highestMulitplier
   }
   
@@ -223,9 +221,10 @@ public class RoutineService {
   }
   
   /**
-   * Checks if score post is a match. 
+   * Checks if score post is a match.
    */
   static private func checkMatch(post: ScorePost, trip: RoutineTrip) -> Bool {
-    return (post.originId == trip.criterions.originId && post.destId == trip.criterions.destId)
+    return (post.originId == trip.criterions.origin?.siteId &&
+      post.destId == trip.criterions.dest?.siteId)
   }
 }
