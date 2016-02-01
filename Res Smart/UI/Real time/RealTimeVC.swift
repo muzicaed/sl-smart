@@ -51,6 +51,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       name: UIApplicationWillResignActiveNotification, object: nil)
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 44
+    
+    prepareRealtimeIndicator()    
   }
   
   /**
@@ -60,7 +62,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     super.viewWillAppear(animated)
     loadData()
     startRefreshTimmer()
-    prepareRealtimeIndicator()
   }
   
   /**
@@ -287,12 +288,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     realtimeIndicatorLabel!.textAlignment = NSTextAlignment.Center
     realtimeIndicatorLabel!.font = UIFont.systemFontOfSize(12)
     realtimeIndicatorLabel!.textColor = StyleHelper.sharedInstance.mainGreen
-    
-    UIView.animateWithDuration(0.9, delay: 0.0,
-      options: [.Repeat, .Autoreverse],
-      animations: {
-        self.realtimeIndicatorLabel!.alpha = 0.1
-      }, completion: nil)
     
     topView.addSubview(realtimeIndicatorLabel!)
   }
