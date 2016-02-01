@@ -220,7 +220,7 @@ public class RoutineService {
     for (index, routine) in routineTrips.enumerate() {
       if index == 0 && routine.isSmartSuggestion && routine.score > 30 && routineTrips.count > 1 {
         filteredList.append(routineTrips[0])
-      } else {//if !routine.isSmartSuggestion {
+      } else if !routine.isSmartSuggestion {
         filteredList.append(routine)
       }
     }
