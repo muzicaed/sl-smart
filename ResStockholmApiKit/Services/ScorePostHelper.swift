@@ -29,14 +29,9 @@ public class ScorePostHelper {
       let currentLocation = MyLocationHelper.sharedInstance.currentLocation
       let dayOfWeek = DateUtils.getDayOfWeek()
       let hourOfDay = DateUtils.getHourOfDay()
-      let originId = originId
-      let destinationId = destinationId
       
       ScorePostHelper.changeScore(dayOfWeek, hourOfDay: hourOfDay,
-        siteId: originId, isOrigin: true, score: score,
-        location: currentLocation, scorePosts: &scorePosts)
-      ScorePostHelper.changeScore(dayOfWeek, hourOfDay: hourOfDay,
-        siteId: destinationId, isOrigin: false, score: score,
+        originId: originId, destId: destinationId, score: score,
         location: currentLocation, scorePosts: &scorePosts)
       ScorePostStore.sharedInstance.writeScorePosts(scorePosts)
   }
@@ -46,11 +41,11 @@ public class ScorePostHelper {
    */
   private static func changeScore(
     dayInWeek: Int, hourOfDay: Int,
-    siteId: String, isOrigin: Bool, score: Float,
+    originId: String, destId: String, score: Float,
     location: CLLocation?, inout scorePosts: [ScorePost]) {
       
       applyScore(dayInWeek, hourOfDay: hourOfDay,
-        siteId: siteId, isOrigin: isOrigin, score: score,
+        originId: originId, destId: destId, score: score,
         location: location, scorePosts: &scorePosts)
       
       var daysRange = 1...5
@@ -62,7 +57,7 @@ public class ScorePostHelper {
         for hour in (hourOfDay-1)...(hourOfDay+1) {
           if hour > 0 && hour <= 24 {
             applyScore(day, hourOfDay: hour,
-              siteId: siteId, isOrigin: isOrigin, score: (score * WideScoreMod),
+              originId: originId, destId: destId, score: (score * WideScoreMod),
               location: location, scorePosts: &scorePosts)
           }
         }
@@ -78,16 +73,16 @@ public class ScorePostHelper {
   */
   private static func applyScore(
     dayInWeek: Int, hourOfDay: Int,
-    siteId: String, isOrigin: Bool, score: Float,
+    originId: String, destId: String, score: Float,
     location: CLLocation?, inout scorePosts: [ScorePost]) {
       if !modifyScorePost(
-        dayInWeek, hourOfDay: hourOfDay, siteId: siteId,
-        isOrigin: isOrigin, location: location,
+        dayInWeek, hourOfDay: hourOfDay, originId: originId,
+        destId: destId, location: location,
         allPosts: &scorePosts, score: score) {
           
           let newScorePost = ScorePost(
             dayInWeek: dayInWeek, hourOfDay: hourOfDay,
-            siteId: siteId, score: score, isOrigin: isOrigin, location: location)
+            originId: originId, destId: destId, score: score, location: location)
           scorePosts.append(newScorePost)
       }
   }
@@ -96,19 +91,17 @@ public class ScorePostHelper {
    * Finds existing score post
    */
   private static func modifyScorePost(
-    dayInWeek: Int, hourOfDay: Int, siteId: String, isOrigin: Bool,
+    dayInWeek: Int, hourOfDay: Int, originId: String, destId: String,
     location: CLLocation?, inout allPosts: [ScorePost], score: Float) -> Bool {
       
       for post in allPosts {
-        if post.dayInWeek == dayInWeek && post.hourOfDay == hourOfDay && post.siteId == siteId {
+        if isMatch(post, dayInWeek: dayInWeek, hourOfDay: hourOfDay, originId: originId, destId: destId) {
           if let location = location, postLocation = post.location {
             if location.distanceFromLocation(postLocation) < RequiredDistance {
-              if post.isOrigin == isOrigin {
-                post.score += score
-                post.score = min(post.score, 8)
-                print("Modify score")
-                return true
-              }
+              post.score += score
+              post.score = min(post.score, 8)
+              print("Modify score")
+              return true
             }
           }
         }
@@ -116,5 +109,14 @@ public class ScorePostHelper {
       
       print("Add new score")
       return false
+  }
+  
+  /**
+   * Check if score post is a match.
+   */
+  private static func isMatch(post: ScorePost, dayInWeek: Int,
+    hourOfDay: Int, originId: String, destId: String) -> Bool {
+      return (post.dayInWeek == dayInWeek && post.hourOfDay == hourOfDay &&
+        post.originId == originId && post.destId == destId)
   }
 }

@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   func application(
     application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+      DataMigration.migrateData()
       setupAppleWatchConnection()
       setupApp()
       return true

@@ -161,13 +161,11 @@ public class RoutineService {
       let scorePosts = ScorePostStore.sharedInstance.retrieveScorePosts()
       var score = Float(0)
       for post in scorePosts {
-        if post.isOrigin && post.siteId == trip.criterions.origin!.siteId ||
-          !post.isOrigin && post.siteId == trip.criterions.dest!.siteId {
-            
+        if checkMatch(post, trip: trip) {
             if post.dayInWeek == today.dayInWeek {
               score += (post.score * 0.2)
               if post.hourOfDay == today.hourOfDay {
-                score += (post.isOrigin) ? (post.score * 0.6) : (post.score)
+                score += post.score
               }
             }
         }
@@ -184,7 +182,7 @@ public class RoutineService {
     if let currentLocation = MyLocationHelper.sharedInstance.currentLocation {
       let scorePosts = ScorePostStore.sharedInstance.retrieveScorePosts()
       for post in scorePosts {
-        if post.isOrigin {
+        if checkMatch(post, trip: trip) {
           if let postLocation = post.location {
             let distance = postLocation.distanceFromLocation(currentLocation)
             ////print("Dist: \(distance)")
@@ -222,5 +220,12 @@ public class RoutineService {
     }
     
     return filteredList
+  }
+  
+  /**
+   * Checks if score post is a match. 
+   */
+  static private func checkMatch(post: ScorePost, trip: RoutineTrip) -> Bool {
+    return (post.originId == trip.criterions.originId && post.destId == trip.criterions.destId)
   }
 }
