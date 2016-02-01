@@ -104,12 +104,8 @@ public class RoutineService {
       if let routineTrip = bestRoutineTrip {
         
         if let searchCrit = routineTrip.criterions.copy() as? TripSearchCriterion {
-          let seconds = NSTimeInterval(floor(NSDate().timeIntervalSinceReferenceDate / 300) * 300)
-          let date = NSDate(timeIntervalSinceReferenceDate: seconds)
-          
-          searchCrit.date = DateUtils.dateAsDateString(date)
-          searchCrit.time = DateUtils.dateAsTimeString(date)
-          searchCrit.numTrips = 2
+          searchCrit.date = DateUtils.dateAsDateString(NSDate())
+          searchCrit.time = DateUtils.dateAsTimeString(NSDate())
           
           SearchTripService.tripSearch(searchCrit, callback: { resTuple in
             if let _ = resTuple.error {

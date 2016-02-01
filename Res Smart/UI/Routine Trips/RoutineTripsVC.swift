@@ -90,9 +90,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         
       } else if let routineTrip = selectedRoutineTrip {
         if let crit = routineTrip.criterions.copy() as? TripSearchCriterion {
-          let date = NSDate(timeIntervalSinceNow: (60 * 2) * -1)
-          crit.date = DateUtils.dateAsDateString(date)
-          crit.time = DateUtils.dateAsTimeString(date)
+          //let date = NSDate(timeIntervalSinceNow: (60 * 2) * -1)
+          crit.date = DateUtils.dateAsDateString(NSDate())
+          crit.time = DateUtils.dateAsTimeString(NSDate())
           
           let vc = segue.destinationViewController as! TripListVC
           vc.criterions = crit

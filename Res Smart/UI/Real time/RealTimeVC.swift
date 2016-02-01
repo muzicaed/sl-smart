@@ -52,7 +52,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 44
     
-    prepareRealtimeIndicator()    
+    prepareRealtimeIndicator()
   }
   
   /**
