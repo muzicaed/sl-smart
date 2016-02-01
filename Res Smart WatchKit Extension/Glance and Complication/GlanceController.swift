@@ -21,7 +21,12 @@ class GlanceController: SmartTripIC {
    * for best routine.
    */
   override func updateUINoTripsFound(bestRoutine: Dictionary<String, AnyObject>) {
-    subTitleLabel.setText(bestRoutine["tit"] as? String)
+    if bestRoutine["hab"] as! Bool {
+      subTitleLabel.setText("Smart vana")
+    } else {
+      subTitleLabel.setText(bestRoutine["tit"] as? String)
+    }
+    
     departureLabel.setText("Ingen resa")
     originLabel.setText("")
     destinationLabel.setText("")

@@ -52,6 +52,7 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
     return [
       "id": id,
       "tit": title!,
+      "hab": isSmartSuggestion,
       "ori": (criterions.origin?.name)!,
       "des": (criterions.dest?.name)!,
       "dep": departureString,

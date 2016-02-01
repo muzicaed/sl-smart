@@ -211,7 +211,12 @@ class SmartTripIC: WKInterfaceController {
       let warnings = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["war"] as! [String]
       
       updateDepatureUI()
-      titleLabel.setText(bestRoutine["tit"] as? String)
+      if bestRoutine["hab"] as! Bool {
+        titleLabel.setText("Smart vana")
+      } else {
+        titleLabel.setText(bestRoutine["tit"] as? String)
+      }
+      
       originLabel.setText(bestRoutine["ori"] as? String)
       destinationLabel.setText(bestRoutine["des"] as? String)
       
