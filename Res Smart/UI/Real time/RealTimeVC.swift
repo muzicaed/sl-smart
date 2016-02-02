@@ -282,10 +282,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     realtimeIndicatorLabel?.layer.removeAllAnimations()
     realtimeIndicatorLabel?.removeFromSuperview()
     let screenWidth = UIScreen.mainScreen().bounds.width
-    realtimeIndicatorLabel = UILabel(frame: CGRect(x: screenWidth - 75, y: 0, width: 70, height: 44))
+    realtimeIndicatorLabel = UILabel(frame: CGRect(x: screenWidth - 80, y: 0, width: 70, height: 44))
     realtimeIndicatorLabel!.text = "Uppdateras i realtid"
     realtimeIndicatorLabel!.numberOfLines = 2
-    realtimeIndicatorLabel!.textAlignment = NSTextAlignment.Center
+    realtimeIndicatorLabel!.textAlignment = NSTextAlignment.Right
     realtimeIndicatorLabel!.font = UIFont.systemFontOfSize(12)
     realtimeIndicatorLabel!.textColor = StyleHelper.sharedInstance.mainGreen
     
