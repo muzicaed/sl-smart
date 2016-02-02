@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
+/**
+ * TODO: This VC could use a lot of refactoring...
+ */
 class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   
   @IBOutlet weak var topView: UIView!
@@ -396,7 +399,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
     switch tabKeys {
     case "BUS":
-      return min(realTimeDepartures!.busses[busKeys[section]]!.count + 1, 8)
+      return min(realTimeDepartures!.busses[busKeys[section]]!.count + 1, 12)
     case "METRO-GREEN":
       return min(realTimeDepartures!.greenMetros[metroGreenKeys[section]]!.count + 1, 5)
     case "METRO-RED":
