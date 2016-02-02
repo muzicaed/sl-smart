@@ -307,7 +307,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   }
   
   /**
-   * Create header cell
+   * Create bus trip cell
    */
   private func createBussTripCell(indexPath: NSIndexPath) -> RealTimeTripRow {
     let cell = tableView!.dequeueReusableCellWithIdentifier("TripRow",
@@ -399,7 +399,12 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
     switch tabKeys {
     case "BUS":
-      return min(realTimeDepartures!.busses[busKeys[section]]!.count + 1, 12)
+      if realTimeDepartures!.busses.count == 1 {
+        return realTimeDepartures!.busses[busKeys[section]]!.count
+      } else if realTimeDepartures!.busses.count == 2 {
+        return min(realTimeDepartures!.busses[busKeys[section]]!.count, 7)
+      }
+      return min(realTimeDepartures!.busses[busKeys[section]]!.count, 4)
     case "METRO-GREEN":
       return min(realTimeDepartures!.greenMetros[metroGreenKeys[section]]!.count + 1, 5)
     case "METRO-RED":
@@ -469,9 +474,16 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   private func setRowData(cell: RealTimeTripRow, indexPath: NSIndexPath) {
     var data: RTTransportBase?
     let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
+    cell.stopPointDesignation.hidden = true
+    
     switch tabKeys {
     case "BUS":
-      data = realTimeDepartures!.busses[busKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
+      let bus = realTimeDepartures!.busses[busKeys[indexPath.section]]![indexPath.row - 1]
+      data = bus as RTTransportBase
+      if let designation = bus.stopPointDesignation {
+        cell.stopPointDesignation.text = designation
+        cell.stopPointDesignation.hidden = false
+      }
     case "METRO-GREEN":
       data = realTimeDepartures!.greenMetros[metroGreenKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
     case "METRO-RED":

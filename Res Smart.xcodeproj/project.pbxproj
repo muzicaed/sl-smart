@@ -11,6 +11,7 @@
 		1801A3FE1C39317C0068E1FC /* SubscribeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801A3FD1C39317C0068E1FC /* SubscribeDelegate.swift */; };
 		180603641C01FCBE00AC1841 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180603631C01FCBE00AC1841 /* SwiftyJSON.swift */; };
 		1806037C1C02165000AC1841 /* LocationSearchResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037B1C02165000AC1841 /* LocationSearchResponder.swift */; };
+		181860A41C61613800413C18 /* RealTimeShowMoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181860A31C61613800413C18 /* RealTimeShowMoreRow.swift */; };
 		1818B2671C404FE0004E3CA3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188B80441C175D9600E7D90C /* NotificationCenter.framework */; };
 		1818B26A1C404FE0004E3CA3 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818B2691C404FE0004E3CA3 /* TodayViewController.swift */; };
 		1818B26D1C404FE0004E3CA3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1818B26B1C404FE0004E3CA3 /* MainInterface.storyboard */; };
@@ -256,6 +257,7 @@
 		1806037B1C02165000AC1841 /* LocationSearchResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchResponder.swift; sourceTree = "<group>"; };
 		180FD8B41C0B087E0095C790 /* ScorePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScorePost.swift; path = ../../Model/ScorePost.swift; sourceTree = "<group>"; };
 		180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePostHelper.swift; sourceTree = "<group>"; };
+		181860A31C61613800413C18 /* RealTimeShowMoreRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeShowMoreRow.swift; sourceTree = "<group>"; };
 		1818B2661C404FE0004E3CA3 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1818B2691C404FE0004E3CA3 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		1818B26C1C404FE0004E3CA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 				18733C4A1C4E411900F66AEF /* RealTimeVC.swift */,
 				18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */,
 				18698AAB1C4E913A0031D1AD /* RealTimeTripRow.swift */,
+				181860A31C61613800413C18 /* RealTimeShowMoreRow.swift */,
 			);
 			path = "Real time";
 			sourceTree = "<group>";
@@ -1196,6 +1199,7 @@
 				188367711C170E1800A8BE16 /* TripDetailsChangeCell.swift in Sources */,
 				1899F2691C4B9C9200534587 /* RoutePolyline.swift in Sources */,
 				1892BA3A1C1F188700BC191A /* TravelTypesVC.swift in Sources */,
+				181860A41C61613800413C18 /* RealTimeShowMoreRow.swift in Sources */,
 				18CB35B21C1E08BA0084CA27 /* LocationPickerRow.swift in Sources */,
 				18353DE01C1F70590011CDEA /* AdvancedCriterionsHelper.swift in Sources */,
 				1892BA3E1C1F26E100BC191A /* TravelTypesPickerRow.swift in Sources */,

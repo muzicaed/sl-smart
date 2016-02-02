@@ -1440,6 +1440,16 @@
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwW-LA-Pdp">
+                                                            <rect key="frame" x="340" y="0.0" width="0.0" height="44"/>
+                                                            <color key="backgroundColor" red="0.32616164921465973" green="0.32616164921465973" blue="0.32616164921465973" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="20" id="NIw-if-hJD"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="15:43" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Og-si-maU">
                                                             <rect key="frame" x="340" y="0.0" width="60" height="44"/>
                                                             <constraints>
@@ -1466,6 +1476,7 @@
                                     <outlet property="deviationsLabel" destination="rVj-cg-43Q" id="fIw-3j-ggz"/>
                                     <outlet property="infoLabel" destination="TiA-Wb-6Yu" id="g4z-dG-TJH"/>
                                     <outlet property="lineLabel" destination="4th-Df-XzP" id="Qr9-zW-Jxj"/>
+                                    <outlet property="stopPointDesignation" destination="TwW-LA-Pdp" id="d3e-Wt-qCb"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotFoundRow" id="Wdh-LD-zra" userLabel="Not found row" customClass="RealTimeTripRow" customModule="Res_Smart" customModuleProvider="target">
@@ -1491,6 +1502,27 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="infoLabel" destination="eHZ-HP-yxN" id="8S1-So-auA"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShowMoreRow" id="LuF-e7-6sg" userLabel="Show more row" customClass="RealTimeShowMoreRow" customModule="Res_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="241.5" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LuF-e7-6sg" id="cGC-UU-GdK">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1U-iK-9Wu">
+                                            <rect key="frame" x="145.5" y="7" width="123" height="30"/>
+                                            <state key="normal" title="Visa fler avgångar"/>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="G1U-iK-9Wu" firstAttribute="centerY" secondItem="cGC-UU-GdK" secondAttribute="centerY" id="8Qe-dT-xmN"/>
+                                        <constraint firstItem="G1U-iK-9Wu" firstAttribute="centerX" secondItem="cGC-UU-GdK" secondAttribute="centerX" id="vdy-9x-Avj"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="showMoreButton" destination="G1U-iK-9Wu" id="aMR-gx-Qr6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
