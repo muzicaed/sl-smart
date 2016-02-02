@@ -400,11 +400,11 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     switch tabKeys {
     case "BUS":
       if realTimeDepartures!.busses.count == 1 {
-        return realTimeDepartures!.busses[busKeys[section]]!.count
+        return realTimeDepartures!.busses[busKeys[section]]!.count + 1
       } else if realTimeDepartures!.busses.count == 2 {
-        return min(realTimeDepartures!.busses[busKeys[section]]!.count, 7)
+        return min(realTimeDepartures!.busses[busKeys[section]]!.count + 1, 7)
       }
-      return min(realTimeDepartures!.busses[busKeys[section]]!.count, 4)
+      return min(realTimeDepartures!.busses[busKeys[section]]!.count + 1, 4)
     case "METRO-GREEN":
       return min(realTimeDepartures!.greenMetros[metroGreenKeys[section]]!.count + 1, 5)
     case "METRO-RED":
