@@ -115,9 +115,9 @@ public class DateUtils {
       nowStr = "Gå nu"
     }
     
-    let diffMin = Int((departure.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
+    let diffMin = Int(ceil(((departure.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)) + 0.5)
     if diffMin < 60 {
-      let diffMinStr = (diffMin + 1 <= 1) ? "\(nowStr)" : "\(aboutStr) \(diffMin + 1) min"
+      let diffMinStr = (diffMin < 1) ? "\(nowStr)" : "\(aboutStr) \(diffMin) min"
       return diffMinStr
     }
     

@@ -111,7 +111,7 @@ class RoutineTripCell: UICollectionViewCell {
     if let second = secondTrip?.tripSegments.first, first = trip.tripSegments.first {
       let depTimeInterval = first.departureDateTime.timeIntervalSinceNow
       if depTimeInterval < (60 * 11) {
-        let diffMin = Int((second.departureDateTime.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
+        let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)) + 0.5)
         nextInAboutLabel.text = "Nästa: \(diffMin) min"
         nextInAboutLabel.hidden = false
       }
