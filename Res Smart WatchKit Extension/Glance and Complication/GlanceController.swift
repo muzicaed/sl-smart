@@ -48,8 +48,7 @@ class GlanceController: SmartTripIC {
 
       updateDepatureUI()
       if bestRoutine["hab"] as! Bool {
-//        subTitleLabel.setText("Smart vana")
-        subTitleLabel.setText(bestRoutine["tit"] as? String)
+        subTitleLabel.setText("Smart vana")
       } else {
         subTitleLabel.setText(bestRoutine["tit"] as? String)
       }
