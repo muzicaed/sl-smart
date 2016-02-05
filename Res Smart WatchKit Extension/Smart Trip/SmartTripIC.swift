@@ -40,7 +40,7 @@ class SmartTripIC: WKInterfaceController {
   
   let session = WCSession.defaultSession()
   let notificationCenter = NSNotificationCenter.defaultCenter()
-  let ReloadRateMinutes = 3
+  let ReloadRateMinutes = 2
   
   var icons = [WKInterfaceImage]()
   var iconLables = [WKInterfaceLabel]()
