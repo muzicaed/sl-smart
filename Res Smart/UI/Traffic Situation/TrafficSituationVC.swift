@@ -16,6 +16,7 @@ class TrafficSituationVC: UITableViewController {
   var filteredSituationGroups = [SituationGroup]()
   var showPlanned = false
   var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
+  let refreshController = UIRefreshControl()
   
   /**
    * View did load
@@ -23,6 +24,10 @@ class TrafficSituationVC: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
+    refreshController.addTarget(self, action: Selector("loadData"), forControlEvents: UIControlEvents.ValueChanged)
+    refreshController.tintColor = UIColor.lightGrayColor()
+    tableView.addSubview(refreshController)
+    tableView.alwaysBounceVertical = true
   }
   
   /** 
@@ -136,7 +141,7 @@ class TrafficSituationVC: UITableViewController {
   /**
    * Loads traffic situation data.
    */
-  private func loadData() {
+  func loadData() {
     if shouldReload() {
       TrafficSituationService.fetchInformation() {data, error in
         dispatch_async(dispatch_get_main_queue()) {
@@ -147,9 +152,13 @@ class TrafficSituationVC: UITableViewController {
           self.lastUpdated = NSDate()
           self.situationGroups = data
           self.filteredSituationGroups = self.filterSituationsOnPlanned(data)
+          self.refreshController.endRefreshing()
           self.tableView.reloadData()
         }
       }
+    }
+    else {
+      self.refreshController.endRefreshing()
     }
   }
   

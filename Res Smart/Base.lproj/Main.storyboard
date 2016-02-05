@@ -2529,18 +2529,11 @@ Välkommen till ett smartare sätt att pendla.</string>
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Smart" id="9vb-OE-0pW">
-                        <leftBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="vDb-rr-do9">
-                                <connections>
-                                    <action selector="onRefreshTap:" destination="TL9-Eb-L0b" id="Tsg-BQ-9eB"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Hjälp" id="rbu-cd-GBJ">
-                                <connections>
-                                    <action selector="onHelpTap:" destination="TL9-Eb-L0b" id="tIn-dM-i0t"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" title="Hjälp" id="rbu-cd-GBJ">
+                            <connections>
+                                <action selector="onHelpTap:" destination="TL9-Eb-L0b" id="tIn-dM-i0t"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Mina rutiner" id="KgG-WF-SzF">
                             <connections>
                                 <segue destination="06E-RP-qJs" kind="show" identifier="ManageRoutineTrips" id="plm-BT-rVX"/>

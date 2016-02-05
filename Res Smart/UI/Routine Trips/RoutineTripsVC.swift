@@ -33,7 +33,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   var isLoading = true
   var isShowInfo = false
   var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
-  var refreshButton: UIBarButtonItem?
+  let refreshController = UIRefreshControl()
   
   var hereToThereCriterion: TripSearchCriterion?
   var refreshTimmer: NSTimer?
@@ -45,7 +45,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     super.viewDidLoad()
     setupNotificationListeners()
     setupCollectionView()
-    refreshButton = navigationItem.leftBarButtonItem
+    
+    refreshController.addTarget(self, action: Selector("onRefreshController"), forControlEvents: UIControlEvents.ValueChanged)
+    refreshController.tintColor = UIColor.lightGrayColor()
+    collectionView?.addSubview(refreshController)
+    collectionView?.alwaysBounceVertical = true
   }
   
   /**
@@ -64,11 +68,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         return
       }
       startRefreshTimmer()
+      isLoading = true
       loadTripData(false)
       return
     }
     navigationItem.rightBarButtonItem?.enabled = false
-    refreshButton?.enabled = false
     collectionView?.reloadData()
   }
   
@@ -125,6 +129,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       MyLocationHelper.sharedInstance.isStarted = false
       return
     }
+    isLoading = true
     loadTripData(true)
     startRefreshTimmer()
   }
@@ -147,9 +152,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   
   func refreshUI() {
     if NSDate().timeIntervalSinceDate(lastUpdated) > (60 * 3) {
+      isLoading = true
       loadTripData(true)
+    } else {
+      isLoading = false
+      collectionView?.reloadData()
     }
-    self.collectionView?.reloadData()
   }
   
   /**
@@ -164,6 +172,13 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * On user taps refresh
    */
   @IBAction func onRefreshTap(sender: AnyObject) {
+    loadTripData(true)
+  }
+  
+  /**
+   * On user drags down to refresh
+   */
+  func onRefreshController() {
     loadTripData(true)
   }
   
@@ -427,25 +442,21 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   private func loadTripData(force: Bool) {
     if RoutineTripsStore.sharedInstance.isRoutineTripsEmpty() {
       isShowInfo = true
-      isLoading = false
-      self.refreshButton?.enabled = false
-      self.collectionView?.reloadSections(NSIndexSet(indexesInRange: NSRange.init(location: 0, length: 1)))
+      tripSearchDone()
     } else if shouldReload() || force {
-      otherRoutineTrips = [RoutineTrip]()
-      bestRoutineTrip = nil
-      selectedRoutineTrip = nil
       isShowInfo = false
-      self.isLoading = true
-      refreshButton?.enabled = false
+      self.otherRoutineTrips = [RoutineTrip]()
+      self.bestRoutineTrip = nil
+      self.selectedRoutineTrip = nil
       collectionView?.reloadData()
       RoutineService.findRoutineTrip({ routineTrips in
+        self.refreshController.endRefreshing()
         if routineTrips.count > 0 {
           self.bestRoutineTrip = routineTrips.first!
           self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
           dispatch_async(dispatch_get_main_queue()) {
             self.lastUpdated = NSDate()
             self.tripSearchDone()
-            self.collectionView?.reloadSections(NSIndexSet(index: 1))
           }
         }
       })
@@ -466,8 +477,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   private func tripSearchDone() {
     self.isLoading = false
-    self.refreshButton?.enabled = true
-    self.navigationItem.leftBarButtonItem = self.refreshButton
     self.collectionView?.reloadData()
   }
   

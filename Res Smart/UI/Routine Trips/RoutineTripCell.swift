@@ -62,7 +62,7 @@ class RoutineTripCell: UICollectionViewCell {
       title = "\(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName) (Vana)"
     }
     
-    tripTitleLabel.text = title + " [\(String(routineTrip.score))]"
+    tripTitleLabel.text = title //+ " [\(String(routineTrip.score))]"
     originLabel.text = routineTrip.criterions.origin?.cleanName
     destinationLabel.text = routineTrip.criterions.dest?.cleanName
     
