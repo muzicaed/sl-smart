@@ -53,7 +53,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    startRefreshTimmer()
     isSubscribing = SubscriptionStore.sharedInstance.isSubscribed()
     if isSubscribing {
       navigationItem.rightBarButtonItem?.enabled = true
@@ -64,6 +63,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.reloadData()
         return
       }
+      startRefreshTimmer()
       loadTripData(false)
       return
     }
@@ -370,12 +370,34 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       let date = NSDate(timeIntervalSinceNow: (60 * 2) * -1)
       crit.date = DateUtils.dateAsDateString(date)
       crit.time = DateUtils.dateAsTimeString(date)
-      self.hereToThereCriterion = crit
-      self.performSegueWithIdentifier(self.showTripListSegue, sender: self)
+      hereToThereCriterion = crit
+      
+      createSmartSuggestion(crit)
+      performSegueWithIdentifier(self.showTripListSegue, sender: self)
     }
   }
   
   // MARK: Private methods
+  
+  /**
+  * Create smart suggestion.
+  */
+  private func createSmartSuggestion(crit: TripSearchCriterion) {
+
+    var routine = RoutineTripsStore.sharedInstance.retriveRoutineTripOnId(crit.smartId())
+    if routine == nil {
+      print("Created new smart suggestion.")
+      routine = RoutineTrip(
+        id: crit.smartId(), title: "Smart förslag",
+        criterions: crit, isSmartSuggestion: true)
+      RoutineTripsStore.sharedInstance.addRoutineTrip(routine!)
+    }
+    
+    ScorePostHelper.changeScoreForRoutineTrip(
+      routine!.criterions.origin!.siteId!,
+      destinationId: routine!.criterions.dest!.siteId!,
+      score: ScorePostHelper.OtherTapCountScore)
+  }
   
   /**
   * Setup collection view properties and layout.

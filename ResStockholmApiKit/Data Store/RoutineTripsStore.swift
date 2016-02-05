@@ -28,7 +28,12 @@ public class RoutineTripsStore {
    * Is empty
    */
   public func isRoutineTripsEmpty() -> Bool {
-    return (cachedRoutineTrips.count == 0) ? true : false
+    for trip in cachedRoutineTrips {
+      if !trip.isSmartSuggestion {
+        return false
+      }
+    }
+    return true
   }
   
   /**

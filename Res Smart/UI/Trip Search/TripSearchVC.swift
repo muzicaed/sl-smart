@@ -72,7 +72,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       let vc = segue.destinationViewController as! TripListVC
       vc.criterions = criterions?.copy() as? TripSearchCriterion
       if let crit = criterions {
-        storeSearch(crit)
+        SearchCriterionStore.sharedInstance.writeLastSearchCriterions(crit)
+        createSmartSuggestion(crit)
       }
       
     } else if segue.identifier == "ShowDateTimePicker" {
@@ -428,9 +429,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   /**
    * Store search criterion & create smart suggestion.
    */
-  private func storeSearch(crit: TripSearchCriterion) {
-    SearchCriterionStore.sharedInstance.writeLastSearchCriterions(crit)
-    
+  private func createSmartSuggestion(crit: TripSearchCriterion) {
     crit.resetAdvancedTripTypes()
     var routine = RoutineTripsStore.sharedInstance.retriveRoutineTripOnId(crit.smartId())
     

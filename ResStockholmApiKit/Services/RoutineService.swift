@@ -61,8 +61,8 @@ public class RoutineService {
   private static func createPrioList(
     routineTrips: [RoutineTrip], callback: ([RoutineTrip]) -> Void) {
       let prioList = routineTrips.sort {$0.score > $1.score}
-      if prioList.count > 0 {
-        let filteredList = filterSmartSuggestions(prioList)
+      let filteredList = filterSmartSuggestions(prioList)
+      if filteredList.count > 0 {
         searchTripsForBestRoutine(filteredList[0]) { trips in
           if trips.count > 0 {
             filteredList[0].trips = trips
@@ -72,7 +72,7 @@ public class RoutineService {
         }
         return
       }
-      callback(prioList)
+      callback(filteredList)
   }
   
   /**
@@ -194,7 +194,7 @@ public class RoutineService {
   static private func filterSmartSuggestions(routineTrips: [RoutineTrip]) -> [RoutineTrip] {
     var filteredList = [RoutineTrip]()
     for (index, routine) in routineTrips.enumerate() {
-      if index == 0 && routine.isSmartSuggestion && routine.score > 30 {
+      if index == 0 && routine.isSmartSuggestion && routine.score > 30 && routineTrips.count > 1 {
         filteredList.append(routineTrips[0])
       } else if !routine.isSmartSuggestion {
         filteredList.append(routine)
