@@ -210,7 +210,7 @@ public class RoutineService {
   static private func filterSmartSuggestions(routineTrips: [RoutineTrip]) -> [RoutineTrip] {
     var filteredList = [RoutineTrip]()
     for (index, routine) in routineTrips.enumerate() {
-      if index == 0 && routine.isSmartSuggestion && routine.score > 30 && routineTrips.count > 1 {
+      if index == 0 && routine.isSmartSuggestion && routine.score > 25 && routineTrips.count > 1 {
         filteredList.append(routineTrips[0])
       } else { // TODO: Put back if !routine.isSmartSuggestion {
         filteredList.append(routine)
