@@ -94,6 +94,33 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     fatalError("Could not encode query string.")
   }
   
+  /**
+   * Resets advanced search criterions
+   */
+  public func resetAdvancedTripTypes() {
+    isAdvanced = (via != nil)
+    useTrain = true
+    useMetro = true
+    useTram = true
+    useBus = true
+    useFerry = true
+    useShip = true
+  }
+  
+  /**
+   * Gets smart id.
+   */
+  public func smartId() -> String{
+    if (origin == nil && originId == "0") || (dest == nil && destId == "0") {
+      fatalError("Can not generate smart id without origin/destination")
+    }
+    var viaStr = ""
+    if let via = self.via {
+      viaStr = "\(via.siteId)"
+    }    
+    return "smart-\(createOriginQuery())-\(viaStr)-\(createDestinationQuery())"
+  }
+  
   // MARK: NSCoding
   
   required public init?(coder aDecoder: NSCoder) {

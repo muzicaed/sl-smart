@@ -59,7 +59,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
       vc.searchOnlyForStations = false
-      vc.allowCurrentPosition = true      
+      vc.allowCurrentPosition = true
       searchLocationType = "Destination"
       
     } else if segue.identifier == "SearchViaLocation" {
@@ -72,7 +72,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       let vc = segue.destinationViewController as! TripListVC
       vc.criterions = criterions?.copy() as? TripSearchCriterion
       if let crit = criterions {
-        SearchCriterionStore.sharedInstance.writeLastSearchCriterions(crit)
+        storeSearch(crit)
       }
       
     } else if segue.identifier == "ShowDateTimePicker" {
@@ -423,6 +423,29 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     notificationCenter.addObserver(self,
       selector: Selector("restoreUIFromCriterions"),
       name: UIApplicationDidBecomeActiveNotification, object: nil)
+  }
+  
+  /**
+   * Store search criterion & create smart suggestion.
+   */
+  private func storeSearch(crit: TripSearchCriterion) {
+    SearchCriterionStore.sharedInstance.writeLastSearchCriterions(crit)
+    
+    crit.resetAdvancedTripTypes()
+    var routine = RoutineTripsStore.sharedInstance.retriveRoutineTripOnId(crit.smartId())
+    
+    if routine == nil {
+      print("Created new smart suggestion.")
+      routine = RoutineTrip(
+        id: crit.smartId(), title: "Smart förslag",
+        criterions: crit, isSmartSuggestion: true)
+      RoutineTripsStore.sharedInstance.addRoutineTrip(routine!)
+    }
+    
+    ScorePostHelper.changeScoreForRoutineTrip(
+      routine!.criterions.origin!.siteId!,
+      destinationId: routine!.criterions.dest!.siteId!,
+      score: ScorePostHelper.OtherTapCountScore)
   }
   
   /**

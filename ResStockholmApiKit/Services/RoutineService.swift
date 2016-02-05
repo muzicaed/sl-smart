@@ -41,17 +41,17 @@ public class RoutineService {
     let todayTimeTuple = createTimeTuple()
     
     for trip in routineTrips {
-      //print("")
-      //print("---------------------------------")
-      //print("\(trip.title!)")
+      print("")
+      print("---------------------------------")
+      print("\(trip.title!)")
       var multiplier = multiplierBasedOnProximityToLocation(trip, locations: locations)
       multiplier += multiplierBasedOnProximityToScorePostLocation(trip)
       trip.score = scoreBasedOnRoutineSchedule(trip, today: todayTimeTuple)
       multiplier = (multiplier == 0) ? 1 : multiplier
       trip.score = (trip.score < 2) ? multiplier * 2: trip.score * multiplier
-      //print("Multiplier: \(multiplier)")
-      //print("TOTAL: \(trip.score)")
-      //print("---------------------------------")
+      print("Multiplier: \(multiplier)")
+      print("TOTAL: \(trip.score)")
+      print("---------------------------------")
     }
   }
   
@@ -62,11 +62,13 @@ public class RoutineService {
     routineTrips: [RoutineTrip], callback: ([RoutineTrip]) -> Void) {
       let prioList = routineTrips.sort {$0.score > $1.score}
       if prioList.count > 0 {
-        searchTripsForBestRoutine(prioList[0]) { trips in
+        let filteredList = filterSmartSuggestions(prioList)
+        searchTripsForBestRoutine(filteredList[0]) { trips in
           if trips.count > 0 {
-            prioList[0].trips = trips
+            filteredList[0].trips = trips
           }
-          callback(prioList)
+          callback(filteredList)
+          return
         }
         return
       }
@@ -126,7 +128,7 @@ public class RoutineService {
   static private func calcMultiplierBasedOnProximityToLocation(distance: Int) -> Float {
     var tempMultiplier = Float(2000 - distance)
     tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
-    //print("Mult Based On Proximity To Location: \(tempMultiplier)")
+    print("Mult Based On Proximity To Location: \(tempMultiplier)")
     return tempMultiplier
   }
   
@@ -150,8 +152,8 @@ public class RoutineService {
             }
         }
       }
-      ////print("Score Based On Schedule: \(score + 1)")
-      return score + 1
+      print("Score Based On Schedule: \(min(score + 1, 20))")
+      return min(score + 1, 20)
   }
   
   /**
@@ -174,7 +176,7 @@ public class RoutineService {
         }
       }
     }
-    //print("Mult Based On Score Post: \(highestMulitplier)")
+    print("Mult Based On Score Post: \(highestMulitplier)")
     return highestMulitplier
   }
   
@@ -184,5 +186,21 @@ public class RoutineService {
    */
   static private func createTimeTuple() -> (dayInWeek: Int, hourOfDay: Int) {
     return (DateUtils.getDayOfWeek(), DateUtils.getHourOfDay())
+  }
+  
+  /**
+   * Filters out smart suggestions from list.
+   */
+  static private func filterSmartSuggestions(routineTrips: [RoutineTrip]) -> [RoutineTrip] {
+    var filteredList = [RoutineTrip]()
+    for (index, routine) in routineTrips.enumerate() {
+      if index == 0 && routine.isSmartSuggestion && routine.score > 30 {
+        filteredList.append(routineTrips[0])
+      } else if !routine.isSmartSuggestion {
+        filteredList.append(routine)
+      }
+    }
+    
+    return filteredList
   }
 }

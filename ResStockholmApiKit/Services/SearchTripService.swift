@@ -139,6 +139,7 @@ public class SearchTripService {
    * Converts json to location object.
    */
   private static func convertJsonToLocation(locationJson: JSON) -> Location {
+//    print(locationJson)
     return Location(
       id: locationJson["id"].string,
       name: ensureUTF8(locationJson["name"].string!),

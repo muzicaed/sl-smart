@@ -14,11 +14,14 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   public var criterions = TripSearchCriterion(origin: nil, dest: nil)
   public var trips = [Trip]()
   public var score = Float(0.0)
+  public var isSmartSuggestion = false
   
-  public init(id: String, title: String?, criterions: TripSearchCriterion) {
-    self.id = id
-    self.title = title
-    self.criterions = criterions
+  public init(id: String, title: String?,
+    criterions: TripSearchCriterion, isSmartSuggestion: Bool) {
+      self.id = id
+      self.title = title
+      self.criterions = criterions
+      self.isSmartSuggestion = isSmartSuggestion
   }
   
   override public init() {
@@ -62,8 +65,9 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
     let id = aDecoder.decodeObjectForKey(PropertyKey.id) as! String
     let title = aDecoder.decodeObjectForKey(PropertyKey.title) as? String
     let criterions = aDecoder.decodeObjectForKey(PropertyKey.criterions) as! TripSearchCriterion
+    let isSmartSuggestion = aDecoder.decodeBoolForKey(PropertyKey.isSmartSuggestion)
     
-    self.init(id: id, title: title, criterions: criterions)
+    self.init(id: id, title: title, criterions: criterions, isSmartSuggestion: isSmartSuggestion)
   }
   
   /**
@@ -73,12 +77,14 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
     aCoder.encodeObject(id, forKey: PropertyKey.id)
     aCoder.encodeObject(title, forKey: PropertyKey.title)
     aCoder.encodeObject(criterions, forKey: PropertyKey.criterions)
+    aCoder.encodeBool(isSmartSuggestion, forKey: PropertyKey.isSmartSuggestion)
   }
   
   struct PropertyKey {
     static let id = "id"
     static let title = "title"
     static let criterions = "criterions"
+    static let isSmartSuggestion = "isSmartSuggestion"
   }
   
   // MARK: NSCopying
@@ -89,7 +95,8 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   public func copyWithZone(zone: NSZone) -> AnyObject {
     let copy =  RoutineTrip(
       id: id, title: title,
-      criterions: criterions.copy() as! TripSearchCriterion)
+      criterions: criterions.copy() as! TripSearchCriterion,
+      isSmartSuggestion: isSmartSuggestion)
     copy.score = score
     
     for trip in trips {

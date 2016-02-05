@@ -11,7 +11,7 @@ import CoreLocation
 
 public class ScorePostHelper {
   
-  public static let BestTapCountScore = Float(1.0)
+  public static let BestTapCountScore = Float(0.6)
   public static let OtherTapCountScore = Float(0.5)
   public static let NotBestTripScore = Float(-0.5)
   public static let WideScoreMod = Float(0.25)
@@ -102,6 +102,7 @@ public class ScorePostHelper {
             if let location = location, postLocation = post.location {
               if location.distanceFromLocation(postLocation) < RequiredDistance {
                 post.score += (post.isOrigin == isOrigin) ? score : score * 0.75
+                post.score = min(post.score, 8)
                 return true
               }
             }
