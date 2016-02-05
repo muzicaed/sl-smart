@@ -55,6 +55,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    loadLatestLocations()
     tableView.reloadData()
   }
   
@@ -65,6 +66,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     let now = NSDate()
     if now.timeIntervalSinceDate(loadedTime) > (60 * 30) { // 0.5 hour
       navigationController?.popToRootViewControllerAnimated(false)
+    } else {
+      loadLatestLocations()
     }
   }
   
