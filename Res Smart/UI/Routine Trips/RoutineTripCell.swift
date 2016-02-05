@@ -62,7 +62,7 @@ class RoutineTripCell: UICollectionViewCell {
       title = "\(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName) (Vana)"
     }
     
-    tripTitleLabel.text = title //+ " [\(String(routineTrip.score))]"
+    tripTitleLabel.text = title + " [\(String(routineTrip.score))]"
     originLabel.text = routineTrip.criterions.origin?.cleanName
     destinationLabel.text = routineTrip.criterions.dest?.cleanName
     
@@ -112,8 +112,10 @@ class RoutineTripCell: UICollectionViewCell {
       let depTimeInterval = first.departureDateTime.timeIntervalSinceNow
       if depTimeInterval < (60 * 11) {
         let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)) + 0.5)
-        nextInAboutLabel.text = "Nästa: \(diffMin) min"
-        nextInAboutLabel.hidden = false
+        if diffMin <= 60 {
+          nextInAboutLabel.text = "Nästa: \(diffMin) min"
+          nextInAboutLabel.hidden = false
+        }
       }
     }
   }
