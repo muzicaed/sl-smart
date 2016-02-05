@@ -169,16 +169,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   /**
-   * On user taps refresh
-   */
-  @IBAction func onRefreshTap(sender: AnyObject) {
-    loadTripData(true)
-  }
-  
-  /**
    * On user drags down to refresh
    */
   func onRefreshController() {
+    isLoading = true
     loadTripData(true)
   }
   
