@@ -37,6 +37,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   
   var hereToThereCriterion: TripSearchCriterion?
   var refreshTimmer: NSTimer?
+  var tableActivityIndicator = UIActivityIndicatorView(
+    activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
   
   /**
    * View is done loading
@@ -45,11 +47,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     super.viewDidLoad()
     setupNotificationListeners()
     setupCollectionView()
-    
-    refreshController.addTarget(self, action: Selector("onRefreshController"), forControlEvents: UIControlEvents.ValueChanged)
-    refreshController.tintColor = UIColor.lightGrayColor()
-    collectionView?.addSubview(refreshController)
-    collectionView?.alwaysBounceVertical = true
+    setupRefreshController()
+    setupTableActivityIndicator()
   }
   
   /**
@@ -57,18 +56,19 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    print("Will appear")
+    stopLoading()
     isSubscribing = SubscriptionStore.sharedInstance.isSubscribed()
     if isSubscribing {
       navigationItem.rightBarButtonItem?.enabled = true
       if CLLocationManager.authorizationStatus() == .Denied || !CLLocationManager.locationServicesEnabled() {
-        isLoading = false
         showLocationServicesNotAllowed()
         MyLocationHelper.sharedInstance.isStarted = false
         collectionView?.reloadData()
         return
       }
+      print("Start refresh")
       startRefreshTimmer()
-      isLoading = true
       loadTripData(false)
       return
     }
@@ -124,12 +124,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Triggered when returning from background.
    */
   func didBecomeActive() {
+    print("didBecomeActive")
     if CLLocationManager.authorizationStatus() == .Denied || !CLLocationManager.locationServicesEnabled() {
       showLocationServicesNotAllowed()
       MyLocationHelper.sharedInstance.isStarted = false
       return
     }
-    isLoading = true
     loadTripData(true)
     startRefreshTimmer()
   }
@@ -138,6 +138,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Backgrounded.
    */
   func didBecomeInactive() {
+    collectionView?.backgroundView?.hidden = true
     stopRefreshTimmer()
   }
   
@@ -151,11 +152,13 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   func refreshUI() {
-    if NSDate().timeIntervalSinceDate(lastUpdated) > (60 * 3) {
-      isLoading = true
+    print("Refresh UI")
+    if NSDate().timeIntervalSinceDate(lastUpdated) > (60 * 3) && !isLoading {
+      print("Force reload")
       loadTripData(true)
-    } else {
-      isLoading = false
+    } else if !isLoading {
+      print("UI Update")
+      stopLoading()
       collectionView?.reloadData()
     }
   }
@@ -172,8 +175,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * On user drags down to refresh
    */
   func onRefreshController() {
-    isLoading = true
-    loadTripData(true)
+    loadTripData(false)
   }
   
   /**
@@ -222,8 +224,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func collectionView(collectionView: UICollectionView,
     numberOfItemsInSection section: Int) -> Int {
+      if isLoading {
+        return 0
+      }
+      
       if section == 0 {
-        if isLoading || isShowInfo || !isSubscribing {
+        if isShowInfo || !isSubscribing {
           return 1
         }
         var bestCount = (bestRoutineTrip == nil ? 0 : 1)
@@ -244,8 +250,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       if indexPath.section == 0 {
         if !isSubscribing {
           return createSubscriptionInfoCell(indexPath)
-        } else if isLoading {
-          return createLoadingTripCell(indexPath)
         } else if isShowInfo {
           return createInfoTripCell(indexPath)
         }
@@ -288,8 +292,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       if indexPath.section == 0 {
         if !isSubscribing {
           return CGSizeMake(screenSize.width - 20, 330)
-        } else if isLoading {
-          return CGSizeMake(screenSize.width - 20, collectionView.bounds.height - 49 - 64 - 20)
         } else if isShowInfo {
           return CGSizeMake(screenSize.width - 20, 275)
         } else if bestRoutineTrip!.criterions.isAdvanced {
@@ -417,6 +419,26 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   /**
+   * Setup the "pull down to reload" controller.
+   */
+  private func setupRefreshController() {
+    refreshController.addTarget(self,
+      action: Selector("onRefreshController"), forControlEvents: UIControlEvents.ValueChanged)
+    refreshController.tintColor = UIColor.lightGrayColor()
+    collectionView?.addSubview(refreshController)
+    collectionView?.alwaysBounceVertical = true
+  }
+  
+  /**
+   * Setup table's background spinner.
+   */
+  private func setupTableActivityIndicator() {
+    tableActivityIndicator.startAnimating()
+    tableActivityIndicator.color = UIColor.lightGrayColor()
+    collectionView?.backgroundView = tableActivityIndicator
+  }
+  
+  /**
    * Setup notification listeners.
    */
   private func setupNotificationListeners() {
@@ -434,23 +456,21 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Will show big spinner when loading.
    */
   private func loadTripData(force: Bool) {
+    print("loadTripData")
     if RoutineTripsStore.sharedInstance.isRoutineTripsEmpty() {
       isShowInfo = true
-      tripSearchDone()
+      stopLoading()
     } else if shouldReload() || force {
-      isShowInfo = false
-      self.otherRoutineTrips = [RoutineTrip]()
-      self.bestRoutineTrip = nil
-      self.selectedRoutineTrip = nil
-      collectionView?.reloadData()
+      print("LOADING...")
+      startLoading()
       RoutineService.findRoutineTrip({ routineTrips in
-        self.refreshController.endRefreshing()
-        if routineTrips.count > 0 {
-          self.bestRoutineTrip = routineTrips.first!
-          self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
-          dispatch_async(dispatch_get_main_queue()) {
+        dispatch_async(dispatch_get_main_queue()) {
+          self.stopLoading()
+          if routineTrips.count > 0 {
+            self.bestRoutineTrip = routineTrips.first!
+            self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
             self.lastUpdated = NSDate()
-            self.tripSearchDone()
+            print("DONE LOADING...")
           }
         }
       })
@@ -469,9 +489,28 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   /**
    * On trip search done.
    */
-  private func tripSearchDone() {
-    self.isLoading = false
-    self.collectionView?.reloadData()
+  private func startLoading() {
+    print("startLoading")
+    isShowInfo = false
+    isLoading = true
+    otherRoutineTrips = [RoutineTrip]()
+    bestRoutineTrip = nil
+    selectedRoutineTrip = nil
+    collectionView?.reloadData()
+    refreshController.endRefreshing()
+    collectionView?.backgroundView = tableActivityIndicator
+    tableActivityIndicator.startAnimating()
+  }
+  
+  /**
+   * On trip search done.
+   */
+  private func stopLoading() {
+    print("stopLoading")
+    isLoading = false
+    refreshController.endRefreshing()
+    collectionView?.backgroundView = nil
+    collectionView?.reloadData()
   }
   
   /**
@@ -484,14 +523,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     let isBest = (type == cellIdentifier) ? true : false
     cell.setupData(trip, isBest: isBest)
     return cell
-  }
-  
-  /**
-   * Create loading trip cell
-   */
-  private func createLoadingTripCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-    return collectionView!.dequeueReusableCellWithReuseIdentifier(
-      loadingCellIdentifier, forIndexPath: indexPath)
   }
   
   /**

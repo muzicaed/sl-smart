@@ -2216,28 +2216,8 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </constraints>
                                 <size key="customSize" width="370" height="275"/>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="LoadingCell" id="l3t-u8-IJZ">
-                                <rect key="frame" x="22" y="640" width="370" height="120"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="r7S-qu-Lzs">
-                                            <rect key="frame" x="167" y="41" width="37" height="37"/>
-                                            <color key="color" white="0.33333333329999998" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
-                                        </activityIndicatorView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstItem="r7S-qu-Lzs" firstAttribute="centerX" secondItem="l3t-u8-IJZ" secondAttribute="centerX" id="4Tm-7W-QEs"/>
-                                    <constraint firstItem="r7S-qu-Lzs" firstAttribute="centerY" secondItem="l3t-u8-IJZ" secondAttribute="centerY" id="kaU-Vs-60g"/>
-                                </constraints>
-                                <size key="customSize" width="370" height="120"/>
-                            </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SubscriptionInfoCell" id="Ovm-fK-jZf" userLabel="SubscriptionInfoCell">
-                                <rect key="frame" x="22" y="770" width="370" height="330"/>
+                                <rect key="frame" x="22" y="640" width="370" height="330"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="330"/>
@@ -2432,7 +2412,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <size key="customSize" width="370" height="330"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HereToThereCell" id="esv-Pr-9mX" customClass="HereToThereCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="1110" width="370" height="60"/>
+                                <rect key="frame" x="22" y="980" width="370" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="60"/>
