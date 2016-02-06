@@ -37,16 +37,17 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   var realtimeIndicatorLabel: UILabel?
   var refreshTimmer: NSTimer?
   let loadedTime = NSDate()
+
+  var tableActivityIndicator = UIActivityIndicatorView(
+    activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
   
   /**
    * On load
    */
   override func viewDidLoad() {
+    topView.alpha = 0.0
     tableView.tableFooterView = UIView()
-    view.backgroundColor = StyleHelper.sharedInstance.background
-    spinnerView.frame.size = tableView.frame.size
-    spinnerView.frame.origin.y -= 84
-    tableView.addSubview(spinnerView)
+    setupTableActivityIndicator()
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive",
       name: UIApplicationDidBecomeActiveNotification, object: nil)
@@ -126,6 +127,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
             self.realTimeDepartures = departures
             self.setupKeys()
             self.prepareSegmentView()
+            self.tableView.backgroundView = nil
             self.tableView.reloadData()
           })
         }
@@ -198,7 +200,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   private func prepareSegmentView() {
     segmentView.removeFromSuperview()
     segmentView = SMSegmentView(
-      frame: CGRect(x: 0, y: 0, width: 100.0, height: (firstTimeLoad) ? 0 : 44),
+      frame: CGRect(x: 0, y: 0, width: 100.0, height: 44),
       separatorColour: UIColor.clearColor(),
       separatorWidth: 0.0,
       segmentProperties: [
@@ -270,11 +272,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       segmentView.selectSegmentAtIndex(lastSelected)
       segmentView.frame.size.width = CGFloat(50 * tabCount)
       topView.addSubview(segmentView)
-      if firstTimeLoad {
-        UIView.animateWithDuration(0.4, animations: {
-          self.segmentView.frame.size.height = 44
-        })
-      }
+      topView.alpha = 1.0
     }
   }
   
@@ -538,6 +536,15 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         cell.deviationsLabel.textColor = UIColor.darkGrayColor()
       }
     }
+  }
+    
+  /**
+   * Setup table's background spinner.
+   */
+  private func setupTableActivityIndicator() {
+    tableActivityIndicator.startAnimating()
+    tableActivityIndicator.color = UIColor.lightGrayColor()
+    tableView?.backgroundView = tableActivityIndicator
   }
   
   deinit {
