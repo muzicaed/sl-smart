@@ -22,8 +22,8 @@ class NetworkActivity {
     } else {
       numberOfNetworkCalls--
     }
-    print(numberOfNetworkCalls)
-    assert(numberOfNetworkCalls >= 0, "displayNetworkActivityIndicator aked to hide more then show.")
+
+    numberOfNetworkCalls = (numberOfNetworkCalls < 0) ? 0 : numberOfNetworkCalls
     UIApplication.sharedApplication().networkActivityIndicatorVisible = (numberOfNetworkCalls > 0)
   }
 }

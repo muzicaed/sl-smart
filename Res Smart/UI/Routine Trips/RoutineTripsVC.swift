@@ -603,7 +603,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         dispatch_after(dispatchTime, dispatch_get_main_queue(), {
           self.isSubscribing = false
           self.stopLoading()
-          //          self.viewWillAppear(true)
+          NetworkActivity.displayActivityIndicator(false)
+          self.viewWillAppear(true)
         })
       }))
     
