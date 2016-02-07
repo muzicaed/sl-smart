@@ -223,7 +223,9 @@ class TripDetailsVC: UITableViewController {
     for (index, segment) in trip.tripSegments.enumerate() {
       segment.routeLineLocations = [CLLocation]()
       if let ref = segment.journyRef {
+        NetworkActivity.displayActivityIndicator(true)
         JournyDetailsService.fetchJournyDetails(ref) { stops, error in
+          NetworkActivity.displayActivityIndicator(false)
           segment.stops = self.filterStops(stops, segment: segment)
           self.stopsVisual[index] = (isVisible: false, hasStops: (segment.stops.count > 0))
           dispatch_async(dispatch_get_main_queue()) {
@@ -232,7 +234,9 @@ class TripDetailsVC: UITableViewController {
         }
       }
       
+      NetworkActivity.displayActivityIndicator(true)
       GeometryService.fetchGeometry(segment.geometryRef) { locations, error in
+        NetworkActivity.displayActivityIndicator(false)
         dispatch_async(dispatch_get_main_queue()) {
           if error == nil {
             segment.routeLineLocations += self.extractLocations(locations, segment: segment)

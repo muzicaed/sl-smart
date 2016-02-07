@@ -117,7 +117,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Load real time data
    */
   func loadData() {
+    NetworkActivity.displayActivityIndicator(true)
     RealTimeDeparturesService.fetch(siteId) { (rtDepartures, error) -> Void in
+      NetworkActivity.displayActivityIndicator(false)
       if error == nil {
         if let departures = rtDepartures {
           dispatch_async(dispatch_get_main_queue(), {

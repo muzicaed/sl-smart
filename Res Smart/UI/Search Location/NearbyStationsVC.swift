@@ -124,8 +124,10 @@ class NearbyStationsVC: UITableViewController {
   */
   private func loadLocations() {
     if let currentPostion = MyLocationHelper.sharedInstance.currentLocation {
+      NetworkActivity.displayActivityIndicator(true)
       LocationSearchService.searchNearby(currentPostion, distance: 750,
         callback: { (data, error) -> Void in
+          NetworkActivity.displayActivityIndicator(false)
           if error != nil {
             // TODO: HANDLE ERROR!!
             return

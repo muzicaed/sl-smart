@@ -471,6 +471,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
             self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
             self.lastUpdated = NSDate()
             print("DONE LOADING...")
+            NetworkActivity.displayActivityIndicator(false)
           }
         }
       })
@@ -491,6 +492,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   private func startLoading() {
     print("startLoading")
+    NetworkActivity.displayActivityIndicator(true)
     isShowInfo = false
     isLoading = true
     otherRoutineTrips = [RoutineTrip]()

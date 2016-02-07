@@ -117,7 +117,7 @@ public class SearchTripService {
       rtuMessages = extractRtuMessages(segmentJson["RTUMessages"]["RTUMessage"])
     }
     
-    let isWarning = isDisturbance(rtuMessages)
+    let isWarning = DisturbanceTextHelper.isDisturbance(rtuMessages)
     
     return TripSegment(
       index: Int(segmentJson["idx"].string!)!,
@@ -211,15 +211,5 @@ public class SearchTripService {
     }
     
     return result
-  }
-  
-  private static func isDisturbance(text: String?) -> Bool {
-    if let text = text {
-      return (text.lowercaseString.rangeOfString("försen") != nil ||
-        text.lowercaseString.rangeOfString("utebli") != nil ||
-        text.lowercaseString.rangeOfString("flyttad") != nil)
-    }
-    
-    return false
   }
 }

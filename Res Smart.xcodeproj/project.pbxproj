@@ -23,6 +23,8 @@
 		18232CAC1C01EC2F006334D1 /* SearchLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAB1C01EC2F006334D1 /* SearchLocationVC.swift */; };
 		18232CAE1C01F1CA006334D1 /* ManageRoutineTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAD1C01F1CA006334D1 /* ManageRoutineTripCell.swift */; };
 		18353DE01C1F70590011CDEA /* AdvancedCriterionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18353DDF1C1F70590011CDEA /* AdvancedCriterionsHelper.swift */; };
+		1835A0691C675D58008355F9 /* NetworkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A0681C675D58008355F9 /* NetworkActivity.swift */; };
+		1835A06E1C676180008355F9 /* DisturbanceTextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5A8D41C57BC54003C4C3B /* DisturbanceTextHelper.swift */; };
 		183D6EB21C19DBF000EB7537 /* TrafficSituationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D6EB11C19DBF000EB7537 /* TrafficSituationService.swift */; };
 		183D6EB41C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D6EB31C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift */; };
 		183D6EB61C19DEF400EB7537 /* SituationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D6EB51C19DEF400EB7537 /* SituationGroup.swift */; };
@@ -94,7 +96,6 @@
 		1899F2671C4B9C6200534587 /* RouteRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2661C4B9C6200534587 /* RouteRenderer.swift */; };
 		1899F2691C4B9C9200534587 /* RoutePolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2681C4B9C9200534587 /* RoutePolyline.swift */; };
 		1899F26B1C4BBE7800534587 /* Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F26A1C4BBE7800534587 /* Pins.swift */; };
-		18A5A8D51C57BC54003C4C3B /* DisturbanceTextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5A8D41C57BC54003C4C3B /* DisturbanceTextHelper.swift */; };
 		18A5A8DB1C580E83003C4C3B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A5A8DA1C580E83003C4C3B /* CoreLocation.framework */; };
 		18A824741C0EE866006190C4 /* SmartTripIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E591BFF33FB00C523C9 /* SmartTripIC.swift */; };
 		18A824751C0EE866006190C4 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */; };
@@ -278,6 +279,7 @@
 		18232CAD1C01F1CA006334D1 /* ManageRoutineTripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageRoutineTripCell.swift; sourceTree = "<group>"; };
 		18232CAF1C01FA78006334D1 /* SLSearchLocationApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSearchLocationApi.swift; sourceTree = "<group>"; };
 		18353DDF1C1F70590011CDEA /* AdvancedCriterionsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedCriterionsHelper.swift; sourceTree = "<group>"; };
+		1835A0681C675D58008355F9 /* NetworkActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkActivity.swift; sourceTree = "<group>"; };
 		183D6EB11C19DBF000EB7537 /* TrafficSituationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficSituationService.swift; sourceTree = "<group>"; };
 		183D6EB31C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLTrafficSituationServiceApi.swift; sourceTree = "<group>"; };
 		183D6EB51C19DEF400EB7537 /* SituationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SituationGroup.swift; sourceTree = "<group>"; };
@@ -434,8 +436,8 @@
 				1801A3FB1C392DE60068E1FC /* SubscriptionStore.swift */,
 				1801A3FD1C39317C0068E1FC /* SubscribeDelegate.swift */,
 				181CFD041C396FDE004637F9 /* ReceiptManager.swift */,
-				18A5A8D41C57BC54003C4C3B /* DisturbanceTextHelper.swift */,
 				186447621C5FF6B400020A17 /* DataMigration.swift */,
+				1835A0681C675D58008355F9 /* NetworkActivity.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -456,6 +458,7 @@
 		181B9AF41C03A9BC00B9145A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				18A5A8D41C57BC54003C4C3B /* DisturbanceTextHelper.swift */,
 				180603631C01FCBE00AC1841 /* SwiftyJSON.swift */,
 				181B9AF51C03A9E100B9145A /* DateUtils.swift */,
 				18B2902A1C46D8BC00DCE585 /* StringUtils.swift */,
@@ -1201,13 +1204,13 @@
 				1892BA3A1C1F188700BC191A /* TravelTypesVC.swift in Sources */,
 				181860A41C61613800413C18 /* RealTimeShowMoreRow.swift in Sources */,
 				18CB35B21C1E08BA0084CA27 /* LocationPickerRow.swift in Sources */,
+				1835A0691C675D58008355F9 /* NetworkActivity.swift in Sources */,
 				18353DE01C1F70590011CDEA /* AdvancedCriterionsHelper.swift in Sources */,
 				1892BA3E1C1F26E100BC191A /* TravelTypesPickerRow.swift in Sources */,
 				188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */,
 				18698AA61C4E91000031D1AD /* RealTimeHeaderRow.swift in Sources */,
 				18698AAC1C4E913A0031D1AD /* RealTimeTripRow.swift in Sources */,
 				185D8DBE1C189D0200300890 /* WatchService.swift in Sources */,
-				18A5A8D51C57BC54003C4C3B /* DisturbanceTextHelper.swift in Sources */,
 				188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */,
 				1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */,
 				18733C491C4E3D1000F66AEF /* RealTimeNavigationVC.swift in Sources */,
@@ -1261,6 +1264,7 @@
 				186CACD71C55381100B1B5F6 /* RTBoat.swift in Sources */,
 				186CACD11C55265800B1B5F6 /* RTTram.swift in Sources */,
 				183D6EB41C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift in Sources */,
+				1835A06E1C676180008355F9 /* DisturbanceTextHelper.swift in Sources */,
 				18FA999A1C492E3F0075C4C2 /* JournyDetailsService.swift in Sources */,
 				18A9E8711C1899ED008F97C8 /* ScorePost.swift in Sources */,
 				18698AAE1C4EB51B0031D1AD /* RTMetro.swift in Sources */,

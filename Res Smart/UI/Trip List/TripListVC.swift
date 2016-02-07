@@ -348,8 +348,10 @@ class TripListVC: UITableViewController {
   */
   private func loadTripData(shouldAppend: Bool) {
     if let criterions = self.criterions {
+      NetworkActivity.displayActivityIndicator(true)
       SearchTripService.tripSearch(criterions,
         callback: { resTuple in
+          NetworkActivity.displayActivityIndicator(false)
           dispatch_async(dispatch_get_main_queue()) {
             if resTuple.error != nil {
               self.showNetworkErrorAlert()

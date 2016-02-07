@@ -143,7 +143,9 @@ class TrafficSituationVC: UITableViewController {
    */
   func loadData() {
     if shouldReload() {
+      NetworkActivity.displayActivityIndicator(true)
       TrafficSituationService.fetchInformation() {data, error in
+        NetworkActivity.displayActivityIndicator(false)
         dispatch_async(dispatch_get_main_queue()) {
           if error != nil {
             return

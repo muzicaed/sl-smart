@@ -145,7 +145,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   }
   
   /**
-   * Size for headers.
+   * Size for footer.
    */
   override func tableView(tableView: UITableView,
     heightForFooterInSection section: Int) -> CGFloat {
@@ -262,7 +262,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     if let query = searchController!.searchBar.text {
       if query.characters.count > 0 {
         self.noResults = false
+        NetworkActivity.displayActivityIndicator(true)
         LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
+          NetworkActivity.displayActivityIndicator(false)
           dispatch_async(dispatch_get_main_queue()) {
             if resTuple.error != nil {
               self.noResults = true

@@ -45,6 +45,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
       let refresh = SKReceiptRefreshRequest()
       refresh.delegate = self
       refresh.start()
+      NetworkActivity.displayActivityIndicator(true)
     }
   }
   
@@ -57,7 +58,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
         delegate?.recievedProducts(products)
         return
       }
-      
+      NetworkActivity.displayActivityIndicator(true)
       productsRequest.start()
       return
     }
@@ -72,6 +73,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
     let payment = SKPayment(product: product)
     payment
     SKPaymentQueue.defaultQueue().addPayment(payment)
+    NetworkActivity.displayActivityIndicator(true)
   }
   
   /**
@@ -79,6 +81,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    */
   func restoreSubscription() {
     SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
+    NetworkActivity.displayActivityIndicator(true)
   }
   
   // MARK: SKProductsRequestDelegate
@@ -96,12 +99,13 @@ SKPaymentTransactionObserver, SKRequestDelegate {
     else {
       delegate?.subscriptionError(SubscriptionError.NoProductsFound)
     }
+    NetworkActivity.displayActivityIndicator(false)
   }
   
   // MARK: SKPaymentTransactionObserver
   
   func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-    
+    NetworkActivity.displayActivityIndicator(false)
     for transaction:AnyObject in transactions {
       let trans = transaction as! SKPaymentTransaction
       switch trans.transactionState {
@@ -151,6 +155,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   
   func requestDidFinish(request: SKRequest) {
     print("Receipt refresh did finish")
+    NetworkActivity.displayActivityIndicator(false)
     ReceiptManager.validateReceipt { (foundReceipt, date) -> Void in
       print("SubscriptionManager.isValid()")
       print(" - foundReceipt \(foundReceipt)")
@@ -200,7 +205,6 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   private func handlePurchase(
     transaction: SKPaymentTransaction, doneCallback: () -> Void) {
       print("Product Purchased")
-      
       ReceiptManager.validateReceipt({ isValid, date in
         if isValid {
           print("Receipt is valid: \(DateUtils.dateAsDateAndTimeString(date))")
@@ -218,6 +222,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
         SubscriptionStore.sharedInstance.setSubscriptionHaveExpired()
         self.delegate?.subscriptionError(SubscriptionError.PaymentError)
         doneCallback()
+        NetworkActivity.displayActivityIndicator(false)
       })
   }
   
@@ -228,5 +233,6 @@ SKPaymentTransactionObserver, SKRequestDelegate {
     print("Purchased Failed")
     print("\(transaction.error?.localizedDescription)")
     delegate?.subscriptionError(SubscriptionError.PaymentError)
+    NetworkActivity.displayActivityIndicator(false)
   }
 }

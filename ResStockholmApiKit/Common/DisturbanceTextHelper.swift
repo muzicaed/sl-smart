@@ -8,9 +8,9 @@
 
 import Foundation
 
-class DisturbanceTextHelper {
+public class DisturbanceTextHelper {
   
-  class func isDisturbance(text: String?) -> Bool {
+  public class func isDisturbance(text: String?) -> Bool {
     if let text = text {
       return (text.lowercaseString.rangeOfString("försen") != nil ||
         text.lowercaseString.rangeOfString("utebli") != nil ||
