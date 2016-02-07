@@ -108,6 +108,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       
     } else if segue.identifier == manageRoutineTripsSegue {
       // Force a reload when returning to this VC
+      stopRefreshTimmer()
       lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
       
     } else if segue.identifier == fromHereToThereSegue {
@@ -472,6 +473,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     if isSubscribing {
       if RoutineTripsStore.sharedInstance.isRoutineTripsEmpty(){
         isShowInfo = true
+        otherRoutineTrips = [RoutineTrip]()
+        bestRoutineTrip = nil
+        selectedRoutineTrip = nil
         stopLoading()
       } else if shouldReload() || force {
         print("LOADING...")
