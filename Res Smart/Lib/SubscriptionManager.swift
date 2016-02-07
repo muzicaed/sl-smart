@@ -45,7 +45,6 @@ SKPaymentTransactionObserver, SKRequestDelegate {
       let refresh = SKReceiptRefreshRequest()
       refresh.delegate = self
       refresh.start()
-      NetworkActivity.displayActivityIndicator(true)
     }
   }
   
@@ -58,7 +57,6 @@ SKPaymentTransactionObserver, SKRequestDelegate {
         delegate?.recievedProducts(products)
         return
       }
-      NetworkActivity.displayActivityIndicator(true)
       productsRequest.start()
       return
     }
@@ -71,9 +69,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    */
   func executePayment(product: SKProduct) {
     let payment = SKPayment(product: product)
-    payment
     SKPaymentQueue.defaultQueue().addPayment(payment)
-    NetworkActivity.displayActivityIndicator(true)
   }
   
   /**
@@ -81,7 +77,6 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    */
   func restoreSubscription() {
     SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
-    NetworkActivity.displayActivityIndicator(true)
   }
   
   // MARK: SKProductsRequestDelegate
@@ -89,73 +84,72 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   /**
   * Response handler for Products request
   */
-  func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
-    if response.products.count != 0 {
-      for product in response.products {
-        products.append(product)
+  func productsRequest(request: SKProductsRequest,
+    didReceiveResponse response: SKProductsResponse) {
+      if response.products.count != 0 {
+        for product in response.products {
+          products.append(product)
+        }
+        delegate?.recievedProducts(products)
       }
-      delegate?.recievedProducts(products)
-    }
-    else {
-      delegate?.subscriptionError(SubscriptionError.NoProductsFound)
-    }
-    NetworkActivity.displayActivityIndicator(false)
+      else {
+        delegate?.subscriptionError(SubscriptionError.NoProductsFound)
+      }
   }
   
   // MARK: SKPaymentTransactionObserver
   
-  func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-    NetworkActivity.displayActivityIndicator(false)
-    for transaction:AnyObject in transactions {
-      let trans = transaction as! SKPaymentTransaction
-      switch trans.transactionState {
-      case .Purchased:
-        print("Purchased")
-        handlePurchase(trans) {
-          SKPaymentQueue.defaultQueue().finishTransaction(trans)
-        }
-        break
-      case .Failed:
-        print("Failed")
-        handleFailedPurchase(trans)
-        SKPaymentQueue.defaultQueue().finishTransaction(trans)
-        break
-      case .Restored:
-        print("Restored:")
-        if let restored = trans.originalTransaction {
-          switch restored.transactionState {
-          case .Purchased:
-            print(" - Purchased")
-            handlePurchase(restored) {
-              SKPaymentQueue.defaultQueue().finishTransaction(trans) // Note: Should be "trans"!
-            }
-            break
-          case .Failed:
-            print(" - Failed")
-            handleFailedPurchase(restored)
-            SKPaymentQueue.defaultQueue().finishTransaction(trans) // Note: Should be "trans"!
-            break
-          default:
-            break
+  func paymentQueue(queue: SKPaymentQueue,
+    updatedTransactions transactions: [SKPaymentTransaction]) {
+      for transaction:AnyObject in transactions {
+        let trans = transaction as! SKPaymentTransaction
+        switch trans.transactionState {
+        case .Purchased:
+          print("Purchased")
+          handlePurchase(trans) {
+            SKPaymentQueue.defaultQueue().finishTransaction(trans)
           }
-        } else {
-          // Wierd this should not happen... but it does...
-          print(" - Wierd!")
-          SKPaymentQueue.defaultQueue().finishTransaction(trans) // Note: Should be "trans"!
+          break
+        case .Failed:
+          print("Failed")
+          handleFailedPurchase(trans)
+          SKPaymentQueue.defaultQueue().finishTransaction(trans)
+          break
+        case .Restored:
+          print("Restored:")
+          if let restored = trans.originalTransaction {
+            switch restored.transactionState {
+            case .Purchased:
+              print(" - Purchased")
+              handlePurchase(restored) {
+                SKPaymentQueue.defaultQueue().finishTransaction(trans) // Note: Should be "trans"!
+              }
+              break
+            case .Failed:
+              print(" - Failed")
+              handleFailedPurchase(restored)
+              SKPaymentQueue.defaultQueue().finishTransaction(trans) // Note: Should be "trans"!
+              break
+            default:
+              break
+            }
+          } else {
+            // Wierd this should not happen... but it does...
+            print(" - Wierd!")
+            SKPaymentQueue.defaultQueue().finishTransaction(trans) // Note: Should be "trans"!
+          }
+          break
+        default:
+          print("Unhandled transaction state: \(trans.transactionState.rawValue)")
+          break
         }
-        break
-      default:
-        print("Unhandled transaction state: \(trans.transactionState.rawValue)")
-        break
       }
-    }
   }
   
   // MARK: SKRequestDelegate
   
   func requestDidFinish(request: SKRequest) {
     print("Receipt refresh did finish")
-    NetworkActivity.displayActivityIndicator(false)
     ReceiptManager.validateReceipt { (foundReceipt, date) -> Void in
       print("SubscriptionManager.isValid()")
       print(" - foundReceipt \(foundReceipt)")
@@ -182,9 +176,6 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   * Check if it is needed to check for a renewed subscription.
   */
   private func shouldCheckForNewReciept() -> Bool {
-    // TODO: REMOVE TEST CODE
-    return false
-    
     if let localEndDate = SubscriptionStore.sharedInstance.getLocalExpireDate() {
       if localEndDate.timeIntervalSinceNow < 0 {
         print("Local end date passed, check for renewed subscription.")
@@ -222,7 +213,6 @@ SKPaymentTransactionObserver, SKRequestDelegate {
         SubscriptionStore.sharedInstance.setSubscriptionHaveExpired()
         self.delegate?.subscriptionError(SubscriptionError.PaymentError)
         doneCallback()
-        NetworkActivity.displayActivityIndicator(false)
       })
   }
   
@@ -233,6 +223,5 @@ SKPaymentTransactionObserver, SKRequestDelegate {
     print("Purchased Failed")
     print("\(transaction.error?.localizedDescription)")
     delegate?.subscriptionError(SubscriptionError.PaymentError)
-    NetworkActivity.displayActivityIndicator(false)
   }
 }

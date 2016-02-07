@@ -73,7 +73,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       return
     }
     navigationItem.rightBarButtonItem?.enabled = false
-    collectionView?.reloadData()
   }
   
   override func viewDidDisappear(animated: Bool) {
@@ -130,8 +129,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       MyLocationHelper.sharedInstance.isStarted = false
       return
     }
-    loadTripData(true)
-    startRefreshTimmer()
+    isSubscribing = SubscriptionStore.sharedInstance.isSubscribed()
+    if isSubscribing {
+      loadTripData(true)
+      startRefreshTimmer()
+    }
+    collectionView?.reloadData()
   }
   
   /**
@@ -153,13 +156,15 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   
   func refreshUI() {
     print("Refresh UI")
-    if NSDate().timeIntervalSinceDate(lastUpdated) > (60 * 3) && !isLoading {
-      print("Force reload")
-      loadTripData(true)
-    } else if !isLoading {
-      print("UI Update")
-      stopLoading()
-      collectionView?.reloadData()
+    if isSubscribing {
+      if NSDate().timeIntervalSinceDate(lastUpdated) > (60 * 3) && !isLoading {
+        print("Force reload")
+        loadTripData(true)
+      } else if !isLoading {
+        print("UI Update")
+        stopLoading()
+        collectionView?.reloadData()
+      }
     }
   }
   
@@ -216,6 +221,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   * Section count
   */
   override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    if !isSubscribing {
+      return 1
+    }
     return 2
   }
   
@@ -457,26 +465,28 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   private func loadTripData(force: Bool) {
     print("loadTripData")
-    if RoutineTripsStore.sharedInstance.isRoutineTripsEmpty() {
-      isShowInfo = true
-      stopLoading()
-    } else if shouldReload() || force {
-      print("LOADING...")
-      startLoading()
-      RoutineService.findRoutineTrip({ routineTrips in
-        dispatch_async(dispatch_get_main_queue()) {
-          self.stopLoading()
-          if routineTrips.count > 0 {
-            self.bestRoutineTrip = routineTrips.first!
-            self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
-            self.lastUpdated = NSDate()
-            print("DONE LOADING...")
-            NetworkActivity.displayActivityIndicator(false)
+    if isSubscribing {
+      if RoutineTripsStore.sharedInstance.isRoutineTripsEmpty(){
+        isShowInfo = true
+        stopLoading()
+      } else if shouldReload() || force {
+        print("LOADING...")
+        startLoading()
+        RoutineService.findRoutineTrip({ routineTrips in
+          dispatch_async(dispatch_get_main_queue()) {
+            self.stopLoading()
+            if routineTrips.count > 0 {
+              self.bestRoutineTrip = routineTrips.first!
+              self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
+              self.lastUpdated = NSDate()
+              print("DONE LOADING...")
+              NetworkActivity.displayActivityIndicator(false)
+            }
           }
-        }
-      })
-    } else {
-      refreshUI()
+        })
+      } else {
+        refreshUI()
+      }
     }
   }
   
@@ -581,7 +591,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       preferredStyle: UIAlertControllerStyle.Alert)
     restoreAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: { _ in
-        self.isLoading = true
+        self.startLoading()
         self.isSubscribing = true
         self.collectionView?.reloadData()
         SubscriptionManager.sharedInstance.restoreSubscription()
