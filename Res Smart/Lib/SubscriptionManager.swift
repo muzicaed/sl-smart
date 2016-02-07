@@ -41,7 +41,9 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    * Validate subscription
    */
   func validateSubscription() {
+    print("validateSubscription")
     if shouldCheckForNewReciept() {
+      print("shouldCheck!")      
       let refresh = SKReceiptRefreshRequest()
       refresh.delegate = self
       refresh.start()

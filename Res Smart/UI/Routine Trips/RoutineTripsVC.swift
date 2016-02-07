@@ -180,7 +180,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * On user drags down to refresh
    */
   func onRefreshController() {
-    loadTripData(false)
+    if isSubscribing {
+      loadTripData(false)
+    } else {
+      refreshController.endRefreshing()
+    }
   }
   
   /**
@@ -598,8 +602,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10.0 * Double(NSEC_PER_SEC)))
         dispatch_after(dispatchTime, dispatch_get_main_queue(), {
           self.isSubscribing = false
-          self.isLoading = false
-          self.viewWillAppear(true)
+          self.stopLoading()
+          //          self.viewWillAppear(true)
         })
       }))
     
