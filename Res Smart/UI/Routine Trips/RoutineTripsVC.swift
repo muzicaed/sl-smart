@@ -182,7 +182,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   func onRefreshController() {
     if isSubscribing {
-      loadTripData(false)
+      loadTripData(true)
     } else {
       refreshController.endRefreshing()
     }
