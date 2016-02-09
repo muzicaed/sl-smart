@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   }
   
   func applicationDidBecomeActive(application: UIApplication) {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    SubscriptionManager.sharedInstance.validateSubscription()    
     checkTrafficSituation()
   }
   
@@ -82,7 +82,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   * Prepares the app.
   */
   private func setupApp() {
-    SubscriptionManager.sharedInstance.validateSubscription()
     StyleHelper.sharedInstance.setupCustomStyle()
     window?.tintColor = StyleHelper.sharedInstance.tintColor
     SearchCriterionStore.sharedInstance.preload()
