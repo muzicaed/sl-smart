@@ -22,7 +22,10 @@ public class SubscriptionStore {
   /**
    * Check if user have a active subscription.
    */
-  func isSubscribed() -> Bool {    
+  func isSubscribed() -> Bool {
+    // TODO: Remove test code
+    return true
+    
     if isSubscribedCache == nil {
       isSubscribedCache = defaults.boolForKey(SubscriptionState)
     }

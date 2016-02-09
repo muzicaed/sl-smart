@@ -55,6 +55,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    navigationController?.navigationBar.translucent = false
     loadLatestLocations()
     tableView.reloadData()
   }
@@ -411,7 +412,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   /**
    * Prepares search controller
    */
-  private func prepareSearchController() {
+  private func prepareSearchController() {    
     searchController = UISearchController(searchResultsController: nil)
     searchController!.searchResultsUpdater = self
     searchController!.delegate = self

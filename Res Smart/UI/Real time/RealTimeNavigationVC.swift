@@ -15,6 +15,7 @@ class RealTimeNavigationVC: UINavigationController {
    * On load
    */
   override func viewDidLoad() {
+    super.viewDidLoad()    
     if let rootVC = viewControllers.first as? SearchLocationVC {
       rootVC.isLocationForRealTimeSearch = true
       rootVC.title = "Avgångar i realtid"
