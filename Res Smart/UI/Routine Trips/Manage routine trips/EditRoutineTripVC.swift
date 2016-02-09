@@ -311,7 +311,7 @@ TravelTypesResponder, PickLocationResponder {
       guard let text = textField.text else { return true }
       
       let newLength = text.characters.count + string.characters.count - range.length
-      return newLength <= 30
+      return newLength <= 200
   }
   
   // MARK: Private methods
