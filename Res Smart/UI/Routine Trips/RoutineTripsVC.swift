@@ -176,7 +176,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * On user drags down to refresh
    */
   func onRefreshController() {
-    loadTripData(false)
+    loadTripData(true)
   }
   
   /**
