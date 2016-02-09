@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pz1-TM-aL5">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pz1-TM-aL5">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
@@ -48,7 +48,7 @@
                                                                 <items>
                                                                     <imageView width="15" height="15" alignment="center" id="eJH-uF-1Mr" userLabel="Image 1"/>
                                                                     <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="cfI-jP-RPq" userLabel="Label 1">
-                                                                        <fontDescription key="font" type="system" pointSize="7"/>
+                                                                        <fontDescription key="font" type="system" pointSize="8"/>
                                                                     </label>
                                                                 </items>
                                                             </group>
@@ -56,7 +56,7 @@
                                                                 <items>
                                                                     <imageView width="15" height="15" alignment="center" id="C92-6p-Bse" userLabel="Image 2"/>
                                                                     <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="rpS-f1-i9Q" userLabel="Label 2">
-                                                                        <fontDescription key="font" type="system" pointSize="7"/>
+                                                                        <fontDescription key="font" type="system" pointSize="8"/>
                                                                     </label>
                                                                 </items>
                                                             </group>
@@ -64,7 +64,7 @@
                                                                 <items>
                                                                     <imageView width="15" height="15" alignment="center" id="bZX-fa-NWD" userLabel="Image 3"/>
                                                                     <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="pB7-aI-uQS" userLabel="Label 3">
-                                                                        <fontDescription key="font" type="system" pointSize="7"/>
+                                                                        <fontDescription key="font" type="system" pointSize="8"/>
                                                                     </label>
                                                                 </items>
                                                             </group>
@@ -72,7 +72,7 @@
                                                                 <items>
                                                                     <imageView width="15" height="15" alignment="center" id="9pI-2V-KkU" userLabel="Image 4"/>
                                                                     <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="MB9-VO-AV7" userLabel="Label 4">
-                                                                        <fontDescription key="font" type="system" pointSize="7"/>
+                                                                        <fontDescription key="font" type="system" pointSize="8"/>
                                                                     </label>
                                                                 </items>
                                                             </group>
@@ -80,7 +80,7 @@
                                                                 <items>
                                                                     <imageView width="15" height="15" alignment="center" id="S7W-ow-jnI" userLabel="Image 5"/>
                                                                     <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="Csq-sp-p0X" userLabel="Label 5">
-                                                                        <fontDescription key="font" type="system" pointSize="7"/>
+                                                                        <fontDescription key="font" type="system" pointSize="8"/>
                                                                     </label>
                                                                 </items>
                                                             </group>
@@ -114,14 +114,14 @@
                                                         <items>
                                                             <label width="1" alignment="left" text="Hem från jobbet" textAlignment="left" id="BWu-h1-71D">
                                                                 <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="font" type="system" weight="light" pointSize="14"/>
+                                                                <fontDescription key="font" type="system" pointSize="14"/>
                                                             </label>
                                                             <label width="1" alignment="left" text="Kälvestavägen" textAlignment="left" id="GEm-9g-MGo" userLabel="Karlberg">
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="font" type="system" weight="light" pointSize="13"/>
                                                             </label>
                                                             <label width="1" alignment="left" text="Karlberg" textAlignment="left" id="y87-G0-DR9" userLabel="Karlberg">
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="font" type="system" weight="light" pointSize="13"/>
                                                             </label>
                                                         </items>
@@ -224,11 +224,11 @@
                                             </label>
                                             <label width="1" alignment="left" text="Imorgon" textAlignment="center" id="wee-4e-Rtu" userLabel="Day">
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="font" type="system" pointSize="13"/>
+                                                <fontDescription key="font" type="system" weight="light" pointSize="13"/>
                                             </label>
                                             <label width="1" alignment="left" text="Restid: xx min" textAlignment="center" id="uBR-S0-BU4" userLabel="Travel time">
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="font" type="system" pointSize="13"/>
+                                                <fontDescription key="font" type="system" weight="light" pointSize="13"/>
                                             </label>
                                             <group alignment="center" verticalAlignment="center" radius="3" spacing="0.0" id="8N0-G7-wcP" userLabel="Travel type icons">
                                                 <items>
@@ -236,7 +236,7 @@
                                                         <items>
                                                             <imageView width="15" height="15" alignment="center" id="eQ0-LR-Vaz" userLabel="Image 1"/>
                                                             <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="51S-Gz-m8Z" userLabel="Label 1">
-                                                                <fontDescription key="font" type="system" pointSize="7"/>
+                                                                <fontDescription key="font" type="system" pointSize="8"/>
                                                             </label>
                                                         </items>
                                                     </group>
@@ -244,7 +244,7 @@
                                                         <items>
                                                             <imageView width="15" height="15" alignment="center" id="Uyy-S3-N4q" userLabel="Image 2"/>
                                                             <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="sgd-S8-igA" userLabel="Label 2">
-                                                                <fontDescription key="font" type="system" pointSize="7"/>
+                                                                <fontDescription key="font" type="system" pointSize="8"/>
                                                             </label>
                                                         </items>
                                                     </group>
@@ -252,7 +252,7 @@
                                                         <items>
                                                             <imageView width="15" height="15" alignment="center" id="VLE-QP-Xjn" userLabel="Image 3"/>
                                                             <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="csX-eE-p94" userLabel="Label 3">
-                                                                <fontDescription key="font" type="system" pointSize="7"/>
+                                                                <fontDescription key="font" type="system" pointSize="8"/>
                                                             </label>
                                                         </items>
                                                     </group>
@@ -260,7 +260,7 @@
                                                         <items>
                                                             <imageView width="15" height="15" alignment="center" id="7g6-jP-NdE" userLabel="Image 4"/>
                                                             <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="wtG-Kg-Ur7" userLabel="Label 4">
-                                                                <fontDescription key="font" type="system" pointSize="7"/>
+                                                                <fontDescription key="font" type="system" pointSize="8"/>
                                                             </label>
                                                         </items>
                                                     </group>
@@ -268,7 +268,7 @@
                                                         <items>
                                                             <imageView width="15" height="15" alignment="center" id="Iwn-jN-xUH" userLabel="Image 5"/>
                                                             <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="uKN-B4-Faa" userLabel="Label 5">
-                                                                <fontDescription key="font" type="system" pointSize="7"/>
+                                                                <fontDescription key="font" type="system" pointSize="8"/>
                                                             </label>
                                                         </items>
                                                     </group>
@@ -352,7 +352,7 @@
                                                     <items>
                                                         <imageView width="15" height="15" alignment="center" id="rE4-6S-gD0" userLabel="Image 1"/>
                                                         <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="A0g-vs-I2R" userLabel="Label 1">
-                                                            <fontDescription key="font" type="system" pointSize="7"/>
+                                                            <fontDescription key="font" type="system" pointSize="8"/>
                                                         </label>
                                                     </items>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
