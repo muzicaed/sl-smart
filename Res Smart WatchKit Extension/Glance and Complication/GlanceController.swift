@@ -81,6 +81,7 @@ class GlanceController: SmartTripIC {
   override func displayError(title: String, message: String?) {
     subTitleLabel.setText(title)
     subTitleLabel.setTextColor(UIColor.redColor())
+    isLoading = false
   }
   
   /**

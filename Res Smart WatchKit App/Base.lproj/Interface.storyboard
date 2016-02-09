@@ -195,11 +195,11 @@
                                 <group width="1" alignment="left" layout="vertical" spacing="0.0" id="BXG-nZ-jcb" userLabel="Origin &lt;-&gt; Destination">
                                     <items>
                                         <label width="1" alignment="left" text="Testvägen" textAlignment="left" id="fS8-Zo-4gH" userLabel="Origin">
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="font" type="system" weight="light" pointSize="13"/>
                                         </label>
                                         <label width="1" alignment="left" text="Låtsasvägen" textAlignment="left" id="Wo9-B8-JBH" userLabel="Destination">
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="font" type="system" weight="light" pointSize="13"/>
                                         </label>
                                     </items>
@@ -216,7 +216,7 @@
                         <table alignment="left" spacing="6" id="127-3q-0Gz">
                             <items>
                                 <tableRow identifier="TripRow" selectable="NO" id="IQa-Qh-Uig" customClass="TripRow" customModule="Res_Smart">
-                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="1" id="OJI-g6-70X">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" radius="0.0" spacing="1" id="OJI-g6-70X">
                                         <items>
                                             <label width="1" alignment="left" text="00:00 → 23:59" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="wna-Ru-M1o" userLabel="Om 6 min">
                                                 <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -277,7 +277,7 @@
                                                 <edgeInsets key="margins" left="1" right="1" top="4" bottom="2"/>
                                             </group>
                                         </items>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.12" colorSpace="calibratedRGB"/>
                                     </group>
                                     <connections>
                                         <outlet property="icnGrp1" destination="Ehp-Yn-pzv" id="b1M-ST-UHy"/>

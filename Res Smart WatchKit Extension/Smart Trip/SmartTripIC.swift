@@ -101,25 +101,29 @@ class SmartTripIC: WKInterfaceController {
    * Ask partner iPhone for new Routine Trip data
    */
   func reloadRoutineTripData() {
-    if session.reachable {
-      isLoading = true
-      stopRefreshTimer()
-      session.sendMessage(["action": "RequestRoutineTrips"],
-        replyHandler: requestRoutineTripsHandler,
-        errorHandler: messageErrorHandler)
-      retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-        NSTimeInterval(10), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
-    } else {
-      retryCount++
-      if retryCount >= 5 {
-        retryCount = 0
-        displayError(
-          "Kan inte nå din iPhone",
-          message: "Kontrollera att din iPhone är i närheten och påslagen.")
-        return
+    if !isLoading {
+      if session.reachable {
+        isLoading = true
+        stopRefreshTimer()
+        session.sendMessage(["action": "RequestRoutineTrips"],
+          replyHandler: requestRoutineTripsHandler,
+          errorHandler: messageErrorHandler)
+        retryTimer = NSTimer.scheduledTimerWithTimeInterval(
+          NSTimeInterval(10), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
+      } else {
+        retryCount++
+        if retryCount > 5 {
+          retryCount = 0
+          stopRefreshTimer()
+          displayError(
+            "Kan inte nå din iPhone",
+            message: "Kontrollera att din iPhone är i närheten och påslagen.")
+          return
+        }
+        stopRefreshTimer()
+        retryTimer = NSTimer.scheduledTimerWithTimeInterval(
+          NSTimeInterval(1), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
       }
-      retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-        NSTimeInterval(2), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
     }
   }
   
