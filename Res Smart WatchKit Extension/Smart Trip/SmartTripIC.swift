@@ -50,6 +50,7 @@ class SmartTripIC: WKInterfaceController {
   var isLoading = false
   var timer: NSTimer?
   var retryTimer: NSTimer?
+  var retryCount = 0
   var currentDepartureText: String?
   
   override func awakeWithContext(context: AnyObject?) {
@@ -109,11 +110,16 @@ class SmartTripIC: WKInterfaceController {
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
         NSTimeInterval(10), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
     } else {
-      displayError(
-        "Kan inte nå din iPhone",
-        message: "Kontrollera att din iPhone är i närheten och påslagen.")
+      retryCount++
+      if retryCount >= 5 {
+        retryCount = 0
+        displayError(
+          "Kan inte nå din iPhone",
+          message: "Kontrollera att din iPhone är i närheten och påslagen.")
+        return
+      }
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-        NSTimeInterval(10), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
+        NSTimeInterval(2), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
     }
   }
   
@@ -121,6 +127,7 @@ class SmartTripIC: WKInterfaceController {
    * Handle reply for a "RequestRoutineTrips" message.
    */
   func requestRoutineTripsHandler(reply: Dictionary<String, AnyObject>) {
+    retryCount = 0
     stopRefreshTimer()
     isLoading = false
     let hasData = reply["foundData"] as! Bool
