@@ -84,10 +84,10 @@ public class RealTimeDeparturesService {
         journeyDirection: busJson["JourneyDirection"].int!,
         stopPointDesignation: busJson["StopPointDesignation"].string)
       
-      if result["\(rtBus.stopAreaName)-\(rtBus.journeyDirection)"] == nil {
-        result["\(rtBus.stopAreaName)-\(rtBus.journeyDirection)"] = [RTBus]()
+      if result["\(rtBus.stopAreaName)"] == nil {
+        result["\(rtBus.stopAreaName)"] = [RTBus]()
       }
-      result["\(rtBus.stopAreaName)-\(rtBus.journeyDirection)"]?.append(rtBus)
+      result["\(rtBus.stopAreaName)"]?.append(rtBus)
     }
     
     return result
