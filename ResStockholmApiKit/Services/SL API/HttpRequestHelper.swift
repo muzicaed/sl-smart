@@ -19,7 +19,6 @@ class HttpRequestHelper {
    */
   static func makeGetRequest(url: String,
     callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
-      print("GET: \(url)")
       if let cacheData = handleCache(url) {
         callback((cacheData, nil))
         return

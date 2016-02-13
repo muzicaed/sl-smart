@@ -21,7 +21,6 @@ public class RealTimeDeparturesService {
       api.getRealTimeTable(siteId) { (data, error) -> Void in
         if let d = data {
           if d.length == 0 {
-            print("Error...")
             callback(data: nil, error: SLNetworkError.NoDataFound)
             return
           }

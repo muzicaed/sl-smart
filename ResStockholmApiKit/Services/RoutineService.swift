@@ -62,17 +62,11 @@ public class RoutineService {
     let todayTimeTuple = createTimeTuple()
     
     for trip in routineTrips {
-      //print("")
-      //print("---------------------------------")
-      //print("\(trip.title!)")
       var multiplier = multiplierBasedOnProximityToLocation(trip, locations: locations)
       multiplier += multiplierBasedOnProximityToScorePostLocation(trip)
       trip.score = scoreBasedOnRoutineSchedule(trip, today: todayTimeTuple)
       multiplier = (multiplier == 0) ? 1 : multiplier
       trip.score = (trip.score < 2) ? multiplier * 2: trip.score * multiplier
-      //print("Multiplier: \(multiplier)")
-      //print("TOTAL: \(trip.score)")
-      //print("---------------------------------")
     }
   }
   
@@ -148,7 +142,6 @@ public class RoutineService {
   static private func calcMultiplierBasedOnProximityToLocation(distance: Int) -> Float {
     var tempMultiplier = Float(2000 - distance)
     tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
-    //print("Mult Based On Proximity To Location: \(tempMultiplier)")
     return tempMultiplier
   }
   
@@ -170,7 +163,6 @@ public class RoutineService {
           }
         }
       }
-      //print("Score Based On Schedule: \(min(score + 1, 20))")
       return min(score + 1, 20)
   }
   
@@ -192,7 +184,6 @@ public class RoutineService {
         }
       }
     }
-    //print("Mult Based On Score Post: \(highestMulitplier)")
     return highestMulitplier
   }
   

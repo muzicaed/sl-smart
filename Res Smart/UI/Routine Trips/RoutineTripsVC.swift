@@ -56,7 +56,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    print("Will appear")
     stopLoading()
     isSubscribing = SubscriptionStore.sharedInstance.isSubscribed()
     if isSubscribing {
@@ -67,7 +66,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.reloadData()
         return
       }
-      print("Start refresh")
       startRefreshTimmer()
       loadTripData(false)
       return
@@ -124,7 +122,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Triggered when returning from background.
    */
   func didBecomeActive() {
-    print("didBecomeActive")
     if CLLocationManager.authorizationStatus() == .Denied || !CLLocationManager.locationServicesEnabled() {
       showLocationServicesNotAllowed()
       MyLocationHelper.sharedInstance.isStarted = false
@@ -156,7 +153,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   func refreshUI() {
-    print("Refresh UI")
     if isSubscribing {
       loadTripData(false)
     }
@@ -464,7 +460,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Will show big spinner when loading.
    */
   private func loadTripData(force: Bool) {
-    print("loadTripData")
     if isSubscribing {
       if RoutineTripsStore.sharedInstance.isRoutineTripsEmpty(){
         isShowInfo = true
@@ -473,7 +468,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         selectedRoutineTrip = nil
         stopLoading()
       } else if shouldReload() || force {
-        print("LOADING...")
         startLoading()
         RoutineService.findRoutineTrip({ routineTrips in
           dispatch_async(dispatch_get_main_queue()) {
@@ -482,7 +476,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
               self.bestRoutineTrip = routineTrips.first!
               self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
               self.lastUpdated = NSDate()
-              print("DONE LOADING...")
               NetworkActivity.displayActivityIndicator(false)
             }
           }
@@ -510,7 +503,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * On trip search done.
    */
   private func startLoading() {
-    print("startLoading")
     NetworkActivity.displayActivityIndicator(true)
     isShowInfo = false
     isLoading = true
@@ -527,7 +519,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * On trip search done.
    */
   private func stopLoading() {
-    print("stopLoading")
     isLoading = false
     refreshController.endRefreshing()
     collectionView?.backgroundView = nil

@@ -563,7 +563,6 @@ class TripListVC: UITableViewController {
   }
   
   deinit {
-    print("TripListVC deinit")
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 }

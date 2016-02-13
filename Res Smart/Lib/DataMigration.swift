@@ -27,7 +27,6 @@ class DataMigration {
    * Migration 1
    */
   static private func migration1() {
-    print("Running migration 1")
     // Clear all score posts. Data structure changes to score post.
     ScorePostStore.sharedInstance.writeScorePosts([ScorePost]())
     defaults.setInteger(1, forKey: dataKey)

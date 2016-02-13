@@ -166,7 +166,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
           var count = 0
           count += (allowCurrentPosition) ? 1 : 0
           count += (allowNearbyStations) ? 1 : 0
-          print("Section count \(count)")
           return count
         }
         return latestLocations.count
@@ -425,7 +424,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   }
   
   deinit {
-    print("SearchLocationVC deinit")
     NSNotificationCenter.defaultCenter().removeObserver(self)
     if let superView = searchController?.view.superview {
       superView.removeFromSuperview()
