@@ -63,7 +63,6 @@ public class RoutineTripsStore {
     trip.trips = [Trip]()
     for (index, testRoutine) in cachedRoutineTrips.enumerate() {
       if testRoutine.id == trip.id {
-        print("Updated routine trip...")
         cachedRoutineTrips[index] = trip.copy() as! RoutineTrip
         writeRoutineTripsToStore()
         cleanOutMatchingHabitRoutines(trip)

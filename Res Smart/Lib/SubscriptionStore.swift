@@ -42,8 +42,6 @@ public class SubscriptionStore {
    * Set a renewed subscription date.
    */
   func setNewSubscriptionDate(endDate: NSDate) {
-    print("Set end date: \(DateUtils.dateAsDateAndTimeString(endDate))")
-    print(endDate.timeIntervalSinceNow)
     isSubscribedCache = true
     defaults.setBool(isSubscribedCache!, forKey: SubscriptionState)
     defaults.setObject(endDate, forKey: SubscriptionEndDate)
@@ -54,7 +52,6 @@ public class SubscriptionStore {
    * Set subscription have expired.
    */
   func setSubscriptionHaveExpired() {
-    print("Set subscription expired.")
     isSubscribedCache = false
     defaults.setBool(isSubscribedCache!, forKey: SubscriptionState)
     defaults.setObject(nil, forKey: SubscriptionEndDate)

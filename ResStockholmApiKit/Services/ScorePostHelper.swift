@@ -23,8 +23,6 @@ public class ScorePostHelper {
   public static func changeScoreForRoutineTrip(
     originId: String, destinationId: String, score: Float) {
       
-      print("CHANGE SCORE: \(score)")
-      
       var scorePosts = ScorePostStore.sharedInstance.retrieveScorePosts()
       let currentLocation = MyLocationHelper.sharedInstance.currentLocation
       let dayOfWeek = DateUtils.getDayOfWeek()

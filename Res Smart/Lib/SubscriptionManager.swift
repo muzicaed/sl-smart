@@ -41,9 +41,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    * Validate subscription
    */
   func validateSubscription() {
-    print("validateSubscription")
     if shouldCheckForNewReciept() {
-      print("shouldCheck!")      
       let refresh = SKReceiptRefreshRequest()
       refresh.delegate = self
       refresh.start()
@@ -107,28 +105,23 @@ SKPaymentTransactionObserver, SKRequestDelegate {
         let trans = transaction as! SKPaymentTransaction
         switch trans.transactionState {
         case .Purchased:
-          print("Purchased")
           handlePurchase(trans) {
             SKPaymentQueue.defaultQueue().finishTransaction(trans)
           }
           break
         case .Failed:
-          print("Failed")
           handleFailedPurchase(trans)
           SKPaymentQueue.defaultQueue().finishTransaction(trans)
           break
         case .Restored:
-          print("Restored:")
           if let restored = trans.originalTransaction {
             switch restored.transactionState {
             case .Purchased:
-              print(" - Purchased")
               handlePurchase(restored) {
                 SKPaymentQueue.defaultQueue().finishTransaction(trans) // Note: Should be "trans"!
               }
               break
             case .Failed:
-              print(" - Failed")
               handleFailedPurchase(restored)
               SKPaymentQueue.defaultQueue().finishTransaction(trans) // Note: Should be "trans"!
               break
@@ -137,12 +130,10 @@ SKPaymentTransactionObserver, SKRequestDelegate {
             }
           } else {
             // Wierd this should not happen... but it does...
-            print(" - Wierd!")
             SKPaymentQueue.defaultQueue().finishTransaction(trans) // Note: Should be "trans"!
           }
           break
         default:
-          print("Unhandled transaction state: \(trans.transactionState.rawValue)")
           break
         }
       }
@@ -151,24 +142,16 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   // MARK: SKRequestDelegate
   
   func requestDidFinish(request: SKRequest) {
-    print("Receipt refresh did finish")
+
     ReceiptManager.validateReceipt { (foundReceipt, date) -> Void in
-      print("SubscriptionManager.isValid()")
-      print(" - foundReceipt \(foundReceipt)")
-      print(" - date \(DateUtils.dateAsDateAndTimeString(date))")
-      
       if foundReceipt {
-        print("Time left: \(date.timeIntervalSinceNow)")
         if date.timeIntervalSinceNow < 0 {
-          print("LATEST RECEIPT EXPIRED")
           SubscriptionStore.sharedInstance.setSubscriptionHaveExpired()
           return
         }
-        print("NEW DATE")
         SubscriptionStore.sharedInstance.setNewSubscriptionDate(date)
         return
       }
-      print("Found no receipt. Error?? Do nothing.")
     }
   }
   
@@ -180,15 +163,12 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   private func shouldCheckForNewReciept() -> Bool {
     if let localEndDate = SubscriptionStore.sharedInstance.getLocalExpireDate() {
       if localEndDate.timeIntervalSinceNow < 0 {
-        print("Local end date passed, check for renewed subscription.")
         return true
       } else {
-        print("Local end date is valid, no new check.")
         return false
       }
     }
     
-    print("No local end date, no check needed.")
     return false
   }
   
@@ -197,11 +177,8 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    */
   private func handlePurchase(
     transaction: SKPaymentTransaction, doneCallback: () -> Void) {
-      print("Product Purchased")
       ReceiptManager.validateReceipt({ isValid, date in
         if isValid {
-          print("Receipt is valid: \(DateUtils.dateAsDateAndTimeString(date))")
-          
           if date.timeIntervalSinceNow > 0 {
             SubscriptionStore.sharedInstance.setNewSubscriptionDate(date)
             self.delegate?.subscriptionSuccessful()
@@ -211,7 +188,6 @@ SKPaymentTransactionObserver, SKRequestDelegate {
           doneCallback()
           return
         }
-        print("Receipt NOT valid: \(DateUtils.dateAsDateAndTimeString(date))")
         SubscriptionStore.sharedInstance.setSubscriptionHaveExpired()
         self.delegate?.subscriptionError(SubscriptionError.PaymentError)
         doneCallback()
@@ -222,8 +198,6 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    * Handels failing purchase
    */
   private func handleFailedPurchase(transaction: SKPaymentTransaction) {
-    print("Purchased Failed")
-    print("\(transaction.error?.localizedDescription)")
     delegate?.subscriptionError(SubscriptionError.PaymentError)
   }
 }

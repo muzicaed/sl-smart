@@ -37,20 +37,17 @@ TravelTypesResponder, PickLocationResponder {
     createFakeBackButton()
     
     if routineTrip == nil && !isMakeRoutine {
-      print("New routine")
       title = "Ny rutin"
       isNewTrip = true
       routineTrip = RoutineTrip()
       
     } else if isMakeRoutine {
-      print("Make routine")
       routineTripCopy = routineTrip!.copy() as? RoutineTrip
       setupEditData()
       title = "Ny rutin"
       isNewTrip = true
       
     } else {
-      print("Edit routine")
       routineTripCopy = routineTrip!.copy() as? RoutineTrip
       setupEditData()
       isNewTrip = false
@@ -131,7 +128,6 @@ TravelTypesResponder, PickLocationResponder {
    */
   func onBackTap() {
     if !isNewTrip && !isMakeRoutine {
-      print("Save edit")
       if tripTitleTextField.text == nil || tripTitleTextField.text == "" {
         showInvalidTitleAlert()
         return
@@ -380,7 +376,6 @@ TravelTypesResponder, PickLocationResponder {
    * on data on current form. Also navigates back.
    */
   private func createRoutineTrip() {
-    print("Save create")
     tripTitleTextField.resignFirstResponder()
     if tripTitleTextField.text == nil || tripTitleTextField.text == "" {
       showInvalidTitleAlert()

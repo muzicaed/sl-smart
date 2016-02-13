@@ -80,7 +80,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   func didBecomeActive() {
     let now = NSDate()
-    print(now.timeIntervalSinceDate(loadedTime))
     if now.timeIntervalSinceDate(loadedTime) > (60 * 60) { // 1 hour
       navigationController?.popToRootViewControllerAnimated(false)
       return
@@ -519,7 +518,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   }
   
   deinit {
-    print("RealTimeVC deinit")
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 }

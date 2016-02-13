@@ -322,7 +322,6 @@ class TripDetailsVC: UITableViewController {
   }
   
   deinit {
-    print("TripDetailsVC deinit")
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 }
