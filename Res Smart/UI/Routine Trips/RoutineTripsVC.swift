@@ -340,7 +340,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func collectionView(
     collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
       
-      if !isShowInfo && !isLoading {
+      if !isShowInfo && !isLoading && isSubscribing {
         if indexPath.section == 0 && (indexPath.row == 1 || bestRoutineTrip == nil) {
           performSegueWithIdentifier(fromHereToThereSegue, sender: self)
           return
@@ -372,9 +372,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func collectionView(collectionView: UICollectionView,
     willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-      let bgColorView = UIView()
-      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
-      cell.selectedBackgroundView = bgColorView
+      if isSubscribing && !isShowInfo && !isLoading {
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+        cell.selectedBackgroundView = bgColorView
+      }
   }
   
   // MARK: LocationSearchResponder
