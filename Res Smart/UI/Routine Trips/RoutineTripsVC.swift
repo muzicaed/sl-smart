@@ -158,14 +158,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   func refreshUI() {
     print("Refresh UI")
     if isSubscribing {
-      if NSDate().timeIntervalSinceDate(lastUpdated) > (60 * 3) && !isLoading {
-        print("Force reload")
-        loadTripData(true)
-      } else if !isLoading {
-        print("UI Update")
-        stopLoading()
-        collectionView?.reloadData()
-      }
+      loadTripData(false)
     }
   }
   
@@ -493,7 +486,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
           }
         })
       } else {
-        refreshUI()
+        collectionView?.reloadData()
       }
     }
   }
@@ -502,7 +495,13 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Checks if data should be reloaded.
    */
   private func shouldReload() -> Bool {
-    return (NSDate().timeIntervalSinceDate(lastUpdated) > 60)
+    if let trip = bestRoutineTrip {
+      let departureDate = trip.trips.first!.tripSegments.first!.departureDateTime
+      if NSDate().timeIntervalSinceDate(departureDate) > 30 {
+        return true
+      }
+    }
+    return (NSDate().timeIntervalSinceDate(lastUpdated) > 120)
   }
   
   /**
