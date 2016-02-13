@@ -24,9 +24,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   var siteId = 0
   var lastSelected = 0
   var busKeys = [String]()
-  var metroGreenKeys = [String]()
-  var metroRedKeys = [String]()
-  var metroBlueKeys = [String]()
+  var metroKeys = [String]()
   var trainKeys = [String]()
   var tramKeys = [String]()
   var localTramKeys = [String]()
@@ -37,7 +35,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   var realtimeIndicatorLabel: UILabel?
   var refreshTimmer: NSTimer?
   let loadedTime = NSDate()
-
+  
   var tableActivityIndicator = UIActivityIndicatorView(
     activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
   
@@ -230,26 +228,12 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         onSelectionImage: UIImage(named: "BUS-NEUTRAL"),
         offSelectionImage: UIImage(named: "BUS-NEUTRAL"))
     }
-    if realTimeDepartures?.greenMetros.count > 0 {
+    if realTimeDepartures?.metros.count > 0 {
       tabCount++
-      tabTypesKeys.append("METRO-GREEN")
+      tabTypesKeys.append("METRO")
       segmentView.addSegmentWithTitle(nil,
-        onSelectionImage: UIImage(named: "METRO-GREEN"),
-        offSelectionImage: UIImage(named: "METRO-GREEN"))
-    }
-    if realTimeDepartures?.redMetros.count > 0 {
-      tabCount++
-      tabTypesKeys.append("METRO-RED")
-      segmentView.addSegmentWithTitle(nil,
-        onSelectionImage: UIImage(named: "METRO-RED"),
-        offSelectionImage: UIImage(named: "METRO-RED"))
-    }
-    if realTimeDepartures?.blueMetros.count > 0 {
-      tabCount++
-      tabTypesKeys.append("METRO-BLUE")
-      segmentView.addSegmentWithTitle(nil,
-        onSelectionImage: UIImage(named: "METRO-BLUE"),
-        offSelectionImage: UIImage(named: "METRO-BLUE"))
+        onSelectionImage: UIImage(named: "METRO-NEUTRAL"),
+        offSelectionImage: UIImage(named: "METRO-NEUTRAL"))
     }
     if realTimeDepartures?.trains.count > 0 {
       tabCount++
@@ -340,32 +324,12 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Setup key arrays
    */
   private func setupKeys() {
-    busKeys = [String]()
-    metroGreenKeys = [String]()
-    for (index, _) in realTimeDepartures!.busses {
-      busKeys.append(index)
-    }
-    for (index, _) in realTimeDepartures!.greenMetros {
-      metroGreenKeys.append(index)
-    }
-    for (index, _) in realTimeDepartures!.redMetros {
-      metroRedKeys.append(index)
-    }
-    for (index, _) in realTimeDepartures!.blueMetros {
-      metroBlueKeys.append(index)
-    }
-    for (index, _) in realTimeDepartures!.trains {
-      trainKeys.append(index)
-    }
-    for (index, _) in realTimeDepartures!.trams {
-      tramKeys.append(index)
-    }
-    for (index, _) in realTimeDepartures!.localTrams {
-      localTramKeys.append(index)
-    }
-    for (index, _) in realTimeDepartures!.boats {
-      boatKeys.append(index)
-    }
+    busKeys = realTimeDepartures!.busses.keys.sort(<)
+    metroKeys = realTimeDepartures!.metros.keys.sort(<)
+    trainKeys = realTimeDepartures!.trains.keys.sort(<)
+    tramKeys = realTimeDepartures!.trams.keys.sort(<)
+    localTramKeys = realTimeDepartures!.localTrams.keys.sort(<)
+    boatKeys = realTimeDepartures!.boats.keys.sort(<)
   }
   
   /**
@@ -380,12 +344,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     switch tabKeys {
     case "BUS":
       return realTimeDepartures!.busses.count
-    case "METRO-GREEN":
-      return realTimeDepartures!.greenMetros.count
-    case "METRO-RED":
-      return realTimeDepartures!.redMetros.count
-    case "METRO-BLUE":
-      return realTimeDepartures!.blueMetros.count
+    case "METRO":
+      return realTimeDepartures!.metros.count
     case "TRAIN":
       return realTimeDepartures!.trains.count
     case "TRAM":
@@ -416,12 +376,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         return min(realTimeDepartures!.busses[busKeys[section]]!.count + 1, 8)
       }
       return min(realTimeDepartures!.busses[busKeys[section]]!.count + 1, 5)
-    case "METRO-GREEN":
-      return min(realTimeDepartures!.greenMetros[metroGreenKeys[section]]!.count + 1, 5)
-    case "METRO-RED":
-      return min(realTimeDepartures!.redMetros[metroRedKeys[section]]!.count + 1, 5)
-    case "METRO-BLUE":
-      return min(realTimeDepartures!.blueMetros[metroBlueKeys[section]]!.count + 1, 5)
+    case "METRO":
+      return min(realTimeDepartures!.metros[metroKeys[section]]!.count + 1, 5)
     case "TRAIN":
       return min(realTimeDepartures!.trains[trainKeys[section]]!.count + 1, 5)
     case "TRAM":
@@ -445,15 +401,21 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       let bus = realTimeDepartures!.busses[busKeys[indexPath.section]]!.first!
       cell.icon.image = UIImage(named: "BUS-NEUTRAL")
       cell.titleLabel.text = "\(bus.stopAreaName)"
-    case "METRO-GREEN":
-      cell.icon.image = UIImage(named: "METRO-GREEN")
-      cell.titleLabel.text = "Tunnelbanans gröna linje"
-    case "METRO-RED":
-      cell.icon.image = UIImage(named: "METRO-RED")
-      cell.titleLabel.text = "Tunnelbanans röda linje"
-    case "METRO-BLUE":
-      cell.icon.image = UIImage(named: "METRO-BLUE")
-      cell.titleLabel.text = "Tunnelbanans blåa linje"
+    case "METRO":
+      let metro = realTimeDepartures!.metros[metroKeys[indexPath.section]]!.first!
+      switch metro.metroLineId {
+      case 1:
+        cell.icon.image = UIImage(named: "METRO-GREEN")
+        cell.titleLabel.text = "Gröna linjen"
+      case 2:
+        cell.icon.image = UIImage(named: "METRO-RED")
+        cell.titleLabel.text = "Röda linjen"
+      case 3:
+        cell.icon.image = UIImage(named: "METRO-BLUE")
+        cell.titleLabel.text = "Blå linjen"
+      default:
+        break
+      }
     case "TRAIN":
       let train = realTimeDepartures!.trains[trainKeys[indexPath.section]]!.first!
       cell.icon.image = UIImage(named: "TRAIN-NEUTRAL")
@@ -495,12 +457,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         cell.stopPointDesignation.text = designation
         cell.stopPointDesignation.hidden = false
       }
-    case "METRO-GREEN":
-      data = realTimeDepartures!.greenMetros[metroGreenKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
-    case "METRO-RED":
-      data = realTimeDepartures!.redMetros[metroRedKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
-    case "METRO-BLUE":
-      data = realTimeDepartures!.blueMetros[metroBlueKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
+    case "METRO":
+      data = realTimeDepartures!.metros[metroKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
     case "TRAIN":
       let train = realTimeDepartures!.trains[trainKeys[indexPath.section]]![indexPath.row - 1]
       cell.lineLabel.text = train.lineNumber
@@ -550,7 +508,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       }
     }
   }
-    
+  
   /**
    * Setup table's background spinner.
    */

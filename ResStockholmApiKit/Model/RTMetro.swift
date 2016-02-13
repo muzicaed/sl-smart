@@ -9,15 +9,19 @@ import Foundation
 
 public class RTMetro: RTTransportBase {
   
-  let platformMessage: String?
+  public let platformMessage: String?
+  public let metroLineId: Int
   
   /**
    * Init
    */
   init(stopAreaName: String, lineNumber: String, destination: String,
-    displayTime: String, deviations: [String], journeyDirection: Int, platformMessage: String?) {
+    displayTime: String, deviations: [String], journeyDirection: Int,
+    platformMessage: String?, metroLineId: Int) {
       
       self.platformMessage = platformMessage
+      self.metroLineId = metroLineId
+      
       super.init(stopAreaName: stopAreaName, lineNumber: lineNumber,
         destination: destination, displayTime: displayTime,
         deviations: deviations, journeyDirection: journeyDirection)

@@ -49,9 +49,8 @@ public class RealTimeDeparturesService {
       dataAge: json["DataAge"].int!)
     
     departures.busses = convertBusesJson(json["Buses"])
-    departures.greenMetros = convertMetrosJson(json["Metros"], lineId: 1)
-    departures.redMetros = convertMetrosJson(json["Metros"], lineId: 2)
-    departures.blueMetros = convertMetrosJson(json["Metros"], lineId: 3)
+    
+    departures.metros = convertMetrosJson(json["Metros"])
     departures.trains = convertTrainsJson(json["Trains"])
     departures.trams = convertTramsJson(json["Trams"], isLocal: false)
     departures.localTrams = convertTramsJson(json["Trams"], isLocal: true)
@@ -96,31 +95,29 @@ public class RealTimeDeparturesService {
   /**
    * Converts the metro json in to objects.
    */
-  private static func convertMetrosJson(json: JSON, lineId: Int) -> [String: [RTMetro]] {
+  private static func convertMetrosJson(json: JSON) -> [String: [RTMetro]] {
     var result = [String: [RTMetro]]()
     
     for metroJson in json.array! {
-      if metroJson["GroupOfLineId"].int! == lineId {
-        
-        var messages = [String]()
-        if let message = metroJson["PlatformMessage"].string {
-          messages.append(message)
-        }
-        
-        let rtMetro = RTMetro(
-          stopAreaName: metroJson["StopAreaName"].string!,
-          lineNumber: metroJson["LineNumber"].string!,
-          destination: metroJson["Destination"].string!,
-          displayTime: metroJson["DisplayTime"].string!,
-          deviations: messages,
-          journeyDirection: metroJson["JourneyDirection"].int!,
-          platformMessage: metroJson["PlatformMessage"].string)
-        
-        if result["\(rtMetro.stopAreaName)-\(rtMetro.journeyDirection)"] == nil {
-          result["\(rtMetro.stopAreaName)-\(rtMetro.journeyDirection)"] = [RTMetro]()
-        }
-        result["\(rtMetro.stopAreaName)-\(rtMetro.journeyDirection)"]?.append(rtMetro)
+      var messages = [String]()
+      if let message = metroJson["PlatformMessage"].string {
+        messages.append(message)
       }
+      
+      let rtMetro = RTMetro(
+        stopAreaName: metroJson["StopAreaName"].string!,
+        lineNumber: metroJson["LineNumber"].string!,
+        destination: metroJson["Destination"].string!,
+        displayTime: metroJson["DisplayTime"].string!,
+        deviations: messages,
+        journeyDirection: metroJson["JourneyDirection"].int!,
+        platformMessage: metroJson["PlatformMessage"].string,
+        metroLineId: metroJson["GroupOfLineId"].int!)
+      
+      if result["\(rtMetro.stopAreaName)-\(rtMetro.metroLineId)-\(rtMetro.journeyDirection)"] == nil {
+        result["\(rtMetro.stopAreaName)-\(rtMetro.metroLineId)-\(rtMetro.journeyDirection)"] = [RTMetro]()
+      }
+      result["\(rtMetro.stopAreaName)-\(rtMetro.metroLineId)-\(rtMetro.journeyDirection)"]?.append(rtMetro)
     }
     
     return result
