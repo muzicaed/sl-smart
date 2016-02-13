@@ -86,7 +86,6 @@ class TripsIC: WKInterfaceController {
     } else {
       loadingLabel.setText("Inga resor")
     }
-    WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Success)    
   }
   
   // MARK: Private
