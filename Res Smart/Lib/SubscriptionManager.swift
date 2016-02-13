@@ -43,7 +43,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   func validateSubscription() {
     // TODO: Remove test code
     return
-    
+    /*
     print("validateSubscription")
     if shouldCheckForNewReciept() {
       print("shouldCheck!")      
@@ -51,6 +51,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
       refresh.delegate = self
       refresh.start()
     }
+    */
   }
   
   /**
