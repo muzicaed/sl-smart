@@ -23,9 +23,6 @@ public class SubscriptionStore {
    * Check if user have a active subscription.
    */
   func isSubscribed() -> Bool {
-    // TODO: Remove test code
-    return true
-    
     if isSubscribedCache == nil {
       isSubscribedCache = defaults.boolForKey(SubscriptionState)
     }
@@ -38,13 +35,6 @@ public class SubscriptionStore {
    */
   func getLocalExpireDate() -> NSDate? {
     let endDate = defaults.objectForKey(SubscriptionEndDate) as? NSDate
-    
-    // TODO: REMOVE TEST OUTPUT
-    if let date = endDate {
-      print("getLocalExpireDate: \(DateUtils.dateAsDateAndTimeString(date))")
-    } else {
-      print("getLocalExpireDate: None")    
-    }
     return endDate
   }
   

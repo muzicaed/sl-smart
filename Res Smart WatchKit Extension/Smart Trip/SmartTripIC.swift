@@ -160,6 +160,7 @@ class SmartTripIC: WKInterfaceController {
     // TODO: WTF?. Check future releases for fix on error 7014, and remove this...
     if error.code == WCErrorCode.DeliveryFailed.rawValue {
       // Retry after 1.5 seconds...
+      stopRefreshTimer()
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
         NSTimeInterval(1.5), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
       return

@@ -47,12 +47,10 @@ class HttpRequestHelper {
   
   /**
   * Handle cache lookup
-  * TODO: Handle time stamp.
   */
   private static func handleCache(url: String) -> NSData? {
     if let dataTuple = cache[url] {
       if NSDate().timeIntervalSinceDate(dataTuple.date) < cacheTolerance(url) {
-        print("FOUND CACHE DATA")
         return dataTuple.data
       }
     }
@@ -79,6 +77,6 @@ class HttpRequestHelper {
       return (60 * 10) // 10 minutes
     }
     
-    return (60 * 60 * 500) // 500 hours
+    return (60 * 60 * 120) // 5 days
   }
 }
