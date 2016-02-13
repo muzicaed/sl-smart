@@ -142,7 +142,7 @@ class SmartTripIC: WKInterfaceController {
         showContentUIState()
         lastUpdated = NSDate()
         startRefreshTimer()
-        WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Success)
+        WKInterfaceDevice.currentDevice().playHaptic(.Click)
       }
     } else {
       displayError(

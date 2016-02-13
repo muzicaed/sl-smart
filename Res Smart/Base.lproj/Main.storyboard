@@ -1531,7 +1531,13 @@
                             <outlet property="delegate" destination="Tmy-8K-Wz5" id="gkR-eb-qQg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Nästa avgång" id="e06-cF-GAT"/>
+                    <navigationItem key="navigationItem" title="Nästa avgång" id="e06-cF-GAT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="BOk-AR-C4G">
+                            <connections>
+                                <action selector="onRefreshButtonTap:" destination="Tmy-8K-Wz5" id="Jer-nj-3Xh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="spinnerView" destination="tRg-Z1-gW5" id="eAg-92-fmE"/>
                         <outlet property="topView" destination="PP4-K6-3gD" id="1iD-4U-2qR"/>

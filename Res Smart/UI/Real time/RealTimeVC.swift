@@ -64,6 +64,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    tableView.reloadData()
     loadData()
     startRefreshTimmer()
   }
@@ -81,10 +82,12 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   func didBecomeActive() {
     let now = NSDate()
-    if now.timeIntervalSinceDate(loadedTime) > (60 * 30) { // 0.5 hour
+    print(now.timeIntervalSinceDate(loadedTime))
+    if now.timeIntervalSinceDate(loadedTime) > (60 * 60) { // 1 hour
       navigationController?.popToRootViewControllerAnimated(false)
       return
     }
+    tableView.reloadData()
     loadData()
     startRefreshTimmer()
   }
@@ -135,6 +138,14 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         }
       }
     }
+  }
+  
+  @IBAction func onRefreshButtonTap(sender: UIBarButtonItem) {
+    setupTableActivityIndicator()
+    isLoading = true
+    tableView.reloadData()
+    NSTimer.scheduledTimerWithTimeInterval(
+      0.7, target: self, selector: Selector("loadData"), userInfo: nil, repeats: false)
   }
   
   // MARK: UITableViewController
