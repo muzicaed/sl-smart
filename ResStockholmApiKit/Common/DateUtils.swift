@@ -11,7 +11,7 @@ import Foundation
 public class DateUtils {
   
   /**
-   * Converts date and time strings ("2015-01-01" and "13:32") to
+   * Converts date and time string ("2015-01-01 13:32") to
    * NSDate object.
    */
   public static func convertDateString(dateTime: String) -> NSDate {

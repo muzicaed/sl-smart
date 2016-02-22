@@ -141,6 +141,9 @@
 		18FA99941C492BDC0075C4C2 /* SLJourneyDetailsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */; };
 		18FA999A1C492E3F0075C4C2 /* JournyDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */; };
 		18FA999C1C49321C0075C4C2 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA999B1C49321C0075C4C2 /* Stop.swift */; };
+		18FC74791C7B771100980B0D /* SLDeviationsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC74781C7B771100980B0D /* SLDeviationsApi.swift */; };
+		18FC747F1C7B778F00980B0D /* DeviationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC747E1C7B778F00980B0D /* DeviationsService.swift */; };
+		18FC74811C7B7D2E00980B0D /* Deviation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC74801C7B7D2E00980B0D /* Deviation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -390,6 +393,9 @@
 		18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLJourneyDetailsApi.swift; sourceTree = "<group>"; };
 		18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournyDetailsService.swift; sourceTree = "<group>"; };
 		18FA999B1C49321C0075C4C2 /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
+		18FC74781C7B771100980B0D /* SLDeviationsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLDeviationsApi.swift; sourceTree = "<group>"; };
+		18FC747E1C7B778F00980B0D /* DeviationsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviationsService.swift; sourceTree = "<group>"; };
+		18FC74801C7B7D2E00980B0D /* Deviation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deviation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -490,6 +496,7 @@
 				1899F2611C4AF88B00534587 /* SLGeometryApi.swift */,
 				180FD8B41C0B087E0095C790 /* ScorePost.swift */,
 				18733C4C1C4E472F00F66AEF /* SLRealtimeDepartures.swift */,
+				18FC74781C7B771100980B0D /* SLDeviationsApi.swift */,
 			);
 			path = "SL API";
 			sourceTree = "<group>";
@@ -719,6 +726,7 @@
 				18698AAF1C4EE72C0031D1AD /* RTTrain.swift */,
 				186CACD01C55265800B1B5F6 /* RTTram.swift */,
 				186CACD61C55381100B1B5F6 /* RTBoat.swift */,
+				18FC74801C7B7D2E00980B0D /* Deviation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -736,6 +744,7 @@
 				18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */,
 				1899F2631C4AFAB000534587 /* GeometryService.swift */,
 				18733C4E1C4E482F00F66AEF /* RealTimeDeparturesService.swift */,
+				18FC747E1C7B778F00980B0D /* DeviationsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1260,6 +1269,7 @@
 				18A9E8701C1899ED008F97C8 /* TripSeachCriterion.swift in Sources */,
 				18AAC9301C2EE3DF00022C54 /* RoutineTripsStore.swift in Sources */,
 				18A9E8721C1899F3008F97C8 /* DateUtils.swift in Sources */,
+				18FC747F1C7B778F00980B0D /* DeviationsService.swift in Sources */,
 				18FA99941C492BDC0075C4C2 /* SLJourneyDetailsApi.swift in Sources */,
 				186CACD71C55381100B1B5F6 /* RTBoat.swift in Sources */,
 				186CACD11C55265800B1B5F6 /* RTTram.swift in Sources */,
@@ -1289,6 +1299,8 @@
 				183D6EB21C19DBF000EB7537 /* TrafficSituationService.swift in Sources */,
 				18A9E85F1C189998008F97C8 /* LocationSearchService.swift in Sources */,
 				18A9E8661C1899E7008F97C8 /* SLTravelPlannerV2Api.swift in Sources */,
+				18FC74791C7B771100980B0D /* SLDeviationsApi.swift in Sources */,
+				18FC74811C7B7D2E00980B0D /* Deviation.swift in Sources */,
 				18A9E85E1C189998008F97C8 /* RoutineService.swift in Sources */,
 				18A9E8601C189998008F97C8 /* SearchTripService.swift in Sources */,
 				18733C661C4E56C500F66AEF /* RTBus.swift in Sources */,

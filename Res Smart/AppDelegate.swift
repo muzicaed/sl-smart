@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
       DataMigration.migrateData()
       setupAppleWatchConnection()
       setupApp()
+      
       return true
   }
   
