@@ -32,7 +32,7 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   /**
    * Converts into data dictionary for transfer to AppleWatch.
    */
-  public func watchTransferData() -> Dictionary<String, AnyObject> {
+  public func watchTransferData(countLimit: Int) -> Dictionary<String, AnyObject> {
     var departureString = ""
     if trips.count > 0 {
       let departure = trips.first!.tripSegments.first!.departureDateTime
@@ -43,7 +43,7 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
     if trips.count > 0 {
       for (index, trip) in trips.enumerate() {
         trasportTrips.append(trip.watchTransferData())
-        if index > 4 {
+        if index >= countLimit {
           break
         }
       }
@@ -51,12 +51,12 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
     
     return [
       "id": id,
-      "tit": title!,
-      "hab": isSmartSuggestion,
-      "ori": (criterions.origin?.name)!,
-      "des": (criterions.dest?.name)!,
-      "dep": departureString,
-      "trp": trasportTrips
+      "ti": title!,
+      "ha": isSmartSuggestion,
+      "or": (criterions.origin?.name)!,
+      "ds": (criterions.dest?.name)!,
+      "dp": departureString,
+      "tr": trasportTrips
     ]
   }
   

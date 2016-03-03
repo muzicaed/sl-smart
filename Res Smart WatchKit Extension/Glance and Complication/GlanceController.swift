@@ -21,10 +21,10 @@ class GlanceController: SmartTripIC {
    * for best routine.
    */
   override func updateUINoTripsFound(bestRoutine: Dictionary<String, AnyObject>) {
-    if bestRoutine["hab"] as! Bool {
+    if bestRoutine["ha"] as! Bool {
       subTitleLabel.setText("Smart vana")
     } else {
-      subTitleLabel.setText(bestRoutine["tit"] as? String)
+      subTitleLabel.setText(bestRoutine["ti"] as? String)
     }
     
     departureLabel.setText("Ingen resa")
@@ -41,19 +41,19 @@ class GlanceController: SmartTripIC {
    */
   override func updateUIData() {
     if let data = routineData {
-      let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
-      let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
-      let lines = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
-      let warnings = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["war"] as! [String]
+      let bestRoutine = data["b"] as! Dictionary<String, AnyObject>
+      let icons = (bestRoutine["tr"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
+      let lines = (bestRoutine["tr"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
+      let warnings = (bestRoutine["tr"] as! [Dictionary<String, AnyObject>]).first!["war"] as! [String]
 
       updateDepatureUI()
-      if bestRoutine["hab"] as! Bool {
+      if bestRoutine["ha"] as! Bool {
         subTitleLabel.setText("Smart vana")
       } else {
-        subTitleLabel.setText(bestRoutine["tit"] as? String)
+        subTitleLabel.setText(bestRoutine["ti"] as? String)
       }
-      originLabel.setText(bestRoutine["ori"] as? String)
-      destinationLabel.setText(bestRoutine["des"] as? String)
+      originLabel.setText(bestRoutine["or"] as? String)
+      destinationLabel.setText(bestRoutine["ds"] as? String)
       departureLabel.setText(currentDepartureText)
       createTripIcons(icons, lines: lines, warnings: warnings)
     }
@@ -64,9 +64,9 @@ class GlanceController: SmartTripIC {
    */
   override func updateDepatureUI() {
     if let data = routineData {
-      let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
+      let bestRoutine = data["b"] as! Dictionary<String, AnyObject>
       currentDepartureText = DateUtils.createDepartureTimeString(
-        bestRoutine["dep"] as! String, isWalk: checkIfWalk(bestRoutine))
+        bestRoutine["dp"] as! String, isWalk: checkIfWalk(bestRoutine))
       departureLabel.setText(currentDepartureText)
       return
     }
@@ -100,12 +100,12 @@ class GlanceController: SmartTripIC {
     if let data = routineData {
       if !isLoading {
         updateUIData()
-        let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
+        let bestRoutine = data["b"] as! Dictionary<String, AnyObject>
         contentGroup.setHidden(false)
-        if bestRoutine["hab"] as! Bool {
+        if bestRoutine["ha"] as! Bool {
           subTitleLabel.setText("Smart vana")
         } else {
-          subTitleLabel.setText(bestRoutine["tit"] as? String)
+          subTitleLabel.setText(bestRoutine["ti"] as? String)
         }
         subTitleLabel.setTextColor(UIColor.whiteColor())
       }

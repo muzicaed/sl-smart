@@ -80,8 +80,8 @@ class TripsIC: WKInterfaceController {
       loadingLabel.setHidden(true)
       tripTable.setHidden(false)
       if data == nil {
-        originLabel.setText(tripData[0]["origin"] as? String)
-        destinationLabel.setText(tripData[0]["destination"] as? String)
+        originLabel.setText(tripData[0]["ori"] as? String)
+        destinationLabel.setText(tripData[0]["des"] as? String)
       }
     } else {
       loadingLabel.setText("Inga resor")

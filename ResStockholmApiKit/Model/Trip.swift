@@ -45,7 +45,7 @@ public class Trip: NSObject, NSCopying {
       
       var warning = ""
       if segment.rtuMessages != nil {
-        warning = (segment.isWarning) ? "WARN" : "INFO"
+        warning = (segment.isWarning) ? "W" : "I"
       }
       warnings.append(warning)
     }
@@ -55,10 +55,10 @@ public class Trip: NSObject, NSCopying {
       "icn": icons,
       "lns": lines,
       "war": warnings,
-      "origin": tripSegments.first!.origin.name,
-      "destination": tripSegments.last!.destination.name,
-      "originTime": DateUtils.dateAsDateAndTimeString(tripSegments.first!.departureDateTime),
-      "destinationTime": DateUtils.dateAsDateAndTimeString(tripSegments.last!.arrivalDateTime),
+      "ori": tripSegments.first!.origin.name,
+      "des": tripSegments.last!.destination.name,
+      "ot": DateUtils.dateAsDateAndTimeString(tripSegments.first!.departureDateTime),
+      "dt": DateUtils.dateAsDateAndTimeString(tripSegments.last!.arrivalDateTime),
     ]
   }
   

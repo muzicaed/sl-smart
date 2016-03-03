@@ -134,7 +134,7 @@ class SmartTripIC: WKInterfaceController {
     retryCount = 0
     stopRefreshTimer()
     isLoading = false
-    let hasData = reply["foundData"] as! Bool
+    let hasData = reply["?"] as! Bool
     // TODO: Validate reply?, sometime get back freaky data like "Unable to read data" (Not as an error)
     if hasData {
       routineData = reply
@@ -182,8 +182,8 @@ class SmartTripIC: WKInterfaceController {
    */
   func handleEmptyTripResponse() -> Bool {
     if let data = routineData {
-      let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
-      let trips = bestRoutine["trp"] as! [Dictionary<String, AnyObject>]
+      let bestRoutine = data["b"] as! Dictionary<String, AnyObject>
+      let trips = bestRoutine["tr"] as! [Dictionary<String, AnyObject>]
       
       if trips.count == 0 {
         WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Failure)
@@ -200,10 +200,10 @@ class SmartTripIC: WKInterfaceController {
    * for best routine.
    */
   func updateUINoTripsFound(bestRoutine: Dictionary<String, AnyObject>) {
-    if bestRoutine["hab"] as! Bool {
+    if bestRoutine["ha"] as! Bool {
       titleLabel.setText("Smart vana")
     } else {
-      titleLabel.setText(bestRoutine["tit"] as? String)
+      titleLabel.setText(bestRoutine["ti"] as? String)
     }
     departureTimeLabel.setText("Ingen resa")
     originLabel.setText("")
@@ -220,23 +220,23 @@ class SmartTripIC: WKInterfaceController {
    */
   func updateUIData() {
     if let data = routineData {
-      let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
-      let icons = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
-      let lines = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
-      let warnings = (bestRoutine["trp"] as! [Dictionary<String, AnyObject>]).first!["war"] as! [String]
+      let bestRoutine = data["b"] as! Dictionary<String, AnyObject>
+      let icons = (bestRoutine["tr"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
+      let lines = (bestRoutine["tr"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
+      let warnings = (bestRoutine["tr"] as! [Dictionary<String, AnyObject>]).first!["war"] as! [String]
       
       updateDepatureUI()
-      if bestRoutine["hab"] as! Bool {
+      if bestRoutine["ha"] as! Bool {
         titleLabel.setText("Smart vana")
       } else {
-        titleLabel.setText(bestRoutine["tit"] as? String)
+        titleLabel.setText(bestRoutine["ti"] as? String)
       }
       
-      originLabel.setText(bestRoutine["ori"] as? String)
-      destinationLabel.setText(bestRoutine["des"] as? String)
+      originLabel.setText(bestRoutine["or"] as? String)
+      destinationLabel.setText(bestRoutine["ds"] as? String)
       
       createTripIcons(icons, lines: lines, warnings: warnings)
-      updateOtherTable(data["other"] as! [Dictionary<String, AnyObject>])
+      updateOtherTable(data["o"] as! [Dictionary<String, AnyObject>])
     }
   }
   
@@ -245,9 +245,9 @@ class SmartTripIC: WKInterfaceController {
    */
   func updateDepatureUI() {
     if let data = routineData {
-      let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
+      let bestRoutine = data["b"] as! Dictionary<String, AnyObject>
       currentDepartureText = DateUtils.createDepartureTimeString(
-        bestRoutine["dep"] as! String, isWalk: checkIfWalk(bestRoutine))
+        bestRoutine["dp"] as! String, isWalk: checkIfWalk(bestRoutine))
       departureTimeLabel.setText(currentDepartureText)
       return
     }
@@ -277,9 +277,9 @@ class SmartTripIC: WKInterfaceController {
         iconImage.setHidden(false)
         iconLables[index].setHidden(false)
         iconLables[index].setText(lines[index])
-        if warnings[index] == "INFO" {
+        if warnings[index] == "I" {
           iconLables[index].setTextColor(UIColor(red: 100/255, green: 100/255, blue: 255/255, alpha: 1.0))
-        } else if warnings[index] == "WARN" {
+        } else if warnings[index] == "W" {
           iconLables[index].setTextColor(UIColor.redColor())
         } else {
           iconLables[index].setTextColor(UIColor.whiteColor())
@@ -353,8 +353,8 @@ class SmartTripIC: WKInterfaceController {
    */
   func checkIfTripPassed() -> Bool {
     if let data = routineData {
-      let bestRoutine = data["best"] as! Dictionary<String, AnyObject>
-      let depTime = bestRoutine["dep"] as! String
+      let bestRoutine = data["b"] as! Dictionary<String, AnyObject>
+      let depTime = bestRoutine["dp"] as! String
       let departureDate = DateUtils.convertDateString(depTime)
       let diffMin = Int((departureDate.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
       if diffMin < 0 {
@@ -369,7 +369,7 @@ class SmartTripIC: WKInterfaceController {
    * Check if first segment is a walk.
    */
   func checkIfWalk(data: Dictionary<String, AnyObject>) -> Bool {
-    let icons = (data["trp"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
+    let icons = (data["tr"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
     return (icons.first! == "WALK-NEUTRAL")
   }
   
@@ -382,7 +382,7 @@ class SmartTripIC: WKInterfaceController {
   
   override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
     if let data = routineData {
-      let routines = data["other"] as! [Dictionary<String, AnyObject>]
+      let routines = data["o"] as! [Dictionary<String, AnyObject>]
       pushControllerWithName("Trips", context: routines[rowIndex])
     }
   }
@@ -393,7 +393,7 @@ class SmartTripIC: WKInterfaceController {
   override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
     if segueIdentifier == "ShowTrips" {
       if let data = routineData {
-        return data["best"] as! Dictionary<String, AnyObject>
+        return data["b"] as! Dictionary<String, AnyObject>
       }
     } else if segueIdentifier == "ShowLastSearch" {
       return nil
@@ -411,9 +411,9 @@ class SmartTripIC: WKInterfaceController {
       otherRoutinesTable.setNumberOfRows(otherTripsData.count, withRowType: "RoutineRow")
       for (index, data) in otherTripsData.enumerate() {
         let row = otherRoutinesTable.rowControllerAtIndex(index) as! OtherRoutinesRow
-        row.titleLabel.setText(data["tit"] as? String)
-        row.originLabel.setText(data["ori"] as? String)
-        row.destinationLabel.setText(data["des"] as? String)
+        row.titleLabel.setText(data["ti"] as? String)
+        row.originLabel.setText(data["or"] as? String)
+        row.destinationLabel.setText(data["ds"] as? String)
       }
       otherRoutinesLabel.setHidden(false)
     } else {

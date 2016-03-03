@@ -20,24 +20,24 @@ class WatchService {
       if let bestRoutineTrip = routineTrips.first {
         let bestData = bestRoutineTrip
         response = [
-          "best": bestData.watchTransferData(),
-          "foundData": true
+          "b": bestData.watchTransferData(1),
+          "?": true
         ]
         
         var otherTrips = [Dictionary<String, AnyObject>]()
         if routineTrips.count > 1 {
           for (index, routineTrip) in routineTrips.enumerate() {
             if index != 0 {
-              otherTrips.append(routineTrip.watchTransferData())
+              otherTrips.append(routineTrip.watchTransferData(0))
             }
             if index >= 5 {
               break
             }
           }
         }
-        response["other"] = otherTrips
+        response["o"] = otherTrips
       } else {
-        response["foundData"] = false
+        response["?"] = false
       }
       
       callback(response)
