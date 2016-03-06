@@ -41,14 +41,11 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    * Validate subscription
    */
   func validateSubscription() {
-    // TODO: Remove
-    /*
     if shouldCheckForNewReciept() {
       let refresh = SKReceiptRefreshRequest()
       refresh.delegate = self
       refresh.start()
     }
-    */
   }
   
   /**

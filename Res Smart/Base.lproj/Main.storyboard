@@ -2118,7 +2118,7 @@
                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                             </attributes>
                                                                         </fragment>
-                                                                        <fragment content=" behöver du beskriva dina resevanor genom att peka på &quot;">
+                                                                        <fragment content=" behöver du beskriva dina resvanor genom att peka på &quot;">
                                                                             <attributes>
                                                                                 <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
@@ -2143,7 +2143,7 @@
                                                                         <fragment>
                                                                             <string key="content">". 
 
-Appen lär sig dina vanor och visar automatiskt den resan du vill göra härnäst!
+Appen lär sig dina vanor och visar automatiskt den resa du vill göra härnäst!
 
 </string>
                                                                             <attributes>
@@ -2262,7 +2262,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                     <rect key="frame" x="0.0" y="33" width="339" height="207"/>
                                                                     <attributedString key="attributedText">
                                                                         <fragment>
-                                                                            <string key="content">Appen lär sig dina vanor och visar automatiskt den resan du vill göra härnäst!
+                                                                            <string key="content">Appen lär sig dina vanor och visar automatiskt den resa du vill göra härnäst!
 
 </string>
                                                                             <attributes>
@@ -2304,19 +2304,13 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                             </attributes>
                                                                         </fragment>
-                                                                        <fragment content="För att kunna använda ">
-                                                                            <attributes>
-                                                                                <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                            </attributes>
-                                                                        </fragment>
                                                                         <fragment content="Smart Resa och Apple Watch">
                                                                             <attributes>
                                                                                 <font key="NSFont" size="16" name="HelveticaNeue-ThinItalic"/>
                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                                             </attributes>
                                                                         </fragment>
-                                                                        <fragment content=" behöver du en prenumeration.">
+                                                                        <fragment content=" kräver en prenumeration.">
                                                                             <attributes>
                                                                                 <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
@@ -2329,14 +2323,14 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                     <rect key="frame" x="0.0" y="240" width="339" height="44"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wm-te-znF" userLabel="Prova gratis och börja prenumera">
-                                                                            <rect key="frame" x="29.5" y="0.0" width="280" height="44"/>
+                                                                            <rect key="frame" x="29" y="0.0" width="280" height="44"/>
                                                                             <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="280" id="Yj6-4v-FjX"/>
                                                                                 <constraint firstAttribute="height" constant="44" id="gBa-2D-BXc"/>
                                                                             </constraints>
                                                                             <state key="normal">
-                                                                                <string key="title">Prova gratis och börja prenumera 
+                                                                                <string key="title">Prova gratis 
 </string>
                                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </state>
@@ -2416,6 +2410,11 @@ Välkommen till ett smartare sätt att pendla.</string>
                                     <constraint firstItem="L9j-7Y-kwJ" firstAttribute="top" secondItem="Ovm-fK-jZf" secondAttribute="topMargin" id="z46-9O-7iF"/>
                                 </constraints>
                                 <size key="customSize" width="370" height="330"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="6PU-GC-2Na"/>
+                                    </mask>
+                                </variation>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HereToThereCell" id="esv-Pr-9mX" customClass="HereToThereCell" customModule="Res_Smart" customModuleProvider="target">
                                 <rect key="frame" x="22" y="980" width="370" height="60"/>
@@ -2625,17 +2624,17 @@ Välkommen till ett smartare sätt att pendla.</string>
                                             <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <size key="shadowOffset" width="-1" height="-1"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ny kund - Prova en vecka gratis" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drh-G9-r3L">
-                                            <rect key="frame" x="8" y="144.5" width="354" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ny kund - Prova gratis i en vecka" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drh-G9-r3L">
+                                            <rect key="frame" x="8" y="144.5" width="354" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOB-Pm-snD">
-                                            <rect key="frame" x="8" y="161.5" width="354" height="50.5"/>
+                                            <rect key="frame" x="8" y="165" width="354" height="51"/>
                                             <string key="text">Du betalar först när provperioden är över 
 och prenumerationen kan avbrytas 
-direkt från din iPhone</string>
+direkt från din iPhone.</string>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -2698,9 +2697,9 @@ direkt från din iPhone</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ny kund - Prova gratis en månad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6A3-uG-BcN">
-                                            <rect key="frame" x="8" y="145" width="354" height="18"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ny kund - Prova gratis i en månad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6A3-uG-BcN">
+                                            <rect key="frame" x="8" y="145" width="354" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ust-ci-qjV">
@@ -2720,10 +2719,10 @@ direkt från din iPhone</string>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Obj-aa-Yx8">
-                                            <rect key="frame" x="8" y="163.5" width="354" height="54"/>
+                                            <rect key="frame" x="8" y="165.5" width="354" height="54"/>
                                             <string key="text">Du betalar först när provperioden är över 
 och prenumerationen kan avbrytas 
-direkt från din iPhone</string>
+direkt från din iPhone.</string>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -4036,9 +4035,9 @@ direkt från din iPhone</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="WoO-7G-VaU"/>
-        <segue reference="Lg4-KG-mN0"/>
-        <segue reference="yy0-ry-irx"/>
-        <segue reference="L0K-5H-KeJ"/>
+        <segue reference="fPH-Xr-GVg"/>
         <segue reference="rzj-uS-OIZ"/>
+        <segue reference="Lg4-KG-mN0"/>
+        <segue reference="L0K-5H-KeJ"/>
     </inferredMetricsTieBreakers>
 </document>
