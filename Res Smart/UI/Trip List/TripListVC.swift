@@ -327,11 +327,6 @@ class TripListVC: UITableViewController {
       if !isLoadingMore && !isLoadingMoreBlocked {
         if overflow > 0 {
           loadMoreTrips()
-        } else if scrollView.contentOffset.y < 0 {
-          loadMoreEarlier?.displaySpinner((scrollView.contentOffset.y / 45) * -1)
-          if scrollView.contentOffset.y < -45 {
-            loadEarlierTrips()
-          }
         } else {
           loadMoreEarlier?.hideSpinner()
           loadMoreLater?.hideSpinner()

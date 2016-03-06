@@ -41,13 +41,13 @@ class TripRow: NSObject {
    */
   func setData(data: Dictionary<String, AnyObject>) {
     let depDateString = DateUtils.createDepartureTimeString(
-      data["originTime"] as! String, isWalk: checkIfWalk(data))
-    let arrivalDate = DateUtils.convertDateString(data["destinationTime"] as! String)
+      data["ot"] as! String, isWalk: checkIfWalk(data))
+    let arrivalDate = DateUtils.convertDateString(data["dt"] as! String)
     let humanTripDuration = createHumanTripDuration(data["dur"] as! Int)
     
     scheduleLabel.setText("\(depDateString) → \(DateUtils.dateAsTimeString(arrivalDate))")
     travelTimeLabel.setText("Restid: \(humanTripDuration)")
-    handleTravelDateLabel(data["originTime"] as! String)
+    handleTravelDateLabel(data["ot"] as! String)
     createTripIcons(
       data["icn"] as! [String],
       lines: data["lns"] as! [String],
@@ -94,9 +94,9 @@ class TripRow: NSObject {
         iconImage.setHidden(false)
         iconLables[index].setHidden(false)
         iconLables[index].setText(lines[index])
-        if warnings[index] == "INFO" {
+        if warnings[index] == "I" {
           iconLables[index].setTextColor(UIColor(red: 100/255, green: 100/255, blue: 255/255, alpha: 1.0))
-        } else if warnings[index] == "WARN" {
+        } else if warnings[index] == "W" {
           iconLables[index].setTextColor(UIColor.redColor())
         } else {
           iconLables[index].setTextColor(UIColor.whiteColor())
