@@ -561,7 +561,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       hereToThereCellIdentifier, forIndexPath: indexPath) as! HereToThereCell
     
     if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
-      cell.hereToThereLabel.text = "Från \(currentLocation.name)"
+      cell.hereToThereLabel.text = String(format: NSLocalizedString("Från %@", comment: ""), currentLocation.name)
     }
     
     return cell

@@ -59,7 +59,8 @@ class RoutineTripCell: UICollectionViewCell {
   func setupData(routineTrip: RoutineTrip, isBest: Bool) {
     var title = routineTrip.title!
     if routineTrip.isSmartSuggestion {
-      title = "\(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName) (Vana)"
+      title = "\(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName)"
+      title += NSLocalizedString(" (Vana)", comment: "")
     }
     
     tripTitleLabel.text = title //+ " [\(String(routineTrip.score))]"
@@ -113,7 +114,7 @@ class RoutineTripCell: UICollectionViewCell {
       if depTimeInterval < (60 * 11) {
         let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)) + 0.5)
         if diffMin <= 60 {
-          nextInAboutLabel.text = "Nästa: \(diffMin) min"
+          nextInAboutLabel.text = String(format: NSLocalizedString("Nästa: %d min", comment: ""), diffMin)
           nextInAboutLabel.hidden = false
         }
       }
@@ -181,6 +182,7 @@ class RoutineTripCell: UICollectionViewCell {
     departureTimeLabel.text = "--:--"
     arrivalTimeLabel.text = "--:--"
     inAboutLabel.text = ""
-    tripDurationLabel.text = "Hittade ingen resa..."
+    
+    tripDurationLabel.text = NSLocalizedString("Hittade ingen resa...", comment: "")
   }
 }

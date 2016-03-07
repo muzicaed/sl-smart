@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pz1-TM-aL5">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
+    </dependencies>
+    <scenes>
+        <!--Res Smart-->
+        <scene sceneID="z0c-D7-TRq">
+            <objects>
+                <controller title="Res Smart" id="pz1-TM-aL5" customClass="SmartTripIC" customModule="Res_Smart">
+                    <items>
+                        <group width="1" alignment="left" verticalAlignment="center" animationDuration="0.29999999999999999" layout="vertical" id="naW-Us-NIZ">
+                            <items>
+                                <label alignment="center" verticalAlignment="center" text="Söker resa..." id="8YZ-WO-QNP">
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="font" type="system" pointSize="16"/>
+                                </label>
+                                <group width="1" alignment="left" verticalAlignment="center" layout="vertical" id="2eR-Jh-VnR">
+                                    <items>
+                                        <button alignment="left" id="af7-dj-LLu" userLabel="Smart resa">
+                                            <group key="contentGroup" width="1" alignment="left" initiallyAnimated="NO" animationDuration="0.29999999999999999" layout="vertical" spacing="4" id="Bie-IP-jFC">
+                                                <items>
+                                                    <label width="1" alignment="left" text="Placeholder" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="cFt-Gb-vyb">
+                                                        <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="font" type="system" weight="light" pointSize="16"/>
+                                                    </label>
+                                                    <label width="1" alignment="left" text="Om x min" textAlignment="center" id="9m3-ui-Mak" userLabel="Om 6 min">
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="font" type="system" weight="light" pointSize="20"/>
+                                                    </label>
+                                                    <group width="1" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="7Xa-W2-V96" userLabel="Stations">
+                                                        <items>
+                                                            <label width="1" alignment="left" text="Testvägen" textAlignment="center" id="QqC-Jn-KFB" userLabel="Karlberg">
+                                                                <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                                            </label>
+                                                            <label width="1" alignment="left" text="Låtsasvägen" textAlignment="center" id="Tmi-wm-EQ3" userLabel="Karlberg">
+                                                                <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                                            </label>
+                                                        </items>
+                                                        <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                                    </group>
+                                                    <group alignment="center" verticalAlignment="center" radius="3" spacing="0.0" id="AgH-53-ejJ" userLabel="Travel type icons">
+                                                        <items>
+                                                            <group width="25" alignment="left" layout="vertical" spacing="0.0" id="0av-wI-14D" userLabel="Icon1">
+                                                                <items>
+                                                                    <imageView width="15" height="15" alignment="center" id="eJH-uF-1Mr" userLabel="Image 1"/>
+                                                                    <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="cfI-jP-RPq" userLabel="Label 1">
+                                                                        <fontDescription key="font" type="system" pointSize="8"/>
+                                                                    </label>
+                                                                </items>
+                                                            </group>
+                                                            <group width="25" alignment="left" layout="vertical" spacing="0.0" id="Sz3-Ww-GWT" userLabel="Icon2">
+                                                                <items>
+                                                                    <imageView width="15" height="15" alignment="center" id="C92-6p-Bse" userLabel="Image 2"/>
+                                                                    <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="rpS-f1-i9Q" userLabel="Label 2">
+                                                                        <fontDescription key="font" type="system" pointSize="8"/>
+                                                                    </label>
+                                                                </items>
+                                                            </group>
+                                                            <group width="25" alignment="left" layout="vertical" spacing="0.0" id="yat-jM-Ip4" userLabel="Icon3">
+                                                                <items>
+                                                                    <imageView width="15" height="15" alignment="center" id="bZX-fa-NWD" userLabel="Image 3"/>
+                                                                    <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="pB7-aI-uQS" userLabel="Label 3">
+                                                                        <fontDescription key="font" type="system" pointSize="8"/>
+                                                                    </label>
+                                                                </items>
+                                                            </group>
+                                                            <group width="25" alignment="left" layout="vertical" spacing="0.0" id="inc-tl-JVR" userLabel="Icon4">
+                                                                <items>
+                                                                    <imageView width="15" height="15" alignment="center" id="9pI-2V-KkU" userLabel="Image 4"/>
+                                                                    <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="MB9-VO-AV7" userLabel="Label 4">
+                                                                        <fontDescription key="font" type="system" pointSize="8"/>
+                                                                    </label>
+                                                                </items>
+                                                            </group>
+                                                            <group width="25" alignment="center" verticalAlignment="center" layout="vertical" spacing="0.0" id="NTI-iR-w7g" userLabel="Icon5">
+                                                                <items>
+                                                                    <imageView width="15" height="15" alignment="center" id="S7W-ow-jnI" userLabel="Image 5"/>
+                                                                    <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="Csq-sp-p0X" userLabel="Label 5">
+                                                                        <fontDescription key="font" type="system" pointSize="8"/>
+                                                                    </label>
+                                                                </items>
+                                                            </group>
+                                                        </items>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+                                                        <edgeInsets key="margins" left="1" right="1" top="4" bottom="2"/>
+                                                    </group>
+                                                </items>
+                                                <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="0.34999999999999998" colorSpace="calibratedRGB"/>
+                                                <edgeInsets key="margins" left="0.0" right="0.0" top="5" bottom="5"/>
+                                            </group>
+                                            <connections>
+                                                <segue destination="KjQ-iU-gEp" kind="push" identifier="ShowTrips" id="0tW-Xe-cdF"/>
+                                            </connections>
+                                        </button>
+                                        <button width="1" alignment="left" title="Senaste sökningen gjord på din iPhone" id="3yO-um-ygW">
+                                            <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="0.34999999999999998" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="13"/>
+                                            <connections>
+                                                <segue destination="KjQ-iU-gEp" kind="push" identifier="ShowLastSearch" id="QyD-HE-uvv"/>
+                                            </connections>
+                                        </button>
+                                        <label alignment="left" text="Fler rutiner" id="QX7-yk-ayb">
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="font" type="system" pointSize="16"/>
+                                        </label>
+                                        <table alignment="left" spacing="6" id="fRr-Pe-7eK">
+                                            <items>
+                                                <tableRow identifier="RoutineRow" id="pX4-Ta-K8Y" customClass="OtherRoutinesRow" customModule="Res_Smart">
+                                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="1" id="P5p-Mh-lmm">
+                                                        <items>
+                                                            <label width="1" alignment="left" text="Hem från jobbet" textAlignment="left" id="BWu-h1-71D">
+                                                                <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                                            </label>
+                                                            <label width="1" alignment="left" text="Kälvestavägen" textAlignment="left" id="GEm-9g-MGo" userLabel="Karlberg">
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                                            </label>
+                                                            <label width="1" alignment="left" text="Karlberg" textAlignment="left" id="y87-G0-DR9" userLabel="Karlberg">
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                                            </label>
+                                                        </items>
+                                                        <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
+                                                    </group>
+                                                    <connections>
+                                                        <outlet property="destinationLabel" destination="y87-G0-DR9" id="1w8-6b-y1m"/>
+                                                        <outlet property="originLabel" destination="GEm-9g-MGo" id="2H8-KP-g7A"/>
+                                                        <outlet property="titleLabel" destination="BWu-h1-71D" id="Xin-ZV-UfD"/>
+                                                    </connections>
+                                                </tableRow>
+                                            </items>
+                                        </table>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
+                    <menu key="menu" id="8Ud-Ra-O6Z">
+                        <items>
+                            <menuItem title="Uppdatera" image="RefreshIcon" id="TQy-EB-Sab">
+                                <connections>
+                                    <action selector="onReloadTap" destination="pz1-TM-aL5" id="Ht9-lS-qK8"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="containerGroup" destination="2eR-Jh-VnR" id="e07-WP-OBR"/>
+                        <outlet property="departureTimeLabel" destination="9m3-ui-Mak" id="cU5-Tl-ZRQ"/>
+                        <outlet property="destinationLabel" destination="Tmi-wm-EQ3" id="yKZ-RL-7Rx"/>
+                        <outlet property="icnGrp1" destination="0av-wI-14D" id="C1m-rt-yxW"/>
+                        <outlet property="icnGrp2" destination="Sz3-Ww-GWT" id="gZ8-bI-SyP"/>
+                        <outlet property="icnGrp3" destination="yat-jM-Ip4" id="fdr-3T-wqy"/>
+                        <outlet property="icnGrp4" destination="inc-tl-JVR" id="sz9-wj-hZ0"/>
+                        <outlet property="icnGrp5" destination="NTI-iR-w7g" id="RkK-ps-C6a"/>
+                        <outlet property="icnLbl1" destination="cfI-jP-RPq" id="ddv-vO-ZGs"/>
+                        <outlet property="icnLbl2" destination="rpS-f1-i9Q" id="0lk-qf-UsU"/>
+                        <outlet property="icnLbl3" destination="pB7-aI-uQS" id="gFH-s1-mH6"/>
+                        <outlet property="icnLbl4" destination="MB9-VO-AV7" id="fbu-2X-U8v"/>
+                        <outlet property="icnLbl5" destination="Csq-sp-p0X" id="Z83-4x-o4F"/>
+                        <outlet property="icon1" destination="eJH-uF-1Mr" id="QQG-wy-leI"/>
+                        <outlet property="icon2" destination="C92-6p-Bse" id="hSZ-sY-4dW"/>
+                        <outlet property="icon3" destination="bZX-fa-NWD" id="STZ-4T-92V"/>
+                        <outlet property="icon4" destination="9pI-2V-KkU" id="1af-H3-0mA"/>
+                        <outlet property="icon5" destination="S7W-ow-jnI" id="DqV-a3-Kby"/>
+                        <outlet property="loadingLabel" destination="8YZ-WO-QNP" id="6Wc-u3-qSN"/>
+                        <outlet property="originLabel" destination="QqC-Jn-KFB" id="Edx-c9-uND"/>
+                        <outlet property="otherRoutinesLabel" destination="QX7-yk-ayb" id="9qt-gb-mKT"/>
+                        <outlet property="otherRoutinesTable" destination="fRr-Pe-7eK" id="rNr-KK-ZyO"/>
+                        <outlet property="titleLabel" destination="cFt-Gb-vyb" id="N2v-Dn-hDw"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="235" y="393.75"/>
+        </scene>
+        <!--Resor-->
+        <scene sceneID="3Lq-WI-dKH">
+            <objects>
+                <controller identifier="Trips" title="Resor" id="KjQ-iU-gEp" customClass="TripsIC" customModule="Res_Smart">
+                    <items>
+                        <separator alignment="left" id="FhQ-0L-sZt">
+                            <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </separator>
+                        <group width="1" height="0.0" alignment="left" layout="vertical" spacing="2" id="Ha4-Tt-f0c">
+                            <items>
+                                <label width="1" alignment="left" text="Placeholder" textAlignment="left" minimumScaleFactor="0.90000000000000002" id="2CW-tm-7mt">
+                                    <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                </label>
+                                <group width="1" alignment="left" layout="vertical" spacing="0.0" id="BXG-nZ-jcb" userLabel="Origin &lt;-&gt; Destination">
+                                    <items>
+                                        <label width="1" alignment="left" text="Testvägen" textAlignment="left" id="fS8-Zo-4gH" userLabel="Origin">
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                        </label>
+                                        <label width="1" alignment="left" text="Låtsasvägen" textAlignment="left" id="Wo9-B8-JBH" userLabel="Destination">
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                        </label>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                        <separator alignment="left" id="ONC-nl-P8h">
+                            <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </separator>
+                        <label width="1" alignment="left" text="Söker resor..." textAlignment="center" id="p41-mJ-ZVz">
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="font" type="system" pointSize="16"/>
+                        </label>
+                        <table alignment="left" spacing="6" id="127-3q-0Gz">
+                            <items>
+                                <tableRow identifier="TripRow" selectable="NO" id="IQa-Qh-Uig" customClass="TripRow" customModule="Res_Smart">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" radius="0.0" spacing="1" id="OJI-g6-70X">
+                                        <items>
+                                            <label width="1" alignment="left" text="00:00 → 23:59" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="wna-Ru-M1o" userLabel="Om 6 min">
+                                                <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                            </label>
+                                            <label width="1" alignment="left" text="Imorgon" textAlignment="center" id="wee-4e-Rtu" userLabel="Day">
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                            </label>
+                                            <label width="1" alignment="left" text="Restid: xx min" textAlignment="center" id="uBR-S0-BU4" userLabel="Travel time">
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                            </label>
+                                            <group alignment="center" verticalAlignment="center" radius="3" spacing="0.0" id="8N0-G7-wcP" userLabel="Travel type icons">
+                                                <items>
+                                                    <group width="25" alignment="left" layout="vertical" spacing="0.0" id="Ehp-Yn-pzv" userLabel="Icon1">
+                                                        <items>
+                                                            <imageView width="15" height="15" alignment="center" id="eQ0-LR-Vaz" userLabel="Image 1"/>
+                                                            <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="51S-Gz-m8Z" userLabel="Label 1">
+                                                                <fontDescription key="font" type="system" pointSize="8"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                    <group width="25" alignment="left" layout="vertical" spacing="0.0" id="LvA-EV-Bsn" userLabel="Icon2">
+                                                        <items>
+                                                            <imageView width="15" height="15" alignment="center" id="Uyy-S3-N4q" userLabel="Image 2"/>
+                                                            <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="sgd-S8-igA" userLabel="Label 2">
+                                                                <fontDescription key="font" type="system" pointSize="8"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                    <group width="25" alignment="left" layout="vertical" spacing="0.0" id="zhw-tT-m51" userLabel="Icon3">
+                                                        <items>
+                                                            <imageView width="15" height="15" alignment="center" id="VLE-QP-Xjn" userLabel="Image 3"/>
+                                                            <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="csX-eE-p94" userLabel="Label 3">
+                                                                <fontDescription key="font" type="system" pointSize="8"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                    <group width="25" alignment="left" layout="vertical" spacing="0.0" id="DNa-We-7Sa" userLabel="Icon4">
+                                                        <items>
+                                                            <imageView width="15" height="15" alignment="center" id="7g6-jP-NdE" userLabel="Image 4"/>
+                                                            <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="wtG-Kg-Ur7" userLabel="Label 4">
+                                                                <fontDescription key="font" type="system" pointSize="8"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                    <group width="25" alignment="center" verticalAlignment="center" layout="vertical" spacing="0.0" id="gM7-rx-nnk" userLabel="Icon5">
+                                                        <items>
+                                                            <imageView width="15" height="15" alignment="center" id="Iwn-jN-xUH" userLabel="Image 5"/>
+                                                            <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="uKN-B4-Faa" userLabel="Label 5">
+                                                                <fontDescription key="font" type="system" pointSize="8"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                </items>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <edgeInsets key="margins" left="1" right="1" top="4" bottom="2"/>
+                                            </group>
+                                        </items>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.12" colorSpace="calibratedRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="icnGrp1" destination="Ehp-Yn-pzv" id="b1M-ST-UHy"/>
+                                        <outlet property="icnGrp2" destination="LvA-EV-Bsn" id="DF2-Rl-3VS"/>
+                                        <outlet property="icnGrp3" destination="zhw-tT-m51" id="FpA-4T-hVt"/>
+                                        <outlet property="icnGrp4" destination="DNa-We-7Sa" id="8th-af-xba"/>
+                                        <outlet property="icnGrp5" destination="gM7-rx-nnk" id="g7l-FR-LjK"/>
+                                        <outlet property="icnLbl1" destination="51S-Gz-m8Z" id="Udg-hj-uv4"/>
+                                        <outlet property="icnLbl2" destination="sgd-S8-igA" id="DPE-Id-bTP"/>
+                                        <outlet property="icnLbl3" destination="csX-eE-p94" id="MiP-UY-pXT"/>
+                                        <outlet property="icnLbl4" destination="wtG-Kg-Ur7" id="1bh-YD-16Y"/>
+                                        <outlet property="icnLbl5" destination="uKN-B4-Faa" id="seZ-pf-qK7"/>
+                                        <outlet property="icon1" destination="eQ0-LR-Vaz" id="OSH-41-cn6"/>
+                                        <outlet property="icon2" destination="Uyy-S3-N4q" id="mn2-UZ-Fcf"/>
+                                        <outlet property="icon3" destination="VLE-QP-Xjn" id="fjS-XM-Gf0"/>
+                                        <outlet property="icon4" destination="7g6-jP-NdE" id="jLe-En-2Yy"/>
+                                        <outlet property="icon5" destination="Iwn-jN-xUH" id="6Bg-yg-tuE"/>
+                                        <outlet property="scheduleLabel" destination="wna-Ru-M1o" id="yh7-Xx-kXl"/>
+                                        <outlet property="travelDateLabel" destination="wee-4e-Rtu" id="NmH-ta-ztG"/>
+                                        <outlet property="travelTimeLabel" destination="uBR-S0-BU4" id="Ih5-yN-Ulc"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="destinationLabel" destination="Wo9-B8-JBH" id="4Aj-Z0-REu"/>
+                        <outlet property="loadingLabel" destination="p41-mJ-ZVz" id="1ih-Xm-Fsg"/>
+                        <outlet property="originLabel" destination="fS8-Zo-4gH" id="PK4-PA-Zgl"/>
+                        <outlet property="titleLabel" destination="2CW-tm-7mt" id="3dj-H8-LxA"/>
+                        <outlet property="tripTable" destination="127-3q-0Gz" id="BFj-3P-9Vr"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="500" y="394"/>
+        </scene>
+        <!--Glance Interface Controller-->
+        <scene sceneID="BOz-TT-tkC">
+            <objects>
+                <glanceController spacing="0.0" hidesWhenLoading="NO" topTemplateType="mediumBody1" id="0uZ-2p-rRc" customClass="GlanceController" customModule="Res_Smart">
+                    <items>
+                        <label alignment="left" text="Res Smart" id="brv-oZ-oj4" userLabel="I">
+                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label alignment="left" text="Åka till jobbet" minimumScaleFactor="0.5" id="JgG-Sl-WR9">
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </label>
+                        <group alignment="left" animationDuration="0.5" layout="vertical" id="uCw-4Q-Ouw" userLabel="Content">
+                            <items>
+                                <group width="1" alignment="center" verticalAlignment="center" animationDuration="0.5" layout="vertical" radius="6" spacing="4" id="Es7-bG-KgD">
+                                    <items>
+                                        <label width="1" alignment="left" text="Uppdaterar" textAlignment="center" id="NHT-8y-f1e" userLabel="Om 6 min">
+                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" weight="light" pointSize="22"/>
+                                        </label>
+                                        <group width="1" height="32" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="6E4-OE-RCg" userLabel="Stations">
+                                            <items>
+                                                <label width="1" alignment="left" text=" Karlberg" textAlignment="center" id="LoS-cI-Lw2" userLabel="Karlberg">
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                                </label>
+                                                <label width="1" alignment="left" text=" Sture jjjyyyggg" textAlignment="center" id="uUk-p3-VO4" userLabel="Karlberg">
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                                </label>
+                                            </items>
+                                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                        </group>
+                                        <group alignment="center" verticalAlignment="center" radius="3" spacing="0.0" id="Ppi-Em-UFZ" userLabel="Travel type icons">
+                                            <items>
+                                                <group width="25" alignment="left" layout="vertical" spacing="0.0" id="fuw-vj-hyW" userLabel="Icon1">
+                                                    <items>
+                                                        <imageView width="15" height="15" alignment="center" id="rE4-6S-gD0" userLabel="Image 1"/>
+                                                        <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="A0g-vs-I2R" userLabel="Label 1">
+                                                            <fontDescription key="font" type="system" pointSize="8"/>
+                                                        </label>
+                                                    </items>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </group>
+                                                <group width="25" alignment="left" hidden="YES" layout="vertical" spacing="0.0" id="Pi5-kS-S9h" userLabel="Icon2">
+                                                    <items>
+                                                        <imageView width="15" height="15" alignment="center" id="cu5-58-6Ma" userLabel="Image 2"/>
+                                                        <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="irh-hX-PIt" userLabel="Label 2">
+                                                            <fontDescription key="font" type="system" pointSize="7"/>
+                                                        </label>
+                                                    </items>
+                                                </group>
+                                                <group width="25" alignment="left" hidden="YES" layout="vertical" spacing="0.0" id="o8U-NO-3Wd" userLabel="Icon3">
+                                                    <items>
+                                                        <imageView width="15" height="15" alignment="center" id="XUK-DF-gTZ" userLabel="Image 3"/>
+                                                        <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="DYB-kG-CVr" userLabel="Label 3">
+                                                            <fontDescription key="font" type="system" pointSize="7"/>
+                                                        </label>
+                                                    </items>
+                                                </group>
+                                                <group width="25" alignment="left" hidden="YES" layout="vertical" spacing="0.0" id="5Xr-Vg-mnx" userLabel="Icon4">
+                                                    <items>
+                                                        <imageView width="15" height="15" alignment="center" id="oyb-Ng-5A4" userLabel="Image 4"/>
+                                                        <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="irp-87-U2j" userLabel="Label 4">
+                                                            <fontDescription key="font" type="system" pointSize="7"/>
+                                                        </label>
+                                                    </items>
+                                                </group>
+                                                <group width="25" alignment="center" verticalAlignment="center" hidden="YES" layout="vertical" spacing="0.0" id="l7q-pO-BSm" userLabel="Icon5">
+                                                    <items>
+                                                        <imageView width="15" height="15" alignment="center" id="Ms1-Yr-G8m" userLabel="Image 5"/>
+                                                        <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="YN8-dc-sC9" userLabel="Label 5">
+                                                            <fontDescription key="font" type="system" pointSize="7"/>
+                                                        </label>
+                                                    </items>
+                                                </group>
+                                            </items>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <edgeInsets key="margins" left="1" right="1" top="4" bottom="2"/>
+                                        </group>
+                                    </items>
+                                    <edgeInsets key="margins" left="0.0" right="0.0" top="2" bottom="2"/>
+                                </group>
+                            </items>
+                            <edgeInsets key="margins" left="2" right="2" top="2" bottom="2"/>
+                        </group>
+                    </items>
+                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
+                    <connections>
+                        <outlet property="contentGroup" destination="Es7-bG-KgD" id="J5v-Vn-iMV"/>
+                        <outlet property="departureLabel" destination="NHT-8y-f1e" id="bj1-ay-Nu8"/>
+                        <outlet property="destinationLabel" destination="uUk-p3-VO4" id="j2y-j8-KKG"/>
+                        <outlet property="icnGrp1" destination="fuw-vj-hyW" id="Fd9-J1-hc4"/>
+                        <outlet property="icnGrp2" destination="Pi5-kS-S9h" id="d5a-6b-y9d"/>
+                        <outlet property="icnGrp3" destination="o8U-NO-3Wd" id="yLQ-cu-36r"/>
+                        <outlet property="icnGrp4" destination="5Xr-Vg-mnx" id="9wq-ek-YW4"/>
+                        <outlet property="icnGrp5" destination="l7q-pO-BSm" id="Xgi-3a-KTK"/>
+                        <outlet property="icnLbl1" destination="A0g-vs-I2R" id="1cy-BB-FmV"/>
+                        <outlet property="icnLbl2" destination="irh-hX-PIt" id="nm4-uB-Cwo"/>
+                        <outlet property="icnLbl3" destination="DYB-kG-CVr" id="fyg-SY-5aR"/>
+                        <outlet property="icnLbl4" destination="irp-87-U2j" id="xfp-q8-m5E"/>
+                        <outlet property="icnLbl5" destination="YN8-dc-sC9" id="hm4-mi-7ry"/>
+                        <outlet property="icon1" destination="rE4-6S-gD0" id="mpj-cv-Lgc"/>
+                        <outlet property="icon2" destination="cu5-58-6Ma" id="yIO-3O-MbH"/>
+                        <outlet property="icon3" destination="XUK-DF-gTZ" id="JrB-8C-rhG"/>
+                        <outlet property="icon4" destination="oyb-Ng-5A4" id="RkV-A9-mNK"/>
+                        <outlet property="icon5" destination="Ms1-Yr-G8m" id="Njp-39-6PP"/>
+                        <outlet property="originLabel" destination="LoS-cI-Lw2" id="gRj-jh-mW4"/>
+                        <outlet property="subTitleLabel" destination="JgG-Sl-WR9" id="2Li-pD-Qno"/>
+                    </connections>
+                </glanceController>
+            </objects>
+            <point key="canvasLocation" x="235" y="672"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="QyD-HE-uvv"/>
+    </inferredMetricsTieBreakers>
+</document>
