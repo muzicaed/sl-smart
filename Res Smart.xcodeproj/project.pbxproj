@@ -318,10 +318,8 @@
 		18733C5F1C4E568500F66AEF /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
 		18733C601C4E568500F66AEF /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
 		18733C651C4E56C500F66AEF /* RTBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBus.swift; sourceTree = "<group>"; };
-		1880D4C11C8E429700648E3F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		1880D4C21C8E429700648E3F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		1880D4C31C8E429700648E3F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Interface.strings; sourceTree = "<group>"; };
-		1880D4C41C8E429700648E3F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		1880D4C31C8E429700648E3F /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Interface.strings; sourceTree = "<group>"; };
+		1880D4C41C8E429700648E3F /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchService.swift; sourceTree = "<group>"; };
 		188367681C16EEA000A8BE16 /* TripDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsVC.swift; sourceTree = "<group>"; };
 		1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCellProtocol.swift; sourceTree = "<group>"; };
@@ -852,16 +850,16 @@
 		18E2AE541C8E281D00643F40 /* I18n */ = {
 			isa = PBXGroup;
 			children = (
-				18E2AE571C8E283A00643F40 /* en */,
+				18E2AE571C8E283A00643F40 /* sv */,
 			);
 			name = I18n;
 			sourceTree = "<group>";
 		};
-		18E2AE571C8E283A00643F40 /* en */ = {
+		18E2AE571C8E283A00643F40 /* sv */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = en;
+			name = sv;
 			sourceTree = "<group>";
 		};
 		18EAF4DA1C0F89990014701B /* Products */ = {
@@ -1037,9 +1035,10 @@
 			};
 			buildConfigurationList = 18937E2C1BFF33FA00C523C9 /* Build configuration list for PBXProject "Res Smart" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = Swedish;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				sv,
 				Base,
 			);
 			mainGroup = 18937E281BFF33FA00C523C9;
@@ -1347,7 +1346,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1818B26C1C404FE0004E3CA3 /* Base */,
-				1880D4C41C8E429700648E3F /* en */,
+				1880D4C41C8E429700648E3F /* sv */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -1356,7 +1355,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				18937E391BFF33FA00C523C9 /* Base */,
-				1880D4C11C8E429700648E3F /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1365,7 +1363,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				18937E3E1BFF33FA00C523C9 /* Base */,
-				1880D4C21C8E429700648E3F /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1374,7 +1371,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				18937E491BFF33FB00C523C9 /* Base */,
-				1880D4C31C8E429700648E3F /* en */,
+				1880D4C31C8E429700648E3F /* sv */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";

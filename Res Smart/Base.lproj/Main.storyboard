@@ -484,10 +484,10 @@
             </objects>
             <point key="canvasLocation" x="2211" y="3183"/>
         </scene>
-        <!--Nuvarande störningar-->
+        <!--Trafikläget-->
         <scene sceneID="flZ-ox-ThE">
             <objects>
-                <tableViewController title="Nuvarande störningar" id="542-NY-ThD" customClass="TrafficSituationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Trafikläget" id="542-NY-ThD" customClass="TrafficSituationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Nss-D7-0Qn">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2677,10 +2677,10 @@ Välkommen till ett smartare sätt att pendla.</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbz-vX-7Gw">
-                                            <rect key="frame" x="8" y="10" width="354" height="50.5"/>
+                                            <rect key="frame" x="8" y="10" width="354" height="51"/>
                                             <string key="text">Genom att prenumerera får du: 
- - Smarta rutiner, appen föreslår din nästa resa
- - Res Smart på din Apple Watch </string>
+• Smarta rutiner, appen föreslår nästa resa
+• Res Smart på din Apple Watch </string>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -3549,7 +3549,7 @@ direkt från din iPhone.</string>
                                                         <constraint firstAttribute="height" constant="6" id="yIg-cS-cTs" userLabel="height = 6"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Idag Tisdag bla bla" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vg-xG-Jx7">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="TodayPlaceholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vg-xG-Jx7">
                                                     <rect key="frame" x="0.0" y="6" width="338" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="cDt-8g-Sm5"/>
