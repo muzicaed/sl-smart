@@ -680,10 +680,42 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="fzm-Vq-VFQ" kind="show" identifier="ShowReports" id="zVB-lv-c0r"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1i-hj-Qno" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2211" y="4101"/>
+            <point key="canvasLocation" x="2216" y="4101"/>
+        </scene>
+        <!--Alla rapporter-->
+        <scene sceneID="IqQ-eV-8MA">
+            <objects>
+                <tableViewController title="Alla rapporter" id="fzm-Vq-VFQ" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="adn-By-tGo">
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cIC-pa-EWX">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cIC-pa-EWX" id="9jq-dh-M8c">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fzm-Vq-VFQ" id="9Tj-qN-pKE"/>
+                            <outlet property="delegate" destination="fzm-Vq-VFQ" id="AoA-gN-2Ww"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Alla rapporter" id="ohI-KE-MbW"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QEt-hu-LIp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2889" y="4101"/>
         </scene>
         <!--Trafikläget-->
         <scene sceneID="xdy-hX-E3g">
@@ -4035,7 +4067,7 @@ direkt från din iPhone.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="WoO-7G-VaU"/>
-        <segue reference="fPH-Xr-GVg"/>
+        <segue reference="ypq-Up-6Af"/>
         <segue reference="rzj-uS-OIZ"/>
         <segue reference="Lg4-KG-mN0"/>
         <segue reference="L0K-5H-KeJ"/>

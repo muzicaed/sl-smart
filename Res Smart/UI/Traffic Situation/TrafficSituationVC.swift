@@ -74,14 +74,17 @@ class TrafficSituationVC: UITableViewController {
   * Number of sections
   */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return situationGroups.count
+    if situationGroups.count > 0 {
+      return situationGroups.count + 1
+    }
+    return 0
   }
   
   /**
    * Number of rows in a section
    */
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if situationGroups.count == 0 {
+    if section == situationGroups.count {
       return 1
     } else if showPlanned {
       return situationGroups[section].situations.count + 1
@@ -95,6 +98,13 @@ class TrafficSituationVC: UITableViewController {
    */
   override func tableView(tableView: UITableView,
     cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+      
+      if indexPath.section == situationGroups.count {
+        let cell = UITableViewCell(style: .Default, reuseIdentifier: "ShowMoreRow")
+        cell.accessoryType = .DisclosureIndicator
+        cell.textLabel?.text = "Visa alla rapporter"
+        return cell
+      }
       
       if indexPath.row == 0 {
         let cell = tableView.dequeueReusableCellWithIdentifier(
@@ -126,8 +136,20 @@ class TrafficSituationVC: UITableViewController {
       } else {
         cell.layoutMargins = UIEdgeInsets.init(top: 0, left: 16, bottom: 0, right: 0)
       }
+      let bgColorView = UIView()
+      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+      cell.selectedBackgroundView = bgColorView
   }
   
+  /**
+   * User selected row
+   */
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    if indexPath.section == situationGroups.count {
+        performSegueWithIdentifier("ShowReports", sender: nil)
+    }
+  }
+
   // MARK: Private
   
   private func setupView() {
