@@ -102,6 +102,7 @@
 		18A824751C0EE866006190C4 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */; };
 		18A824771C0EE866006190C4 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5F1BFF33FB00C523C9 /* GlanceController.swift */; };
 		18A824781C0EE866006190C4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E611BFF33FB00C523C9 /* ComplicationController.swift */; };
+		18A9E3F81C974CC500EB2B49 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18A9E3FA1C974CC500EB2B49 /* Localizable.strings */; };
 		18A9E84A1C18993B008F97C8 /* ResStockholmApiKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 18A9E8491C18993B008F97C8 /* ResStockholmApiKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18A9E84E1C18993B008F97C8 /* ResStockholmApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; };
 		18A9E84F1C18993B008F97C8 /* ResStockholmApiKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -374,6 +375,11 @@
 		1899F26A1C4BBE7800534587 /* Pins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pins.swift; sourceTree = "<group>"; };
 		18A5A8D41C57BC54003C4C3B /* DisturbanceTextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisturbanceTextHelper.swift; sourceTree = "<group>"; };
 		18A5A8DA1C580E83003C4C3B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		18A9E3F21C9741DC00EB2B49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		18A9E3F31C9741DC00EB2B49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		18A9E3F41C9741DC00EB2B49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Interface.strings; sourceTree = "<group>"; };
+		18A9E3F51C9741DC00EB2B49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		18A9E3F91C974CC500EB2B49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ResStockholmApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A9E8491C18993B008F97C8 /* ResStockholmApiKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResStockholmApiKit.h; sourceTree = "<group>"; };
 		18A9E84B1C18993B008F97C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -850,16 +856,18 @@
 		18E2AE541C8E281D00643F40 /* I18n */ = {
 			isa = PBXGroup;
 			children = (
-				18E2AE571C8E283A00643F40 /* sv */,
+				18E2AE571C8E283A00643F40 /* en */,
 			);
 			name = I18n;
 			sourceTree = "<group>";
 		};
-		18E2AE571C8E283A00643F40 /* sv */ = {
+		18E2AE571C8E283A00643F40 /* en */ = {
 			isa = PBXGroup;
 			children = (
+				18A9E3FA1C974CC500EB2B49 /* Localizable.strings */,
 			);
-			name = sv;
+			name = en;
+			path = i18n/en;
 			sourceTree = "<group>";
 		};
 		18EAF4DA1C0F89990014701B /* Products */ = {
@@ -1107,6 +1115,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18937E3F1BFF33FA00C523C9 /* LaunchScreen.storyboard in Resources */,
+				18A9E3F81C974CC500EB2B49 /* Localizable.strings in Resources */,
 				18937E3C1BFF33FA00C523C9 /* Assets.xcassets in Resources */,
 				18937E3A1BFF33FA00C523C9 /* Main.storyboard in Resources */,
 			);
@@ -1347,6 +1356,7 @@
 			children = (
 				1818B26C1C404FE0004E3CA3 /* Base */,
 				1880D4C41C8E429700648E3F /* sv */,
+				18A9E3F51C9741DC00EB2B49 /* en */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -1355,6 +1365,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				18937E391BFF33FA00C523C9 /* Base */,
+				18A9E3F21C9741DC00EB2B49 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1363,6 +1374,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				18937E3E1BFF33FA00C523C9 /* Base */,
+				18A9E3F31C9741DC00EB2B49 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1372,8 +1384,17 @@
 			children = (
 				18937E491BFF33FB00C523C9 /* Base */,
 				1880D4C31C8E429700648E3F /* sv */,
+				18A9E3F41C9741DC00EB2B49 /* en */,
 			);
 			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		18A9E3FA1C974CC500EB2B49 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18A9E3F91C974CC500EB2B49 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

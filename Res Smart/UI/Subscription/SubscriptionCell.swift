@@ -30,9 +30,9 @@ class SubscriptionCell: UICollectionViewCell {
    */
   func setData(product: SKProduct) {
     if product.productIdentifier == "1_MONTH_RES_SMART" {
-      priceLabel.text = "\(product.price) kr / månad"
+      priceLabel.text = "\(product.price) " + NSLocalizedString("kr / månad", comment: "")
     } else if product.productIdentifier == "6_MONTH_RES_SMART" {
-      priceLabel.text = "\(product.price) kr / halvår"
+      priceLabel.text = "\(product.price) " + NSLocalizedString("kr / halvår", comment: "")
     }
   }
   
