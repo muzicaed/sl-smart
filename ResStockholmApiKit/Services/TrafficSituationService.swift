@@ -10,14 +10,14 @@ import Foundation
 
 public class TrafficSituationService {
   
-  private static let api = SLTrafficSituationServiceApi()
+  private static let situationsApi = SLTrafficSituationServiceApi()
   
   /**
    * Fetch trafic situation data
    */
   public static func fetchInformation(
     callback: (data: [SituationGroup], error: SLNetworkError?) -> Void) {
-      api.fetchInformation { resTuple -> Void in
+      situationsApi.fetchInformation { resTuple -> Void in
         var situations = [SituationGroup]()
         if let data = resTuple.data {
           if data.length == 0 {
@@ -26,9 +26,41 @@ public class TrafficSituationService {
           }
           
           situations = self.convertJsonResponse(data)
+          mergeDeviations(situations, callback: callback)
+        } else {
+          callback(data: situations, error: resTuple.error)
         }
-        callback(data: situations, error: resTuple.error)
+        
       }
+  }
+  
+  /**
+   * Handle traffic situations and merge with deviations.
+   */
+  private static func mergeDeviations(situations: [SituationGroup],
+    callback: (data: [SituationGroup], error: SLNetworkError?) -> Void) {
+
+      DeviationsService.fetchInformation { (data, error) -> Void in
+        if let err = error {
+          callback(data: [SituationGroup](), error: err)
+        }
+        
+        for group in situations {
+          addDeviationsToGroup(group, deviations: data)
+        }
+        callback(data: situations, error: nil)
+      }
+  }
+  
+  /**
+   * Add deviations to a situation group.
+   */
+  private static func addDeviationsToGroup(group: SituationGroup, deviations: [Deviation]) {
+    for deviation in deviations {
+      if group.tripType == deviation.tripType {
+        group.deviations.append(deviation)
+      }
+    }
   }
   
   /**

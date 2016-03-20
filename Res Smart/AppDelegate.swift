@@ -25,6 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
       setupAppleWatchConnection()
       setupApp()
       
+      // TODO: Remove test code
+      TrafficSituationService.fetchInformation { (data, error) -> Void in
+        print(data)
+      }
+      
       return true
   }
   

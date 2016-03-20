@@ -8,14 +8,14 @@
 
 import Foundation
 
-public class DeviationsService {
+class DeviationsService {
   
   private static let api = SLDeviationsApi()
   
   /**
    * Fetch deviations data
    */
-  public static func fetchInformation(
+  static func fetchInformation(
     callback: (data: [Deviation], error: SLNetworkError?) -> Void) {
       api.fetchInformation { resTuple -> Void in
         var deviations = [Deviation]()

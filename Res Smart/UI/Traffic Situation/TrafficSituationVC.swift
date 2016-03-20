@@ -30,7 +30,7 @@ class TrafficSituationVC: UITableViewController {
     tableView.alwaysBounceVertical = true
   }
   
-  /** 
+  /**
    * View did to appear
    */
   override func viewDidAppear(animated: Bool) {
@@ -75,7 +75,7 @@ class TrafficSituationVC: UITableViewController {
   */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     if situationGroups.count > 0 {
-      return situationGroups.count + 1
+      return situationGroups.count
     }
     return 0
   }
@@ -84,13 +84,7 @@ class TrafficSituationVC: UITableViewController {
    * Number of rows in a section
    */
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if section == situationGroups.count {
-      return 1
-    } else if showPlanned {
-      return situationGroups[section].situations.count + 1
-    }
-    
-    return situationGroups[section].countSituationsExclPlanned() + 1
+    return 3
   }
   
   /**
@@ -98,13 +92,6 @@ class TrafficSituationVC: UITableViewController {
    */
   override func tableView(tableView: UITableView,
     cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      
-      if indexPath.section == situationGroups.count {
-        let cell = UITableViewCell(style: .Default, reuseIdentifier: "ShowMoreRow")
-        cell.accessoryType = .DisclosureIndicator
-        cell.textLabel?.text = "Visa alla rapporter"
-        return cell
-      }
       
       if indexPath.row == 0 {
         let cell = tableView.dequeueReusableCellWithIdentifier(
@@ -114,14 +101,12 @@ class TrafficSituationVC: UITableViewController {
       }
       
       var data: Situation?
-      if showPlanned {
-        data = situationGroups[indexPath.section].situations[indexPath.row - 1]
-      } else {
-        data = filteredSituationGroups[indexPath.section].situations[indexPath.row - 1]
-      }
+      
+   //   data = situationGroups[indexPath.section].situations[indexPath.row - 1]
+  
       let cell = tableView.dequeueReusableCellWithIdentifier(
         "SituationRow", forIndexPath: indexPath) as! SituationRow
-      cell.setupData(data!)
+  //    cell.setupData(data!)
       return cell
   }
   
@@ -146,10 +131,10 @@ class TrafficSituationVC: UITableViewController {
    */
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if indexPath.section == situationGroups.count {
-        performSegueWithIdentifier("ShowReports", sender: nil)
+      performSegueWithIdentifier("ShowReports", sender: nil)
     }
   }
-
+  
   // MARK: Private
   
   private func setupView() {
@@ -201,11 +186,7 @@ class TrafficSituationVC: UITableViewController {
       
       var filtredGroups = [SituationGroup]()
       for group in situationGroups {
-        let filterGroup = SituationGroup(
-          statusIcon: group.statusIcon, hasPlannedEvent: group.hasPlannedEvent,
-          name: group.name, tripType: group.type,
-          situations: filterSituations(group.situations))
-        filtredGroups.append(filterGroup)
+
       }
       
       return filtredGroups

@@ -22,6 +22,6 @@ class SituationHeader: UITableViewCell {
   func setupData(group: SituationGroup) {
     title.text = group.name
     statusIcon.image = UIImage(named: group.statusIcon)
-    typeIcon.image = UIImage(named: group.type)
+    typeIcon.image = UIImage(named: group.iconName)
   }
 }

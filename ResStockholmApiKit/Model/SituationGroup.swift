@@ -13,10 +13,13 @@ public class SituationGroup {
   public let statusIcon: String // "EventMajor", "EventMinor", "EventGood"
   public let hasPlannedEvent: Bool
   public let name: String
-  public let type: String
-  public let situations: [Situation]
+  public let tripType: TripType
+  public let iconName: String
+  public var situations = [Situation]()
+  public var plannedSituations = [Situation]()
+  public var deviations = [Deviation]()
   
-  
+
   /**
    * Init
    */
@@ -26,8 +29,18 @@ public class SituationGroup {
       self.statusIcon = statusIcon
       self.hasPlannedEvent = hasPlannedEvent
       self.name = name
-      self.type = SituationGroup.createTripTypeIconName(tripType)
-      self.situations = situations
+
+      for situation in situations {
+        if situation.planned {
+          plannedSituations.append(situation)
+        } else {
+          self.situations.append(situation)
+        }
+      }
+      
+      let typeTyple = SituationGroup.createTripType(tripType)
+      self.iconName = typeTyple.icon
+      self.tripType = typeTyple.type
   }
   
   /**
@@ -40,27 +53,27 @@ public class SituationGroup {
     }    
     return count
   }
-  
+
   
   /**
    * Converts the API's trip type string icon name
    */
-  private static func createTripTypeIconName(typeString: String) -> String {
+  private static func createTripType(typeString: String) -> (type: TripType, icon: String) {
     switch typeString {
     case "metro":
-      return "METRO-NEUTRAL"
+      return (TripType.Metro, "METRO-NEUTRAL")
     case "train":
-      return "TRAIN-NEUTRAL"
+      return (TripType.Train, "TRAIN-NEUTRAL")
     case "bus":
-      return "BUS-NEUTRAL"
+      return (TripType.Bus, "BUS-NEUTRAL")
     case "tram":
-      return "TRAM-RAIL"
+      return (TripType.Tram, "TRAM-RAIL")
     case "local":
-      return "TRAM-LOCAL"
+      return (TripType.Tram, "TRAM-LOCAL")
     case "fer":
-      return "SHIP-NEUTRAL"
+      return (TripType.Ship, "SHIP-NEUTRAL")
     default:
-      return typeString
+      fatalError("Unknown trip type.")
     }
   }
 }
