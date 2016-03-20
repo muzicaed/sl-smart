@@ -14,14 +14,16 @@ class SituationHeader: UITableViewCell {
   
   @IBOutlet weak var title: UILabel!
   @IBOutlet weak var statusIcon: UIImageView!
-  @IBOutlet weak var typeIcon: UIImageView!
   
   /**
    * Setup data
    */
   func setupData(group: SituationGroup) {
     title.text = group.name
-    statusIcon.image = UIImage(named: group.statusIcon)
-    typeIcon.image = UIImage(named: group.iconName)
+    if group.hasPlannedEvent && group.statusIcon == "EventGood" {
+      statusIcon.image = UIImage(named: "EventPlanned")
+    } else {
+      statusIcon.image = UIImage(named: group.statusIcon)
+    }
   }
 }

@@ -13,8 +13,6 @@ import ResStockholmApiKit
 class TrafficSituationVC: UITableViewController {
   
   var situationGroups = [SituationGroup]()
-  var filteredSituationGroups = [SituationGroup]()
-  var showPlanned = false
   var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
   let refreshController = UIRefreshControl()
   
@@ -38,36 +36,6 @@ class TrafficSituationVC: UITableViewController {
     loadData()
   }
   
-  /**
-   * Toggle show planned situations
-   */
-  @IBAction func onTogglePlannedButtonTap(sender: UIBarButtonItem) {
-    if showPlanned {
-      sender.title = "Visa planerade"
-    } else {
-      sender.title = "Dölj planerade"
-    }
-    showPlanned = !showPlanned
-    
-    var indexPaths = [NSIndexPath]()
-    for (index, group) in situationGroups.enumerate() {
-      let diff = group.situations.count - filteredSituationGroups[index].situations.count
-      if diff > 0 {
-        for i in 1...diff {
-          indexPaths.append(NSIndexPath(forItem: i, inSection: index))
-        }
-      }
-    }
-    
-    tableView.beginUpdates()
-    if showPlanned {
-      tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
-    } else {
-      tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
-    }
-    tableView.endUpdates()
-  }
-  
   // MARK: UITableViewController
   
   /**
@@ -84,7 +52,10 @@ class TrafficSituationVC: UITableViewController {
    * Number of rows in a section
    */
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3
+    var count = 2
+    let group = situationGroups[section]
+    count += group.situations.count
+    return count
   }
   
   /**
@@ -100,13 +71,35 @@ class TrafficSituationVC: UITableViewController {
         return cell
       }
       
-      var data: Situation?
-      
-   //   data = situationGroups[indexPath.section].situations[indexPath.row - 1]
-  
+      // TODO: Refactoring here...
+
       let cell = tableView.dequeueReusableCellWithIdentifier(
         "SituationRow", forIndexPath: indexPath) as! SituationRow
-  //    cell.setupData(data!)
+      
+      let group = situationGroups[indexPath.section]
+      var message = ""
+      if group.plannedSituations.count > 0 {
+        if group.plannedSituations.count == 1 {
+          message = "\(group.plannedSituations.count) plannerad störning."
+        } else {
+          message = "\(group.plannedSituations.count) plannerade störningar."
+        }
+        message += (group.deviations.count > 0) ? "\n" : ""
+      }
+      if group.deviations.count > 0 {
+        if group.deviations.count == 1 {
+          message += "\(group.deviations.count) mindre avvikelse."
+        } else {
+          message += "\(group.deviations.count) mindre avvikelser."
+        }
+      }
+      
+      if group.deviations.count == 0 && group.plannedSituations.count == 0 && group.situations.count == 0 {
+        message = "Inga störningar."
+        cell.accessoryType = .None
+      }
+      
+      cell.messageLabel.text = message
       return cell
   }
   
@@ -160,7 +153,6 @@ class TrafficSituationVC: UITableViewController {
           
           self.lastUpdated = NSDate()
           self.situationGroups = data
-          self.filteredSituationGroups = self.filterSituationsOnPlanned(data)
           self.refreshController.endRefreshing()
           self.tableView.reloadData()
         }
@@ -176,35 +168,5 @@ class TrafficSituationVC: UITableViewController {
    */
   private func shouldReload() -> Bool {
     return situationGroups.count == 0 || (NSDate().timeIntervalSinceDate(lastUpdated) > 60)
-  }
-  
-  /**
-   * Filter situations on planned or not.
-   */
-  private func filterSituationsOnPlanned(
-    situationGroups: [SituationGroup]) -> [SituationGroup] {
-      
-      var filtredGroups = [SituationGroup]()
-      for group in situationGroups {
-
-      }
-      
-      return filtredGroups
-  }
-  
-  /**
-   * Filter situations on planned or not.
-   */
-  private func filterSituations(
-    situations: [Situation]) -> [Situation] {
-      
-      var filtredSituations = [Situation]()
-      for situation in situations {
-        if !situation.planned {
-          filtredSituations.append(situation)
-        }
-      }
-      
-      return filtredSituations
   }
 }

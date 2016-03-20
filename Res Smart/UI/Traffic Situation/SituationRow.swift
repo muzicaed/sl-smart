@@ -13,8 +13,4 @@ import ResStockholmApiKit
 class SituationRow: UITableViewCell {
 
   @IBOutlet weak var messageLabel: UILabel!
-  
-  func setupData(situation: Situation) {
-    messageLabel.text = situation.message
-  }
 }

@@ -507,10 +507,10 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="44"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EventGood" translatesAutoresizingMaskIntoConstraints="NO" id="ek0-9Y-Aph" userLabel="Status Icon">
-                                                            <rect key="frame" x="7" y="9" width="25" height="25"/>
+                                                            <rect key="frame" x="9.5" y="11.5" width="20" height="20"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="25" id="KrG-Ec-b8y"/>
-                                                                <constraint firstAttribute="height" constant="25" id="hSU-Dz-Clo"/>
+                                                                <constraint firstAttribute="width" constant="20" id="KrG-Ec-b8y"/>
+                                                                <constraint firstAttribute="height" constant="20" id="hSU-Dz-Clo"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -531,20 +531,7 @@
                                                 </label>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gl7-Al-Pu9" userLabel="Type Icon">
                                                     <rect key="frame" x="99" y="0.0" width="315" height="44"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="METRO-NEUTRAL" translatesAutoresizingMaskIntoConstraints="NO" id="NIP-kO-KxH" userLabel="Type icon">
-                                                            <rect key="frame" x="292" y="14" width="15" height="15"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="15" id="fUj-xu-nGU"/>
-                                                                <constraint firstAttribute="height" constant="15" id="ioV-de-yTs"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                    </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="NIP-kO-KxH" secondAttribute="trailing" id="omd-nc-c0F"/>
-                                                        <constraint firstItem="NIP-kO-KxH" firstAttribute="centerY" secondItem="gl7-Al-Pu9" secondAttribute="centerY" id="tMS-0z-ggR"/>
-                                                    </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -564,7 +551,6 @@
                                 <connections>
                                     <outlet property="statusIcon" destination="ek0-9Y-Aph" id="SiT-Wu-xDv"/>
                                     <outlet property="title" destination="e1C-Mj-3GQ" id="GRH-CT-ggc"/>
-                                    <outlet property="typeIcon" destination="NIP-kO-KxH" id="dH8-SU-vZZ"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SituationRow" rowHeight="110" id="wZf-ZO-dcC" userLabel="SituationRow" customClass="SituationRow" customModule="Res_Smart" customModuleProvider="target">
@@ -575,7 +561,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="2 plannerade störningar." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeR-n2-xLr" userLabel="Text">
-                                            <rect key="frame" x="38" y="8" width="335" height="93.5"/>
+                                            <rect key="frame" x="43" y="8" width="330" height="93.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="hZH-Fh-bnR"/>
                                             </constraints>
@@ -589,10 +575,10 @@
                                         <constraint firstItem="DeR-n2-xLr" firstAttribute="top" secondItem="Lu7-6b-Tzz" secondAttribute="topMargin" id="4zi-bI-tbG"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="DeR-n2-xLr" secondAttribute="trailing" id="XHO-49-5eJ"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="DeR-n2-xLr" secondAttribute="bottom" id="c2E-dq-BO9"/>
-                                        <constraint firstItem="DeR-n2-xLr" firstAttribute="leading" secondItem="Lu7-6b-Tzz" secondAttribute="leadingMargin" constant="30" id="hfd-0g-ZDk"/>
+                                        <constraint firstItem="DeR-n2-xLr" firstAttribute="leading" secondItem="Lu7-6b-Tzz" secondAttribute="leadingMargin" constant="35" id="hfd-0g-ZDk"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="messageLabel" destination="DeR-n2-xLr" id="Jd9-1e-uY7"/>
                                 </connections>
@@ -603,13 +589,7 @@
                             <outlet property="delegate" destination="542-NY-ThD" id="bge-PO-lF3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Trafikläget" id="2ZB-fH-LU2">
-                        <barButtonItem key="rightBarButtonItem" title="Visa planerade" id="IUn-E9-XYV">
-                            <connections>
-                                <action selector="onTogglePlannedButtonTap:" destination="542-NY-ThD" id="MgH-sr-gbZ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Trafikläget" id="2ZB-fH-LU2"/>
                     <connections>
                         <segue destination="fzm-Vq-VFQ" kind="show" identifier="ShowReports" id="zVB-lv-c0r"/>
                     </connections>
@@ -3844,7 +3824,6 @@ direkt från din iPhone.</string>
         <image name="BUS-NEUTRAL" width="15" height="15"/>
         <image name="ClockIcon" width="25" height="25"/>
         <image name="EventGood" width="25" height="25"/>
-        <image name="METRO-NEUTRAL" width="15" height="15"/>
         <image name="MapIcon" width="44" height="44"/>
         <image name="SearchTripIcon" width="25" height="25"/>
         <image name="SmartTripIcon" width="25" height="25"/>
