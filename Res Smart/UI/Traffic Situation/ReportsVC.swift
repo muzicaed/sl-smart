@@ -123,15 +123,9 @@ class ReportsVC: UITableViewController {
   private func createHeaderTitle(section: Int) -> String {
     if let group = situationGroup {
       if isBothSituationsAndDeviations() {
-        if group.tripType == TripType.Bus {
-          return (section == 0) ? "Plannerade störningar" : "Lokala störningar"
-        }
-        return (section == 0) ? "Plannerade störningar" : "Mindre avvikelser"
+        return (section == 0) ? "Plannerade störningar" : "Lokala avvikelser"
       } else {
-        if group.tripType == TripType.Bus {
-          return (group.plannedSituations.count > 0) ? "Plannerade störningar" : "Lokala störningar"
-        }
-        return (group.plannedSituations.count > 0) ? "Plannerade störningar" : "Mindre avvikelser"
+        return (group.plannedSituations.count > 0) ? "Plannerade störningar" : "Lokala avvikelser"
       }
     }
     return ""

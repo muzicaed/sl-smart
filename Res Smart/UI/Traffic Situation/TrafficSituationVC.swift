@@ -181,6 +181,7 @@ class TrafficSituationVC: UITableViewController {
     let group = situationGroups[indexPath.section]
     let cell = tableView.dequeueReusableCellWithIdentifier(
       "SituationRow", forIndexPath: indexPath) as! SituationRow
+    cell.messageLabel.textColor = UIColor.darkGrayColor()
     
     if group.deviations.count == 0 && group.plannedSituations.count == 0 && group.situations.count == 0 {
       cell.messageLabel.text = "Inga störningar."
@@ -199,21 +200,12 @@ class TrafficSituationVC: UITableViewController {
       message += (group.deviations.count > 0) ? "\n" : ""
     }
     if group.deviations.count > 0 {
-      if group.tripType == TripType.Bus {
-        if group.deviations.count == 1 {
-          message += "\(group.deviations.count) lokal störning."
-        } else {
-          message += "\(group.deviations.count) lokala störningar."
-        }
+      if group.deviations.count == 1 {
+        message += "\(group.deviations.count) lokal avvikelse."
       } else {
-        if group.deviations.count == 1 {
-          message += "\(group.deviations.count) mindre avvikelse."
-        } else {
-          message += "\(group.deviations.count) mindre avvikelser."
-        }
+        message += "\(group.deviations.count) lokala avvikelser."
       }
     }
-    
     
     cell.messageLabel.text = message
     cell.userInteractionEnabled = true
