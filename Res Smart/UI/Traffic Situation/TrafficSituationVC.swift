@@ -13,6 +13,7 @@ import ResStockholmApiKit
 class TrafficSituationVC: UITableViewController {
   
   var situationGroups = [SituationGroup]()
+  var selectedGroup: SituationGroup?
   var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
   let refreshController = UIRefreshControl()
   
@@ -34,6 +35,19 @@ class TrafficSituationVC: UITableViewController {
   override func viewDidAppear(animated: Bool) {
     super.viewWillAppear(animated)
     loadData()
+  }
+  
+  /**
+   * Prepares for segue
+   */
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "ShowReports" {
+      let vc = segue.destinationViewController as! ReportsVC
+      if let group = selectedGroup {
+        vc.title = group.name
+        vc.situationGroup = group
+      }
+    }
   }
   
   // MARK: UITableViewController
@@ -65,42 +79,13 @@ class TrafficSituationVC: UITableViewController {
     cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       
       if indexPath.row == 0 {
-        let cell = tableView.dequeueReusableCellWithIdentifier(
-          "SituationHeader", forIndexPath: indexPath) as! SituationHeader
-        cell.setupData(situationGroups[indexPath.section])
-        return cell
+        return createHeaderCell(indexPath)
       }
       
-      // TODO: Refactoring here...
-
-      let cell = tableView.dequeueReusableCellWithIdentifier(
-        "SituationRow", forIndexPath: indexPath) as! SituationRow
-      
-      let group = situationGroups[indexPath.section]
-      var message = ""
-      if group.plannedSituations.count > 0 {
-        if group.plannedSituations.count == 1 {
-          message = "\(group.plannedSituations.count) plannerad störning."
-        } else {
-          message = "\(group.plannedSituations.count) plannerade störningar."
-        }
-        message += (group.deviations.count > 0) ? "\n" : ""
+      if (indexPath.row - 1) < situationGroups[indexPath.section].situations.count {
+        return createSituationCell(indexPath)
       }
-      if group.deviations.count > 0 {
-        if group.deviations.count == 1 {
-          message += "\(group.deviations.count) mindre avvikelse."
-        } else {
-          message += "\(group.deviations.count) mindre avvikelser."
-        }
-      }
-      
-      if group.deviations.count == 0 && group.plannedSituations.count == 0 && group.situations.count == 0 {
-        message = "Inga störningar."
-        cell.accessoryType = .None
-      }
-      
-      cell.messageLabel.text = message
-      return cell
+      return createSummaryCell(indexPath)
   }
   
   /**
@@ -108,12 +93,6 @@ class TrafficSituationVC: UITableViewController {
    */
   override func tableView(tableView: UITableView,
     willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-      if indexPath.row == 0 {
-        cell.layoutMargins = UIEdgeInsetsZero
-        cell.preservesSuperviewLayoutMargins = false
-      } else {
-        cell.layoutMargins = UIEdgeInsets.init(top: 0, left: 16, bottom: 0, right: 0)
-      }
       let bgColorView = UIView()
       bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
       cell.selectedBackgroundView = bgColorView
@@ -122,10 +101,10 @@ class TrafficSituationVC: UITableViewController {
   /**
    * User selected row
    */
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if indexPath.section == situationGroups.count {
+  override func tableView(tableView: UITableView,
+    didSelectRowAtIndexPath indexPath: NSIndexPath) {
+      selectedGroup = situationGroups[indexPath.section]
       performSegueWithIdentifier("ShowReports", sender: nil)
-    }
   }
   
   // MARK: Private
@@ -168,5 +147,76 @@ class TrafficSituationVC: UITableViewController {
    */
   private func shouldReload() -> Bool {
     return situationGroups.count == 0 || (NSDate().timeIntervalSinceDate(lastUpdated) > 60)
+  }
+  
+  /**
+   * Creates a header row
+   */
+  private func createHeaderCell(indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier(
+      "SituationHeader", forIndexPath: indexPath) as! SituationHeader
+    cell.setupData(situationGroups[indexPath.section])
+    return cell
+  }
+  
+  /**
+   * Creates a unplanned situation row
+   */
+  private func createSituationCell(indexPath: NSIndexPath) -> UITableViewCell {
+    let situation = situationGroups[indexPath.section].situations[indexPath.row - 1]
+    let cell = tableView.dequeueReusableCellWithIdentifier(
+      "SituationRow", forIndexPath: indexPath) as! SituationRow
+    
+    cell.messageLabel.text = situation.message
+    cell.messageLabel.textColor = UIColor.redColor()
+    cell.accessoryType = .None
+    cell.userInteractionEnabled = false
+    return cell
+  }
+  
+  /**
+   * Creates a situation summary row
+   */
+  private func createSummaryCell(indexPath: NSIndexPath) -> UITableViewCell {
+    let group = situationGroups[indexPath.section]
+    let cell = tableView.dequeueReusableCellWithIdentifier(
+      "SituationRow", forIndexPath: indexPath) as! SituationRow
+    
+    if group.deviations.count == 0 && group.plannedSituations.count == 0 && group.situations.count == 0 {
+      cell.messageLabel.text = "Inga störningar."
+      cell.accessoryType = .None
+      cell.userInteractionEnabled = false
+      return cell
+    }
+    
+    var message = ""
+    if group.plannedSituations.count > 0 {
+      if group.plannedSituations.count == 1 {
+        message = "\(group.plannedSituations.count) plannerad störning."
+      } else {
+        message = "\(group.plannedSituations.count) plannerade störningar."
+      }
+      message += (group.deviations.count > 0) ? "\n" : ""
+    }
+    if group.deviations.count > 0 {
+      if group.tripType == TripType.Bus {
+        if group.deviations.count == 1 {
+          message += "\(group.deviations.count) lokal störning."
+        } else {
+          message += "\(group.deviations.count) lokala störningar."
+        }
+      } else {
+        if group.deviations.count == 1 {
+          message += "\(group.deviations.count) mindre avvikelse."
+        } else {
+          message += "\(group.deviations.count) mindre avvikelser."
+        }
+      }
+    }
+    
+    
+    cell.messageLabel.text = message
+    cell.userInteractionEnabled = true
+    return cell
   }
 }

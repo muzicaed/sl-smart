@@ -92,6 +92,9 @@ public enum TripType: String {
   case Narbuss = "NARBUSS"
   case Walk = "WALK"
   
+  // Speical
+  case Local = "LOCAL"
+  
   // Future
   case Bike = "BIKE"
   case Car = "CAR"

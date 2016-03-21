@@ -56,6 +56,7 @@ class DeviationsService {
       scope: json["Scope"].string!,
       title: json["Header"].string!,
       details: json["Details"].string!,
-      reportedDate: json["Created"].string!)
+      reportedDate: json["Updated"].string!,
+      fromDate: json["FromDateTime"].string!)
   }
 }

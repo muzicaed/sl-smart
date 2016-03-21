@@ -14,14 +14,16 @@ public class Deviation {
   public let title: String
   public let details: String
   public let reported: NSDate
+  public let fromDate: NSDate
   public let tripType: TripType
   
-  init(scope: String, title: String, details: String, reportedDate: String) {
+  init(scope: String, title: String, details: String, reportedDate: String, fromDate: String) {
     
-    self.scope = scope
+    self.scope = Deviation.makeFriendlyScope(scope)
     self.title = title
     self.details = details
     self.reported = Deviation.convertDate(reportedDate)
+    self.fromDate = Deviation.convertDate(fromDate)
     self.tripType = Deviation.extractTripType(scope)
   }
   
@@ -45,12 +47,29 @@ public class Deviation {
       return TripType.Train
     } else if scope.lowercaseString.rangeOfString("buss") != nil {
       return TripType.Bus
+    } else if scope.lowercaseString.rangeOfString("närtrafiken") != nil {
+      return TripType.Bus
     } else if scope.lowercaseString.rangeOfString("tunnelbana") != nil {
       return TripType.Metro
     } else if scope.lowercaseString.rangeOfString("spårvagn") != nil {
       return TripType.Tram
-    }
+    } else if scope.lowercaseString.rangeOfString("saltsjöbanan") != nil {
+      return TripType.Local
+    } else if scope.lowercaseString.rangeOfString("roslagsbanan") != nil {
+      return TripType.Local
+    }    
     
     return TripType.Bus
+  }
+  
+  /**
+   * Fix scope text to match sematics
+   */
+  private static func makeFriendlyScope(var scope: String) -> String {
+    scope = scope.stringByReplacingOccurrencesOfString("Tunnelbanans röda linje", withString: "Röda linjen")
+    scope = scope.stringByReplacingOccurrencesOfString("Tunnelbanans gröna linje", withString: "Gröna linjen")    
+    scope = scope.stringByReplacingOccurrencesOfString("Tunnelbanans blå linje", withString: "Blå linjen")
+    
+    return scope
   }
 }

@@ -69,7 +69,7 @@ public class SituationGroup {
     case "tram":
       return (TripType.Tram, "TRAM-RAIL")
     case "local":
-      return (TripType.Tram, "TRAM-LOCAL")
+      return (TripType.Local, "TRAM-LOCAL")
     case "fer":
       return (TripType.Ship, "SHIP-NEUTRAL")
     default:
