@@ -45,7 +45,14 @@ class TrafficSituationVC: UITableViewController {
       let vc = segue.destinationViewController as! ReportsVC
       if let group = selectedGroup {
         vc.title = group.name
-        vc.situationGroup = group
+        vc.situations = group.plannedSituations
+        vc.deviations = group.deviations
+      }
+    } else if segue.identifier == "ShowBusFilter" {
+      let vc = segue.destinationViewController as! BusFilterVC
+      if let group = selectedGroup {
+        vc.title = group.name
+        vc.deviations = group.deviations
       }
     }
   }
@@ -104,6 +111,10 @@ class TrafficSituationVC: UITableViewController {
   override func tableView(tableView: UITableView,
     didSelectRowAtIndexPath indexPath: NSIndexPath) {
       selectedGroup = situationGroups[indexPath.section]
+      if selectedGroup?.tripType == TripType.Bus {
+        performSegueWithIdentifier("ShowBusFilter", sender: nil)
+        return
+      }
       performSegueWithIdentifier("ShowReports", sender: nil)
   }
   
@@ -168,7 +179,7 @@ class TrafficSituationVC: UITableViewController {
       "SituationRow", forIndexPath: indexPath) as! SituationRow
     
     cell.messageLabel.text = situation.message
-    cell.messageLabel.textColor = UIColor.redColor()
+    cell.messageLabel.textColor = UIColor(red: 232/255, green: 22/255, blue: 34/255, alpha: 1.0)
     cell.accessoryType = .None
     cell.userInteractionEnabled = false
     return cell

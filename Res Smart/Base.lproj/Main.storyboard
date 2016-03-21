@@ -593,16 +593,17 @@
                     <navigationItem key="navigationItem" title="Trafikläget" id="2ZB-fH-LU2"/>
                     <connections>
                         <segue destination="fzm-Vq-VFQ" kind="show" identifier="ShowReports" id="zVB-lv-c0r"/>
+                        <segue destination="kZ4-sb-vLC" kind="show" identifier="ShowBusFilter" id="exB-3T-d5Q"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1i-hj-Qno" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2216" y="4101"/>
         </scene>
-        <!--Alla rapporter-->
+        <!--Rapporter-->
         <scene sceneID="IqQ-eV-8MA">
             <objects>
-                <tableViewController title="Alla rapporter" id="fzm-Vq-VFQ" customClass="ReportsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Rapporter" id="fzm-Vq-VFQ" customClass="ReportsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="adn-By-tGo">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -724,6 +725,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEt-hu-LIp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2889" y="4101"/>
+        </scene>
+        <!--Buss avvikelser-->
+        <scene sceneID="Nhj-Fs-NIZ">
+            <objects>
+                <tableViewController title="Buss avvikelser" id="kZ4-sb-vLC" customClass="BusFilterVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="MnO-Lv-fXn">
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeviationRow" textLabel="P9v-cx-eEt" detailTextLabel="TEm-Ap-rOE" style="IBUITableViewCellStyleSubtitle" id="9O8-0i-iu9">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9O8-0i-iu9" id="3eC-R0-CFo">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Line number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P9v-cx-eEt">
+                                            <rect key="frame" x="15" y="6" width="90.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TEm-Ap-rOE">
+                                            <rect key="frame" x="15" y="25.5" width="32" height="13.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kZ4-sb-vLC" id="LDg-dZ-iRZ"/>
+                            <outlet property="delegate" destination="kZ4-sb-vLC" id="seM-rr-Mxa"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="fzm-Vq-VFQ" kind="show" identifier="ShowReports" id="gZB-Im-USu"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="42F-ZS-T0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2216" y="4998"/>
         </scene>
         <!--Avvikelse-->
         <scene sceneID="xpY-60-3Rz">
@@ -3657,7 +3705,7 @@ direkt från din iPhone.</string>
                                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="20" id="svh-ib-VzW"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                                                            <color key="textColor" red="0.91094704406631755" green="0.086445623846498232" blue="0.1323242363643079" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="0.90980392156862744" green="0.086274509803921567" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="default">
                                                                 <mask key="constraints">
@@ -4032,9 +4080,10 @@ direkt från din iPhone.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4rE-Hc-22D"/>
-        <segue reference="ypq-Up-6Af"/>
+        <segue reference="gZB-Im-USu"/>
         <segue reference="V2Z-ue-vlu"/>
-        <segue reference="Lg4-KG-mN0"/>
+        <segue reference="ypq-Up-6Af"/>
         <segue reference="rzj-uS-OIZ"/>
+        <segue reference="Lg4-KG-mN0"/>
     </inferredMetricsTieBreakers>
 </document>

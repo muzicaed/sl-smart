@@ -12,7 +12,8 @@ import ResStockholmApiKit
 
 class ReportsVC: UITableViewController {
   
-  var situationGroup: SituationGroup?
+  var situations = [Situation]()
+  var deviations = [Deviation]()
   var selectedDeviation: Deviation?
   
   /**
@@ -53,15 +54,12 @@ class ReportsVC: UITableViewController {
    */
   override func tableView(tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
-      if let group = situationGroup {
-        if isBothSituationsAndDeviations() {
-          return (section == 0) ? group.plannedSituations.count : group.deviations.count
-        } else if group.plannedSituations.count > 0 {
-          return group.plannedSituations.count
-        }
-        return group.deviations.count
+      if isBothSituationsAndDeviations() {
+        return (section == 0) ? situations.count : deviations.count
+      } else if situations.count > 0 {
+        return situations.count
       }
-      return 0
+      return deviations.count
   }
   
   /**
@@ -69,15 +67,13 @@ class ReportsVC: UITableViewController {
    */
   override func tableView(tableView: UITableView,
     cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      if let group = situationGroup {
-        if isBothSituationsAndDeviations() {
-          return (indexPath.section == 0) ? createSituationCell(indexPath) : createDeviationCell(indexPath)
-        } else if group.plannedSituations.count > 0 {
-          return createSituationCell(indexPath)
-        }
-        return createDeviationCell(indexPath)
+      
+      if isBothSituationsAndDeviations() {
+        return (indexPath.section == 0) ? createSituationCell(indexPath) : createDeviationCell(indexPath)
+      } else if situations.count > 0 {
+        return createSituationCell(indexPath)
       }
-      return UITableViewCell()
+      return createDeviationCell(indexPath)
   }
   
   /**
@@ -111,7 +107,7 @@ class ReportsVC: UITableViewController {
    */
   override func tableView(tableView: UITableView,
     didSelectRowAtIndexPath indexPath: NSIndexPath) {
-      selectedDeviation = situationGroup!.deviations[indexPath.row]
+      selectedDeviation = deviations[indexPath.row]
       performSegueWithIdentifier("ShowDeviation", sender: nil)
   }
   
@@ -121,14 +117,11 @@ class ReportsVC: UITableViewController {
   * Create the header title.
   */
   private func createHeaderTitle(section: Int) -> String {
-    if let group = situationGroup {
-      if isBothSituationsAndDeviations() {
-        return (section == 0) ? "Plannerade störningar" : "Lokala avvikelser"
-      } else {
-        return (group.plannedSituations.count > 0) ? "Plannerade störningar" : "Lokala avvikelser"
-      }
+    if isBothSituationsAndDeviations() {
+      return (section == 0) ? "Plannerade störningar" : "Lokala avvikelser"
+    } else {
+      return (situations.count > 0) ? "Plannerade störningar" : "Lokala avvikelser"
     }
-    return ""
   }
   
   /**
@@ -146,14 +139,14 @@ class ReportsVC: UITableViewController {
    * Checks if there is both situations and deviations.
    */
   private func isBothSituationsAndDeviations() -> Bool {
-    return (situationGroup!.plannedSituations.count > 0 && situationGroup!.deviations.count > 0)
+    return (situations.count > 0 && deviations.count > 0)
   }
   
   /**
    * Create a situation row
    */
   private func createSituationCell(indexPath: NSIndexPath) -> UITableViewCell {
-    let situation = situationGroup!.plannedSituations[indexPath.row]
+    let situation = situations[indexPath.row]
     let cell = tableView.dequeueReusableCellWithIdentifier(
       "SituationRow", forIndexPath: indexPath) as! ReportSituationRow
     cell.titleLabel.text = situation.trafficLine
@@ -165,7 +158,7 @@ class ReportsVC: UITableViewController {
    * Create a deviation row
    */
   private func createDeviationCell(indexPath: NSIndexPath) -> UITableViewCell {
-    let deviation = situationGroup!.deviations[indexPath.row]
+    let deviation = deviations[indexPath.row]
     let cell = tableView.dequeueReusableCellWithIdentifier(
       "DeviationRow", forIndexPath: indexPath) as! ReportDeviationRow
     cell.titleLabel.text = deviation.scope
