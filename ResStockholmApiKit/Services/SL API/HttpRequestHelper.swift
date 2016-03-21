@@ -75,8 +75,10 @@ class HttpRequestHelper {
       return 30 // 30 seconds
     } else if url.lowercaseString.rangeOfString("trafficsituation.json") != nil {
       return (60 * 10) // 10 minutes
+    } else if url.lowercaseString.rangeOfString("deviations.json") != nil {
+      return (60 * 10) // 10 minutes
     }
     
-    return (60 * 60 * 120) // 5 days
+    return (60 * 60 * 24) // 1 days
   }
 }
