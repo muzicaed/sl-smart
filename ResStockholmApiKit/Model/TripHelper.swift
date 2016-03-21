@@ -63,11 +63,11 @@ public class TripHelper {
       return ("\(lineNumber!)", "Buss \(lineNumber!)", "BUS-RED")
     case .Metro:
       if lineNumber == "13" || lineNumber == "14" {
-        return ("Röda", "Tunnelbanan, röda", "METRO-RED")
+        return ("Röda", "Röda linjen", "METRO-RED")
       } else if lineNumber == "17" || lineNumber == "18" || lineNumber == "19" {
-        return ("Gröna", "Tunnelbanan, gröna", "METRO-GREEN")
+        return ("Gröna", "Gröna linjen", "METRO-GREEN")
       } else if lineNumber == "10" || lineNumber == "11" {
-        return ("Blåa", "Tunnelbanan, blåa", "METRO-BLUE")
+        return ("Blå", "Blå linjen", "METRO-BLUE")
       }
       return ("T-bana", "Tunnelbanan", "METRO-NEUTRAL")
     case .Train:

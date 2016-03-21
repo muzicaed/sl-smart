@@ -69,8 +69,10 @@ class BusFilterVC: UITableViewController {
         "DeviationRow", forIndexPath: indexPath)
       if key == "STOPS" {
         cell.textLabel?.text = "Avvikelser för hållplatser"
+        cell.imageView?.image = nil
       } else {
         cell.textLabel?.text = "Linje \(key)"
+        cell.imageView?.image = UIImage(named: "BUS-NEUTRAL")
       }
       
       cell.detailTextLabel?.text = countText
