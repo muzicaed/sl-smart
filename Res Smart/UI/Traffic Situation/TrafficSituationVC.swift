@@ -203,9 +203,9 @@ class TrafficSituationVC: UITableViewController {
     var message = ""
     if group.plannedSituations.count > 0 {
       if group.plannedSituations.count == 1 {
-        message = "\(group.plannedSituations.count) plannerad störning."
+        message = "\(group.plannedSituations.count) planerad störning."
       } else {
-        message = "\(group.plannedSituations.count) plannerade störningar."
+        message = "\(group.plannedSituations.count) planerade störningar."
       }
       message += (group.deviations.count > 0) ? "\n" : ""
     }

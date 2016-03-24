@@ -118,9 +118,9 @@ class ReportsVC: UITableViewController {
   */
   private func createHeaderTitle(section: Int) -> String {
     if isBothSituationsAndDeviations() {
-      return (section == 0) ? "Plannerade störningar" : "Lokala avvikelser"
+      return (section == 0) ? "Planerade störningar" : "Lokala avvikelser"
     } else {
-      return (situations.count > 0) ? "Plannerade störningar" : "Lokala avvikelser"
+      return (situations.count > 0) ? "Planerade störningar" : "Lokala avvikelser"
     }
   }
   
