@@ -43,4 +43,8 @@ class CustomTabVC: UITabBarController {
       items[3].badgeValue = nil
     }
   }
+  
+  deinit{
+    notificationCenter.removeObserver(self)
+  }
 }
