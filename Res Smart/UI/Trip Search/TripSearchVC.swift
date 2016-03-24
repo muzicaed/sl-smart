@@ -418,7 +418,6 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
    * Deinit
    */
   deinit {
-    notificationCenter.removeObserver(self,
-      name: UIApplicationDidBecomeActiveNotification, object: nil)
+    notificationCenter.removeObserver(self)
   }
 }

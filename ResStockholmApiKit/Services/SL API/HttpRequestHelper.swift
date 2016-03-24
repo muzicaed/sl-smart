@@ -19,17 +19,15 @@ class HttpRequestHelper {
    */
   static func makeGetRequest(url: String,
     callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
-      print(url)
+      
       if let cacheData = handleCache(url) {
         callback((cacheData, nil))
         return
       }
-      let operationQueue = NSOperationQueue()
-      operationQueue.maxConcurrentOperationCount = 4
       
       do {
-        let opt = try HTTP.New(url, method: .GET)
-        opt.onFinish = { response in
+        let opt = try HTTP.GET(url)
+        opt.start { response in
           if response.error != nil {
             callback((nil, SLNetworkError.NetworkError))
           }
@@ -37,7 +35,6 @@ class HttpRequestHelper {
           addDataToCache(url, data: response.data)
           callback((response.data, nil))
         }
-        operationQueue.addOperation(opt)
       } catch _ {
         callback((nil, SLNetworkError.InvalidRequest))
       }
@@ -75,10 +72,8 @@ class HttpRequestHelper {
       return 30 // 30 seconds
     } else if url.lowercaseString.rangeOfString("trafficsituation.json") != nil {
       return (60 * 10) // 10 minutes
-    } else if url.lowercaseString.rangeOfString("deviations.json") != nil {
-      return (60 * 10) // 10 minutes
     }
     
-    return (60 * 60 * 24) // 1 days
+    return (60 * 60 * 120) // 5 days
   }
 }
