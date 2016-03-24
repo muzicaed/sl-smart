@@ -19,16 +19,15 @@ class HttpRequestHelper {
    */
   static func makeGetRequest(url: String,
     callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
+      
       if let cacheData = handleCache(url) {
         callback((cacheData, nil))
         return
       }
-      let operationQueue = NSOperationQueue()
-      operationQueue.maxConcurrentOperationCount = 4
       
       do {
-        let opt = try HTTP.New(url, method: .GET)
-        opt.onFinish = { response in
+        let opt = try HTTP.GET(url)
+        opt.start { response in
           if response.error != nil {
             callback((nil, SLNetworkError.NetworkError))
           }
@@ -36,7 +35,6 @@ class HttpRequestHelper {
           addDataToCache(url, data: response.data)
           callback((response.data, nil))
         }
-        operationQueue.addOperation(opt)
       } catch _ {
         callback((nil, SLNetworkError.InvalidRequest))
       }
