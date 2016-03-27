@@ -472,11 +472,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         RoutineService.findRoutineTrip({ routineTrips in
           dispatch_async(dispatch_get_main_queue()) {
             self.stopLoading()
+            NetworkActivity.displayActivityIndicator(false)
             if routineTrips.count > 0 {
               self.bestRoutineTrip = routineTrips.first!
               self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
               self.lastUpdated = NSDate()
-              NetworkActivity.displayActivityIndicator(false)
             }
           }
         })
@@ -490,8 +490,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Checks if data should be reloaded.
    */
   private func shouldReload() -> Bool {
-    if let trip = bestRoutineTrip {
-      let departureDate = trip.trips.first!.tripSegments.first!.departureDateTime
+    if let routine = bestRoutineTrip, let trip = routine.trips.first {
+      let departureDate = trip.tripSegments.first!.departureDateTime
       if NSDate().timeIntervalSinceDate(departureDate) > 30 {
         return true
       }
