@@ -35,7 +35,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   var realtimeIndicatorLabel: UILabel?
   var refreshTimmer: NSTimer?
   let loadedTime = NSDate()
-  
+  let refreshController = UIRefreshControl()
   var tableActivityIndicator = UIActivityIndicatorView(
     activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
   
@@ -55,6 +55,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     tableView.estimatedRowHeight = 44
     
     prepareRealtimeIndicator()
+    refreshController.addTarget(self, action: Selector("loadData"), forControlEvents: UIControlEvents.ValueChanged)
+    refreshController.tintColor = UIColor.lightGrayColor()
+    tableView.addSubview(refreshController)
+    tableView.alwaysBounceVertical = true
   }
   
   /**
@@ -124,6 +128,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         if let departures = rtDepartures {
           dispatch_async(dispatch_get_main_queue(), {
             self.spinnerView.removeFromSuperview()
+            self.refreshController.endRefreshing()
             self.isLoading = false
             self.firstTimeLoad = false
             self.realTimeDepartures = departures
@@ -137,7 +142,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     }
   }
   
-  @IBAction func onRefreshButtonTap(sender: UIBarButtonItem) {
+  /**
+   * On user drags down
+   */
+  func onRefreshController() {
     setupTableActivityIndicator()
     isLoading = true
     tableView.reloadData()
