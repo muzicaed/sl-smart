@@ -65,7 +65,7 @@ class TripListVC: UITableViewController {
     super.viewWillAppear(animated)
     isLoadingMoreBlocked = false
     startRefreshTimmer()
-    handleMakeRoutineButton()    
+    handleMakeRoutineButton()
   }
   
   /**
@@ -355,6 +355,9 @@ class TripListVC: UITableViewController {
               return
             }
             self.appendToDictionary(resTuple.data, shouldAppend: shouldAppend)
+            if resTuple.data.count == 0 {
+              self.navigationItem.rightBarButtonItem = nil
+            }
             self.isLoading = false
             self.isLoadingMore = false
             self.loadMoreEarlier?.hideSpinner()
@@ -536,7 +539,7 @@ class TripListVC: UITableViewController {
   /**
    * Checks if there should be a "Make routine" buttons.
    */
-  private func handleMakeRoutineButton() {    
+  private func handleMakeRoutineButton() {
     if !SubscriptionStore.sharedInstance.isSubscribed() {
       navigationItem.rightBarButtonItem = nil
       return
