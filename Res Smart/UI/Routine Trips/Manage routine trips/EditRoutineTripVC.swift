@@ -334,8 +334,8 @@ TravelTypesResponder, PickLocationResponder {
    */
   private func showInvalidTitleAlert() {
     let invalidTitleAlert = UIAlertController(
-      title: "Title saknas",
-      message: "Du behöver ange en title för din resa.",
+      title: "Titel saknas",
+      message: "Du behöver ange en titel för din resa.",
       preferredStyle: UIAlertControllerStyle.Alert)
     invalidTitleAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
