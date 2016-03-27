@@ -101,6 +101,7 @@
 		1899F2671C4B9C6200534587 /* RouteRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2661C4B9C6200534587 /* RouteRenderer.swift */; };
 		1899F2691C4B9C9200534587 /* RoutePolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2681C4B9C9200534587 /* RoutePolyline.swift */; };
 		1899F26B1C4BBE7800534587 /* Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F26A1C4BBE7800534587 /* Pins.swift */; };
+		18A428A11CA8257E004B4D67 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1818B2661C404FE0004E3CA3 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		18A5A8DB1C580E83003C4C3B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A5A8DA1C580E83003C4C3B /* CoreLocation.framework */; };
 		18A824741C0EE866006190C4 /* SmartTripIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E591BFF33FB00C523C9 /* SmartTripIC.swift */; };
 		18A824751C0EE866006190C4 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */; };
@@ -175,6 +176,13 @@
 			remoteGlobalIDString = 18937E511BFF33FB00C523C9;
 			remoteInfo = "Res i Sverige WatchKit Extension";
 		};
+		18A4289F1CA82564004B4D67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1818B2651C404FE0004E3CA3;
+			remoteInfo = Today;
+		};
 		18A9E84C1C18993B008F97C8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
@@ -231,6 +239,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				18A428A11CA8257E004B4D67 /* Today.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -943,6 +952,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				18A428A01CA82564004B4D67 /* PBXTargetDependency */,
 				18937E461BFF33FB00C523C9 /* PBXTargetDependency */,
 				18A9E84D1C18993B008F97C8 /* PBXTargetDependency */,
 			);
@@ -1362,6 +1372,11 @@
 			isa = PBXTargetDependency;
 			target = 18937E511BFF33FB00C523C9 /* Res Smart WatchKit Extension */;
 			targetProxy = 18937E541BFF33FB00C523C9 /* PBXContainerItemProxy */;
+		};
+		18A428A01CA82564004B4D67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1818B2651C404FE0004E3CA3 /* Today */;
+			targetProxy = 18A4289F1CA82564004B4D67 /* PBXContainerItemProxy */;
 		};
 		18A9E84D1C18993B008F97C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
