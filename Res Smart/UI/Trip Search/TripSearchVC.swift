@@ -53,6 +53,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       vc.searchOnlyForStations = false
       vc.allowCurrentPosition = true
       vc.allowNearbyStations = true
+      vc.title = "Välj från"
       searchLocationType = "Origin"
       
     } else if segue.identifier == "SearchDestinationLocation" {
@@ -60,12 +61,14 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       vc.delegate = self
       vc.searchOnlyForStations = false
       vc.allowCurrentPosition = true
+      vc.title = "Välj till"
       searchLocationType = "Destination"
       
     } else if segue.identifier == "SearchViaLocation" {
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.delegate = self
       vc.searchOnlyForStations = true
+      vc.title = "Välj via station"
       searchLocationType = "Via"
       
     } else if segue.identifier == "ShowTripList" {

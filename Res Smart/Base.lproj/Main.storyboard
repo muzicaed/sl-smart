@@ -65,6 +65,9 @@
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Från" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYg-yt-zzw">
                                                                                     <rect key="frame" x="15" y="0.0" width="50" height="43"/>
+                                                                                    <accessibility key="accessibilityConfiguration">
+                                                                                        <bool key="isElement" value="NO"/>
+                                                                                    </accessibility>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="50" id="p2G-MX-RBK"/>
                                                                                     </constraints>
@@ -126,6 +129,9 @@
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Till" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGk-Hf-Axa">
                                                                                     <rect key="frame" x="15" y="0.0" width="50" height="44"/>
+                                                                                    <accessibility key="accessibilityConfiguration">
+                                                                                        <bool key="isElement" value="NO"/>
+                                                                                    </accessibility>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="50" id="VGM-XO-MyH"/>
                                                                                     </constraints>
@@ -180,6 +186,9 @@
                                                 <constraint firstAttribute="bottom" secondItem="Gd4-hR-JTF" secondAttribute="bottom" id="osm-Kc-fnb"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration" hint="Övre del från. Nedre del till." label="Från station och till station.">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
                                         <connections>
                                             <outlet property="destinationLabel" destination="1zn-BF-oMG" id="1LQ-f0-7xT"/>
                                             <outlet property="destinationStackView" destination="1Gf-lo-yzC" id="gYp-Q6-q4n"/>
@@ -289,6 +298,9 @@
                                                         </view>
                                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="När" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5T-0X-L73">
                                                             <rect key="frame" x="15" y="0.0" width="26" height="28"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -408,7 +420,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I86-V7-yIE">
-                                                <rect key="frame" x="352" y="8" width="54" height="28"/>
+                                                <rect key="frame" x="352" y="0.0" width="54" height="44"/>
+                                                <accessibility key="accessibilityConfiguration" label="Bekräfta val av tiden vald nedan."/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <state key="normal" title="Välj tid">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -418,7 +431,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZb-ha-dRH">
-                                                <rect key="frame" x="8" y="8" width="45" height="28"/>
+                                                <rect key="frame" x="8" y="0.0" width="45" height="44"/>
+                                                <accessibility key="accessibilityConfiguration" label="Stäng tidväljare"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="Stäng">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -427,13 +441,26 @@
                                                     <action selector="onCloseButtonTap:" destination="TZ1-ux-qDf" eventType="touchUpInside" id="5ea-v0-1Ay"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="När" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Au-Cp-u1s">
+                                                <rect key="frame" x="157" y="0.0" width="100" height="44"/>
+                                                <accessibility key="accessibilityConfiguration" label="Välj tid. Använd klockobjekt nedan och bekräfta ditt val med knappen till höger om denna."/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="ITr-Co-Z2G"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="QZb-ha-dRH" firstAttribute="top" secondItem="w5b-CR-XoA" secondAttribute="topMargin" id="7Zu-uf-HRp"/>
-                                            <constraint firstItem="I86-V7-yIE" firstAttribute="bottom" secondItem="w5b-CR-XoA" secondAttribute="bottomMargin" id="AXo-4g-b5r"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="QZb-ha-dRH" secondAttribute="bottom" id="Mwt-tD-Rd5"/>
-                                            <constraint firstItem="I86-V7-yIE" firstAttribute="top" secondItem="w5b-CR-XoA" secondAttribute="topMargin" id="NRh-pw-fKy"/>
+                                            <constraint firstItem="1Au-Cp-u1s" firstAttribute="top" secondItem="w5b-CR-XoA" secondAttribute="top" id="5WH-ir-Kdy"/>
+                                            <constraint firstItem="QZb-ha-dRH" firstAttribute="top" secondItem="w5b-CR-XoA" secondAttribute="top" id="7Zu-uf-HRp"/>
+                                            <constraint firstAttribute="bottom" secondItem="1Au-Cp-u1s" secondAttribute="bottom" id="9ih-MY-QkE"/>
+                                            <constraint firstItem="I86-V7-yIE" firstAttribute="bottom" secondItem="w5b-CR-XoA" secondAttribute="bottom" id="AXo-4g-b5r"/>
+                                            <constraint firstAttribute="bottom" secondItem="QZb-ha-dRH" secondAttribute="bottom" id="Mwt-tD-Rd5"/>
+                                            <constraint firstItem="I86-V7-yIE" firstAttribute="top" secondItem="w5b-CR-XoA" secondAttribute="top" id="NRh-pw-fKy"/>
+                                            <constraint firstItem="1Au-Cp-u1s" firstAttribute="centerX" secondItem="w5b-CR-XoA" secondAttribute="centerX" id="O4L-FT-WAO"/>
                                             <constraint firstItem="QZb-ha-dRH" firstAttribute="leading" secondItem="w5b-CR-XoA" secondAttribute="leadingMargin" id="UDT-eb-5dh"/>
                                             <constraint firstAttribute="height" constant="44" id="eMy-sD-wfU"/>
                                             <constraint firstItem="I86-V7-yIE" firstAttribute="trailing" secondItem="w5b-CR-XoA" secondAttribute="trailingMargin" id="mn6-jU-x5b"/>
@@ -915,32 +942,10 @@
                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWJ-Ip-1PH">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Du har inte skapat några rutiner. Peka på &quot;+&quot; för att skapa en rutin." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWJ-Ip-1PH">
                                                     <rect key="frame" x="0.0" y="23" width="398" height="60"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="Du har inte skapat några rutiner.  Peka på &quot;">
-                                                            <attributes>
-                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                        <fragment content="+">
-                                                            <attributes>
-                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                                                <font key="NSOriginalFont" size="16" name="HelveticaNeue"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                        <fragment content="&quot; för att skapa en rutin.">
-                                                            <attributes>
-                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <font key="NSFont" size="16" name="HelveticaNeue-Thin"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                    <accessibility key="accessibilityConfiguration" label="Du har inte skapat några rutiner. Peka på knappen &quot;+&quot; i övre högra hörnet för att skapa en rutin."/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1192,6 +1197,9 @@
                                                             <subviews>
                                                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwitchRow" translatesAutoresizingMaskIntoConstraints="NO" id="FG8-41-p1G">
                                                                     <rect key="frame" x="15" y="29" width="30" height="30"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="Placerad till höger: Byt plats på till och från station.">
+                                                                        <bool key="isElement" value="YES"/>
+                                                                    </accessibility>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="VUv-MZ-RTa"/>
                                                                         <constraint firstAttribute="width" constant="30" id="hr2-CW-ZsD"/>
@@ -1368,6 +1376,9 @@
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoStationsFound" textLabel="nvQ-56-AD8" style="IBUITableViewCellStyleDefault" id="xlT-uq-dXm" userLabel="NoStationsFound">
                                 <rect key="frame" x="0.0" y="93.5" width="414" height="44"/>
@@ -2290,6 +2301,9 @@
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-tn-fDB">
                                                                     <rect key="frame" x="0.0" y="33" width="339" height="226"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <string key="label">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att peka på knappen "Mina rutiner" i övre högra hörnet.</string>
+                                                                    </accessibility>
                                                                     <string key="text">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att peka på "Mina rutiner". 
 
 Appen lär sig dina rutiner och visar automatiskt den resa du vill göra härnäst!
@@ -3555,6 +3569,7 @@ direkt från din iPhone.</string>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTo-4z-Wx5">
                                                     <rect key="frame" x="11" y="11" width="44" height="44"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Visa karta"/>
                                                     <state key="normal" image="MapIcon"/>
                                                     <connections>
                                                         <segue destination="ZFd-7N-DcT" kind="presentation" identifier="ShowMap" id="uNC-CH-DMq"/>
@@ -4079,11 +4094,11 @@ direkt från din iPhone.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4rE-Hc-22D"/>
-        <segue reference="gZB-Im-USu"/>
-        <segue reference="V2Z-ue-vlu"/>
-        <segue reference="ypq-Up-6Af"/>
         <segue reference="rzj-uS-OIZ"/>
-        <segue reference="Lg4-KG-mN0"/>
+        <segue reference="ypq-Up-6Af"/>
+        <segue reference="Q81-bK-EK6"/>
+        <segue reference="zVB-lv-c0r"/>
+        <segue reference="V2Z-ue-vlu"/>
+        <segue reference="4rE-Hc-22D"/>
     </inferredMetricsTieBreakers>
 </document>
