@@ -53,6 +53,7 @@ class TrafficSituationVC: UITableViewController {
       if let group = selectedGroup {
         vc.title = group.name
         vc.deviations = group.deviations
+        vc.situations = group.plannedSituations
       }
     }
   }

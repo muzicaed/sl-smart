@@ -13,6 +13,7 @@ import ResStockholmApiKit
 class BusFilterVC: UITableViewController {
   
   var deviations = [Deviation]()
+  var situations = [Situation]()
   var organisedDeviations = Dictionary<String, [Deviation]>()
   var sortedKeys = [String]()
   var selectedKey: String?
@@ -42,67 +43,82 @@ class BusFilterVC: UITableViewController {
   // MARK: UITableViewController
   
   /**
-  * Number of sections
-  */
+   * Number of sections
+   */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 1
+    return (deviations.count > 0 && situations.count > 0) ? 2 : 1
   }
   
   /**
    * Item count for section
    */
   override func tableView(tableView: UITableView,
-    numberOfRowsInSection section: Int) -> Int {
+                          numberOfRowsInSection section: Int) -> Int {
+    if hasBothDeviationsAndSituations() {
+      if section == 0 {
+        return situations.count
+      }
       return sortedKeys.count
+    }
+    
+    return (situations.count > 0) ? situations.count : sortedKeys.count
   }
   
   /**
    * Cell for index.
    */
   override func tableView(tableView: UITableView,
-    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      let key = sortedKeys[indexPath.row]
-      let deviations = organisedDeviations[key]
-      let countText = (deviations!.count > 1) ? "\(deviations!.count) avikelser" : "1 avvikelse"
-      
-      let cell = tableView.dequeueReusableCellWithIdentifier(
-        "DeviationRow", forIndexPath: indexPath)
-      if key == "STOPS" {
-        cell.textLabel?.text = "Avvikelser för hållplatser"
-        cell.imageView?.image = nil
-      } else {
-        cell.textLabel?.text = "Linje \(key)"
-        cell.imageView?.image = UIImage(named: "BUS-NEUTRAL")
+                          cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    if hasBothDeviationsAndSituations() {
+      if indexPath.section == 0 {
+        return createSituationRow(indexPath)
       }
-      
-      cell.detailTextLabel?.text = countText
-      return cell
+      return createDeviationRow(indexPath)
+    }
+    
+    return (situations.count > 0) ? createSituationRow(indexPath) : createDeviationRow(indexPath)
   }
   
   /**
    * Before displaying cell
    */
   override func tableView(tableView: UITableView,
-    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-      let bgColorView = UIView()
-      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
-      cell.selectedBackgroundView = bgColorView
+                          willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    let bgColorView = UIView()
+    bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+    cell.selectedBackgroundView = bgColorView
   }
   
   /**
    * User selected row
    */
   override func tableView(tableView: UITableView,
-    didSelectRowAtIndexPath indexPath: NSIndexPath) {
-      selectedKey = sortedKeys[indexPath.row]
-      performSegueWithIdentifier("ShowReports", sender: nil)
+                          didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    selectedKey = sortedKeys[indexPath.row]
+    performSegueWithIdentifier("ShowReports", sender: nil)
+  }
+  
+  /**
+   * View for header
+   */
+  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 25))
+    let label = UILabel(frame: CGRectMake(10, 0, tableView.frame.size.width - 10, 25))
+    label.font = UIFont.systemFontOfSize(12)
+    label.textColor = UIColor.whiteColor()
+    label.text = createHeaderTitle(section)
+    view.addSubview(label)
+    
+    let color = StyleHelper.sharedInstance.mainGreen
+    view.backgroundColor = color.colorWithAlphaComponent(0.95)
+    return view
   }
   
   // MARK: Private
   
   /**
-  * Prepares the data for bus filter
-  */
+   * Prepares the data for bus filter
+   */
   private func prepareData() {
     for deviation in deviations {
       organiseDeviation(deviation)
@@ -173,5 +189,59 @@ class BusFilterVC: UITableViewController {
     view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     tableView.separatorInset = UIEdgeInsetsZero
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 130
+  }
+  
+  /**
+   * Creates a deviation row.
+   */
+  private func createDeviationRow(indexPath: NSIndexPath) -> UITableViewCell {
+    let key = sortedKeys[indexPath.row]
+    let deviations = organisedDeviations[key]
+    let countText = (deviations!.count > 1) ? "\(deviations!.count) avikelser" : "1 avvikelse"
+    
+    let cell = tableView.dequeueReusableCellWithIdentifier(
+      "DeviationRow", forIndexPath: indexPath)
+    if key == "STOPS" {
+      cell.textLabel?.text = "Avvikelser för hållplatser"
+      cell.imageView?.image = nil
+    } else {
+      cell.textLabel?.text = "Linje \(key)"
+      cell.imageView?.image = UIImage(named: "BUS-NEUTRAL")
+    }
+    
+    cell.detailTextLabel?.text = countText
+    return cell
+  }
+  
+  /**
+   * Creates a situation row.
+   */
+  private func createSituationRow(indexPath: NSIndexPath) -> UITableViewCell {
+    let situation = situations[indexPath.row]
+    let cell = tableView.dequeueReusableCellWithIdentifier(
+      "SituationRow", forIndexPath: indexPath) as! ReportSituationRow
+    cell.titleLabel.text = situation.trafficLine
+    cell.messageLabel.text = situation.message
+    return cell
+  }
+  
+  /**
+   * Check if both deviations and situations are present.
+   */
+  private func hasBothDeviationsAndSituations() -> Bool {
+    return (deviations.count > 0 && situations.count > 0)
+  }
+  
+  /**
+   * Create the header title.
+   */
+  private func createHeaderTitle(section: Int) -> String {
+    if hasBothDeviationsAndSituations() {
+      return (section == 0) ? "Planerade störningar" : "Lokala avvikelser"
+    } else {
+      return (situations.count > 0) ? "Planerade störningar" : "Lokala avvikelser"
+    }
   }
 }

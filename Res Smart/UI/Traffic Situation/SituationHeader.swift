@@ -20,6 +20,7 @@ class SituationHeader: UITableViewCell {
    */
   func setupData(group: SituationGroup) {
     title.text = group.name
+    userInteractionEnabled = false
     if group.hasPlannedEvent && group.statusIcon == "EventGood" {
       statusIcon.image = UIImage(named: "EventPlanned")
     } else {

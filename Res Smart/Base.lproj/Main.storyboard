@@ -556,7 +556,7 @@
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gl7-Al-Pu9" userLabel="Type Icon">
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gl7-Al-Pu9" userLabel="Type Icon">
                                                     <rect key="frame" x="97.5" y="0.0" width="316.5" height="44"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -762,8 +762,52 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SituationRow" rowHeight="80" id="nIr-zB-V0U" userLabel="Situation Row" customClass="ReportSituationRow" customModule="Res_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nIr-zB-V0U" id="IRk-If-Ciq">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="79.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kEk-g2-A9b">
+                                            <rect key="frame" x="12" y="8" width="390" height="64"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ks7-W9-LFj" userLabel="Title">
+                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9th-1C-56b">
+                                                    <rect key="frame" x="0.0" y="19.5" width="390" height="5"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="5" id="3Oi-jK-I0M"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text text tet text text asdf adsfasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asd f" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyM-oI-p7C" userLabel="Text">
+                                                    <rect key="frame" x="0.0" y="24.5" width="390" height="39.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="kEk-g2-A9b" firstAttribute="leading" secondItem="IRk-If-Ciq" secondAttribute="leadingMargin" constant="4" id="3ae-Sy-wQp"/>
+                                        <constraint firstItem="kEk-g2-A9b" firstAttribute="top" secondItem="IRk-If-Ciq" secondAttribute="topMargin" id="D5x-KL-KTz"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="kEk-g2-A9b" secondAttribute="bottom" id="Kns-5P-1vi"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="kEk-g2-A9b" secondAttribute="trailing" constant="4" id="xif-N2-1J8"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="messageLabel" destination="jyM-oI-p7C" id="hcB-yL-9iq"/>
+                                    <outlet property="titleLabel" destination="ks7-W9-LFj" id="xeW-GP-epa"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DeviationRow" textLabel="P9v-cx-eEt" detailTextLabel="TEm-Ap-rOE" imageView="eBb-wv-IrV" style="IBUITableViewCellStyleSubtitle" id="9O8-0i-iu9">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9O8-0i-iu9" id="3eC-R0-CFo">
                                     <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
@@ -4088,11 +4132,11 @@ direkt från din iPhone.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rzj-uS-OIZ"/>
-        <segue reference="yy0-ry-irx"/>
+        <segue reference="L0K-5H-KeJ"/>
         <segue reference="Q81-bK-EK6"/>
         <segue reference="4rE-Hc-22D"/>
-        <segue reference="zVB-lv-c0r"/>
-        <segue reference="L0K-5H-KeJ"/>
+        <segue reference="gZB-Im-USu"/>
+        <segue reference="yy0-ry-irx"/>
+        <segue reference="rzj-uS-OIZ"/>
     </inferredMetricsTieBreakers>
 </document>
