@@ -45,11 +45,12 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     tableView.tableFooterView = UIView()
     
     if isLocationForRealTimeSearch {
-      let newBackButton = UIBarButtonItem(title: "Realtid",
-        style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+      let newBackButton = UIBarButtonItem(
+        title: "Realtid", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
       self.navigationItem.backBarButtonItem = newBackButton
     }
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive",
+    NSNotificationCenter.defaultCenter().addObserver(
+      self, selector: #selector(didBecomeActive),
       name: UIApplicationDidBecomeActiveNotification, object: nil)
   }
   
@@ -75,8 +76,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   /**
    * Before segue is performed
    */
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {    
     if segue.identifier == "showRealTime" {
       if let realTimeVC = segue.destinationViewController as? RealTimeVC {
         realTimeVC.title = selectedLocation?.name
@@ -93,8 +93,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   // MARK: UITableViewController
   
   /**
-  * Number of section
-  */
+   * Number of section
+   */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     if !isDisplayingSearchResult && !noResults {
       return (allowCurrentPosition || allowNearbyStations) ? 2 : 1
@@ -121,8 +121,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     } else if !isDisplayingSearchResult {
       if ((allowCurrentPosition || allowNearbyStations) && section == 1) ||
         ((!allowCurrentPosition && !allowNearbyStations) && section == 0) {
-          label.text = "Senast använda platser"
-          return view
+        label.text = "Senast använda platser"
+        return view
       }
     }
     
@@ -133,126 +133,126 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    * Size for headers.
    */
   override func tableView(tableView: UITableView,
-    heightForHeaderInSection section: Int) -> CGFloat {
-      if isDisplayingSearchResult && searchResult.count > 0 {
+                          heightForHeaderInSection section: Int) -> CGFloat {
+    if isDisplayingSearchResult && searchResult.count > 0 {
+      return 30
+    } else if !isDisplayingSearchResult {
+      if ((allowCurrentPosition || allowNearbyStations) && section == 1) ||
+        ((!allowCurrentPosition && !allowNearbyStations) && section == 0) {
         return 30
-      } else if !isDisplayingSearchResult {
-        if ((allowCurrentPosition || allowNearbyStations) && section == 1) ||
-          ((!allowCurrentPosition && !allowNearbyStations) && section == 0) {
-            return 30
-        }
       }
-      return 0
+    }
+    return 0
   }
   
   /**
    * Size for footer.
    */
   override func tableView(tableView: UITableView,
-    heightForFooterInSection section: Int) -> CGFloat {
-      return 0.01
+                          heightForFooterInSection section: Int) -> CGFloat {
+    return 0.01
   }
   
   /**
    * Number of rows
    */
   override func tableView(tableView: UITableView,
-    numberOfRowsInSection section: Int) -> Int {
-      
-      if noResults {
-        return 1
-      } else if !isDisplayingSearchResult {
-        if section == 0 && (allowCurrentPosition || allowNearbyStations) {
-          var count = 0
-          count += (allowCurrentPosition) ? 1 : 0
-          count += (allowNearbyStations) ? 1 : 0
-          return count
-        }
-        return latestLocations.count
+                          numberOfRowsInSection section: Int) -> Int {
+    
+    if noResults {
+      return 1
+    } else if !isDisplayingSearchResult {
+      if section == 0 && (allowCurrentPosition || allowNearbyStations) {
+        var count = 0
+        count += (allowCurrentPosition) ? 1 : 0
+        count += (allowNearbyStations) ? 1 : 0
+        return count
       }
-      
-      return searchResult.count
+      return latestLocations.count
+    }
+    
+    return searchResult.count
   }
   
   /**
    * Cell for index
    */
   override func tableView(tableView: UITableView,
-    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      if noResults {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellNotFoundId,
-          forIndexPath: indexPath)
-        return cell
-      } else if !isDisplayingSearchResult {
-        if indexPath.section == 0 && (allowCurrentPosition || allowNearbyStations) {
-          if allowCurrentPosition && allowNearbyStations {
-            if indexPath.row == 0 {
-              return createCurrentLocationCell(indexPath)
-            } else if indexPath.row == 1 {
-              return createNearbyStationsCell(indexPath)
-            }
-          } else if (allowCurrentPosition || allowNearbyStations) && indexPath.row == 0 {
-            if allowCurrentPosition {
-              return createCurrentLocationCell(indexPath)
-            } else {
-              return createNearbyStationsCell(indexPath)
-            }
+                          cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    if noResults {
+      let cell = tableView.dequeueReusableCellWithIdentifier(cellNotFoundId,
+                                                             forIndexPath: indexPath)
+      return cell
+    } else if !isDisplayingSearchResult {
+      if indexPath.section == 0 && (allowCurrentPosition || allowNearbyStations) {
+        if allowCurrentPosition && allowNearbyStations {
+          if indexPath.row == 0 {
+            return createCurrentLocationCell(indexPath)
+          } else if indexPath.row == 1 {
+            return createNearbyStationsCell(indexPath)
           }
-          return createCurrentLocationCell(indexPath)
+        } else if (allowCurrentPosition || allowNearbyStations) && indexPath.row == 0 {
+          if allowCurrentPosition {
+            return createCurrentLocationCell(indexPath)
+          } else {
+            return createNearbyStationsCell(indexPath)
+          }
         }
-        let location = latestLocations[indexPath.row]
-        return createLocationCell(indexPath, location: location)
+        return createCurrentLocationCell(indexPath)
       }
-      
-      let location = searchResult[indexPath.row]
+      let location = latestLocations[indexPath.row]
       return createLocationCell(indexPath, location: location)
+    }
+    
+    let location = searchResult[indexPath.row]
+    return createLocationCell(indexPath, location: location)
   }
   
   /**
    * User selects row
    */
   override func tableView(tableView: UITableView,
-    didSelectRowAtIndexPath indexPath: NSIndexPath) {
-      
-      if !isDisplayingSearchResult && allowNearbyStations && indexPath.section == 0 {
-        if (allowCurrentPosition && indexPath.row == 1) ||
-          (!allowCurrentPosition && indexPath.row == 0) {
-            searchController?.active = false
-            performSegueWithIdentifier("ShowNearbyStations", sender: self)
-            return
-        }
-      }
-      
-      selectLocation(indexPath)
-      if let loc = selectedLocation {
+                          didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    if !isDisplayingSearchResult && allowNearbyStations && indexPath.section == 0 {
+      if (allowCurrentPosition && indexPath.row == 1) ||
+        (!allowCurrentPosition && indexPath.row == 0) {
         searchController?.active = false
-        LatestLocationsStore.sharedInstance.addLatestLocation(loc)
-        if isLocationForRealTimeSearch {
-          performSegueWithIdentifier("showRealTime", sender: self)
-        } else {
-          performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
-          delegate?.selectedLocationFromSearch(loc)
-        }
-        loadLatestLocations()
+        performSegueWithIdentifier("ShowNearbyStations", sender: self)
+        return
       }
+    }
+    
+    selectLocation(indexPath)
+    if let loc = selectedLocation {
+      searchController?.active = false
+      LatestLocationsStore.sharedInstance.addLatestLocation(loc)
+      if isLocationForRealTimeSearch {
+        performSegueWithIdentifier("showRealTime", sender: self)
+      } else {
+        performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
+        delegate?.selectedLocationFromSearch(loc)
+      }
+      loadLatestLocations()
+    }
   }
   
   /**
    * Green highlight on selected row.
    */
   override func tableView(tableView: UITableView,
-    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-      let bgColorView = UIView()
-      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
-      cell.selectedBackgroundView = bgColorView
+                          willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    let bgColorView = UIView()
+    bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+    cell.selectedBackgroundView = bgColorView
   }
   
   // MARK: UISearchResultsUpdating
   
   @objc func updateSearchResultsForSearchController(searchController: UISearchController) {
     NSObject.cancelPreviousPerformRequestsWithTarget(
-      self, selector: Selector("searchLocation"), object: nil)
-    self.performSelector(Selector("searchLocation"), withObject: nil, afterDelay: 0.3)
+      self, selector: #selector(searchLocation), object: nil)
+    self.performSelector(#selector(searchLocation), withObject: nil, afterDelay: 0.3)
   }
   
   /**
@@ -306,13 +306,13 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   // MARK: Private
   
   /**
-  * Select loation at index path
-  */
+   * Select loation at index path
+   */
   private func selectLocation(indexPath: NSIndexPath) {
     if allowCurrentPosition &&
       !isDisplayingSearchResult &&
       indexPath.section == 0 && indexPath.row == 0 {
-        selectedLocation = MyLocationHelper.sharedInstance.getCurrentLocation()
+      selectedLocation = MyLocationHelper.sharedInstance.getCurrentLocation()
     } else if isDisplayingSearchResult {
       selectedLocation = searchResult[indexPath.row]
     } else {
@@ -325,28 +325,28 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    */
   private func createLocationCell(
     indexPath: NSIndexPath, location: Location) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
-        forIndexPath: indexPath)
-      
-      cell.textLabel?.text = location.name
-      cell.textLabel?.text?.accessibilityLabel = location.name
-      cell.detailTextLabel?.text = location.area
-      cell.detailTextLabel?.accessibilityLabel = location.area
-      if location.type == .Station {
-        cell.imageView?.image = UIImage(named: "station-icon")
-        cell.imageView?.image?.accessibilityLabel = "Station"
-      } else {
-        cell.imageView?.image = UIImage(named: "address-icon")
-        cell.imageView?.image?.accessibilityLabel = "Adress"
-      }
-      cell.imageView?.alpha = 0.4
-      if isLocationForRealTimeSearch {
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-      } else {
-        cell.accessoryType = UITableViewCellAccessoryType.None
-      }
-      
-      return cell
+    let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
+                                                           forIndexPath: indexPath)
+    
+    cell.textLabel?.text = location.name
+    cell.textLabel?.text?.accessibilityLabel = location.name
+    cell.detailTextLabel?.text = location.area
+    cell.detailTextLabel?.accessibilityLabel = location.area
+    if location.type == .Station {
+      cell.imageView?.image = UIImage(named: "station-icon")
+      cell.imageView?.image?.accessibilityLabel = "Station"
+    } else {
+      cell.imageView?.image = UIImage(named: "address-icon")
+      cell.imageView?.image?.accessibilityLabel = "Adress"
+    }
+    cell.imageView?.alpha = 0.4
+    if isLocationForRealTimeSearch {
+      cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+    } else {
+      cell.accessoryType = UITableViewCellAccessoryType.None
+    }
+    
+    return cell
   }
   
   /**
@@ -356,7 +356,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     
     let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation()
     let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
-      forIndexPath: indexPath)
+                                                           forIndexPath: indexPath)
     if let loc = currentLocation {
       cell.textLabel?.text = "Nuvarande plats"
       cell.detailTextLabel?.text = "\(loc.cleanName), \(loc.area)"
@@ -376,7 +376,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   private func createNearbyStationsCell(indexPath: NSIndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
-      forIndexPath: indexPath)
+                                                           forIndexPath: indexPath)
     
     cell.textLabel?.text = "Hållplatser nära mig"
     cell.detailTextLabel?.text = nil
@@ -415,7 +415,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   /**
    * Prepares search controller
    */
-  private func prepareSearchController() {    
+  private func prepareSearchController() {
     searchController = UISearchController(searchResultsController: nil)
     searchController!.searchResultsUpdater = self
     searchController!.delegate = self

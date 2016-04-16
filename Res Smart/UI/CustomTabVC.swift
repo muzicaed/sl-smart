@@ -27,7 +27,7 @@ class CustomTabVC: UITabBarController {
     }
     
     notificationCenter.addObserver(self,
-      selector: Selector("onTrafficSituations:"),
+      selector: #selector(onTrafficSituations(_:)),
       name: "TrafficSituations", object: nil)
   }
   

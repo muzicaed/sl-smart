@@ -62,8 +62,8 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   // MARK: MKMapViewDelegate
   
   /**
-  * Annotation views
-  */
+   * Annotation views
+   */
   func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
     
     var reuseId: String? = nil
@@ -134,8 +134,8 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   // MARK: Private
   
   /**
-  * Loads map route
-  */
+   * Loads map route
+   */
   private func loadRoute() {
     if let trip = trip {
       var allCoords = [CLLocationCoordinate2D]()
@@ -153,34 +153,35 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    * Plots the coordinates for the route.
    */
   private func plotRoute(segment: TripSegment) -> [CLLocationCoordinate2D] {
-      
-      var coords = [CLLocationCoordinate2D]()
-      if segment.routeLineLocations.count == 0 {
-        coords.append(segment.origin.location.coordinate)
-        coords.append(segment.destination.location.coordinate)
-      } else {
-        coords.append(segment.origin.location.coordinate)
-        for location in segment.routeLineLocations {
-          coords.append(location.coordinate)
-        }
-        coords.append(segment.destination.location.coordinate)
+    
+    var coords = [CLLocationCoordinate2D]()
+    if segment.routeLineLocations.count == 0 {
+      coords.append(segment.origin.location.coordinate)
+      coords.append(segment.destination.location.coordinate)
+    } else {
+      coords.append(segment.origin.location.coordinate)
+      for location in segment.routeLineLocations {
+        coords.append(location.coordinate)
       }
-      
-      return coords
+      coords.append(segment.destination.location.coordinate)
+    }
+    
+    return coords
   }
   
   /**
    * Plots a trip segment route on map and
    * creates overlay icons.
    */
-  private func createOverlays(var coordinates: [CLLocationCoordinate2D], segment: TripSegment) {
-    let polyline = RoutePolyline(coordinates: &coordinates, count: coordinates.count)
+  private func createOverlays(coordinates: [CLLocationCoordinate2D], segment: TripSegment) {
+    var newCoordinates = coordinates
+    let polyline = RoutePolyline(coordinates: &newCoordinates, count: newCoordinates.count)
     polyline.segment = segment
     mapView.addOverlay(polyline)
     
     createStopPins(segment)
-    createLocationPins(segment, coordinates: coordinates)
-    createTripTypeIcon(segment, coordinates: coordinates)
+    createLocationPins(segment, coordinates: newCoordinates)
+    createTripTypeIcon(segment, coordinates: newCoordinates)
   }
   
   /**
@@ -261,34 +262,35 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Centers and zooms map
    */
-  private func setMapViewport(var coordinates: [CLLocationCoordinate2D]) {
-    let allPolyline = MKPolyline(coordinates: &coordinates, count: coordinates.count)
+  private func setMapViewport(coordinates: [CLLocationCoordinate2D]) {
+    var newCoordinates = coordinates
+    let allPolyline = MKPolyline(coordinates: &newCoordinates, count: newCoordinates.count)
     self.mapView.setVisibleMapRect(
       self.mapView.mapRectThatFits(allPolyline.boundingMapRect),
       edgePadding: UIEdgeInsets(top: 100, left: 50, bottom: 100, right: 50),
       animated: false)
   }
-    
+  
   /**
    * Find coordinate between two coordinates.
    */
   private func findCenterCoordinate(
     coord1: CLLocationCoordinate2D, coord2: CLLocationCoordinate2D) -> CLLocationCoordinate2D {
-      
-      let lon1 = Double(coord1.longitude) * M_PI / 180
-      let lon2 = Double(coord2.longitude) * M_PI / 180
-      
-      let lat1 = Double(coord1.latitude) * M_PI / 180
-      let lat2 = Double(coord2.latitude) * M_PI / 180
-      
-      let dLon = lon2 - lon1
-      
-      let x = cos(lat2) * cos(dLon)
-      let y = cos(lat2) * sin(dLon)
-      
-      let lat3 = atan2( sin(lat1) + sin(lat2), sqrt((cos(lat1) + x) * (cos(lat1) + x) + y * y) )
-      let lon3 = lon1 + atan2(y, cos(lat1) + x)
-      
-      return CLLocationCoordinate2D(latitude: lat3 * 180 / M_PI, longitude: lon3 * 180 / M_PI)
+    
+    let lon1 = Double(coord1.longitude) * M_PI / 180
+    let lon2 = Double(coord2.longitude) * M_PI / 180
+    
+    let lat1 = Double(coord1.latitude) * M_PI / 180
+    let lat2 = Double(coord2.latitude) * M_PI / 180
+    
+    let dLon = lon2 - lon1
+    
+    let x = cos(lat2) * cos(dLon)
+    let y = cos(lat2) * sin(dLon)
+    
+    let lat3 = atan2( sin(lat1) + sin(lat2), sqrt((cos(lat1) + x) * (cos(lat1) + x) + y * y) )
+    let lon3 = lon1 + atan2(y, cos(lat1) + x)
+    
+    return CLLocationCoordinate2D(latitude: lat3 * 180 / M_PI, longitude: lon3 * 180 / M_PI)
   }
 }

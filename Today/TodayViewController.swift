@@ -32,7 +32,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     super.viewDidLoad()
     MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
     self.preferredContentSize = CGSizeMake(320, 160)
-    let gesture = UITapGestureRecognizer(target: self, action: Selector("onTap"))
+    let gesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
     view.addGestureRecognizer(gesture)
   }
   
@@ -70,7 +70,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   func startRefreshTimmer() {
     stopRefreshTimmer()
     refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
-      10.0, target: self, selector: Selector("updateUI"), userInfo: nil, repeats: true)
+      10.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
   }
   
   /**

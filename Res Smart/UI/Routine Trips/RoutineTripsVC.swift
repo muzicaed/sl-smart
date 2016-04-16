@@ -149,7 +149,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   func startRefreshTimmer() {
     stopRefreshTimmer()
     refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
-      5.0, target: self, selector: Selector("refreshUI"), userInfo: nil, repeats: true)
+      5.0, target: self, selector: #selector(refreshUI), userInfo: nil, repeats: true)
   }
   
   func refreshUI() {
@@ -212,8 +212,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   // MARK: UICollectionViewController
   
   /**
-  * Section count
-  */
+   * Section count
+   */
   override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
     if !isSubscribing {
       return 1
@@ -225,49 +225,49 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Item count for section
    */
   override func collectionView(collectionView: UICollectionView,
-    numberOfItemsInSection section: Int) -> Int {
-      if isLoading {
-        return 0
+                               numberOfItemsInSection section: Int) -> Int {
+    if isLoading {
+      return 0
+    }
+    
+    if section == 0 {
+      if isShowInfo || !isSubscribing {
+        return 1
       }
-      
-      if section == 0 {
-        if isShowInfo || !isSubscribing {
-          return 1
-        }
-        var bestCount = (bestRoutineTrip == nil ? 0 : 1)
-        if MyLocationHelper.sharedInstance.getCurrentLocation() != nil {
-          bestCount++
-        }
-        return bestCount
+      var bestCount = (bestRoutineTrip == nil ? 0 : 1)
+      if MyLocationHelper.sharedInstance.getCurrentLocation() != nil {
+        bestCount++
       }
-      
-      return otherRoutineTrips.count
+      return bestCount
+    }
+    
+    return otherRoutineTrips.count
   }
   
   /**
    * Create cells for each data post.
    */
   override func collectionView(collectionView: UICollectionView,
-    cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-      if indexPath.section == 0 {
-        if !isSubscribing {
-          return createSubscriptionInfoCell(indexPath)
-        } else if isShowInfo {
-          return createInfoTripCell(indexPath)
-        }
-        
-        if indexPath.row == 0 {
-          if let routineTrip = bestRoutineTrip {
-            return createRoutineTripCell(routineTrip, type: cellIdentifier, indexPath: indexPath)
-          } else {
-            return createHereToThereCell(indexPath)
-          }
-        } else if indexPath.row == 1 {
+                               cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    if indexPath.section == 0 {
+      if !isSubscribing {
+        return createSubscriptionInfoCell(indexPath)
+      } else if isShowInfo {
+        return createInfoTripCell(indexPath)
+      }
+      
+      if indexPath.row == 0 {
+        if let routineTrip = bestRoutineTrip {
+          return createRoutineTripCell(routineTrip, type: cellIdentifier, indexPath: indexPath)
+        } else {
           return createHereToThereCell(indexPath)
         }
-        fatalError("Could not create cell.")
+      } else if indexPath.row == 1 {
+        return createHereToThereCell(indexPath)
       }
-      return createRoutineTripCell(otherRoutineTrips[indexPath.row], type: simpleCellIdentifier, indexPath: indexPath)
+      fatalError("Could not create cell.")
+    }
+    return createRoutineTripCell(otherRoutineTrips[indexPath.row], type: simpleCellIdentifier, indexPath: indexPath)
   }
   
   /**
@@ -287,47 +287,47 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Size for items.
    */
   func collectionView(collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-      
-      let screenSize = UIScreen.mainScreen().bounds.size
-      if indexPath.section == 0 {
-        if !isSubscribing {
-          return CGSizeMake(screenSize.width - 20, 330)
-        } else if isShowInfo {
-          return CGSizeMake(screenSize.width - 20, 275)
-        } else if bestRoutineTrip!.criterions.isAdvanced {
-          if indexPath.row == 0 {
-            return CGSizeMake(screenSize.width - 20, 165)
-          }
-          return CGSizeMake(screenSize.width - 20, 65)
+                      layout collectionViewLayout: UICollectionViewLayout,
+                             sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    
+    let screenSize = UIScreen.mainScreen().bounds.size
+    if indexPath.section == 0 {
+      if !isSubscribing {
+        return CGSizeMake(screenSize.width - 20, 330)
+      } else if isShowInfo {
+        return CGSizeMake(screenSize.width - 20, 275)
+      } else if bestRoutineTrip!.criterions.isAdvanced {
+        if indexPath.row == 0 {
+          return CGSizeMake(screenSize.width - 20, 165)
         }
-        if indexPath.row == 0 && bestRoutineTrip != nil {
-          return CGSizeMake(screenSize.width - 20, 145)
-        }
-        return CGSizeMake(screenSize.width - 20, 60)
+        return CGSizeMake(screenSize.width - 20, 65)
       }
-      
-      if otherRoutineTrips[indexPath.row].criterions.isAdvanced {
-        return CGSizeMake(screenSize.width - 20, 115)
+      if indexPath.row == 0 && bestRoutineTrip != nil {
+        return CGSizeMake(screenSize.width - 20, 145)
       }
-      return CGSizeMake(screenSize.width - 20, 95)
+      return CGSizeMake(screenSize.width - 20, 60)
+    }
+    
+    if otherRoutineTrips[indexPath.row].criterions.isAdvanced {
+      return CGSizeMake(screenSize.width - 20, 115)
+    }
+    return CGSizeMake(screenSize.width - 20, 95)
   }
   
   /**
    * Size for headers.
    */
   func collectionView(collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    referenceSizeForHeaderInSection section: Int) -> CGSize {
-      
-      if section == 0  {
-        return CGSizeMake(0, 0)
-      } else if section == 1 && otherRoutineTrips.count == 0 {
-        return CGSizeMake(0, 0)
-      }
-      
-      return CGSizeMake(self.collectionView!.frame.size.width, 50)
+                      layout collectionViewLayout: UICollectionViewLayout,
+                             referenceSizeForHeaderInSection section: Int) -> CGSize {
+    
+    if section == 0  {
+      return CGSizeMake(0, 0)
+    } else if section == 1 && otherRoutineTrips.count == 0 {
+      return CGSizeMake(0, 0)
+    }
+    
+    return CGSizeMake(self.collectionView!.frame.size.width, 50)
   }
   
   /**
@@ -335,44 +335,44 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func collectionView(
     collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-      
-      if !isShowInfo && !isLoading && isSubscribing {
-        if indexPath.section == 0 && (indexPath.row == 1 || bestRoutineTrip == nil) {
-          performSegueWithIdentifier(fromHereToThereSegue, sender: self)
-          return
-        }
-        
-        hereToThereCriterion = nil
-        selectedRoutineTrip = bestRoutineTrip
-        var scoreMod = ScorePostHelper.BestTapCountScore
-        
-        if indexPath.section != 0 {
-          selectedRoutineTrip = otherRoutineTrips[indexPath.row]
-          scoreMod = ScorePostHelper.OtherTapCountScore
-          ScorePostHelper.changeScoreForRoutineTrip(
-            bestRoutineTrip!.criterions.origin!.siteId!,
-            destinationId: bestRoutineTrip!.criterions.dest!.siteId!,
-            score: ScorePostHelper.NotBestTripScore)
-        }
-        
-        ScorePostHelper.changeScoreForRoutineTrip(
-          selectedRoutineTrip!.criterions.origin!.siteId!,
-          destinationId: selectedRoutineTrip!.criterions.dest!.siteId!,
-          score: scoreMod)
-        performSegueWithIdentifier(showTripListSegue, sender: self)
+    
+    if !isShowInfo && !isLoading && isSubscribing {
+      if indexPath.section == 0 && (indexPath.row == 1 || bestRoutineTrip == nil) {
+        performSegueWithIdentifier(fromHereToThereSegue, sender: self)
+        return
       }
+      
+      hereToThereCriterion = nil
+      selectedRoutineTrip = bestRoutineTrip
+      var scoreMod = ScorePostHelper.BestTapCountScore
+      
+      if indexPath.section != 0 {
+        selectedRoutineTrip = otherRoutineTrips[indexPath.row]
+        scoreMod = ScorePostHelper.OtherTapCountScore
+        ScorePostHelper.changeScoreForRoutineTrip(
+          bestRoutineTrip!.criterions.origin!.siteId!,
+          destinationId: bestRoutineTrip!.criterions.dest!.siteId!,
+          score: ScorePostHelper.NotBestTripScore)
+      }
+      
+      ScorePostHelper.changeScoreForRoutineTrip(
+        selectedRoutineTrip!.criterions.origin!.siteId!,
+        destinationId: selectedRoutineTrip!.criterions.dest!.siteId!,
+        score: scoreMod)
+      performSegueWithIdentifier(showTripListSegue, sender: self)
+    }
   }
   
   /**
    * Green highlight on selected row.
    */
   override func collectionView(collectionView: UICollectionView,
-    willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-      if isSubscribing && !isShowInfo && !isLoading {
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
-        cell.selectedBackgroundView = bgColorView
-      }
+                               willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+    if isSubscribing && !isShowInfo && !isLoading {
+      let bgColorView = UIView()
+      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+      cell.selectedBackgroundView = bgColorView
+    }
   }
   
   // MARK: LocationSearchResponder
@@ -398,8 +398,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   // MARK: Private methods
   
   /**
-  * Setup collection view properties and layout.
-  */
+   * Setup collection view properties and layout.
+   */
   private func setupCollectionView() {
     let flowLayout = UICollectionViewFlowLayout()
     flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
@@ -426,8 +426,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Setup the "pull down to reload" controller.
    */
   private func setupRefreshController() {
-    refreshController.addTarget(self,
-      action: Selector("onRefreshController"), forControlEvents: UIControlEvents.ValueChanged)
+    refreshController.addTarget(
+      self, action: #selector(onRefreshController),
+      forControlEvents: UIControlEvents.ValueChanged)
     refreshController.tintColor = UIColor.lightGrayColor()
     collectionView?.addSubview(refreshController)
     collectionView?.alwaysBounceVertical = true
@@ -447,10 +448,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   private func setupNotificationListeners() {
     NSNotificationCenter.defaultCenter().addObserver(
-      self, selector: Selector("didBecomeActive"),
+      self, selector: #selector(didBecomeActive),
       name: UIApplicationDidBecomeActiveNotification, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(
-      self, selector: "didBecomeInactive",
+      self, selector: #selector(didBecomeInactive),
       name: UIApplicationWillResignActiveNotification, object: nil)
   }
   

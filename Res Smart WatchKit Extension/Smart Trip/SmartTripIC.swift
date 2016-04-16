@@ -105,13 +105,14 @@ class SmartTripIC: WKInterfaceController {
       if session.reachable {
         isLoading = true
         stopRefreshTimer()
-        session.sendMessage(["action": "RequestRoutineTrips"],
+        session.sendMessage(
+          ["action": "RequestRoutineTrips"],
           replyHandler: requestRoutineTripsHandler,
           errorHandler: messageErrorHandler)
         retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-          NSTimeInterval(10), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
+          NSTimeInterval(10), target: self, selector: #selector(forceRefreshData), userInfo: nil, repeats: false)
       } else {
-        retryCount++
+        retryCount += 1
         if retryCount > 5 {
           retryCount = 0
           stopRefreshTimer()
@@ -122,7 +123,9 @@ class SmartTripIC: WKInterfaceController {
         }
         stopRefreshTimer()
         retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-          NSTimeInterval(1), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
+          NSTimeInterval(1), target: self,
+          selector: #selector(forceRefreshData),
+          userInfo: nil, repeats: false)
       }
     }
   }
@@ -162,7 +165,8 @@ class SmartTripIC: WKInterfaceController {
       // Retry after 1.5 seconds...
       stopRefreshTimer()
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-        NSTimeInterval(1.5), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
+        NSTimeInterval(1.5), target: self, selector: #selector(forceRefreshData),
+        userInfo: nil, repeats: false)
       return
     } else if error.code == WCErrorCode.NotReachable.rawValue {
       displayError(
@@ -171,7 +175,8 @@ class SmartTripIC: WKInterfaceController {
       return
     }
     
-    displayError("Någon gick fel",
+    displayError(
+      "Någon gick fel",
       message: "Ett okänt fel inträffade. Kontrollera att din iPhone kan nå internet.")
   }
   
@@ -253,7 +258,8 @@ class SmartTripIC: WKInterfaceController {
     }
     // Retry after 1.5 seconds...
     retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-      NSTimeInterval(1.5), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
+      NSTimeInterval(1.5), target: self, selector: #selector(forceRefreshData),
+      userInfo: nil, repeats: false)
   }
   
   /**
@@ -326,7 +332,7 @@ class SmartTripIC: WKInterfaceController {
     isLoading = false
     let okAction = WKAlertAction(title: "Försök igen", style: .Default, handler: {})
     presentAlertControllerWithTitle(title,
-      message: message, preferredStyle: .Alert, actions: [okAction])
+                                    message: message, preferredStyle: .Alert, actions: [okAction])
   }
   
   /**
@@ -404,8 +410,8 @@ class SmartTripIC: WKInterfaceController {
   // MARK: Private
   
   /**
-  * Updates the other routine trips table.
-  */
+   * Updates the other routine trips table.
+   */
   private func updateOtherTable(otherTripsData: [Dictionary<String, AnyObject>]) {
     if otherTripsData.count > 0 {
       otherRoutinesTable.setNumberOfRows(otherTripsData.count, withRowType: "RoutineRow")
@@ -465,7 +471,7 @@ class SmartTripIC: WKInterfaceController {
   private func startRefreshTimer() {
     timer = NSTimer.scheduledTimerWithTimeInterval(
       10, target: self,
-      selector: Selector("updateDepatureUI"),
+      selector: #selector(updateDepatureUI),
       userInfo: nil, repeats: true)
   }
   

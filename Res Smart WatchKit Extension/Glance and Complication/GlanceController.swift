@@ -45,7 +45,7 @@ class GlanceController: SmartTripIC {
       let icons = (bestRoutine["tr"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
       let lines = (bestRoutine["tr"] as! [Dictionary<String, AnyObject>]).first!["lns"] as! [String]
       let warnings = (bestRoutine["tr"] as! [Dictionary<String, AnyObject>]).first!["war"] as! [String]
-
+      
       updateDepatureUI()
       if bestRoutine["ha"] as! Bool {
         subTitleLabel.setText("Smart vana")
@@ -72,7 +72,8 @@ class GlanceController: SmartTripIC {
     }
     // Retry after 1.5 seconds...
     retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-      NSTimeInterval(1.5), target: self, selector: "forceRefreshData", userInfo: nil, repeats: false)
+      NSTimeInterval(1.5), target: self, selector: #selector(forceRefreshData),
+      userInfo: nil, repeats: false)
   }
   
   /**
@@ -115,11 +116,11 @@ class GlanceController: SmartTripIC {
   // MARK: Private
   
   /**
-  * Hides live data when user leaves glance or lock screen.
-  * We do this to not have the view displaying old data
-  * for a second, when UI is reloaded when the glance
-  * is reactivaed.
-  */
+   * Hides live data when user leaves glance or lock screen.
+   * We do this to not have the view displaying old data
+   * for a second, when UI is reloaded when the glance
+   * is reactivaed.
+   */
   override func hideLiveData() {
     isLoading = false
     if let text = currentDepartureText {

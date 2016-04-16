@@ -27,17 +27,17 @@ class LocationPickerRow: UITableViewCell {
    */
   func prepareGestures() {
     let originTouchGesture = UILongPressGestureRecognizer(
-      target: self, action: Selector("onOriginTouchStart:"))
+      target: self, action: #selector(onOriginTouchStart(_:)))
     originTouchGesture.minimumPressDuration = 0.001
     originStackView.gestureRecognizers = [originTouchGesture]
     
     let destinationTouchGesture = UILongPressGestureRecognizer(
-      target: self, action: Selector("onDestinationTouchStart:"))
+      target: self, action: #selector(onDestinationTouchStart(_:)))
     destinationTouchGesture.minimumPressDuration = 0.001
     destinationStackView.gestureRecognizers = [destinationTouchGesture]
     
     let switchGesture = UITapGestureRecognizer(
-      target: self, action: Selector("onSwitchTap"))
+      target: self, action: #selector(onSwitchTap))
     switchImage.gestureRecognizers = [switchGesture]
   }
   

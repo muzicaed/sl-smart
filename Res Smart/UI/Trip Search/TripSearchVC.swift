@@ -103,12 +103,12 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     if identifier == "ShowTripList" {
       if criterions?.dest == nil || criterions?.origin == nil ||
         (criterions?.origin?.siteId == criterions?.dest?.siteId && criterions?.origin?.siteId != "0") {
-          showInvalidLocationAlert()
-          return false
+        showInvalidLocationAlert()
+        return false
       } else if criterions?.via != nil && (
         criterions?.via?.siteId == criterions?.origin?.siteId ||
           criterions?.via?.siteId == criterions?.dest?.siteId) {
-            showInvalidViaAlert()
+        showInvalidViaAlert()
       }
     }
     return true
@@ -143,8 +143,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   // MARK: LocationSearchResponder
   
   /**
-  * Triggered when location is selected on location search VC.
-  */
+   * Triggered when location is selected on location search VC.
+   */
   func selectedLocationFromSearch(location: Location) {
     if let crit = criterions, locationType = searchLocationType {
       switch locationType {
@@ -168,8 +168,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   // MARK: DateTimePickResponder
   
   /**
-  * Triggered whem date and time is picked
-  */
+   * Triggered whem date and time is picked
+   */
   func pickedDate(date: NSDate?) -> Void {
     if let crit = criterions, let date = date {
       let dateTimeTuple = DateUtils.dateAsStringTuple(date)
@@ -186,8 +186,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   // MARK: PickLocationResponder
   
   /**
-  * Called when user taped on orign or destination row.
-  */
+   * Called when user taped on orign or destination row.
+   */
   func pickLocation(isOrigin: Bool) {
     if isOrigin {
       performSegueWithIdentifier("SearchOriginLocation", sender: self)
@@ -223,23 +223,23 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   // MARK: TravelTypesResponder
   
   func selectedTravelType(useMetro: Bool, useTrain: Bool,
-    useTram: Bool, useBus: Bool, useBoat: Bool) {
-      criterions?.useMetro = useMetro
-      criterions?.useTrain = useTrain
-      criterions?.useTram = useTram
-      criterions?.useBus = useBus
-      criterions?.useFerry = useBoat
-      criterions?.useShip = useBoat
-      if let crit = criterions {
-        travelTypePicker.updateLabel(crit)
-      }
+                          useTram: Bool, useBus: Bool, useBoat: Bool) {
+    criterions?.useMetro = useMetro
+    criterions?.useTrain = useTrain
+    criterions?.useTram = useTram
+    criterions?.useBus = useBus
+    criterions?.useFerry = useBoat
+    criterions?.useShip = useBoat
+    if let crit = criterions {
+      travelTypePicker.updateLabel(crit)
+    }
   }
   
   // MARK: UITableViewController
   
   /**
-  * Section count
-  */
+   * Section count
+   */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return (isAdvancedMode) ? 4 : 3
   }
@@ -261,58 +261,58 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
    * Height for rows.
    */
   override func tableView(tableView: UITableView,
-    heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-      if indexPath.section == 0 && indexPath.row == 0 {
-        return 88
-      }
-      return 44
+                          heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    if indexPath.section == 0 && indexPath.row == 0 {
+      return 88
+    }
+    return 44
   }
   
   /**
    * Can row be edited?
    */
   override func tableView(tableView: UITableView,
-    canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-      return (indexPath.section == 0 && indexPath.row == 1 && isViaSelected && isAdvancedMode)
+                          canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return (indexPath.section == 0 && indexPath.row == 1 && isViaSelected && isAdvancedMode)
   }
   
   /**
    * Editing style
    */
   override func tableView(tableView: UITableView,
-    editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-      return (indexPath.section == 0 && indexPath.row == 1) ? .Delete : .None
+                          editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+    return (indexPath.section == 0 && indexPath.row == 1) ? .Delete : .None
   }
   
   /**
    * Green highlight on selected row.
    */
   override func tableView(tableView: UITableView,
-    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-      let bgColorView = UIView()
-      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
-      cell.selectedBackgroundView = bgColorView
+                          willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    let bgColorView = UIView()
+    bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+    cell.selectedBackgroundView = bgColorView
   }
   
   /**
    * Edit actions. (Only used for clear Via station)
    */
   override func tableView(tableView: UITableView,
-    editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-      return [UITableViewRowAction(
-        style: UITableViewRowActionStyle.Normal,
-        title: "Rensa") { (_, _) -> Void in
-          self.resetViaStation()
-          tableView.reloadData()
-        }]
+                          editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    return [UITableViewRowAction(
+      style: UITableViewRowActionStyle.Normal,
+    title: "Rensa") { (_, _) -> Void in
+      self.resetViaStation()
+      tableView.reloadData()
+      }]
   }
   
   /**
    * Deselect selected row.
    */
   override func tableView(tableView: UITableView,
-    didSelectRowAtIndexPath indexPath: NSIndexPath) {
-      tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                          didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
   /**
@@ -344,8 +344,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   // MARK: Private
   
   /**
-  * Animates the table view on advanced toggle.
-  */
+   * Animates the table view on advanced toggle.
+   */
   private func animateAdvancedToggle() {
     tableView.beginUpdates()
     if isAdvancedMode {
@@ -412,8 +412,9 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
    * Add listners for notfication events.
    */
   private func createNotificationListners() {
-    notificationCenter.addObserver(self,
-      selector: Selector("restoreUIFromCriterions"),
+    notificationCenter.addObserver(
+      self,
+      selector: #selector(restoreUIFromCriterions),
       name: UIApplicationDidBecomeActiveNotification, object: nil)
   }
   

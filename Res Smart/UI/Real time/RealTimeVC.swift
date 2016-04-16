@@ -47,15 +47,18 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     tableView.tableFooterView = UIView()
     setupTableActivityIndicator()
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive",
+    NSNotificationCenter.defaultCenter().addObserver(
+      self, selector: #selector(didBecomeActive),
       name: UIApplicationDidBecomeActiveNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeInactive",
+    NSNotificationCenter.defaultCenter().addObserver(
+      self, selector: #selector(didBecomeInactive),
       name: UIApplicationWillResignActiveNotification, object: nil)
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 44
     
     prepareRealtimeIndicator()
-    refreshController.addTarget(self, action: Selector("loadData"), forControlEvents: UIControlEvents.ValueChanged)
+    refreshController.addTarget(
+      self, action: #selector(loadData), forControlEvents: UIControlEvents.ValueChanged)
     refreshController.tintColor = UIColor.lightGrayColor()
     tableView.addSubview(refreshController)
     tableView.alwaysBounceVertical = true
@@ -106,7 +109,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   func startRefreshTimmer() {
     stopRefreshTimmer()
     refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
-      15.0, target: self, selector: Selector("loadData"), userInfo: nil, repeats: true)
+      15.0, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
   }
   
   /**
@@ -150,14 +153,14 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     isLoading = true
     tableView.reloadData()
     NSTimer.scheduledTimerWithTimeInterval(
-      0.7, target: self, selector: Selector("loadData"), userInfo: nil, repeats: false)
+      0.7, target: self, selector: #selector(loadData), userInfo: nil, repeats: false)
   }
   
   // MARK: UITableViewController
   
   /**
-  * Section count
-  */
+   * Section count
+   */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     if isLoading {
       return 0
@@ -181,26 +184,26 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Cell on index
    */
   override func tableView(tableView: UITableView,
-    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      if indexPath.row == 0  {
-        if tabTypesKeys.count == 0 {
-          return createNotFoundCell(indexPath)
-        }
-        return createHeaderCell(indexPath)
+                          cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    if indexPath.row == 0  {
+      if tabTypesKeys.count == 0 {
+        return createNotFoundCell(indexPath)
       }
-      
-      return createBussTripCell(indexPath)
+      return createHeaderCell(indexPath)
+    }
+    
+    return createBussTripCell(indexPath)
   }
   
   /**
    * Size for rows.
    */
   override func tableView(tableView: UITableView,
-    heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-      if isLoading {
-        return tableView.bounds.height - 49 - 64 - 20 + 39
-      }
-      return -1
+                          heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    if isLoading {
+      return tableView.bounds.height - 49 - 64 - 20 + 39
+    }
+    return -1
   }
   
   // MARK: SMSegmentViewDelegate
@@ -214,8 +217,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   // MARK: Private
   
   /**
-  * Prepares Segment View
-  */
+   * Prepares Segment View
+   */
   private func prepareSegmentView() {
     segmentView.removeFromSuperview()
     segmentView = SMSegmentView(
@@ -235,48 +238,48 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount++
       tabTypesKeys.append("BUS")
       segmentView.addSegmentWithTitle(nil,
-        onSelectionImage: UIImage(named: "BUS-NEUTRAL"),
-        offSelectionImage: UIImage(named: "BUS-NEUTRAL"))
+                                      onSelectionImage: UIImage(named: "BUS-NEUTRAL"),
+                                      offSelectionImage: UIImage(named: "BUS-NEUTRAL"))
     }
     if realTimeDepartures?.metros.count > 0 {
       lastSelected = (lastStoredSelected == "METRO") ? tabCount : lastSelected
       tabCount++
       tabTypesKeys.append("METRO")
       segmentView.addSegmentWithTitle(nil,
-        onSelectionImage: UIImage(named: "METRO-NEUTRAL"),
-        offSelectionImage: UIImage(named: "METRO-NEUTRAL"))
+                                      onSelectionImage: UIImage(named: "METRO-NEUTRAL"),
+                                      offSelectionImage: UIImage(named: "METRO-NEUTRAL"))
     }
     if realTimeDepartures?.trains.count > 0 {
       lastSelected = (lastStoredSelected == "TRAIN") ? tabCount : lastSelected
       tabCount++
       tabTypesKeys.append("TRAIN")
       segmentView.addSegmentWithTitle(nil,
-        onSelectionImage: UIImage(named: "TRAIN-NEUTRAL"),
-        offSelectionImage: UIImage(named: "TRAIN-NEUTRAL"))
+                                      onSelectionImage: UIImage(named: "TRAIN-NEUTRAL"),
+                                      offSelectionImage: UIImage(named: "TRAIN-NEUTRAL"))
     }
     if realTimeDepartures?.trams.count > 0 {
       lastSelected = (lastStoredSelected == "TRAM") ? tabCount : lastSelected
       tabCount++
       tabTypesKeys.append("TRAM")
       segmentView.addSegmentWithTitle(nil,
-        onSelectionImage: UIImage(named: "TRAM-RAIL"),
-        offSelectionImage: UIImage(named: "TRAM-RAIL"))
+                                      onSelectionImage: UIImage(named: "TRAM-RAIL"),
+                                      offSelectionImage: UIImage(named: "TRAM-RAIL"))
     }
     if realTimeDepartures?.localTrams.count > 0 {
       lastSelected = (lastStoredSelected == "LOCAL-TRAM") ? tabCount : lastSelected
       tabCount++
       tabTypesKeys.append("LOCAL-TRAM")
       segmentView.addSegmentWithTitle(nil,
-        onSelectionImage: UIImage(named: "TRAM-LOCAL"),
-        offSelectionImage: UIImage(named: "TRAM-LOCAL"))
+                                      onSelectionImage: UIImage(named: "TRAM-LOCAL"),
+                                      offSelectionImage: UIImage(named: "TRAM-LOCAL"))
     }
     if realTimeDepartures?.boats.count > 0 {
       lastSelected = (lastStoredSelected == "BOAT") ? tabCount : lastSelected
       tabCount++
       tabTypesKeys.append("BOAT")
       segmentView.addSegmentWithTitle(nil,
-        onSelectionImage: UIImage(named: "SHIP-NEUTRAL"),
-        offSelectionImage: UIImage(named: "SHIP-NEUTRAL"))
+                                      onSelectionImage: UIImage(named: "SHIP-NEUTRAL"),
+                                      offSelectionImage: UIImage(named: "SHIP-NEUTRAL"))
     }
     
     if tabCount > 0 {
@@ -310,7 +313,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   private func createHeaderCell(indexPath: NSIndexPath) -> RealTimeHeaderRow {
     let cell = tableView!.dequeueReusableCellWithIdentifier("Header",
-      forIndexPath: indexPath) as! RealTimeHeaderRow
+                                                            forIndexPath: indexPath) as! RealTimeHeaderRow
     
     setHeaderData(cell, indexPath: indexPath)
     return cell
@@ -321,7 +324,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   private func createBussTripCell(indexPath: NSIndexPath) -> RealTimeTripRow {
     let cell = tableView!.dequeueReusableCellWithIdentifier("TripRow",
-      forIndexPath: indexPath) as! RealTimeTripRow
+                                                            forIndexPath: indexPath) as! RealTimeTripRow
     
     setRowData(cell, indexPath: indexPath)
     return cell
@@ -332,7 +335,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   private func createNotFoundCell(indexPath: NSIndexPath) -> UITableViewCell {
     return tableView!.dequeueReusableCellWithIdentifier("NotFoundRow",
-      forIndexPath: indexPath)
+                                                        forIndexPath: indexPath)
   }
   
   /**

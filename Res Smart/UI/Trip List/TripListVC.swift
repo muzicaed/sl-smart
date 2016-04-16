@@ -50,9 +50,9 @@ class TripListVC: UITableViewController {
       isLoading = false
       self.tableView?.reloadData()
     }
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive",
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didBecomeActive),
       name: UIApplicationDidBecomeActiveNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeInactive",
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didBecomeInactive),
       name: UIApplicationWillResignActiveNotification, object: nil)
     
     handleMakeRoutineButton()
@@ -102,7 +102,7 @@ class TripListVC: UITableViewController {
   func startRefreshTimmer() {
     stopRefreshTimmer()
     self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(
-      15, target: self, selector: "refreshUI", userInfo: nil, repeats: true)
+      15, target: self, selector: #selector(refreshUI), userInfo: nil, repeats: true)
   }
   
   /**
@@ -478,7 +478,7 @@ class TripListVC: UITableViewController {
           forIndexPath: indexPath) as? LoadMoreCell
         
         loadMoreEarlier!.loadButton.addTarget(self,
-          action: Selector("loadEarlierTrips"),
+          action: #selector(loadEarlierTrips),
           forControlEvents: UIControlEvents.TouchUpInside)
       }
       
@@ -495,7 +495,7 @@ class TripListVC: UITableViewController {
           forIndexPath: indexPath) as? LoadMoreCell
         
         loadMoreLater!.loadButton.addTarget(self,
-          action: Selector("loadMoreTrips"),
+          action: #selector(loadMoreTrips),
           forControlEvents: UIControlEvents.TouchUpInside)
       }
       

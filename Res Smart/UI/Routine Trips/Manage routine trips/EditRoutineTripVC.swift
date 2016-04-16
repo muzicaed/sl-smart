@@ -59,7 +59,7 @@ TravelTypesResponder, PickLocationResponder {
     locationPickerRow.prepareGestures()
     tripTitleTextField.delegate = self
     tripTitleTextField.addTarget(self,
-      action: "textFieldDidChange:",
+      action: #selector(textFieldDidChange(_:)),
       forControlEvents: UIControlEvents.EditingChanged)
   }
   
@@ -435,7 +435,7 @@ TravelTypesResponder, PickLocationResponder {
    */
   private func createFakeBackButton() {
     let backButton = UIBarButtonItem(
-      title: "Tillbaka", style: .Plain, target: self, action: Selector("onBackTap"))
+      title: "Tillbaka", style: .Plain, target: self, action: #selector(onBackTap))
     self.navigationItem.leftBarButtonItem = backButton
   }
   

@@ -38,7 +38,7 @@ class TripDetailsVC: UITableViewController {
     prepareHeader()
     prepareVisualStops()
     loadStops()
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive",
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didBecomeActive),
       name: UIApplicationDidBecomeActiveNotification, object: nil)
   }
   

@@ -23,7 +23,8 @@ class TrafficSituationVC: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
-    refreshController.addTarget(self, action: Selector("loadData"), forControlEvents: UIControlEvents.ValueChanged)
+    refreshController.addTarget(
+      self, action: #selector(loadData), forControlEvents: UIControlEvents.ValueChanged)
     refreshController.tintColor = UIColor.lightGrayColor()
     tableView.addSubview(refreshController)
     tableView.alwaysBounceVertical = true
@@ -61,8 +62,8 @@ class TrafficSituationVC: UITableViewController {
   // MARK: UITableViewController
   
   /**
-  * Number of sections
-  */
+   * Number of sections
+   */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     if situationGroups.count > 0 {
       return situationGroups.count
@@ -84,39 +85,39 @@ class TrafficSituationVC: UITableViewController {
    * Cell for index.
    */
   override func tableView(tableView: UITableView,
-    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      
-      if indexPath.row == 0 {
-        return createHeaderCell(indexPath)
-      }
-      
-      if (indexPath.row - 1) < situationGroups[indexPath.section].situations.count {
-        return createSituationCell(indexPath)
-      }
-      return createSummaryCell(indexPath)
+                          cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    
+    if indexPath.row == 0 {
+      return createHeaderCell(indexPath)
+    }
+    
+    if (indexPath.row - 1) < situationGroups[indexPath.section].situations.count {
+      return createSituationCell(indexPath)
+    }
+    return createSummaryCell(indexPath)
   }
   
   /**
    * Before displaying cell
    */
   override func tableView(tableView: UITableView,
-    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-      let bgColorView = UIView()
-      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
-      cell.selectedBackgroundView = bgColorView
+                          willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    let bgColorView = UIView()
+    bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+    cell.selectedBackgroundView = bgColorView
   }
   
   /**
    * User selected row
    */
   override func tableView(tableView: UITableView,
-    didSelectRowAtIndexPath indexPath: NSIndexPath) {
-      selectedGroup = situationGroups[indexPath.section]
-      if selectedGroup?.tripType == TripType.Bus {
-        performSegueWithIdentifier("ShowBusFilter", sender: nil)
-        return
-      }
-      performSegueWithIdentifier("ShowReports", sender: nil)
+                          didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    selectedGroup = situationGroups[indexPath.section]
+    if selectedGroup?.tripType == TripType.Bus {
+      performSegueWithIdentifier("ShowBusFilter", sender: nil)
+      return
+    }
+    performSegueWithIdentifier("ShowReports", sender: nil)
   }
   
   // MARK: Private

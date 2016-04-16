@@ -33,9 +33,12 @@ public class Deviation {
   private static func convertDate(dateStr: String) -> NSDate {
     let start = dateStr.startIndex.advancedBy(0)
     let end = start.advancedBy(16)
-    var croppedStr = dateStr[Range(start: start, end: end)]
-    croppedStr = croppedStr.stringByReplacingOccurrencesOfString("T",
-      withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
+    var croppedStr = dateStr[start ..< end]
+    croppedStr = croppedStr.stringByReplacingOccurrencesOfString(
+      "T",
+      withString: " ",
+      options: NSStringCompareOptions.LiteralSearch,
+      range: nil)
     return DateUtils.convertDateString(croppedStr)
   }
   
@@ -57,7 +60,7 @@ public class Deviation {
       return TripType.Local
     } else if scope.lowercaseString.rangeOfString("roslagsbanan") != nil {
       return TripType.Local
-    }    
+    }
     
     return TripType.Bus
   }
@@ -65,11 +68,12 @@ public class Deviation {
   /**
    * Fix scope text to match sematics
    */
-  private static func makeFriendlyScope(var scope: String) -> String {
-    scope = scope.stringByReplacingOccurrencesOfString("Tunnelbanans röda linje", withString: "Röda linjen")
-    scope = scope.stringByReplacingOccurrencesOfString("Tunnelbanans gröna linje", withString: "Gröna linjen")    
-    scope = scope.stringByReplacingOccurrencesOfString("Tunnelbanans blå linje", withString: "Blå linjen")
+  private static func makeFriendlyScope(scope: String) -> String {
+    var newScope = scope
+    newScope = scope.stringByReplacingOccurrencesOfString("Tunnelbanans röda linje", withString: "Röda linjen")
+    newScope = scope.stringByReplacingOccurrencesOfString("Tunnelbanans gröna linje", withString: "Gröna linjen")
+    newScope = scope.stringByReplacingOccurrencesOfString("Tunnelbanans blå linje", withString: "Blå linjen")
     
-    return scope
+    return newScope
   }
 }

@@ -18,24 +18,24 @@ public class SearchTripService {
   public static func tripSearch(
     criterion: TripSearchCriterion,
     callback: (data: [Trip], error: SLNetworkError?) -> Void) {
-      api.tripSearch(criterion) { resTuple in
-        var trips = [Trip]()
-        if let data = resTuple.data {
-          if data.length == 0 {
-            callback(data: trips, error: SLNetworkError.NoDataFound)
-            return
-          }
-          trips = self.convertJsonResponse(data)
+    api.tripSearch(criterion) { resTuple in
+      var trips = [Trip]()
+      if let data = resTuple.data {
+        if data.length == 0 {
+          callback(data: trips, error: SLNetworkError.NoDataFound)
+          return
         }
-        callback(data: trips, error: resTuple.error)
+        trips = self.convertJsonResponse(data)
       }
+      callback(data: trips, error: resTuple.error)
+    }
   }
   
   // MARK: Private methods
   
   /**
-  * Converts the raw json string into array of Trip.
-  */
+   * Converts the raw json string into array of Trip.
+   */
   private static func convertJsonResponse(jsonDataString: NSData) -> [Trip] {
     var result = [Trip]()
     let data = JSON(data: jsonDataString)
@@ -151,14 +151,15 @@ public class SearchTripService {
   /**
    * Ensures the string is UTF8
    */
-  private static func ensureUTF8(var string: String) -> String {
-    let data = string.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)!
+  private static func ensureUTF8(string: String) -> String {
+    var newString = string
+    let data = newString.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)!
     let convertedName = NSString(data: data, encoding: NSUTF8StringEncoding)
     if let convName = convertedName {
-      string = convName as String
+      newString = convName as String
     }
     
-    return string
+    return newString
   }
   
   /**
