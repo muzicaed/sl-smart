@@ -236,7 +236,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       }
       var bestCount = (bestRoutineTrip == nil ? 0 : 1)
       if MyLocationHelper.sharedInstance.getCurrentLocation() != nil {
-        bestCount++
+        bestCount += 1
       }
       return bestCount
     }

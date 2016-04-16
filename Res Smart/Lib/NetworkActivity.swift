@@ -18,9 +18,9 @@ class NetworkActivity {
    */
   static func displayActivityIndicator(isDisplay: Bool) {
     if isDisplay {
-      numberOfNetworkCalls++
+      numberOfNetworkCalls += 1
     } else {
-      numberOfNetworkCalls--
+      numberOfNetworkCalls -= 1
     }
     numberOfNetworkCalls = (numberOfNetworkCalls < 0) ? 0 : numberOfNetworkCalls
     UIApplication.sharedApplication().networkActivityIndicatorVisible = (numberOfNetworkCalls > 0)

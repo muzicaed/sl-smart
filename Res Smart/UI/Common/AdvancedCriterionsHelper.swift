@@ -48,19 +48,19 @@ class AdvancedCriterionsHelper {
   static private func countNonIncluded(criterions: TripSearchCriterion) -> Int {
     var count = 0
     if !criterions.useMetro {
-      count++
+      count += 1
     }
     if !criterions.useTrain {
-      count++
+      count += 1
     }
     if !criterions.useTram {
-      count++
+      count += 1
     }
     if !criterions.useBus {
-      count++
+      count += 1
     }
     if !criterions.useFerry {
-      count++
+      count += 1
     }
     return count
   }

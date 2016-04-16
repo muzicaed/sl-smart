@@ -168,7 +168,7 @@ class RoutineTripCell: UICollectionViewCell {
         }
         
         iconAreaView.addSubview(wrapperView)
-        count++
+        count += 1
       }
     }
   }

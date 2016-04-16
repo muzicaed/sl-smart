@@ -112,7 +112,7 @@ class TripCell: UITableViewCell {
         }
         
         iconAreaView.addSubview(wrapperView)
-        count++
+        count += 1
       }
     }
   }

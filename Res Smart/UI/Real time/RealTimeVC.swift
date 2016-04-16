@@ -235,7 +235,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     let lastStoredSelected = UserPreferenceStore.sharedInstance.getLastRealTimeTripType()
     if realTimeDepartures?.busses.count > 0 {
       lastSelected = (lastStoredSelected == "BUS") ? tabCount : lastSelected
-      tabCount++
+      tabCount += 1
       tabTypesKeys.append("BUS")
       segmentView.addSegmentWithTitle(nil,
                                       onSelectionImage: UIImage(named: "BUS-NEUTRAL"),
@@ -243,7 +243,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     }
     if realTimeDepartures?.metros.count > 0 {
       lastSelected = (lastStoredSelected == "METRO") ? tabCount : lastSelected
-      tabCount++
+      tabCount += 1
       tabTypesKeys.append("METRO")
       segmentView.addSegmentWithTitle(nil,
                                       onSelectionImage: UIImage(named: "METRO-NEUTRAL"),
@@ -251,7 +251,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     }
     if realTimeDepartures?.trains.count > 0 {
       lastSelected = (lastStoredSelected == "TRAIN") ? tabCount : lastSelected
-      tabCount++
+      tabCount += 1
       tabTypesKeys.append("TRAIN")
       segmentView.addSegmentWithTitle(nil,
                                       onSelectionImage: UIImage(named: "TRAIN-NEUTRAL"),
@@ -259,7 +259,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     }
     if realTimeDepartures?.trams.count > 0 {
       lastSelected = (lastStoredSelected == "TRAM") ? tabCount : lastSelected
-      tabCount++
+      tabCount += 1
       tabTypesKeys.append("TRAM")
       segmentView.addSegmentWithTitle(nil,
                                       onSelectionImage: UIImage(named: "TRAM-RAIL"),
@@ -267,7 +267,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     }
     if realTimeDepartures?.localTrams.count > 0 {
       lastSelected = (lastStoredSelected == "LOCAL-TRAM") ? tabCount : lastSelected
-      tabCount++
+      tabCount += 1
       tabTypesKeys.append("LOCAL-TRAM")
       segmentView.addSegmentWithTitle(nil,
                                       onSelectionImage: UIImage(named: "TRAM-LOCAL"),
@@ -275,7 +275,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     }
     if realTimeDepartures?.boats.count > 0 {
       lastSelected = (lastStoredSelected == "BOAT") ? tabCount : lastSelected
-      tabCount++
+      tabCount += 1
       tabTypesKeys.append("BOAT")
       segmentView.addSegmentWithTitle(nil,
                                       onSelectionImage: UIImage(named: "SHIP-NEUTRAL"),

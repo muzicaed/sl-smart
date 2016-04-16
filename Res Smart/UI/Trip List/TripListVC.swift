@@ -203,10 +203,10 @@ class TripListVC: UITableViewController {
       
       var count = trips[keys[section]]!.count
       if section == 0 {
-        count++
+        count += 1
       }
       if (section + 1) == trips.count {
-        count++
+        count += 1
       }
       return count
   }
@@ -374,9 +374,10 @@ class TripListVC: UITableViewController {
   /**
    * Appends search result to dictionary
    */
-  private func appendToDictionary(var tripsArr: [Trip], shouldAppend: Bool) {
+  private func appendToDictionary(tripsArr: [Trip], shouldAppend: Bool) {
+    var newTripsArr = tripsArr
     if !shouldAppend {
-      tripsArr = tripsArr.reverse()
+      newTripsArr = newTripsArr.reverse()
     }
     for trip in tripsArr {
       let destDateString = DateUtils.dateAsDateString(trip.tripSegments.first!.departureDateTime)

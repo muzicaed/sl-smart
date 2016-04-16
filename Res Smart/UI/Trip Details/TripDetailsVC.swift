@@ -241,7 +241,7 @@ class TripDetailsVC: UITableViewController {
           if error == nil {
             segment.routeLineLocations += self.extractLocations(locations, segment: segment)
           }
-          loadCount++
+          loadCount += 1
           if loadCount >= self.trip.tripSegments.count {
             self.mapButton.enabled = true
           }

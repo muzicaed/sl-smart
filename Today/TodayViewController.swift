@@ -84,8 +84,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   // MARK: Private
   
   /**
-  * Loads trip data and updates UI
-  */
+   * Loads trip data and updates UI
+   */
   private func loadTripData(callback: (() -> Void)?) {
     startRefreshTimmer()
     RoutineService.findRoutineTrip({ routineTrips in
@@ -137,7 +137,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         wrapperView.addSubview(label)
         wrapperView.clipsToBounds = false
         iconWrapperView.addSubview(wrapperView)
-        count++
+        count += 1
       }
     }
   }
@@ -149,9 +149,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     if let bestRoutineTrip = self.bestRoutine, trip = bestRoutineTrip.trips.first {
       self.titleLabel.text = bestRoutineTrip.title
       self.departureStationLabel.text = trip.tripSegments.first?.origin.name
-      self.departureTimeLabel.text = DateUtils.dateAsTimeString(trip.tripSegments.first!.departureDateTime)
+      self.departureTimeLabel.text = DateUtils.dateAsTimeString(
+        trip.tripSegments.first!.departureDateTime)
       self.arrivalStationLabel.text = trip.tripSegments.last?.destination.name
-      self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(trip.tripSegments.last!.arrivalDateTime)
+      self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(
+        trip.tripSegments.last!.arrivalDateTime)
       self.travelTimeLabel.text = DateUtils.createTripDurationString(trip.durationMin)
       
       self.inAboutLabel.text = "  " + DateUtils.createAboutTimeText(
@@ -165,9 +167,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   /**
    * Set custom insets
    */
-  func widgetMarginInsetsForProposedMarginInsets(var defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-    defaultMarginInsets.top = 10
-    defaultMarginInsets.bottom = 30
-    return defaultMarginInsets
+  func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+    var newDefaultMarginInsets = defaultMarginInsets
+    newDefaultMarginInsets.top = 10
+    newDefaultMarginInsets.bottom = 30
+    return newDefaultMarginInsets
   }
 }

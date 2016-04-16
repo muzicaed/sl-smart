@@ -120,7 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         for group in data {
           for situation in group.situations {
             if situation.statusIcon != "EventGood" && situation.statusIcon != "EventPlanned" {
-              count++
+              count += 1
             }
           }
         }
