@@ -90,12 +90,16 @@ public class DateUtils {
     
     formatter.dateFormat = "EEEE"
     var weekDay = formatter.stringFromDate(date)
+    
+    formatter.dateFormat = "MMMM"
+    let month = formatter.stringFromDate(date)
+    
     if formatter.stringFromDate(NSDate()) == weekDay {
       weekDay = "Idag"
     } else if formatter.stringFromDate(NSDate(timeIntervalSinceNow: 86400)) == weekDay {
       weekDay = "imorgon"
     } else {
-      weekDay = weekDay.capitalizedString + " den \(day)"
+      weekDay = weekDay.capitalizedString + " den \(day) \(month)"
     }
     
     formatter.dateFormat = "HH:mm"
