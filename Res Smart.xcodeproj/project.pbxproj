@@ -48,6 +48,7 @@
 		18630EE01CC2366A0085C0B8 /* ResStockholmApiKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18630EDF1CC2366A0085C0B8 /* ResStockholmApiKitTests.swift */; };
 		18630EE21CC2366A0085C0B8 /* ResStockholmApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; };
 		18630EED1CC236A80085C0B8 /* SearchCriterionStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18630EEC1CC236A80085C0B8 /* SearchCriterionStoreTests.swift */; };
+		18630EEF1CC26C9E0085C0B8 /* FavouriteLocationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18630EEE1CC26C9E0085C0B8 /* FavouriteLocationsStore.swift */; };
 		186447631C5FF6B400020A17 /* DataMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186447621C5FF6B400020A17 /* DataMigration.swift */; };
 		18698AA61C4E91000031D1AD /* RealTimeHeaderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */; };
 		18698AAC1C4E913A0031D1AD /* RealTimeTripRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AAB1C4E913A0031D1AD /* RealTimeTripRow.swift */; };
@@ -332,6 +333,7 @@
 		18630EDF1CC2366A0085C0B8 /* ResStockholmApiKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResStockholmApiKitTests.swift; sourceTree = "<group>"; };
 		18630EE11CC2366A0085C0B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18630EEC1CC236A80085C0B8 /* SearchCriterionStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCriterionStoreTests.swift; sourceTree = "<group>"; };
+		18630EEE1CC26C9E0085C0B8 /* FavouriteLocationsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteLocationsStore.swift; sourceTree = "<group>"; };
 		186447621C5FF6B400020A17 /* DataMigration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMigration.swift; sourceTree = "<group>"; };
 		18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeHeaderRow.swift; sourceTree = "<group>"; };
 		18698AAB1C4E913A0031D1AD /* RealTimeTripRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeTripRow.swift; sourceTree = "<group>"; };
@@ -877,6 +879,7 @@
 				18AAC9331C2EE7BC00022C54 /* LatestLocationsStore.swift */,
 				18AAC92E1C2EE3DF00022C54 /* RoutineTripsStore.swift */,
 				18AAC9311C2EE61000022C54 /* ScorePostStore.swift */,
+				18630EEE1CC26C9E0085C0B8 /* FavouriteLocationsStore.swift */,
 			);
 			path = "Data Store";
 			sourceTree = "<group>";
@@ -1399,6 +1402,7 @@
 				18FC747F1C7B778F00980B0D /* DeviationsService.swift in Sources */,
 				18FA99941C492BDC0075C4C2 /* SLJourneyDetailsApi.swift in Sources */,
 				186CACD71C55381100B1B5F6 /* RTBoat.swift in Sources */,
+				18630EEF1CC26C9E0085C0B8 /* FavouriteLocationsStore.swift in Sources */,
 				186CACD11C55265800B1B5F6 /* RTTram.swift in Sources */,
 				183D6EB41C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift in Sources */,
 				1835A06E1C676180008355F9 /* DisturbanceTextHelper.swift in Sources */,

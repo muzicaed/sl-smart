@@ -29,22 +29,26 @@ public class LatestLocationsStore {
    */
   public func retrieveLatestLocations() -> [Location] {
     if cachedLocations.count == 0 {
-      
       if let unarchivedObject = defaults.objectForKey(
         LatestLocations) as? NSData {
           if let locations = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [Location] {
             cachedLocations = locations
-            return cachedLocations
           }
       }
     }
-    return cachedLocations
+    return cachedLocations.filter() {
+      if FavouriteLocationsStore.sharedInstance.isLocationFavourite($0) {
+        return false
+      }
+      return true
+    }
   }
   
   /**
    * Retrive "LatestLocations" filtered on stations from data store
    */
   public func retrieveLatestStationsOnly() -> [Location] {
+    cachedLocations = retrieveLatestLocations()
     return cachedLocations.filter() {
       if $0.type == LocationType.Station {
         return true

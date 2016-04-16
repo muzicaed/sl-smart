@@ -17,6 +17,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   var searchController: UISearchController?
   var searchResult = [Location]()
   var latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestLocations()
+  var favouriteLocations = FavouriteLocationsStore.sharedInstance.retrieveFavouriteLocations()
   var delegate: LocationSearchResponder?
   var selectedLocation: Location?
   var searchOnlyForStations = true
@@ -90,6 +91,21 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     }
   }
   
+  /**
+   * Toggle selected station as favourite station
+   */
+  func toggleFavouriteStation(alertAction: UIAlertAction) {
+    if FavouriteLocationsStore.sharedInstance.isLocationFavourite(selectedLocation!) {
+      FavouriteLocationsStore.sharedInstance.removeFavouriteLocation(selectedLocation!)
+    } else {
+      FavouriteLocationsStore.sharedInstance.addFavouriteLocation(selectedLocation!)
+    }
+    favouriteLocations = FavouriteLocationsStore.sharedInstance.retrieveFavouriteLocations()
+    latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestLocations()
+    self.selectedLocation = nil
+    tableView.reloadData()
+  }
+  
   // MARK: UITableViewController
   
   /**
@@ -97,7 +113,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     if !isDisplayingSearchResult && !noResults {
-      return (allowCurrentPosition || allowNearbyStations) ? 2 : 1
+      let count = (allowCurrentPosition || allowNearbyStations) ? 2 : 1
+      return (favouriteLocations.count > 0) ? count + 1 : count
     }
     return 1
   }
@@ -105,9 +122,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   /**
    * View for header
    */
-  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 30))
-    let label = UILabel(frame: CGRectMake(18, 7, tableView.frame.size.width, 15))
+  override func tableView(
+    tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    
+    let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 20))
+    let label = UILabel(frame: CGRectMake(18, 2, tableView.frame.size.width, 15))
     label.font = UIFont.systemFontOfSize(14)
     label.textColor = UIColor.whiteColor()
     label.textAlignment = NSTextAlignment.Left
@@ -119,11 +138,16 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
       label.text = "Sökresultat"
       return view
     } else if !isDisplayingSearchResult {
-      if ((allowCurrentPosition || allowNearbyStations) && section == 1) ||
-        ((!allowCurrentPosition && !allowNearbyStations) && section == 0) {
-        label.text = "Senast använda platser"
+      let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
+      let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
+      
+      if section == favSection {
+        label.text = "Favoritplatser"
         return view
       }
+      
+      label.text = "Senast använda platser"
+      return view
     }
     
     return nil
@@ -134,15 +158,10 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    */
   override func tableView(
     tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    if isDisplayingSearchResult && searchResult.count > 0 {
-      return 30
-    } else if !isDisplayingSearchResult {
-      if ((allowCurrentPosition || allowNearbyStations) && section == 1) ||
-        ((!allowCurrentPosition && !allowNearbyStations) && section == 0) {
-        return 30
-      }
+    if (allowCurrentPosition || allowNearbyStations) && section == 0 {
+      return 0
     }
-    return 0
+    return 20
   }
   
   /**
@@ -162,15 +181,18 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     if noResults {
       return 1
     } else if !isDisplayingSearchResult {
-      if section == 0 && (allowCurrentPosition || allowNearbyStations) {
-        var count = 0
-        count += (allowCurrentPosition) ? 1 : 0
-        count += (allowNearbyStations) ? 1 : 0
-        return count
+      let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
+      let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
+      
+      if section == topSection {
+        let count = (allowCurrentPosition) ? 1 : 0
+        return (allowNearbyStations) ? count + 1 : count + 0
+      } else if section == favSection {
+        return favouriteLocations.count
       }
+      
       return latestLocations.count
     }
-    
     return searchResult.count
   }
   
@@ -185,7 +207,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
         cellNotFoundId, forIndexPath: indexPath)
       return cell
     } else if !isDisplayingSearchResult {
-      if indexPath.section == 0 && (allowCurrentPosition || allowNearbyStations) {
+      
+      let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
+      let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
+      
+      if indexPath.section == topSection {
         if allowCurrentPosition && allowNearbyStations {
           if indexPath.row == 0 {
             return createCurrentLocationCell(indexPath)
@@ -200,7 +226,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
           }
         }
         return createCurrentLocationCell(indexPath)
+      } else if indexPath.section == favSection {
+        let location = favouriteLocations[indexPath.row]
+        return createLocationCell(indexPath, location: location)
       }
+      
       let location = latestLocations[indexPath.row]
       return createLocationCell(indexPath, location: location)
     }
@@ -242,26 +272,28 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    * User tapped accessory
    */
   override func tableView(
-    tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+    tableView: UITableView,
+    accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
     
     selectLocation(indexPath)
-    
-    
     let stationOptionsAlert = UIAlertController(
       title: nil,
       message: selectedLocation!.cleanName,
       preferredStyle: .ActionSheet)
     
+    var favouriteTitle = "Gör till favorit"
+    if FavouriteLocationsStore.sharedInstance.isLocationFavourite(selectedLocation!) {
+      favouriteTitle = "Ta bort från favoriter"
+    }
+    
     stationOptionsAlert.addAction(
-      UIAlertAction(title: "Gör till favorit", style: .Default, handler: nil))
+      UIAlertAction(title: favouriteTitle, style: .Default, handler: toggleFavouriteStation))
     stationOptionsAlert.addAction(
       UIAlertAction(title: "Visa på karta", style: .Default, handler: nil))
-    if selectedLocation!.type == LocationType.Station && !isLocationForRealTimeSearch {
-      stationOptionsAlert.addAction(
-        UIAlertAction(title: "Visa avgångar i realtid", style: .Default, handler: nil))
-    }
     stationOptionsAlert.addAction(
-      UIAlertAction(title: "Avbryt", style: .Cancel, handler: nil))
+      UIAlertAction(title: "Avbryt", style: .Cancel, handler: { _ in
+        self.selectedLocation = nil
+      }))
     
     presentViewController(stationOptionsAlert, animated: true, completion: nil)
   }
@@ -347,6 +379,12 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     } else if isDisplayingSearchResult {
       selectedLocation = searchResult[indexPath.row]
     } else {
+      let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
+      let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
+      if indexPath.section == favSection {
+        selectedLocation = favouriteLocations[indexPath.row]
+        return
+      }
       selectedLocation = latestLocations[indexPath.row]
     }
   }
@@ -385,7 +423,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    * Create location cell.
    */
   private func createCurrentLocationCell(indexPath: NSIndexPath) -> UITableViewCell {
-    
     let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation()
     let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
                                                            forIndexPath: indexPath)
@@ -406,10 +443,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    * Create nearby stations cell.
    */
   private func createNearbyStationsCell(indexPath: NSIndexPath) -> UITableViewCell {
-    
-    let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
-                                                           forIndexPath: indexPath)
-    
+    let cell = tableView.dequeueReusableCellWithIdentifier(
+      cellReusableId, forIndexPath: indexPath)
     cell.textLabel?.text = "Hållplatser nära mig"
     cell.detailTextLabel?.text = nil
     cell.imageView?.image = UIImage(named: "near-me-icon")
