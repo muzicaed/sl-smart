@@ -76,7 +76,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   /**
    * Before segue is performed
    */
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {    
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "showRealTime" {
       if let realTimeVC = segue.destinationViewController as? RealTimeVC {
         realTimeVC.title = selectedLocation?.name
@@ -132,8 +132,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   /**
    * Size for headers.
    */
-  override func tableView(tableView: UITableView,
-                          heightForHeaderInSection section: Int) -> CGFloat {
+  override func tableView(
+    tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     if isDisplayingSearchResult && searchResult.count > 0 {
       return 30
     } else if !isDisplayingSearchResult {
@@ -148,16 +148,16 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   /**
    * Size for footer.
    */
-  override func tableView(tableView: UITableView,
-                          heightForFooterInSection section: Int) -> CGFloat {
+  override func tableView(
+    tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
     return 0.01
   }
   
   /**
    * Number of rows
    */
-  override func tableView(tableView: UITableView,
-                          numberOfRowsInSection section: Int) -> Int {
+  override func tableView(
+    tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
     if noResults {
       return 1
@@ -177,11 +177,12 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   /**
    * Cell for index
    */
-  override func tableView(tableView: UITableView,
-                          cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(
+    tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    
     if noResults {
-      let cell = tableView.dequeueReusableCellWithIdentifier(cellNotFoundId,
-                                                             forIndexPath: indexPath)
+      let cell = tableView.dequeueReusableCellWithIdentifier(
+        cellNotFoundId, forIndexPath: indexPath)
       return cell
     } else if !isDisplayingSearchResult {
       if indexPath.section == 0 && (allowCurrentPosition || allowNearbyStations) {
@@ -211,8 +212,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   /**
    * User selects row
    */
-  override func tableView(tableView: UITableView,
-                          didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(
+    tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
     if !isDisplayingSearchResult && allowNearbyStations && indexPath.section == 0 {
       if (allowCurrentPosition && indexPath.row == 1) ||
@@ -238,10 +239,40 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   }
   
   /**
+   * User tapped accessory
+   */
+  override func tableView(
+    tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+    
+    selectLocation(indexPath)
+    
+    
+    let stationOptionsAlert = UIAlertController(
+      title: nil,
+      message: selectedLocation!.cleanName,
+      preferredStyle: .ActionSheet)
+    
+    stationOptionsAlert.addAction(
+      UIAlertAction(title: "Gör till favorit", style: .Default, handler: nil))
+    stationOptionsAlert.addAction(
+      UIAlertAction(title: "Visa på karta", style: .Default, handler: nil))
+    if selectedLocation!.type == LocationType.Station && !isLocationForRealTimeSearch {
+      stationOptionsAlert.addAction(
+        UIAlertAction(title: "Visa avgångar i realtid", style: .Default, handler: nil))
+    }
+    stationOptionsAlert.addAction(
+      UIAlertAction(title: "Avbryt", style: .Cancel, handler: nil))
+    
+    presentViewController(stationOptionsAlert, animated: true, completion: nil)
+  }
+  
+  /**
    * Green highlight on selected row.
    */
-  override func tableView(tableView: UITableView,
-                          willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(
+    tableView: UITableView, willDisplayCell cell: UITableViewCell,
+    forRowAtIndexPath indexPath: NSIndexPath) {
+    
     let bgColorView = UIView()
     bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
     cell.selectedBackgroundView = bgColorView
@@ -325,8 +356,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
    */
   private func createLocationCell(
     indexPath: NSIndexPath, location: Location) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
-                                                           forIndexPath: indexPath)
+    
+    let cell = tableView.dequeueReusableCellWithIdentifier(
+      cellReusableId, forIndexPath: indexPath)
     
     cell.textLabel?.text = location.name
     cell.textLabel?.text?.accessibilityLabel = location.name
@@ -341,9 +373,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     }
     cell.imageView?.alpha = 0.4
     if isLocationForRealTimeSearch {
-      cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+      cell.accessoryType = UITableViewCellAccessoryType.DetailDisclosureButton
     } else {
-      cell.accessoryType = UITableViewCellAccessoryType.None
+      cell.accessoryType = UITableViewCellAccessoryType.DetailButton
     }
     
     return cell
