@@ -45,6 +45,9 @@
 		185D8DBE1C189D0200300890 /* WatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367611C16264200A8BE16 /* WatchService.swift */; };
 		186235FD1C411C2B0056338E /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186235FC1C411C2B0056338E /* TripIcons.swift */; };
 		186236011C411CE40056338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186236001C411CE40056338E /* Assets.xcassets */; };
+		18630EE01CC2366A0085C0B8 /* ResStockholmApiKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18630EDF1CC2366A0085C0B8 /* ResStockholmApiKitTests.swift */; };
+		18630EE21CC2366A0085C0B8 /* ResStockholmApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; };
+		18630EED1CC236A80085C0B8 /* SearchCriterionStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18630EEC1CC236A80085C0B8 /* SearchCriterionStoreTests.swift */; };
 		186447631C5FF6B400020A17 /* DataMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186447621C5FF6B400020A17 /* DataMigration.swift */; };
 		18698AA61C4E91000031D1AD /* RealTimeHeaderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */; };
 		18698AAC1C4E913A0031D1AD /* RealTimeTripRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AAB1C4E913A0031D1AD /* RealTimeTripRow.swift */; };
@@ -156,6 +159,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		1818B2761C405D55004E3CA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18A9E8461C18993B008F97C8;
+			remoteInfo = ResStockholmApiKit;
+		};
+		18630EE31CC2366A0085C0B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 18937E291BFF33FA00C523C9 /* Project object */;
 			proxyType = 1;
@@ -318,6 +328,10 @@
 		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
 		186235FC1C411C2B0056338E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
 		186236001C411CE40056338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18630EDD1CC2366A0085C0B8 /* ResStockholmApiKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResStockholmApiKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18630EDF1CC2366A0085C0B8 /* ResStockholmApiKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResStockholmApiKitTests.swift; sourceTree = "<group>"; };
+		18630EE11CC2366A0085C0B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18630EEC1CC236A80085C0B8 /* SearchCriterionStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCriterionStoreTests.swift; sourceTree = "<group>"; };
 		186447621C5FF6B400020A17 /* DataMigration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMigration.swift; sourceTree = "<group>"; };
 		18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeHeaderRow.swift; sourceTree = "<group>"; };
 		18698AAB1C4E913A0031D1AD /* RealTimeTripRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeTripRow.swift; sourceTree = "<group>"; };
@@ -434,6 +448,14 @@
 				18A5A8DB1C580E83003C4C3B /* CoreLocation.framework in Frameworks */,
 				1818B2781C405D5B004E3CA3 /* ResStockholmApiKit.framework in Frameworks */,
 				1818B2671C404FE0004E3CA3 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18630EDA1CC2366A0085C0B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18630EE21CC2366A0085C0B8 /* ResStockholmApiKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,6 +581,16 @@
 			path = "Traffic Situation";
 			sourceTree = "<group>";
 		};
+		18630EDE1CC2366A0085C0B8 /* ResStockholmApiKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				18630EDF1CC2366A0085C0B8 /* ResStockholmApiKitTests.swift */,
+				18630EEC1CC236A80085C0B8 /* SearchCriterionStoreTests.swift */,
+				18630EE11CC2366A0085C0B8 /* Info.plist */,
+			);
+			path = ResStockholmApiKitTests;
+			sourceTree = "<group>";
+		};
 		18733C431C4E3CD700F66AEF /* Real time */ = {
 			isa = PBXGroup;
 			children = (
@@ -666,6 +698,7 @@
 				1818B2681C404FE0004E3CA3 /* Today */,
 				188B80431C175D9600E7D90C /* Frameworks */,
 				18937E321BFF33FA00C523C9 /* Products */,
+				18B2EB531CC23632002F66D7 /* Tests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -677,6 +710,7 @@
 				18937E521BFF33FB00C523C9 /* Res Smart.appex */,
 				18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */,
 				1818B2661C404FE0004E3CA3 /* Today.appex */,
+				18630EDD1CC2366A0085C0B8 /* ResStockholmApiKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -857,6 +891,14 @@
 			path = "Trip List";
 			sourceTree = "<group>";
 		};
+		18B2EB531CC23632002F66D7 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				18630EDE1CC2366A0085C0B8 /* ResStockholmApiKitTests */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
 		18BF52241C18302A002B68AD /* Search Location */ = {
 			isa = PBXGroup;
 			children = (
@@ -935,6 +977,24 @@
 			productName = Today;
 			productReference = 1818B2661C404FE0004E3CA3 /* Today.appex */;
 			productType = "com.apple.product-type.app-extension";
+		};
+		18630EDC1CC2366A0085C0B8 /* ResStockholmApiKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18630EEB1CC2366A0085C0B8 /* Build configuration list for PBXNativeTarget "ResStockholmApiKitTests" */;
+			buildPhases = (
+				18630ED91CC2366A0085C0B8 /* Sources */,
+				18630EDA1CC2366A0085C0B8 /* Frameworks */,
+				18630EDB1CC2366A0085C0B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18630EE41CC2366A0085C0B8 /* PBXTargetDependency */,
+			);
+			name = ResStockholmApiKitTests;
+			productName = ResStockholmApiKitTests;
+			productReference = 18630EDD1CC2366A0085C0B8 /* ResStockholmApiKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		18937E301BFF33FA00C523C9 /* Res Smart */ = {
 			isa = PBXNativeTarget;
@@ -1019,7 +1079,7 @@
 		18937E291BFF33FA00C523C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Mikael Hellman";
 				TargetAttributes = {
@@ -1031,6 +1091,9 @@
 								enabled = 1;
 							};
 						};
+					};
+					18630EDC1CC2366A0085C0B8 = {
+						CreatedOnToolsVersion = 7.3;
 					};
 					18937E301BFF33FA00C523C9 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -1090,6 +1153,7 @@
 				18937E511BFF33FB00C523C9 /* Res Smart WatchKit Extension */,
 				18A9E8461C18993B008F97C8 /* ResStockholmApiKit */,
 				1818B2651C404FE0004E3CA3 /* Today */,
+				18630EDC1CC2366A0085C0B8 /* ResStockholmApiKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1132,6 +1196,13 @@
 			files = (
 				186236011C411CE40056338E /* Assets.xcassets in Resources */,
 				1818B26D1C404FE0004E3CA3 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18630EDB1CC2366A0085C0B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1208,6 +1279,15 @@
 			files = (
 				1818B26A1C404FE0004E3CA3 /* TodayViewController.swift in Sources */,
 				186235FD1C411C2B0056338E /* TripIcons.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18630ED91CC2366A0085C0B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18630EE01CC2366A0085C0B8 /* ResStockholmApiKitTests.swift in Sources */,
+				18630EED1CC236A80085C0B8 /* SearchCriterionStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1363,6 +1443,11 @@
 			target = 18A9E8461C18993B008F97C8 /* ResStockholmApiKit */;
 			targetProxy = 1818B2761C405D55004E3CA3 /* PBXContainerItemProxy */;
 		};
+		18630EE41CC2366A0085C0B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18A9E8461C18993B008F97C8 /* ResStockholmApiKit */;
+			targetProxy = 18630EE31CC2366A0085C0B8 /* PBXContainerItemProxy */;
+		};
 		18937E461BFF33FB00C523C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 18937E421BFF33FB00C523C9 /* Res Smart WatchKit App */;
@@ -1463,6 +1548,30 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		18630EE51CC2366A0085C0B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = ResStockholmApiKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mikael-hellman.ResStockholmApiKitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		18630EE61CC2366A0085C0B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = ResStockholmApiKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mikael-hellman.ResStockholmApiKitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -1718,6 +1827,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		18630EEB1CC2366A0085C0B8 /* Build configuration list for PBXNativeTarget "ResStockholmApiKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18630EE51CC2366A0085C0B8 /* Debug */,
+				18630EE61CC2366A0085C0B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		18937E2C1BFF33FA00C523C9 /* Build configuration list for PBXProject "Res Smart" */ = {
 			isa = XCConfigurationList;
