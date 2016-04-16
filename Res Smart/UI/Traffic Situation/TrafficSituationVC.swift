@@ -84,8 +84,9 @@ class TrafficSituationVC: UITableViewController {
   /**
    * Cell for index.
    */
-  override func tableView(tableView: UITableView,
-                          cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(
+    tableView: UITableView,
+    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
     if indexPath.row == 0 {
       return createHeaderCell(indexPath)
@@ -100,8 +101,10 @@ class TrafficSituationVC: UITableViewController {
   /**
    * Before displaying cell
    */
-  override func tableView(tableView: UITableView,
-                          willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(
+    tableView: UITableView, willDisplayCell cell: UITableViewCell,
+    forRowAtIndexPath indexPath: NSIndexPath) {
+    
     let bgColorView = UIView()
     bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
     cell.selectedBackgroundView = bgColorView
@@ -110,8 +113,9 @@ class TrafficSituationVC: UITableViewController {
   /**
    * User selected row
    */
-  override func tableView(tableView: UITableView,
-                          didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(
+    tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
     selectedGroup = situationGroups[indexPath.section]
     if selectedGroup?.tripType == TripType.Bus {
       performSegueWithIdentifier("ShowBusFilter", sender: nil)
@@ -195,8 +199,12 @@ class TrafficSituationVC: UITableViewController {
     let cell = tableView.dequeueReusableCellWithIdentifier(
       "SituationRow", forIndexPath: indexPath) as! SituationRow
     
-    if group.deviations.count == 0 && group.plannedSituations.count == 0 && group.situations.count == 0 {
+    if group.deviations.count == 0 && group.plannedSituations.count == 0 {
       cell.messageLabel.text = "Inga störningar."
+      if group.situations.count != 0 {
+        cell.messageLabel.text = "Inga övriga störningar."
+      }
+      
       cell.accessoryType = .None
       cell.userInteractionEnabled = false
       return cell
