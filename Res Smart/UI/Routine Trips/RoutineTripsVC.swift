@@ -492,9 +492,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   private func shouldReload() -> Bool {
     if let routine = bestRoutineTrip, let trip = routine.trips.first {
-      let departureDate = trip.tripSegments.first!.departureDateTime
-      if NSDate().timeIntervalSinceDate(departureDate) > 30 {
-        return true
+      if let segment = trip.tripSegments.first {
+        if NSDate().timeIntervalSinceDate(segment.departureDateTime) > 30 {
+          return true
+        }
       }
     }
     return (NSDate().timeIntervalSinceDate(lastUpdated) > 120)
