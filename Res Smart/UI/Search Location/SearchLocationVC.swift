@@ -287,8 +287,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     
     stationOptionsAlert.addAction(
       UIAlertAction(title: favouriteTitle, style: .Default, handler: toggleFavouriteStation))
+    /*
+     TODO: "Show on map" here...
     stationOptionsAlert.addAction(
       UIAlertAction(title: "Visa på karta", style: .Default, handler: nil))
+    */
     stationOptionsAlert.addAction(
       UIAlertAction(title: "Avbryt", style: .Cancel, handler: { _ in
         self.selectedLocation = nil
