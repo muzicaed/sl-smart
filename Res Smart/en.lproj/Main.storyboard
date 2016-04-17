@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z2r-oZ-gqC">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -25,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="1504" y="1337"/>
         </scene>
-        <!--Sök resa-->
+        <!--Trip search-->
         <scene sceneID="Jvl-1s-m4F">
             <objects>
                 <tableViewController id="Hg1-8K-Ui9" customClass="TripSearchVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
@@ -259,8 +258,8 @@
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="068-l7-XTW">
                                                     <rect key="frame" x="-2" y="-1" width="418" height="46"/>
                                                     <segments>
-                                                        <segment title="Tidigast åka"/>
-                                                        <segment title="Senast framme"/>
+                                                        <segment title="Earliest departure"/>
+                                                        <segment title="Latest arrival"/>
                                                     </segments>
                                                     <connections>
                                                         <action selector="onDepartureArrivalChanged:" destination="Hg1-8K-Ui9" eventType="valueChanged" id="aYH-Ki-QrT"/>
@@ -366,7 +365,7 @@
                             <outlet property="delegate" destination="Hg1-8K-Ui9" id="pei-WU-5NV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Sök resa" id="glH-7o-VC8">
+                    <navigationItem key="navigationItem" title="Trip search" id="glH-7o-VC8">
                         <barButtonItem key="leftBarButtonItem" title="Avancerad" id="ddt-6P-8PN">
                             <connections>
                                 <action selector="onAdvancedButtonTap:" destination="Hg1-8K-Ui9" id="Yse-Pp-DQH"/>
@@ -630,10 +629,10 @@
             </objects>
             <point key="canvasLocation" x="2216" y="4101"/>
         </scene>
-        <!--Rapporter-->
+        <!--Alla rapporter-->
         <scene sceneID="IqQ-eV-8MA">
             <objects>
-                <tableViewController title="Rapporter" id="fzm-Vq-VFQ" customClass="ReportsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Alla rapporter" id="fzm-Vq-VFQ" customClass="ReportsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="adn-By-tGo">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -747,7 +746,7 @@
                             <outlet property="delegate" destination="fzm-Vq-VFQ" id="AoA-gN-2Ww"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Rapporter" id="ohI-KE-MbW"/>
+                    <navigationItem key="navigationItem" title="Alla rapporter" id="ohI-KE-MbW"/>
                     <connections>
                         <segue destination="wU6-uG-41P" kind="show" identifier="ShowDeviation" id="ugA-LU-u62"/>
                     </connections>
@@ -947,11 +946,11 @@
             </objects>
             <point key="canvasLocation" x="3610" y="4101"/>
         </scene>
-        <!--Trafikläget-->
+        <!--Traffic state-->
         <scene sceneID="xdy-hX-E3g">
             <objects>
                 <navigationController id="cgm-qe-xun" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Trafikläget" image="WarningIcon" id="h03-w4-daJ"/>
+                    <tabBarItem key="tabBarItem" title="Traffic state" image="WarningIcon" id="h03-w4-daJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="lyw-sX-FVR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1115,7 +1114,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="&quot;Åka till jobbet&quot;, &quot;Hälsa på Petter&quot;" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UcP-ws-VIP">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="t.ex. &quot;Åka till jobbet&quot;, &quot;Hälsa på Petter&quot;" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UcP-ws-VIP">
                                                     <rect key="frame" x="23" y="8" width="368" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
@@ -2255,7 +2254,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RKX-gr-Nla" userLabel="More info">
                                                     <rect key="frame" x="0.0" y="94" width="370" height="15"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peka för tider och mer info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeG-mh-Hh3" userLabel="Peka för mer info">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch for time table and more info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeG-mh-Hh3" userLabel="Peka för mer info">
                                                             <rect key="frame" x="8" y="0.0" width="354" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -2355,13 +2354,13 @@
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <string key="label">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att peka på knappen "Mina rutiner" i övre högra hörnet.</string>
                                                                     </accessibility>
-                                                                    <string key="text">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att peka på "Mina rutiner". 
+                                                                    <string key="text">To be able to use Smart Routines you need to add your routines by tapping "My routines".
 
-Appen lär sig dina rutiner och visar automatiskt den resa du vill göra härnäst!
+This app learns your travel routines and will automatically show trip suggestions!
 
-Tips: Har du en Apple Watch kan du snabbt och enkelt se Smarta Rutiner även på klockan.
+Hint: You can also use your Apple Watch to quickly see Smart Routines.
 
-Välkommen till ett smartare sätt att pendla.</string>
+Welcome to a smarter way to commute.</string>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -2429,7 +2428,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                         <constraint firstAttribute="height" constant="10" id="N0N-LO-TiK"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Smartare reseförslag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjN-eh-EaF">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Smarter trip suggestions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjN-eh-EaF">
                                                                     <rect key="frame" x="0.0" y="10" width="339" height="23"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -2437,11 +2436,11 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YW8-Gc-pDf">
                                                                     <rect key="frame" x="0.0" y="33" width="339" height="207"/>
-                                                                    <string key="text">Appen lär sig dina rutiner och visar automatiskt den resa du vill göra härnäst!
+                                                                    <string key="text">This app learns your travel routines and will automatically show trip suggestions!
 
-Tips: Har du en Apple Watch kan du snabbt och enkelt se Smarta Rutiner även på klockan.
+Hint: You can also use your Apple Watch to quickly see Smart Routines.
 
-Smarta Rutiner och Res Smart på Apple Watch kräver en prenumeration.</string>
+Smart Routines and Travel Smart on Apple Watch requires a subscription.</string>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -2601,7 +2600,7 @@ Smarta Rutiner och Res Smart på Apple Watch kräver en prenumeration.</string>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiK-10-sGX">
                                             <rect key="frame" x="10" y="8" width="378" height="19"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Andra rutiner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xD-MP-Srz">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Other routines" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xD-MP-Srz">
                                                     <rect key="frame" x="0.0" y="0.0" width="378" height="19"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -2643,7 +2642,7 @@ Smarta Rutiner och Res Smart på Apple Watch kräver en prenumeration.</string>
                                 <action selector="onHelpTap:" destination="TL9-Eb-L0b" id="tIn-dM-i0t"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Mina rutiner" id="KgG-WF-SzF">
+                        <barButtonItem key="rightBarButtonItem" title="My routines" id="KgG-WF-SzF">
                             <connections>
                                 <segue destination="06E-RP-qJs" kind="show" identifier="ManageRoutineTrips" id="plm-BT-rVX"/>
                             </connections>
@@ -2763,7 +2762,7 @@ direkt från din iPhone.</string>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <size key="titleShadowOffset" width="1" height="0.0"/>
-                                            <state key="normal" title="Börja prenumerera">
+                                            <state key="normal" title="Subscribe">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -2813,7 +2812,7 @@ direkt från din iPhone.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ny kund - Prova gratis i en månad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6A3-uG-BcN">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New customers - Try one month for free" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6A3-uG-BcN">
                                             <rect key="frame" x="8" y="144" width="354" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
@@ -2826,7 +2825,7 @@ direkt från din iPhone.</string>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <size key="titleShadowOffset" width="1" height="0.0"/>
-                                            <state key="normal" title="Börja prenumerera">
+                                            <state key="normal" title="Subscribe">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -2904,7 +2903,7 @@ direkt från din iPhone.</string>
                             <outlet property="delegate" destination="9oH-AC-RT9" id="ANd-C1-Eux"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Prenumerera" id="1Ko-XG-vqg">
+                    <navigationItem key="navigationItem" title="Subscribe" id="1Ko-XG-vqg">
                         <barButtonItem key="rightBarButtonItem" title="Nej tack" id="dQj-YS-vA5">
                             <connections>
                                 <action selector="onNoTap:" destination="9oH-AC-RT9" id="rCk-IS-JEt"/>
@@ -2935,7 +2934,7 @@ direkt från din iPhone.</string>
             </objects>
             <point key="canvasLocation" x="2216" y="-666"/>
         </scene>
-        <!--Resor-->
+        <!--Trips-->
         <scene sceneID="LFU-N2-nnr">
             <objects>
                 <tableViewController id="sEV-FQ-PQe" customClass="TripListVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
@@ -3527,7 +3526,7 @@ direkt från din iPhone.</string>
                             <outlet property="delegate" destination="sEV-FQ-PQe" id="PEP-tS-Ttl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Resor" id="0uZ-f6-13o">
+                    <navigationItem key="navigationItem" title="Trips" id="0uZ-f6-13o">
                         <barButtonItem key="rightBarButtonItem" id="Spi-sN-6xW">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kiD-04-7XX">
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
