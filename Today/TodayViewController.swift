@@ -21,6 +21,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   @IBOutlet weak var travelTimeLabel: UILabel!
   @IBOutlet weak var iconWrapperView: UIView!
   @IBOutlet weak var inAboutLabel: UILabel!
+  @IBOutlet weak var nextLabel: UILabel!
   
   var bestRoutine: RoutineTrip?
   var refreshTimmer: NSTimer?
@@ -146,21 +147,40 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * Update widget UI
    */
   func updateUI() {
-    if let bestRoutineTrip = self.bestRoutine, trip = bestRoutineTrip.trips.first {
-      self.titleLabel.text = bestRoutineTrip.title
-      self.departureStationLabel.text = trip.tripSegments.first?.origin.name
-      self.departureTimeLabel.text = DateUtils.dateAsTimeString(
-        trip.tripSegments.first!.departureDateTime)
-      self.arrivalStationLabel.text = trip.tripSegments.last?.destination.name
-      self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(
-        trip.tripSegments.last!.arrivalDateTime)
-      self.travelTimeLabel.text = DateUtils.createTripDurationString(trip.durationMin)
-      
-      self.inAboutLabel.text = "  " + DateUtils.createAboutTimeText(
-        trip.tripSegments.first!.departureDateTime,
-        isWalk: (trip.tripSegments.first!.type == TripType.Walk))
-      
-      self.createTripSegmentIcons(trip)
+    if let bestRoutineTrip = self.bestRoutine {
+      if let trip = bestRoutineTrip.trips.first {
+        self.titleLabel.text = bestRoutineTrip.title
+        self.departureStationLabel.text = trip.tripSegments.first?.origin.name
+        self.departureTimeLabel.text = DateUtils.dateAsTimeString(
+          trip.tripSegments.first!.departureDateTime)
+        self.arrivalStationLabel.text = trip.tripSegments.last?.destination.name
+        self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(
+          trip.tripSegments.last!.arrivalDateTime)
+        self.travelTimeLabel.text = DateUtils.createTripDurationString(trip.durationMin)
+        
+        self.inAboutLabel.text = DateUtils.createAboutTimeText(
+          trip.tripSegments.first!.departureDateTime,
+          isWalk: (trip.tripSegments.first!.type == TripType.Walk))
+        
+        self.createTripSegmentIcons(trip)
+        
+        
+        var second: Trip? = nil
+        if bestRoutineTrip.trips.count > 1 {
+          second = bestRoutineTrip.trips[1]
+        }
+        
+        if let second = second?.tripSegments.first, first = trip.tripSegments.first {
+          let depTimeInterval = first.departureDateTime.timeIntervalSinceNow
+          if depTimeInterval < (60 * 11) {
+            let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)) + 0.5)
+            if diffMin <= 60 {
+              nextLabel.text = String(format: NSLocalizedString("Nästa: %d min", comment: ""), diffMin)
+              nextLabel.hidden = false
+            }
+          }
+        }
+      }
     }
   }
   
