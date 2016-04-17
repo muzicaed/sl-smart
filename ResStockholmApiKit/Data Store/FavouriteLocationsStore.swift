@@ -41,6 +41,19 @@ public class FavouriteLocationsStore {
   }
   
   /**
+   * Retrive "LatestLocations" filtered on stations from data store
+   */
+  public func retrieveFavouriteStationsOnly() -> [Location] {
+    cachedLocations = retrieveFavouriteLocations()
+    return cachedLocations.filter() {
+      if $0.type == LocationType.Station {
+        return true
+      }
+      return false
+    }
+  }
+  
+  /**
    * Add a location to favourite location list.
    */
   public func addFavouriteLocation(location: Location) {

@@ -119,7 +119,7 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
       
       if let mark = placemarks?.first {
         if let street = mark.thoroughfare {
-          self.currentStreet =  street
+          self.currentStreet = street
         } else if let sub = mark.subLocality {
           self.currentStreet = sub
         }

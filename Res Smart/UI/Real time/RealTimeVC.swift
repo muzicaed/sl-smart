@@ -312,8 +312,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Create header cell
    */
   private func createHeaderCell(indexPath: NSIndexPath) -> RealTimeHeaderRow {
-    let cell = tableView!.dequeueReusableCellWithIdentifier("Header",
-                                                            forIndexPath: indexPath) as! RealTimeHeaderRow
+    let cell = tableView!.dequeueReusableCellWithIdentifier(
+      "Header", forIndexPath: indexPath) as! RealTimeHeaderRow
     
     setHeaderData(cell, indexPath: indexPath)
     return cell
@@ -323,8 +323,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Create bus trip cell
    */
   private func createBussTripCell(indexPath: NSIndexPath) -> RealTimeTripRow {
-    let cell = tableView!.dequeueReusableCellWithIdentifier("TripRow",
-                                                            forIndexPath: indexPath) as! RealTimeTripRow
+    let cell = tableView!.dequeueReusableCellWithIdentifier(
+      "TripRow", forIndexPath: indexPath) as! RealTimeTripRow
     
     setRowData(cell, indexPath: indexPath)
     return cell
@@ -334,8 +334,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Create not found cell
    */
   private func createNotFoundCell(indexPath: NSIndexPath) -> UITableViewCell {
-    return tableView!.dequeueReusableCellWithIdentifier("NotFoundRow",
-                                                        forIndexPath: indexPath)
+    return tableView!.dequeueReusableCellWithIdentifier(
+      "NotFoundRow", forIndexPath: indexPath)
   }
   
   /**

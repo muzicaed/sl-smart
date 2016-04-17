@@ -40,7 +40,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     }
     view.backgroundColor = StyleHelper.sharedInstance.background
     
-    loadLatestLocations()
+    loadListedLocations()
     prepareSearchController()
     tableView.tableHeaderView = searchController!.searchBar
     tableView.tableFooterView = UIView()
@@ -58,7 +58,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.navigationBar.translucent = false
-    loadLatestLocations()
+    loadListedLocations()
     tableView.reloadData()
   }
   
@@ -70,7 +70,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     if now.timeIntervalSinceDate(loadedTime) > (60 * 30) { // 0.5 hour
       navigationController?.popToRootViewControllerAnimated(false)
     } else {
-      loadLatestLocations()
+      loadListedLocations()
     }
   }
   
@@ -100,8 +100,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     } else {
       FavouriteLocationsStore.sharedInstance.addFavouriteLocation(selectedLocation!)
     }
-    favouriteLocations = FavouriteLocationsStore.sharedInstance.retrieveFavouriteLocations()
-    latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestLocations()
+    loadListedLocations()
     self.selectedLocation = nil
     tableView.reloadData()
   }
@@ -264,7 +263,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
         performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
         delegate?.selectedLocationFromSearch(loc)
       }
-      loadLatestLocations()
+      loadListedLocations()
     }
   }
   
@@ -468,13 +467,15 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   }
   
   /**
-   * Loads list of latest selected locations.
+   * Loads listed locations (latests and favourites)
    */
-  private func loadLatestLocations() {
+  private func loadListedLocations() {
     if searchOnlyForStations {
       latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestStationsOnly()
+      favouriteLocations = FavouriteLocationsStore.sharedInstance.retrieveFavouriteStationsOnly()
     } else {
       latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestLocations()
+      favouriteLocations = FavouriteLocationsStore.sharedInstance.retrieveFavouriteLocations()
     }
     lastCount = latestLocations.count
   }
