@@ -88,6 +88,10 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
         nearbyVC.delegate = delegate
         nearbyVC.isLocationForRealTimeSearch = isLocationForRealTimeSearch
       }
+    } else if segue.identifier == "ShowLocationMap" {
+      if let mapVC = segue.destinationViewController as? LocationMapVC {
+        mapVC.location = selectedLocation
+      }
     }
   }
   
@@ -103,6 +107,13 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     loadListedLocations()
     self.selectedLocation = nil
     tableView.reloadData()
+  }
+  
+  /**
+   * Show selected station on map.
+   */
+  func showLocationOnMap(alertAction: UIAlertAction) {
+    performSegueWithIdentifier("ShowLocationMap", sender: self)
   }
   
   // MARK: UITableViewController
@@ -287,11 +298,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     
     stationOptionsAlert.addAction(
       UIAlertAction(title: favouriteTitle, style: .Default, handler: toggleFavouriteStation))
-    /*
-     TODO: "Show on map" here...
     stationOptionsAlert.addAction(
       UIAlertAction(title: "Visa på karta", style: .Default, handler: showLocationOnMap))
-    */
     stationOptionsAlert.addAction(
       UIAlertAction(title: "Avbryt", style: .Cancel, handler: { _ in
         self.selectedLocation = nil
