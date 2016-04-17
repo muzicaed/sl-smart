@@ -290,7 +290,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     /*
      TODO: "Show on map" here...
     stationOptionsAlert.addAction(
-      UIAlertAction(title: "Visa på karta", style: .Default, handler: nil))
+      UIAlertAction(title: "Visa på karta", style: .Default, handler: showLocationOnMap))
     */
     stationOptionsAlert.addAction(
       UIAlertAction(title: "Avbryt", style: .Cancel, handler: { _ in
