@@ -18,7 +18,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   @IBOutlet weak var departureStationLabel: UILabel!
   @IBOutlet weak var arrivalTimeLabel: UILabel!
   @IBOutlet weak var arrivalStationLabel: UILabel!
-  @IBOutlet weak var travelTimeLabel: UILabel!
   @IBOutlet weak var iconWrapperView: UIView!
   @IBOutlet weak var inAboutLabel: UILabel!
   @IBOutlet weak var nextLabel: UILabel!
@@ -156,7 +155,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         self.arrivalStationLabel.text = trip.tripSegments.last?.destination.name
         self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(
           trip.tripSegments.last!.arrivalDateTime)
-        self.travelTimeLabel.text = DateUtils.createTripDurationString(trip.durationMin)
         
         self.inAboutLabel.text = DateUtils.createAboutTimeText(
           trip.tripSegments.first!.departureDateTime,
@@ -190,7 +188,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
     var newDefaultMarginInsets = defaultMarginInsets
     newDefaultMarginInsets.top = 10
-    newDefaultMarginInsets.bottom = 30
+    newDefaultMarginInsets.bottom = 10
     return newDefaultMarginInsets
   }
 }
