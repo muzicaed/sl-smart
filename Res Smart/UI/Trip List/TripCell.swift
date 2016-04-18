@@ -77,28 +77,28 @@ class TripCell: UITableViewCell {
         let data = TripHelper.friendlyLineData(segment)
         
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
-        iconView.frame.size = CGSizeMake(15, 15)
-        iconView.center = CGPointMake(19 / 2, 9)
+        iconView.frame.size = CGSizeMake(18, 18)
+        iconView.center = CGPointMake(24 / 2, 6)
         
         let label = UILabel()
-        label.text = data.short
+        label.text = "\u{200A}" + data.short + "\u{200A}"
         label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont.boldSystemFontOfSize(7)
+        label.font = UIFont.systemFontOfSize(8.5)
         label.minimumScaleFactor = 0.6
         label.adjustsFontSizeToFitWidth = true
         label.textColor = UIColor.whiteColor()
         label.backgroundColor = data.color
-        label.frame.size.width = 15
-        label.frame.size.height = 15
-        label.center = CGPointMake((19 / 2), 25)
+        label.frame.size.width = 18
+        label.frame.size.height = 18
+        label.center = CGPointMake((24 / 2), 26)
         label.layer.cornerRadius = 2
         label.clipsToBounds = true
         
         let wrapperView = UIView(
           frame:CGRect(
             origin: CGPointMake(0, 0),
-            size: CGSizeMake(19, 30)))
-        wrapperView.frame.origin = CGPointMake((19 * CGFloat(count)), 0)
+            size: CGSizeMake(18, 36)))
+        wrapperView.frame.origin = CGPointMake((20 * CGFloat(count)), 0)
         wrapperView.clipsToBounds = false
         
         wrapperView.addSubview(iconView)
@@ -110,8 +110,8 @@ class TripCell: UITableViewCell {
             warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
           }
           warnIconView.frame.size = CGSizeMake(10, 10)
-          warnIconView.center = CGPointMake((19 / 2) + 5, 4)
-          warnIconView.alpha = 0.8
+          warnIconView.center = CGPointMake((26 / 2) + 5, 0)
+          warnIconView.alpha = 0.85
           wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
         }
         

@@ -10,7 +10,7 @@ import Foundation
 
 public class TripHelper {
   
-  static let walkColor = UIColor.darkGrayColor()
+  static let walkColor = UIColor(white: 0.6, alpha: 1.0)
   static let busColor = UIColor(red: 215/255, green: 29/255, blue: 36/255, alpha: 1.0)
   static let blueBusColor = UIColor(red: 0/255, green: 137/255, blue: 202/255, alpha: 1.0)
   static let shipColor = UIColor(red: 0/255, green: 137/255, blue: 202/255, alpha: 1.0)
@@ -52,53 +52,53 @@ public class TripHelper {
     
     switch type {
     case .Ship:
-      return ("Båt", "Djurgårdsfärjan", "SHIP-NEUTRAL", shipColor)
+      return ("Båt", "Djurgårdsfärjan", "SHIP", shipColor)
     case .Ferry:
-      return ("Båt", "Sjövägen (Pendelbåt)", "SHIP-NEUTRAL", shipColor)
+      return ("Båt", "Sjövägen (Pendelbåt)", "SHIP", shipColor)
     case .Tram:
       if lineNumber == "7" {
-        return (lineNumber!, "Spårväg City 7", "TRAM-RAIL", tram7)
+        return (lineNumber!, "Spårväg City 7", "TRAM", tram7)
       } else if lineNumber == "12" {
-        return (lineNumber!, "Nockebybanan 12", "TRAM-RAIL", tram12)
+        return (lineNumber!, "Nockebybanan 12", "TRAM", tram12)
       } else if lineNumber == "21" {
-        return (lineNumber!, "Lidingöbanan 21", "TRAM-RAIL", tram21)
+        return (lineNumber!, "Lidingöbanan 21", "TRAM", tram21)
       } else if lineNumber == "22" {
-        return (lineNumber!, "Tvärbana 22", "TRAM-RAIL", tram22)
+        return (lineNumber!, "Tvärbana 22", "TRAM", tram22)
       } else if lineNumber == "25" {
-        return (lineNumber!, "Saltsjöbanan 25", "TRAM-LOCAL", tram25_26)
+        return (lineNumber!, "Saltsjöbanan 25", "TRAM", tram25_26)
       } else if lineNumber == "26" {
-        return (lineNumber!, "Saltsjöbanan 26", "TRAM-LOCAL", tram25_26)
+        return (lineNumber!, "Saltsjöbanan 26", "TRAM", tram25_26)
       } else if lineNumber == "27" {
-        return (lineNumber!, "Roslagsbanan, Kårstalinjen", "TRAM-LOCAL", tram27_29)
+        return (lineNumber!, "Roslagsbanan, Kårstalinjen", "TRAM", tram27_29)
       } else if lineNumber == "28" {
-        return (lineNumber!, "Roslagsbanan, Österskärslinjen", "TRAM-LOCAL", tram27_29)
+        return (lineNumber!, "Roslagsbanan, Österskärslinjen", "TRAM", tram27_29)
       } else if lineNumber == "29" {
-        return (lineNumber!, "Roslagsbanan, Näsbyparkslinjen", "TRAM-LOCAL", tram27_29)
+        return (lineNumber!, "Roslagsbanan, Näsbyparkslinjen", "TRAM", tram27_29)
       }
-      return (lineNumber!, "Spårvagn linje \(lineNumber!)", "TRAM-RAIL", UIColor.darkGrayColor())
+      return (lineNumber!, "Spårvagn linje \(lineNumber!)", "TRAM", UIColor.darkGrayColor())
     case .Bus:
       if segment.name.lowercaseString.rangeOfString("blåbuss") != nil {
-        return ("\(lineNumber!)", "Blåbuss \(lineNumber!)", "BUS-BLUE", blueBusColor)
+        return ("\(lineNumber!)", "Blåbuss \(lineNumber!)", "BUS", blueBusColor)
       }
-      return ("\(lineNumber!)", "Buss \(lineNumber!)", "BUS-RED", busColor)
+      return ("\(lineNumber!)", "Buss \(lineNumber!)", "BUS", busColor)
     case .Metro:
       if lineNumber == "13" || lineNumber == "14" {
-        return (lineNumber!, "Röda linjen", "METRO-RED", redMetro)
+        return (lineNumber!, "Röda linjen", "METRO", redMetro)
       } else if lineNumber == "17" || lineNumber == "18" || lineNumber == "19" {
-        return (lineNumber!, "Gröna linjen", "METRO-GREEN", greenMetro)
+        return (lineNumber!, "Gröna linjen", "METRO", greenMetro)
       } else if lineNumber == "10" || lineNumber == "11" {
-        return (lineNumber!, "Blå linjen", "METRO-BLUE", blueMetro)
+        return (lineNumber!, "Blå linjen", "METRO", blueMetro)
       }
-      return ("T-bana", "Tunnelbanan", "METRO-NEUTRAL", UIColor.darkGrayColor())
+      return ("T-bana", "Tunnelbanan", "METRO", UIColor.darkGrayColor())
     case .Train:
       if lineNumber! == "35" {
-        return ("\(lineNumber!)", "Pendeltåg linje \(lineNumber!)", "TRAIN-NEUTRAL", pinkTrain)
+        return ("\(lineNumber!)", "Pendeltåg linje \(lineNumber!)", "TRAIN", pinkTrain)
       }
-      return ("\(lineNumber!)", "Pendeltåg linje \(lineNumber!)", "TRAIN-NEUTRAL", greenTrain)
+      return ("\(lineNumber!)", "Pendeltåg linje \(lineNumber!)", "TRAIN", greenTrain)
     case .Narbuss:
-      return ("\(lineNumber!)", "Närtrafikens buss \(lineNumber!)", "BUS-NEUTRAL", busColor)
+      return ("\(lineNumber!)", "Närtrafikens buss \(lineNumber!)", "BUS", busColor)
     case .Walk:
-      return ("\(segment.distance!)m", "Gå", "WALK-NEUTRAL", walkColor)
+      return ("\(segment.distance!)m", "Gå", "WALK", walkColor)
     default:
       return ("", "", "", UIColor.darkGrayColor())
     }
