@@ -24,18 +24,18 @@ class WatchService {
           "?": true
         ]
         
-        var otherTrips = [Dictionary<String, AnyObject>]()
+        var otherRoutines = [Dictionary<String, AnyObject>]()
         if routineTrips.count > 1 {
           for (index, routineTrip) in routineTrips.enumerate() {
             if index != 0 {
-              otherTrips.append(routineTrip.watchTransferData(0))
+              otherRoutines.append(routineTrip.watchTransferData(0))
             }
             if index >= 5 {
               break
             }
           }
         }
-        response["o"] = otherTrips
+        response["o"] = otherRoutines
       } else {
         response["?"] = false
       }
@@ -63,9 +63,8 @@ class WatchService {
           score: ScorePostHelper.BestTapCountScore)
         
         let crit = routineTrip.criterions.copy() as! TripSearchCriterion
-        let date = NSDate(timeIntervalSinceNow: (60 * 5) * -1)
-        crit.date = DateUtils.dateAsDateString(date)
-        crit.time = DateUtils.dateAsTimeString(date)
+        crit.date = DateUtils.dateAsDateString(NSDate())
+        crit.time = DateUtils.dateAsTimeString(NSDate())
         
         SearchTripService.tripSearch(crit,
           callback: { resTuple in

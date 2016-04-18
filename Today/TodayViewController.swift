@@ -29,6 +29,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * View loaded for the first time.
    */
   override func viewDidLoad() {
+    print("viewDidLoad")
     super.viewDidLoad()
     MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
     self.preferredContentSize = CGSizeMake(320, 160)
@@ -36,17 +37,25 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     view.addGestureRecognizer(gesture)
   }
   
-  override func viewDidAppear(animated: Bool) {
-    super.viewDidDisappear(animated)
-    loadTripData(nil)
-  }
-  
   /**
    * View did disappear
    */
   override func viewDidDisappear(animated: Bool) {
     super.viewDidDisappear(animated)
+    print("viewDidDisappear")
     stopRefreshTimmer()
+    stopReloadTimmer()
+  }
+  
+  /**
+   * View did appear
+   */
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    print("viewDidAppear")
+    loadTripData()
+    startRefreshTimmer()
+    startReloadTimmer()
   }
   
   /**
@@ -54,7 +63,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * OS Controlled.
    */
   func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
-    completionHandler(NCUpdateResult.NoData)
+    print("widgetPerformUpdateWithCompletionHandler")
+    updateUI()
+    completionHandler(NCUpdateResult.NewData)
   }
   
   /**
@@ -70,7 +81,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   func startRefreshTimmer() {
     stopRefreshTimmer()
     refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
-      10.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
+      5.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
   }
   
   /**
@@ -81,13 +92,30 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     refreshTimmer = nil
   }
   
+  /**
+   * Starts the reload timmer
+   */
+  func startReloadTimmer() {
+    stopRefreshTimmer()
+    refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
+      60, target: self, selector: #selector(loadTripData), userInfo: nil, repeats: true)
+  }
+  
+  /**
+   * Stop the reload timmer
+   */
+  func stopReloadTimmer() {
+    refreshTimmer?.invalidate()
+    refreshTimmer = nil
+  }
+  
   // MARK: Private
   
   /**
    * Loads trip data and updates UI
    */
-  private func loadTripData(callback: (() -> Void)?) {
-    startRefreshTimmer()
+  func loadTripData() {
+    print("LOAD TRIP DATA")
     RoutineService.findRoutineTrip({ routineTrips in
       self.bestRoutine = routineTrips.first
       dispatch_async(dispatch_get_main_queue()) {
@@ -98,7 +126,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
           self.titleLabel.text = "Hittade inga rutiner."
         }
       }
-      callback?()
       return
     })
   }
