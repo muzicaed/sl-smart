@@ -237,49 +237,55 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       lastSelected = (lastStoredSelected == "BUS") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("BUS")
-      segmentView.addSegmentWithTitle(nil,
-                                      onSelectionImage: UIImage(named: "BUS-NEUTRAL"),
-                                      offSelectionImage: UIImage(named: "BUS-NEUTRAL"))
+      segmentView.addSegmentWithTitle(
+        nil,
+        onSelectionImage: UIImage(named: "BUS"),
+        offSelectionImage: UIImage(named: "BUS"))
     }
     if realTimeDepartures?.metros.count > 0 {
       lastSelected = (lastStoredSelected == "METRO") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("METRO")
-      segmentView.addSegmentWithTitle(nil,
-                                      onSelectionImage: UIImage(named: "METRO-NEUTRAL"),
-                                      offSelectionImage: UIImage(named: "METRO-NEUTRAL"))
+      segmentView.addSegmentWithTitle(
+        nil,
+        onSelectionImage: UIImage(named: "METRO"),
+        offSelectionImage: UIImage(named: "METRO"))
     }
     if realTimeDepartures?.trains.count > 0 {
       lastSelected = (lastStoredSelected == "TRAIN") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("TRAIN")
-      segmentView.addSegmentWithTitle(nil,
-                                      onSelectionImage: UIImage(named: "TRAIN-NEUTRAL"),
-                                      offSelectionImage: UIImage(named: "TRAIN-NEUTRAL"))
+      segmentView.addSegmentWithTitle(
+        nil,
+        onSelectionImage: UIImage(named: "TRAIN"),
+        offSelectionImage: UIImage(named: "TRAIN"))
     }
     if realTimeDepartures?.trams.count > 0 {
       lastSelected = (lastStoredSelected == "TRAM") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("TRAM")
-      segmentView.addSegmentWithTitle(nil,
-                                      onSelectionImage: UIImage(named: "TRAM-RAIL"),
-                                      offSelectionImage: UIImage(named: "TRAM-RAIL"))
+      segmentView.addSegmentWithTitle(
+        nil,
+        onSelectionImage: UIImage(named: "TRAM"),
+        offSelectionImage: UIImage(named: "TRAM"))
     }
     if realTimeDepartures?.localTrams.count > 0 {
       lastSelected = (lastStoredSelected == "LOCAL-TRAM") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("LOCAL-TRAM")
-      segmentView.addSegmentWithTitle(nil,
-                                      onSelectionImage: UIImage(named: "TRAM-LOCAL"),
-                                      offSelectionImage: UIImage(named: "TRAM-LOCAL"))
+      segmentView.addSegmentWithTitle(
+        nil,
+        onSelectionImage: UIImage(named: "TRAM"),
+        offSelectionImage: UIImage(named: "TRAM"))
     }
     if realTimeDepartures?.boats.count > 0 {
       lastSelected = (lastStoredSelected == "BOAT") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("BOAT")
-      segmentView.addSegmentWithTitle(nil,
-                                      onSelectionImage: UIImage(named: "SHIP-NEUTRAL"),
-                                      offSelectionImage: UIImage(named: "SHIP-NEUTRAL"))
+      segmentView.addSegmentWithTitle(
+        nil,
+        onSelectionImage: UIImage(named: "SHIP"),
+        offSelectionImage: UIImage(named: "SHIP"))
     }
     
     if tabCount > 0 {
@@ -420,7 +426,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     switch tabKeys {
     case "BUS":
       let bus = realTimeDepartures!.busses[busKeys[indexPath.section]]!.first!
-      cell.icon.image = UIImage(named: "BUS-NEUTRAL")
+      cell.icon.image = UIImage(named: "BUS")
       cell.titleLabel.text = "\(bus.stopAreaName)"
     case "METRO":
       let metro = realTimeDepartures!.metros[metroKeys[indexPath.section]]!.first!
@@ -439,7 +445,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       }
     case "TRAIN":
       let train = realTimeDepartures!.trains[trainKeys[indexPath.section]]!.first!
-      cell.icon.image = UIImage(named: "TRAIN-NEUTRAL")
+      cell.icon.image = UIImage(named: "TRAIN")
       if train.journeyDirection == 1 {
         cell.titleLabel.text = "Pendeltåg, södergående"
       } else if train.journeyDirection == 2 {
@@ -455,7 +461,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       cell.titleLabel.text = tram.groupOfLine
     case "BOAT":
       let boat = realTimeDepartures!.boats[boatKeys[indexPath.section]]!.first!
-      cell.icon.image = UIImage(named: "SHIP-NEUTRAL")
+      cell.icon.image = UIImage(named: "SHIP")
       cell.titleLabel.text = boat.groupOfLine
     default:
       break
