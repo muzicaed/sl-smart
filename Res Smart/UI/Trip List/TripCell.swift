@@ -81,10 +81,10 @@ class TripCell: UITableViewCell {
         iconView.center = CGPointMake(24 / 2, 6)
         
         let label = UILabel()
-        label.text = "\u{200A}" + data.short + "\u{200A}"
+        label.text = "\u{200A}\(data.short)\u{200A}"
         label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont.systemFontOfSize(8.5)
-        label.minimumScaleFactor = 0.6
+        label.font = UIFont.boldSystemFontOfSize(10)
+        label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true
         label.textColor = UIColor.whiteColor()
         label.backgroundColor = data.color

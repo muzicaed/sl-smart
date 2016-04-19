@@ -134,19 +134,19 @@ class RoutineTripCell: UICollectionViewCell {
         
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
         iconView.frame.size = CGSizeMake(18, 18)
-        iconView.center = CGPointMake(24 / 2, 7)
+        iconView.center = CGPointMake(30 / 2, 3)
         
         let label = UILabel()
         label.text = "\u{200A}\(data.short)\u{200A}"
         label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont.systemFontOfSize(8.5)
-        label.minimumScaleFactor = 0.6
+        label.font = UIFont.boldSystemFontOfSize(10)
+        label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true
         label.textColor = UIColor.whiteColor()
         label.backgroundColor = data.color
         label.frame.size.width = 18
         label.frame.size.height = 18
-        label.center = CGPointMake((24 / 2), 27)
+        label.center = CGPointMake((30 / 2), 23)
         label.layer.cornerRadius = 2
         label.clipsToBounds = true
         
@@ -166,7 +166,7 @@ class RoutineTripCell: UICollectionViewCell {
             warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
           }
           warnIconView.frame.size = CGSizeMake(10, 10)
-          warnIconView.center = CGPointMake((26 / 2) + 5, 0)
+          warnIconView.center = CGPointMake((30 / 2) + 6, -4)
           warnIconView.alpha = 0.85
           wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
         }

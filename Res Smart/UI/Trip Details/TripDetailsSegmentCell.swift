@@ -22,27 +22,29 @@ class TripDetailsSegmentCell: UITableViewCell {
   /**
    * Set cell data.
    */
-  func setData(indexPath: NSIndexPath,
-    visual: (isVisible: Bool, hasStops: Bool), trip: Trip) {
-      let segment = trip.tripSegments[indexPath.section]
-      let lineData = TripHelper.friendlyLineData(segment)
-      tripTypeIcon.image = UIImage(named: lineData.icon)
-      lineLabel.text = lineData.long
-      directionLabel.text = TripHelper.friendlyTripSegmentDesc(segment)
-      warningLabel.text = segment.rtuMessages
-      
-      if warningLabel.text == nil {
-        warningLabel.hidden = true
-      } else if !segment.isWarning {
-        warningLabel.textColor = UIColor(red: 39/255, green: 44/255, blue: 211/255, alpha: 1.0)
-      }
-      
-      if segment.type == .Walk {
-        lineLabel.hidden = true
-        warningLabel.hidden = true
-      }
-      updateStops(visual)
-      segmentIcon.frame.size.height += contentView.bounds.size.height + 1
+  func setData(
+    indexPath: NSIndexPath, visual: (isVisible: Bool, hasStops: Bool), trip: Trip) {
+    
+    let segment = trip.tripSegments[indexPath.section]
+    let lineData = TripHelper.friendlyLineData(segment)
+    tripTypeIcon.image = UIImage(named: lineData.icon)
+    lineLabel.text = lineData.long
+    lineLabel.textColor = lineData.color
+    directionLabel.text = TripHelper.friendlyTripSegmentDesc(segment)
+    warningLabel.text = segment.rtuMessages
+    
+    if warningLabel.text == nil {
+      warningLabel.hidden = true
+    } else if !segment.isWarning {
+      warningLabel.textColor = UIColor(red: 39/255, green: 44/255, blue: 211/255, alpha: 1.0)
+    }
+    
+    if segment.type == .Walk {
+      lineLabel.hidden = true
+      warningLabel.hidden = true
+    }
+    updateStops(visual)
+    segmentIcon.frame.size.height += contentView.bounds.size.height + 1
   }
   
   /**

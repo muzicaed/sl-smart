@@ -10,7 +10,7 @@ import Foundation
 
 public class TripHelper {
   
-  static let walkColor = UIColor(white: 0.6, alpha: 1.0)
+  static let walkColor = UIColor(white: 0.4, alpha: 1.0)
   static let busColor = UIColor(red: 215/255, green: 29/255, blue: 36/255, alpha: 1.0)
   static let blueBusColor = UIColor(red: 0/255, green: 137/255, blue: 202/255, alpha: 1.0)
   static let shipColor = UIColor(red: 0/255, green: 137/255, blue: 202/255, alpha: 1.0)
@@ -57,25 +57,25 @@ public class TripHelper {
       return ("Båt", "Sjövägen (Pendelbåt)", "SHIP", shipColor)
     case .Tram:
       if lineNumber == "7" {
-        return (lineNumber!, "Spårväg City 7", "TRAM", tram7)
+        return ("S\(lineNumber!)", "Spårväg City 7", "TRAM", tram7)
       } else if lineNumber == "12" {
-        return (lineNumber!, "Nockebybanan 12", "TRAM", tram12)
+        return ("L\(lineNumber!)", "Nockebybanan 12", "TRAM", tram12)
       } else if lineNumber == "21" {
-        return (lineNumber!, "Lidingöbanan 21", "TRAM", tram21)
+        return ("L\(lineNumber!)", "Lidingöbanan 21", "TRAM", tram21)
       } else if lineNumber == "22" {
-        return (lineNumber!, "Tvärbana 22", "TRAM", tram22)
+        return ("L\(lineNumber!)", "Tvärbana 22", "TRAM", tram22)
       } else if lineNumber == "25" {
-        return (lineNumber!, "Saltsjöbanan 25", "TRAM", tram25_26)
+        return ("L\(lineNumber!)", "Saltsjöbanan 25", "TRAM", tram25_26)
       } else if lineNumber == "26" {
-        return (lineNumber!, "Saltsjöbanan 26", "TRAM", tram25_26)
+        return ("L\(lineNumber!)", "Saltsjöbanan 26", "TRAM", tram25_26)
       } else if lineNumber == "27" {
-        return (lineNumber!, "Roslagsbanan, Kårstalinjen", "TRAM", tram27_29)
+        return ("L\(lineNumber!)", "Roslagsbanan, Kårstalinjen", "TRAM", tram27_29)
       } else if lineNumber == "28" {
-        return (lineNumber!, "Roslagsbanan, Österskärslinjen", "TRAM", tram27_29)
+        return ("L\(lineNumber!)", "Roslagsbanan, Österskärslinjen", "TRAM", tram27_29)
       } else if lineNumber == "29" {
-        return (lineNumber!, "Roslagsbanan, Näsbyparkslinjen", "TRAM", tram27_29)
+        return ("L\(lineNumber!)", "Roslagsbanan, Näsbyparkslinjen", "TRAM", tram27_29)
       }
-      return (lineNumber!, "Spårvagn linje \(lineNumber!)", "TRAM", UIColor.darkGrayColor())
+      return ("S\(lineNumber!)", "Spårvagn linje \(lineNumber!)", "TRAM", UIColor.darkGrayColor())
     case .Bus:
       if segment.name.lowercaseString.rangeOfString("blåbuss") != nil {
         return ("\(lineNumber!)", "Blåbuss \(lineNumber!)", "BUS", blueBusColor)
@@ -83,22 +83,22 @@ public class TripHelper {
       return ("\(lineNumber!)", "Buss \(lineNumber!)", "BUS", busColor)
     case .Metro:
       if lineNumber == "13" || lineNumber == "14" {
-        return (lineNumber!, "Röda linjen", "METRO", redMetro)
+        return ("T\(lineNumber!)", "Röda linjen", "METRO", redMetro)
       } else if lineNumber == "17" || lineNumber == "18" || lineNumber == "19" {
-        return (lineNumber!, "Gröna linjen", "METRO", greenMetro)
+        return ("T\(lineNumber!)", "Gröna linjen", "METRO", greenMetro)
       } else if lineNumber == "10" || lineNumber == "11" {
-        return (lineNumber!, "Blå linjen", "METRO", blueMetro)
+        return ("T\(lineNumber!)", "Blå linjen", "METRO", blueMetro)
       }
       return ("T-bana", "Tunnelbanan", "METRO", UIColor.darkGrayColor())
     case .Train:
       if lineNumber! == "35" {
-        return ("\(lineNumber!)", "Pendeltåg linje \(lineNumber!)", "TRAIN", pinkTrain)
+        return ("J\(lineNumber!)", "Pendeltåg linje \(lineNumber!)", "TRAIN", pinkTrain)
       }
-      return ("\(lineNumber!)", "Pendeltåg linje \(lineNumber!)", "TRAIN", greenTrain)
+      return ("J\(lineNumber!)", "Pendeltåg linje \(lineNumber!)", "TRAIN", greenTrain)
     case .Narbuss:
       return ("\(lineNumber!)", "Närtrafikens buss \(lineNumber!)", "BUS", busColor)
     case .Walk:
-      return ("\(segment.distance!)m", "Gå", "WALK", walkColor)
+      return ("➜", "Gå", "WALK", walkColor)
     default:
       return ("", "", "", UIColor.darkGrayColor())
     }

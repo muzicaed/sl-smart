@@ -185,7 +185,7 @@ class TrafficSituationVC: UITableViewController {
       "SituationRow", forIndexPath: indexPath) as! SituationRow
     
     cell.messageLabel.text = situation.message
-    cell.messageLabel.textColor = UIColor(red: 232/255, green: 22/255, blue: 34/255, alpha: 1.0)
+    cell.messageLabel.textColor = StyleHelper.sharedInstance.warningColor
     cell.accessoryType = .None
     cell.userInteractionEnabled = false
     return cell
