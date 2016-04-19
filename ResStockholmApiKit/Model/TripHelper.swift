@@ -98,7 +98,7 @@ public class TripHelper {
     case .Narbuss:
       return ("\(lineNumber!)", "Närtrafikens buss \(lineNumber!)", "BUS", busColor)
     case .Walk:
-      return ("➜", "Gå", "WALK", walkColor)
+      return ("→", "Gå", "WALK", walkColor)
     default:
       return ("", "", "", UIColor.darkGrayColor())
     }
