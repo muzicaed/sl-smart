@@ -83,7 +83,7 @@ class TripCell: UITableViewCell {
         let label = UILabel()
         label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
         label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont.boldSystemFontOfSize(8)
+        label.font = UIFont.boldSystemFontOfSize(9)
         label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true
         label.textColor = UIColor.whiteColor()
@@ -95,7 +95,7 @@ class TripCell: UITableViewCell {
         let wrapperView = UIView(
           frame:CGRect(
             origin: CGPointMake(0, 0),
-            size: CGSizeMake(22, 36)))
+            size: CGSizeMake(22, 39)))
         wrapperView.frame.origin = CGPointMake((26 * CGFloat(count)), 5)
         wrapperView.clipsToBounds = false
         
@@ -108,7 +108,7 @@ class TripCell: UITableViewCell {
             warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
           }
           warnIconView.frame.size = CGSizeMake(10, 10)
-          warnIconView.center = CGPointMake((22 / 2) + 8, -2)
+          warnIconView.center = CGPointMake((22 / 2) + 10, -5)
           warnIconView.alpha = 0.9
           wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
         }

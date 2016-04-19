@@ -3715,7 +3715,7 @@ direkt från din iPhone.</string>
                                                     <rect key="frame" x="44" y="0.0" width="60" height="105"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BUS" translatesAutoresizingMaskIntoConstraints="NO" id="iyl-c3-qGr">
-                                                            <rect key="frame" x="15" y="37" width="30" height="30"/>
+                                                            <rect key="frame" x="19" y="41" width="22" height="22"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="30" id="dDt-GH-ARa"/>
                                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="eWP-XB-2Bc"/>
@@ -3792,7 +3792,7 @@ direkt från din iPhone.</string>
                                                     <rect key="frame" x="354" y="0.0" width="60" height="105"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTs-py-aMk">
-                                                            <rect key="frame" x="21" y="42.5" width="17" height="20.5"/>
+                                                            <rect key="frame" x="21" y="42" width="17" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -3835,8 +3835,8 @@ direkt från din iPhone.</string>
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="24.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IO5-TR-x6D">
-                                            <rect key="frame" x="0.0" y="0.0" width="104" height="25"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IO5-TR-x6D">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="25"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sub-segment-icon" translatesAutoresizingMaskIntoConstraints="NO" id="VYV-ps-mCt">
                                                     <rect key="frame" x="0.0" y="0.0" width="44" height="25"/>
@@ -3860,17 +3860,17 @@ direkt från din iPhone.</string>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" misplaced="YES" text="Stockholm södra" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hZ-e8-Nd6" userLabel="Location">
+                                                    <rect key="frame" x="104" y="0.0" width="96" height="25"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="gdx-9m-kUD"/>
                                             </constraints>
                                         </stackView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" fixedFrame="YES" text="Stockholm södra" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hZ-e8-Nd6" userLabel="Location">
-                                            <rect key="frame" x="104" y="0.0" width="96" height="25"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="IO5-TR-x6D" firstAttribute="leading" secondItem="ql2-Mt-GO2" secondAttribute="leading" id="exZ-uA-Nk0"/>
@@ -4216,7 +4216,7 @@ direkt från din iPhone.</string>
         </scene>
     </scenes>
     <resources>
-        <image name="BUS" width="30" height="30"/>
+        <image name="BUS" width="22" height="22"/>
         <image name="BUS-NEUTRAL" width="15" height="15"/>
         <image name="ClockIcon" width="25" height="25"/>
         <image name="EventGood" width="25" height="25"/>

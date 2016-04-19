@@ -125,7 +125,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let label = UILabel()
         label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
         label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont.boldSystemFontOfSize(8)
+        label.font = UIFont.boldSystemFontOfSize(9)
         label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true
         label.textColor = UIColor.whiteColor()
