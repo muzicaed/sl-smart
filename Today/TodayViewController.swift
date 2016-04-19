@@ -75,7 +75,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   func startRefreshTimmer() {
     stopRefreshTimmer()
     refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
-      30.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
+      10.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
     NSRunLoop.mainRunLoop().addTimer(refreshTimmer!, forMode: NSRunLoopCommonModes)
   }
   
