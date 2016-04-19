@@ -32,6 +32,7 @@ class TripDetailsSegmentCell: UITableViewCell {
     lineLabel.textColor = lineData.color
     directionLabel.text = TripHelper.friendlyTripSegmentDesc(segment)
     warningLabel.text = segment.rtuMessages
+    warningLabel.hidden = false
     
     if warningLabel.text == nil {
       warningLabel.hidden = true
@@ -51,11 +52,10 @@ class TripDetailsSegmentCell: UITableViewCell {
    * Update state based on stops
    */
   func updateStops(visual: (isVisible: Bool, hasStops: Bool)) {
-    arrowLabel.hidden = true
+    arrowLabel.text = ""
     if visual.hasStops {
       userInteractionEnabled = true
       selectionStyle = .Default
-      arrowLabel.hidden = false
       if visual.isVisible {
         arrowLabel.text = "▲"
       } else {

@@ -3368,7 +3368,7 @@ direkt från din iPhone.</string>
                                                                                 </view>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYN-fU-XeE" userLabel="Space">
                                                                                     <rect key="frame" x="156" y="0.0" width="51" height="30"/>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Redan avgått" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfk-gN-9zL">
                                                                                     <rect key="frame" x="207" y="0.0" width="156" height="30"/>
@@ -3664,6 +3664,12 @@ direkt från din iPhone.</string>
                                                         <constraint firstAttribute="width" constant="44" id="RRt-nm-TRa"/>
                                                         <constraint firstAttribute="height" constant="44" id="uhP-Iq-mUr"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="RRt-nm-TRa"/>
+                                                            <exclude reference="uhP-Iq-mUr"/>
+                                                        </mask>
+                                                    </variation>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiG-yH-VqD" userLabel="Time">
                                                     <rect key="frame" x="44" y="0.0" width="60" height="44"/>
@@ -3704,18 +3710,15 @@ direkt från din iPhone.</string>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" image="segment-time-icon" translatesAutoresizingMaskIntoConstraints="NO" id="tOP-vM-zg2">
                                                     <rect key="frame" x="0.0" y="0.0" width="44" height="105"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="44" id="fn4-1M-ENu"/>
-                                                    </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EuV-Gg-OIz">
                                                     <rect key="frame" x="44" y="0.0" width="60" height="105"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BUS" translatesAutoresizingMaskIntoConstraints="NO" id="iyl-c3-qGr">
-                                                            <rect key="frame" x="15" y="37.5" width="30" height="30"/>
+                                                            <rect key="frame" x="15" y="37" width="30" height="30"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="30" id="dDt-GH-ARa"/>
-                                                                <constraint firstAttribute="height" constant="30" id="eWP-XB-2Bc"/>
+                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="30" id="dDt-GH-ARa"/>
+                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="eWP-XB-2Bc"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -3733,6 +3736,7 @@ direkt från din iPhone.</string>
                                                             <rect key="frame" x="0.0" y="0.0" width="250" height="10"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="3AW-k8-8cd"/>
                                                                 <constraint firstAttribute="height" constant="10" id="E8C-Wt-GYs"/>
                                                             </constraints>
                                                         </view>
@@ -3757,6 +3761,7 @@ direkt från din iPhone.</string>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Problem problem problem stora störningar, inte bra just nu måste du vara försiktning. Bla bla bla massor av text." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="EPv-fd-xKI" userLabel="Warning">
                                                             <rect key="frame" x="0.0" y="50" width="250" height="45"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" id="KQz-FK-nJ4"/>
                                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="55" id="oan-bL-Kmc"/>
                                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="20" id="svh-ib-VzW"/>
                                                             </constraints>
@@ -3774,10 +3779,14 @@ direkt från din iPhone.</string>
                                                             <rect key="frame" x="0.0" y="95" width="250" height="10"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="chG-t6-Rb6"/>
                                                                 <constraint firstAttribute="height" constant="10" id="dhM-Ua-YMJ"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="9Hy-uk-r7H"/>
+                                                    </constraints>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Daw-fa-Bsy">
                                                     <rect key="frame" x="354" y="0.0" width="60" height="105"/>
@@ -3797,6 +3806,9 @@ direkt från din iPhone.</string>
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="5Dc-bd-rot"/>
+                                            </constraints>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -3832,6 +3844,12 @@ direkt från din iPhone.</string>
                                                         <constraint firstAttribute="width" constant="44" id="27e-01-qk1"/>
                                                         <constraint firstAttribute="height" constant="25" id="hDk-oC-JrW"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="27e-01-qk1"/>
+                                                            <exclude reference="hDk-oC-JrW"/>
+                                                        </mask>
+                                                    </variation>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQm-8R-6Z8" userLabel="Time">
                                                     <rect key="frame" x="44" y="0.0" width="60" height="25"/>
@@ -3984,6 +4002,12 @@ direkt från din iPhone.</string>
                                                         <constraint firstAttribute="width" constant="44" id="JOh-lm-bU6"/>
                                                         <constraint firstAttribute="height" constant="44" id="bVx-a3-hm0"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="JOh-lm-bU6"/>
+                                                            <exclude reference="bVx-a3-hm0"/>
+                                                        </mask>
+                                                    </variation>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVu-LK-ZWM" userLabel="Time">
                                                     <rect key="frame" x="44" y="0.0" width="60" height="44"/>
