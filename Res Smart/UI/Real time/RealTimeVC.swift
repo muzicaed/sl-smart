@@ -224,8 +224,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       separatorColour: UIColor.lightGrayColor(),
       separatorWidth: 0.0,
       segmentProperties: [
+        keySegmentOnSelectionTextColour: UIColor.blackColor(),
         keySegmentTitleFont: UIFont.systemFontOfSize(12.0),
-        keySegmentOnSelectionColour: StyleHelper.sharedInstance.mainGreen,
+        keySegmentOnSelectionColour: StyleHelper.sharedInstance.highlight,
         keySegmentOffSelectionColour: UIColor.clearColor(),
         keyContentVerticalMargin: 10.0])
     
@@ -288,9 +289,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     }
     
     if tabCount > 0 {
+      let screenWidth = UIScreen.mainScreen().bounds.width
       segmentView.delegate = self
       segmentView.selectSegmentAtIndex(lastSelected)
-      segmentView.frame.size.width = CGFloat(80 * tabCount)
+      segmentView.frame.size.width = CGFloat((screenWidth / 4) * CGFloat(tabCount))
       topView.addSubview(segmentView)
       topView.alpha = 1.0
     }

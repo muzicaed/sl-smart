@@ -106,7 +106,7 @@ class TrafficSituationVC: UITableViewController {
     forRowAtIndexPath indexPath: NSIndexPath) {
     
     let bgColorView = UIView()
-    bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+    bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
     cell.selectedBackgroundView = bgColorView
   }
   

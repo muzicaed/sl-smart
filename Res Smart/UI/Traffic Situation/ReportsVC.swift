@@ -98,7 +98,7 @@ class ReportsVC: UITableViewController {
   override func tableView(tableView: UITableView,
     willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
       let bgColorView = UIView()
-      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+      bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
       cell.selectedBackgroundView = bgColorView
   }
   
