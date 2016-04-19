@@ -89,9 +89,9 @@ class TripCell: UITableViewCell {
         label.textColor = UIColor.whiteColor()
         label.backgroundColor = data.color
         label.frame.size.width = 18
-        label.frame.size.height = 18
-        label.center = CGPointMake((30 / 2), 25)
-        label.layer.cornerRadius = 2
+        label.frame.size.height = 14
+        label.center = CGPointMake((30 / 2), 21)
+        label.layer.cornerRadius = 1
         label.clipsToBounds = true
         
         let wrapperView = UIView(

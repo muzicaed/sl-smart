@@ -145,9 +145,9 @@ class RoutineTripCell: UICollectionViewCell {
         label.textColor = UIColor.whiteColor()
         label.backgroundColor = data.color
         label.frame.size.width = 18
-        label.frame.size.height = 18
-        label.center = CGPointMake((30 / 2), 23)
-        label.layer.cornerRadius = 2
+        label.frame.size.height = 14
+        label.center = CGPointMake((30 / 2), 19)
+        label.layer.cornerRadius = 1
         label.clipsToBounds = true
         
         let wrapperView = UIView(
