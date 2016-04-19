@@ -2985,40 +2985,40 @@ direkt från din iPhone.</string>
                                                     <rect key="frame" x="0.0" y="0.0" width="406" height="119"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgC-7i-Wg6" userLabel="Color">
-                                                            <rect key="frame" x="0.0" y="0.0" width="5" height="119"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="3" height="119"/>
                                                             <color key="backgroundColor" red="0.20000000300000001" green="0.56078433989999998" blue="0.34901961679999999" alpha="1" colorSpace="deviceRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="5" id="M6x-my-qo5"/>
+                                                                <constraint firstAttribute="width" constant="3" id="M6x-my-qo5"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fr4-dF-9P4" userLabel="Space">
-                                                            <rect key="frame" x="5" y="0.0" width="10" height="119"/>
+                                                            <rect key="frame" x="3" y="0.0" width="10" height="119"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="10" id="8aM-nY-jJD"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bwV-Tc-Txp" userLabel="Time table">
-                                                            <rect key="frame" x="15" y="0.0" width="361" height="119"/>
+                                                            <rect key="frame" x="13" y="0.0" width="363" height="119"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="57k-Mb-jiK" userLabel="Table rows">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="119"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="363" height="119"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aws-cf-65s" userLabel="Origin -&gt; Destiantion">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="79"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="363" height="79"/>
                                                                             <subviews>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="oDP-KS-Dxx" userLabel="Origin">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="155" height="79"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="156" height="79"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rNp-ON-15c" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="155" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="156" height="5"/>
                                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="EAd-4r-SUi"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Adu-cO-5U2">
-                                                                                            <rect key="frame" x="0.0" y="12" width="155" height="30"/>
+                                                                                            <rect key="frame" x="0.0" y="12" width="156" height="30"/>
                                                                                             <subviews>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19:23" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0h-aJ-S6Y" userLabel="19:23 (om 3 min.)">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="50.5" height="30"/>
@@ -3035,7 +3035,7 @@ direkt från din iPhone.</string>
                                                                                                     </constraints>
                                                                                                 </view>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text=" ❨om 15 min❩" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fZw-eg-ua2">
-                                                                                                    <rect key="frame" x="55.5" y="0.0" width="99.5" height="30"/>
+                                                                                                    <rect key="frame" x="55.5" y="0.0" width="100.5" height="30"/>
                                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="height" constant="30" id="E6U-ey-JgI"/>
@@ -3048,13 +3048,13 @@ direkt från din iPhone.</string>
                                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                         </stackView>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjS-Yf-fPy" userLabel="Karlberg">
-                                                                                            <rect key="frame" x="0.0" y="44" width="155" height="16"/>
+                                                                                            <rect key="frame" x="0.0" y="44" width="156" height="16"/>
                                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeZ-l7-nJS" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="74" width="155" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="74" width="156" height="5"/>
                                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="3Pc-Ec-MVM"/>
@@ -3064,7 +3064,7 @@ direkt från din iPhone.</string>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                 </stackView>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uoy-NZ-V3i" userLabel="Spacer">
-                                                                                    <rect key="frame" x="155" y="0.0" width="51" height="79"/>
+                                                                                    <rect key="frame" x="156" y="0.0" width="51" height="79"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="sFN-yu-WBF">
                                                                                             <rect key="frame" x="14.5" y="22" width="21.5" height="36"/>
@@ -3080,30 +3080,30 @@ direkt från din iPhone.</string>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="tww-pc-25E" userLabel="Destination">
-                                                                                    <rect key="frame" x="206" y="0.0" width="155" height="79"/>
+                                                                                    <rect key="frame" x="207" y="0.0" width="156" height="79"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x3G-Cc-rGN" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="155" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="156" height="5"/>
                                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="boh-Rw-jwO"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:43" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYi-XU-Ybz" userLabel="20:43">
-                                                                                            <rect key="frame" x="0.0" y="12" width="155" height="30"/>
+                                                                                            <rect key="frame" x="0.0" y="12" width="156" height="30"/>
                                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tic-hh-jhz" userLabel="Centralen">
-                                                                                            <rect key="frame" x="0.0" y="44" width="155" height="16"/>
+                                                                                            <rect key="frame" x="0.0" y="44" width="156" height="16"/>
                                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpr-AJ-yg1" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="74" width="155" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="74" width="156" height="5"/>
                                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="1gj-Do-FhW"/>
@@ -3121,21 +3121,21 @@ direkt från din iPhone.</string>
                                                                             </constraints>
                                                                         </stackView>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zdd-2p-gZK" userLabel="Icon &amp; Duration">
-                                                                            <rect key="frame" x="0.0" y="79" width="361" height="30"/>
+                                                                            <rect key="frame" x="0.0" y="79" width="363" height="30"/>
                                                                             <subviews>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="We1-hO-xvg" userLabel="Icon">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="155" height="30"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="156" height="30"/>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="30" id="p3b-S9-AZU" userLabel="height = 30"/>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIe-uI-5io" userLabel="Space">
-                                                                                    <rect key="frame" x="155" y="0.0" width="51" height="30"/>
+                                                                                    <rect key="frame" x="156" y="0.0" width="51" height="30"/>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Res tid: 1h 33m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1N-xr-607">
-                                                                                    <rect key="frame" x="206" y="0.0" width="155" height="30"/>
+                                                                                    <rect key="frame" x="207" y="0.0" width="156" height="30"/>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -3145,7 +3145,7 @@ direkt från din iPhone.</string>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         </stackView>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6LI-gw-PvM" userLabel="Padding">
-                                                                            <rect key="frame" x="0.0" y="109" width="361" height="10"/>
+                                                                            <rect key="frame" x="0.0" y="109" width="363" height="10"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="10" id="x36-8Z-N0F"/>
@@ -3230,55 +3230,55 @@ direkt från din iPhone.</string>
                                                     <rect key="frame" x="0.0" y="0.0" width="406" height="119"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zZQ-Hx-XmM" userLabel="Color">
-                                                            <rect key="frame" x="0.0" y="0.0" width="5" height="119"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="3" height="119"/>
                                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="5" id="9BG-Xn-iao"/>
+                                                                <constraint firstAttribute="width" constant="3" id="9BG-Xn-iao"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yhq-0U-fWE" userLabel="Space">
-                                                            <rect key="frame" x="5" y="0.0" width="10" height="119"/>
+                                                            <rect key="frame" x="3" y="0.0" width="10" height="119"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="10" id="Mk1-39-WNE"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Xs-Q8-AvY" userLabel="Time table">
-                                                            <rect key="frame" x="15" y="0.0" width="361" height="119"/>
+                                                            <rect key="frame" x="13" y="0.0" width="363" height="119"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Uwc-jU-Xcj" userLabel="Table rows">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="119"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="363" height="119"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k5C-e1-gCO" userLabel="Origin -&gt; Destiantion">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="79"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="363" height="79"/>
                                                                             <subviews>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="1ee-Lf-YUw" userLabel="Origin">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="155" height="79"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="156" height="79"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gL6-QO-DH9" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="155" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="156" height="5"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="dxo-ly-sng"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2k6-Yc-lDy">
-                                                                                            <rect key="frame" x="0.0" y="12" width="155" height="30"/>
+                                                                                            <rect key="frame" x="0.0" y="12" width="156" height="30"/>
                                                                                             <subviews>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19:23" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asr-hr-nur" userLabel="19:23 (om 3 min.)">
-                                                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="151" height="30"/>
                                                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                                     <nil key="highlightedColor"/>
                                                                                                 </label>
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eak-sv-gmc" userLabel="Space">
-                                                                                                    <rect key="frame" x="150" y="0.0" width="5" height="30"/>
+                                                                                                    <rect key="frame" x="151" y="0.0" width="5" height="30"/>
                                                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="width" constant="5" id="cEa-VG-n6u"/>
                                                                                                     </constraints>
                                                                                                 </view>
                                                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text=" ❨om 15 min❩" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njH-ni-u7N">
-                                                                                                    <rect key="frame" x="155" y="0.0" width="0.0" height="30"/>
+                                                                                                    <rect key="frame" x="156" y="0.0" width="0.0" height="30"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="height" constant="30" id="Z87-dK-alu"/>
                                                                                                     </constraints>
@@ -3289,13 +3289,13 @@ direkt från din iPhone.</string>
                                                                                             </subviews>
                                                                                         </stackView>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bd3-Nt-dCP" userLabel="Karlberg">
-                                                                                            <rect key="frame" x="0.0" y="44" width="155" height="16"/>
+                                                                                            <rect key="frame" x="0.0" y="44" width="156" height="16"/>
                                                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUr-u3-iRl" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="74" width="155" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="74" width="156" height="5"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="vlZ-uG-7fk"/>
                                                                                             </constraints>
@@ -3304,7 +3304,7 @@ direkt från din iPhone.</string>
                                                                                     <color key="backgroundColor" red="0.52156862749999999" green="0.70980392160000005" blue="0.043137254899999998" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                                                                 </stackView>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ea2-Nn-763" userLabel="Spacer">
-                                                                                    <rect key="frame" x="155" y="0.0" width="51" height="79"/>
+                                                                                    <rect key="frame" x="156" y="0.0" width="51" height="79"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="PDm-is-PSY">
                                                                                             <rect key="frame" x="14" y="21.5" width="21.5" height="36"/>
@@ -3320,28 +3320,28 @@ direkt från din iPhone.</string>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="GWH-OT-l8d" userLabel="Destination">
-                                                                                    <rect key="frame" x="206" y="0.0" width="155" height="79"/>
+                                                                                    <rect key="frame" x="207" y="0.0" width="156" height="79"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nO-Kr-PSh" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="155" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="156" height="5"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="2kI-eJ-84f"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:43" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cxn-6F-eoy" userLabel="20:43">
-                                                                                            <rect key="frame" x="0.0" y="12" width="155" height="30"/>
+                                                                                            <rect key="frame" x="0.0" y="12" width="156" height="30"/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arG-Uj-qP4" userLabel="Centralen">
-                                                                                            <rect key="frame" x="0.0" y="44" width="155" height="16"/>
+                                                                                            <rect key="frame" x="0.0" y="44" width="156" height="16"/>
                                                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wls-dD-7hO" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="74" width="155" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="74" width="156" height="5"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="d1d-DD-A2g"/>
                                                                                             </constraints>
@@ -3357,21 +3357,21 @@ direkt från din iPhone.</string>
                                                                             </constraints>
                                                                         </stackView>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwN-WD-Ozr" userLabel="Icon &amp; Duration">
-                                                                            <rect key="frame" x="0.0" y="79" width="361" height="30"/>
+                                                                            <rect key="frame" x="0.0" y="79" width="363" height="30"/>
                                                                             <subviews>
-                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MsT-mQ-GQc" userLabel="Icon">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="155" height="30"/>
+                                                                                <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MsT-mQ-GQc" userLabel="Icon">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="156" height="30"/>
                                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="30" id="i3H-Qf-1D4" userLabel="height = 30"/>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYN-fU-XeE" userLabel="Space">
-                                                                                    <rect key="frame" x="155" y="0.0" width="51" height="30"/>
+                                                                                    <rect key="frame" x="156" y="0.0" width="51" height="30"/>
                                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Redan avgått" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfk-gN-9zL">
-                                                                                    <rect key="frame" x="206" y="0.0" width="155" height="30"/>
+                                                                                    <rect key="frame" x="207" y="0.0" width="156" height="30"/>
                                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                     <nil key="highlightedColor"/>
@@ -3379,7 +3379,7 @@ direkt från din iPhone.</string>
                                                                             </subviews>
                                                                         </stackView>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O7P-qm-TmA" userLabel="Padding">
-                                                                            <rect key="frame" x="0.0" y="109" width="361" height="10"/>
+                                                                            <rect key="frame" x="0.0" y="109" width="363" height="10"/>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="10" id="Rwg-cp-PRC"/>
@@ -4192,7 +4192,7 @@ direkt från din iPhone.</string>
         </scene>
     </scenes>
     <resources>
-        <image name="BUS" width="15" height="15"/>
+        <image name="BUS" width="30" height="30"/>
         <image name="BUS-NEUTRAL" width="15" height="15"/>
         <image name="ClockIcon" width="25" height="25"/>
         <image name="EventGood" width="25" height="25"/>
@@ -4209,11 +4209,11 @@ direkt från din iPhone.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="V2Z-ue-vlu"/>
-        <segue reference="fPH-Xr-GVg"/>
         <segue reference="WoO-7G-VaU"/>
-        <segue reference="Q81-bK-EK6"/>
-        <segue reference="rzj-uS-OIZ"/>
+        <segue reference="V2Z-ue-vlu"/>
         <segue reference="gZB-Im-USu"/>
+        <segue reference="fPH-Xr-GVg"/>
+        <segue reference="rzj-uS-OIZ"/>
+        <segue reference="Lg4-KG-mN0"/>
     </inferredMetricsTieBreakers>
 </document>

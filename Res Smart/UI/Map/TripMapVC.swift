@@ -70,21 +70,26 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     var image: UIImage? = nil
     var bgColor = UIColor.clearColor()
     var isShaddow = false
+    var zIndex = CGFloat(0)
     
     if annotation.isKindOfClass(BigPin) {
       reuseId = "dot"
       image = UIImage(named: "MapDot")!
+      zIndex = 1
       
     } else if annotation.isKindOfClass(OriginPin) {
       reuseId = "origin-dot"
       image = UIImage(named: "MapOriginDot")!
+      zIndex = 1
       
     } else if annotation.isKindOfClass(SmallPin) {
       reuseId = "small-dot"
       image = UIImage(named: "MapDotSmall")!
+      zIndex = 1
       
     } else if annotation.isKindOfClass(TripTypeIconAnnotation) {
       let tripTypeIcon = annotation as! TripTypeIconAnnotation
+      zIndex = 10
       if let name = tripTypeIcon.imageName {
         image = UIImage(named: name)!
         bgColor = UIColor(white: 1.0, alpha: 0.9)
@@ -104,6 +109,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       pinView!.centerOffset = CGPointMake(0, 0)
       pinView!.calloutOffset = CGPointMake(0, -3)
       pinView!.backgroundColor = bgColor
+      pinView!.layer.zPosition = zIndex
       if isShaddow {
         pinView!.layer.masksToBounds = false
         pinView!.layer.shadowOffset = CGSizeMake(1, 1)
@@ -129,6 +135,14 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       return render
     }
     return MKOverlayRenderer()
+  }
+  
+  /**
+   * On annotaitions added.
+   * Move trip type icons to top.
+   */
+  func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
+    
   }
   
   // MARK: Private
@@ -249,7 +263,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     let pin = TripTypeIconAnnotation()
     pin.coordinate = coord
     pin.imageName = data.icon
-    pin.title = data.long
+    pin.title = data.long    
     if segment.type == .Walk {
       pin.subtitle = "\(segment.distance!) meter"
     } else {

@@ -13,13 +13,12 @@ import ResStockholmApiKit
 class RouteRenderer: MKPolylineRenderer {
   
   override init(overlay: MKOverlay) {
-    super.init(overlay: overlay)
+    super.init(overlay: overlay)  
     if let routePolyline = overlay as? RoutePolyline {
       if let segment = routePolyline.segment {
         setupRenderer(segment)
       }
-    }
-    
+    }    
   }
   
   /**
