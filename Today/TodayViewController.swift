@@ -24,6 +24,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   
   var bestRoutine: RoutineTrip?
   var refreshTimmer: NSTimer?
+  var reloadTimmer: NSTimer?
   
   /**
    * View loaded for the first time.
@@ -49,6 +50,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * View did appear
    */
   override func viewDidAppear(animated: Bool) {
+    print("Did appear")
     super.viewDidAppear(animated)
     loadTripData()
     startRefreshTimmer()
@@ -78,6 +80,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     stopRefreshTimmer()
     refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
       5.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
+    NSRunLoop.mainRunLoop().addTimer(refreshTimmer!, forMode: NSRunLoopCommonModes)
   }
   
   /**
@@ -92,17 +95,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * Starts the reload timmer
    */
   func startReloadTimmer() {
-    stopRefreshTimmer()
-    refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
+    stopReloadTimmer()
+    reloadTimmer = NSTimer.scheduledTimerWithTimeInterval(
       60, target: self, selector: #selector(loadTripData), userInfo: nil, repeats: true)
+    NSRunLoop.mainRunLoop().addTimer(reloadTimmer!, forMode: NSRunLoopCommonModes)
   }
   
   /**
    * Stop the reload timmer
    */
   func stopReloadTimmer() {
-    refreshTimmer?.invalidate()
-    refreshTimmer = nil
+    reloadTimmer?.invalidate()
+    reloadTimmer = nil
   }
   
   // MARK: Private
@@ -111,6 +115,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * Loads trip data and updates UI
    */
   func loadTripData() {
+    print("Load trip data")
     RoutineService.findRoutineTrip({ routineTrips in
       self.bestRoutine = routineTrips.first
       dispatch_async(dispatch_get_main_queue()) {
@@ -185,6 +190,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * Update widget UI
    */
   func updateUI() {
+    print("Update UI")
     if let bestRoutineTrip = self.bestRoutine {
       if let trip = bestRoutineTrip.trips.first {
         self.titleLabel.text = bestRoutineTrip.title
@@ -208,6 +214,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
         
         if let second = second?.tripSegments.first, first = trip.tripSegments.first {
+          print("Updated")
           let depTimeInterval = first.departureDateTime.timeIntervalSinceNow
           if depTimeInterval < (60 * 11) {
             let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)) + 0.5)
