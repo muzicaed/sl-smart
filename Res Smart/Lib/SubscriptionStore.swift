@@ -23,7 +23,7 @@ public class SubscriptionStore {
    * Check if user have a active subscription.
    */
   func isSubscribed() -> Bool {
-    // TODO: Remove this
+    // TODO PAY: Remove this
     return true
     
     if isSubscribedCache == nil {

@@ -34,6 +34,5 @@ public class UserPreferenceStore {
   func setLastRealTimeTripType(lastRealTimeTripType: String) {
     lastRealTimeTripTypeCache = lastRealTimeTripType
     defaults.setObject(lastRealTimeTripTypeCache, forKey: LastRealTimeTripType)
-    defaults.synchronize()
   }
 }
