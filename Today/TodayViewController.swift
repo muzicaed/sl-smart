@@ -156,8 +156,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         label.frame.size.width = 18
         label.frame.size.height = 12
         label.center = CGPointMake((18 / 2), 18)
-        label.layer.cornerRadius = 1
-        label.clipsToBounds = true
         
         let wrapperView = UIView(
           frame:CGRect(
