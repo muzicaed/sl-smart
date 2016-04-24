@@ -88,12 +88,14 @@ public class DateUtils {
     var day = formatter.stringFromDate(date)
     day = (day == "1" || day == "2") ? day + ":a" : day + ":e"
     
-    formatter.dateFormat = "EEEE"
-    var weekDay = formatter.stringFromDate(date)
-    
     formatter.dateFormat = "MMMM"
     let month = formatter.stringFromDate(date)
     
+    formatter.dateFormat = "EEEE"
+    var weekDay = formatter.stringFromDate(date)
+    
+    print(formatter.stringFromDate(NSDate()))
+    print(weekDay)
     if formatter.stringFromDate(NSDate()) == weekDay {
       weekDay = "Idag"
     } else if formatter.stringFromDate(NSDate(timeIntervalSinceNow: 86400)) == weekDay {
