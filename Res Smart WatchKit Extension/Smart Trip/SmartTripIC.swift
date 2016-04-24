@@ -105,8 +105,11 @@ class SmartTripIC: WKInterfaceController {
       if session.reachable {
         isLoading = true
         stopRefreshTimer()
-        session.sendMessage(
-          ["action": "RequestRoutineTrips"],
+        
+        let dictionary = ["action": "RequestRoutineTrips"]
+        let data = NSKeyedArchiver.archivedDataWithRootObject(dictionary)
+        session.sendMessageData(
+          data,
           replyHandler: requestRoutineTripsHandler,
           errorHandler: messageErrorHandler)
         retryTimer = NSTimer.scheduledTimerWithTimeInterval(
@@ -133,14 +136,15 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Handle reply for a "RequestRoutineTrips" message.
    */
-  func requestRoutineTripsHandler(reply: Dictionary<String, AnyObject>) {
+  func requestRoutineTripsHandler(reply: NSData) {    
+    let dictionary = NSKeyedUnarchiver.unarchiveObjectWithData(reply)! as! Dictionary<String, AnyObject>
     retryCount = 0
     stopRefreshTimer()
     isLoading = false
-    let hasData = reply["?"] as! Bool
+    let hasData = dictionary["?"] as! Bool
     // TODO: Validate reply?, sometime get back freaky data like "Unable to read data" (Not as an error)
     if hasData {
-      routineData = reply
+      routineData = dictionary
       if !handleEmptyTripResponse() {
         showContentUIState()
         lastUpdated = NSDate()
@@ -330,9 +334,10 @@ class SmartTripIC: WKInterfaceController {
    */
   func displayError(title: String, message: String?) {
     isLoading = false
-    let okAction = WKAlertAction(title: "Försök igen", style: .Default, handler: {})
-    presentAlertControllerWithTitle(title,
-                                    message: message, preferredStyle: .Alert, actions: [okAction])
+    let okAction = WKAlertAction(
+      title: "Försök igen", style: .Default, handler: {})
+    presentAlertControllerWithTitle(
+      title, message: message, preferredStyle: .Alert, actions: [okAction])
   }
   
   /**

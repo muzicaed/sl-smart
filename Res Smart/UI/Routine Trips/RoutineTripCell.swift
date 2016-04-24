@@ -129,28 +129,30 @@ class RoutineTripCell: UICollectionViewCell {
     var count = 0
     for (_, segment) in trip.tripSegments.enumerate() {
       if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
-        if count > 5 { return }
+        if count > 6 { return }
         let data = TripHelper.friendlyLineData(segment)
         
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
-        iconView.frame.size = CGSizeMake(15, 15)
-        iconView.center = CGPointMake(23 / 2, 9)
+        iconView.frame.size = CGSizeMake(22, 22)
+        iconView.center = CGPointMake(22 / 2, 3)
         
         let label = UILabel()
-        label.text = data.short
+        label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
         label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont.systemFontOfSize(7)
-        label.textColor = UIColor.darkGrayColor()
-        label.sizeToFit()
-        label.frame.size.width = 25
-        label.center = CGPointMake((23 / 2), 22)
-        label.lineBreakMode = .ByTruncatingTail
+        label.font = UIFont.boldSystemFontOfSize(9)
+        label.minimumScaleFactor = 0.5
+        label.adjustsFontSizeToFitWidth = true
+        label.textColor = UIColor.whiteColor()
+        label.backgroundColor = data.color
+        label.frame.size.width = 22
+        label.frame.size.height = 12
+        label.center = CGPointMake((22 / 2), 20)
         
         let wrapperView = UIView(
           frame:CGRect(
             origin: CGPointMake(0, 0),
-            size: CGSizeMake(23, 30)))
-        wrapperView.frame.origin = CGPointMake((23 * CGFloat(count)), 0)
+            size: CGSizeMake(22, 36)))
+        wrapperView.frame.origin = CGPointMake((26 * CGFloat(count)), 3)
         wrapperView.clipsToBounds = false
         
         wrapperView.addSubview(iconView)
@@ -162,8 +164,8 @@ class RoutineTripCell: UICollectionViewCell {
             warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
           }
           warnIconView.frame.size = CGSizeMake(10, 10)
-          warnIconView.center = CGPointMake((23 / 2) + 5, 4)
-          warnIconView.alpha = 0.8
+          warnIconView.center = CGPointMake((22 / 2) + 10, -5)
+          warnIconView.alpha = 0.9
           wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
         }
         

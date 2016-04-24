@@ -67,14 +67,16 @@ class TripsIC: WKInterfaceController {
   /**
    * Handle reply for a "SearchTrips" message.
    */
-  func searchTripsHandler(reply: Dictionary<String, AnyObject>) {
-    if reply["error"] as! Bool {
-      displayError("Något gick fel",
+  func searchTripsHandler(reply: NSData) {
+    let dictionary = NSKeyedUnarchiver.unarchiveObjectWithData(reply)! as! Dictionary<String, AnyObject>
+    if dictionary["error"] as! Bool {
+      displayError(
+        "Något gick fel",
         message: "Söktjänsten är inte tillgänglig.\nKontrollera att din iPhone har tillgång till internet och försök igen.")
       return
     }
     
-    tripData = reply["trips"] as! [Dictionary<String, AnyObject>]
+    tripData = dictionary["trips"] as! [Dictionary<String, AnyObject>]
     if tripData.count > 0 {
       updateTripTable()
       loadingLabel.setHidden(true)
@@ -91,8 +93,8 @@ class TripsIC: WKInterfaceController {
   // MARK: Private
   
   /**
-  * Loads trip data from partner iPhone
-  */
+   * Loads trip data from partner iPhone
+   */
   private func loadData() {
     var id = ""
     var action = "SearchLastTrip"
@@ -100,19 +102,21 @@ class TripsIC: WKInterfaceController {
       id = data["id"] as! String
       action = "SearchTrips"
     }
+    
+    let dictionary = ["action": action, "id": id]
+    let nsData = NSKeyedArchiver.archivedDataWithRootObject(dictionary)
     if session.reachable {
-      session.sendMessage(
-        [
-          "action": action,
-          "id": id
-        ],
+      session.sendMessageData(
+        nsData,
         replyHandler: searchTripsHandler,
         errorHandler: { error in
-          self.displayError("Något gick fel",
+          self.displayError(
+            "Något gick fel",
             message: "Söktjänsten är inte tillgänglig.\nKontrollera att din iPhone har tillgång till internet och försök igen.")
       })
     } else {
-      displayError("Hittar inte din iPhone",
+      displayError(
+        "Hittar inte din iPhone",
         message: "Det går inte att kommunicera med din iPhone. Kontrollera att den är laddad och finns i närheten.")
     }
   }
@@ -144,7 +148,7 @@ class TripsIC: WKInterfaceController {
       }
     }
     loadingLabel.setHidden(true)
-  }  
+  }
   
   /**
    * Displays an error
@@ -155,6 +159,6 @@ class TripsIC: WKInterfaceController {
       self.popToRootController()
     })
     presentAlertControllerWithTitle(title,
-      message: message, preferredStyle: .Alert, actions: [okAction])
+                                    message: message, preferredStyle: .Alert, actions: [okAction])
   }
 }

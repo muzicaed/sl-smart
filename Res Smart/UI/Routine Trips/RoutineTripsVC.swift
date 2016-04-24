@@ -370,7 +370,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
                                willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
     if isSubscribing && !isShowInfo && !isLoading {
       let bgColorView = UIView()
-      bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+      bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
       cell.selectedBackgroundView = bgColorView
     }
   }

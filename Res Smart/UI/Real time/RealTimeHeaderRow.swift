@@ -12,5 +12,4 @@ import UIKit
 class RealTimeHeaderRow: UITableViewCell {
 
   @IBOutlet weak var titleLabel: UILabel!
-  @IBOutlet weak var icon: UIImageView!
 }

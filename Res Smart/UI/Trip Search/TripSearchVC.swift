@@ -99,19 +99,21 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   /**
    * Validate if segue should be performed.
    */
-  override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-    if identifier == "ShowTripList" {
-      if criterions?.dest == nil || criterions?.origin == nil ||
-        (criterions?.origin?.siteId == criterions?.dest?.siteId && criterions?.origin?.siteId != "0") {
-        showInvalidLocationAlert()
-        return false
-      } else if criterions?.via != nil && (
-        criterions?.via?.siteId == criterions?.origin?.siteId ||
-          criterions?.via?.siteId == criterions?.dest?.siteId) {
-        showInvalidViaAlert()
+  override func shouldPerformSegueWithIdentifier(
+    identifier: String, sender: AnyObject?)
+    -> Bool {
+      if identifier == "ShowTripList" {
+        if criterions?.dest == nil || criterions?.origin == nil ||
+          (criterions?.origin?.siteId == criterions?.dest?.siteId && criterions?.origin?.siteId != "0") {
+          showInvalidLocationAlert()
+          return false
+        } else if criterions?.via != nil && (
+          criterions?.via?.siteId == criterions?.origin?.siteId ||
+            criterions?.via?.siteId == criterions?.dest?.siteId) {
+          showInvalidViaAlert()
+        }
       }
-    }
-    return true
+      return true
   }
   
   @IBAction func onAdvancedButtonTap(sender: UIBarButtonItem) {
@@ -222,8 +224,11 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   
   // MARK: TravelTypesResponder
   
-  func selectedTravelType(useMetro: Bool, useTrain: Bool,
-                          useTram: Bool, useBus: Bool, useBoat: Bool) {
+  func selectedTravelType(
+    useMetro: Bool, useTrain: Bool,
+    useTram: Bool, useBus: Bool,
+    useBoat: Bool
+    ) {
     criterions?.useMetro = useMetro
     criterions?.useTrain = useTrain
     criterions?.useTram = useTram
@@ -247,7 +252,9 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   /**
    * Row count in section
    */
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(
+    tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
     if section == 0 {
       return (isAdvancedMode) ? 2 : 1
     } else if section == 3 && !isAdvancedMode {
@@ -260,8 +267,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   /**
    * Height for rows.
    */
-  override func tableView(tableView: UITableView,
-                          heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  override func tableView( tableView: UITableView,
+                           heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     if indexPath.section == 0 && indexPath.row == 0 {
       return 88
     }
@@ -271,26 +278,32 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   /**
    * Can row be edited?
    */
-  override func tableView(tableView: UITableView,
-                          canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+  override func tableView(
+    tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath)
+    -> Bool
+  {
     return (indexPath.section == 0 && indexPath.row == 1 && isViaSelected && isAdvancedMode)
   }
   
   /**
    * Editing style
    */
-  override func tableView(tableView: UITableView,
-                          editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+  override func tableView(
+    tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath)
+    -> UITableViewCellEditingStyle
+  {
     return (indexPath.section == 0 && indexPath.row == 1) ? .Delete : .None
   }
   
   /**
    * Green highlight on selected row.
    */
-  override func tableView(tableView: UITableView,
-                          willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(
+    tableView: UITableView, willDisplayCell cell: UITableViewCell,
+    forRowAtIndexPath indexPath: NSIndexPath)
+  {
     let bgColorView = UIView()
-    bgColorView.backgroundColor = StyleHelper.sharedInstance.mainGreenLight
+    bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
     cell.selectedBackgroundView = bgColorView
   }
   

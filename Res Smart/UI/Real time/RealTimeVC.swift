@@ -32,7 +32,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   
   var tabTypesKeys = [String]()
   var segmentView = SMSegmentView()
-  var realtimeIndicatorLabel: UILabel?
   var refreshTimmer: NSTimer?
   let loadedTime = NSDate()
   let refreshController = UIRefreshControl()
@@ -55,8 +54,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       name: UIApplicationWillResignActiveNotification, object: nil)
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 44
-    
-    prepareRealtimeIndicator()
+
     refreshController.addTarget(
       self, action: #selector(loadData), forControlEvents: UIControlEvents.ValueChanged)
     refreshController.tintColor = UIColor.lightGrayColor()
@@ -223,11 +221,12 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     segmentView.removeFromSuperview()
     segmentView = SMSegmentView(
       frame: CGRect(x: 0, y: 0, width: 100.0, height: 44),
-      separatorColour: UIColor.clearColor(),
+      separatorColour: UIColor.lightGrayColor(),
       separatorWidth: 0.0,
       segmentProperties: [
+        keySegmentOnSelectionTextColour: UIColor.blackColor(),
         keySegmentTitleFont: UIFont.systemFontOfSize(12.0),
-        keySegmentOnSelectionColour: StyleHelper.sharedInstance.mainGreenLight,
+        keySegmentOnSelectionColour: StyleHelper.sharedInstance.highlight,
         keySegmentOffSelectionColour: UIColor.clearColor(),
         keyContentVerticalMargin: 10.0])
     
@@ -237,75 +236,66 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       lastSelected = (lastStoredSelected == "BUS") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("BUS")
-      segmentView.addSegmentWithTitle(nil,
-                                      onSelectionImage: UIImage(named: "BUS-NEUTRAL"),
-                                      offSelectionImage: UIImage(named: "BUS-NEUTRAL"))
+      segmentView.addSegmentWithTitle(
+        "Bussar",
+        onSelectionImage: UIImage(named: "BUS"),
+        offSelectionImage: UIImage(named: "BUS"))
     }
+    
     if realTimeDepartures?.metros.count > 0 {
       lastSelected = (lastStoredSelected == "METRO") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("METRO")
-      segmentView.addSegmentWithTitle(nil,
-                                      onSelectionImage: UIImage(named: "METRO-NEUTRAL"),
-                                      offSelectionImage: UIImage(named: "METRO-NEUTRAL"))
+      segmentView.addSegmentWithTitle(
+        "T-bana",
+        onSelectionImage: UIImage(named: "METRO"),
+        offSelectionImage: UIImage(named: "METRO"))
     }
     if realTimeDepartures?.trains.count > 0 {
       lastSelected = (lastStoredSelected == "TRAIN") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("TRAIN")
-      segmentView.addSegmentWithTitle(nil,
-                                      onSelectionImage: UIImage(named: "TRAIN-NEUTRAL"),
-                                      offSelectionImage: UIImage(named: "TRAIN-NEUTRAL"))
+      segmentView.addSegmentWithTitle(
+        "Pendel",
+        onSelectionImage: UIImage(named: "TRAIN"),
+        offSelectionImage: UIImage(named: "TRAIN"))
     }
     if realTimeDepartures?.trams.count > 0 {
       lastSelected = (lastStoredSelected == "TRAM") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("TRAM")
-      segmentView.addSegmentWithTitle(nil,
-                                      onSelectionImage: UIImage(named: "TRAM-RAIL"),
-                                      offSelectionImage: UIImage(named: "TRAM-RAIL"))
+      segmentView.addSegmentWithTitle(
+        "Spår",
+        onSelectionImage: UIImage(named: "TRAM"),
+        offSelectionImage: UIImage(named: "TRAM"))
     }
     if realTimeDepartures?.localTrams.count > 0 {
       lastSelected = (lastStoredSelected == "LOCAL-TRAM") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("LOCAL-TRAM")
-      segmentView.addSegmentWithTitle(nil,
-                                      onSelectionImage: UIImage(named: "TRAM-LOCAL"),
-                                      offSelectionImage: UIImage(named: "TRAM-LOCAL"))
+      segmentView.addSegmentWithTitle(
+        "Spår",
+        onSelectionImage: UIImage(named: "TRAM"),
+        offSelectionImage: UIImage(named: "TRAM"))
     }
     if realTimeDepartures?.boats.count > 0 {
       lastSelected = (lastStoredSelected == "BOAT") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("BOAT")
-      segmentView.addSegmentWithTitle(nil,
-                                      onSelectionImage: UIImage(named: "SHIP-NEUTRAL"),
-                                      offSelectionImage: UIImage(named: "SHIP-NEUTRAL"))
+      segmentView.addSegmentWithTitle(
+        "Färja",
+        onSelectionImage: UIImage(named: "SHIP"),
+        offSelectionImage: UIImage(named: "SHIP"))
     }
     
     if tabCount > 0 {
+      let screenWidth = UIScreen.mainScreen().bounds.width
       segmentView.delegate = self
       segmentView.selectSegmentAtIndex(lastSelected)
-      segmentView.frame.size.width = CGFloat(50 * tabCount)
+      segmentView.frame.size.width = CGFloat((screenWidth / 4) * CGFloat(tabCount))
       topView.addSubview(segmentView)
       topView.alpha = 1.0
     }
-  }
-  
-  /**
-   * Prepares a blinking realtime idicator.
-   */
-  private func prepareRealtimeIndicator() {
-    realtimeIndicatorLabel?.layer.removeAllAnimations()
-    realtimeIndicatorLabel?.removeFromSuperview()
-    let screenWidth = UIScreen.mainScreen().bounds.width
-    realtimeIndicatorLabel = UILabel(frame: CGRect(x: screenWidth - 78, y: 0, width: 70, height: 44))
-    realtimeIndicatorLabel!.text = "Uppdateras i realtid"
-    realtimeIndicatorLabel!.numberOfLines = 2
-    realtimeIndicatorLabel!.textAlignment = NSTextAlignment.Right
-    realtimeIndicatorLabel!.font = UIFont.systemFontOfSize(12)
-    realtimeIndicatorLabel!.textColor = StyleHelper.sharedInstance.mainGreen
-    
-    topView.addSubview(realtimeIndicatorLabel!)
   }
   
   /**
@@ -420,26 +410,21 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     switch tabKeys {
     case "BUS":
       let bus = realTimeDepartures!.busses[busKeys[indexPath.section]]!.first!
-      cell.icon.image = UIImage(named: "BUS-NEUTRAL")
       cell.titleLabel.text = "\(bus.stopAreaName)"
     case "METRO":
       let metro = realTimeDepartures!.metros[metroKeys[indexPath.section]]!.first!
       switch metro.metroLineId {
       case 1:
-        cell.icon.image = UIImage(named: "METRO-GREEN")
         cell.titleLabel.text = "Gröna linjen"
       case 2:
-        cell.icon.image = UIImage(named: "METRO-RED")
         cell.titleLabel.text = "Röda linjen"
       case 3:
-        cell.icon.image = UIImage(named: "METRO-BLUE")
         cell.titleLabel.text = "Blå linjen"
       default:
         break
       }
     case "TRAIN":
       let train = realTimeDepartures!.trains[trainKeys[indexPath.section]]!.first!
-      cell.icon.image = UIImage(named: "TRAIN-NEUTRAL")
       if train.journeyDirection == 1 {
         cell.titleLabel.text = "Pendeltåg, södergående"
       } else if train.journeyDirection == 2 {
@@ -447,15 +432,12 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       }
     case "TRAM":
       let tram = realTimeDepartures!.trams[tramKeys[indexPath.section]]!.first!
-      cell.icon.image = UIImage(named: "TRAM-RAIL")
       cell.titleLabel.text = tram.groupOfLine
     case "LOCAL-TRAM":
       let tram = realTimeDepartures!.localTrams[localTramKeys[indexPath.section]]!.first!
-      cell.icon.image = UIImage(named: "TRAM-LOCAL")
       cell.titleLabel.text = tram.groupOfLine
     case "BOAT":
       let boat = realTimeDepartures!.boats[boatKeys[indexPath.section]]!.first!
-      cell.icon.image = UIImage(named: "SHIP-NEUTRAL")
       cell.titleLabel.text = boat.groupOfLine
     default:
       break
@@ -467,6 +449,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   private func setRowData(cell: RealTimeTripRow, indexPath: NSIndexPath) {
     var data: RTTransportBase?
+    var lineChar = ""
     let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
     cell.stopPointDesignation.hidden = true
     
@@ -479,10 +462,11 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         cell.stopPointDesignation.hidden = false
       }
     case "METRO":
+      lineChar = "T"
       data = realTimeDepartures!.metros[metroKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
     case "TRAIN":
       let train = realTimeDepartures!.trains[trainKeys[indexPath.section]]![indexPath.row - 1]
-      cell.lineLabel.text = train.lineNumber
+      cell.lineLabel.text = "J" + train.lineNumber
       let via = ((train.secondaryDestinationName != nil) ? " via \(train.secondaryDestinationName!)" : "")
       cell.infoLabel.text = "\(train.destination)" + via
       if train.displayTime == "Nu" {
@@ -495,14 +479,16 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       cell.departureTimeLabel.text = train.displayTime
       cell.deviationsLabel.text = train.deviations.joinWithSeparator(" ")
       if DisturbanceTextHelper.isDisturbance(cell.deviationsLabel.text) {
-        cell.deviationsLabel.textColor = UIColor(red: 173/255, green: 36/255, blue: 62/255, alpha: 1.0)
+        cell.deviationsLabel.textColor = UIColor(red: 39/255, green: 44/255, blue: 211/255, alpha: 1.0)
       } else {
         cell.deviationsLabel.textColor = UIColor.darkGrayColor()
       }
       return
     case "TRAM":
+      lineChar = "L"
       data = realTimeDepartures!.trams[tramKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
     case "LOCAL-TRAM":
+      lineChar = "S"
       data = realTimeDepartures!.localTrams[localTramKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
     case "BOAT":
       data = realTimeDepartures!.boats[boatKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
@@ -511,7 +497,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     }
     
     if let data = data {
-      cell.lineLabel.text = data.lineNumber
+      cell.lineLabel.text = lineChar + data.lineNumber
       cell.infoLabel.text = "\(data.destination)"
       if data.displayTime == "Nu" {
         cell.departureTimeLabel.font = UIFont.boldSystemFontOfSize(17)

@@ -36,17 +36,21 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     view.addGestureRecognizer(gesture)
   }
   
-  override func viewDidAppear(animated: Bool) {
-    super.viewDidDisappear(animated)
-    loadTripData(nil)
-  }
-  
   /**
    * View did disappear
    */
-  override func viewDidDisappear(animated: Bool) {
-    super.viewDidDisappear(animated)
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
     stopRefreshTimmer()
+  }
+  
+  /**
+   * View did appear
+   */
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    loadTripData()
+    startRefreshTimmer()
   }
   
   /**
@@ -54,6 +58,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * OS Controlled.
    */
   func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
+    updateUI()
     completionHandler(NCUpdateResult.NoData)
   }
   
@@ -71,6 +76,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     stopRefreshTimmer()
     refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
       10.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
+    NSRunLoop.mainRunLoop().addTimer(refreshTimmer!, forMode: NSRunLoopCommonModes)
   }
   
   /**
@@ -80,14 +86,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     refreshTimmer?.invalidate()
     refreshTimmer = nil
   }
-  
+
   // MARK: Private
   
   /**
    * Loads trip data and updates UI
    */
-  private func loadTripData(callback: (() -> Void)?) {
-    startRefreshTimmer()
+  func loadTripData() {
     RoutineService.findRoutineTrip({ routineTrips in
       self.bestRoutine = routineTrips.first
       dispatch_async(dispatch_get_main_queue()) {
@@ -98,7 +103,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
           self.titleLabel.text = "Hittade inga rutiner."
         }
       }
-      callback?()
       return
     })
   }
@@ -111,31 +115,46 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     var count = 0
     for (_, segment) in trip.tripSegments.enumerate() {
       if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
-        if count > 5 { return }
+        if count > 6 { return }
         let data = TripHelper.friendlyLineData(segment)
         
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
-        iconView.frame.size = CGSizeMake(15, 15)
-        iconView.center = CGPointMake(23 / 2, 9)
+        iconView.frame.size = CGSizeMake(22, 22)
+        iconView.center = CGPointMake(22 / 2, 3)
         
         let label = UILabel()
-        label.text = data.short
+        label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
         label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont.systemFontOfSize(7)
-        label.textColor = UIColor.lightGrayColor()
-        label.sizeToFit()
-        label.frame.size.width = 25
-        label.center = CGPointMake((23 / 2), 22)
-        label.lineBreakMode = .ByTruncatingTail
+        label.font = UIFont.boldSystemFontOfSize(9)
+        label.minimumScaleFactor = 0.5
+        label.adjustsFontSizeToFitWidth = true
+        label.textColor = UIColor.whiteColor()
+        label.backgroundColor = data.color
+        label.frame.size.width = 22
+        label.frame.size.height = 12
+        label.center = CGPointMake((22 / 2), 20)
         
         let wrapperView = UIView(
           frame:CGRect(
-            origin: CGPointMake((23 * CGFloat(count)), 12),
-            size: CGSizeMake(23, 30)))
+            origin: CGPointMake(0, 0),
+            size: CGSizeMake(22, 36)))
+        wrapperView.frame.origin = CGPointMake((26 * CGFloat(count)), 10)
+        wrapperView.clipsToBounds = false
         
         wrapperView.addSubview(iconView)
         wrapperView.addSubview(label)
-        wrapperView.clipsToBounds = false
+        
+        if segment.rtuMessages != nil {
+          var warnIconView = UIImageView(image: TripIcons.icons["INFO-ICON"]!)
+          if segment.isWarning {
+            warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
+          }
+          warnIconView.frame.size = CGSizeMake(10, 10)
+          warnIconView.center = CGPointMake((22 / 2) + 8, -2)
+          warnIconView.alpha = 0.9
+          wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
+        }
+        
         iconWrapperView.addSubview(wrapperView)
         count += 1
       }

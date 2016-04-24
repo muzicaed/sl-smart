@@ -85,6 +85,5 @@ public class LatestLocationsStore {
     let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(locations)
     defaults.setObject(archivedObject, forKey: LatestLocations)
     cachedLocations = locations
-    defaults.synchronize()
   }
 }

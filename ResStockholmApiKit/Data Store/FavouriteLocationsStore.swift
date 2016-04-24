@@ -102,6 +102,5 @@ public class FavouriteLocationsStore {
     let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(locations)
     defaults.setObject(archivedObject, forKey: FavouriteLocations)
     cachedLocations = locations
-    defaults.synchronize()
   }
 }

@@ -140,7 +140,6 @@ public class RoutineTripsStore {
   private func writeRoutineTripsToStore() {
     let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(cachedRoutineTrips as NSArray)
     defaults.setObject(archivedObject, forKey: MyRoutineTrips)
-    defaults.synchronize()
     cachedRoutineTrips = retrieveRoutineTripsFromStore()
   }
   

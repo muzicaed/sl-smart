@@ -16,7 +16,6 @@ public class DisturbanceTextHelper {
         text.lowercaseString.rangeOfString("utebli") != nil ||
         text.lowercaseString.rangeOfString("signalfel") != nil ||
         text.lowercaseString.rangeOfString("inställd") != nil ||        
-        text.lowercaseString.rangeOfString("flyttad") != nil ||
         text.lowercaseString.rangeOfString("stannar inte") != nil ||
         text.lowercaseString.rangeOfString("banarbete") != nil ||        
         text.lowercaseString.rangeOfString("stannar ej") != nil)

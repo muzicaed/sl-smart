@@ -13,6 +13,7 @@ public class ScorePostStore {
   private let ScoreList = "ScoreList"
   private let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
   private var cachedScorePosts = [ScorePost]()
+  public var lastReloaded = NSDate()
   
   // Singelton pattern
   public static let sharedInstance = ScorePostStore()
@@ -28,10 +29,11 @@ public class ScorePostStore {
    * Retrive "ScoreList" from data store
    */
   public func retrieveScorePosts() -> [ScorePost] {
-    if cachedScorePosts.count == 0 {
+    if cachedScorePosts.count == 0 || NSDate().timeIntervalSinceDate(lastReloaded) > 60 {
       if let unarchivedObject = defaults.objectForKey(ScoreList) as? NSData {
         if let scorePosts = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [ScorePost] {
           cachedScorePosts = scorePosts
+          self.lastReloaded = NSDate()
         }
       }
     }
@@ -48,9 +50,8 @@ public class ScorePostStore {
         filteredPosts.append(post.copy() as! ScorePost)
       }
     }
-    let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(filteredPosts as NSArray)
+    let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(filteredPosts)
     defaults.setObject(archivedObject, forKey: ScoreList)
     cachedScorePosts = filteredPosts
-    defaults.synchronize()
   }
 }
