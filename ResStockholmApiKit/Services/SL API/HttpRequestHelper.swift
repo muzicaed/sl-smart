@@ -30,6 +30,7 @@ class HttpRequestHelper {
         opt.start { response in
           if response.error != nil {
             callback((nil, SLNetworkError.NetworkError))
+            return
           }
           
           addDataToCache(url, data: response.data)
