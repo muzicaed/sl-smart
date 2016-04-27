@@ -94,8 +94,6 @@ public class DateUtils {
     formatter.dateFormat = "EEEE"
     var weekDay = formatter.stringFromDate(date)
     
-    print(formatter.stringFromDate(NSDate()))
-    print(weekDay)
     if formatter.stringFromDate(NSDate()) == weekDay {
       weekDay = "Idag"
     } else if formatter.stringFromDate(NSDate(timeIntervalSinceNow: 86400)) == weekDay {
