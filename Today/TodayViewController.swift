@@ -18,7 +18,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   @IBOutlet weak var departureStationLabel: UILabel!
   @IBOutlet weak var arrivalTimeLabel: UILabel!
   @IBOutlet weak var arrivalStationLabel: UILabel!
-  @IBOutlet weak var iconWrapperView: UIView!
+  @IBOutlet weak var iconWrapperView: UIView?
   @IBOutlet weak var inAboutLabel: UILabel!
   @IBOutlet weak var nextLabel: UILabel!
   
@@ -86,7 +86,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     refreshTimmer?.invalidate()
     refreshTimmer = nil
   }
-
+  
   // MARK: Private
   
   /**
@@ -111,52 +111,54 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * Creates trip type icon per segment.
    */
   private func createTripSegmentIcons(trip: Trip) {
-    iconWrapperView.subviews.forEach({ $0.removeFromSuperview() })
-    var count = 0
-    for (_, segment) in trip.tripSegments.enumerate() {
-      if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
-        if count > 6 { return }
-        let data = TripHelper.friendlyLineData(segment)
-        
-        let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
-        iconView.frame.size = CGSizeMake(22, 22)
-        iconView.center = CGPointMake(22 / 2, 3)
-        
-        let label = UILabel()
-        label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
-        label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont.boldSystemFontOfSize(9)
-        label.minimumScaleFactor = 0.5
-        label.adjustsFontSizeToFitWidth = true
-        label.textColor = UIColor.whiteColor()
-        label.backgroundColor = data.color
-        label.frame.size.width = 22
-        label.frame.size.height = 12
-        label.center = CGPointMake((22 / 2), 20)
-        
-        let wrapperView = UIView(
-          frame:CGRect(
-            origin: CGPointMake(0, 0),
-            size: CGSizeMake(22, 36)))
-        wrapperView.frame.origin = CGPointMake((26 * CGFloat(count)), 10)
-        wrapperView.clipsToBounds = false
-        
-        wrapperView.addSubview(iconView)
-        wrapperView.addSubview(label)
-        
-        if segment.rtuMessages != nil {
-          var warnIconView = UIImageView(image: TripIcons.icons["INFO-ICON"]!)
-          if segment.isWarning {
-            warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
+    if let iconWrapper = iconWrapperView {
+      iconWrapper.subviews.forEach({ $0.removeFromSuperview() })
+      var count = 0
+      for (_, segment) in trip.tripSegments.enumerate() {
+        if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
+          if count > 6 { return }
+          let data = TripHelper.friendlyLineData(segment)
+          
+          let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
+          iconView.frame.size = CGSizeMake(22, 22)
+          iconView.center = CGPointMake(22 / 2, 3)
+          
+          let label = UILabel()
+          label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
+          label.textAlignment = NSTextAlignment.Center
+          label.font = UIFont.boldSystemFontOfSize(9)
+          label.minimumScaleFactor = 0.5
+          label.adjustsFontSizeToFitWidth = true
+          label.textColor = UIColor.whiteColor()
+          label.backgroundColor = data.color
+          label.frame.size.width = 22
+          label.frame.size.height = 12
+          label.center = CGPointMake((22 / 2), 20)
+          
+          let wrapperView = UIView(
+            frame:CGRect(
+              origin: CGPointMake(0, 0),
+              size: CGSizeMake(22, 36)))
+          wrapperView.frame.origin = CGPointMake((26 * CGFloat(count)), 10)
+          wrapperView.clipsToBounds = false
+          
+          wrapperView.addSubview(iconView)
+          wrapperView.addSubview(label)
+          
+          if segment.rtuMessages != nil {
+            var warnIconView = UIImageView(image: TripIcons.icons["INFO-ICON"]!)
+            if segment.isWarning {
+              warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
+            }
+            warnIconView.frame.size = CGSizeMake(10, 10)
+            warnIconView.center = CGPointMake((22 / 2) + 8, -2)
+            warnIconView.alpha = 0.9
+            wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
           }
-          warnIconView.frame.size = CGSizeMake(10, 10)
-          warnIconView.center = CGPointMake((22 / 2) + 8, -2)
-          warnIconView.alpha = 0.9
-          wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
+          
+          iconWrapper.addSubview(wrapperView)
+          count += 1
         }
-        
-        iconWrapperView.addSubview(wrapperView)
-        count += 1
       }
     }
   }
