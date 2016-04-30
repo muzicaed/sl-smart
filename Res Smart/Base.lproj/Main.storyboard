@@ -77,6 +77,9 @@
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station eller adress)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPS-FX-rVJ">
                                                                                     <rect key="frame" x="65" y="0.0" width="289" height="43"/>
+                                                                                    <accessibility key="accessibilityConfiguration">
+                                                                                        <bool key="isElement" value="NO"/>
+                                                                                    </accessibility>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                                     <nil key="highlightedColor"/>
@@ -88,6 +91,9 @@
                                                                         </stackView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="YES"/>
+                                                                    </accessibility>
                                                                     <constraints>
                                                                         <constraint firstAttribute="bottom" secondItem="fgj-os-zMr" secondAttribute="bottom" id="5MC-ce-sEz"/>
                                                                         <constraint firstItem="fgj-os-zMr" firstAttribute="top" secondItem="h1b-cE-X0G" secondAttribute="top" id="jnM-Qa-XaL"/>
@@ -149,6 +155,9 @@
                                                                         </stackView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="YES"/>
+                                                                    </accessibility>
                                                                     <constraints>
                                                                         <constraint firstItem="1Gf-lo-yzC" firstAttribute="top" secondItem="WtY-ED-eb7" secondAttribute="top" id="7eb-YE-TDb"/>
                                                                         <constraint firstItem="1Gf-lo-yzC" firstAttribute="leading" secondItem="WtY-ED-eb7" secondAttribute="leading" id="Y5M-3c-y8e"/>
@@ -170,6 +179,9 @@
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <bool key="isElement" value="YES"/>
+                                                            </accessibility>
                                                             <constraints>
                                                                 <constraint firstItem="Za6-oU-QKd" firstAttribute="centerY" secondItem="QiU-iy-svH" secondAttribute="centerY" id="LZl-bk-YZa"/>
                                                                 <constraint firstAttribute="width" constant="60" id="R6s-lb-MIx"/>
@@ -186,9 +198,6 @@
                                                 <constraint firstAttribute="bottom" secondItem="Gd4-hR-JTF" secondAttribute="bottom" id="osm-Kc-fnb"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <accessibility key="accessibilityConfiguration" hint="Övre del från. Nedre del till." label="Från station och till station.">
-                                            <bool key="isElement" value="YES"/>
-                                        </accessibility>
                                         <connections>
                                             <outlet property="destinationLabel" destination="1zn-BF-oMG" id="1LQ-f0-7xT"/>
                                             <outlet property="destinationStackView" destination="1Gf-lo-yzC" id="gYp-Q6-q4n"/>
@@ -3833,8 +3842,8 @@ direkt från din iPhone.</string>
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="24.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IO5-TR-x6D">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="25"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IO5-TR-x6D">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="25"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sub-segment-icon" translatesAutoresizingMaskIntoConstraints="NO" id="VYV-ps-mCt">
                                                     <rect key="frame" x="0.0" y="0.0" width="44" height="25"/>
@@ -3858,8 +3867,8 @@ direkt från din iPhone.</string>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" misplaced="YES" text="Stockholm södra" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hZ-e8-Nd6" userLabel="Location">
-                                                    <rect key="frame" x="104" y="0.0" width="96" height="25"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Stockholm södra" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hZ-e8-Nd6" userLabel="Location">
+                                                    <rect key="frame" x="104" y="0.0" width="310" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -3871,7 +3880,11 @@ direkt från din iPhone.</string>
                                         </stackView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="IO5-TR-x6D" firstAttribute="leading" secondItem="ql2-Mt-GO2" secondAttribute="leading" id="4oM-W3-eEV"/>
+                                        <constraint firstAttribute="bottom" secondItem="IO5-TR-x6D" secondAttribute="bottom" id="G9g-zG-a6E"/>
+                                        <constraint firstAttribute="trailing" secondItem="IO5-TR-x6D" secondAttribute="trailing" id="LE5-ur-0GJ"/>
                                         <constraint firstItem="IO5-TR-x6D" firstAttribute="leading" secondItem="ql2-Mt-GO2" secondAttribute="leading" id="exZ-uA-Nk0"/>
+                                        <constraint firstItem="IO5-TR-x6D" firstAttribute="top" secondItem="ql2-Mt-GO2" secondAttribute="top" id="trI-sF-bk3"/>
                                         <constraint firstItem="IO5-TR-x6D" firstAttribute="centerY" secondItem="ql2-Mt-GO2" secondAttribute="centerY" id="xc3-CQ-Hxt"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -4231,11 +4244,11 @@ direkt från din iPhone.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WoO-7G-VaU"/>
+        <segue reference="ypq-Up-6Af"/>
+        <segue reference="4rE-Hc-22D"/>
         <segue reference="V2Z-ue-vlu"/>
-        <segue reference="gZB-Im-USu"/>
-        <segue reference="fPH-Xr-GVg"/>
         <segue reference="rzj-uS-OIZ"/>
         <segue reference="Lg4-KG-mN0"/>
+        <segue reference="gZB-Im-USu"/>
     </inferredMetricsTieBreakers>
 </document>
