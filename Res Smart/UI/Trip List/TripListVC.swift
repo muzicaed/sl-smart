@@ -155,6 +155,7 @@ class TripListVC: UITableViewController {
     
     let trip = trips[keys.last!]!.last!
     criterions!.searchForArrival = false
+    criterions?.numTrips = 8
     
     criterions?.time = DateUtils.dateAsTimeString(
       trip.tripSegments.first!.departureDateTime.dateByAddingTimeInterval(60))
@@ -171,6 +172,7 @@ class TripListVC: UITableViewController {
     
     let trip = trips[keys.first!]!.first!
     criterions?.searchForArrival = true
+    criterions?.numTrips = 3
     
     let dateTuple = DateUtils.dateAsStringTuple(
       trip.tripSegments.last!.arrivalDateTime.dateByAddingTimeInterval(-60))
@@ -379,7 +381,7 @@ class TripListVC: UITableViewController {
     if !shouldAppend {
       newTripsArr = newTripsArr.reverse()
     }
-    for trip in tripsArr {
+    for trip in newTripsArr {
       let destDateString = DateUtils.dateAsDateString(trip.tripSegments.first!.departureDateTime)
       if !keys.contains(destDateString) {
         if shouldAppend {

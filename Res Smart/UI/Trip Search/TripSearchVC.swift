@@ -153,9 +153,11 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       case "Origin":
         crit.origin = location
         locationPickerRow.originLabel.text = location.name
+        locationPickerRow.originView.accessibilityLabel = "Från: \(location.name)"
       case "Destination":
         crit.dest = location
         locationPickerRow.destinationLabel.text = location.name
+        locationPickerRow.destinationView.accessibilityLabel = "Till: \(location.name)"
       case "Via":
         crit.via = location
         viaLabel.text = location.name
@@ -212,12 +214,18 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       crit.destId = oldOriginId
       locationPickerRow.originLabel.text = crit.origin?.name
       locationPickerRow.destinationLabel.text = crit.dest?.name
+      locationPickerRow.originView.accessibilityLabel = "Från: \(crit.origin?.name)"
+      locationPickerRow.destinationView.accessibilityLabel = "Till: \(crit.dest?.name)"
       if locationPickerRow.originLabel.text == nil {
         locationPickerRow.originLabel.text = "(Välj station eller adress)"
+        locationPickerRow.originView.accessibilityLabel = "Från: Välj station eller adress"
       }
       if locationPickerRow.destinationLabel.text == nil {
         locationPickerRow.destinationLabel.text = "(Välj station eller adress)"
+        locationPickerRow.destinationView.accessibilityLabel = "Till: Välj station eller adress"
       }
+      
+
     }
     tableView.endUpdates()
   }
@@ -337,9 +345,11 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       advancedToggleButton.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
       if crit.origin != nil {
         locationPickerRow.originLabel.text = crit.origin!.name
+        locationPickerRow.originView.accessibilityLabel = "Från: \(crit.origin!.name)"
       }
       if crit.dest != nil {
         locationPickerRow.destinationLabel.text = crit.dest!.name
+        locationPickerRow.destinationView.accessibilityLabel = "Till: \(crit.dest!.name)"
       }
       if crit.via != nil {
         viaLabel.text = crit.via!.name
