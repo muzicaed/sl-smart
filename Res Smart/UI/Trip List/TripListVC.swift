@@ -497,6 +497,7 @@ class TripListVC: UITableViewController {
         loadMoreLater = tableView!.dequeueReusableCellWithIdentifier(loadMoreLaterIdentifier,
           forIndexPath: indexPath) as? LoadMoreCell
         
+        loadMoreLater!.loadButton.accessibilityLabel = "Visa fler resor"
         loadMoreLater!.loadButton.addTarget(self,
           action: #selector(loadMoreTrips),
           forControlEvents: UIControlEvents.TouchUpInside)

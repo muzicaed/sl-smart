@@ -53,6 +53,7 @@ class TripDetailsSegmentCell: UITableViewCell {
    */
   func updateStops(visual: (isVisible: Bool, hasStops: Bool)) {
     arrowLabel.text = ""
+    arrowLabel.isAccessibilityElement = false
     if visual.hasStops {
       userInteractionEnabled = true
       selectionStyle = .Default
