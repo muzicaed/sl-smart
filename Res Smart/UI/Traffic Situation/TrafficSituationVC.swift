@@ -185,6 +185,7 @@ class TrafficSituationVC: UITableViewController {
       "SituationRow", forIndexPath: indexPath) as! SituationRow
     
     cell.messageLabel.text = situation.message
+    cell.messageLabel.accessibilityLabel = "Trafikstörning: " + situation.message
     cell.messageLabel.textColor = StyleHelper.sharedInstance.warningColor
     cell.accessoryType = .None
     cell.userInteractionEnabled = false
