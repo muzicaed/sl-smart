@@ -8,10 +8,12 @@
 
 import Foundation
 import UIKit
+import ResStockholmApiKit
 
 class HereToThereCell: UICollectionViewCell {
   
   @IBOutlet weak var hereToThereLabel: UILabel!
+  @IBOutlet weak var wrapperView: UIView!
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -34,5 +36,14 @@ class HereToThereCell: UICollectionViewCell {
     layer.shadowOpacity = 0.15
     layer.cornerRadius = 4.0
     clipsToBounds = false
+    
+  }
+  
+  /**
+   * Set the from location text.
+   */
+  func setFromLocationText(location: Location) {
+    hereToThereLabel.text = "Från \(location.name)"
+    wrapperView.accessibilityLabel = "Ta mig till valfri plats. Från \(location.name)"
   }
 }

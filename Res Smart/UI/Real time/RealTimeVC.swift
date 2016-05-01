@@ -410,16 +410,20 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     switch tabKeys {
     case "BUS":
       let bus = realTimeDepartures!.busses[busKeys[indexPath.section]]!.first!
-      cell.titleLabel.text = "\(bus.stopAreaName)"
+      cell.titleLabel.text = bus.stopAreaName
+      cell.titleLabel.accessibilityLabel = "Bussar, \(bus.stopAreaName)"
     case "METRO":
       let metro = realTimeDepartures!.metros[metroKeys[indexPath.section]]!.first!
       switch metro.metroLineId {
       case 1:
         cell.titleLabel.text = "Gröna linjen"
+        cell.titleLabel.accessibilityLabel = "Tunnelbanas gröna linjen"
       case 2:
         cell.titleLabel.text = "Röda linjen"
+        cell.titleLabel.accessibilityLabel = "Tunnelbanas röda linjen"
       case 3:
         cell.titleLabel.text = "Blå linjen"
+        cell.titleLabel.accessibilityLabel = "Tunnelbanas blå linjen"
       default:
         break
       }
@@ -459,6 +463,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       data = bus as RTTransportBase
       if let designation = bus.stopPointDesignation {
         cell.stopPointDesignation.text = designation
+        cell.stopPointDesignation.accessibilityLabel = "Hållplatsläge: " + designation
         cell.stopPointDesignation.hidden = false
       }
     case "METRO":
@@ -499,6 +504,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     if let data = data {
       cell.lineLabel.text = lineChar + data.lineNumber
       cell.infoLabel.text = "\(data.destination)"
+      cell.infoLabel.accessibilityLabel = "Mot \(data.destination)"
       if data.displayTime == "Nu" {
         cell.departureTimeLabel.font = UIFont.boldSystemFontOfSize(17)
         cell.departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen

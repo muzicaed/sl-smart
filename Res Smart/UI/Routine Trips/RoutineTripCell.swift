@@ -63,7 +63,9 @@ class RoutineTripCell: UICollectionViewCell {
       title += NSLocalizedString(" (Vana)", comment: "")
     }
     
-    tripTitleLabel.text = title //+ " [\(String(routineTrip.score))]"
+    tripTitleLabel.text = title
+    tripTitleLabel.accessibilityTraits |= UIAccessibilityTraitButton
+    tripTitleLabel.accessibilityLabel = title
     originLabel.text = routineTrip.criterions.origin?.cleanName
     destinationLabel.text = routineTrip.criterions.dest?.cleanName
     
@@ -100,7 +102,9 @@ class RoutineTripCell: UICollectionViewCell {
     arrowLabel.hidden = false
     if let first = trip.tripSegments.first, last = trip.tripSegments.last  {
       departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)
+      departureTimeLabel.accessibilityLabel = "Avgår: " + departureTimeLabel.text!
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
+      arrivalTimeLabel.accessibilityLabel = "Framme: " + arrivalTimeLabel.text!
       inAboutLabel.text = DateUtils.createAboutTimeText(
         first.departureDateTime, isWalk: first.type == TripType.Walk)
       
@@ -138,6 +142,7 @@ class RoutineTripCell: UICollectionViewCell {
         
         let label = UILabel()
         label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
+        label.accessibilityLabel = "Steg \(count + 1): " + data.long
         label.textAlignment = NSTextAlignment.Center
         label.font = UIFont.boldSystemFontOfSize(9)
         label.minimumScaleFactor = 0.5

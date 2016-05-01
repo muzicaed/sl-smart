@@ -91,7 +91,7 @@
                                                                         </stackView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    <accessibility key="accessibilityConfiguration" label="Från: (Välj station eller adress). Knapp.">
+                                                                    <accessibility key="accessibilityConfiguration" label="Från: (Välj station eller adress).">
                                                                         <bool key="isElement" value="YES"/>
                                                                     </accessibility>
                                                                     <constraints>
@@ -155,7 +155,7 @@
                                                                         </stackView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    <accessibility key="accessibilityConfiguration" label="Till: (Välj station eller adress). Knapp.">
+                                                                    <accessibility key="accessibilityConfiguration" label="Till: (Välj station eller adress).">
                                                                         <bool key="isElement" value="YES"/>
                                                                     </accessibility>
                                                                     <constraints>
@@ -1453,9 +1453,6 @@
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <accessibility key="accessibilityConfiguration">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoStationsFound" textLabel="nvQ-56-AD8" style="IBUITableViewCellStyleDefault" id="xlT-uq-dXm" userLabel="NoStationsFound">
                                 <rect key="frame" x="0.0" y="93.5" width="414" height="44"/>
@@ -1519,25 +1516,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NearbyStationRow" textLabel="hma-gB-jL6" detailTextLabel="86g-mI-a0z" imageView="3fN-CT-qL9" style="IBUITableViewCellStyleSubtitle" id="iZu-bA-nNW">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="NearbyStationRow" textLabel="hma-gB-jL6" detailTextLabel="86g-mI-a0z" imageView="3fN-CT-qL9" style="IBUITableViewCellStyleSubtitle" id="iZu-bA-nNW">
                                 <rect key="frame" x="0.0" y="49.5" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iZu-bA-nNW" id="bN1-1J-865">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="iZu-bA-nNW" id="bN1-1J-865">
+                                    <rect key="frame" x="0.0" y="0.0" width="347" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Centralen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hma-gB-jL6">
+                                        <label opaque="NO" contentMode="left" text="Centralen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hma-gB-jL6">
                                             <rect key="frame" x="55" y="6" width="70.5" height="19.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="station-icon" id="3fN-CT-qL9">
+                                        <imageView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" image="station-icon" id="3fN-CT-qL9">
                                             <rect key="frame" x="15" y="9" width="25" height="25"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="86g-mI-a0z">
+                                        <label opaque="NO" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="86g-mI-a0z">
                                             <rect key="frame" x="55" y="25.5" width="40.5" height="13.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -2570,47 +2567,73 @@ Smarta Rutiner och Res Smart på Apple Watch kräver en prenumeration.</string>
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Y1K-Xh-Fl8">
-                                            <rect key="frame" x="13" y="8" width="344" height="44"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TBQ-Eb-3iJ">
+                                            <rect key="frame" x="8" y="8" width="354" height="44"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="240" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="chj-Ff-Ru2">
-                                                    <rect key="frame" x="0.0" y="0.0" width="317" height="44"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Y1K-Xh-Fl8">
+                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="44"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Ta mig till..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVP-oh-zq9">
-                                                            <rect key="frame" x="0.0" y="0.0" width="317" height="24.5"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Från: Nuvarande plats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wn-4P-85B">
-                                                            <rect key="frame" x="0.0" y="24.5" width="317" height="19.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="240" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="chj-Ff-Ru2">
+                                                            <rect key="frame" x="0.0" y="0.0" width="326.5" height="44"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Ta mig till..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVP-oh-zq9">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="326.5" height="24.5"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                                    <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Från: Nuvarande plats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wn-4P-85B">
+                                                                    <rect key="frame" x="0.0" y="24.5" width="326.5" height="19.5"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="❯" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sg4-02-LGM">
+                                                            <rect key="frame" x="326.5" y="0.0" width="27.5" height="44"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="❯" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sg4-02-LGM">
-                                                    <rect key="frame" x="317" y="0.0" width="27" height="44"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
-                                        </stackView>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" button="YES"/>
+                                                <bool key="isElement" value="YES"/>
+                                            </accessibility>
+                                            <constraints>
+                                                <constraint firstItem="Y1K-Xh-Fl8" firstAttribute="top" secondItem="TBQ-Eb-3iJ" secondAttribute="top" id="4PS-2Q-9Z8"/>
+                                                <constraint firstAttribute="bottom" secondItem="Y1K-Xh-Fl8" secondAttribute="bottom" id="8T5-hP-sXV"/>
+                                                <constraint firstItem="Y1K-Xh-Fl8" firstAttribute="leading" secondItem="TBQ-Eb-3iJ" secondAttribute="leading" id="MAo-BT-Evk"/>
+                                                <constraint firstAttribute="trailing" secondItem="Y1K-Xh-Fl8" secondAttribute="trailing" id="S2v-Gm-xJS"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottomMargin" secondItem="Y1K-Xh-Fl8" secondAttribute="bottom" id="1Qg-3B-LFe"/>
-                                    <constraint firstItem="Y1K-Xh-Fl8" firstAttribute="top" secondItem="esv-Pr-9mX" secondAttribute="topMargin" id="JEI-e9-nkQ"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="Y1K-Xh-Fl8" secondAttribute="trailing" constant="5" id="ct3-vF-NVQ"/>
-                                    <constraint firstItem="Y1K-Xh-Fl8" firstAttribute="leading" secondItem="esv-Pr-9mX" secondAttribute="leadingMargin" constant="5" id="xJ9-sp-qyo"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="TBQ-Eb-3iJ" secondAttribute="trailing" id="7fq-Zc-wAD"/>
+                                    <constraint firstItem="TBQ-Eb-3iJ" firstAttribute="leading" secondItem="esv-Pr-9mX" secondAttribute="leadingMargin" id="D5Z-U7-Xjm"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="TBQ-Eb-3iJ" secondAttribute="bottom" id="D7R-w9-cjz"/>
+                                    <constraint firstItem="TBQ-Eb-3iJ" firstAttribute="top" secondItem="esv-Pr-9mX" secondAttribute="topMargin" id="MG4-cx-dmN"/>
                                 </constraints>
                                 <size key="customSize" width="370" height="60"/>
                                 <connections>
                                     <outlet property="hereToThereLabel" destination="2Wn-4P-85B" id="Id1-QY-Wxa"/>
+                                    <outlet property="wrapperView" destination="TBQ-Eb-3iJ" id="S4n-7e-Fa7"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -4258,11 +4281,11 @@ direkt från din iPhone.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ypq-Up-6Af"/>
+        <segue reference="wql-iI-rP3"/>
         <segue reference="V2Z-ue-vlu"/>
         <segue reference="4rE-Hc-22D"/>
         <segue reference="kst-2L-81y"/>
-        <segue reference="Lg4-KG-mN0"/>
         <segue reference="gZB-Im-USu"/>
+        <segue reference="Q81-bK-EK6"/>
     </inferredMetricsTieBreakers>
 </document>

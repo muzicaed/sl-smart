@@ -409,15 +409,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
       cellReusableId, forIndexPath: indexPath)
     
     cell.textLabel?.text = location.name
-    cell.textLabel?.text?.accessibilityLabel = location.name
     cell.detailTextLabel?.text = location.area
-    cell.detailTextLabel?.accessibilityLabel = location.area
     if location.type == .Station {
       cell.imageView?.image = UIImage(named: "station-icon")
-      cell.imageView?.image?.accessibilityLabel = "Station"
     } else {
       cell.imageView?.image = UIImage(named: "address-icon")
-      cell.imageView?.image?.accessibilityLabel = "Adress"
     }
     cell.imageView?.alpha = 0.4
     if isLocationForRealTimeSearch {
@@ -425,7 +421,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     } else {
       cell.accessoryType = UITableViewCellAccessoryType.DetailButton
     }
-    
     return cell
   }
   
