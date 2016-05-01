@@ -420,18 +420,17 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    */
   private func prepareSearchController() {
     let searchResultsVC = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchResult") as! SearchLocationResultsVC
+    searchResultsVC.delegate = self.delegate
     searchController = UISearchController(searchResultsController: searchResultsVC)
     searchController!.searchResultsUpdater = searchResultsVC
     searchController!.delegate = self
-    //searchController.dimsBackgroundDuringPresentation = false
-    //searchController.obscuresBackgroundDuringPresentation = false
+    searchController!.dimsBackgroundDuringPresentation = true
     if searchOnlyForStations {
       searchController!.searchBar.placeholder = "Skriv namnet på en station"
     } else {
       searchController!.searchBar.placeholder = "Skriv stationsnamn eller en adress"
     }
     tableView.tableHeaderView = searchController!.searchBar
-    //definesPresentationContext = true
   }
   
   deinit {

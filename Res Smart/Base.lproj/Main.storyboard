@@ -1419,15 +1419,15 @@
         <!--Välj station-->
         <scene sceneID="2N2-G6-FGu">
             <objects>
-                <tableViewController title="Välj station" id="WJw-HK-J3L" customClass="SearchLocationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Välj station" extendedLayoutIncludesOpaqueBars="YES" id="WJw-HK-J3L" customClass="SearchLocationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="NZT-P9-guF">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="StationSearchResultCell" textLabel="7tf-V3-lvF" detailTextLabel="bGr-Sp-Q9i" imageView="5LW-NO-v49" style="IBUITableViewCellStyleSubtitle" id="UKA-Wl-L3Q">
-                                <rect key="frame" x="0.0" y="49.5" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="113.5" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UKA-Wl-L3Q" id="Lhl-KO-hdt">
                                     <rect key="frame" x="0.0" y="0.0" width="367" height="43.5"/>
@@ -1462,31 +1462,15 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Välj station" id="pj9-MT-dHe"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="yht-XJ-QLo" id="NMx-gN-VTT"/>
                         <segue destination="rrp-UG-kjR" kind="unwind" identifier="unwindToStationSearchParent" unwindAction="unwindToStationSearchParent:" id="6DK-tK-WGl"/>
                         <segue destination="Tmy-8K-Wz5" kind="show" identifier="showRealTime" id="rzj-uS-OIZ"/>
                         <segue destination="Se4-Xu-rNz" kind="show" identifier="ShowNearbyStations" id="Bes-mC-L6l"/>
                         <segue destination="7Vv-Mr-zyV" kind="presentation" identifier="ShowLocationMap" id="ivB-Ve-lrb"/>
+                        <segue destination="rN5-I7-qjR" kind="show" identifier="dummy" id="qx8-DP-TjP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U7o-bb-YDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rrp-UG-kjR" userLabel="Exit" sceneMemberID="exit"/>
-                <searchDisplayController id="vJL-jl-J0B">
-                    <connections>
-                        <outlet property="delegate" destination="WJw-HK-J3L" id="WLf-nM-IRf"/>
-                        <outlet property="searchContentsController" destination="WJw-HK-J3L" id="gWZ-Gj-lF4"/>
-                        <outlet property="searchResultsDataSource" destination="WJw-HK-J3L" id="o6u-kc-Wtv"/>
-                        <outlet property="searchResultsDelegate" destination="WJw-HK-J3L" id="5Jo-3x-khM"/>
-                    </connections>
-                </searchDisplayController>
-                <searchDisplayController id="yht-XJ-QLo">
-                    <connections>
-                        <outlet property="delegate" destination="WJw-HK-J3L" id="Tiu-Ti-g0k"/>
-                        <outlet property="searchContentsController" destination="WJw-HK-J3L" id="qMp-f8-6Xf"/>
-                        <outlet property="searchResultsDataSource" destination="WJw-HK-J3L" id="vTu-7X-SFH"/>
-                        <outlet property="searchResultsDelegate" destination="WJw-HK-J3L" id="0fw-k2-O3y"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3251" y="1337"/>
         </scene>
@@ -4249,18 +4233,18 @@ direkt från din iPhone.</string>
         <!--Sökresultat-->
         <scene sceneID="frf-hP-nIf">
             <objects>
-                <tableViewController storyboardIdentifier="LocationSearchResult" title="Sökresultat" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rN5-I7-qjR" customClass="SearchLocationResultsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="pdc-F9-5tu">
+                <tableViewController storyboardIdentifier="LocationSearchResult" title="Sökresultat" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rN5-I7-qjR" customClass="SearchLocationResultsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="pdc-F9-5tu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="StationSearchResultCell" textLabel="j6a-uZ-ui0" detailTextLabel="CUZ-2W-VoI" imageView="yEZ-hy-iee" style="IBUITableViewCellStyleSubtitle" id="E6O-bD-H3Z">
-                                <rect key="frame" x="0.0" y="49.5" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StationSearchResultCell" textLabel="j6a-uZ-ui0" detailTextLabel="CUZ-2W-VoI" imageView="yEZ-hy-iee" style="IBUITableViewCellStyleSubtitle" id="E6O-bD-H3Z">
+                                <rect key="frame" x="0.0" y="92" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E6O-bD-H3Z" id="foI-89-eOF">
-                                    <rect key="frame" x="0.0" y="0.0" width="367" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j6a-uZ-ui0">
@@ -4283,9 +4267,12 @@ direkt från din iPhone.</string>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES"/>
+                                </accessibility>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoStationsFound" textLabel="8M3-wT-2Ap" style="IBUITableViewCellStyleDefault" id="P0N-e3-UN4" userLabel="NoStationsFound">
-                                <rect key="frame" x="0.0" y="93.5" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="136" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P0N-e3-UN4" id="Hf0-9o-01U">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -4309,20 +4296,11 @@ direkt från din iPhone.</string>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="yht-XJ-QLo" id="0f8-j9-ILa"/>
                         <segue destination="DhF-Oc-LZM" kind="unwind" identifier="unwindToStationSearchParent" unwindAction="unwindToStationSearchParent:" id="vfl-fZ-Vep"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSo-Co-wDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="DhF-Oc-LZM" userLabel="Exit" sceneMemberID="exit"/>
-                <searchDisplayController id="vJa-tG-k3d">
-                    <connections>
-                        <outlet property="delegate" destination="rN5-I7-qjR" id="czb-DD-P9M"/>
-                        <outlet property="searchContentsController" destination="rN5-I7-qjR" id="1JX-3z-wX6"/>
-                        <outlet property="searchResultsDataSource" destination="rN5-I7-qjR" id="JrL-OP-eHe"/>
-                        <outlet property="searchResultsDelegate" destination="rN5-I7-qjR" id="2zX-ri-12V"/>
-                    </connections>
-                </searchDisplayController>
                 <searchDisplayController id="Dxp-1E-lcx">
                     <connections>
                         <outlet property="delegate" destination="rN5-I7-qjR" id="O2A-vp-bDh"/>
