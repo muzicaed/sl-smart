@@ -1959,6 +1959,9 @@
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="7ef-Be-lV5">
                                                                                             <rect key="frame" x="15" y="10.5" width="21.5" height="36"/>
                                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                                            <accessibility key="accessibilityConfiguration">
+                                                                                                <bool key="isElement" value="NO"/>
+                                                                                            </accessibility>
                                                                                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
                                                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                             <nil key="highlightedColor"/>
@@ -2181,6 +2184,9 @@
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="247" horizontalCompressionResistancePriority="751" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZn-2K-7NK">
                                                                             <rect key="frame" x="150" y="0.0" width="30" height="38"/>
+                                                                            <accessibility key="accessibilityConfiguration">
+                                                                                <bool key="isElement" value="NO"/>
+                                                                            </accessibility>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="30" id="0cP-tF-Mnb"/>
                                                                             </constraints>
@@ -4331,12 +4337,12 @@ direkt från din iPhone.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="fPH-Xr-GVg"/>
+        <segue reference="WoO-7G-VaU"/>
+        <segue reference="rzj-uS-OIZ"/>
         <segue reference="bAI-Ol-u0J"/>
-        <segue reference="wql-iI-rP3"/>
         <segue reference="Q81-bK-EK6"/>
         <segue reference="gZB-Im-USu"/>
-        <segue reference="4rE-Hc-22D"/>
         <segue reference="V2Z-ue-vlu"/>
-        <segue reference="rzj-uS-OIZ"/>
     </inferredMetricsTieBreakers>
 </document>

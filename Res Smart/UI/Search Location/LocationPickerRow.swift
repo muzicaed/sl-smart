@@ -42,7 +42,7 @@ class LocationPickerRow: UITableViewCell {
     switchImage.gestureRecognizers = [switchGesture]
     switchImage.isAccessibilityElement = true
     switchImage.accessibilityTraits |= UIAccessibilityTraitButton
-    switchImage.accessibilityLabel = "Byt plats på från och till."
+    switchImage.accessibilityLabel = "Byt plats på från och till"
     
     originView.accessibilityTraits |= UIAccessibilityTraitButton
     destinationView.accessibilityTraits |= UIAccessibilityTraitButton
