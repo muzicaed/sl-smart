@@ -15,14 +15,16 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
   let cellReusableId = "StationSearchResultCell"
   let cellNotFoundId = "NoStationsFound"
   var searchResult = [Location]()
-  var selectedLocation: Location?
   var searchOnlyForStations = true
   var noResults = false
   var isLocationForRealTimeSearch = false
   var delegate: LocationSearchResponder?
   var searchQueryText: String?
+  var selectedLocation: Location?
   
   let loadedTime = NSDate()
+  
+  weak var searchLocationVC: SearchLocationVC?
   
   /**
    * View is done loading.
@@ -38,12 +40,31 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
    * Before segue is performed
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "showRealTime" {
-      if let realTimeVC = segue.destinationViewController as? RealTimeVC {
-        realTimeVC.title = selectedLocation?.name
-        realTimeVC.siteId = Int(selectedLocation!.siteId!)!
+    if segue.identifier == "ShowLocationMap" {
+      if let mapVC = segue.destinationViewController as? LocationMapVC {
+        mapVC.location = selectedLocation
       }
     }
+  }
+  
+  /**
+   * Toggle selected station as favourite station
+   */
+  func toggleFavouriteStation(alertAction: UIAlertAction) {
+    if FavouriteLocationsStore.sharedInstance.isLocationFavourite(selectedLocation!) {
+      FavouriteLocationsStore.sharedInstance.removeFavouriteLocation(selectedLocation!)
+    } else {
+      FavouriteLocationsStore.sharedInstance.addFavouriteLocation(selectedLocation!)
+    }
+    self.selectedLocation = nil
+    tableView.reloadData()
+  }
+  
+  /**
+   * Show selected station on map.
+   */
+  func showLocationOnMap(alertAction: UIAlertAction) {
+    performSegueWithIdentifier("ShowLocationMap", sender: self)
   }
   
   // MARK: UITableViewController
@@ -81,16 +102,37 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
   override func tableView(
     tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
+    searchLocationVC?.onSearchSelectLocation(searchResult[indexPath.row])
+  }
+  
+  /**
+   * User tapped accessory
+   */
+  override func tableView(
+    tableView: UITableView,
+    accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+    
     selectedLocation = searchResult[indexPath.row]
-    if let loc = selectedLocation {
-      LatestLocationsStore.sharedInstance.addLatestLocation(loc)
-      if isLocationForRealTimeSearch {
-        performSegueWithIdentifier("showRealTime", sender: self)
-      } else {
-        performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
-        delegate?.selectedLocationFromSearch(loc)
-      }
+    let stationOptionsAlert = UIAlertController(
+      title: nil,
+      message: selectedLocation!.cleanName,
+      preferredStyle: .ActionSheet)
+    
+    var favouriteTitle = "Gör till favorit"
+    if FavouriteLocationsStore.sharedInstance.isLocationFavourite(selectedLocation!) {
+      favouriteTitle = "Ta bort från favoriter"
     }
+    
+    stationOptionsAlert.addAction(
+      UIAlertAction(title: favouriteTitle, style: .Default, handler: toggleFavouriteStation))
+    stationOptionsAlert.addAction(
+      UIAlertAction(title: "Visa på karta", style: .Default, handler: showLocationOnMap))
+    stationOptionsAlert.addAction(
+      UIAlertAction(title: "Avbryt", style: .Cancel, handler: { _ in
+        self.selectedLocation = nil
+      }))
+    
+    presentViewController(stationOptionsAlert, animated: true, completion: nil)
   }
   
   /**
@@ -146,13 +188,6 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
   // MARK: Private
   
   /**
-   * Select loation at index path
-   */
-  private func selectLocation(indexPath: NSIndexPath) {
-    selectedLocation = searchResult[indexPath.row]
-  }
-  
-  /**
    * Create location cell.
    */
   private func createLocationCell(
@@ -163,6 +198,9 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
     
     cell.textLabel?.text = location.name
     cell.detailTextLabel?.text = location.area
+    if FavouriteLocationsStore.sharedInstance.isLocationFavourite(location) {
+      cell.detailTextLabel?.text = "⭐ " + location.area
+    }
     if location.type == .Station {
       cell.imageView?.image = UIImage(named: "station-icon")
     } else {

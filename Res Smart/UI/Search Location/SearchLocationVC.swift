@@ -112,6 +112,14 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     performSegueWithIdentifier("ShowLocationMap", sender: self)
   }
   
+  /**
+   * Location wes selected on search result.
+   */
+  func onSearchSelectLocation(location: Location) {
+    selectedLocation = location
+    navigateOnSelect()
+  }
+  
   // MARK: UITableViewController
   
   /**
@@ -213,11 +221,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
       return createCurrentLocationCell(indexPath)
     } else if indexPath.section == favSection {
       let location = favouriteLocations[indexPath.row]
-      return createLocationCell(indexPath, location: location)
+      return createLocationCell(indexPath, location: location, isFavourite: true)
     }
     
     let location = latestLocations[indexPath.row]
-    return createLocationCell(indexPath, location: location)
+    return createLocationCell(indexPath, location: location, isFavourite: false)
     
   }
   
@@ -237,17 +245,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     }
     
     selectLocation(indexPath)
-    if let loc = selectedLocation {
-      searchController!.active = false
-      LatestLocationsStore.sharedInstance.addLatestLocation(loc)
-      if isLocationForRealTimeSearch {
-        performSegueWithIdentifier("showRealTime", sender: self)
-      } else {
-        performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
-        delegate?.selectedLocationFromSearch(loc)
-      }
-      loadListedLocations()
-    }
+    navigateOnSelect()
   }
   
   /**
@@ -329,16 +327,33 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   }
   
   /**
+   * Perfroms correct navigation on selected location.
+   */
+  private func navigateOnSelect() {
+    if let loc = selectedLocation {
+      searchController!.active = false
+      LatestLocationsStore.sharedInstance.addLatestLocation(loc)
+      if isLocationForRealTimeSearch {
+        performSegueWithIdentifier("showRealTime", sender: self)
+      } else {
+        performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
+        delegate?.selectedLocationFromSearch(loc)
+      }
+      loadListedLocations()
+    }
+  }
+  
+  /**
    * Create location cell.
    */
   private func createLocationCell(
-    indexPath: NSIndexPath, location: Location) -> UITableViewCell {
+    indexPath: NSIndexPath, location: Location, isFavourite: Bool) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCellWithIdentifier(
       cellReusableId, forIndexPath: indexPath)
     
     cell.textLabel?.text = location.name
-    cell.detailTextLabel?.text = location.area
+    cell.detailTextLabel?.text = (isFavourite) ? "⭐ " + location.area: location.area
     if location.type == .Station {
       cell.imageView?.image = UIImage(named: "station-icon")
     } else {
@@ -421,6 +436,10 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   private func prepareSearchController() {
     let searchResultsVC = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchResult") as! SearchLocationResultsVC
     searchResultsVC.delegate = self.delegate
+    searchResultsVC.searchLocationVC = self
+    searchResultsVC.searchOnlyForStations = searchOnlyForStations
+    searchResultsVC.isLocationForRealTimeSearch = isLocationForRealTimeSearch
+    
     searchController = UISearchController(searchResultsController: searchResultsVC)
     searchController!.searchResultsUpdater = searchResultsVC
     searchController!.delegate = self

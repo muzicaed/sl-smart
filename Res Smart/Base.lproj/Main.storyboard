@@ -4228,7 +4228,7 @@ direkt från din iPhone.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mN5-7M-NkF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4225" y="1337"/>
+            <point key="canvasLocation" x="4801" y="1337"/>
         </scene>
         <!--Sökresultat-->
         <scene sceneID="frf-hP-nIf">
@@ -4297,6 +4297,7 @@ direkt från din iPhone.</string>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <segue destination="DhF-Oc-LZM" kind="unwind" identifier="unwindToStationSearchParent" unwindAction="unwindToStationSearchParent:" id="vfl-fZ-Vep"/>
+                        <segue destination="7Vv-Mr-zyV" kind="presentation" identifier="ShowLocationMap" id="bAI-Ol-u0J"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSo-Co-wDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4310,7 +4311,7 @@ direkt från din iPhone.</string>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="4428" y="485"/>
+            <point key="canvasLocation" x="4276" y="857"/>
         </scene>
     </scenes>
     <resources>
@@ -4330,11 +4331,12 @@ direkt från din iPhone.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="bAI-Ol-u0J"/>
         <segue reference="wql-iI-rP3"/>
-        <segue reference="V2Z-ue-vlu"/>
-        <segue reference="4rE-Hc-22D"/>
-        <segue reference="rzj-uS-OIZ"/>
-        <segue reference="gZB-Im-USu"/>
         <segue reference="Q81-bK-EK6"/>
+        <segue reference="gZB-Im-USu"/>
+        <segue reference="4rE-Hc-22D"/>
+        <segue reference="V2Z-ue-vlu"/>
+        <segue reference="rzj-uS-OIZ"/>
     </inferredMetricsTieBreakers>
 </document>
