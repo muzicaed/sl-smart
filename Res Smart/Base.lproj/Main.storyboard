@@ -172,9 +172,6 @@
                                                             <subviews>
                                                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwitchRow" translatesAutoresizingMaskIntoConstraints="NO" id="Za6-oU-QKd">
                                                                     <rect key="frame" x="15" y="29" width="30" height="30"/>
-                                                                    <accessibility key="accessibilityConfiguration" label="Byt plats på till och från.">
-                                                                        <bool key="isElement" value="YES"/>
-                                                                    </accessibility>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="30" id="9ue-N2-vOH"/>
                                                                         <constraint firstAttribute="height" constant="30" id="DKx-X7-BPb"/>
@@ -182,6 +179,9 @@
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <bool key="isElement" value="YES"/>
+                                                            </accessibility>
                                                             <constraints>
                                                                 <constraint firstItem="Za6-oU-QKd" firstAttribute="centerY" secondItem="QiU-iy-svH" secondAttribute="centerY" id="LZl-bk-YZa"/>
                                                                 <constraint firstAttribute="width" constant="60" id="R6s-lb-MIx"/>
@@ -1268,8 +1268,8 @@
                                                             <subviews>
                                                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwitchRow" translatesAutoresizingMaskIntoConstraints="NO" id="FG8-41-p1G">
                                                                     <rect key="frame" x="15" y="29" width="30" height="30"/>
-                                                                    <accessibility key="accessibilityConfiguration">
-                                                                        <bool key="isElement" value="YES"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="Byt plats på till och från.">
+                                                                        <bool key="isElement" value="NO"/>
                                                                     </accessibility>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="VUv-MZ-RTa"/>
@@ -1278,6 +1278,9 @@
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <bool key="isElement" value="YES"/>
+                                                            </accessibility>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="60" id="2Iz-gh-o0X"/>
                                                                 <constraint firstItem="FG8-41-p1G" firstAttribute="centerX" secondItem="fsz-t1-9TR" secondAttribute="centerX" id="iSq-9c-Nz5"/>
@@ -1540,6 +1543,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES"/>
+                                </accessibility>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                         </prototypes>
@@ -4250,11 +4256,11 @@ direkt från din iPhone.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="V2Z-ue-vlu"/>
         <segue reference="4rE-Hc-22D"/>
         <segue reference="Lg4-KG-mN0"/>
-        <segue reference="yy0-ry-irx"/>
-        <segue reference="L0K-5H-KeJ"/>
-        <segue reference="rzj-uS-OIZ"/>
+        <segue reference="fA6-Sa-2ok"/>
+        <segue reference="kst-2L-81y"/>
         <segue reference="gZB-Im-USu"/>
     </inferredMetricsTieBreakers>
 </document>
