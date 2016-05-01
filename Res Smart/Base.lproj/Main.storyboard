@@ -826,21 +826,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Line number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P9v-cx-eEt">
-                                            <rect key="frame" x="45" y="6" width="90.5" height="19.5"/>
+                                            <rect key="frame" x="52" y="6" width="90.5" height="19.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TEm-Ap-rOE">
-                                            <rect key="frame" x="45" y="25.5" width="32" height="13.5"/>
+                                            <rect key="frame" x="52" y="25.5" width="32" height="13.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="BUS-NEUTRAL" id="eBb-wv-IrV">
-                                            <rect key="frame" x="15" y="14" width="15" height="15"/>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="BUS" id="eBb-wv-IrV">
+                                            <rect key="frame" x="15" y="10" width="22" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -1191,6 +1191,7 @@
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <accessibility key="accessibilityConfiguration">
+                                                                        <accessibilityTraits key="traits" button="YES"/>
                                                                         <bool key="isElement" value="YES"/>
                                                                     </accessibility>
                                                                     <constraints>
@@ -1252,6 +1253,7 @@
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <accessibility key="accessibilityConfiguration">
+                                                                        <accessibilityTraits key="traits" button="YES"/>
                                                                         <bool key="isElement" value="YES"/>
                                                                     </accessibility>
                                                                     <constraints>
@@ -1279,6 +1281,7 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <accessibility key="accessibilityConfiguration">
+                                                                <accessibilityTraits key="traits" button="YES"/>
                                                                 <bool key="isElement" value="YES"/>
                                                             </accessibility>
                                                             <constraints>
@@ -4240,7 +4243,6 @@ direkt från din iPhone.</string>
     </scenes>
     <resources>
         <image name="BUS" width="22" height="22"/>
-        <image name="BUS-NEUTRAL" width="15" height="15"/>
         <image name="ClockIcon" width="25" height="25"/>
         <image name="EventGood" width="25" height="25"/>
         <image name="MapIcon" width="44" height="44"/>
@@ -4256,11 +4258,11 @@ direkt från din iPhone.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ypq-Up-6Af"/>
         <segue reference="V2Z-ue-vlu"/>
         <segue reference="4rE-Hc-22D"/>
-        <segue reference="Lg4-KG-mN0"/>
-        <segue reference="fA6-Sa-2ok"/>
         <segue reference="kst-2L-81y"/>
+        <segue reference="Lg4-KG-mN0"/>
         <segue reference="gZB-Im-USu"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -27,7 +27,7 @@ class SituationHeader: UITableViewCell {
     } else {
       statusIcon.image = UIImage(named: group.statusIcon)
       if group.statusIcon == "EventGood" {
-        title.accessibilityLabel = group.name + ". Allt OK."        
+        title.accessibilityLabel = group.name + ". Inga avvikelser."        
       } else {
         title.accessibilityLabel = group.name + ". Finns pågående störningar."
       }
