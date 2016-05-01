@@ -1454,23 +1454,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoStationsFound" textLabel="nvQ-56-AD8" style="IBUITableViewCellStyleDefault" id="xlT-uq-dXm" userLabel="NoStationsFound">
-                                <rect key="frame" x="0.0" y="93.5" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xlT-uq-dXm" id="D9T-Dg-c5o">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Inga sökträffar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nvQ-56-AD8">
-                                            <rect key="frame" x="15" y="0.0" width="384" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="WJw-HK-J3L" id="y7v-fC-VKK"/>
@@ -4263,6 +4246,94 @@ direkt från din iPhone.</string>
             </objects>
             <point key="canvasLocation" x="4225" y="1337"/>
         </scene>
+        <!--Sökresultat-->
+        <scene sceneID="frf-hP-nIf">
+            <objects>
+                <tableViewController title="Sökresultat" id="rN5-I7-qjR" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="pdc-F9-5tu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="StationSearchResultCell" textLabel="j6a-uZ-ui0" detailTextLabel="CUZ-2W-VoI" imageView="yEZ-hy-iee" style="IBUITableViewCellStyleSubtitle" id="E6O-bD-H3Z">
+                                <rect key="frame" x="0.0" y="49.5" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E6O-bD-H3Z" id="foI-89-eOF">
+                                    <rect key="frame" x="0.0" y="0.0" width="367" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j6a-uZ-ui0">
+                                            <rect key="frame" x="55" y="6" width="31.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CUZ-2W-VoI">
+                                            <rect key="frame" x="55" y="25.5" width="40.5" height="13.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="station-icon" id="yEZ-hy-iee">
+                                            <rect key="frame" x="15" y="9" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoStationsFound" textLabel="8M3-wT-2Ap" style="IBUITableViewCellStyleDefault" id="P0N-e3-UN4" userLabel="NoStationsFound">
+                                <rect key="frame" x="0.0" y="93.5" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P0N-e3-UN4" id="Hf0-9o-01U">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Inga sökträffar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8M3-wT-2Ap">
+                                            <rect key="frame" x="15" y="0.0" width="384" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="rN5-I7-qjR" id="kcI-SO-6KJ"/>
+                            <outlet property="delegate" destination="rN5-I7-qjR" id="wI7-y1-v2w"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="yht-XJ-QLo" id="0f8-j9-ILa"/>
+                        <segue destination="DhF-Oc-LZM" kind="unwind" identifier="unwindToStationSearchParent" unwindAction="unwindToStationSearchParent:" id="vfl-fZ-Vep"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PSo-Co-wDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="DhF-Oc-LZM" userLabel="Exit" sceneMemberID="exit"/>
+                <searchDisplayController id="vJa-tG-k3d">
+                    <connections>
+                        <outlet property="delegate" destination="rN5-I7-qjR" id="czb-DD-P9M"/>
+                        <outlet property="searchContentsController" destination="rN5-I7-qjR" id="1JX-3z-wX6"/>
+                        <outlet property="searchResultsDataSource" destination="rN5-I7-qjR" id="JrL-OP-eHe"/>
+                        <outlet property="searchResultsDelegate" destination="rN5-I7-qjR" id="2zX-ri-12V"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="Dxp-1E-lcx">
+                    <connections>
+                        <outlet property="delegate" destination="rN5-I7-qjR" id="O2A-vp-bDh"/>
+                        <outlet property="searchContentsController" destination="rN5-I7-qjR" id="UK7-If-sGb"/>
+                        <outlet property="searchResultsDataSource" destination="rN5-I7-qjR" id="v0m-6Q-aVG"/>
+                        <outlet property="searchResultsDelegate" destination="rN5-I7-qjR" id="eYY-QR-8b0"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="4428" y="485"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BUS" width="22" height="22"/>
@@ -4284,7 +4355,7 @@ direkt från din iPhone.</string>
         <segue reference="wql-iI-rP3"/>
         <segue reference="V2Z-ue-vlu"/>
         <segue reference="4rE-Hc-22D"/>
-        <segue reference="kst-2L-81y"/>
+        <segue reference="rzj-uS-OIZ"/>
         <segue reference="gZB-Im-USu"/>
         <segue reference="Q81-bK-EK6"/>
     </inferredMetricsTieBreakers>

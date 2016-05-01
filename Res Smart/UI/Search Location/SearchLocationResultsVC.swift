@@ -1,5 +1,5 @@
 //
-//  SearchLocationVC.swift
+//  SearchLocationResultsVC.swift
 //  SL Smart
 //
 //  Created by Mikael Hellman on 2015-11-22.
@@ -10,16 +10,18 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class SearchLocationVC: UITableViewController {
+class SearchLocationResultsVC: UITableViewController, UISearchControllerDelegate, UISearchResultsUpdating {
   
   let cellReusableId = "StationSearchResultCell"
   let cellNotFoundId = "NoStationsFound"
-  var searchController = UISearchController(searchResultsController: nil)
+  var searchResult = [Location]()
   var latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestLocations()
   var favouriteLocations = FavouriteLocationsStore.sharedInstance.retrieveFavouriteLocations()
   var delegate: LocationSearchResponder?
   var selectedLocation: Location?
   var searchOnlyForStations = true
+  var noResults = false
+  var isDisplayingSearchResult = false
   var allowCurrentPosition = false
   var allowNearbyStations = false
   var lastCount = 0
@@ -118,8 +120,11 @@ class SearchLocationVC: UITableViewController {
    * Number of section
    */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    let count = (allowCurrentPosition || allowNearbyStations) ? 2 : 1
-    return (favouriteLocations.count > 0) ? count + 1 : count
+    if !isDisplayingSearchResult && !noResults {
+      let count = (allowCurrentPosition || allowNearbyStations) ? 2 : 1
+      return (favouriteLocations.count > 0) ? count + 1 : count
+    }
+    return 1
   }
   
   /**
@@ -137,16 +142,23 @@ class SearchLocationVC: UITableViewController {
     let color = StyleHelper.sharedInstance.mainGreen
     view.backgroundColor = color.colorWithAlphaComponent(0.95)
     
-    let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
-    let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
-    
-    if section == favSection {
-      label.text = "Favoritplatser"
+    if isDisplayingSearchResult && searchResult.count > 0 {
+      label.text = "Sökresultat"
+      return view
+    } else if !isDisplayingSearchResult {
+      let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
+      let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
+      
+      if section == favSection {
+        label.text = "Favoritplatser"
+        return view
+      }
+      
+      label.text = "Senast använda platser"
       return view
     }
     
-    label.text = "Senast använda platser"
-    return view
+    return nil
   }
   
   /**
@@ -174,17 +186,22 @@ class SearchLocationVC: UITableViewController {
   override func tableView(
     tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-    let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
-    let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
-    
-    if section == topSection {
-      let count = (allowCurrentPosition) ? 1 : 0
-      return (allowNearbyStations) ? count + 1 : count + 0
-    } else if section == favSection {
-      return favouriteLocations.count
+    if noResults {
+      return 1
+    } else if !isDisplayingSearchResult {
+      let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
+      let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
+      
+      if section == topSection {
+        let count = (allowCurrentPosition) ? 1 : 0
+        return (allowNearbyStations) ? count + 1 : count + 0
+      } else if section == favSection {
+        return favouriteLocations.count
+      }
+      
+      return latestLocations.count
     }
-    
-    return latestLocations.count
+    return searchResult.count
   }
   
   /**
@@ -193,32 +210,41 @@ class SearchLocationVC: UITableViewController {
   override func tableView(
     tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
-    let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
-    let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
-    
-    if indexPath.section == topSection {
-      if allowCurrentPosition && allowNearbyStations {
-        if indexPath.row == 0 {
-          return createCurrentLocationCell(indexPath)
-        } else if indexPath.row == 1 {
-          return createNearbyStationsCell(indexPath)
+    if noResults {
+      let cell = tableView.dequeueReusableCellWithIdentifier(
+        cellNotFoundId, forIndexPath: indexPath)
+      return cell
+    } else if !isDisplayingSearchResult {
+      
+      let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
+      let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
+      
+      if indexPath.section == topSection {
+        if allowCurrentPosition && allowNearbyStations {
+          if indexPath.row == 0 {
+            return createCurrentLocationCell(indexPath)
+          } else if indexPath.row == 1 {
+            return createNearbyStationsCell(indexPath)
+          }
+        } else if (allowCurrentPosition || allowNearbyStations) && indexPath.row == 0 {
+          if allowCurrentPosition {
+            return createCurrentLocationCell(indexPath)
+          } else {
+            return createNearbyStationsCell(indexPath)
+          }
         }
-      } else if (allowCurrentPosition || allowNearbyStations) && indexPath.row == 0 {
-        if allowCurrentPosition {
-          return createCurrentLocationCell(indexPath)
-        } else {
-          return createNearbyStationsCell(indexPath)
-        }
+        return createCurrentLocationCell(indexPath)
+      } else if indexPath.section == favSection {
+        let location = favouriteLocations[indexPath.row]
+        return createLocationCell(indexPath, location: location)
       }
-      return createCurrentLocationCell(indexPath)
-    } else if indexPath.section == favSection {
-      let location = favouriteLocations[indexPath.row]
+      
+      let location = latestLocations[indexPath.row]
       return createLocationCell(indexPath, location: location)
     }
     
-    let location = latestLocations[indexPath.row]
+    let location = searchResult[indexPath.row]
     return createLocationCell(indexPath, location: location)
-    
   }
   
   /**
@@ -227,10 +253,10 @@ class SearchLocationVC: UITableViewController {
   override func tableView(
     tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
-    if allowNearbyStations && indexPath.section == 0 {
+    if !isDisplayingSearchResult && allowNearbyStations && indexPath.section == 0 {
       if (allowCurrentPosition && indexPath.row == 1) ||
         (!allowCurrentPosition && indexPath.row == 0) {
-        searchController.active = false
+        //searchController.active = false
         performSegueWithIdentifier("ShowNearbyStations", sender: self)
         return
       }
@@ -238,7 +264,7 @@ class SearchLocationVC: UITableViewController {
     
     selectLocation(indexPath)
     if let loc = selectedLocation {
-      searchController.active = false
+      //searchController.active = false
       LatestLocationsStore.sharedInstance.addLatestLocation(loc)
       if isLocationForRealTimeSearch {
         performSegueWithIdentifier("showRealTime", sender: self)
@@ -292,6 +318,48 @@ class SearchLocationVC: UITableViewController {
     cell.selectedBackgroundView = bgColorView
   }
   
+  // MARK: UISearchResultsUpdating
+  
+  @objc func updateSearchResultsForSearchController(searchController: UISearchController) {
+    NSObject.cancelPreviousPerformRequestsWithTarget(
+      self, selector: #selector(searchLocation), object: nil)
+    self.performSelector(#selector(searchLocation), withObject: nil, afterDelay: 0.3)
+  }
+  
+  /**
+   * Executes a search
+   */
+  func searchLocation() {
+    /*
+    if let query = searchController.searchBar.text {
+      if query.characters.count > 0 {
+        self.noResults = false
+        NetworkActivity.displayActivityIndicator(true)
+        LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
+          NetworkActivity.displayActivityIndicator(false)
+          dispatch_async(dispatch_get_main_queue()) {
+            if resTuple.error != nil {
+              self.noResults = true
+              self.tableView.reloadData()
+              return
+            }
+            self.searchResult = resTuple.data
+            if resTuple.data.count > 0 {
+              self.isDisplayingSearchResult = true
+              self.tableView.reloadData()
+            }
+          }
+        }
+      } else if query.characters.count == 0 {
+        self.isDisplayingSearchResult = false
+        self.noResults = false
+        self.lastCount = latestLocations.count
+        self.tableView.reloadData()
+      }
+    }
+ */
+  }
+  
   /**
    * Fix for broken search bar when tranlucent navbar is off.
    * TODO: Remove if future update fixes this.
@@ -315,8 +383,11 @@ class SearchLocationVC: UITableViewController {
    */
   private func selectLocation(indexPath: NSIndexPath) {
     if allowCurrentPosition &&
+      !isDisplayingSearchResult &&
       indexPath.section == 0 && indexPath.row == 0 {
       selectedLocation = MyLocationHelper.sharedInstance.getCurrentLocation()
+    } else if isDisplayingSearchResult {
+      selectedLocation = searchResult[indexPath.row]
     } else {
       let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
       let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
@@ -419,8 +490,9 @@ class SearchLocationVC: UITableViewController {
    * Prepares search controller
    */
   private func prepareSearchController() {
-    //searchController.searchResultsUpdater = self
-    //searchController.delegate = self
+    /*
+    searchController.searchResultsUpdater = self
+    searchController.delegate = self
     searchController.dimsBackgroundDuringPresentation = false
     searchController.obscuresBackgroundDuringPresentation = false
     if searchOnlyForStations {
@@ -430,12 +502,15 @@ class SearchLocationVC: UITableViewController {
     }
     tableView.tableHeaderView = searchController.searchBar
     definesPresentationContext = true
+ */
   }
   
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
+    /*
     if let superView = searchController.view.superview {
       superView.removeFromSuperview()
     }
+ */
   }
 }
