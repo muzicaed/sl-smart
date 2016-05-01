@@ -20,7 +20,9 @@ class TripDetailsOriginCell: UITableViewCell, TripCellProtocol {
    */
   func setData(indexPath: NSIndexPath, trip: Trip) {
     timeLabel.text = DateUtils.dateAsTimeString(trip.tripSegments.first!.departureDateTime)
+    timeLabel.accessibilityLabel = "Avgång \(timeLabel.text!)"
     locationLabel.text = trip.tripSegments.first!.origin.cleanName
+    locationLabel.accessibilityLabel = "från \(locationLabel.text!)"
   }
-  
+
 }
