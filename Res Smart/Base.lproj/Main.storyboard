@@ -4249,7 +4249,7 @@ direkt från din iPhone.</string>
         <!--Sökresultat-->
         <scene sceneID="frf-hP-nIf">
             <objects>
-                <tableViewController title="Sökresultat" id="rN5-I7-qjR" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LocationSearchResult" title="Sökresultat" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rN5-I7-qjR" customClass="SearchLocationResultsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="pdc-F9-5tu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

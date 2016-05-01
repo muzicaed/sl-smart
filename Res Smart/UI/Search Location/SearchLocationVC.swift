@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class SearchLocationVC: UITableViewController {
+class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   
   let cellReusableId = "StationSearchResultCell"
   let cellNotFoundId = "NoStationsFound"
-  var searchController = UISearchController(searchResultsController: nil)
+  var searchController: UISearchController?
   var latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestLocations()
   var favouriteLocations = FavouriteLocationsStore.sharedInstance.retrieveFavouriteLocations()
   var delegate: LocationSearchResponder?
@@ -230,7 +230,7 @@ class SearchLocationVC: UITableViewController {
     if allowNearbyStations && indexPath.section == 0 {
       if (allowCurrentPosition && indexPath.row == 1) ||
         (!allowCurrentPosition && indexPath.row == 0) {
-        searchController.active = false
+        searchController!.active = false
         performSegueWithIdentifier("ShowNearbyStations", sender: self)
         return
       }
@@ -238,7 +238,7 @@ class SearchLocationVC: UITableViewController {
     
     selectLocation(indexPath)
     if let loc = selectedLocation {
-      searchController.active = false
+      searchController!.active = false
       LatestLocationsStore.sharedInstance.addLatestLocation(loc)
       if isLocationForRealTimeSearch {
         performSegueWithIdentifier("showRealTime", sender: self)
@@ -419,22 +419,24 @@ class SearchLocationVC: UITableViewController {
    * Prepares search controller
    */
   private func prepareSearchController() {
-    //searchController.searchResultsUpdater = self
-    //searchController.delegate = self
-    searchController.dimsBackgroundDuringPresentation = false
-    searchController.obscuresBackgroundDuringPresentation = false
+    let searchResultsVC = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchResult") as! SearchLocationResultsVC
+    searchController = UISearchController(searchResultsController: searchResultsVC)
+    searchController!.searchResultsUpdater = searchResultsVC
+    searchController!.delegate = self
+    //searchController.dimsBackgroundDuringPresentation = false
+    //searchController.obscuresBackgroundDuringPresentation = false
     if searchOnlyForStations {
-      searchController.searchBar.placeholder = "Skriv namnet på en station"
+      searchController!.searchBar.placeholder = "Skriv namnet på en station"
     } else {
-      searchController.searchBar.placeholder = "Skriv stationsnamn eller en adress"
+      searchController!.searchBar.placeholder = "Skriv stationsnamn eller en adress"
     }
-    tableView.tableHeaderView = searchController.searchBar
-    definesPresentationContext = true
+    tableView.tableHeaderView = searchController!.searchBar
+    //definesPresentationContext = true
   }
   
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
-    if let superView = searchController.view.superview {
+    if let superView = searchController!.view.superview {
       superView.removeFromSuperview()
     }
   }
