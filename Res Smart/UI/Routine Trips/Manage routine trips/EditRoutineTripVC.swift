@@ -40,6 +40,8 @@ TravelTypesResponder, PickLocationResponder {
       title = "Ny rutin"
       isNewTrip = true
       routineTrip = RoutineTrip()
+      locationPickerRow.setOriginLabelLocation(nil)
+      locationPickerRow.setDestinationLabelLocation(nil)
       
     } else if isMakeRoutine {
       routineTripCopy = routineTrip!.copy() as? RoutineTrip
@@ -168,15 +170,9 @@ TravelTypesResponder, PickLocationResponder {
     crit.originId = crit.destId
     crit.dest = oldOrigin
     crit.destId = oldOriginId
-    locationPickerRow.originLabel.text = crit.origin?.name
-    locationPickerRow.destinationLabel.text = crit.dest?.name
-    if locationPickerRow.originLabel.text == nil {
-      locationPickerRow.originLabel.text = "(Välj station eller adress)"
-    }
-    if locationPickerRow.destinationLabel.text == nil {
-      locationPickerRow.destinationLabel.text = "(Välj station eller adress)"
-    }
     
+    locationPickerRow.setOriginLabelLocation(crit.origin)
+    locationPickerRow.setDestinationLabelLocation(crit.dest)
     tableView.endUpdates()
   }
   
@@ -192,10 +188,10 @@ TravelTypesResponder, PickLocationResponder {
     hasChanged = true
     if locationSearchType == "Origin" {
       routineTrip?.criterions.origin = location
-      locationPickerRow.originLabel.text = location.name
+      locationPickerRow.setOriginLabelLocation(location)
     } else if locationSearchType == "Destination" {
       routineTrip?.criterions.dest = location
-      locationPickerRow.destinationLabel.text = location.name
+      locationPickerRow.setDestinationLabelLocation(location)
     } else if locationSearchType == "Via" {
       routineTrip?.criterions.via = location
       viaLabel.text = location.name
@@ -318,8 +314,8 @@ TravelTypesResponder, PickLocationResponder {
   private func setupEditData() {
     if let trip = routineTrip {
       tripTitleTextField.text = trip.title
-      locationPickerRow.originLabel.text = trip.criterions.origin?.name
-      locationPickerRow.destinationLabel.text = trip.criterions.dest?.name
+      locationPickerRow.setOriginLabelLocation(trip.criterions.origin)
+      locationPickerRow.setDestinationLabelLocation(trip.criterions.dest)
       travelTypesPickerRow.updateLabel(trip.criterions)
       
       if trip.criterions.via != nil {

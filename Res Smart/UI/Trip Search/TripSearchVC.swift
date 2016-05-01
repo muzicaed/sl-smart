@@ -152,12 +152,10 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       switch locationType {
       case "Origin":
         crit.origin = location
-        locationPickerRow.originLabel.text = location.name
-        locationPickerRow.originView.accessibilityLabel = "Från: \(location.name)"
+        locationPickerRow.setOriginLabelLocation(location)
       case "Destination":
         crit.dest = location
-        locationPickerRow.destinationLabel.text = location.name
-        locationPickerRow.destinationView.accessibilityLabel = "Till: \(location.name)"
+        locationPickerRow.setDestinationLabelLocation(location)
       case "Via":
         crit.via = location
         viaLabel.text = location.name
@@ -212,20 +210,9 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       crit.originId = crit.destId
       crit.dest = oldOrigin
       crit.destId = oldOriginId
-      locationPickerRow.originLabel.text = crit.origin?.name
-      locationPickerRow.destinationLabel.text = crit.dest?.name
-      locationPickerRow.originView.accessibilityLabel = "Från: \(crit.origin?.name)"
-      locationPickerRow.destinationView.accessibilityLabel = "Till: \(crit.dest?.name)"
-      if locationPickerRow.originLabel.text == nil {
-        locationPickerRow.originLabel.text = "(Välj station eller adress)"
-        locationPickerRow.originView.accessibilityLabel = "Från: Välj station eller adress"
-      }
-      if locationPickerRow.destinationLabel.text == nil {
-        locationPickerRow.destinationLabel.text = "(Välj station eller adress)"
-        locationPickerRow.destinationView.accessibilityLabel = "Till: Välj station eller adress"
-      }
       
-
+      locationPickerRow.setOriginLabelLocation(crit.origin)
+      locationPickerRow.setDestinationLabelLocation(crit.dest)
     }
     tableView.endUpdates()
   }
@@ -343,14 +330,9 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     if let crit = criterions {
       isAdvancedMode = crit.isAdvanced
       advancedToggleButton.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
-      if crit.origin != nil {
-        locationPickerRow.originLabel.text = crit.origin!.name
-        locationPickerRow.originView.accessibilityLabel = "Från: \(crit.origin!.name)"
-      }
-      if crit.dest != nil {
-        locationPickerRow.destinationLabel.text = crit.dest!.name
-        locationPickerRow.destinationView.accessibilityLabel = "Till: \(crit.dest!.name)"
-      }
+      locationPickerRow.setOriginLabelLocation(crit.origin)
+      locationPickerRow.setDestinationLabelLocation(crit.dest)
+
       if crit.via != nil {
         viaLabel.text = crit.via!.name
         isViaSelected = true

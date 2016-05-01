@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import ResStockholmApiKit
 
 class LocationPickerRow: UITableViewCell {
   
@@ -39,6 +40,8 @@ class LocationPickerRow: UITableViewCell {
     let switchGesture = UITapGestureRecognizer(
       target: self, action: #selector(onSwitchTap))
     switchImage.gestureRecognizers = [switchGesture]
+    switchImage.isAccessibilityElement = true
+    switchImage.accessibilityLabel = "Byt plats på från och till. Knapp."
   }
   
   /**
@@ -90,6 +93,32 @@ class LocationPickerRow: UITableViewCell {
             self.destinationLabel.alpha = 1
           })
       })
+    }
+  }
+  
+  /**
+   * Sets the text for origin label.
+   */
+  func setOriginLabelLocation(location: Location?) {
+    if let loc = location {
+      originLabel.text = loc.name
+      originView.accessibilityLabel = "Från: \(loc.name). Knapp."
+    } else {
+      originLabel.text = "(Välj station eller adress)"
+      originView.accessibilityLabel = "Från: (Välj station eller adress). Knapp."
+    }
+  }
+  
+  /**
+   * Sets the text for origin label.
+   */
+  func setDestinationLabelLocation(location: Location?) {
+    if let loc = location {
+      destinationLabel.text = loc.name
+      destinationView.accessibilityLabel = "Till: \(loc.name). Knapp."
+    } else {
+      destinationLabel.text = "(Välj station eller adress)"
+      destinationView.accessibilityLabel = "Till: (Välj station eller adress). Knapp."
     }
   }
 }

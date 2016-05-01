@@ -91,7 +91,7 @@
                                                                         </stackView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    <accessibility key="accessibilityConfiguration">
+                                                                    <accessibility key="accessibilityConfiguration" label="Från: (Välj station eller adress). Knapp.">
                                                                         <bool key="isElement" value="YES"/>
                                                                     </accessibility>
                                                                     <constraints>
@@ -155,7 +155,7 @@
                                                                         </stackView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    <accessibility key="accessibilityConfiguration">
+                                                                    <accessibility key="accessibilityConfiguration" label="Till: (Välj station eller adress). Knapp.">
                                                                         <bool key="isElement" value="YES"/>
                                                                     </accessibility>
                                                                     <constraints>
@@ -172,6 +172,9 @@
                                                             <subviews>
                                                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwitchRow" translatesAutoresizingMaskIntoConstraints="NO" id="Za6-oU-QKd">
                                                                     <rect key="frame" x="15" y="29" width="30" height="30"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="Byt plats på till och från.">
+                                                                        <bool key="isElement" value="YES"/>
+                                                                    </accessibility>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="30" id="9ue-N2-vOH"/>
                                                                         <constraint firstAttribute="height" constant="30" id="DKx-X7-BPb"/>
@@ -179,9 +182,6 @@
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            <accessibility key="accessibilityConfiguration">
-                                                                <bool key="isElement" value="YES"/>
-                                                            </accessibility>
                                                             <constraints>
                                                                 <constraint firstItem="Za6-oU-QKd" firstAttribute="centerY" secondItem="QiU-iy-svH" secondAttribute="centerY" id="LZl-bk-YZa"/>
                                                                 <constraint firstAttribute="width" constant="60" id="R6s-lb-MIx"/>
@@ -998,9 +998,9 @@
                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Du har inte skapat några rutiner. Peka på &quot;+&quot; för att skapa en rutin." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWJ-Ip-1PH">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Du har inte skapat några rutiner. Tryck på &quot;+&quot; för att skapa en rutin." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWJ-Ip-1PH">
                                                     <rect key="frame" x="0.0" y="23" width="398" height="60"/>
-                                                    <accessibility key="accessibilityConfiguration" label="Du har inte skapat några rutiner. Peka på knappen &quot;+&quot; i övre högra hörnet för att skapa en rutin."/>
+                                                    <accessibility key="accessibilityConfiguration" label="Du har inte skapat några rutiner. Tryck på knappen &quot;+&quot; i övre högra hörnet för att skapa en rutin."/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1124,7 +1124,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="&quot;Åka till jobbet&quot;, &quot;Hälsa på Petter&quot;" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UcP-ws-VIP">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="T.ex. &quot;Åka till jobbet&quot;, &quot;Hälsa på Petter&quot;" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UcP-ws-VIP">
                                                     <rect key="frame" x="23" y="8" width="368" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
@@ -1190,6 +1190,9 @@
                                                                         </stackView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="YES"/>
+                                                                    </accessibility>
                                                                     <constraints>
                                                                         <constraint firstItem="fkL-1C-W51" firstAttribute="leading" secondItem="igd-Vb-awy" secondAttribute="leading" id="8UE-Qg-WvQ"/>
                                                                         <constraint firstAttribute="trailing" secondItem="fkL-1C-W51" secondAttribute="trailing" id="SGe-9q-WX2"/>
@@ -1248,6 +1251,9 @@
                                                                         </stackView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="YES"/>
+                                                                    </accessibility>
                                                                     <constraints>
                                                                         <constraint firstAttribute="trailing" secondItem="AXy-Wg-iiI" secondAttribute="trailing" id="gYb-Rn-B03"/>
                                                                         <constraint firstItem="AXy-Wg-iiI" firstAttribute="top" secondItem="uoy-FX-pxN" secondAttribute="top" id="lfb-wp-YyF"/>
@@ -1262,7 +1268,7 @@
                                                             <subviews>
                                                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwitchRow" translatesAutoresizingMaskIntoConstraints="NO" id="FG8-41-p1G">
                                                                     <rect key="frame" x="15" y="29" width="30" height="30"/>
-                                                                    <accessibility key="accessibilityConfiguration" label="Placerad till höger: Byt plats på till och från station.">
+                                                                    <accessibility key="accessibilityConfiguration">
                                                                         <bool key="isElement" value="YES"/>
                                                                     </accessibility>
                                                                     <constraints>
@@ -2263,7 +2269,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RKX-gr-Nla" userLabel="More info">
                                                     <rect key="frame" x="0.0" y="94" width="370" height="15"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peka för tider och mer info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeG-mh-Hh3" userLabel="Peka för mer info">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tryck för tider och mer info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeG-mh-Hh3" userLabel="Tryck för mer info">
                                                             <rect key="frame" x="8" y="0.0" width="354" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -2361,9 +2367,9 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-tn-fDB">
                                                                     <rect key="frame" x="0.0" y="33" width="339" height="226"/>
                                                                     <accessibility key="accessibilityConfiguration">
-                                                                        <string key="label">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att peka på knappen "Mina rutiner" i övre högra hörnet.</string>
+                                                                        <string key="label">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att trycka på knappen "Mina rutiner" i övre högra hörnet.</string>
                                                                     </accessibility>
-                                                                    <string key="text">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att peka på "Mina rutiner". 
+                                                                    <string key="text">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att trycka på "Mina rutiner". 
 
 Appen lär sig dina rutiner och visar automatiskt den resa du vill göra härnäst!
 
@@ -4244,11 +4250,11 @@ direkt från din iPhone.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ypq-Up-6Af"/>
         <segue reference="4rE-Hc-22D"/>
-        <segue reference="V2Z-ue-vlu"/>
-        <segue reference="rzj-uS-OIZ"/>
         <segue reference="Lg4-KG-mN0"/>
+        <segue reference="yy0-ry-irx"/>
+        <segue reference="L0K-5H-KeJ"/>
+        <segue reference="rzj-uS-OIZ"/>
         <segue reference="gZB-Im-USu"/>
     </inferredMetricsTieBreakers>
 </document>
