@@ -39,7 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   }
   
   func applicationWillEnterForeground(application: UIApplication) {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    // Optimize search early.
+    RoutineService.findRoutineTrip() {_ in }
   }
   
   func applicationDidBecomeActive(application: UIApplication) {
@@ -92,8 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     SearchCriterionStore.sharedInstance.preload()
     RoutineTripsStore.sharedInstance.preload()
     ScorePostStore.sharedInstance.preload()
-    
-    MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
   }
   
   /**
