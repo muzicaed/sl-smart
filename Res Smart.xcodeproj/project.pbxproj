@@ -135,7 +135,6 @@
 		18A9E8711C1899ED008F97C8 /* ScorePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FD8B41C0B087E0095C790 /* ScorePost.swift */; };
 		18A9E8721C1899F3008F97C8 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF51C03A9E100B9145A /* DateUtils.swift */; };
 		18A9E8731C189B97008F97C8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180603631C01FCBE00AC1841 /* SwiftyJSON.swift */; };
-		18A9E8741C189C1C008F97C8 /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EAF4E11C0F89990014701B /* SwiftHTTP.framework */; };
 		18AAC92F1C2EE3DF00022C54 /* SearchCriterionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC92D1C2EE3DF00022C54 /* SearchCriterionStore.swift */; };
 		18AAC9301C2EE3DF00022C54 /* RoutineTripsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC92E1C2EE3DF00022C54 /* RoutineTripsStore.swift */; };
 		18AAC9321C2EE61000022C54 /* ScorePostStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC9311C2EE61000022C54 /* ScorePostStore.swift */; };
@@ -150,7 +149,6 @@
 		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
 		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
 		18D6521E1C3D9C510067FC60 /* HereToThereCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6521D1C3D9C510067FC60 /* HereToThereCell.swift */; };
-		18EAF4E91C0F8A0F0014701B /* SwiftHTTP.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 18EAF4E11C0F89990014701B /* SwiftHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		18FA99941C492BDC0075C4C2 /* SLJourneyDetailsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */; };
 		18FA999A1C492E3F0075C4C2 /* JournyDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */; };
 		18FA999C1C49321C0075C4C2 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA999B1C49321C0075C4C2 /* Stop.swift */; };
@@ -202,34 +200,6 @@
 			remoteGlobalIDString = 18A9E8461C18993B008F97C8;
 			remoteInfo = ResStockholmApiKit;
 		};
-		18EAF4E01C0F89990014701B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6BFD901619C8D8B500DD99B6;
-			remoteInfo = SwiftHTTP;
-		};
-		18EAF4E21C0F89990014701B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6BFD902119C8D8B500DD99B6;
-			remoteInfo = SwiftHTTPTests;
-		};
-		18EAF4E41C0F89990014701B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D958025919E6EEEB003C8218;
-			remoteInfo = SwiftHTTPOSX;
-		};
-		18EAF4E61C0F89990014701B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D958026319E6EEEB003C8218;
-			remoteInfo = SwiftHTTPOSXTests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -240,7 +210,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				18A9E84F1C18993B008F97C8 /* ResStockholmApiKit.framework in Copy Frameworks */,
-				18EAF4E91C0F8A0F0014701B /* SwiftHTTP.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +254,6 @@
 		1801A3FD1C39317C0068E1FC /* SubscribeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeDelegate.swift; sourceTree = "<group>"; };
 		180603631C01FCBE00AC1841 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		180603651C0201A100AC1841 /* HttpRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHelper.swift; sourceTree = "<group>"; };
-		180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftHTTP.xcodeproj; path = /Users/mikaelhellman/Documents/Development/SwiftHTTP/SwiftHTTP.xcodeproj; sourceTree = "<absolute>"; };
 		1806037B1C02165000AC1841 /* LocationSearchResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchResponder.swift; sourceTree = "<group>"; };
 		180F7D781C8CC987000C8207 /* UserPreferenceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferenceStore.swift; sourceTree = "<group>"; };
 		180FD8B41C0B087E0095C790 /* ScorePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScorePost.swift; path = ../../Model/ScorePost.swift; sourceTree = "<group>"; };
@@ -479,7 +447,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18A9E8741C189C1C008F97C8 /* SwiftHTTP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -916,20 +883,8 @@
 		18CE5CCC1C0329DA00E1F5A9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */,
 			);
 			name = Libraries;
-			sourceTree = "<group>";
-		};
-		18EAF4DA1C0F89990014701B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				18EAF4E11C0F89990014701B /* SwiftHTTP.framework */,
-				18EAF4E31C0F89990014701B /* SwiftHTTPTests.xctest */,
-				18EAF4E51C0F89990014701B /* SwiftHTTP.framework */,
-				18EAF4E71C0F89990014701B /* SwiftHTTPOSXTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1128,12 +1083,6 @@
 			mainGroup = 18937E281BFF33FA00C523C9;
 			productRefGroup = 18937E321BFF33FA00C523C9 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 18EAF4DA1C0F89990014701B /* Products */;
-					ProjectRef = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				18937E301BFF33FA00C523C9 /* Res Smart */,
@@ -1145,37 +1094,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		18EAF4E11C0F89990014701B /* SwiftHTTP.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SwiftHTTP.framework;
-			remoteRef = 18EAF4E01C0F89990014701B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		18EAF4E31C0F89990014701B /* SwiftHTTPTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SwiftHTTPTests.xctest;
-			remoteRef = 18EAF4E21C0F89990014701B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		18EAF4E51C0F89990014701B /* SwiftHTTP.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SwiftHTTP.framework;
-			remoteRef = 18EAF4E41C0F89990014701B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		18EAF4E71C0F89990014701B /* SwiftHTTPOSXTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SwiftHTTPOSXTests.xctest;
-			remoteRef = 18EAF4E61C0F89990014701B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1818B2641C404FE0004E3CA3 /* Resources */ = {
