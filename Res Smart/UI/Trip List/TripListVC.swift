@@ -319,7 +319,7 @@ class TripListVC: UITableViewController {
   * Will check if we scrolled to bottom
   */
   override func scrollViewDidScroll(scrollView: UIScrollView) {
-    if scrollView.contentSize.height > 60 {
+    if scrollView.contentSize.height > 100 {
       let bottomEdge = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.bounds.height
       var overflow = scrollView.contentOffset.y - bottomEdge
       if scrollView.contentSize.height < scrollView.bounds.height {
@@ -327,7 +327,7 @@ class TripListVC: UITableViewController {
       }
       
       if !isLoadingMore && !isLoadingMoreBlocked {
-        if overflow > 0 {
+        if overflow < 0 && overflow > -120 {
           loadMoreTrips()
         } else {
           loadMoreEarlier?.hideSpinner()

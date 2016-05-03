@@ -37,6 +37,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     view.backgroundColor = StyleHelper.sharedInstance.background
     criterions = SearchCriterionStore.sharedInstance.retrieveSearchCriterions()
     restoreUIFromCriterions()
+    criterions?.numChg = 2
+    criterions?.minChgTime = 15
     createDimmer()
     createNotificationListners()
     locationPickerRow.delegate = self
@@ -242,7 +244,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
    * Section count
    */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return (isAdvancedMode) ? 4 : 3
+    return (isAdvancedMode) ? 6 : 3
   }
   
   /**
@@ -253,8 +255,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     
     if section == 0 {
       return (isAdvancedMode) ? 2 : 1
-    } else if section == 3 && !isAdvancedMode {
-      return 0
+    } else if section >= 4 {
+      return 2
     }
     
     return 1
@@ -263,8 +265,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   /**
    * Height for rows.
    */
-  override func tableView( tableView: UITableView,
-                           heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  override func tableView(
+    tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     if indexPath.section == 0 && indexPath.row == 0 {
       return 88
     }
@@ -358,10 +360,14 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       tableView.insertRowsAtIndexPaths(
         [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
       tableView.insertSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
+      tableView.insertSections(NSIndexSet(index: 4), withRowAnimation: .Automatic)
+      tableView.insertSections(NSIndexSet(index: 5), withRowAnimation: .Automatic)
     } else {
       tableView.deleteRowsAtIndexPaths(
         [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
       tableView.deleteSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
+      tableView.deleteSections(NSIndexSet(index: 4), withRowAnimation: .Automatic)
+      tableView.deleteSections(NSIndexSet(index: 5), withRowAnimation: .Automatic)
     }
     tableView.endUpdates()
   }

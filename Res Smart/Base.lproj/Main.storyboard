@@ -351,7 +351,6 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alla färdmedel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRO-gJ-TBz" userLabel="Färdmedel">
                                                     <rect key="frame" x="16" y="8" width="357" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -366,6 +365,122 @@
                                             <outlet property="tripTypeLabel" destination="DRO-gJ-TBz" id="nmF-L8-BYe"/>
                                             <segue destination="Tm1-9I-jjs" kind="show" identifier="ShowTravelTypesPicker" id="V2Z-ue-vlu"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MaxWalkDistance" id="9Cr-FQ-Kzb" userLabel="Max Walk Distance">
+                                        <rect key="frame" x="0.0" y="410.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Cr-FQ-Kzb" id="6tv-qC-ndq">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alla linjer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfC-rP-VvG" userLabel="Färdmedel">
+                                                    <rect key="frame" x="16" y="8" width="357" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="wfC-rP-VvG" firstAttribute="top" secondItem="6tv-qC-ndq" secondAttribute="topMargin" id="3UG-ik-Lnz"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wfC-rP-VvG" secondAttribute="trailing" id="EJp-Tt-UCN"/>
+                                                <constraint firstItem="wfC-rP-VvG" firstAttribute="leading" secondItem="6tv-qC-ndq" secondAttribute="leadingMargin" constant="8" id="cYW-O0-IB1"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="wfC-rP-VvG" secondAttribute="bottom" id="u85-rU-sHe"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Gångväg" id="2Hb-ny-qgu" userLabel="Walk Options">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeNumber" id="vF1-MQ-0d5" userLabel="Number of changes picker">
+                                        <rect key="frame" x="0.0" y="491.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vF1-MQ-0d5" id="4zX-Id-saU">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Max 1 km gångväg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2s-IS-Os3" userLabel="NoOfChanges">
+                                                    <rect key="frame" x="16" y="8" width="357" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="A2s-IS-Os3" secondAttribute="bottom" id="QPk-WI-g6m"/>
+                                                <constraint firstItem="A2s-IS-Os3" firstAttribute="top" secondItem="4zX-Id-saU" secondAttribute="topMargin" id="fck-ct-DGb"/>
+                                                <constraint firstItem="A2s-IS-Os3" firstAttribute="leading" secondItem="4zX-Id-saU" secondAttribute="leadingMargin" constant="8" id="id8-kt-HYA"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="A2s-IS-Os3" secondAttribute="trailing" id="lAT-7m-L8H"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ChangeNumber" textLabel="8hd-mI-WEJ" detailTextLabel="yy8-jo-myt" style="IBUITableViewCellStyleSubtitle" id="Q6P-P4-7oc" userLabel="Number of changes picker">
+                                        <rect key="frame" x="0.0" y="535.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q6P-P4-7oc" id="NN2-Ge-vNm">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alternativa förslag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8hd-mI-WEJ">
+                                                    <rect key="frame" x="15" y="9" width="106.5" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alternativ hållplats om det ger en snabbare resa?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yy8-jo-myt">
+                                                    <rect key="frame" x="15" y="23.5" width="236.5" height="12"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Byten" id="z0P-cX-M7V" userLabel="Chagne Options">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeNumber" id="2Ef-SZ-6TP" userLabel="Number of changes picker">
+                                        <rect key="frame" x="0.0" y="616.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Ef-SZ-6TP" id="I10-yz-Xer">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Inga begränsningar för antal byten" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5R-s2-kT0" userLabel="NoOfChanges">
+                                                    <rect key="frame" x="16" y="8" width="357" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="f5R-s2-kT0" firstAttribute="top" secondItem="I10-yz-Xer" secondAttribute="topMargin" id="7pr-Eo-CsF"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="f5R-s2-kT0" secondAttribute="trailing" id="8BY-mE-Npw"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="f5R-s2-kT0" secondAttribute="bottom" id="KHv-IR-qLx"/>
+                                                <constraint firstItem="f5R-s2-kT0" firstAttribute="leading" secondItem="I10-yz-Xer" secondAttribute="leadingMargin" constant="8" id="PWn-HA-fhW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeNumber" id="ZN7-N0-zA0" userLabel="Number of changes picker">
+                                        <rect key="frame" x="0.0" y="660.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZN7-N0-zA0" id="qcv-NE-baY">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Ingen extra tid för byte" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ml-g5-Pf6" userLabel="ChangeTime">
+                                                    <rect key="frame" x="16" y="8" width="357" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1Ml-g5-Pf6" firstAttribute="leading" secondItem="qcv-NE-baY" secondAttribute="leadingMargin" constant="8" id="AeM-1F-8TC"/>
+                                                <constraint firstItem="1Ml-g5-Pf6" firstAttribute="top" secondItem="qcv-NE-baY" secondAttribute="topMargin" id="Krg-iy-13h"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="1Ml-g5-Pf6" secondAttribute="bottom" id="Wqo-ST-bU0"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="1Ml-g5-Pf6" secondAttribute="trailing" id="n3e-ZD-2VZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1384,6 +1499,60 @@
                                         <connections>
                                             <outlet property="tripTypeLabel" destination="cMF-wf-OcH" id="JQB-h5-8uU"/>
                                             <segue destination="Tm1-9I-jjs" kind="show" identifier="ShowTravelTypesPicker" id="L0K-5H-KeJ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Byten" id="sZ5-EK-HgU" userLabel="More options">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeNumber" id="Eeh-ba-qeh" userLabel="Number of changes picker" customClass="TravelTypesPickerRow" customModule="Res_Smart" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="419.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Eeh-ba-qeh" id="5ta-KD-wMw">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Inga begränsningar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1Q-sQ-Tzj" userLabel="NoOfChanges">
+                                                    <rect key="frame" x="16" y="8" width="357" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="z1Q-sQ-Tzj" firstAttribute="leading" secondItem="5ta-KD-wMw" secondAttribute="leadingMargin" constant="8" id="2E5-uQ-Vti"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="z1Q-sQ-Tzj" secondAttribute="trailing" id="4mb-HC-d3e"/>
+                                                <constraint firstItem="z1Q-sQ-Tzj" firstAttribute="top" secondItem="5ta-KD-wMw" secondAttribute="topMargin" id="FB5-2X-jft"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="z1Q-sQ-Tzj" secondAttribute="bottom" id="GpQ-7s-k7t"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="tripTypeLabel" destination="z1Q-sQ-Tzj" id="lK8-yM-CvE"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeNumber" id="DnH-BT-E5F" userLabel="Number of changes picker" customClass="TravelTypesPickerRow" customModule="Res_Smart" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="463.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DnH-BT-E5F" id="KfI-2G-pjz">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Ingen extra tid vid byte" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCf-4y-Od2" userLabel="ChangeTime">
+                                                    <rect key="frame" x="16" y="8" width="357" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vCf-4y-Od2" firstAttribute="leading" secondItem="KfI-2G-pjz" secondAttribute="leadingMargin" constant="8" id="9j2-Ct-L8q"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vCf-4y-Od2" secondAttribute="trailing" id="RKp-Zu-fq7"/>
+                                                <constraint firstItem="vCf-4y-Od2" firstAttribute="top" secondItem="KfI-2G-pjz" secondAttribute="topMargin" id="WrW-eN-ULh"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="vCf-4y-Od2" secondAttribute="bottom" id="fcn-0q-UPH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="tripTypeLabel" destination="vCf-4y-Od2" id="9OM-bY-82T"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -4447,12 +4616,12 @@ direkt från din iPhone.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WoO-7G-VaU"/>
-        <segue reference="Lg4-KG-mN0"/>
-        <segue reference="yy0-ry-irx"/>
-        <segue reference="L0K-5H-KeJ"/>
+        <segue reference="gZB-Im-USu"/>
+        <segue reference="ypq-Up-6Af"/>
+        <segue reference="V2Z-ue-vlu"/>
+        <segue reference="4rE-Hc-22D"/>
         <segue reference="ivB-Ve-lrb"/>
         <segue reference="kst-2L-81y"/>
-        <segue reference="gZB-Im-USu"/>
+        <segue reference="Lg4-KG-mN0"/>
     </inferredMetricsTieBreakers>
 </document>

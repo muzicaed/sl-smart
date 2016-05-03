@@ -26,6 +26,7 @@ class LocationMapVC: UIViewController, MKMapViewDelegate {
     mapView.mapType = MKMapType.Standard
     mapView.showsBuildings = true
     mapView.showsCompass = true
+    mapView.showsPointsOfInterest = false
     if let location = location {
       titleItem.title = location.cleanName
       createStopPin(location)

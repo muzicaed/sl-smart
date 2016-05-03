@@ -25,6 +25,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     mapView.mapType = MKMapType.Standard
     mapView.showsBuildings = true
     mapView.showsCompass = true
+    mapView.showsPointsOfInterest = false
     loadRoute()
   }
   

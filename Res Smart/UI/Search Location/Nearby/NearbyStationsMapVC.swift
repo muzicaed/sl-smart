@@ -15,6 +15,8 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
   
   @IBOutlet weak var mapView: MKMapView!
   var nearbyLocations = [(location: Location, dist: Int)]()
+  var selectedPin: TouchStationAnnotationView?
+  var nearbyStationsVC: NearbyStationsVC?
   
   /**
    * View did load
@@ -70,19 +72,13 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
    * Annotation views
    */
   func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-    if annotation.isKindOfClass(BigPin) {
-      let pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: "dot")
+    if let pinAnnotation = annotation as? BigPin {
+      let pinView = TouchStationAnnotationView(annotation: pinAnnotation, reuseIdentifier: "dot")
       pinView.image = UIImage(named: "MapDot")!
       pinView.canShowCallout = true
       pinView.centerOffset = CGPointMake(0, 0)
       pinView.calloutOffset = CGPointMake(0, -3)
-      
-      let button = UIButton()
-      button.frame = CGRectMake(0, 0, 22, 22)
-      button.contentVerticalAlignment = .Center;
-      button.contentHorizontalAlignment = .Center;
-      button.setImage(UIImage(named: "MapSelectButton"), forState: .Normal)
-      pinView.rightCalloutAccessoryView = button
+      pinView.stationIndex = pinAnnotation.stationIndex
       
       let imageView = UIImageView(image: UIImage(named: "station-icon"))
       imageView.frame = CGRectMake(0, 0, 22, 22)
@@ -94,6 +90,23 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
     return nil
   }
   
+  func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+    if let touchPinView = view as? TouchStationAnnotationView {
+      selectedPin = touchPinView
+      let g = UITapGestureRecognizer(target: self, action: #selector(onCalloutTap))
+      view.addGestureRecognizer(g)
+    }
+  }
+  
+  
+  func onCalloutTap() {
+    if let index = selectedPin?.stationIndex {
+      let locationTuple = nearbyLocations[index]
+      self.nearbyStationsVC?.selectedOnMap(locationTuple.location)
+      presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+    }
+  }
+  
   // MARK: Private
   
   
@@ -101,19 +114,20 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
    * Prepares map data and placing pins.
    */
   private func loadMapData() {
-    for locationTuple in nearbyLocations {
-      createStopPin(locationTuple)
+    for (index, locationTuple) in nearbyLocations.enumerate() {
+      createStopPin(index, locationTuple: locationTuple)
     }
   }
   
   /**
    * Create location pin
    */
-  private func createStopPin(locationTuple: (location: Location, dist: Int)) {
+  private func createStopPin(index: Int, locationTuple: (location: Location, dist: Int)) {
     let pin = BigPin()
     pin.coordinate = locationTuple.location.location.coordinate
     pin.title = locationTuple.location.name
     pin.subtitle = "Avstånd \(locationTuple.dist) meter"
+    pin.stationIndex = index
     mapView.addAnnotation(pin)
   }
   
@@ -128,4 +142,12 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
     mapView.setRegion(region, animated: true)
     mapView.regionThatFits(region)
   }
+}
+
+
+/**
+ * Custom tocuh station annotation view.
+ */
+class TouchStationAnnotationView: MKAnnotationView {
+  var stationIndex = -1
 }
