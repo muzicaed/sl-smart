@@ -21,6 +21,9 @@ class NearbyStationsVC: UITableViewController {
   @IBOutlet weak var spinnerView: UIView!
   @IBOutlet weak var showOnMapButton: UIBarButtonItem!
   
+  /**
+   * View did load
+   */
   override func viewDidLoad() {
     view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -61,16 +64,16 @@ class NearbyStationsVC: UITableViewController {
   /**
    * Row count
    */
-  override func tableView(tableView: UITableView,
-                          numberOfRowsInSection section: Int) -> Int {
+  override func tableView(
+    tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return nearbyLocations.count
   }
   
   /**
    * Cell for index
    */
-  override func tableView(tableView: UITableView,
-                          cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(
+    tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
     let locationTuple = nearbyLocations[indexPath.row]
     let cell = tableView.dequeueReusableCellWithIdentifier("NearbyStationRow",

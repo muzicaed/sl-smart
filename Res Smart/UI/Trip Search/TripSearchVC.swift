@@ -11,7 +11,7 @@ import UIKit
 import ResStockholmApiKit
 
 class TripSearchVC: UITableViewController, LocationSearchResponder,
-DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
+DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericValueResponder {
   
   let notificationCenter = NSNotificationCenter.defaultCenter()
   var searchLocationType: String?
@@ -28,6 +28,10 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   @IBOutlet weak var locationPickerRow: LocationPickerRow!
   @IBOutlet weak var travelTypePicker:  TravelTypesPickerRow!
   
+  @IBOutlet weak var maxWalkLabel: UILabel!
+  @IBOutlet weak var numberOfChangesLabel: UILabel!
+  @IBOutlet weak var changeTimeLabel: UILabel!
+  
   /**
    * View did load
    */
@@ -37,8 +41,6 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     view.backgroundColor = StyleHelper.sharedInstance.background
     criterions = SearchCriterionStore.sharedInstance.retrieveSearchCriterions()
     restoreUIFromCriterions()
-    criterions?.numChg = 2
-    criterions?.minChgTime = 15
     createDimmer()
     createNotificationListners()
     locationPickerRow.delegate = self
@@ -96,6 +98,22 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       if let crit = criterions {
         vc.setData(crit)
       }
+    } else if segue.identifier == "MaxWalkDistance" {
+      let vc = segue.destinationViewController as! GenericValuePickerVC
+      vc.delegate = self
+      vc.title = "Max gångavstånd"
+      vc.valueType = GenericValuePickerVC.ValueType.WalkDistance
+      
+    } else if segue.identifier == "NumberOfChanges" {
+      let vc = segue.destinationViewController as! GenericValuePickerVC
+      vc.delegate = self
+      vc.title = "Antal byten"
+      vc.valueType = GenericValuePickerVC.ValueType.NoOfChanges
+    } else if segue.identifier == "ChangeTime" {
+      let vc = segue.destinationViewController as! GenericValuePickerVC
+      vc.delegate = self
+      vc.title = "Extra tid vid byte"
+      vc.valueType = GenericValuePickerVC.ValueType.TimeForChange
     }
   }
   
@@ -129,6 +147,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     } else {
       resetViaStation()
       criterions?.resetAdvancedTripTypes()
+      updateGenericValues()
     }
     
     animateAdvancedToggle()
@@ -144,6 +163,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   
   @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
   @IBAction func unwindToTripTypePickerParent(segue: UIStoryboardSegue) {}
+  @IBAction func unwindToGenericValuePickerParent(segue: UIStoryboardSegue) {}
   
   // MARK: LocationSearchResponder
   
@@ -220,6 +240,25 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     tableView.endUpdates()
   }
   
+  // MARK: LocationSearchResponder
+  
+  /**
+   * User picked a value using the generic value picker.
+   */
+  func pickedValue(type: GenericValuePickerVC.ValueType, value: Int) {
+    if let crit = criterions {
+      switch type {
+      case .WalkDistance:
+      crit.maxWalkDist = value
+      case .NoOfChanges:
+        crit.numChg = value
+      case .TimeForChange:
+        crit.minChgTime = value
+      }
+      updateGenericValues()
+    }
+  }
+  
   // MARK: TravelTypesResponder
   
   func selectedTravelType(
@@ -255,7 +294,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     
     if section == 0 {
       return (isAdvancedMode) ? 2 : 1
-    } else if section >= 4 {
+    } else if section > 2 {
       return 2
     }
     
@@ -266,7 +305,9 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
    * Height for rows.
    */
   override func tableView(
-    tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    tableView: UITableView,
+    heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    
     if indexPath.section == 0 && indexPath.row == 0 {
       return 88
     }
@@ -277,9 +318,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
    * Can row be edited?
    */
   override func tableView(
-    tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath)
-    -> Bool
-  {
+    tableView: UITableView,
+    canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool{
     return (indexPath.section == 0 && indexPath.row == 1 && isViaSelected && isAdvancedMode)
   }
   
@@ -287,9 +327,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
    * Editing style
    */
   override func tableView(
-    tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath)
-    -> UITableViewCellEditingStyle
-  {
+    tableView: UITableView,
+    editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
     return (indexPath.section == 0 && indexPath.row == 1) ? .Delete : .None
   }
   
@@ -298,8 +337,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
    */
   override func tableView(
     tableView: UITableView, willDisplayCell cell: UITableViewCell,
-    forRowAtIndexPath indexPath: NSIndexPath)
-  {
+    forRowAtIndexPath indexPath: NSIndexPath) {
+    
     let bgColorView = UIView()
     bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
     cell.selectedBackgroundView = bgColorView
@@ -308,8 +347,10 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   /**
    * Edit actions. (Only used for clear Via station)
    */
-  override func tableView(tableView: UITableView,
-                          editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+  override func tableView(
+    tableView: UITableView,
+    editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    
     return [UITableViewRowAction(
       style: UITableViewRowActionStyle.Normal,
     title: "Rensa") { (_, _) -> Void in
@@ -321,8 +362,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   /**
    * Deselect selected row.
    */
-  override func tableView(tableView: UITableView,
-                          didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(
+    tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
@@ -335,13 +376,19 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       advancedToggleButton.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
       locationPickerRow.setOriginLabelLocation(crit.origin)
       locationPickerRow.setDestinationLabelLocation(crit.dest)
-
+      
       if crit.via != nil {
         viaLabel.text = crit.via!.name
         isViaSelected = true
       }
       
+      // TODO: For migration purpose can be removed with version 1.4
+      if !isAdvancedMode {
+        crit.resetAdvancedTripTypes()
+      }
+      
       travelTypePicker.updateLabel(crit)
+      updateGenericValues()
       crit.searchForArrival = false
       destinationArrivalSegmented.selectedSegmentIndex = (crit.searchForArrival) ? 1 : 0
       pickedDate(NSDate())
@@ -418,6 +465,56 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     self.isViaSelected = false
     self.criterions?.via = nil
     self.viaLabel.text = "(Välj station)"
+  }
+  
+  /**
+   * Updates generic value picker labels
+   */
+  private func updateGenericValues() {
+    if let crit = criterions {
+      switch crit.maxWalkDist {
+      case 200:
+        maxWalkLabel.text = "Max 200 m"
+      case 500:
+        maxWalkLabel.text = "Max 500 m"
+      case 1000:
+        maxWalkLabel.text = "Max 1 km"
+      case 2000:
+        maxWalkLabel.text = "Max 2 km"
+      default:
+        fatalError("Incorrect maxWalkDist in criterion.")
+      }
+      
+      switch crit.numChg {
+      case -1:
+        numberOfChangesLabel.text = "Inga begränsningar för antal byten"
+      case 0:
+        numberOfChangesLabel.text = "Inga byten"
+      case 1:
+        numberOfChangesLabel.text = "Högst 1 byte"
+      case 2:
+        numberOfChangesLabel.text = "Högst 2 byten"
+      case 3:
+        numberOfChangesLabel.text = "Högst 3 byten"
+      default:
+        fatalError("Incorrect numChg in criterion.")
+      }
+      
+      switch crit.minChgTime {
+      case 0:
+        changeTimeLabel.text = "Ingen extra tid vid byte"
+      case 2:
+        changeTimeLabel.text = "2 minuter extra vid byte"
+      case 5:
+        changeTimeLabel.text = "5 minuter extra vid byte"
+      case 10:
+        changeTimeLabel.text = "10 minuter extra vid byte"
+      case 15:
+        changeTimeLabel.text = "15 minuter extra vid byte"
+      default:
+        fatalError("Incorrect minChgTime in criterion.")
+      }
+    }
   }
   
   /**

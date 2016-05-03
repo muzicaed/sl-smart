@@ -20,7 +20,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   public var via: Location?
   public var date: String?
   public var time: String?
-  public var numChg = 0
+  public var numChg = -1
   public var minChgTime = 0
   public var searchForArrival = false
   public var unsharp = false
@@ -72,7 +72,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     query += (via != nil) ? "&viaId=\(via!.siteId!)" : ""
     query += (date != nil) ? "&date=\(date!)" : ""
     query += (time != nil) ? "&time=\(time!)" : ""
-    query += (numChg != 0) ? "&numChg=\(numChg)" : ""
+    query += (numChg > -1) ? "&numChg=\(numChg)" : ""
     query += (minChgTime != 0) ? "&minChgTime=\(minChgTime)" : ""
     
     query += (!useTrain) ? "&useTrain=0" : ""
@@ -105,6 +105,9 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     useBus = true
     useFerry = true
     useShip = true
+    maxWalkDist = 1000
+    numChg = -1
+    minChgTime = 0
   }
   
   /**

@@ -156,6 +156,8 @@
 		18FC74791C7B771100980B0D /* SLDeviationsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC74781C7B771100980B0D /* SLDeviationsApi.swift */; };
 		18FC747F1C7B778F00980B0D /* DeviationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC747E1C7B778F00980B0D /* DeviationsService.swift */; };
 		18FC74811C7B7D2E00980B0D /* Deviation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC74801C7B7D2E00980B0D /* Deviation.swift */; };
+		18FDA8C31CD92D94003665C6 /* GenericValuePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FDA8C21CD92D94003665C6 /* GenericValuePickerVC.swift */; };
+		18FDA8C51CD9364E003665C6 /* PickGenericValueResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FDA8C41CD9364E003665C6 /* PickGenericValueResponder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -409,6 +411,8 @@
 		18FC74781C7B771100980B0D /* SLDeviationsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLDeviationsApi.swift; sourceTree = "<group>"; };
 		18FC747E1C7B778F00980B0D /* DeviationsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviationsService.swift; sourceTree = "<group>"; };
 		18FC74801C7B7D2E00980B0D /* Deviation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deviation.swift; sourceTree = "<group>"; };
+		18FDA8C21CD92D94003665C6 /* GenericValuePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericValuePickerVC.swift; sourceTree = "<group>"; };
+		18FDA8C41CD9364E003665C6 /* PickGenericValueResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickGenericValueResponder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -624,6 +628,8 @@
 				18946B161C18431500A5829D /* DateTimePickerVC.swift */,
 				18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */,
 				1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */,
+				18FDA8C21CD92D94003665C6 /* GenericValuePickerVC.swift */,
+				18FDA8C41CD9364E003665C6 /* PickGenericValueResponder.swift */,
 			);
 			path = "Trip Search";
 			sourceTree = "<group>";
@@ -1266,7 +1272,9 @@
 				188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */,
 				1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */,
 				18733C491C4E3D1000F66AEF /* RealTimeNavigationVC.swift in Sources */,
+				18FDA8C31CD92D94003665C6 /* GenericValuePickerVC.swift in Sources */,
 				1843AC541C4A78020065A462 /* TripDetailsSubSegmentCell.swift in Sources */,
+				18FDA8C51CD9364E003665C6 /* PickGenericValueResponder.swift in Sources */,
 				18232CAC1C01EC2F006334D1 /* SearchLocationVC.swift in Sources */,
 				181ABB861CD89283003CA251 /* NearbyStationsMapVC.swift in Sources */,
 				1824A4321C9F3453000BEE9B /* ReportSituationRow.swift in Sources */,

@@ -363,19 +363,20 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="tripTypeLabel" destination="DRO-gJ-TBz" id="nmF-L8-BYe"/>
-                                            <segue destination="Tm1-9I-jjs" kind="show" identifier="ShowTravelTypesPicker" id="V2Z-ue-vlu"/>
+                                            <segue destination="Tm1-9I-jjs" kind="show" identifier="ShowTravelTypesPicker" id="OZb-MD-G7j"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MaxWalkDistance" id="9Cr-FQ-Kzb" userLabel="Max Walk Distance">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Lines" id="9Cr-FQ-Kzb" userLabel="Lines">
                                         <rect key="frame" x="0.0" y="410.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Cr-FQ-Kzb" id="6tv-qC-ndq">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alla linjer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfC-rP-VvG" userLabel="Färdmedel">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alla linjer - Inte klar än :)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfC-rP-VvG" userLabel="Färdmedel">
                                                     <rect key="frame" x="16" y="8" width="357" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -386,19 +387,20 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="wfC-rP-VvG" secondAttribute="bottom" id="u85-rU-sHe"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Gångväg" id="2Hb-ny-qgu" userLabel="Walk Options">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeNumber" id="vF1-MQ-0d5" userLabel="Number of changes picker">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MaxWalkDistance" id="vF1-MQ-0d5" userLabel="Max Walk Distance">
                                         <rect key="frame" x="0.0" y="491.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vF1-MQ-0d5" id="4zX-Id-saU">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Max 1 km gångväg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2s-IS-Os3" userLabel="NoOfChanges">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Max 1 km gångväg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2s-IS-Os3" userLabel="Max Walk">
                                                     <rect key="frame" x="16" y="8" width="357" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
@@ -411,30 +413,34 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="A2s-IS-Os3" secondAttribute="trailing" id="lAT-7m-L8H"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="pHa-YA-52O" kind="show" identifier="MaxWalkDistance" id="Cyg-gb-0hp"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ChangeNumber" textLabel="8hd-mI-WEJ" detailTextLabel="yy8-jo-myt" style="IBUITableViewCellStyleSubtitle" id="Q6P-P4-7oc" userLabel="Number of changes picker">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Alternative" textLabel="8hd-mI-WEJ" detailTextLabel="yy8-jo-myt" style="IBUITableViewCellStyleSubtitle" id="Q6P-P4-7oc" userLabel="Alternative">
                                         <rect key="frame" x="0.0" y="535.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q6P-P4-7oc" id="NN2-Ge-vNm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alternativa förslag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8hd-mI-WEJ">
-                                                    <rect key="frame" x="15" y="9" width="106.5" height="14.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alternativa förslag - Inte klar än :)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8hd-mI-WEJ">
+                                                    <rect key="frame" x="15" y="9" width="194.5" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alternativ hållplats om det ger en snabbare resa?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yy8-jo-myt">
                                                     <rect key="frame" x="15" y="23.5" width="236.5" height="12"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -460,15 +466,18 @@
                                                 <constraint firstItem="f5R-s2-kT0" firstAttribute="leading" secondItem="I10-yz-Xer" secondAttribute="leadingMargin" constant="8" id="PWn-HA-fhW"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="pHa-YA-52O" kind="show" identifier="NumberOfChanges" id="Fdd-gY-eKk"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeNumber" id="ZN7-N0-zA0" userLabel="Number of changes picker">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeNumber" id="ZN7-N0-zA0" userLabel="Change time picker">
                                         <rect key="frame" x="0.0" y="660.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZN7-N0-zA0" id="qcv-NE-baY">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Ingen extra tid för byte" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ml-g5-Pf6" userLabel="ChangeTime">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Ingen extra tid vid byte" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ml-g5-Pf6" userLabel="ChangeTime">
                                                     <rect key="frame" x="16" y="8" width="357" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
@@ -481,6 +490,9 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="1Ml-g5-Pf6" secondAttribute="trailing" id="n3e-ZD-2VZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="pHa-YA-52O" kind="show" identifier="ChangeTime" id="geV-cu-rvh"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -504,8 +516,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="advancedToggleButton" destination="ddt-6P-8PN" id="But-vT-Yls"/>
+                        <outlet property="changeTimeLabel" destination="1Ml-g5-Pf6" id="k0b-vH-7TQ"/>
                         <outlet property="destinationArrivalSegmented" destination="068-l7-XTW" id="4EV-7d-hUV"/>
                         <outlet property="locationPickerRow" destination="5Jg-gi-BNC" id="lQk-tU-9PV"/>
+                        <outlet property="maxWalkLabel" destination="A2s-IS-Os3" id="qwu-nC-8Pe"/>
+                        <outlet property="numberOfChangesLabel" destination="f5R-s2-kT0" id="gw0-pC-3XD"/>
                         <outlet property="timeLabel" destination="aCt-QJ-mxP" id="khP-tq-igr"/>
                         <outlet property="travelTypePicker" destination="SEc-aa-VUt" id="Hx0-Wv-qyU"/>
                         <outlet property="viaLabel" destination="zXM-ao-ulO" id="vZr-gc-hHg"/>
@@ -619,7 +634,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGC-CH-k9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2211" y="2224"/>
+            <point key="canvasLocation" x="1512" y="2416"/>
         </scene>
         <!--Avgångar i realtid-->
         <scene sceneID="RHf-Ws-717">
@@ -636,7 +651,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LKF-iX-UaD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2211" y="3183"/>
+            <point key="canvasLocation" x="2219" y="3647"/>
         </scene>
         <!--Trafikläget-->
         <scene sceneID="flZ-ox-ThE">
@@ -752,7 +767,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1i-hj-Qno" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2216" y="4101"/>
+            <point key="canvasLocation" x="2224" y="4565"/>
         </scene>
         <!--Rapporter-->
         <scene sceneID="IqQ-eV-8MA">
@@ -878,7 +893,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEt-hu-LIp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2889" y="4101"/>
+            <point key="canvasLocation" x="2897" y="4565"/>
         </scene>
         <!--Buss avvikelser-->
         <scene sceneID="Nhj-Fs-NIZ">
@@ -973,7 +988,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42F-ZS-T0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2216" y="4998"/>
+            <point key="canvasLocation" x="2224" y="5462"/>
         </scene>
         <!--Avvikelse-->
         <scene sceneID="xpY-60-3Rz">
@@ -1069,7 +1084,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KmD-Ss-eVU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3610" y="4101"/>
+            <point key="canvasLocation" x="3618" y="4565"/>
         </scene>
         <!--Trafikläget-->
         <scene sceneID="xdy-hX-E3g">
@@ -1086,7 +1101,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0a-lt-aEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1504" y="4101"/>
+            <point key="canvasLocation" x="1512" y="4565"/>
         </scene>
         <!--My Routine Trips-->
         <scene sceneID="oBD-r9-4g8">
@@ -1218,7 +1233,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tCe-hE-CVR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9Ag-S1-1zp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3007" y="280"/>
+            <point key="canvasLocation" x="3071" y="-1072"/>
         </scene>
         <!--Ny resa-->
         <scene sceneID="QHK-jN-CNd">
@@ -1583,7 +1598,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aNI-ye-XDp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="nJN-i3-Vhd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3735" y="280"/>
+            <point key="canvasLocation" x="2216" y="296"/>
         </scene>
         <!--Välj station-->
         <scene sceneID="2N2-G6-FGu">
@@ -1641,7 +1656,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U7o-bb-YDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rrp-UG-kjR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3251" y="1337"/>
+            <point key="canvasLocation" x="3667" y="1325"/>
         </scene>
         <!--Nearby stations-->
         <scene sceneID="NKx-Ik-I2t">
@@ -1770,7 +1785,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbR-fi-LTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="NP3-8J-72D" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3735" y="2312"/>
+            <point key="canvasLocation" x="2188" y="2416"/>
         </scene>
         <!--Realtid-->
         <scene sceneID="eO9-bS-Yw4">
@@ -1973,7 +1988,7 @@
                 </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0X-4s-aCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3251" y="3183"/>
+            <point key="canvasLocation" x="3259" y="3647"/>
         </scene>
         <!--Navigation Routine Trips-->
         <scene sceneID="MTA-Lh-djo">
@@ -1990,7 +2005,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxz-7h-Xcg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512" y="280"/>
+            <point key="canvasLocation" x="1576" y="-1072"/>
         </scene>
         <!--Smart-->
         <scene sceneID="am1-xS-RbO">
@@ -2869,7 +2884,7 @@ Smarta Rutiner och Res Smart på Apple Watch kräver en prenumeration.</string>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZAh-Kv-8Zr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2211" y="280"/>
+            <point key="canvasLocation" x="2275" y="-1072"/>
         </scene>
         <!--Custom TabVC-->
         <scene sceneID="pYo-6E-5JT">
@@ -3127,7 +3142,7 @@ direkt från din iPhone.</string>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qIQ-kG-ciQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3007" y="-1608"/>
+            <point key="canvasLocation" x="3959" y="-1072"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8A2-ok-Xky">
@@ -3143,7 +3158,7 @@ direkt från din iPhone.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="878-Tr-8wG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2216" y="-666"/>
+            <point key="canvasLocation" x="3168" y="38"/>
         </scene>
         <!--Resor-->
         <scene sceneID="LFU-N2-nnr">
@@ -3759,7 +3774,7 @@ direkt från din iPhone.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bkD-kL-xAr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3007" y="-722"/>
+            <point key="canvasLocation" x="3959" y="-18"/>
         </scene>
         <!--Resedetaljer-->
         <scene sceneID="bsR-j7-Flu">
@@ -4290,7 +4305,7 @@ direkt från din iPhone.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dB-zP-KDF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3735" y="-722"/>
+            <point key="canvasLocation" x="4687" y="-18"/>
         </scene>
         <!--Karta-->
         <scene sceneID="oK1-bk-UKv">
@@ -4364,7 +4379,7 @@ direkt från din iPhone.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yKK-B0-t7g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4401" y="-722"/>
+            <point key="canvasLocation" x="5353" y="-18"/>
         </scene>
         <!--Platskarta-->
         <scene sceneID="VGN-Ze-caN">
@@ -4598,6 +4613,48 @@ direkt från din iPhone.</string>
             </objects>
             <point key="canvasLocation" x="5255" y="2312"/>
         </scene>
+        <!--Generic Advance Picker-->
+        <scene sceneID="MKF-2E-CU0">
+            <objects>
+                <tableViewController id="pHa-YA-52O" userLabel="Generic Advance Picker" customClass="GenericValuePickerVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sjs-3q-UZE">
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WalkDistanceRow" textLabel="x2g-Ms-Wb9" style="IBUITableViewCellStyleDefault" id="bqB-zq-5vk" userLabel="ValueRow">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bqB-zq-5vk" id="dQE-G3-vXp">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Value 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x2g-Ms-Wb9">
+                                            <rect key="frame" x="15" y="0.0" width="384" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pHa-YA-52O" id="YW9-kT-yhT"/>
+                            <outlet property="delegate" destination="pHa-YA-52O" id="gNn-eV-co0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Value Picker" id="t2K-jl-71N"/>
+                    <connections>
+                        <segue destination="2tI-gM-q6x" kind="unwind" identifier="unwindToGenericValuePickerParent" unwindAction="unwindToGenericValuePickerParent:" id="ULv-MW-453"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TQD-4Q-GYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="2tI-gM-q6x" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2750" y="2416"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BUS" width="22" height="22"/>
@@ -4618,10 +4675,11 @@ direkt från din iPhone.</string>
     <inferredMetricsTieBreakers>
         <segue reference="gZB-Im-USu"/>
         <segue reference="ypq-Up-6Af"/>
-        <segue reference="V2Z-ue-vlu"/>
+        <segue reference="OZb-MD-G7j"/>
+        <segue reference="geV-cu-rvh"/>
         <segue reference="4rE-Hc-22D"/>
+        <segue reference="rzj-uS-OIZ"/>
         <segue reference="ivB-Ve-lrb"/>
-        <segue reference="kst-2L-81y"/>
         <segue reference="Lg4-KG-mN0"/>
     </inferredMetricsTieBreakers>
 </document>
