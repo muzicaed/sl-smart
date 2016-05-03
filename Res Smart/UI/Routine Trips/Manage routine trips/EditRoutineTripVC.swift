@@ -91,6 +91,7 @@ TravelTypesResponder, PickLocationResponder {
       locationSearchType = "Destination"
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.searchOnlyForStations = false
+      vc.allowNearbyStations = true
       vc.delegate = self
       
     } else if segue.identifier == "SearchViaLocation" {

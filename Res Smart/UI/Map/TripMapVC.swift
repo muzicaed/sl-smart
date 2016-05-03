@@ -220,6 +220,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       pin.coordinate = segment.origin.location.coordinate
       pin.title = segment.origin.name
       pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+      
       mapView.addAnnotation(pin)
     }
     

@@ -61,6 +61,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       vc.delegate = self
       vc.searchOnlyForStations = false
       vc.allowCurrentPosition = true
+      vc.allowNearbyStations = true
       vc.title = "Välj till"
       searchLocationType = "Destination"
       

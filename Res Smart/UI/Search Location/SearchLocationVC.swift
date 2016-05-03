@@ -81,6 +81,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
       }
     } else if segue.identifier == "ShowNearbyStations" {
       if let nearbyVC = segue.destinationViewController as? NearbyStationsVC {
+
         nearbyVC.delegate = delegate
         nearbyVC.isLocationForRealTimeSearch = isLocationForRealTimeSearch
       }

@@ -19,6 +19,7 @@ class NearbyStationsVC: UITableViewController {
   var selectedLocation: Location?
   
   @IBOutlet weak var spinnerView: UIView!
+  @IBOutlet weak var showOnMapButton: UIBarButtonItem!
   
   override func viewDidLoad() {
     view.backgroundColor = StyleHelper.sharedInstance.background
@@ -34,10 +35,14 @@ class NearbyStationsVC: UITableViewController {
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
-    if segue.identifier == "showRealTime" {
+    if segue.identifier == "ShowRealTime" {
       if let realTimeVC = segue.destinationViewController as? RealTimeVC {
         realTimeVC.title = selectedLocation?.name
         realTimeVC.siteId = Int(selectedLocation!.siteId!)!
+      }
+    } else if segue.identifier == "ShowMap" {
+      if let mapVC = segue.destinationViewController as? NearbyStationsMapVC {
+        mapVC.nearbyLocations = nearbyLocations
       }
     }
   }
@@ -109,7 +114,7 @@ class NearbyStationsVC: UITableViewController {
       selectedLocation = nearbyLocations[indexPath.row].location
       LatestLocationsStore.sharedInstance.addLatestLocation(selectedLocation!)
       if isLocationForRealTimeSearch {
-        performSegueWithIdentifier("showRealTime", sender: self)
+        performSegueWithIdentifier("ShowRealTime", sender: self)
       } else {
         performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
         delegate?.selectedLocationFromSearch(selectedLocation!)
@@ -125,7 +130,7 @@ class NearbyStationsVC: UITableViewController {
   private func loadLocations() {
     if let currentPostion = MyLocationHelper.sharedInstance.currentLocation {
       NetworkActivity.displayActivityIndicator(true)
-      LocationSearchService.searchNearby(currentPostion, distance: 750,
+      LocationSearchService.searchNearby(currentPostion, distance: 1000,
         callback: { (data, error) -> Void in
           NetworkActivity.displayActivityIndicator(false)
           if error != nil {
@@ -137,6 +142,7 @@ class NearbyStationsVC: UITableViewController {
             self.isLoading = false
             self.spinnerView.removeFromSuperview()
             self.tableView.reloadData()
+            self.showOnMapButton.enabled = true
           }
       })
     }
