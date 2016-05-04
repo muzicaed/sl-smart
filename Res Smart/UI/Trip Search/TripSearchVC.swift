@@ -28,6 +28,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
   @IBOutlet weak var locationPickerRow: LocationPickerRow!
   @IBOutlet weak var travelTypePicker:  TravelTypesPickerRow!
   
+  @IBOutlet weak var isAlternative: UITableViewCell!
   @IBOutlet weak var maxWalkLabel: UILabel!
   @IBOutlet weak var numberOfChangesLabel: UILabel!
   @IBOutlet weak var changeTimeLabel: UILabel!
@@ -301,6 +302,18 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
   }
   
   /**
+   * User selected row
+   */
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    if indexPath.section == 4 && indexPath.row == 1 {
+      if let crit = criterions {
+        crit.unsharp = !crit.unsharp
+        updateGenericValues()
+      }
+    }
+  }
+  
+  /**
    * Height for rows.
    */
   override func tableView(
@@ -359,14 +372,6 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
   }
   
   /**
-   * Deselect selected row.
-   */
-  override func tableView(
-    tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
-  }
-  
-  /**
    * Restores UI from criterions.
    */
   func restoreUIFromCriterions() {
@@ -375,6 +380,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
       advancedToggleButton.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
       locationPickerRow.setOriginLabelLocation(crit.origin)
       locationPickerRow.setDestinationLabelLocation(crit.dest)
+      isAlternative.selectionStyle = .None
       
       if crit.via != nil {
         viaLabel.text = crit.via!.name
@@ -512,6 +518,11 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
         changeTimeLabel.text = "15 minuter extra vid byte"
       default:
         fatalError("Incorrect minChgTime in criterion.")
+      }
+      
+      isAlternative.accessoryType = .None
+      if crit.unsharp {
+        isAlternative.accessoryType = .Checkmark
       }
     }
   }
