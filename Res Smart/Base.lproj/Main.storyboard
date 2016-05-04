@@ -1771,13 +1771,7 @@
                             <outlet property="delegate" destination="Tm1-9I-jjs" id="fXa-kO-eHW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Välj färdmedel" id="ppu-s7-bWw">
-                        <barButtonItem key="rightBarButtonItem" title="Klar" style="done" id="gFV-Y3-vQC">
-                            <connections>
-                                <action selector="onDoneTap:" destination="Tm1-9I-jjs" id="uvi-zd-Hqh"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Välj färdmedel" id="ppu-s7-bWw"/>
                     <connections>
                         <segue destination="NP3-8J-72D" kind="unwind" identifier="unwindToTripTypePickerParent" unwindAction="unwindToTripTypePickerParent:" id="wGw-4L-Db1"/>
                     </connections>

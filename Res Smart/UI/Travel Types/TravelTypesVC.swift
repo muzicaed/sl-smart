@@ -29,17 +29,6 @@ class TravelTypesVC: UITableViewController {
     ]
   }
   
-  /**
-   * User taps done.
-   */
-  @IBAction func onDoneTap(sender: UIBarButtonItem) {
-    delegate?.selectedTravelType(
-      checkArr[0], useTrain: checkArr[1],
-      useTram: checkArr[2], useBus: checkArr[3],
-      useBoat: checkArr[4])
-    performSegueWithIdentifier("unwindToTripTypePickerParent", sender: self)
-  }
-  
   // MARK: UITableViewController
   
   /**
@@ -62,7 +51,8 @@ class TravelTypesVC: UITableViewController {
     } else {
       cell.accessoryType = .None
     }
-    
+  
+    cell.selectionStyle = .None
     cell.textLabel?.text = titels[indexPath.row]    
     return cell
   }
@@ -71,8 +61,11 @@ class TravelTypesVC: UITableViewController {
    * User selects a row
    */
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
     checkArr[indexPath.row] = !checkArr[indexPath.row]
+    delegate?.selectedTravelType(
+      checkArr[0], useTrain: checkArr[1],
+      useTram: checkArr[2], useBus: checkArr[3],
+      useBoat: checkArr[4])
     tableView.reloadData()
   }
   
