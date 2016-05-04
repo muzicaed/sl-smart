@@ -57,6 +57,7 @@ class GenericValuePickerVC: UITableViewController {
     cell.textLabel?.text = rowData.displayText
     
     cell.accessoryType = .None
+    cell.selectionStyle = .None
     if rowData.value == currentValue {
       cell.accessoryType = .Checkmark
     }
@@ -66,23 +67,15 @@ class GenericValuePickerVC: UITableViewController {
   /**
    * User selects a row
    */
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(
+    tableView: UITableView,
+    didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    currentValue = values[indexPath.row].value
+    tableView.reloadData()
     if let del = delegate, valType = valueType {
       del.pickedValue(valType, value: values[indexPath.row].value)
     }
-    performSegueWithIdentifier("unwindToGenericValuePickerParent", sender: self)
-  }
-  
-  /**
-   * Green highlight on selected row.
-   */
-  override func tableView(
-    tableView: UITableView, willDisplayCell cell: UITableViewCell,
-    forRowAtIndexPath indexPath: NSIndexPath) {
-    
-    let bgColorView = UIView()
-    bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
-    cell.selectedBackgroundView = bgColorView
   }
   
   // MARK: Private

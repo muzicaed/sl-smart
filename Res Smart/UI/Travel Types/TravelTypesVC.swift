@@ -68,14 +68,4 @@ class TravelTypesVC: UITableViewController {
       useBoat: checkArr[4])
     tableView.reloadData()
   }
-  
-  /**
-   * Green highlight on selected row.
-   */
-  override func tableView(tableView: UITableView,
-    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-      let bgColorView = UIView()
-      bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
-      cell.selectedBackgroundView = bgColorView
-  }
 }

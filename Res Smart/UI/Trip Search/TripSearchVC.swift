@@ -163,8 +163,6 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
   }
   
   @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
-  @IBAction func unwindToTripTypePickerParent(segue: UIStoryboardSegue) {}
-  @IBAction func unwindToGenericValuePickerParent(segue: UIStoryboardSegue) {}
   
   // MARK: LocationSearchResponder
   
