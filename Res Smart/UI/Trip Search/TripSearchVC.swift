@@ -46,6 +46,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
     createNotificationListners()
     locationPickerRow.delegate = self
     locationPickerRow.prepareGestures()
+    isAlternative.selectionStyle = .None
   }
   
   /**
@@ -380,7 +381,6 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
       advancedToggleButton.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
       locationPickerRow.setOriginLabelLocation(crit.origin)
       locationPickerRow.setDestinationLabelLocation(crit.dest)
-      isAlternative.selectionStyle = .None
       
       if crit.via != nil {
         viaLabel.text = crit.via!.name
