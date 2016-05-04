@@ -327,7 +327,7 @@ class TripListVC: UITableViewController {
       }
       
       if !isLoadingMore && !isLoadingMoreBlocked {
-        if overflow < 0 && overflow > -120 {
+        if overflow > 0 {
           loadMoreTrips()
         } else {
           loadMoreEarlier?.hideSpinner()
