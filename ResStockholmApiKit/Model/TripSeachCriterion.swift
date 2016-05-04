@@ -108,6 +108,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     maxWalkDist = 1000
     numChg = -1
     minChgTime = 0
+    unsharp = false
   }
   
   /**

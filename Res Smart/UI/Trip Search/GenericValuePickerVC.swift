@@ -11,9 +11,11 @@ import UIKit
 
 class GenericValuePickerVC: UITableViewController {
   
-  var valueType: ValueType?
-  var values = [(value: Int, displayText: String)]()
   var delegate: PickGenericValueResponder?
+  
+  private var currentValue: Int?
+  private var valueType: ValueType?
+  private var values = [(value: Int, displayText: String)]()
   
   /**
    * View did load
@@ -22,6 +24,15 @@ class GenericValuePickerVC: UITableViewController {
     view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRectZero)
     values = generateValues()
+  }
+  
+  /**
+   * Sets the value and value type
+   * for the picker to use.
+   */
+  func setValue(value: Int, valueType: ValueType) {
+    self.valueType = valueType
+    self.currentValue = value
   }
   
   // MARK: UITableViewController
@@ -44,6 +55,11 @@ class GenericValuePickerVC: UITableViewController {
     let cell = tableView.dequeueReusableCellWithIdentifier(
       "WalkDistanceRow", forIndexPath: indexPath)
     cell.textLabel?.text = rowData.displayText
+    
+    cell.accessoryType = .None
+    if rowData.value == currentValue {
+      cell.accessoryType = .Checkmark
+    }
     return cell
   }
   
@@ -51,9 +67,8 @@ class GenericValuePickerVC: UITableViewController {
    * User selects a row
    */
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    if let del = delegate, val = valueType {
-      del.pickedValue(val, value: values[indexPath.row].value)
+    if let del = delegate, valType = valueType {
+      del.pickedValue(valType, value: values[indexPath.row].value)
     }
     performSegueWithIdentifier("unwindToGenericValuePickerParent", sender: self)
   }
@@ -77,10 +92,10 @@ class GenericValuePickerVC: UITableViewController {
       switch type {
       case .WalkDistance:
         return [
-          (200, "200 m"),
-          (500, "500 m"),
-          (1000, "1 km"),
-          (2000, "2 km")
+          (200, "Högst 200 m"),
+          (500, "Högst 500 m"),
+          (1000, "Högst 1 km"),
+          (2000, "Högst 2 km")
         ]
       case .NoOfChanges:
         return [

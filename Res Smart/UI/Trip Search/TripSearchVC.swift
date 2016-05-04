@@ -51,69 +51,70 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
    * Before seque is triggred.
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "SearchOriginLocation" {
-      let vc = segue.destinationViewController as! SearchLocationVC
-      vc.delegate = self
-      vc.searchOnlyForStations = false
-      vc.allowCurrentPosition = true
-      vc.allowNearbyStations = true
-      vc.title = "Välj från"
-      searchLocationType = "Origin"
-      
-    } else if segue.identifier == "SearchDestinationLocation" {
-      let vc = segue.destinationViewController as! SearchLocationVC
-      vc.delegate = self
-      vc.searchOnlyForStations = false
-      vc.allowCurrentPosition = true
-      vc.allowNearbyStations = true
-      vc.title = "Välj till"
-      searchLocationType = "Destination"
-      
-    } else if segue.identifier == "SearchViaLocation" {
-      let vc = segue.destinationViewController as! SearchLocationVC
-      vc.delegate = self
-      vc.searchOnlyForStations = true
-      vc.title = "Välj via station"
-      searchLocationType = "Via"
-      
-    } else if segue.identifier == "ShowTripList" {
-      let vc = segue.destinationViewController as! TripListVC
-      vc.criterions = criterions?.copy() as? TripSearchCriterion
-      if let crit = criterions {
+    
+    if let crit = criterions {
+      if segue.identifier == "SearchOriginLocation" {
+        let vc = segue.destinationViewController as! SearchLocationVC
+        vc.delegate = self
+        vc.searchOnlyForStations = false
+        vc.allowCurrentPosition = true
+        vc.allowNearbyStations = true
+        vc.title = "Välj från"
+        searchLocationType = "Origin"
+        
+      } else if segue.identifier == "SearchDestinationLocation" {
+        let vc = segue.destinationViewController as! SearchLocationVC
+        vc.delegate = self
+        vc.searchOnlyForStations = false
+        vc.allowCurrentPosition = true
+        vc.allowNearbyStations = true
+        vc.title = "Välj till"
+        searchLocationType = "Destination"
+        
+      } else if segue.identifier == "SearchViaLocation" {
+        let vc = segue.destinationViewController as! SearchLocationVC
+        vc.delegate = self
+        vc.searchOnlyForStations = true
+        vc.title = "Välj via station"
+        searchLocationType = "Via"
+        
+      } else if segue.identifier == "ShowTripList" {
+        let vc = segue.destinationViewController as! TripListVC
+        vc.criterions = criterions?.copy() as? TripSearchCriterion
         SearchCriterionStore.sharedInstance.writeLastSearchCriterions(crit)
         RoutineService.addHabitRoutine(crit)
+        
+      } else if segue.identifier == "ShowDateTimePicker" {
+        let vc = segue.destinationViewController as! DateTimePickerVC
+        vc.selectedDate = selectedDate
+        vc.delegate = self
+        UIView.animateWithDuration(0.45, animations: {
+          self.dimmer?.alpha = 0.7
+        })
+        
+      } else if segue.identifier == "ShowTravelTypesPicker" {
+        let vc = segue.destinationViewController as! TravelTypesVC
+        vc.delegate = self
+        if let crit = criterions {
+          vc.setData(crit)
+        }
+      } else if segue.identifier == "MaxWalkDistance" {
+        let vc = segue.destinationViewController as! GenericValuePickerVC
+        vc.delegate = self
+        vc.title = "Max gångavstånd"
+        vc.setValue(crit.maxWalkDist, valueType: .WalkDistance)
+        
+      } else if segue.identifier == "NumberOfChanges" {
+        let vc = segue.destinationViewController as! GenericValuePickerVC
+        vc.delegate = self
+        vc.title = "Antal byten"
+        vc.setValue(crit.numChg, valueType: .NoOfChanges)
+      } else if segue.identifier == "ChangeTime" {
+        let vc = segue.destinationViewController as! GenericValuePickerVC
+        vc.delegate = self
+        vc.title = "Extra tid vid byte"
+        vc.setValue(crit.minChgTime, valueType: .TimeForChange)
       }
-      
-    } else if segue.identifier == "ShowDateTimePicker" {
-      let vc = segue.destinationViewController as! DateTimePickerVC
-      vc.selectedDate = selectedDate
-      vc.delegate = self
-      UIView.animateWithDuration(0.45, animations: {
-        self.dimmer?.alpha = 0.7
-      })
-      
-    } else if segue.identifier == "ShowTravelTypesPicker" {
-      let vc = segue.destinationViewController as! TravelTypesVC
-      vc.delegate = self
-      if let crit = criterions {
-        vc.setData(crit)
-      }
-    } else if segue.identifier == "MaxWalkDistance" {
-      let vc = segue.destinationViewController as! GenericValuePickerVC
-      vc.delegate = self
-      vc.title = "Max gångavstånd"
-      vc.valueType = GenericValuePickerVC.ValueType.WalkDistance
-      
-    } else if segue.identifier == "NumberOfChanges" {
-      let vc = segue.destinationViewController as! GenericValuePickerVC
-      vc.delegate = self
-      vc.title = "Antal byten"
-      vc.valueType = GenericValuePickerVC.ValueType.NoOfChanges
-    } else if segue.identifier == "ChangeTime" {
-      let vc = segue.destinationViewController as! GenericValuePickerVC
-      vc.delegate = self
-      vc.title = "Extra tid vid byte"
-      vc.valueType = GenericValuePickerVC.ValueType.TimeForChange
     }
   }
   
@@ -249,7 +250,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
     if let crit = criterions {
       switch type {
       case .WalkDistance:
-      crit.maxWalkDist = value
+        crit.maxWalkDist = value
       case .NoOfChanges:
         crit.numChg = value
       case .TimeForChange:
