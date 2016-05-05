@@ -85,7 +85,8 @@ class GenericValuePickerVC: UITableViewController {
       switch type {
       case .WalkDistance:
         return [
-          (200, "Högst 200 m"),
+          (100, "Högst 100 m"),
+          (250, "Högst 250 m"),
           (500, "Högst 500 m"),
           (1000, "Högst 1 km"),
           (2000, "Högst 2 km")

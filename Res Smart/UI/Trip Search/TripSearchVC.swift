@@ -478,16 +478,10 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
   private func updateGenericValues() {
     if let crit = criterions {
       switch crit.maxWalkDist {
-      case 200:
-        maxWalkLabel.text = "Max 200 m"
-      case 500:
-        maxWalkLabel.text = "Max 500 m"
-      case 1000:
-        maxWalkLabel.text = "Max 1 km"
-      case 2000:
-        maxWalkLabel.text = "Max 2 km"
+      case 1000, 2000:
+        maxWalkLabel.text = "Max \(crit.maxWalkDist / 1000) km"
       default:
-        fatalError("Incorrect maxWalkDist in criterion.")
+        maxWalkLabel.text = "Max \(crit.maxWalkDist) m"
       }
       
       switch crit.numChg {
@@ -497,27 +491,15 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
         numberOfChangesLabel.text = "Inga byten"
       case 1:
         numberOfChangesLabel.text = "Högst 1 byte"
-      case 2:
-        numberOfChangesLabel.text = "Högst 2 byten"
-      case 3:
-        numberOfChangesLabel.text = "Högst 3 byten"
       default:
-        fatalError("Incorrect numChg in criterion.")
+        numberOfChangesLabel.text = "Högst \(crit.numChg) byten"
       }
       
       switch crit.minChgTime {
       case 0:
         changeTimeLabel.text = "Ingen extra tid vid byte"
-      case 2:
-        changeTimeLabel.text = "2 minuter extra vid byte"
-      case 5:
-        changeTimeLabel.text = "5 minuter extra vid byte"
-      case 10:
-        changeTimeLabel.text = "10 minuter extra vid byte"
-      case 15:
-        changeTimeLabel.text = "15 minuter extra vid byte"
       default:
-        fatalError("Incorrect minChgTime in criterion.")
+        changeTimeLabel.text = "\(crit.minChgTime) minuter extra vid byte"
       }
       
       isAlternative.accessoryType = .None
