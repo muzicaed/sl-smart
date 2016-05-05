@@ -46,7 +46,6 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
     createNotificationListners()
     locationPickerRow.delegate = self
     locationPickerRow.prepareGestures()
-    isAlternative.selectionStyle = .None
   }
   
   /**
@@ -310,7 +309,10 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
       if let crit = criterions {
         crit.unsharp = !crit.unsharp
         updateGenericValues()
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
       }
+    } else if indexPath.section == 2 {
+      tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
   }
   
@@ -479,9 +481,9 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
     if let crit = criterions {
       switch crit.maxWalkDist {
       case 1000, 2000:
-        maxWalkLabel.text = "Max \(crit.maxWalkDist / 1000) km"
+        maxWalkLabel.text = "Högst \(crit.maxWalkDist / 1000) km"
       default:
-        maxWalkLabel.text = "Max \(crit.maxWalkDist) m"
+        maxWalkLabel.text = "Högst \(crit.maxWalkDist) m"
       }
       
       switch crit.numChg {

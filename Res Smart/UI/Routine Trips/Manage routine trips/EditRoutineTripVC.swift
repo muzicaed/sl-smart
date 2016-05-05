@@ -228,10 +228,10 @@ TravelTypesResponder, PickLocationResponder {
   */
   override func tableView(tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
-      if section == 1 {
-        return 2
+      if section == 0 {
+        return 1
       }
-      return 1
+      return 2
   }
   
   /**
