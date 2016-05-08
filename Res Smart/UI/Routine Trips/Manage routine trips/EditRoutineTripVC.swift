@@ -11,7 +11,7 @@ import UIKit
 import ResStockholmApiKit
 
 class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextFieldDelegate,
-TravelTypesResponder, PickLocationResponder, PickGenericValueResponder {
+TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePickerResponder {
   
   @IBOutlet weak var locationPickerRow: LocationPickerRow!
   @IBOutlet weak var viaLabel: UILabel!
@@ -30,6 +30,7 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder {
   @IBOutlet weak var maxWalkLabel: UILabel!
   @IBOutlet weak var numberOfChangesLabel: UILabel!
   @IBOutlet weak var changeTimeLabel: UILabel!
+  @IBOutlet weak var linesLabel: UILabel!
   
   /**
    * When view is done loading.
@@ -127,6 +128,12 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder {
       vc.delegate = self
       vc.title = "Extra tid vid byte"
       vc.setValue(routineTrip!.criterions.minChgTime, valueType: .TimeForChange)
+      
+    } else if segue.identifier == "PickLines" {
+      let vc = segue.destinationViewController as! LinePickerVC
+      vc.delegate = self
+      vc.incText = routineTrip!.criterions.lineInc
+      vc.excText = routineTrip!.criterions.lineExc
     }
   }
   
@@ -217,6 +224,17 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder {
       case .TimeForChange:
         routine.criterions.minChgTime = value
       }
+      hasChanged = true
+      updateGenericValues()
+    }
+  }
+  
+  // MARK: LinePickerResponder
+  
+  func pickedLines(included: String?, excluded: String?) {
+    if let routine = routineTrip {
+      routine.criterions.lineInc = included
+      routine.criterions.lineExc = excluded
       hasChanged = true
       updateGenericValues()
     }
@@ -557,6 +575,14 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder {
       isAlternative.accessoryType = .None
       if routine.criterions.unsharp {
         isAlternative.accessoryType = .Checkmark
+      }
+      
+      if routine.criterions.lineInc == nil && routine.criterions.lineExc == nil {
+        linesLabel.text = "Alla linjer"
+      } else if routine.criterions.lineInc != nil {
+        linesLabel.text = "Använd endast: \(routine.criterions.lineInc!)"
+      } else if routine.criterions.lineExc != nil {
+        linesLabel.text = "Använd inte: \(routine.criterions.lineExc!)"
       }
     }
   }

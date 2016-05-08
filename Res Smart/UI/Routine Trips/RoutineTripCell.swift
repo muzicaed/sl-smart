@@ -25,9 +25,6 @@ class RoutineTripCell: UICollectionViewCell {
   @IBOutlet weak var inAboutLabel: UILabel!
   @IBOutlet weak var nextInAboutLabel: UILabel!
   
-  @IBOutlet weak var advancedView: UIView!
-  @IBOutlet weak var advancedLabel: UILabel!
-  
   @IBOutlet weak var wrapperView: UIView?
   
   let normalColor = UIColor(red: 63/255, green: 73/255, blue: 62/255, alpha: 0.6)
@@ -80,7 +77,6 @@ class RoutineTripCell: UICollectionViewCell {
     } else if isBest {
       setNoTripsUI()
     }
-    advancedLabel.text = AdvancedCriterionsHelper.createAdvCriterionText(routineTrip.criterions)
     
     if let wrapper = wrapperView {
       wrapper.accessibilityLabel = "\(routineTrip.title!), Från: \(originLabel.text!), Till: \(destinationLabel.text!). Tryck för tider och mer info."

@@ -269,7 +269,7 @@ PickGenericValueResponder, LinePickerResponder {
     }
   }
   
-  // MARK: PickGenericValueResponder
+  // MARK: LinePickerResponder
   
   func pickedLines(included: String?, excluded: String?) {
     if let crit = criterions {
