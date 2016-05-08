@@ -35,6 +35,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     MyLocationHelper.sharedInstance.requestLocationUpdate { (_) -> () in
       self.tableView.reloadData()
     }
+    tableView.editing = true
     view.backgroundColor = StyleHelper.sharedInstance.background
     
     loadListedLocations()
@@ -291,6 +292,63 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     cell.selectedBackgroundView = bgColorView
   }
   
+  
+  /**
+   * Is row editable?
+   */
+  override func tableView(
+    tableView: UITableView,
+    canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    if indexPath.section == 1 && favouriteLocations.count > 0 {
+      return true
+    }
+    return false
+  }
+  
+  /**
+   * Is row movable?
+   */
+  override func tableView(
+    tableView: UITableView,
+    canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    if indexPath.section == 1 && favouriteLocations.count > 0 {
+      return true
+    }
+    return false
+  }
+  
+  /**
+   * Should indent row?
+   */
+  override func tableView(
+    tableView: UITableView,
+    shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return false
+  }
+
+  /**
+   * Editing style for row
+  */
+  override func tableView(
+    tableView: UITableView,
+    editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+    return .None
+  }
+  
+  /**
+   * Move a row
+   */
+  override func tableView(
+    tableView: UITableView,
+    moveRowAtIndexPath sourceIndexPath: NSIndexPath,
+                       toIndexPath destinationIndexPath: NSIndexPath) {
+    
+    FavouriteLocationsStore.sharedInstance.moveFavouriteLocation(
+      sourceIndexPath.row, targetIndex: destinationIndexPath.row)
+    let location = favouriteLocations.removeAtIndex(sourceIndexPath.row)
+    favouriteLocations.insert(location, atIndex: destinationIndexPath.row)
+  }
+  
   /**
    * Fix for broken search bar when tranlucent navbar is off.
    * TODO: Remove if future update fixes this.
@@ -354,7 +412,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
       cellReusableId, forIndexPath: indexPath)
     
     cell.textLabel?.text = location.name
-    cell.detailTextLabel?.text = (isFavourite) ? "⭐ " + location.area: location.area
+    cell.detailTextLabel?.text = location.area
+    
     if location.type == .Station {
       cell.imageView?.image = UIImage(named: "station-icon")
     } else {
@@ -365,6 +424,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
       cell.accessoryType = UITableViewCellAccessoryType.DetailDisclosureButton
     } else {
       cell.accessoryType = UITableViewCellAccessoryType.DetailButton
+    }
+    
+    if isFavourite {
+      cell.detailTextLabel?.text = "⭐ " + location.area
+      cell.editingAccessoryType = cell.accessoryType
     }
     return cell
   }
