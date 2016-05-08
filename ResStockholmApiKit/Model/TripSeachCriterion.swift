@@ -38,6 +38,9 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   
   public var isAdvanced = false
   
+  public var lineInc: String?
+  public var lineExc: String?
+  
   
   /**
    * Standard init
@@ -86,6 +89,8 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     query += (unsharp) ? "&unsharp=1" : ""
     query += (realtime) ? "&realtime=true" : ""
     query += (maxWalkDist > 0) ? "&maxWalkDist=\(maxWalkDist)" : ""
+    query += (lineInc != nil) ? "&lineInc=\(lineInc)" : ""
+    query += (lineExc != nil) ? "&lineExc=\(lineExc)" : ""
     
     if let escapedQuery = query.stringByAddingPercentEncodingWithAllowedCharacters(
       .URLQueryAllowedCharacterSet()) {
@@ -109,6 +114,8 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     numChg = -1
     minChgTime = 0
     unsharp = false
+    lineInc = nil
+    lineExc = nil
   }
   
   /**
@@ -149,6 +156,8 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     self.numTrips = aDecoder.decodeIntegerForKey(PropertyKey.numTrips)
     self.realtime = false // TODO: Check here for realtime! aDecoder.decodeBoolForKey(PropertyKey.realtime)
     self.isAdvanced = aDecoder.decodeBoolForKey(PropertyKey.isAdvanced)
+    self.lineInc = aDecoder.decodeObjectForKey(PropertyKey.lineInc) as! String?
+    self.lineExc = aDecoder.decodeObjectForKey(PropertyKey.lineExc) as! String?
   }
   
   /**
@@ -176,6 +185,8 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     aCoder.encodeInteger(numTrips, forKey: PropertyKey.numTrips)
     aCoder.encodeBool(realtime, forKey: PropertyKey.realtime)
     aCoder.encodeBool(isAdvanced, forKey: PropertyKey.isAdvanced)
+    aCoder.encodeObject(lineInc, forKey: PropertyKey.lineInc)
+    aCoder.encodeObject(lineExc, forKey: PropertyKey.lineExc)
   }
   
   struct PropertyKey {
@@ -200,6 +211,8 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     static let numTrips = "numTrips"
     static let realtime = "realtime"
     static let isAdvanced = "isAdvanced"
+    static let lineInc = "lineInc"
+    static let lineExc = "lineExc"
   }
   
   // MARK: NSCopying
@@ -231,6 +244,8 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     copy.numTrips = numTrips
     copy.realtime = realtime
     copy.isAdvanced = isAdvanced
+    copy.lineInc = lineInc
+    copy.lineExc = lineExc
 
     return copy
   }
