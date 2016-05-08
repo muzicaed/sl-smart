@@ -169,7 +169,7 @@ class SmartTripIC: WKInterfaceController {
       // Retry after 1 second...
       stopRefreshTimer()
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-        NSTimeInterval(1.0), target: self, selector: #selector(forceRefreshData),
+        NSTimeInterval(0.1), target: self, selector: #selector(forceRefreshData),
         userInfo: nil, repeats: false)
       return
     } else if error.code == WCErrorCode.NotReachable.rawValue {
@@ -186,7 +186,7 @@ class SmartTripIC: WKInterfaceController {
       message: "\(error.description)")
     stopRefreshTimer()
     retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-      NSTimeInterval(1.0), target: self, selector: #selector(forceRefreshData),
+      NSTimeInterval(0.5), target: self, selector: #selector(forceRefreshData),
       userInfo: nil, repeats: false)
     /*
     displayError(
@@ -447,7 +447,7 @@ class SmartTripIC: WKInterfaceController {
    * Trigger a UI refresh of routine trip data
    */
   private func perfromRefreshData(force: Bool) {
-    if shouldReloadData() || force {
+    if (shouldReloadData() && !isLoading) || force {
       setLoadingUIState()
       reloadRoutineTripData()
     } else {

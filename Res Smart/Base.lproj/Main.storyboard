@@ -367,17 +367,17 @@
                                             <segue destination="Tm1-9I-jjs" kind="show" identifier="ShowTravelTypesPicker" id="OZb-MD-G7j"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Lines" id="9Cr-FQ-Kzb" userLabel="Lines">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Lines" id="9Cr-FQ-Kzb" userLabel="Lines">
                                         <rect key="frame" x="0.0" y="410.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Cr-FQ-Kzb" id="6tv-qC-ndq">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alla linjer - Inte klar än :)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfC-rP-VvG" userLabel="Färdmedel">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alla linjer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfC-rP-VvG" userLabel="Färdmedel">
                                                     <rect key="frame" x="16" y="8" width="357" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -388,7 +388,10 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="wfC-rP-VvG" secondAttribute="bottom" id="u85-rU-sHe"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="gY1-Ay-9fo" kind="show" id="alv-6I-0jl"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -4727,6 +4730,83 @@ direkt från din iPhone.</string>
             </objects>
             <point key="canvasLocation" x="2750" y="2416"/>
         </scene>
+        <!--Välj linjer-->
+        <scene sceneID="R43-pV-9l1">
+            <objects>
+                <tableViewController title="Välj linjer" id="gY1-Ay-9fo" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="DqX-EI-mQi">
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection id="ALq-6z-13C" userLabel="Lines">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LineTypeRow" id="G1M-bn-aMD" userLabel="Include or Exclude">
+                                        <rect key="frame" x="0.0" y="35" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G1M-bn-aMD" id="geY-0p-gIU">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7e4-qs-die">
+                                                    <rect key="frame" x="-2" y="-1" width="418" height="45.5"/>
+                                                    <segments>
+                                                        <segment title="Alla linjer"/>
+                                                        <segment title="Använd endast"/>
+                                                        <segment title="Använd inte"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="onDepartureArrivalChanged:" destination="Hg1-8K-Ui9" eventType="valueChanged" id="Gzi-At-KQv"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="7e4-qs-die" firstAttribute="top" secondItem="geY-0p-gIU" secondAttribute="top" constant="-1" id="Fir-l5-1r6"/>
+                                                <constraint firstAttribute="bottom" secondItem="7e4-qs-die" secondAttribute="bottom" id="Zmo-0a-TIf"/>
+                                                <constraint firstItem="7e4-qs-die" firstAttribute="leading" secondItem="geY-0p-gIU" secondAttribute="leading" constant="-2" id="iz0-u9-RDQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="7e4-qs-die" secondAttribute="trailing" constant="-2" id="seP-za-9PP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Linjer" footerTitle="Ange linjer sepparerade med komma. T.ex. 540, 242, 35" id="m7Q-aW-1nP" userLabel="Lines">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LineInputRow" id="hqf-t7-skP" userLabel="Lines input">
+                                        <rect key="frame" x="0.0" y="129" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hqf-t7-skP" id="hjp-66-0YM">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Exempel: 540, 242, 35" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PF3-mi-Eq0">
+                                                    <rect key="frame" x="8" y="8" width="398" height="27.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="PF3-mi-Eq0" secondAttribute="trailing" id="89u-0m-aJ0"/>
+                                                <constraint firstItem="PF3-mi-Eq0" firstAttribute="top" secondItem="hjp-66-0YM" secondAttribute="topMargin" id="IPh-DV-FRt"/>
+                                                <constraint firstItem="PF3-mi-Eq0" firstAttribute="leading" secondItem="hjp-66-0YM" secondAttribute="leadingMargin" id="Rfw-a7-rVW"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="PF3-mi-Eq0" secondAttribute="bottom" id="d7y-E3-icC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="gY1-Ay-9fo" id="gED-Mg-34P"/>
+                            <outlet property="delegate" destination="gY1-Ay-9fo" id="eWh-1R-Ipf"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Välj linjer" id="Kto-vm-3TS"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b76-KY-OBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3332" y="2416"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BUS" width="22" height="22"/>
@@ -4745,13 +4825,13 @@ direkt från din iPhone.</string>
         <image name="sub-segment-icon" width="44" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ypq-Up-6Af"/>
+        <segue reference="OZb-MD-G7j"/>
         <segue reference="4rE-Hc-22D"/>
-        <segue reference="Lg4-KG-mN0"/>
-        <segue reference="L0K-5H-KeJ"/>
-        <segue reference="yy0-ry-irx"/>
-        <segue reference="eBt-27-ZxS"/>
+        <segue reference="geV-cu-rvh"/>
         <segue reference="ivB-Ve-lrb"/>
         <segue reference="rzj-uS-OIZ"/>
+        <segue reference="Lg4-KG-mN0"/>
         <segue reference="zVB-lv-c0r"/>
     </inferredMetricsTieBreakers>
 </document>

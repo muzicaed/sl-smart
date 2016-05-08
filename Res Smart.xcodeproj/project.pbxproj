@@ -612,6 +612,18 @@
 			path = "Trip Details";
 			sourceTree = "<group>";
 		};
+		1885A4111CDF943D00680F8E /* Data pickers */ = {
+			isa = PBXGroup;
+			children = (
+				1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */,
+				18FDA8C21CD92D94003665C6 /* GenericValuePickerVC.swift */,
+				18FDA8C41CD9364E003665C6 /* PickGenericValueResponder.swift */,
+				18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */,
+				1892BA341C1F185500BC191A /* Travel Types */,
+			);
+			path = "Data pickers";
+			sourceTree = "<group>";
+		};
 		188B80431C175D9600E7D90C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,9 +639,6 @@
 				188B80AD1C178DD900E7D90C /* TripSearchVC.swift */,
 				18946B161C18431500A5829D /* DateTimePickerVC.swift */,
 				18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */,
-				1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */,
-				18FDA8C21CD92D94003665C6 /* GenericValuePickerVC.swift */,
-				18FDA8C41CD9364E003665C6 /* PickGenericValueResponder.swift */,
 			);
 			path = "Trip Search";
 			sourceTree = "<group>";
@@ -805,10 +814,10 @@
 		18937E891C01139E00C523C9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				1885A4111CDF943D00680F8E /* Data pickers */,
 				18733C431C4E3CD700F66AEF /* Real time */,
 				1899F2651C4B9B6400534587 /* Map */,
 				1894A6F81C354A9000CDF905 /* Subscription */,
-				1892BA341C1F185500BC191A /* Travel Types */,
 				18937E751BFF5CFC00C523C9 /* Routine Trips */,
 				18BF52241C18302A002B68AD /* Search Location */,
 				18AC9CF61C07AD05007ECFA2 /* Trip List */,
@@ -890,7 +899,6 @@
 				181ABB871CD8937E003CA251 /* Nearby */,
 				18232CAB1C01EC2F006334D1 /* SearchLocationVC.swift */,
 				1806037B1C02165000AC1841 /* LocationSearchResponder.swift */,
-				18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */,
 				18609B371CC3B55E002F6346 /* LocationMapVC.swift */,
 				1840C81A1CD646BC007062FD /* SearchLocationResultsVC.swift */,
 			);
