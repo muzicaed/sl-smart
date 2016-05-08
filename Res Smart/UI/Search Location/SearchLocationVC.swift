@@ -24,6 +24,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   var allowNearbyStations = false
   var lastCount = 0
   var isLocationForRealTimeSearch = false
+  var editFavouritebutton = UIButton()
   
   let loadedTime = NSDate()
   
@@ -35,11 +36,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     MyLocationHelper.sharedInstance.requestLocationUpdate { (_) -> () in
       self.tableView.reloadData()
     }
-    tableView.editing = true
     view.backgroundColor = StyleHelper.sharedInstance.background
     
     loadListedLocations()
     prepareSearchController()
+    prepareEditFavouriteButton()
     tableView.tableFooterView = UIView()
     
     if isLocationForRealTimeSearch {
@@ -56,6 +57,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     super.viewWillAppear(animated)
     navigationController?.navigationBar.translucent = false
     loadListedLocations()
+    tableView.editing = false
     tableView.reloadData()
   }
   
@@ -82,7 +84,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
       }
     } else if segue.identifier == "ShowNearbyStations" {
       if let nearbyVC = segue.destinationViewController as? NearbyStationsVC {
-
+        
         nearbyVC.delegate = delegate
         nearbyVC.isLocationForRealTimeSearch = isLocationForRealTimeSearch
       }
@@ -142,7 +144,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     let label = UILabel(frame: CGRectMake(18, 2, tableView.frame.size.width, 15))
     label.font = UIFont.systemFontOfSize(14)
     label.textColor = UIColor.whiteColor()
-    label.textAlignment = NSTextAlignment.Left
+    label.textAlignment = .Left
     view.addSubview(label)
     let color = StyleHelper.sharedInstance.mainGreen
     view.backgroundColor = color.colorWithAlphaComponent(0.95)
@@ -152,11 +154,21 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     
     if section == favSection {
       label.text = "Favoritplatser"
+      view.addSubview(editFavouritebutton)
       return view
     }
     
     label.text = "Senast använda platser"
     return view
+  }
+  
+  func toggleEditFavourites() {
+    tableView.editing = !tableView.editing
+    let title = (tableView.editing) ? "Klar" : "Ändra ordning"
+    editFavouritebutton.setTitle(title, forState: .Normal)
+    editFavouritebutton.frame = CGRectMake(tableView.frame.size.width - 118, 0, 100, 20)
+    editFavouritebutton.contentHorizontalAlignment = .Right
+    tableView.reloadData()
   }
   
   /**
@@ -325,10 +337,10 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
     return false
   }
-
+  
   /**
    * Editing style for row
-  */
+   */
   override func tableView(
     tableView: UITableView,
     editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
@@ -515,6 +527,17 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
       searchController!.searchBar.placeholder = "Skriv stationsnamn eller en adress"
     }
     tableView.tableHeaderView = searchController!.searchBar
+  }
+  
+  private func prepareEditFavouriteButton() {
+    editFavouritebutton = UIButton(
+      frame: CGRectMake(tableView.frame.size.width - 118, 0, 100, 20))
+    editFavouritebutton.setTitle("Ändra ordning", forState: .Normal)
+    editFavouritebutton.titleLabel?.font = UIFont.systemFontOfSize(14)
+    editFavouritebutton.contentHorizontalAlignment = .Right
+    editFavouritebutton.addTarget(self,
+                                  action: #selector(toggleEditFavourites),
+                                  forControlEvents: .TouchUpInside)
   }
   
   deinit {
