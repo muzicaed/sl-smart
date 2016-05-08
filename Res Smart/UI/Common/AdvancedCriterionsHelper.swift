@@ -16,15 +16,59 @@ class AdvancedCriterionsHelper {
    * describe the advanced search criterias.
    */
   static func createAdvCriterionText(criterions: TripSearchCriterion) -> String {
+    let isAdvancedString = (criterions.via != nil) ? "Via \(criterions.via!.name). " : ""
+    let travelTypesString = createTravelTypeString(criterions)
+    let numChangeString = createNoChangeString(criterions)
+    let walkDistanceString = createWalkDistanceString(criterions)
+    let extraTimeString = createExtraTimeString(criterions)
+    let isUnsharpString = (criterions.unsharp) ? "Alternativa. " : ""
+    
+    return (isAdvancedString + travelTypesString + numChangeString + walkDistanceString + extraTimeString + isUnsharpString)
+  }
+  
+  /**
+   * Creates human readable max number of changes string.
+   */
+  static private func createNoChangeString(criterions: TripSearchCriterion) -> String {
     var text = ""
-    if criterions.isAdvanced {
-      if let via = criterions.via {
-        text = "Via \(via.name). "
+    if criterions.numChg > -1 {
+      switch criterions.numChg {
+      case 0:
+        text = "Inga byten. "
+      case 1:
+        text = "Högst 1 byte. "
+      default:
+        text = "Högst \(criterions.numChg) byten. "
       }
     }
-    
-    let travelTypesString = createTravelTypeString(criterions)
-    return (text + travelTypesString)
+    return text
+  }
+  
+  /**
+   * Creates human readable max walk distance string.
+   */
+  static private func createWalkDistanceString(criterions: TripSearchCriterion) -> String {
+    var text = ""
+    if criterions.maxWalkDist != 1000 {
+      switch criterions.maxWalkDist {
+      case 2000:
+        text = "Högst \(criterions.maxWalkDist / 1000) km. "
+      default:
+        text = "Högst \(criterions.maxWalkDist) m. "
+      }
+    }
+    return text
+  }
+  
+  /**
+   * Creates human readable extra time string.
+   */
+  static private func createExtraTimeString(criterions: TripSearchCriterion) -> String {
+    var text = ""
+    if criterions.minChgTime > 0 {
+      text = "\(criterions.minChgTime) min extra. "
+    }
+    return text
   }
   
   /**
@@ -91,7 +135,7 @@ class AdvancedCriterionsHelper {
       
       if travelTypesString != "" {
         travelTypesString = "Ej med " + travelTypesString.substringToIndex(
-          travelTypesString.endIndex.predecessor().predecessor()) + "."
+          travelTypesString.endIndex.predecessor().predecessor()) + ". "
       }
       if let lastRange = travelTypesString.rangeOfString(", ",
         options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil) {
@@ -126,7 +170,7 @@ class AdvancedCriterionsHelper {
       
       if travelTypesString != "" {
         travelTypesString = "Endast med " + travelTypesString.substringToIndex(
-          travelTypesString.endIndex.predecessor().predecessor()) + "."
+          travelTypesString.endIndex.predecessor().predecessor()) + ". "
       }
       if let lastRange = travelTypesString.rangeOfString(", ",
         options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil) {
