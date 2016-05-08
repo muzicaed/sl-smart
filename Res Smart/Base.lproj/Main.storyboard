@@ -351,6 +351,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alla färdmedel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRO-gJ-TBz" userLabel="Färdmedel">
                                                     <rect key="frame" x="16" y="8" width="357" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -403,6 +404,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Max 1 km gångväg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2s-IS-Os3" userLabel="Max Walk">
                                                     <rect key="frame" x="16" y="8" width="357" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -428,17 +430,19 @@
                                                     <rect key="frame" x="15" y="9" width="106.5" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alternativ hållplats om det ger en snabbare resa?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yy8-jo-myt">
                                                     <rect key="frame" x="15" y="23.5" width="236.5" height="12"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -454,6 +458,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Inga begränsningar för antal byten" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5R-s2-kT0" userLabel="NoOfChanges">
                                                     <rect key="frame" x="16" y="8" width="357" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -478,6 +483,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Ingen extra tid vid byte" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ml-g5-Pf6" userLabel="ChangeTime">
                                                     <rect key="frame" x="16" y="8" width="357" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1499,7 +1505,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alla färdmedel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMF-wf-OcH" userLabel="Färdmedel">
                                                     <rect key="frame" x="16" y="8" width="357" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1549,9 +1555,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Max 1 km gångväg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFI-Od-8cs" userLabel="Max Walk">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Högst 1 km gångväg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFI-Od-8cs" userLabel="Max Walk">
                                                     <rect key="frame" x="16" y="8" width="357" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1562,6 +1569,9 @@
                                                 <constraint firstItem="gFI-Od-8cs" firstAttribute="leading" secondItem="S5R-Ex-WVZ" secondAttribute="leadingMargin" constant="8" id="wbK-gD-shd"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="pHa-YA-52O" kind="show" identifier="MaxWalkDistance" id="Ddt-oR-StF"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Alternative" textLabel="IU0-Eq-9Ct" detailTextLabel="16g-Ms-KWg" style="IBUITableViewCellStyleSubtitle" id="0qc-4b-ZGu" userLabel="Alternative">
                                         <rect key="frame" x="0.0" y="507.5" width="414" height="44"/>
@@ -1574,17 +1584,73 @@
                                                     <rect key="frame" x="15" y="9" width="106.5" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alternativ hållplats om det ger en snabbare resa?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="16g-Ms-KWg">
                                                     <rect key="frame" x="15" y="23.5" width="236.5" height="12"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Byten" id="j9k-cS-Otr" userLabel="Chagne Options">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeNumber" id="k8W-Px-77F" userLabel="Number of changes picker">
+                                        <rect key="frame" x="0.0" y="601.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k8W-Px-77F" id="wRy-If-usq">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Inga begränsningar för antal byten" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzG-VG-C41" userLabel="NoOfChanges">
+                                                    <rect key="frame" x="16" y="8" width="357" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dzG-VG-C41" firstAttribute="leading" secondItem="wRy-If-usq" secondAttribute="leadingMargin" constant="8" id="6tK-HP-AkE"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="dzG-VG-C41" secondAttribute="bottom" id="Gvm-jW-7K2"/>
+                                                <constraint firstItem="dzG-VG-C41" firstAttribute="top" secondItem="wRy-If-usq" secondAttribute="topMargin" id="ktC-yu-ex3"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="dzG-VG-C41" secondAttribute="trailing" id="xrH-Yg-m09"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="pHa-YA-52O" kind="show" identifier="NumberOfChanges" id="7QZ-YL-rBC"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeNumber" id="bbK-Xa-Ur9" userLabel="Change time picker">
+                                        <rect key="frame" x="0.0" y="645.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bbK-Xa-Ur9" id="efy-Ca-cRH">
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Ingen extra tid vid byte" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JgM-ch-i3t" userLabel="ChangeTime">
+                                                    <rect key="frame" x="16" y="8" width="357" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="JgM-ch-i3t" firstAttribute="top" secondItem="efy-Ca-cRH" secondAttribute="topMargin" id="29p-zg-ZFD"/>
+                                                <constraint firstItem="JgM-ch-i3t" firstAttribute="leading" secondItem="efy-Ca-cRH" secondAttribute="leadingMargin" constant="8" id="4eq-oA-tmm"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="JgM-ch-i3t" secondAttribute="bottom" id="5z6-g9-TzD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="JgM-ch-i3t" secondAttribute="trailing" id="GcQ-9D-q8F"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="pHa-YA-52O" kind="show" identifier="ChangeTime" id="eBt-27-ZxS"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1602,7 +1668,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="changeTimeLabel" destination="JgM-ch-i3t" id="HNM-me-iJG"/>
+                        <outlet property="isAlternative" destination="0qc-4b-ZGu" id="q8e-zH-Ohe"/>
                         <outlet property="locationPickerRow" destination="vhe-P6-C2c" id="82p-7c-5HS"/>
+                        <outlet property="maxWalkLabel" destination="gFI-Od-8cs" id="7RC-Jq-68o"/>
+                        <outlet property="numberOfChangesLabel" destination="dzG-VG-C41" id="6Lj-ek-byy"/>
                         <outlet property="travelTypesPickerRow" destination="cNf-fO-L64" id="l9k-7n-iS9"/>
                         <outlet property="tripTitleTextField" destination="UcP-ws-VIP" id="BIK-HD-BAZ"/>
                         <outlet property="viaLabel" destination="1qF-mL-Zry" id="WfE-p4-umn"/>
@@ -4676,10 +4746,10 @@ direkt från din iPhone.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4rE-Hc-22D"/>
-        <segue reference="geV-cu-rvh"/>
         <segue reference="Lg4-KG-mN0"/>
         <segue reference="L0K-5H-KeJ"/>
         <segue reference="yy0-ry-irx"/>
+        <segue reference="eBt-27-ZxS"/>
         <segue reference="ivB-Ve-lrb"/>
         <segue reference="rzj-uS-OIZ"/>
         <segue reference="zVB-lv-c0r"/>

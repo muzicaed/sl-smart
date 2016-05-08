@@ -99,6 +99,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
         if let crit = criterions {
           vc.setData(crit)
         }
+        
       } else if segue.identifier == "MaxWalkDistance" {
         let vc = segue.destinationViewController as! GenericValuePickerVC
         vc.delegate = self
@@ -110,6 +111,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
         vc.delegate = self
         vc.title = "Antal byten"
         vc.setValue(crit.numChg, valueType: .NoOfChanges)
+        
       } else if segue.identifier == "ChangeTime" {
         let vc = segue.destinationViewController as! GenericValuePickerVC
         vc.delegate = self
@@ -240,7 +242,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
     tableView.endUpdates()
   }
   
-  // MARK: LocationSearchResponder
+  // MARK: PickGenericValueResponder
   
   /**
    * User picked a value using the generic value picker.
