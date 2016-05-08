@@ -116,7 +116,7 @@ class SmartTripIC: WKInterfaceController {
           NSTimeInterval(10), target: self, selector: #selector(forceRefreshData), userInfo: nil, repeats: false)
       } else {
         retryCount += 1
-        if retryCount > 5 {
+        if retryCount > 10 {
           retryCount = 0
           stopRefreshTimer()
           displayError(
@@ -166,10 +166,10 @@ class SmartTripIC: WKInterfaceController {
     
     // TODO: WTF?. Check future releases for fix on error 7014, and remove this...
     if error.code == WCErrorCode.DeliveryFailed.rawValue {
-      // Retry after 1.5 seconds...
+      // Retry after 1 second...
       stopRefreshTimer()
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-        NSTimeInterval(1.5), target: self, selector: #selector(forceRefreshData),
+        NSTimeInterval(1.0), target: self, selector: #selector(forceRefreshData),
         userInfo: nil, repeats: false)
       return
     } else if error.code == WCErrorCode.NotReachable.rawValue {
@@ -179,9 +179,20 @@ class SmartTripIC: WKInterfaceController {
       return
     }
     
+    // TODO: Bring back the right error message.
+    
     displayError(
-      "Någon gick fel",
+      "\(error.code) \(error.description)",
+      message: "\(error.description)")
+    stopRefreshTimer()
+    retryTimer = NSTimer.scheduledTimerWithTimeInterval(
+      NSTimeInterval(1.0), target: self, selector: #selector(forceRefreshData),
+      userInfo: nil, repeats: false)
+    /*
+    displayError(
+      "Något gick fel",
       message: "Ett okänt fel inträffade. Kontrollera att din iPhone kan nå internet.")
+     */
   }
   
   /**
