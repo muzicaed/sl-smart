@@ -89,8 +89,8 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     query += (unsharp) ? "&unsharp=1" : ""
     query += (realtime) ? "&realtime=true" : ""
     query += (maxWalkDist > 0) ? "&maxWalkDist=\(maxWalkDist)" : ""
-    query += (lineInc != nil) ? "&lineInc=\(lineInc)" : ""
-    query += (lineExc != nil) ? "&lineExc=\(lineExc)" : ""
+    query += (lineInc != nil) ? "&lineInc=\(lineInc!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))" : ""
+    query += (lineExc != nil) ? "&lineExc=\(lineExc!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))" : ""
     
     if let escapedQuery = query.stringByAddingPercentEncodingWithAllowedCharacters(
       .URLQueryAllowedCharacterSet()) {

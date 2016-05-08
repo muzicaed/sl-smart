@@ -390,7 +390,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <segue destination="gY1-Ay-9fo" kind="show" id="alv-6I-0jl"/>
+                                            <segue destination="gY1-Ay-9fo" kind="show" identifier="PickLines" id="alv-6I-0jl"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -526,6 +526,7 @@
                         <outlet property="changeTimeLabel" destination="1Ml-g5-Pf6" id="k0b-vH-7TQ"/>
                         <outlet property="destinationArrivalSegmented" destination="068-l7-XTW" id="4EV-7d-hUV"/>
                         <outlet property="isAlternative" destination="Q6P-P4-7oc" id="zhd-Pg-ctO"/>
+                        <outlet property="linesLabel" destination="wfC-rP-VvG" id="LVL-Lq-y4h"/>
                         <outlet property="locationPickerRow" destination="5Jg-gi-BNC" id="lQk-tU-9PV"/>
                         <outlet property="maxWalkLabel" destination="A2s-IS-Os3" id="qwu-nC-8Pe"/>
                         <outlet property="numberOfChangesLabel" destination="f5R-s2-kT0" id="gw0-pC-3XD"/>
@@ -4733,7 +4734,7 @@ direkt från din iPhone.</string>
         <!--Välj linjer-->
         <scene sceneID="R43-pV-9l1">
             <objects>
-                <tableViewController title="Välj linjer" id="gY1-Ay-9fo" sceneMemberID="viewController">
+                <tableViewController title="Välj linjer" id="gY1-Ay-9fo" customClass="LinePickerVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="DqX-EI-mQi">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4757,6 +4758,7 @@ direkt från din iPhone.</string>
                                                     </segments>
                                                     <connections>
                                                         <action selector="onDepartureArrivalChanged:" destination="Hg1-8K-Ui9" eventType="valueChanged" id="Gzi-At-KQv"/>
+                                                        <action selector="onLineTypeValueChanged:" destination="gY1-Ay-9fo" eventType="valueChanged" id="6Fm-jT-y8J"/>
                                                     </connections>
                                                 </segmentedControl>
                                             </subviews>
@@ -4770,7 +4772,7 @@ direkt från din iPhone.</string>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Linjer" footerTitle="Ange linjer sepparerade med komma. T.ex. 540, 242, 35" id="m7Q-aW-1nP" userLabel="Lines">
+                            <tableViewSection headerTitle="Linjer" footerTitle="Ange linjer sepparerade med komma. T.ex. 540,242,35" id="m7Q-aW-1nP" userLabel="Lines">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LineInputRow" id="hqf-t7-skP" userLabel="Lines input">
                                         <rect key="frame" x="0.0" y="129" width="414" height="44"/>
@@ -4779,10 +4781,13 @@ direkt från din iPhone.</string>
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Exempel: 540, 242, 35" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PF3-mi-Eq0">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Exempel: 540,242,35" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PF3-mi-Eq0">
                                                     <rect key="frame" x="8" y="8" width="398" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="onLineTextFieldEditEnd:" destination="gY1-Ay-9fo" eventType="editingDidEnd" id="nDS-o0-xCM"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -4802,6 +4807,10 @@ direkt från din iPhone.</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Välj linjer" id="Kto-vm-3TS"/>
+                    <connections>
+                        <outlet property="lineTextField" destination="PF3-mi-Eq0" id="S3p-34-lqb"/>
+                        <outlet property="lineTypeSegmentedControl" destination="7e4-qs-die" id="lk3-I5-VMq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b76-KY-OBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

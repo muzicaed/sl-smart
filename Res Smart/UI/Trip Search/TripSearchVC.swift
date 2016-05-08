@@ -11,7 +11,8 @@ import UIKit
 import ResStockholmApiKit
 
 class TripSearchVC: UITableViewController, LocationSearchResponder,
-DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericValueResponder {
+DateTimePickResponder, PickLocationResponder, TravelTypesResponder,
+PickGenericValueResponder, LinePickerResponder {
   
   let notificationCenter = NSNotificationCenter.defaultCenter()
   var searchLocationType: String?
@@ -32,6 +33,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
   @IBOutlet weak var maxWalkLabel: UILabel!
   @IBOutlet weak var numberOfChangesLabel: UILabel!
   @IBOutlet weak var changeTimeLabel: UILabel!
+  @IBOutlet weak var linesLabel: UILabel!
   
   /**
    * View did load
@@ -117,6 +119,12 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
         vc.delegate = self
         vc.title = "Extra tid vid byte"
         vc.setValue(crit.minChgTime, valueType: .TimeForChange)
+        
+      } else if segue.identifier == "PickLines" {
+        let vc = segue.destinationViewController as! LinePickerVC
+        vc.delegate = self
+        vc.incText = crit.lineInc
+        vc.excText = crit.lineExc
       }
     }
   }
@@ -257,6 +265,16 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
       case .TimeForChange:
         crit.minChgTime = value
       }
+      updateGenericValues()
+    }
+  }
+  
+  // MARK: PickGenericValueResponder
+  
+  func pickedLines(included: String?, excluded: String?) {
+    if let crit = criterions {
+      crit.lineInc = included
+      crit.lineExc = excluded
       updateGenericValues()
     }
   }
@@ -509,6 +527,14 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder, PickGenericV
       isAlternative.accessoryType = .None
       if crit.unsharp {
         isAlternative.accessoryType = .Checkmark
+      }
+      
+      if crit.lineInc == nil && crit.lineExc == nil {
+        linesLabel.text = "Alla linjer"
+      } else if crit.lineInc != nil {
+        linesLabel.text = "Använd endast: \(crit.lineInc!)"
+      } else if crit.lineExc != nil {
+        linesLabel.text = "Använd inte: \(crit.lineExc!)"
       }
     }
   }
