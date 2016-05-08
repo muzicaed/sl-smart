@@ -140,8 +140,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   override func tableView(
     tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     
-    let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 20))
-    let label = UILabel(frame: CGRectMake(18, 2, tableView.frame.size.width, 15))
+    let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 25))
+    let label = UILabel(frame: CGRectMake(18, 0, tableView.frame.size.width, 25))
     label.font = UIFont.systemFontOfSize(14)
     label.textColor = UIColor.whiteColor()
     label.textAlignment = .Left
@@ -166,9 +166,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     tableView.editing = !tableView.editing
     let title = (tableView.editing) ? "Klar" : "Ändra ordning"
     editFavouritebutton.setTitle(title, forState: .Normal)
-    editFavouritebutton.frame = CGRectMake(tableView.frame.size.width - 118, 0, 100, 20)
+    editFavouritebutton.frame = CGRectMake(tableView.frame.size.width - 118, 0, 100, 25)
     editFavouritebutton.contentHorizontalAlignment = .Right
-    tableView.reloadData()
   }
   
   /**
@@ -179,7 +178,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     if (allowCurrentPosition || allowNearbyStations) && section == 0 {
       return 0
     }
-    return 20
+    return 25
   }
   
   /**
@@ -531,7 +530,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   
   private func prepareEditFavouriteButton() {
     editFavouritebutton = UIButton(
-      frame: CGRectMake(tableView.frame.size.width - 118, 0, 100, 20))
+      frame: CGRectMake(tableView.frame.size.width - 118, 0, 100, 25))
     editFavouritebutton.setTitle("Ändra ordning", forState: .Normal)
     editFavouritebutton.titleLabel?.font = UIFont.systemFontOfSize(14)
     editFavouritebutton.contentHorizontalAlignment = .Right
