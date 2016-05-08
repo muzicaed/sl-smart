@@ -58,7 +58,6 @@ class LinePickerVC: UITableViewController {
    * User stoped editing line text field.
    */
   @IBAction func onLineTextFieldEditEnd(sender: UITextField) {
-    print("END")
     updateIncExcTexts()
   }
   
