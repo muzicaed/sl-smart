@@ -136,7 +136,7 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Handle reply for a "RequestRoutineTrips" message.
    */
-  func requestRoutineTripsHandler(reply: NSData) {    
+  func requestRoutineTripsHandler(reply: NSData) {
     let dictionary = NSKeyedUnarchiver.unarchiveObjectWithData(reply)! as! Dictionary<String, AnyObject>
     retryCount = 0
     stopRefreshTimer()
@@ -165,7 +165,8 @@ class SmartTripIC: WKInterfaceController {
     WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Failure)
     
     // TODO: WTF?. Check future releases for fix on error 7014, and remove this...
-    if error.code == WCErrorCode.DeliveryFailed.rawValue {
+    if error.code == WCErrorCode.DeliveryFailed.rawValue ||
+      error.code == WCErrorCode.MessageReplyTimedOut.rawValue {
       // Retry after 1 second...
       stopRefreshTimer()
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
@@ -189,9 +190,9 @@ class SmartTripIC: WKInterfaceController {
       NSTimeInterval(0.5), target: self, selector: #selector(forceRefreshData),
       userInfo: nil, repeats: false)
     /*
-    displayError(
-      "Något gick fel",
-      message: "Ett okänt fel inträffade. Kontrollera att din iPhone kan nå internet.")
+     displayError(
+     "Något gick fel",
+     message: "Ett fel inträffade. Kontrollera att din iPhone kan nå internet.")
      */
   }
   

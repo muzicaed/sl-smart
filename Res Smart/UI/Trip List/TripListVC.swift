@@ -37,6 +37,7 @@ class TripListVC: UITableViewController {
   var loadMoreLater: LoadMoreCell?
   
   let loadedTime = NSDate()
+  var firstTime = true
   
   /**
    * View is done loading
@@ -140,6 +141,7 @@ class TripListVC: UITableViewController {
         routine = RoutineTrip()
         routine!.criterions = criterions!.copy() as! TripSearchCriterion
       }
+      routine?.criterions.searchForArrival = false
       vc.routineTrip = routine
       vc.isMakeRoutine = true
     }
@@ -342,6 +344,7 @@ class TripListVC: UITableViewController {
   /**
   * Loading the trip data, and starting background
   * collection of time table data.
+  * TODO: Refactoring
   */
   private func loadTripData(shouldAppend: Bool) {
     if let criterions = self.criterions {
@@ -365,6 +368,10 @@ class TripListVC: UITableViewController {
             self.loadMoreEarlier?.hideSpinner()
             self.loadMoreLater?.hideSpinner()
             self.updateDateCriterions()
+            if criterions.searchForArrival && self.firstTime {
+              self.tableView.contentOffset = CGPoint(x: 0, y: CGFloat.max)
+            }
+            self.firstTime = false
             self.tableView?.reloadData()
           }
       })
