@@ -44,7 +44,7 @@ public class RealTimeDeparturesService {
   */
   private static func convertJson(json: JSON) -> RealTimeDepartures {
     let departures = RealTimeDepartures(
-      lastUpdated: json["LatestUpdate"].string!,
+      lastUpdated: json["LatestUpdate"].string,
       dataAge: json["DataAge"].int!)
     
     departures.busses = convertBusesJson(json["Buses"])

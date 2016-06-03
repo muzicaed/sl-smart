@@ -442,7 +442,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       cell.titleLabel.text = tram.groupOfLine
     case "BOAT":
       let boat = realTimeDepartures!.boats[boatKeys[indexPath.section]]!.first!
-      cell.titleLabel.text = boat.groupOfLine
+      cell.titleLabel.text = boat.stopAreaName
     default:
       break
     }
