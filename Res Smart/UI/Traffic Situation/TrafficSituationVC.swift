@@ -208,6 +208,7 @@ class TrafficSituationVC: UITableViewController {
       
       cell.accessoryType = .None
       cell.userInteractionEnabled = false
+      cell.messageLabel.textColor = UIColor.darkGrayColor()
       return cell
     }
     
