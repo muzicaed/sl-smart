@@ -484,7 +484,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       cell.departureTimeLabel.text = train.displayTime
       cell.deviationsLabel.text = train.deviations.joinWithSeparator(" ")
       if DisturbanceTextHelper.isDisturbance(cell.deviationsLabel.text) {
-        cell.deviationsLabel.textColor = UIColor(red: 39/255, green: 44/255, blue: 211/255, alpha: 1.0)
+        cell.deviationsLabel.textColor = StyleHelper.sharedInstance.warningColor
       } else {
         cell.deviationsLabel.textColor = UIColor.darkGrayColor()
       }
@@ -515,7 +515,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       cell.departureTimeLabel.text = data.displayTime
       cell.deviationsLabel.text = data.deviations.joinWithSeparator(" ")
       if DisturbanceTextHelper.isDisturbance(cell.deviationsLabel.text) {
-        cell.deviationsLabel.textColor = UIColor(red: 173/255, green: 36/255, blue: 62/255, alpha: 1.0)
+        cell.deviationsLabel.textColor = StyleHelper.sharedInstance.warningColor
       } else {
         cell.deviationsLabel.textColor = UIColor.darkGrayColor()
       }
