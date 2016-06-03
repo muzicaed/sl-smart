@@ -164,10 +164,9 @@ class SmartTripIC: WKInterfaceController {
     isLoading = false
     WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Failure)
     
-    // TODO: WTF?. Check future releases for fix on error 7014, and remove this...
     if error.code == WCErrorCode.DeliveryFailed.rawValue ||
-      error.code == WCErrorCode.MessageReplyTimedOut.rawValue {
-      // Retry after 1 second...
+      error.code == WCErrorCode.MessageReplyTimedOut.rawValue ||
+      error.code == WCErrorCode.GenericError.rawValue {
       stopRefreshTimer()
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
         NSTimeInterval(0.1), target: self, selector: #selector(forceRefreshData),
@@ -180,20 +179,9 @@ class SmartTripIC: WKInterfaceController {
       return
     }
     
-    // TODO: Bring back the right error message.
-    
-    displayError(
-      "\(error.code) \(error.description)",
-      message: "\(error.description)")
-    stopRefreshTimer()
-    retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-      NSTimeInterval(0.5), target: self, selector: #selector(forceRefreshData),
-      userInfo: nil, repeats: false)
-    /*
      displayError(
      "Något gick fel",
      message: "Ett fel inträffade. Kontrollera att din iPhone kan nå internet.")
-     */
   }
   
   /**
