@@ -31,7 +31,7 @@ class TripCell: UITableViewCell {
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setup()
-  }    
+  }
   
   /**
    * Shared init code.
@@ -51,17 +51,23 @@ class TripCell: UITableViewCell {
     destinationLabel.accessibilityLabel = "vid \(destinationLabel.text!)"
     if trip.tripSegments.count > 0 {
       let trip = trip
+      departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
       departureTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.first!.departureDateTime)
       departureTimeLabel.accessibilityLabel = "Avgår \(departureTimeLabel.text!)"
+      
+      arrivalTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.last!.arrivalDateTime)
       arrivalTimeLabel.accessibilityLabel = "Framme \(arrivalTimeLabel.text!)"
+      
       inAboutLabel.text = DateUtils.createAboutTimeText(
         trip.tripSegments.first!.departureDateTime,
         isWalk: trip.tripSegments.first!.type == TripType.Walk)
       
-      tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
+      if trip.isValid {
+        tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
+      }
       
       createTripSegmentIcons(trip)
     }
@@ -75,6 +81,7 @@ class TripCell: UITableViewCell {
   private func createTripSegmentIcons(trip: Trip) {
     iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
     var count = 0
+    
     for (_, segment) in trip.tripSegments.enumerate() {
       if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
         if count > 6 { return }
@@ -121,6 +128,21 @@ class TripCell: UITableViewCell {
         iconAreaView.addSubview(wrapperView)
         count += 1
       }
+      if trip.hasAnyRealtime() {
+        createRealtimeIcon(trip, count: count)
+      }
     }
+  }
+  
+  /**
+   * Creates realtime icon
+   */
+  private func createRealtimeIcon(trip: Trip, count: Int) {
+    let iconView = UIImageView(image: UIImage(named: "RealtimeIcon"))
+    iconView.frame.size = CGSizeMake(15, 15)
+    iconView.center = CGPointMake(22 / 2, 15)
+    iconView.frame.origin = CGPointMake((26 * CGFloat(count)), 5)
+
+    iconAreaView.addSubview(iconView)
   }
 }

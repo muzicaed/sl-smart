@@ -34,7 +34,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   public var useShip = true
   
   public var numTrips = 8
-  public var realtime = false
+  public var realtime = true
   
   public var isAdvanced = false
   
@@ -87,7 +87,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     
     query += (searchForArrival) ? "&searchForArrival=1" : ""
     query += (unsharp) ? "&unsharp=1" : ""
-    query += (realtime) ? "&realtime=true" : ""
+    query += "&realtime=true" //(realtime) ? "&realtime=true" : "" TODO: Hardcoded realtime, setting?
     query += (maxWalkDist > 0) ? "&maxWalkDist=\(maxWalkDist)" : ""
     query += (lineInc != nil) ? "&lineInc=\(lineInc!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))" : ""
     query += (lineExc != nil) ? "&lineExc=\(lineExc!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))" : ""
@@ -154,7 +154,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     self.useFerry = aDecoder.decodeBoolForKey(PropertyKey.useFerry)
     self.useShip = aDecoder.decodeBoolForKey(PropertyKey.useShip)
     self.numTrips = aDecoder.decodeIntegerForKey(PropertyKey.numTrips)
-    self.realtime = false // TODO: Check here for realtime! aDecoder.decodeBoolForKey(PropertyKey.realtime)
+    self.realtime = aDecoder.decodeBoolForKey(PropertyKey.realtime)
     self.isAdvanced = aDecoder.decodeBoolForKey(PropertyKey.isAdvanced)
     self.lineInc = aDecoder.decodeObjectForKey(PropertyKey.lineInc) as! String?
     self.lineExc = aDecoder.decodeObjectForKey(PropertyKey.lineExc) as! String?

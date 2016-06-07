@@ -31,5 +31,14 @@ class TripDetailsChangeCell: UITableViewCell, TripCellProtocol {
     
     arrivalTimeLabel.accessibilityLabel = "Byte. Framme \(arrivalTimeLabel.text!) vid \(destinationLabel.text!)"
     departureTimeLabel.accessibilityLabel = "Avgår \(departureTimeLabel.text!) från \(originLabel.text!)"
+    
+    arrivalTimeLabel.textColor = UIColor.blackColor()
+    if beforeSegment.isRealtime {
+      arrivalTimeLabel.textColor = StyleHelper.sharedInstance.realtimeColor
+    }
+    departureTimeLabel.textColor = UIColor.blackColor()
+    if segment.isRealtime {
+      departureTimeLabel.textColor = StyleHelper.sharedInstance.realtimeColor
+    }
   }
 }

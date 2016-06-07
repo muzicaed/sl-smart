@@ -179,9 +179,23 @@ class RoutineTripCell: UICollectionViewCell {
         iconAreaView.addSubview(wrapperView)
         count += 1
       }
+      if trip.hasAnyRealtime() {
+        createRealtimeIcon(trip, count: count)
+      }
     }
   }
   
+  /**
+   * Creates realtime icon
+   */
+  private func createRealtimeIcon(trip: Trip, count: Int) {
+    let iconView = UIImageView(image: UIImage(named: "RealtimeIcon"))
+    iconView.frame.size = CGSizeMake(15, 15)
+    iconView.center = CGPointMake(22 / 2, 15)
+    iconView.frame.origin = CGPointMake((26 * CGFloat(count)), 5)
+    
+    iconAreaView.addSubview(iconView)
+  }
   
   /**
    * Sets no trips found UI

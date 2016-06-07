@@ -24,7 +24,7 @@ class TripDetailsVC: UITableViewController {
   let changeCellId = "Change"
   let destinationCellId = "Destination"
   
-  var trip = Trip(durationMin: 0, noOfChanges: 0, tripSegments: [TripSegment]())
+  var trip = Trip(durationMin: 0, noOfChanges: 0, isValid: true, tripSegments: [TripSegment]())
   var stopsVisual = [(isVisible: Bool, hasStops: Bool)]()
 
   let loadedTime = NSDate()

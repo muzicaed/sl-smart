@@ -12,15 +12,17 @@ public class Trip: NSObject, NSCopying {
   
   public var durationMin = 0
   public var noOfChanges = 0
+  public var isValid = true
   public var tripSegments = [TripSegment]()
   public var allTripSegments = [TripSegment]()
   
   /**
    * Standard init
    */
-  public init(durationMin: Int, noOfChanges: Int, tripSegments: [TripSegment]?) {
+  public init(durationMin: Int, noOfChanges: Int, isValid: Bool, tripSegments: [TripSegment]?) {
     self.durationMin = durationMin
     self.noOfChanges = noOfChanges
+    self.isValid = isValid
     if let segments = tripSegments {
       self.allTripSegments = segments
       for segment in segments {
@@ -29,6 +31,18 @@ public class Trip: NSObject, NSCopying {
         }
       }
     }
+  }
+  
+  /**
+   * Checks if any trip segments is realtime.
+   */
+  public func hasAnyRealtime() -> Bool {
+    for segment in tripSegments {
+      if segment.isRealtime {
+       return true
+      }
+    }
+    return false
   }
   
   /**
@@ -55,6 +69,7 @@ public class Trip: NSObject, NSCopying {
       "icn": icons,
       "lns": lines,
       "war": warnings,
+      "val": isValid,
       "ori": tripSegments.first!.origin.name,
       "des": tripSegments.last!.destination.name,
       "ot": DateUtils.dateAsDateAndTimeString(tripSegments.first!.departureDateTime),
@@ -65,13 +80,13 @@ public class Trip: NSObject, NSCopying {
   // MARK: NSCopying
   
   /**
-  * Copy self
-  */
+   * Copy self
+   */
   public func copyWithZone(zone: NSZone) -> AnyObject {
     var tripSegmentCopy = [TripSegment]()
     for segment in tripSegments {
       tripSegmentCopy.append(segment.copy() as! TripSegment)
     }
-    return Trip(durationMin: durationMin, noOfChanges: noOfChanges, tripSegments: tripSegmentCopy)
+    return Trip(durationMin: durationMin, noOfChanges: noOfChanges, isValid: isValid, tripSegments: tripSegmentCopy)
   }
 }

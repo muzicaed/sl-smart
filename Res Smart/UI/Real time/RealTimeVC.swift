@@ -501,7 +501,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       break
     }
     
-    if let data = data {
+    if let data = data {      
       cell.lineLabel.text = lineChar + data.lineNumber
       cell.infoLabel.text = "\(data.destination)"
       cell.infoLabel.accessibilityLabel = "Mot \(data.destination)"

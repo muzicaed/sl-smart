@@ -23,6 +23,11 @@ class TripDetailsOriginCell: UITableViewCell, TripCellProtocol {
     timeLabel.accessibilityLabel = "Avgång \(timeLabel.text!)"
     locationLabel.text = trip.tripSegments.first!.origin.cleanName
     locationLabel.accessibilityLabel = "från \(locationLabel.text!)"
+    locationLabel.textColor = UIColor.blackColor()
+    
+    if trip.allTripSegments.first!.isRealtime {
+      timeLabel.textColor = StyleHelper.sharedInstance.realtimeColor
+    }
   }
 
 }

@@ -23,5 +23,9 @@ class TripDetailsDestinationCell: UITableViewCell, TripCellProtocol {
     timeLabel.accessibilityLabel = "Framme \(timeLabel.text!)"
     destinationLabel.text = trip.tripSegments.last!.destination.cleanName
     destinationLabel.accessibilityLabel = "vid \(destinationLabel.text!)"
+    
+    if trip.allTripSegments.last!.isRealtime {
+      timeLabel.textColor = StyleHelper.sharedInstance.realtimeColor
+    }
   }
 }

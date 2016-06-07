@@ -73,9 +73,14 @@ public class SearchTripService {
    */
   private static func convertJsonToTrip(tripJson: JSON) -> Trip {
     let tripSegments = convertJsonToSegments(tripJson["LegList"]["Leg"])
+    var isValid = true
+    if let val = tripJson["valid"].string {
+      isValid = (val == "false") ? false : true
+    }
     return Trip(
       durationMin: Int(tripJson["dur"].string!)!,
       noOfChanges: Int(tripJson["chg"].string!)!,
+      isValid: isValid,
       tripSegments: tripSegments.sort({ $0.index < $1.index }))
   }
   
