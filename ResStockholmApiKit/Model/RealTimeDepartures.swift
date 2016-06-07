@@ -9,8 +9,8 @@
 import Foundation
 
 public class RealTimeDepartures {
-
-  public let latestUpdated: NSDate
+  
+  public let latestUpdated: NSDate?
   public let dataAge: Int
   public var busses = [String: [RTBus]]()
   public var metros = [String: [RTMetro]]()
@@ -23,9 +23,13 @@ public class RealTimeDepartures {
   /**
    * Init
    */
-  init(lastUpdated: String, dataAge: Int) {  
-      self.latestUpdated = RealTimeDepartures.convertDate(lastUpdated)
-      self.dataAge = dataAge
+  init(lastUpdated: String?, dataAge: Int) {
+    if let dateString = lastUpdated {
+      self.latestUpdated = RealTimeDepartures.convertDate(dateString)
+    } else {
+      self.latestUpdated = nil
+    }
+    self.dataAge = dataAge
   }
   
   /**

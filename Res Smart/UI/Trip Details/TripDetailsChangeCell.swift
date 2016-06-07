@@ -28,5 +28,8 @@ class TripDetailsChangeCell: UITableViewCell, TripCellProtocol {
     destinationLabel.text = beforeSegment.destination.cleanName
     departureTimeLabel.text = DateUtils.dateAsTimeString(segment.departureDateTime)
     originLabel.text = segment.origin.cleanName
+    
+    arrivalTimeLabel.accessibilityLabel = "Byte. Framme \(arrivalTimeLabel.text!) vid \(destinationLabel.text!)"
+    departureTimeLabel.accessibilityLabel = "Avgår \(departureTimeLabel.text!) från \(originLabel.text!)"
   }
 }

@@ -11,7 +11,7 @@ import UIKit
 import ResStockholmApiKit
 
 class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextFieldDelegate,
-TravelTypesResponder, PickLocationResponder {
+TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePickerResponder {
   
   @IBOutlet weak var locationPickerRow: LocationPickerRow!
   @IBOutlet weak var viaLabel: UILabel!
@@ -26,6 +26,11 @@ TravelTypesResponder, PickLocationResponder {
   var isViaSelected = false
   var isMakeRoutine = false
   
+  @IBOutlet weak var isAlternative: UITableViewCell!
+  @IBOutlet weak var maxWalkLabel: UILabel!
+  @IBOutlet weak var numberOfChangesLabel: UILabel!
+  @IBOutlet weak var changeTimeLabel: UILabel!
+  @IBOutlet weak var linesLabel: UILabel!
   
   /**
    * When view is done loading.
@@ -35,11 +40,14 @@ TravelTypesResponder, PickLocationResponder {
     tableView.editing = true
     view.backgroundColor = StyleHelper.sharedInstance.background
     createFakeBackButton()
+    updateGenericValues()
     
     if routineTrip == nil && !isMakeRoutine {
       title = "Ny rutin"
       isNewTrip = true
       routineTrip = RoutineTrip()
+      locationPickerRow.setOriginLabelLocation(nil)
+      locationPickerRow.setDestinationLabelLocation(nil)
       
     } else if isMakeRoutine {
       routineTripCopy = routineTrip!.copy() as? RoutineTrip
@@ -58,8 +66,8 @@ TravelTypesResponder, PickLocationResponder {
     locationPickerRow.delegate = self
     locationPickerRow.prepareGestures()
     tripTitleTextField.delegate = self
-    tripTitleTextField.addTarget(self,
-      action: #selector(textFieldDidChange(_:)),
+    tripTitleTextField.addTarget(
+      self, action: #selector(textFieldDidChange(_:)),
       forControlEvents: UIControlEvents.EditingChanged)
   }
   
@@ -89,6 +97,7 @@ TravelTypesResponder, PickLocationResponder {
       locationSearchType = "Destination"
       let vc = segue.destinationViewController as! SearchLocationVC
       vc.searchOnlyForStations = false
+      vc.allowNearbyStations = true
       vc.delegate = self
       
     } else if segue.identifier == "SearchViaLocation" {
@@ -102,6 +111,29 @@ TravelTypesResponder, PickLocationResponder {
       if let crit = routineTrip?.criterions {
         vc.setData(crit)
       }
+    } else if segue.identifier == "MaxWalkDistance" {
+      let vc = segue.destinationViewController as! GenericValuePickerVC
+      vc.delegate = self
+      vc.title = "Max gångavstånd"
+      vc.setValue(routineTrip!.criterions.maxWalkDist, valueType: .WalkDistance)
+      
+    } else if segue.identifier == "NumberOfChanges" {
+      let vc = segue.destinationViewController as! GenericValuePickerVC
+      vc.delegate = self
+      vc.title = "Antal byten"
+      vc.setValue(routineTrip!.criterions.numChg, valueType: .NoOfChanges)
+      
+    } else if segue.identifier == "ChangeTime" {
+      let vc = segue.destinationViewController as! GenericValuePickerVC
+      vc.delegate = self
+      vc.title = "Extra tid vid byte"
+      vc.setValue(routineTrip!.criterions.minChgTime, valueType: .TimeForChange)
+      
+    } else if segue.identifier == "PickLines" {
+      let vc = segue.destinationViewController as! LinePickerVC
+      vc.delegate = self
+      vc.incText = routineTrip!.criterions.lineInc
+      vc.excText = routineTrip!.criterions.lineExc
     }
   }
   
@@ -145,8 +177,8 @@ TravelTypesResponder, PickLocationResponder {
   // MARK: PickLocationResponder
   
   /**
-  * Called when user taped on orign or destination row.
-  */
+   * Called when user taped on orign or destination row.
+   */
   func pickLocation(isOrigin: Bool) {
     if isOrigin {
       performSegueWithIdentifier("SearchOriginLocation", sender: self)
@@ -168,34 +200,59 @@ TravelTypesResponder, PickLocationResponder {
     crit.originId = crit.destId
     crit.dest = oldOrigin
     crit.destId = oldOriginId
-    locationPickerRow.originLabel.text = crit.origin?.name
-    locationPickerRow.destinationLabel.text = crit.dest?.name
-    if locationPickerRow.originLabel.text == nil {
-      locationPickerRow.originLabel.text = "(Välj station eller adress)"
-    }
-    if locationPickerRow.destinationLabel.text == nil {
-      locationPickerRow.destinationLabel.text = "(Välj station eller adress)"
-    }
     
+    locationPickerRow.setOriginLabelLocation(crit.origin)
+    locationPickerRow.setDestinationLabelLocation(crit.dest)
     tableView.endUpdates()
   }
   
   @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
   @IBAction func unwindToTripTypePickerParent(segue: UIStoryboardSegue) {}
   
+  // MARK: PickGenericValueResponder
+  
+  /**
+   * User picked a value using the generic value picker.
+   */
+  func pickedValue(type: GenericValuePickerVC.ValueType, value: Int) {
+    if let routine = routineTrip {
+      switch type {
+      case .WalkDistance:
+        routine.criterions.maxWalkDist = value
+      case .NoOfChanges:
+        routine.criterions.numChg = value
+      case .TimeForChange:
+        routine.criterions.minChgTime = value
+      }
+      hasChanged = true
+      updateGenericValues()
+    }
+  }
+  
+  // MARK: LinePickerResponder
+  
+  func pickedLines(included: String?, excluded: String?) {
+    if let routine = routineTrip {
+      routine.criterions.lineInc = included
+      routine.criterions.lineExc = excluded
+      hasChanged = true
+      updateGenericValues()
+    }
+  }
+  
   // MARK: LocationSearchResponder
   
   /**
-  * Triggered whem location is selected on location search VC.
-  */
+   * Triggered whem location is selected on location search VC.
+   */
   func selectedLocationFromSearch(location: Location) {
     hasChanged = true
     if locationSearchType == "Origin" {
       routineTrip?.criterions.origin = location
-      locationPickerRow.originLabel.text = location.name
+      locationPickerRow.setOriginLabelLocation(location)
     } else if locationSearchType == "Destination" {
       routineTrip?.criterions.dest = location
-      locationPickerRow.destinationLabel.text = location.name
+      locationPickerRow.setDestinationLabelLocation(location)
     } else if locationSearchType == "Via" {
       routineTrip?.criterions.via = location
       viaLabel.text = location.name
@@ -207,92 +264,102 @@ TravelTypesResponder, PickLocationResponder {
   // MARK: TravelTypesResponder
   
   /**
-  * User selected travel types.
-  */
+   * User selected travel types.
+   */
   func selectedTravelType(
     useMetro: Bool, useTrain: Bool, useTram: Bool,
     useBus: Bool, useBoat: Bool) {
-      if let crit = routineTrip?.criterions {
-        hasChanged = true
-        crit.useMetro = useMetro
-        crit.useTrain = useTrain
-        crit.useTram = useTram
-        crit.useBus = useBus
-        crit.useFerry = useBoat
-        crit.useShip = useBoat
-        travelTypesPickerRow.updateLabel(crit)
-      }
+    if let crit = routineTrip?.criterions {
+      hasChanged = true
+      crit.useMetro = useMetro
+      crit.useTrain = useTrain
+      crit.useTram = useTram
+      crit.useBus = useBus
+      crit.useFerry = useBoat
+      crit.useShip = useBoat
+      travelTypesPickerRow.updateLabel(crit)
+    }
   }
   
   // MARK: UITableViewController
   
   /**
-  * Row count for section
-  */
+   * Row count for section
+   */
   override func tableView(tableView: UITableView,
-    numberOfRowsInSection section: Int) -> Int {
-      if section == 1 {
-        return 2
-      }
+                          numberOfRowsInSection section: Int) -> Int {
+    if section == 0 {
       return 1
+    }
+    return 2
   }
   
   /**
    * Will select row at index.
    */
   override func tableView(tableView: UITableView,
-    willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-      if indexPath.section == 0 || (indexPath.section == 1 && indexPath.row == 0) {
-        return nil
-      }
-      return indexPath
+                          willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+    if indexPath.section == 0 || (indexPath.section == 1 && indexPath.row == 0) {
+      return nil
+    }
+    return indexPath
   }
   
   /**
    * Can row be edited?
    */
   override func tableView(tableView: UITableView,
-    canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-      return (indexPath.section == 1 && indexPath.row == 1 && isViaSelected)
+                          canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return (indexPath.section == 1 && indexPath.row == 1 && isViaSelected)
   }
   
   /**
    * Editing style
    */
   override func tableView(tableView: UITableView,
-    editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-      return (indexPath.section == 1 && indexPath.row == 1) ? .Delete : .None
+                          editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+    return (indexPath.section == 1 && indexPath.row == 1) ? .Delete : .None
   }
   
   /**
    * Edit actions. (Only used for clear Via station)
    */
   override func tableView(tableView: UITableView,
-    editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-      return [UITableViewRowAction(
-        style: UITableViewRowActionStyle.Normal,
-        title: "Rensa") { (_, _) -> Void in
-          self.resetViaStation()
-          tableView.reloadData()
-        }]
+                          editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    return [UITableViewRowAction(
+      style: UITableViewRowActionStyle.Normal,
+    title: "Rensa") { (_, _) -> Void in
+      self.resetViaStation()
+      tableView.reloadData()
+      }]
   }
   
   /**
    * Will display row at index
    */
-  override func tableView(tableView: UITableView,
-    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-      let bgColorView = UIView()
-      bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
-      cell.selectedBackgroundView = bgColorView
+  override func tableView(
+    tableView: UITableView, willDisplayCell cell: UITableViewCell,
+    forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    let bgColorView = UIView()
+    bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
+    cell.selectedBackgroundView = bgColorView
   }
   
   /**
-   * Deselect selected row.
+   * User selected row
    */
-  override func tableView(tableView: UITableView,
-    didSelectRowAtIndexPath indexPath: NSIndexPath) {
-      tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  override func tableView(
+    tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    if indexPath.section == 3 && indexPath.row == 1 {
+      hasChanged = true
+      if let routine = routineTrip {
+        print("Set unsharp")
+        routine.criterions.unsharp = !routine.criterions.unsharp
+        updateGenericValues()
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+      }
+    }
   }
   
   // MARK: UITextFieldDelegate
@@ -303,23 +370,23 @@ TravelTypesResponder, PickLocationResponder {
   }
   
   func textField(textField: UITextField,
-    shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-      guard let text = textField.text else { return true }
-      
-      let newLength = text.characters.count + string.characters.count - range.length
-      return newLength <= 200
+                 shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    guard let text = textField.text else { return true }
+    
+    let newLength = text.characters.count + string.characters.count - range.length
+    return newLength <= 200
   }
   
   // MARK: Private methods
   
   /**
-  * Fills form with location data for edit.
-  */
+   * Fills form with location data for edit.
+   */
   private func setupEditData() {
     if let trip = routineTrip {
       tripTitleTextField.text = trip.title
-      locationPickerRow.originLabel.text = trip.criterions.origin?.name
-      locationPickerRow.destinationLabel.text = trip.criterions.dest?.name
+      locationPickerRow.setOriginLabelLocation(trip.criterions.origin)
+      locationPickerRow.setDestinationLabelLocation(trip.criterions.dest)
       travelTypesPickerRow.updateLabel(trip.criterions)
       
       if trip.criterions.via != nil {
@@ -455,7 +522,13 @@ TravelTypesResponder, PickLocationResponder {
    */
   private func isAdvacedCriterions() -> Bool {
     if let crit = routineTrip?.criterions {
-      return (!isTravelTypeDefault(crit) || crit.via != nil)
+      return (
+        !isTravelTypeDefault(crit) ||
+          crit.via != nil ||
+          crit.unsharp == true ||
+          crit.maxWalkDist != 1000 ||
+          crit.minChgTime != 0 ||
+          crit.numChg != -1)
     }
     return false
   }
@@ -467,5 +540,50 @@ TravelTypesResponder, PickLocationResponder {
   private func isTravelTypeDefault(crit: TripSearchCriterion) -> Bool {
     return (crit.useBus && crit.useFerry && crit.useMetro &&
       crit.useShip && crit.useTrain && crit.useTram)
+  }
+  
+  /**
+   * Updates generic value picker labels
+   */
+  private func updateGenericValues() {
+    if let routine = routineTrip {
+      switch routine.criterions.maxWalkDist {
+      case 1000, 2000:
+        maxWalkLabel.text = "Högst \(routine.criterions.maxWalkDist / 1000) km"
+      default:
+        maxWalkLabel.text = "Högst \(routine.criterions.maxWalkDist) m"
+      }
+      
+      switch routine.criterions.numChg {
+      case -1:
+        numberOfChangesLabel.text = "Inga begränsningar för antal byten"
+      case 0:
+        numberOfChangesLabel.text = "Inga byten"
+      case 1:
+        numberOfChangesLabel.text = "Högst 1 byte"
+      default:
+        numberOfChangesLabel.text = "Högst \(routine.criterions.numChg) byten"
+      }
+      
+      switch routine.criterions.minChgTime {
+      case 0:
+        changeTimeLabel.text = "Ingen extra tid vid byte"
+      default:
+        changeTimeLabel.text = "\(routine.criterions.minChgTime) minuter extra vid byte"
+      }
+      
+      isAlternative.accessoryType = .None
+      if routine.criterions.unsharp {
+        isAlternative.accessoryType = .Checkmark
+      }
+      
+      if routine.criterions.lineInc == nil && routine.criterions.lineExc == nil {
+        linesLabel.text = "Alla linjer"
+      } else if routine.criterions.lineInc != nil {
+        linesLabel.text = "Använd endast: \(routine.criterions.lineInc!)"
+      } else if routine.criterions.lineExc != nil {
+        linesLabel.text = "Använd inte: \(routine.criterions.lineExc!)"
+      }
+    }
   }
 }

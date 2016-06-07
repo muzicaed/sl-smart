@@ -11,7 +11,8 @@ import UIKit
 import ResStockholmApiKit
 
 class TripSearchVC: UITableViewController, LocationSearchResponder,
-DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
+DateTimePickResponder, PickLocationResponder, TravelTypesResponder,
+PickGenericValueResponder, LinePickerResponder {
   
   let notificationCenter = NSNotificationCenter.defaultCenter()
   var searchLocationType: String?
@@ -27,6 +28,12 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   @IBOutlet weak var advancedToggleButton: UIBarButtonItem!
   @IBOutlet weak var locationPickerRow: LocationPickerRow!
   @IBOutlet weak var travelTypePicker:  TravelTypesPickerRow!
+  
+  @IBOutlet weak var isAlternative: UITableViewCell!
+  @IBOutlet weak var maxWalkLabel: UILabel!
+  @IBOutlet weak var numberOfChangesLabel: UILabel!
+  @IBOutlet weak var changeTimeLabel: UILabel!
+  @IBOutlet weak var linesLabel: UILabel!
   
   /**
    * View did load
@@ -47,51 +54,77 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
    * Before seque is triggred.
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "SearchOriginLocation" {
-      let vc = segue.destinationViewController as! SearchLocationVC
-      vc.delegate = self
-      vc.searchOnlyForStations = false
-      vc.allowCurrentPosition = true
-      vc.allowNearbyStations = true
-      vc.title = "Välj från"
-      searchLocationType = "Origin"
-      
-    } else if segue.identifier == "SearchDestinationLocation" {
-      let vc = segue.destinationViewController as! SearchLocationVC
-      vc.delegate = self
-      vc.searchOnlyForStations = false
-      vc.allowCurrentPosition = true
-      vc.title = "Välj till"
-      searchLocationType = "Destination"
-      
-    } else if segue.identifier == "SearchViaLocation" {
-      let vc = segue.destinationViewController as! SearchLocationVC
-      vc.delegate = self
-      vc.searchOnlyForStations = true
-      vc.title = "Välj via station"
-      searchLocationType = "Via"
-      
-    } else if segue.identifier == "ShowTripList" {
-      let vc = segue.destinationViewController as! TripListVC
-      vc.criterions = criterions?.copy() as? TripSearchCriterion
-      if let crit = criterions {
+    
+    if let crit = criterions {
+      if segue.identifier == "SearchOriginLocation" {
+        let vc = segue.destinationViewController as! SearchLocationVC
+        vc.delegate = self
+        vc.searchOnlyForStations = false
+        vc.allowCurrentPosition = true
+        vc.allowNearbyStations = true
+        vc.title = "Välj från"
+        searchLocationType = "Origin"
+        
+      } else if segue.identifier == "SearchDestinationLocation" {
+        let vc = segue.destinationViewController as! SearchLocationVC
+        vc.delegate = self
+        vc.searchOnlyForStations = false
+        vc.allowCurrentPosition = true
+        vc.allowNearbyStations = true
+        vc.title = "Välj till"
+        searchLocationType = "Destination"
+        
+      } else if segue.identifier == "SearchViaLocation" {
+        let vc = segue.destinationViewController as! SearchLocationVC
+        vc.delegate = self
+        vc.searchOnlyForStations = true
+        vc.title = "Välj via station"
+        searchLocationType = "Via"
+        
+      } else if segue.identifier == "ShowTripList" {
+        let vc = segue.destinationViewController as! TripListVC
+        vc.criterions = criterions?.copy() as? TripSearchCriterion
         SearchCriterionStore.sharedInstance.writeLastSearchCriterions(crit)
         RoutineService.addHabitRoutine(crit)
-      }
-      
-    } else if segue.identifier == "ShowDateTimePicker" {
-      let vc = segue.destinationViewController as! DateTimePickerVC
-      vc.selectedDate = selectedDate
-      vc.delegate = self
-      UIView.animateWithDuration(0.45, animations: {
-        self.dimmer?.alpha = 0.7
-      })
-      
-    } else if segue.identifier == "ShowTravelTypesPicker" {
-      let vc = segue.destinationViewController as! TravelTypesVC
-      vc.delegate = self
-      if let crit = criterions {
-        vc.setData(crit)
+        
+      } else if segue.identifier == "ShowDateTimePicker" {
+        let vc = segue.destinationViewController as! DateTimePickerVC
+        vc.selectedDate = selectedDate
+        vc.delegate = self
+        UIView.animateWithDuration(0.45, animations: {
+          self.dimmer?.alpha = 0.7
+        })
+        
+      } else if segue.identifier == "ShowTravelTypesPicker" {
+        let vc = segue.destinationViewController as! TravelTypesVC
+        vc.delegate = self
+        if let crit = criterions {
+          vc.setData(crit)
+        }
+        
+      } else if segue.identifier == "MaxWalkDistance" {
+        let vc = segue.destinationViewController as! GenericValuePickerVC
+        vc.delegate = self
+        vc.title = "Max gångavstånd"
+        vc.setValue(crit.maxWalkDist, valueType: .WalkDistance)
+        
+      } else if segue.identifier == "NumberOfChanges" {
+        let vc = segue.destinationViewController as! GenericValuePickerVC
+        vc.delegate = self
+        vc.title = "Antal byten"
+        vc.setValue(crit.numChg, valueType: .NoOfChanges)
+        
+      } else if segue.identifier == "ChangeTime" {
+        let vc = segue.destinationViewController as! GenericValuePickerVC
+        vc.delegate = self
+        vc.title = "Extra tid vid byte"
+        vc.setValue(crit.minChgTime, valueType: .TimeForChange)
+        
+      } else if segue.identifier == "PickLines" {
+        let vc = segue.destinationViewController as! LinePickerVC
+        vc.delegate = self
+        vc.incText = crit.lineInc
+        vc.excText = crit.lineExc
       }
     }
   }
@@ -126,6 +159,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     } else {
       resetViaStation()
       criterions?.resetAdvancedTripTypes()
+      updateGenericValues()
     }
     
     animateAdvancedToggle()
@@ -140,7 +174,6 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   }
   
   @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
-  @IBAction func unwindToTripTypePickerParent(segue: UIStoryboardSegue) {}
   
   // MARK: LocationSearchResponder
   
@@ -152,12 +185,10 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       switch locationType {
       case "Origin":
         crit.origin = location
-        locationPickerRow.originLabel.text = location.name
-        locationPickerRow.originView.accessibilityLabel = "Från: \(location.name)"
+        locationPickerRow.setOriginLabelLocation(location)
       case "Destination":
         crit.dest = location
-        locationPickerRow.destinationLabel.text = location.name
-        locationPickerRow.destinationView.accessibilityLabel = "Till: \(location.name)"
+        locationPickerRow.setDestinationLabelLocation(location)
       case "Via":
         crit.via = location
         viaLabel.text = location.name
@@ -212,22 +243,40 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       crit.originId = crit.destId
       crit.dest = oldOrigin
       crit.destId = oldOriginId
-      locationPickerRow.originLabel.text = crit.origin?.name
-      locationPickerRow.destinationLabel.text = crit.dest?.name
-      locationPickerRow.originView.accessibilityLabel = "Från: \(crit.origin?.name)"
-      locationPickerRow.destinationView.accessibilityLabel = "Till: \(crit.dest?.name)"
-      if locationPickerRow.originLabel.text == nil {
-        locationPickerRow.originLabel.text = "(Välj station eller adress)"
-        locationPickerRow.originView.accessibilityLabel = "Från: Välj station eller adress"
-      }
-      if locationPickerRow.destinationLabel.text == nil {
-        locationPickerRow.destinationLabel.text = "(Välj station eller adress)"
-        locationPickerRow.destinationView.accessibilityLabel = "Till: Välj station eller adress"
-      }
       
-
+      locationPickerRow.setOriginLabelLocation(crit.origin)
+      locationPickerRow.setDestinationLabelLocation(crit.dest)
     }
     tableView.endUpdates()
+  }
+  
+  // MARK: PickGenericValueResponder
+  
+  /**
+   * User picked a value using the generic value picker.
+   */
+  func pickedValue(type: GenericValuePickerVC.ValueType, value: Int) {
+    if let crit = criterions {
+      switch type {
+      case .WalkDistance:
+        crit.maxWalkDist = value
+      case .NoOfChanges:
+        crit.numChg = value
+      case .TimeForChange:
+        crit.minChgTime = value
+      }
+      updateGenericValues()
+    }
+  }
+  
+  // MARK: LinePickerResponder
+  
+  func pickedLines(included: String?, excluded: String?) {
+    if let crit = criterions {
+      crit.lineInc = included
+      crit.lineExc = excluded
+      updateGenericValues()
+    }
   }
   
   // MARK: TravelTypesResponder
@@ -254,7 +303,7 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
    * Section count
    */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return (isAdvancedMode) ? 4 : 3
+    return (isAdvancedMode) ? 6 : 3
   }
   
   /**
@@ -265,18 +314,35 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     
     if section == 0 {
       return (isAdvancedMode) ? 2 : 1
-    } else if section == 3 && !isAdvancedMode {
-      return 0
+    } else if section > 2 {
+      return 2
     }
     
     return 1
   }
   
   /**
+   * User selected row
+   */
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    if indexPath.section == 4 && indexPath.row == 1 {
+      if let crit = criterions {
+        crit.unsharp = !crit.unsharp
+        updateGenericValues()
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+      }
+    } else if indexPath.section == 2 {
+      tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+  }
+  
+  /**
    * Height for rows.
    */
-  override func tableView( tableView: UITableView,
-                           heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  override func tableView(
+    tableView: UITableView,
+    heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    
     if indexPath.section == 0 && indexPath.row == 0 {
       return 88
     }
@@ -287,9 +353,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
    * Can row be edited?
    */
   override func tableView(
-    tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath)
-    -> Bool
-  {
+    tableView: UITableView,
+    canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool{
     return (indexPath.section == 0 && indexPath.row == 1 && isViaSelected && isAdvancedMode)
   }
   
@@ -297,9 +362,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
    * Editing style
    */
   override func tableView(
-    tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath)
-    -> UITableViewCellEditingStyle
-  {
+    tableView: UITableView,
+    editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
     return (indexPath.section == 0 && indexPath.row == 1) ? .Delete : .None
   }
   
@@ -308,8 +372,8 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
    */
   override func tableView(
     tableView: UITableView, willDisplayCell cell: UITableViewCell,
-    forRowAtIndexPath indexPath: NSIndexPath)
-  {
+    forRowAtIndexPath indexPath: NSIndexPath) {
+    
     let bgColorView = UIView()
     bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
     cell.selectedBackgroundView = bgColorView
@@ -318,8 +382,10 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   /**
    * Edit actions. (Only used for clear Via station)
    */
-  override func tableView(tableView: UITableView,
-                          editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+  override func tableView(
+    tableView: UITableView,
+    editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    
     return [UITableViewRowAction(
       style: UITableViewRowActionStyle.Normal,
     title: "Rensa") { (_, _) -> Void in
@@ -329,34 +395,27 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
   }
   
   /**
-   * Deselect selected row.
-   */
-  override func tableView(tableView: UITableView,
-                          didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
-  }
-  
-  /**
    * Restores UI from criterions.
    */
   func restoreUIFromCriterions() {
     if let crit = criterions {
       isAdvancedMode = crit.isAdvanced
       advancedToggleButton.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
-      if crit.origin != nil {
-        locationPickerRow.originLabel.text = crit.origin!.name
-        locationPickerRow.originView.accessibilityLabel = "Från: \(crit.origin!.name)"
-      }
-      if crit.dest != nil {
-        locationPickerRow.destinationLabel.text = crit.dest!.name
-        locationPickerRow.destinationView.accessibilityLabel = "Till: \(crit.dest!.name)"
-      }
+      locationPickerRow.setOriginLabelLocation(crit.origin)
+      locationPickerRow.setDestinationLabelLocation(crit.dest)
+      
       if crit.via != nil {
         viaLabel.text = crit.via!.name
         isViaSelected = true
       }
       
+      // TODO: For migration purpose can be removed with version 1.4
+      if !isAdvancedMode {
+        crit.resetAdvancedTripTypes()
+      }
+      
       travelTypePicker.updateLabel(crit)
+      updateGenericValues()
       crit.searchForArrival = false
       destinationArrivalSegmented.selectedSegmentIndex = (crit.searchForArrival) ? 1 : 0
       pickedDate(NSDate())
@@ -375,10 +434,14 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
       tableView.insertRowsAtIndexPaths(
         [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
       tableView.insertSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
+      tableView.insertSections(NSIndexSet(index: 4), withRowAnimation: .Automatic)
+      tableView.insertSections(NSIndexSet(index: 5), withRowAnimation: .Automatic)
     } else {
       tableView.deleteRowsAtIndexPaths(
         [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
       tableView.deleteSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
+      tableView.deleteSections(NSIndexSet(index: 4), withRowAnimation: .Automatic)
+      tableView.deleteSections(NSIndexSet(index: 5), withRowAnimation: .Automatic)
     }
     tableView.endUpdates()
   }
@@ -429,6 +492,51 @@ DateTimePickResponder, PickLocationResponder, TravelTypesResponder {
     self.isViaSelected = false
     self.criterions?.via = nil
     self.viaLabel.text = "(Välj station)"
+  }
+  
+  /**
+   * Updates generic value picker labels
+   */
+  private func updateGenericValues() {
+    if let crit = criterions {
+      switch crit.maxWalkDist {
+      case 1000, 2000:
+        maxWalkLabel.text = "Högst \(crit.maxWalkDist / 1000) km"
+      default:
+        maxWalkLabel.text = "Högst \(crit.maxWalkDist) m"
+      }
+      
+      switch crit.numChg {
+      case -1:
+        numberOfChangesLabel.text = "Inga begränsningar för antal byten"
+      case 0:
+        numberOfChangesLabel.text = "Inga byten"
+      case 1:
+        numberOfChangesLabel.text = "Högst 1 byte"
+      default:
+        numberOfChangesLabel.text = "Högst \(crit.numChg) byten"
+      }
+      
+      switch crit.minChgTime {
+      case 0:
+        changeTimeLabel.text = "Ingen extra tid vid byte"
+      default:
+        changeTimeLabel.text = "\(crit.minChgTime) minuter extra vid byte"
+      }
+      
+      isAlternative.accessoryType = .None
+      if crit.unsharp {
+        isAlternative.accessoryType = .Checkmark
+      }
+      
+      if crit.lineInc == nil && crit.lineExc == nil {
+        linesLabel.text = "Alla linjer"
+      } else if crit.lineInc != nil {
+        linesLabel.text = "Använd endast: \(crit.lineInc!)"
+      } else if crit.lineExc != nil {
+        linesLabel.text = "Använd inte: \(crit.lineExc!)"
+      }
+    }
   }
   
   /**

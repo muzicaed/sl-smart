@@ -62,6 +62,8 @@ public class SearchTripService {
   private static func checkErrors(data: JSON) -> Bool {
     if data["TripList"]["errorCode"].string != nil {
       return true
+    } else if data["StatusCode"].string != nil {
+      return true
     }
     return false
   }

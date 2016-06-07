@@ -14,6 +14,7 @@ class OriginPin: MKPointAnnotation {
 }
 
 class BigPin: MKPointAnnotation {
+  var stationIndex = -1
 
 }
 

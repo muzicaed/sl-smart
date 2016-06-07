@@ -44,7 +44,7 @@ public class RealTimeDeparturesService {
   */
   private static func convertJson(json: JSON) -> RealTimeDepartures {
     let departures = RealTimeDepartures(
-      lastUpdated: json["LatestUpdate"].string!,
+      lastUpdated: json["LatestUpdate"].string,
       dataAge: json["DataAge"].int!)
     
     departures.busses = convertBusesJson(json["Buses"])
@@ -190,7 +190,7 @@ public class RealTimeDeparturesService {
         displayTime: boatJson["DisplayTime"].string!,
         deviations: extractDeviations(boatJson["Deviations"].array),
         journeyDirection: boatJson["JourneyDirection"].int!,
-        groupOfLine: boatJson["GroupOfLine"].string!)
+        groupOfLine: boatJson["GroupOfLine"].string)
       
       if result["\(rtBoat.groupOfLine)-\(rtBoat.journeyDirection)"] == nil {
         result["\(rtBoat.groupOfLine)-\(rtBoat.journeyDirection)"] = [RTBoat]()

@@ -23,8 +23,14 @@ class SituationHeader: UITableViewCell {
     userInteractionEnabled = false
     if group.hasPlannedEvent && group.statusIcon == "EventGood" {
       statusIcon.image = UIImage(named: "EventPlanned")
+      title.accessibilityLabel = group.name + ". Har plannerade avvikelser"
     } else {
       statusIcon.image = UIImage(named: group.statusIcon)
+      if group.statusIcon == "EventGood" {
+        title.accessibilityLabel = group.name + ". Inga avvikelser"
+      } else {
+        title.accessibilityLabel = group.name + ". Finns pågående störningar"
+      }
     }
   }
 }

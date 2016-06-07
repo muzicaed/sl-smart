@@ -25,8 +25,7 @@ class RoutineTripCell: UICollectionViewCell {
   @IBOutlet weak var inAboutLabel: UILabel!
   @IBOutlet weak var nextInAboutLabel: UILabel!
   
-  @IBOutlet weak var advancedView: UIView!
-  @IBOutlet weak var advancedLabel: UILabel!
+  @IBOutlet weak var wrapperView: UIView?
   
   let normalColor = UIColor(red: 63/255, green: 73/255, blue: 62/255, alpha: 0.6)
   
@@ -63,7 +62,9 @@ class RoutineTripCell: UICollectionViewCell {
       title += NSLocalizedString(" (Vana)", comment: "")
     }
     
-    tripTitleLabel.text = title //+ " [\(String(routineTrip.score))]"
+    tripTitleLabel.text = title
+    tripTitleLabel.accessibilityTraits |= UIAccessibilityTraitButton
+    tripTitleLabel.accessibilityLabel = title
     originLabel.text = routineTrip.criterions.origin?.cleanName
     destinationLabel.text = routineTrip.criterions.dest?.cleanName
     
@@ -76,7 +77,10 @@ class RoutineTripCell: UICollectionViewCell {
     } else if isBest {
       setNoTripsUI()
     }
-    advancedLabel.text = AdvancedCriterionsHelper.createAdvCriterionText(routineTrip.criterions)
+    
+    if let wrapper = wrapperView {
+      wrapper.accessibilityLabel = "\(routineTrip.title!), Från: \(originLabel.text!), Till: \(destinationLabel.text!). Tryck för tider och mer info."
+    }
   }
   
   /**
@@ -100,7 +104,9 @@ class RoutineTripCell: UICollectionViewCell {
     arrowLabel.hidden = false
     if let first = trip.tripSegments.first, last = trip.tripSegments.last  {
       departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)
+      departureTimeLabel.accessibilityLabel = "Avgår: " + departureTimeLabel.text!
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
+      arrivalTimeLabel.accessibilityLabel = "Framme: " + arrivalTimeLabel.text!
       inAboutLabel.text = DateUtils.createAboutTimeText(
         first.departureDateTime, isWalk: first.type == TripType.Walk)
       
@@ -138,6 +144,7 @@ class RoutineTripCell: UICollectionViewCell {
         
         let label = UILabel()
         label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
+        label.accessibilityLabel = "Steg \(count + 1): " + data.long
         label.textAlignment = NSTextAlignment.Center
         label.font = UIFont.boldSystemFontOfSize(9)
         label.minimumScaleFactor = 0.5

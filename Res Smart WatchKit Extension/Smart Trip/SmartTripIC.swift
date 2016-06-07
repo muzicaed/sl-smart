@@ -116,7 +116,7 @@ class SmartTripIC: WKInterfaceController {
           NSTimeInterval(10), target: self, selector: #selector(forceRefreshData), userInfo: nil, repeats: false)
       } else {
         retryCount += 1
-        if retryCount > 5 {
+        if retryCount > 10 {
           retryCount = 0
           stopRefreshTimer()
           displayError(
@@ -136,7 +136,7 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Handle reply for a "RequestRoutineTrips" message.
    */
-  func requestRoutineTripsHandler(reply: NSData) {    
+  func requestRoutineTripsHandler(reply: NSData) {
     let dictionary = NSKeyedUnarchiver.unarchiveObjectWithData(reply)! as! Dictionary<String, AnyObject>
     retryCount = 0
     stopRefreshTimer()
@@ -164,12 +164,12 @@ class SmartTripIC: WKInterfaceController {
     isLoading = false
     WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Failure)
     
-    // TODO: WTF?. Check future releases for fix on error 7014, and remove this...
-    if error.code == WCErrorCode.DeliveryFailed.rawValue {
-      // Retry after 1.5 seconds...
+    if error.code == WCErrorCode.DeliveryFailed.rawValue ||
+      error.code == WCErrorCode.MessageReplyTimedOut.rawValue ||
+      error.code == WCErrorCode.GenericError.rawValue {
       stopRefreshTimer()
       retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-        NSTimeInterval(1.5), target: self, selector: #selector(forceRefreshData),
+        NSTimeInterval(0.1), target: self, selector: #selector(forceRefreshData),
         userInfo: nil, repeats: false)
       return
     } else if error.code == WCErrorCode.NotReachable.rawValue {
@@ -179,9 +179,9 @@ class SmartTripIC: WKInterfaceController {
       return
     }
     
-    displayError(
-      "Någon gick fel",
-      message: "Ett okänt fel inträffade. Kontrollera att din iPhone kan nå internet.")
+     displayError(
+     "Något gick fel",
+     message: "Ett fel inträffade. Kontrollera att din iPhone kan nå internet.")
   }
   
   /**
@@ -436,7 +436,7 @@ class SmartTripIC: WKInterfaceController {
    * Trigger a UI refresh of routine trip data
    */
   private func perfromRefreshData(force: Bool) {
-    if shouldReloadData() || force {
+    if (shouldReloadData() && !isLoading) || force {
       setLoadingUIState()
       reloadRoutineTripData()
     } else {

@@ -10,14 +10,14 @@ import Foundation
 
 public class RTBoat: RTTransportBase {
   
-  public let groupOfLine: String
+  public let groupOfLine: String?
   
   /**
    * Init
    */
   init(stopAreaName: String, lineNumber: String, destination: String,
     displayTime: String, deviations: [String], journeyDirection: Int,
-    groupOfLine: String) {
+    groupOfLine: String?) {
       
       self.groupOfLine = groupOfLine
       

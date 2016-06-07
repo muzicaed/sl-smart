@@ -410,16 +410,20 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     switch tabKeys {
     case "BUS":
       let bus = realTimeDepartures!.busses[busKeys[indexPath.section]]!.first!
-      cell.titleLabel.text = "\(bus.stopAreaName)"
+      cell.titleLabel.text = bus.stopAreaName
+      cell.titleLabel.accessibilityLabel = "Bussar, \(bus.stopAreaName)"
     case "METRO":
       let metro = realTimeDepartures!.metros[metroKeys[indexPath.section]]!.first!
       switch metro.metroLineId {
       case 1:
         cell.titleLabel.text = "Gröna linjen"
+        cell.titleLabel.accessibilityLabel = "Tunnelbanas gröna linjen"
       case 2:
         cell.titleLabel.text = "Röda linjen"
+        cell.titleLabel.accessibilityLabel = "Tunnelbanas röda linjen"
       case 3:
         cell.titleLabel.text = "Blå linjen"
+        cell.titleLabel.accessibilityLabel = "Tunnelbanas blå linjen"
       default:
         break
       }
@@ -438,7 +442,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       cell.titleLabel.text = tram.groupOfLine
     case "BOAT":
       let boat = realTimeDepartures!.boats[boatKeys[indexPath.section]]!.first!
-      cell.titleLabel.text = boat.groupOfLine
+      cell.titleLabel.text = boat.stopAreaName
     default:
       break
     }
@@ -459,6 +463,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       data = bus as RTTransportBase
       if let designation = bus.stopPointDesignation {
         cell.stopPointDesignation.text = designation
+        cell.stopPointDesignation.accessibilityLabel = "Hållplatsläge: " + designation
         cell.stopPointDesignation.hidden = false
       }
     case "METRO":
@@ -479,7 +484,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       cell.departureTimeLabel.text = train.displayTime
       cell.deviationsLabel.text = train.deviations.joinWithSeparator(" ")
       if DisturbanceTextHelper.isDisturbance(cell.deviationsLabel.text) {
-        cell.deviationsLabel.textColor = UIColor(red: 39/255, green: 44/255, blue: 211/255, alpha: 1.0)
+        cell.deviationsLabel.textColor = StyleHelper.sharedInstance.warningColor
       } else {
         cell.deviationsLabel.textColor = UIColor.darkGrayColor()
       }
@@ -499,6 +504,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     if let data = data {
       cell.lineLabel.text = lineChar + data.lineNumber
       cell.infoLabel.text = "\(data.destination)"
+      cell.infoLabel.accessibilityLabel = "Mot \(data.destination)"
       if data.displayTime == "Nu" {
         cell.departureTimeLabel.font = UIFont.boldSystemFontOfSize(17)
         cell.departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
@@ -509,7 +515,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       cell.departureTimeLabel.text = data.displayTime
       cell.deviationsLabel.text = data.deviations.joinWithSeparator(" ")
       if DisturbanceTextHelper.isDisturbance(cell.deviationsLabel.text) {
-        cell.deviationsLabel.textColor = UIColor(red: 173/255, green: 36/255, blue: 62/255, alpha: 1.0)
+        cell.deviationsLabel.textColor = StyleHelper.sharedInstance.warningColor
       } else {
         cell.deviationsLabel.textColor = UIColor.darkGrayColor()
       }

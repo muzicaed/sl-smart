@@ -96,6 +96,17 @@ public class FavouriteLocationsStore {
   }
   
   /**
+   * Moves a routine trip in data store
+   */
+  public func moveFavouriteLocation(index: Int, targetIndex: Int) {
+    let moveLocation = cachedLocations.removeAtIndex(index)
+    cachedLocations.insert(moveLocation, atIndex: targetIndex)
+    writeFavouriteLocations(cachedLocations)
+  }
+  
+  // MARK: Private
+  
+  /**
    * Store "FavouriteLocations" in data store.
    */
   private func writeFavouriteLocations(locations: [Location]) {

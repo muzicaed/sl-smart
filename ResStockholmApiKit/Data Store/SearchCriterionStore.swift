@@ -48,5 +48,6 @@ public class SearchCriterionStore {
     let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(criterions)
     defaults.setObject(archivedObject, forKey: LastSearchCriterions)
     cachedSearchCriterions = criterions.copy() as! TripSearchCriterion
+    defaults.synchronize()
   }
 }

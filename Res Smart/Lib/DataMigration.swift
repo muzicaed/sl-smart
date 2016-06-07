@@ -15,5 +15,19 @@ class DataMigration {
   private static let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
   
   static func migrateData() {
+    let step = defaults.integerForKey(dataKey)
+    if step < 2 {
+      migrateNumChg()
+    }
+  }
+  
+  private static func migrateNumChg() {
+    let routines = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
+    for routine in routines {
+      routine.criterions.numChg = -1
+      RoutineTripsStore.sharedInstance.updateRoutineTrip(routine)
+    }
+    defaults.setInteger(2, forKey: dataKey)
+    defaults.synchronize()
   }
 }

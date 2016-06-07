@@ -17,6 +17,7 @@
 		1818B26A1C404FE0004E3CA3 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818B2691C404FE0004E3CA3 /* TodayViewController.swift */; };
 		1818B26D1C404FE0004E3CA3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1818B26B1C404FE0004E3CA3 /* MainInterface.storyboard */; };
 		1818B2781C405D5B004E3CA3 /* ResStockholmApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; };
+		181ABB861CD89283003CA251 /* NearbyStationsMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181ABB851CD89283003CA251 /* NearbyStationsMapVC.swift */; };
 		181BD4161C047AA900651D0F /* RoutineTripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4151C047AA900651D0F /* RoutineTripHeader.swift */; };
 		181CFD051C396FDE004637F9 /* ReceiptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CFD041C396FDE004637F9 /* ReceiptManager.swift */; };
 		18232CA41C01D46A006334D1 /* EditRoutineTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */; };
@@ -37,6 +38,7 @@
 		183D6EBB1C1A2F2900EB7537 /* TrafficSituationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D6EBA1C1A2F2900EB7537 /* TrafficSituationVC.swift */; };
 		183D6EBD1C1A352100EB7537 /* SituationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D6EBC1C1A352100EB7537 /* SituationHeader.swift */; };
 		183D6EBF1C1A354F00EB7537 /* SituationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D6EBE1C1A354F00EB7537 /* SituationRow.swift */; };
+		1840C81B1CD646BC007062FD /* SearchLocationResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840C81A1CD646BC007062FD /* SearchLocationResultsVC.swift */; };
 		1843AC541C4A78020065A462 /* TripDetailsSubSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843AC531C4A78020065A462 /* TripDetailsSubSegmentCell.swift */; };
 		185073751C09CE84005D0D7E /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185073741C09CE84005D0D7E /* TripIcons.swift */; };
 		1851F2D71C35F56C0013CD6A /* SubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851F2D61C35F56C0013CD6A /* SubscriptionCell.swift */; };
@@ -76,6 +78,7 @@
 		188367711C170E1800A8BE16 /* TripDetailsChangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367701C170E1800A8BE16 /* TripDetailsChangeCell.swift */; };
 		188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */; };
 		188367751C170E5500A8BE16 /* TripDetailsDestinationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */; };
+		1885A4131CDF95E300680F8E /* LinePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885A4121CDF95E300680F8E /* LinePickerVC.swift */; };
 		1885ED001C20BD7A000E803D /* UILabelExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885ECFF1C20BD7A000E803D /* UILabelExtention.swift */; };
 		188B80AE1C178DD900E7D90C /* TripSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B80AD1C178DD900E7D90C /* TripSearchVC.swift */; };
 		188B856A1C15B03400098B00 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85691C15B03400098B00 /* DateUtils.swift */; };
@@ -106,6 +109,7 @@
 		1899F2671C4B9C6200534587 /* RouteRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2661C4B9C6200534587 /* RouteRenderer.swift */; };
 		1899F2691C4B9C9200534587 /* RoutePolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2681C4B9C9200534587 /* RoutePolyline.swift */; };
 		1899F26B1C4BBE7800534587 /* Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F26A1C4BBE7800534587 /* Pins.swift */; };
+		18A000441CDF9C0A004B83F6 /* LinePickerResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A000431CDF9C0A004B83F6 /* LinePickerResponder.swift */; };
 		18A428A11CA8257E004B4D67 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1818B2661C404FE0004E3CA3 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		18A5A8DB1C580E83003C4C3B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A5A8DA1C580E83003C4C3B /* CoreLocation.framework */; };
 		18A824741C0EE866006190C4 /* SmartTripIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E591BFF33FB00C523C9 /* SmartTripIC.swift */; };
@@ -134,7 +138,6 @@
 		18A9E8711C1899ED008F97C8 /* ScorePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FD8B41C0B087E0095C790 /* ScorePost.swift */; };
 		18A9E8721C1899F3008F97C8 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AF51C03A9E100B9145A /* DateUtils.swift */; };
 		18A9E8731C189B97008F97C8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180603631C01FCBE00AC1841 /* SwiftyJSON.swift */; };
-		18A9E8741C189C1C008F97C8 /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EAF4E11C0F89990014701B /* SwiftHTTP.framework */; };
 		18AAC92F1C2EE3DF00022C54 /* SearchCriterionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC92D1C2EE3DF00022C54 /* SearchCriterionStore.swift */; };
 		18AAC9301C2EE3DF00022C54 /* RoutineTripsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC92E1C2EE3DF00022C54 /* RoutineTripsStore.swift */; };
 		18AAC9321C2EE61000022C54 /* ScorePostStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC9311C2EE61000022C54 /* ScorePostStore.swift */; };
@@ -149,13 +152,14 @@
 		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
 		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
 		18D6521E1C3D9C510067FC60 /* HereToThereCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6521D1C3D9C510067FC60 /* HereToThereCell.swift */; };
-		18EAF4E91C0F8A0F0014701B /* SwiftHTTP.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 18EAF4E11C0F89990014701B /* SwiftHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		18FA99941C492BDC0075C4C2 /* SLJourneyDetailsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */; };
 		18FA999A1C492E3F0075C4C2 /* JournyDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */; };
 		18FA999C1C49321C0075C4C2 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA999B1C49321C0075C4C2 /* Stop.swift */; };
 		18FC74791C7B771100980B0D /* SLDeviationsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC74781C7B771100980B0D /* SLDeviationsApi.swift */; };
 		18FC747F1C7B778F00980B0D /* DeviationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC747E1C7B778F00980B0D /* DeviationsService.swift */; };
 		18FC74811C7B7D2E00980B0D /* Deviation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC74801C7B7D2E00980B0D /* Deviation.swift */; };
+		18FDA8C31CD92D94003665C6 /* GenericValuePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FDA8C21CD92D94003665C6 /* GenericValuePickerVC.swift */; };
+		18FDA8C51CD9364E003665C6 /* PickGenericValueResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FDA8C41CD9364E003665C6 /* PickGenericValueResponder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,34 +205,6 @@
 			remoteGlobalIDString = 18A9E8461C18993B008F97C8;
 			remoteInfo = ResStockholmApiKit;
 		};
-		18EAF4E01C0F89990014701B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6BFD901619C8D8B500DD99B6;
-			remoteInfo = SwiftHTTP;
-		};
-		18EAF4E21C0F89990014701B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6BFD902119C8D8B500DD99B6;
-			remoteInfo = SwiftHTTPTests;
-		};
-		18EAF4E41C0F89990014701B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D958025919E6EEEB003C8218;
-			remoteInfo = SwiftHTTPOSX;
-		};
-		18EAF4E61C0F89990014701B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D958026319E6EEEB003C8218;
-			remoteInfo = SwiftHTTPOSXTests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -239,7 +215,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				18A9E84F1C18993B008F97C8 /* ResStockholmApiKit.framework in Copy Frameworks */,
-				18EAF4E91C0F8A0F0014701B /* SwiftHTTP.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,7 +259,6 @@
 		1801A3FD1C39317C0068E1FC /* SubscribeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeDelegate.swift; sourceTree = "<group>"; };
 		180603631C01FCBE00AC1841 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		180603651C0201A100AC1841 /* HttpRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHelper.swift; sourceTree = "<group>"; };
-		180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftHTTP.xcodeproj; path = /Users/mikaelhellman/Documents/Development/SwiftHTTP/SwiftHTTP.xcodeproj; sourceTree = "<absolute>"; };
 		1806037B1C02165000AC1841 /* LocationSearchResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchResponder.swift; sourceTree = "<group>"; };
 		180F7D781C8CC987000C8207 /* UserPreferenceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferenceStore.swift; sourceTree = "<group>"; };
 		180FD8B41C0B087E0095C790 /* ScorePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScorePost.swift; path = ../../Model/ScorePost.swift; sourceTree = "<group>"; };
@@ -295,6 +269,7 @@
 		1818B26C1C404FE0004E3CA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		1818B26E1C404FE0004E3CA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1818B2751C405ACF004E3CA3 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Today.entitlements; sourceTree = "<group>"; };
+		181ABB851CD89283003CA251 /* NearbyStationsMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearbyStationsMapVC.swift; path = "Res Smart/UI/Search Location/Nearby/NearbyStationsMapVC.swift"; sourceTree = SOURCE_ROOT; };
 		181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLTravelPlannerV2Api.swift; sourceTree = "<group>"; };
 		181B9AF01C0375DC00B9145A /* TripSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSegment.swift; sourceTree = "<group>"; };
 		181B9AF21C0380FD00B9145A /* SearchTripService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTripService.swift; sourceTree = "<group>"; };
@@ -322,6 +297,7 @@
 		183D6EBA1C1A2F2900EB7537 /* TrafficSituationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficSituationVC.swift; sourceTree = "<group>"; };
 		183D6EBC1C1A352100EB7537 /* SituationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SituationHeader.swift; sourceTree = "<group>"; };
 		183D6EBE1C1A354F00EB7537 /* SituationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SituationRow.swift; sourceTree = "<group>"; };
+		1840C81A1CD646BC007062FD /* SearchLocationResultsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationResultsVC.swift; sourceTree = "<group>"; };
 		1843AC531C4A78020065A462 /* TripDetailsSubSegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsSubSegmentCell.swift; sourceTree = "<group>"; };
 		185073741C09CE84005D0D7E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
 		1851F2D61C35F56C0013CD6A /* SubscriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionCell.swift; sourceTree = "<group>"; };
@@ -364,6 +340,7 @@
 		188367701C170E1800A8BE16 /* TripDetailsChangeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsChangeCell.swift; sourceTree = "<group>"; };
 		188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsSegmentCell.swift; sourceTree = "<group>"; };
 		188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsDestinationCell.swift; sourceTree = "<group>"; };
+		1885A4121CDF95E300680F8E /* LinePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinePickerVC.swift; sourceTree = "<group>"; };
 		1885ECFF1C20BD7A000E803D /* UILabelExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtention.swift; sourceTree = "<group>"; };
 		188B80441C175D9600E7D90C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		188B80971C177E9E00E7D90C /* Res Smart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Res Smart.entitlements"; sourceTree = "<group>"; };
@@ -408,6 +385,7 @@
 		1899F2661C4B9C6200534587 /* RouteRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteRenderer.swift; sourceTree = "<group>"; };
 		1899F2681C4B9C9200534587 /* RoutePolyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutePolyline.swift; sourceTree = "<group>"; };
 		1899F26A1C4BBE7800534587 /* Pins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pins.swift; sourceTree = "<group>"; };
+		18A000431CDF9C0A004B83F6 /* LinePickerResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinePickerResponder.swift; sourceTree = "<group>"; };
 		18A5A8D41C57BC54003C4C3B /* DisturbanceTextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisturbanceTextHelper.swift; sourceTree = "<group>"; };
 		18A5A8DA1C580E83003C4C3B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ResStockholmApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -424,7 +402,7 @@
 		18AC9CFF1C08B5B4007ECFA2 /* LoadMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreCell.swift; sourceTree = "<group>"; };
 		18B2902A1C46D8BC00DCE585 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		18B290301C46D9D900DCE585 /* Res Smart Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Res Smart Playground.playground"; sourceTree = "<group>"; };
-		18BC459D1C5FA5A100248D07 /* NearbyStationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyStationsVC.swift; sourceTree = "<group>"; };
+		18BC459D1C5FA5A100248D07 /* NearbyStationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearbyStationsVC.swift; path = "Res Smart/UI/Search Location/Nearby/NearbyStationsVC.swift"; sourceTree = SOURCE_ROOT; };
 		18BC85231CA01A3D0061C0BA /* BusFilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusFilterVC.swift; sourceTree = "<group>"; };
 		18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerRow.swift; sourceTree = "<group>"; };
 		18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleHelper.swift; sourceTree = "<group>"; };
@@ -437,6 +415,8 @@
 		18FC74781C7B771100980B0D /* SLDeviationsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLDeviationsApi.swift; sourceTree = "<group>"; };
 		18FC747E1C7B778F00980B0D /* DeviationsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviationsService.swift; sourceTree = "<group>"; };
 		18FC74801C7B7D2E00980B0D /* Deviation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deviation.swift; sourceTree = "<group>"; };
+		18FDA8C21CD92D94003665C6 /* GenericValuePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericValuePickerVC.swift; sourceTree = "<group>"; };
+		18FDA8C41CD9364E003665C6 /* PickGenericValueResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickGenericValueResponder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -477,7 +457,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18A9E8741C189C1C008F97C8 /* SwiftHTTP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +488,15 @@
 				186236001C411CE40056338E /* Assets.xcassets */,
 			);
 			path = Today;
+			sourceTree = "<group>";
+		};
+		181ABB871CD8937E003CA251 /* Nearby */ = {
+			isa = PBXGroup;
+			children = (
+				18BC459D1C5FA5A100248D07 /* NearbyStationsVC.swift */,
+				181ABB851CD89283003CA251 /* NearbyStationsMapVC.swift */,
+			);
+			path = Nearby;
 			sourceTree = "<group>";
 		};
 		181B9AF41C03A9BC00B9145A /* Common */ = {
@@ -628,6 +616,20 @@
 			path = "Trip Details";
 			sourceTree = "<group>";
 		};
+		1885A4111CDF943D00680F8E /* Data pickers */ = {
+			isa = PBXGroup;
+			children = (
+				1892BA341C1F185500BC191A /* Travel Types */,
+				1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */,
+				18FDA8C21CD92D94003665C6 /* GenericValuePickerVC.swift */,
+				18FDA8C41CD9364E003665C6 /* PickGenericValueResponder.swift */,
+				18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */,
+				1885A4121CDF95E300680F8E /* LinePickerVC.swift */,
+				18A000431CDF9C0A004B83F6 /* LinePickerResponder.swift */,
+			);
+			path = "Data pickers";
+			sourceTree = "<group>";
+		};
 		188B80431C175D9600E7D90C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -643,7 +645,6 @@
 				188B80AD1C178DD900E7D90C /* TripSearchVC.swift */,
 				18946B161C18431500A5829D /* DateTimePickerVC.swift */,
 				18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */,
-				1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */,
 			);
 			path = "Trip Search";
 			sourceTree = "<group>";
@@ -819,10 +820,10 @@
 		18937E891C01139E00C523C9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				1885A4111CDF943D00680F8E /* Data pickers */,
 				18733C431C4E3CD700F66AEF /* Real time */,
 				1899F2651C4B9B6400534587 /* Map */,
 				1894A6F81C354A9000CDF905 /* Subscription */,
-				1892BA341C1F185500BC191A /* Travel Types */,
 				18937E751BFF5CFC00C523C9 /* Routine Trips */,
 				18BF52241C18302A002B68AD /* Search Location */,
 				18AC9CF61C07AD05007ECFA2 /* Trip List */,
@@ -901,11 +902,11 @@
 		18BF52241C18302A002B68AD /* Search Location */ = {
 			isa = PBXGroup;
 			children = (
+				181ABB871CD8937E003CA251 /* Nearby */,
 				18232CAB1C01EC2F006334D1 /* SearchLocationVC.swift */,
 				1806037B1C02165000AC1841 /* LocationSearchResponder.swift */,
-				18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */,
-				18BC459D1C5FA5A100248D07 /* NearbyStationsVC.swift */,
 				18609B371CC3B55E002F6346 /* LocationMapVC.swift */,
+				1840C81A1CD646BC007062FD /* SearchLocationResultsVC.swift */,
 			);
 			path = "Search Location";
 			sourceTree = "<group>";
@@ -913,20 +914,8 @@
 		18CE5CCC1C0329DA00E1F5A9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */,
 			);
 			name = Libraries;
-			sourceTree = "<group>";
-		};
-		18EAF4DA1C0F89990014701B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				18EAF4E11C0F89990014701B /* SwiftHTTP.framework */,
-				18EAF4E31C0F89990014701B /* SwiftHTTPTests.xctest */,
-				18EAF4E51C0F89990014701B /* SwiftHTTP.framework */,
-				18EAF4E71C0F89990014701B /* SwiftHTTPOSXTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1125,12 +1114,6 @@
 			mainGroup = 18937E281BFF33FA00C523C9;
 			productRefGroup = 18937E321BFF33FA00C523C9 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 18EAF4DA1C0F89990014701B /* Products */;
-					ProjectRef = 180603671C0203B800AC1841 /* SwiftHTTP.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				18937E301BFF33FA00C523C9 /* Res Smart */,
@@ -1142,37 +1125,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		18EAF4E11C0F89990014701B /* SwiftHTTP.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SwiftHTTP.framework;
-			remoteRef = 18EAF4E01C0F89990014701B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		18EAF4E31C0F89990014701B /* SwiftHTTPTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SwiftHTTPTests.xctest;
-			remoteRef = 18EAF4E21C0F89990014701B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		18EAF4E51C0F89990014701B /* SwiftHTTP.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SwiftHTTP.framework;
-			remoteRef = 18EAF4E41C0F89990014701B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		18EAF4E71C0F89990014701B /* SwiftHTTPOSXTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SwiftHTTPOSXTests.xctest;
-			remoteRef = 18EAF4E61C0F89990014701B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1818B2641C404FE0004E3CA3 /* Resources */ = {
@@ -1282,6 +1234,7 @@
 				186447631C5FF6B400020A17 /* DataMigration.swift in Sources */,
 				188367751C170E5500A8BE16 /* TripDetailsDestinationCell.swift in Sources */,
 				188B80AE1C178DD900E7D90C /* TripSearchVC.swift in Sources */,
+				1885A4131CDF95E300680F8E /* LinePickerVC.swift in Sources */,
 				18937E771BFF5D6B00C523C9 /* RoutineTripsVC.swift in Sources */,
 				18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */,
 				18D6521E1C3D9C510067FC60 /* HereToThereCell.swift in Sources */,
@@ -1308,11 +1261,13 @@
 				18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */,
 				181CFD051C396FDE004637F9 /* ReceiptManager.swift in Sources */,
 				18946B171C18431500A5829D /* DateTimePickerVC.swift in Sources */,
+				1840C81B1CD646BC007062FD /* SearchLocationResultsVC.swift in Sources */,
 				183D6EBB1C1A2F2900EB7537 /* TrafficSituationVC.swift in Sources */,
 				1824A4301C9F3034000BEE9B /* ReportDeviationRow.swift in Sources */,
 				1899F2671C4B9C6200534587 /* RouteRenderer.swift in Sources */,
 				180F7D791C8CC987000C8207 /* UserPreferenceStore.swift in Sources */,
 				183D6EBD1C1A352100EB7537 /* SituationHeader.swift in Sources */,
+				18A000441CDF9C0A004B83F6 /* LinePickerResponder.swift in Sources */,
 				18609B381CC3B55E002F6346 /* LocationMapVC.swift in Sources */,
 				1869E2991C1E0E36001FE4B2 /* PickLocationResponder.swift in Sources */,
 				1885ED001C20BD7A000E803D /* UILabelExtention.swift in Sources */,
@@ -1333,8 +1288,11 @@
 				188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */,
 				1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */,
 				18733C491C4E3D1000F66AEF /* RealTimeNavigationVC.swift in Sources */,
+				18FDA8C31CD92D94003665C6 /* GenericValuePickerVC.swift in Sources */,
 				1843AC541C4A78020065A462 /* TripDetailsSubSegmentCell.swift in Sources */,
+				18FDA8C51CD9364E003665C6 /* PickGenericValueResponder.swift in Sources */,
 				18232CAC1C01EC2F006334D1 /* SearchLocationVC.swift in Sources */,
+				181ABB861CD89283003CA251 /* NearbyStationsMapVC.swift in Sources */,
 				1824A4321C9F3453000BEE9B /* ReportSituationRow.swift in Sources */,
 				18937E7E1BFF6AB700C523C9 /* RoutineTripCell.swift in Sources */,
 				18733C611C4E568500F66AEF /* SMBasicSegment.swift in Sources */,
@@ -1513,8 +1471,8 @@
 		1818B2741C404FE1004E3CA3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = Today/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1655,8 +1613,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp.watchkitextension";
@@ -1694,8 +1652,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Res Smart/Res Smart.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = SL_Smart_WatchKit_Extension;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart WatchKit App/Info.plist";
@@ -1732,8 +1690,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Res Smart/Res Smart.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -1771,8 +1729,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

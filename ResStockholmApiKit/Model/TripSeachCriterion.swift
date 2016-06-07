@@ -20,7 +20,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   public var via: Location?
   public var date: String?
   public var time: String?
-  public var numChg = 0
+  public var numChg = -1
   public var minChgTime = 0
   public var searchForArrival = false
   public var unsharp = false
@@ -37,6 +37,9 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   public var realtime = false
   
   public var isAdvanced = false
+  
+  public var lineInc: String?
+  public var lineExc: String?
   
   
   /**
@@ -72,7 +75,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     query += (via != nil) ? "&viaId=\(via!.siteId!)" : ""
     query += (date != nil) ? "&date=\(date!)" : ""
     query += (time != nil) ? "&time=\(time!)" : ""
-    query += (numChg != 0) ? "&numChg=\(numChg)" : ""
+    query += (numChg > -1) ? "&numChg=\(numChg)" : ""
     query += (minChgTime != 0) ? "&minChgTime=\(minChgTime)" : ""
     
     query += (!useTrain) ? "&useTrain=0" : ""
@@ -86,6 +89,8 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     query += (unsharp) ? "&unsharp=1" : ""
     query += (realtime) ? "&realtime=true" : ""
     query += (maxWalkDist > 0) ? "&maxWalkDist=\(maxWalkDist)" : ""
+    query += (lineInc != nil) ? "&lineInc=\(lineInc!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))" : ""
+    query += (lineExc != nil) ? "&lineExc=\(lineExc!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))" : ""
     
     if let escapedQuery = query.stringByAddingPercentEncodingWithAllowedCharacters(
       .URLQueryAllowedCharacterSet()) {
@@ -105,6 +110,12 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     useBus = true
     useFerry = true
     useShip = true
+    maxWalkDist = 1000
+    numChg = -1
+    minChgTime = 0
+    unsharp = false
+    lineInc = nil
+    lineExc = nil
   }
   
   /**
@@ -145,6 +156,8 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     self.numTrips = aDecoder.decodeIntegerForKey(PropertyKey.numTrips)
     self.realtime = false // TODO: Check here for realtime! aDecoder.decodeBoolForKey(PropertyKey.realtime)
     self.isAdvanced = aDecoder.decodeBoolForKey(PropertyKey.isAdvanced)
+    self.lineInc = aDecoder.decodeObjectForKey(PropertyKey.lineInc) as! String?
+    self.lineExc = aDecoder.decodeObjectForKey(PropertyKey.lineExc) as! String?
   }
   
   /**
@@ -172,6 +185,8 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     aCoder.encodeInteger(numTrips, forKey: PropertyKey.numTrips)
     aCoder.encodeBool(realtime, forKey: PropertyKey.realtime)
     aCoder.encodeBool(isAdvanced, forKey: PropertyKey.isAdvanced)
+    aCoder.encodeObject(lineInc, forKey: PropertyKey.lineInc)
+    aCoder.encodeObject(lineExc, forKey: PropertyKey.lineExc)
   }
   
   struct PropertyKey {
@@ -196,6 +211,8 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     static let numTrips = "numTrips"
     static let realtime = "realtime"
     static let isAdvanced = "isAdvanced"
+    static let lineInc = "lineInc"
+    static let lineExc = "lineExc"
   }
   
   // MARK: NSCopying
@@ -227,6 +244,8 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     copy.numTrips = numTrips
     copy.realtime = realtime
     copy.isAdvanced = isAdvanced
+    copy.lineInc = lineInc
+    copy.lineExc = lineExc
 
     return copy
   }

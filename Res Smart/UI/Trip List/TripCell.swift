@@ -46,13 +46,17 @@ class TripCell: UITableViewCell {
    */
   func setupData(trip: Trip) {
     originLabel.text = trip.tripSegments.first?.origin.cleanName
+    originLabel.accessibilityLabel = "Från \(originLabel.text!)"
     destinationLabel.text = trip.tripSegments.last?.destination.cleanName
+    destinationLabel.accessibilityLabel = "vid \(destinationLabel.text!)"
     if trip.tripSegments.count > 0 {
       let trip = trip
       departureTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.first!.departureDateTime)
+      departureTimeLabel.accessibilityLabel = "Avgår \(departureTimeLabel.text!)"
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.last!.arrivalDateTime)
+      arrivalTimeLabel.accessibilityLabel = "Framme \(arrivalTimeLabel.text!)"
       inAboutLabel.text = DateUtils.createAboutTimeText(
         trip.tripSegments.first!.departureDateTime,
         isWalk: trip.tripSegments.first!.type == TripType.Walk)
@@ -91,6 +95,7 @@ class TripCell: UITableViewCell {
         label.frame.size.width = 22
         label.frame.size.height = 12
         label.center = CGPointMake((22 / 2), 22)
+        label.isAccessibilityElement = false
         
         let wrapperView = UIView(
           frame:CGRect(

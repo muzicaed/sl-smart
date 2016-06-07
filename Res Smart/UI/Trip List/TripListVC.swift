@@ -37,6 +37,7 @@ class TripListVC: UITableViewController {
   var loadMoreLater: LoadMoreCell?
   
   let loadedTime = NSDate()
+  var firstTime = true
   
   /**
    * View is done loading
@@ -140,6 +141,7 @@ class TripListVC: UITableViewController {
         routine = RoutineTrip()
         routine!.criterions = criterions!.copy() as! TripSearchCriterion
       }
+      routine?.criterions.searchForArrival = false
       vc.routineTrip = routine
       vc.isMakeRoutine = true
     }
@@ -319,7 +321,7 @@ class TripListVC: UITableViewController {
   * Will check if we scrolled to bottom
   */
   override func scrollViewDidScroll(scrollView: UIScrollView) {
-    if scrollView.contentSize.height > 60 {
+    if scrollView.contentSize.height > 100 {
       let bottomEdge = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.bounds.height
       var overflow = scrollView.contentOffset.y - bottomEdge
       if scrollView.contentSize.height < scrollView.bounds.height {
@@ -342,6 +344,7 @@ class TripListVC: UITableViewController {
   /**
   * Loading the trip data, and starting background
   * collection of time table data.
+  * TODO: Refactoring
   */
   private func loadTripData(shouldAppend: Bool) {
     if let criterions = self.criterions {
@@ -365,6 +368,10 @@ class TripListVC: UITableViewController {
             self.loadMoreEarlier?.hideSpinner()
             self.loadMoreLater?.hideSpinner()
             self.updateDateCriterions()
+            if criterions.searchForArrival && self.firstTime {
+              self.tableView.contentOffset = CGPoint(x: 0, y: CGFloat.max)
+            }
+            self.firstTime = false
             self.tableView?.reloadData()
           }
       })
@@ -497,6 +504,7 @@ class TripListVC: UITableViewController {
         loadMoreLater = tableView!.dequeueReusableCellWithIdentifier(loadMoreLaterIdentifier,
           forIndexPath: indexPath) as? LoadMoreCell
         
+        loadMoreLater!.loadButton.accessibilityLabel = "Visa fler resor"
         loadMoreLater!.loadButton.addTarget(self,
           action: #selector(loadMoreTrips),
           forControlEvents: UIControlEvents.TouchUpInside)
