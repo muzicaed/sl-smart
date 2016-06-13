@@ -17,6 +17,7 @@ class TripDetailsVC: UITableViewController {
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var mapButton: UIButton!
+  @IBOutlet weak var realtimeLabel: UILabel!
   
   let originCellId = "Origin"
   let segmentCellId = "Segment"
@@ -299,6 +300,9 @@ class TripDetailsVC: UITableViewController {
     timeLabel.text = DateUtils.friendlyDate(trip.tripSegments.last!.arrivalDateTime)
     originLabel.text = "Från \(trip.tripSegments.first!.origin.cleanName)"
     destinationLabel.text = "Till \(trip.tripSegments.last!.destination.cleanName)"
+    if !trip.hasAnyRealtime() {
+      realtimeLabel.hidden = true
+    }
   }
   
   /**

@@ -132,7 +132,11 @@ class RoutineTripCell: UICollectionViewCell {
    */
   private func createTripSegmentIcons(trip: Trip) {
     iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
-    var count = 0
+    var count = 0.0
+    if trip.hasAnyRealtime() {
+      createRealtimeIcon(trip)
+      count = 0.75
+    }
     for (_, segment) in trip.tripSegments.enumerate() {
       if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
         if count > 6 { return }
@@ -179,20 +183,17 @@ class RoutineTripCell: UICollectionViewCell {
         iconAreaView.addSubview(wrapperView)
         count += 1
       }
-      if trip.hasAnyRealtime() {
-        createRealtimeIcon(trip, count: count)
-      }
     }
   }
   
   /**
    * Creates realtime icon
    */
-  private func createRealtimeIcon(trip: Trip, count: Int) {
+  private func createRealtimeIcon(trip: Trip) {
     let iconView = UIImageView(image: UIImage(named: "RealtimeIcon"))
     iconView.frame.size = CGSizeMake(15, 15)
     iconView.center = CGPointMake(22 / 2, 15)
-    iconView.frame.origin = CGPointMake((26 * CGFloat(count)), 5)
+    iconView.frame.origin = CGPointMake(0, 8)
     
     iconAreaView.addSubview(iconView)
   }

@@ -4066,10 +4066,10 @@ direkt från din iPhone.</string>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ACG-AI-gl2">
-                                    <rect key="frame" x="10" y="0.0" width="404" height="66"/>
+                                    <rect key="frame" x="10" y="-7" width="404" height="80"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p0C-qC-p7E">
-                                            <rect key="frame" x="0.0" y="0.0" width="338" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="338" height="80"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ge-rM-ltZ">
                                                     <rect key="frame" x="0.0" y="0.0" width="338" height="6"/>
@@ -4103,15 +4103,24 @@ direkt från din iPhone.</string>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blå tid indikerar realtid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ws5-Zh-kPr">
+                                                    <rect key="frame" x="0.0" y="60" width="338" height="14"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="14" id="Ceq-Sq-Len"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.44313725490196076" blue="0.85490196078431369" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1SJ-In-TFK">
-                                                    <rect key="frame" x="0.0" y="60" width="338" height="5"/>
+                                                    <rect key="frame" x="0.0" y="74" width="338" height="5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="5" id="0Ja-PC-d8I" userLabel="height = 6"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJa-NV-5e8">
-                                                    <rect key="frame" x="0.0" y="65" width="338" height="1"/>
+                                                    <rect key="frame" x="0.0" y="79" width="338" height="1"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="Kge-Zd-ovn" userLabel="height = 6"/>
@@ -4119,14 +4128,14 @@ direkt från din iPhone.</string>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="66" id="1Vl-kT-PvR"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="1Vl-kT-PvR"/>
                                             </constraints>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AbU-Aa-ggf">
-                                            <rect key="frame" x="338" y="0.0" width="66" height="66"/>
+                                            <rect key="frame" x="338" y="0.0" width="66" height="80"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTo-4z-Wx5">
-                                                    <rect key="frame" x="11" y="11" width="44" height="44"/>
+                                                    <rect key="frame" x="11" y="18" width="44" height="44"/>
                                                     <accessibility key="accessibilityConfiguration" label="Visa karta"/>
                                                     <state key="normal" image="MapIcon"/>
                                                     <connections>
@@ -4576,6 +4585,7 @@ direkt från din iPhone.</string>
                         <outlet property="destinationLabel" destination="gIj-6I-znV" id="LgR-Sc-yIa"/>
                         <outlet property="mapButton" destination="bTo-4z-Wx5" id="8Hr-zG-4Yi"/>
                         <outlet property="originLabel" destination="ZNu-I4-w7g" id="qrp-SP-cFI"/>
+                        <outlet property="realtimeLabel" destination="Ws5-Zh-kPr" id="AcO-sM-tQu"/>
                         <outlet property="timeLabel" destination="4vg-xG-Jx7" id="Ux0-TG-0bf"/>
                     </connections>
                 </tableViewController>
