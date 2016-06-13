@@ -18,6 +18,7 @@ class TripDetailsSegmentCell: UITableViewCell {
   @IBOutlet weak var arrowLabel: UILabel!
   @IBOutlet weak var warningLabel: UILabel!
   @IBOutlet weak var segmentIcon: UIImageView!
+  @IBOutlet weak var summaryLabel: UILabel!
   
   /**
    * Set cell data.
@@ -31,6 +32,7 @@ class TripDetailsSegmentCell: UITableViewCell {
     lineLabel.text = lineData.long
     lineLabel.textColor = lineData.color
     directionLabel.text = TripHelper.friendlyTripSegmentDesc(segment)
+    summaryLabel.text = createSummary(segment)
     warningLabel.text = segment.rtuMessages
     warningLabel.hidden = false
     
@@ -63,5 +65,17 @@ class TripDetailsSegmentCell: UITableViewCell {
         arrowLabel.text = "▼"
       }
     }
+  }
+  
+  /**
+   * Generates a summary text for segment.
+   */
+  private func createSummary(segment: TripSegment) -> String {
+    print(segment.stops)
+    if segment.stops.count > 0 {
+      return "\(segment.stops.count + 1) hållplatser (\(segment.durationInMin) minuter)"
+    }
+    
+    return "1 hållplats (\(segment.durationInMin) minuter)"
   }
 }

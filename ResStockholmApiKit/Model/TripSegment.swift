@@ -26,6 +26,7 @@ public class TripSegment: NSObject, NSCopying {
   public let rtuMessages: String?
   public let notes: String?
   public let isWarning: Bool
+  public let durationInMin: Int
   
   public var stops = [Stop]()
   public var routeLineLocations = [CLLocation]()
@@ -59,6 +60,8 @@ public class TripSegment: NSObject, NSCopying {
       self.rtuMessages = rtuMessages
       self.notes = notes
       self.isWarning = isWarning
+    
+      self.durationInMin = Int(self.arrivalDateTime.timeIntervalSinceDate(self.departureDateTime) / 60)
   }
   
   // MARK: NSCopying

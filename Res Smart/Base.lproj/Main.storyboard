@@ -4266,8 +4266,17 @@ direkt från din iPhone.</string>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="4 hållplatser (12 min)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hf-wq-a6t" userLabel="Summary">
+                                                            <rect key="frame" x="0.0" y="50" width="250" height="20"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20" id="pf0-Nt-G76"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Problem problem problem stora störningar, inte bra just nu måste du vara försiktning. Bla bla bla massor av text." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="EPv-fd-xKI" userLabel="Warning">
-                                                            <rect key="frame" x="0.0" y="50" width="250" height="45"/>
+                                                            <rect key="frame" x="0.0" y="70" width="250" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" id="KQz-FK-nJ4"/>
                                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="55" id="oan-bL-Kmc"/>
@@ -4332,6 +4341,7 @@ direkt från din iPhone.</string>
                                     <outlet property="directionLabel" destination="aaz-Pu-tBq" id="muJ-x8-72s"/>
                                     <outlet property="lineLabel" destination="pz8-em-IcL" id="iQK-B9-iXh"/>
                                     <outlet property="segmentIcon" destination="tOP-vM-zg2" id="fGN-lG-Ta7"/>
+                                    <outlet property="summaryLabel" destination="1hf-wq-a6t" id="v6q-eC-PCc"/>
                                     <outlet property="tripTypeIcon" destination="iyl-c3-qGr" id="0DC-lh-Yxq"/>
                                     <outlet property="warningLabel" destination="EPv-fd-xKI" id="e4U-HA-atp"/>
                                 </connections>
@@ -4402,8 +4412,8 @@ direkt från din iPhone.</string>
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rpv-jV-Eeh">
-                                            <rect key="frame" x="0.0" y="-1" width="276" height="60"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rpv-jV-Eeh">
+                                            <rect key="frame" x="0.0" y="-1" width="220" height="60"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="change-icon" translatesAutoresizingMaskIntoConstraints="NO" id="gSv-O2-zSa">
                                                     <rect key="frame" x="0.0" y="0.0" width="44" height="60"/>
@@ -4412,18 +4422,18 @@ direkt från din iPhone.</string>
                                                         <constraint firstAttribute="height" constant="60" id="LE1-jS-5A0"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tzA-0r-gJs">
-                                                    <rect key="frame" x="44" y="0.0" width="232" height="60"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tzA-0r-gJs">
+                                                    <rect key="frame" x="44" y="0.0" width="176" height="60"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1qx-bU-o3g">
-                                                            <rect key="frame" x="0.0" y="0.0" width="232" height="10"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qx-bU-o3g">
+                                                            <rect key="frame" x="0.0" y="0.0" width="176" height="10"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="QYg-KR-DNl"/>
                                                             </constraints>
                                                         </view>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HzV-KE-86q">
-                                                            <rect key="frame" x="0.0" y="10" width="232" height="20"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HzV-KE-86q">
+                                                            <rect key="frame" x="0.0" y="10" width="176" height="20"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:45" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPS-dF-FcG" userLabel="Time">
                                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="20"/>
@@ -4433,8 +4443,8 @@ direkt från din iPhone.</string>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Stockholm södra" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSk-dF-O22" userLabel="Location">
-                                                                    <rect key="frame" x="60" y="0.0" width="172" height="20"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stockholm södra" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSk-dF-O22" userLabel="Location">
+                                                                    <rect key="frame" x="60" y="0.0" width="116" height="20"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <bool key="isElement" value="NO"/>
                                                                     </accessibility>
@@ -4446,8 +4456,8 @@ direkt från din iPhone.</string>
                                                                 <constraint firstAttribute="height" constant="20" id="1UR-qP-oIT"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PM4-iN-NfF">
-                                                            <rect key="frame" x="0.0" y="30" width="232" height="20"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PM4-iN-NfF">
+                                                            <rect key="frame" x="0.0" y="30" width="176" height="20"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:48" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0h-Rz-Gbm" userLabel="Time">
                                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="20"/>
@@ -4457,8 +4467,8 @@ direkt från din iPhone.</string>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Terminal 5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nX8-uO-bUw" userLabel="Location">
-                                                                    <rect key="frame" x="60" y="0.0" width="172" height="20"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terminal 5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nX8-uO-bUw" userLabel="Location">
+                                                                    <rect key="frame" x="60" y="0.0" width="116" height="20"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <bool key="isElement" value="NO"/>
                                                                     </accessibility>
@@ -4470,8 +4480,8 @@ direkt från din iPhone.</string>
                                                                 <constraint firstAttribute="height" constant="20" id="OTo-s8-czl"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ght-T1-PT1">
-                                                            <rect key="frame" x="0.0" y="50" width="232" height="10"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ght-T1-PT1">
+                                                            <rect key="frame" x="0.0" y="50" width="176" height="10"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="w9n-bX-S1K"/>
