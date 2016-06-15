@@ -372,7 +372,7 @@ class TripListVC: UITableViewController {
             self.loadMoreLater?.hideSpinner()
             self.updateDateCriterions()
             if criterions.searchForArrival && self.firstTime {
-              self.tableView.contentOffset = CGPoint(x: 0, y: CGFloat.max)
+              self.tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentSize.height - 480.0)
             }
             self.firstTime = false
             self.tableView?.reloadData()
