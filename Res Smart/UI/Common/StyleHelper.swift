@@ -46,6 +46,29 @@ class StyleHelper {
     UIApplication.sharedApplication().statusBarStyle = .LightContent
     (UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])).tintColor = UIColor.whiteColor()
   }
+  
+  func tintImage(image: UIImage, color: UIColor) -> UIImage {
+    let size = image.size
+    
+    UIGraphicsBeginImageContextWithOptions(size, false, image.scale)
+    let context = UIGraphicsGetCurrentContext()
+    image.drawAtPoint(CGPointZero, blendMode: CGBlendMode.Normal, alpha: 1.0)
+    
+    CGContextSetFillColorWithColor(context, color.CGColor)
+    CGContextSetBlendMode(context, CGBlendMode.SourceIn)
+    CGContextSetAlpha(context, 1.0)
+    
+    let rect = CGRectMake(
+      CGPointZero.x,
+      CGPointZero.y,
+      image.size.width,
+      image.size.height)
+    CGContextFillRect(UIGraphicsGetCurrentContext(), rect)
+    let tintedImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    return tintedImage
+  }
 }
 
 extension UIImage {

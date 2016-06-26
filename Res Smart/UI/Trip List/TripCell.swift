@@ -97,7 +97,7 @@ class TripCell: UITableViewCell {
         label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true
         label.textColor = UIColor.whiteColor()
-        label.backgroundColor = data.color
+        label.layer.backgroundColor = data.color.CGColor
         label.frame.size.width = 22
         label.frame.size.height = 12
         label.center = CGPointMake((22 / 2), 22)
