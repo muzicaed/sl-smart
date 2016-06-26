@@ -125,8 +125,8 @@ public class SearchTripService {
     }
     
     var isWarning = DisturbanceTextHelper.isDisturbance(rtuMessages)
-    let isReachable = (segmentJson["reachable"].bool != nil) ? false : true
-    let isCancelled = (segmentJson["cancelled"].bool != nil) ? true : false
+    let isReachable = (segmentJson["reachable"].bool == nil) ? true : false
+    let isCancelled = (segmentJson["cancelled"].bool == nil) ? false : true
     if !isReachable || isCancelled {
       isWarning = true
     }

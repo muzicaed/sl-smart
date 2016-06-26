@@ -36,7 +36,7 @@ class TripDetailsSegmentCell: UITableViewCell {
     warningLabel.text = generateWarningText(segment)
 
     warningLabel.hidden = false
-    if warningLabel.text == nil && !segment.isCancelled && segment.isReachable {
+    if warningLabel.text == nil {
       warningLabel.hidden = true
     } else if !segment.isWarning {
       warningLabel.textColor = UIColor(red: 39/255, green: 44/255, blue: 211/255, alpha: 1.0)
@@ -85,7 +85,7 @@ class TripDetailsSegmentCell: UITableViewCell {
     var warning = segment.rtuMessages
     if segment.isCancelled {
       warning = "Inställd"
-    } else if segment.isReachable {
+    } else if !segment.isReachable {
       warning = "Stora förseningar"
     }
     return warning
