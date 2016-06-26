@@ -42,9 +42,9 @@ class SubscriptionCell: UICollectionViewCell {
   func setup() {
     layer.masksToBounds = false
     layer.shadowOffset = CGSizeMake(1, 1)
-    layer.shadowRadius = 2.0
+    layer.shadowRadius = 1.5
     layer.shadowColor = UIColor.blackColor().CGColor
-    layer.shadowOpacity = 0.15
+    layer.shadowOpacity = 0.05
     layer.cornerRadius = 4.0
     clipsToBounds = false
   }
