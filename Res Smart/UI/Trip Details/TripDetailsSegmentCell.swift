@@ -33,10 +33,10 @@ class TripDetailsSegmentCell: UITableViewCell {
     lineLabel.textColor = lineData.color
     directionLabel.text = TripHelper.friendlyTripSegmentDesc(segment)
     summaryLabel.text = createSummary(segment)
-    warningLabel.text = segment.rtuMessages
+    warningLabel.text = generateWarningText(segment)
+
     warningLabel.hidden = false
-    
-    if warningLabel.text == nil {
+    if warningLabel.text == nil && !segment.isCancelled && segment.isReachable {
       warningLabel.hidden = true
     } else if !segment.isWarning {
       warningLabel.textColor = UIColor(red: 39/255, green: 44/255, blue: 211/255, alpha: 1.0)
@@ -71,11 +71,23 @@ class TripDetailsSegmentCell: UITableViewCell {
    * Generates a summary text for segment.
    */
   private func createSummary(segment: TripSegment) -> String {
-    print(segment.stops)
     if segment.stops.count > 0 {
       return "\(segment.stops.count + 1) hållplatser (\(segment.durationInMin) minuter)"
     }
     
     return "1 hållplats (\(segment.durationInMin) minuter)"
+  }
+  
+  /**
+   * Generates a warning text
+   */
+  private func generateWarningText(segment: TripSegment) -> String? {
+    var warning = segment.rtuMessages
+    if segment.isCancelled {
+      warning = "Inställd"
+    } else if segment.isReachable {
+      warning = "Stora förseningar"
+    }
+    return warning
   }
 }
