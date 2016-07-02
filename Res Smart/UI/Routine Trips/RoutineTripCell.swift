@@ -131,6 +131,7 @@ class RoutineTripCell: UICollectionViewCell {
    * Handles invalid trips (Canccelled or not reachable)
    */
   private func handleInvalidTrips(trip: Trip) {
+    inAboutLabel.textColor = UIColor.blackColor()
     if !trip.isValid {
       let validTuple = trip.checkInvalidSegments()
       inAboutLabel.textColor = StyleHelper.sharedInstance.warningColor
