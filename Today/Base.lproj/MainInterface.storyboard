@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="sHW-Yu-tuu">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="134"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Laddar..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPf-P3-ZK2" userLabel="Routine title Label">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
@@ -31,14 +31,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcN-0u-fOh" userLabel="Space">
-                                        <rect key="frame" x="0.0" y="30" width="320" height="10"/>
+                                        <rect key="frame" x="0.0" y="30" width="320" height="5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="10" id="xhw-FE-qwd"/>
+                                            <constraint firstAttribute="height" constant="5" id="xhw-FE-qwd"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yAb-RU-H0T" userLabel="Time table stack">
-                                        <rect key="frame" x="0.0" y="40" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="35" width="320" height="60"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="752" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pUt-NV-B2P" userLabel="Origin stack">
                                                 <rect key="frame" x="0.0" y="0.0" width="154" height="60"/>
@@ -47,23 +47,23 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="154" height="30"/>
                                                         <subviews>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text=" " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="15" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="y6Z-QV-5Fb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="5.5" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="6" height="30"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                                                 <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1E-F1-xDu" userLabel="Space">
-                                                                <rect key="frame" x="5.5" y="0.0" width="8" height="30"/>
+                                                                <rect key="frame" x="6" y="0.0" width="8" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="8" id="r8U-TH-Uvt"/>
                                                                 </constraints>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p8P-wm-lwD">
-                                                                <rect key="frame" x="13.5" y="0.0" width="140.5" height="30"/>
+                                                                <rect key="frame" x="14" y="0.0" width="140" height="30"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iw7-Cj-bqk">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="140.5" height="30"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="Mxt-Jj-CLJ"/>
                                                                         </constraints>
@@ -72,7 +72,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OPO-dc-3c6">
-                                                                        <rect key="frame" x="0.0" y="30" width="140.5" height="0.0"/>
+                                                                        <rect key="frame" x="0.0" y="30" width="140" height="0.0"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="15" id="lhd-bv-hWP"/>
                                                                         </constraints>
@@ -129,16 +129,9 @@
                                             <constraint firstItem="pUt-NV-B2P" firstAttribute="width" secondItem="yAb-RU-H0T" secondAttribute="width" multiplier="0.48" id="udt-Qd-1im"/>
                                         </constraints>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PKi-Ga-qCe" userLabel="Icon container">
-                                        <rect key="frame" x="0.0" y="100" width="320" height="34"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="azp-Lf-yEm"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="134" id="Oz5-0R-zUH"/>
+                                    <constraint firstAttribute="height" constant="95" id="Oz5-0R-zUH"/>
                                     <constraint firstItem="yAb-RU-H0T" firstAttribute="top" secondItem="pcN-0u-fOh" secondAttribute="bottom" id="Zzz-xP-M0p"/>
                                 </constraints>
                             </stackView>
@@ -160,7 +153,6 @@
                         <outlet property="arrivalTimeLabel" destination="sbf-z2-T7t" id="n5G-0z-eeC"/>
                         <outlet property="departureStationLabel" destination="nfO-2p-8FJ" id="Xhz-tW-zY0"/>
                         <outlet property="departureTimeLabel" destination="y6Z-QV-5Fb" id="HJi-uc-BGg"/>
-                        <outlet property="iconWrapperView" destination="PKi-Ga-qCe" id="FbV-oL-pTf"/>
                         <outlet property="inAboutLabel" destination="Iw7-Cj-bqk" id="aIg-GF-gPl"/>
                         <outlet property="nextLabel" destination="OPO-dc-3c6" id="0ab-Ze-WdU"/>
                         <outlet property="titleLabel" destination="KPf-P3-ZK2" id="sH7-Xr-per"/>

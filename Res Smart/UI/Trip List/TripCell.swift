@@ -84,7 +84,7 @@ class TripCell: UITableViewCell {
     var count = 0
     for (_, segment) in trip.tripSegments.enumerate() {
       if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
-        if count > 6 { return }
+        if count >= 6 { return }
         let data = TripHelper.friendlyLineData(segment)
         
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
