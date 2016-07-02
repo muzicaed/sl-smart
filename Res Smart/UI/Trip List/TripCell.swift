@@ -77,6 +77,7 @@ class TripCell: UITableViewCell {
   
   /**
    * Creates trip type icon per segment.
+   * TODO: Refactoring merge with RoutineTripCell.createTripSegmentIcons()
    */
   private func createTripSegmentIcons(trip: Trip) {
     iconAreaView.subviews.forEach({ $0.removeFromSuperview() })

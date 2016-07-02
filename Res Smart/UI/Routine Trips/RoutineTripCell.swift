@@ -111,7 +111,7 @@ class RoutineTripCell: UICollectionViewCell {
         first.departureDateTime, isWalk: first.type == TripType.Walk)
       
       tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
-      
+      handleInvalidTrips(trip)
       createTripSegmentIcons(trip)
     }
     
@@ -124,6 +124,18 @@ class RoutineTripCell: UICollectionViewCell {
           nextInAboutLabel.hidden = false
         }
       }
+    }
+  }
+  
+  /**
+   * Handles invalid trips (Canccelled or not reachable)
+   */
+  private func handleInvalidTrips(trip: Trip) {
+    if !trip.isValid {
+      let validTuple = trip.checkInvalidSegments()
+      inAboutLabel.textColor = StyleHelper.sharedInstance.warningColor
+      inAboutLabel.text = (validTuple.isCancelled) ? "Inställd" : "Stora förseningar"
+      tripDurationLabel.text = ""
     }
   }
   

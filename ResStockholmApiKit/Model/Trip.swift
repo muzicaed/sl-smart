@@ -46,6 +46,25 @@ public class Trip: NSObject, NSCopying {
   }
   
   /**
+   * Checks if any segments are cancelled or not reachable.
+   */
+  public func checkInvalidSegments() -> (isCancelled: Bool, isReachable: Bool) {
+    var returnTuple = (isCancelled: false, isReachable: true)
+    
+    if !isValid {
+      for segment in tripSegments {
+        if segment.isCancelled {
+          returnTuple.isCancelled = true
+        }
+        if !segment.isReachable {
+          returnTuple.isReachable = false
+        }
+      }
+    }
+    return returnTuple
+  }
+  
+  /**
    * Converts into data dictionary for transfer to AppleWatch.
    */
   public func watchTransferData() -> Dictionary<String, AnyObject> {

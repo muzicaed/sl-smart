@@ -443,9 +443,11 @@ class TripListVC: UITableViewController {
     let trip = trips[key]![idx]
     
     if !trip.isValid {
+      let validTuple = trip.checkInvalidSegments()
       let cell = tableView!.dequeueReusableCellWithIdentifier(
         cancelledCellIdentifier, forIndexPath: indexPath) as! TripCell
       cell.setupData(trip)
+      cell.tripDurationLabel.text = (validTuple.isCancelled) ? "Inställd" : "Stora förseningar"
       return cell
     }
     

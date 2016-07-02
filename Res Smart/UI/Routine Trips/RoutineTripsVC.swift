@@ -14,7 +14,7 @@ import SafariServices
 
 class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, LocationSearchResponder {
   
-  let cellIdentifier = "RoutineTripCell"
+  let routineCellIdentifier = "RoutineTripCell"
   let simpleCellIdentifier = "SimpleRoutineTripCell"
   let loadingCellIdentifier = "LoadingCell"
   let headerCellIdentifier = "HeaderView"
@@ -258,7 +258,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       
       if indexPath.row == 0 {
         if let routineTrip = bestRoutineTrip {
-          return createRoutineTripCell(routineTrip, type: cellIdentifier, indexPath: indexPath)
+          return createRoutineTripCell(routineTrip, type: routineCellIdentifier, indexPath: indexPath)
         } else {
           return createHereToThereCell(indexPath)
         }
@@ -310,10 +310,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   /**
    * Size for headers.
    */
-  func collectionView(collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                             referenceSizeForHeaderInSection section: Int) -> CGSize {
-    
+  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                      referenceSizeForHeaderInSection section: Int) -> CGSize {
     if section == 0  {
       return CGSizeMake(0, 0)
     } else if section == 1 && otherRoutineTrips.count == 0 {
@@ -326,9 +324,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   /**
    * User taps an item.
    */
-  override func collectionView(
-    collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    
+  override func collectionView(collectionView: UICollectionView,
+                               didSelectItemAtIndexPath indexPath: NSIndexPath) {
     if !isShowInfo && !isLoading && isSubscribing {
       if indexPath.section == 0 && (indexPath.row == 1 || bestRoutineTrip == nil) {
         performSegueWithIdentifier(fromHereToThereSegue, sender: self)
@@ -359,8 +356,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   /**
    * Green highlight on selected row.
    */
-  override func collectionView(collectionView: UICollectionView,
-                               willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+  override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell,
+                               forItemAtIndexPath indexPath: NSIndexPath) {
     if isSubscribing && !isShowInfo && !isLoading {
       let bgColorView = UIView()
       bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
@@ -527,7 +524,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(
       type, forIndexPath: indexPath) as! RoutineTripCell
     
-    let isBest = (type == cellIdentifier) ? true : false
+    let isBest = (type == routineCellIdentifier) ? true : false
     cell.setupData(trip, isBest: isBest)
     return cell
   }
