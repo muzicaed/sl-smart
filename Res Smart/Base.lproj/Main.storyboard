@@ -2908,11 +2908,6 @@ Smarta Rutiner och Res Smart på Apple Watch kräver en prenumeration.</string>
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Smart" id="9vb-OE-0pW">
-                        <barButtonItem key="leftBarButtonItem" title="Hjälp" id="rbu-cd-GBJ">
-                            <connections>
-                                <action selector="onHelpTap:" destination="TL9-Eb-L0b" id="tIn-dM-i0t"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Mina rutiner" id="KgG-WF-SzF">
                             <connections>
                                 <segue destination="06E-RP-qJs" kind="show" identifier="ManageRoutineTrips" id="plm-BT-rVX"/>
@@ -5042,10 +5037,10 @@ direkt från din iPhone.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zVB-lv-c0r"/>
+        <segue reference="fPH-Xr-GVg"/>
         <segue reference="WoO-7G-VaU"/>
         <segue reference="Q81-bK-EK6"/>
         <segue reference="L0K-5H-KeJ"/>
-        <segue reference="yy0-ry-irx"/>
         <segue reference="eBt-27-ZxS"/>
         <segue reference="GLI-h1-z4f"/>
         <segue reference="ivB-Ve-lrb"/>
