@@ -22,11 +22,25 @@ class StyleHelper {
   let realtimeColor = UIColor(red: 0/255, green: 113/255, blue: 218/255, alpha: 1.0)
   
   func setupCustomStyle() {
+    let navFont = UIFont(name: "HelveticaNeue-Light", size: 12)!
+    
     let navAppearance = UINavigationBar.appearance()
     navAppearance.translucent = false
     navAppearance.tintColor = UIColor.whiteColor()
     navAppearance.barTintColor = mainGreen
-    navAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+    navAppearance.titleTextAttributes = [
+      NSForegroundColorAttributeName: UIColor.whiteColor(),
+      NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 18)!]
+    
+    UIBarButtonItem.appearance().setTitleTextAttributes(
+      [
+        NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 16)!
+      ], forState: UIControlState.Normal)
+    
+    UIBarButtonItem.appearance().setTitleTextAttributes(
+      [
+        NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 16)!
+      ], forState: UIControlState.Selected)
     
     let tabBarAppearance = UITabBar.appearance()
     tabBarAppearance.tintColor = mainGreen
@@ -36,12 +50,16 @@ class StyleHelper {
     searchBarAppearance.barTintColor = mainGreen
     
     UITabBarItem.appearance().setTitleTextAttributes(
-      [NSForegroundColorAttributeName: UIColor(white: 0.0, alpha: 0.75)],
-      forState: UIControlState.Normal)
+      [
+        NSForegroundColorAttributeName: UIColor(white: 0.0, alpha: 0.75),
+        NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 12)!
+      ], forState: UIControlState.Normal)
     
     UITabBarItem.appearance().setTitleTextAttributes(
-      [NSForegroundColorAttributeName: mainGreen],
-      forState: UIControlState.Selected)
+      [
+        NSForegroundColorAttributeName: mainGreen,
+        NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 12)!
+      ], forState: UIControlState.Selected)
     
     UIApplication.sharedApplication().statusBarStyle = .LightContent
     (UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])).tintColor = UIColor.whiteColor()

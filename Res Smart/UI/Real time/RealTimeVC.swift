@@ -200,6 +200,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
                           heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     if isLoading {
       return tableView.bounds.height - 49 - 64 - 20 + 39
+    } else if indexPath.row == 0 {
+      return 34
     }
     return -1
   }
