@@ -352,9 +352,12 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePick
   override func tableView(
     tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if indexPath.section == 3 && indexPath.row == 1 {
-      hasChanged = true      
-      updateGenericValues()
-      tableView.deselectRowAtIndexPath(indexPath, animated: true)
+      hasChanged = true
+      if let routine = routineTrip {
+        routine.criterions.unsharp = !routine.criterions.unsharp
+        updateGenericValues()
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+      }
     }
   }
   
