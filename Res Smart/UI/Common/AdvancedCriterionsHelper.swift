@@ -21,7 +21,7 @@ class AdvancedCriterionsHelper {
     let numChangeString = createNoChangeString(criterions)
     let walkDistanceString = createWalkDistanceString(criterions)
     let extraTimeString = createExtraTimeString(criterions)
-    let isUnsharpString = (criterions.unsharp) ? "Alternativa. " : ""
+    let isUnsharpString = (!criterions.unsharp) ? "Inte alternativa. " : ""
     let incLinesString = (criterions.lineInc != nil) ? "Endast \(criterions.lineInc!). " : ""
     let excLinesString = (criterions.lineExc != nil) ? "Inte \(criterions.lineExc!). " : ""
     
