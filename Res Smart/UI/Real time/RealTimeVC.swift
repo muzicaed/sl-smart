@@ -226,7 +226,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       segmentProperties: [
         keySegmentOnSelectionTextColour: UIColor.blackColor(),
         keySegmentTitleFont: UIFont.systemFontOfSize(12.0),
-        keySegmentOnSelectionColour: StyleHelper.sharedInstance.highlight,
+        keySegmentOnSelectionColour: UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 0.5),
         keySegmentOffSelectionColour: UIColor.clearColor(),
         keyContentVerticalMargin: 10.0])
     
