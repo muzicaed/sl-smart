@@ -22,8 +22,6 @@ class StyleHelper {
   let realtimeColor = UIColor(red: 0/255, green: 113/255, blue: 218/255, alpha: 1.0)
   
   func setupCustomStyle() {
-    let navFont = UIFont(name: "HelveticaNeue-Light", size: 12)!
-    
     let navAppearance = UINavigationBar.appearance()
     navAppearance.translucent = false
     navAppearance.tintColor = UIColor.whiteColor()
@@ -40,6 +38,16 @@ class StyleHelper {
     UIBarButtonItem.appearance().setTitleTextAttributes(
       [
         NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 16)!
+      ], forState: UIControlState.Selected)
+    
+    UISegmentedControl.appearance().setTitleTextAttributes(
+      [
+        NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 14)!
+      ], forState: UIControlState.Normal)
+    
+    UISegmentedControl.appearance().setTitleTextAttributes(
+      [
+        NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 14)!
       ], forState: UIControlState.Selected)
     
     let tabBarAppearance = UITabBar.appearance()
