@@ -76,7 +76,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * View did unload
    */
   override func viewWillDisappear(animated: Bool) {
-    super.viewDidDisappear(animated)
+    super.viewWillDisappear(animated)
     stopRefreshTimmer()
   }
   

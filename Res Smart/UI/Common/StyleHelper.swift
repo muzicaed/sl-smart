@@ -30,6 +30,8 @@ class StyleHelper {
       NSForegroundColorAttributeName: UIColor.whiteColor(),
       NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 18)!]
     
+    UILabel.appearanceWhenContainedInInstancesOfClasses([UIButton.self]).font = UIFont(name: "HelveticaNeue", size: 16)!    
+    
     UIBarButtonItem.appearance().setTitleTextAttributes(
       [
         NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 16)!

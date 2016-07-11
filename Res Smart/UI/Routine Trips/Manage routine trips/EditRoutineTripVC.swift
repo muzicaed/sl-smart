@@ -46,16 +46,19 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePick
       title = "Ny rutin"
       isNewTrip = true
       routineTrip = RoutineTrip()
+      routineTrip?.criterions.unsharp = false
       locationPickerRow.setOriginLabelLocation(nil)
       locationPickerRow.setDestinationLabelLocation(nil)
       
     } else if isMakeRoutine {
+      routineTrip?.criterions.unsharp = false
       routineTripCopy = routineTrip!.copy() as? RoutineTrip
       setupEditData()
       title = "Ny rutin"
       isNewTrip = true
       
     } else {
+      routineTrip?.criterions.unsharp = false
       routineTripCopy = routineTrip!.copy() as? RoutineTrip
       setupEditData()
       isNewTrip = false
