@@ -47,7 +47,7 @@ class TripDetailsSegmentCell: UITableViewCell {
       warningLabel.hidden = true
     }
     updateStops(visual)
-    segmentIcon.frame.size.height += contentView.bounds.size.height + 1
+    //segmentIcon.frame.size.height += contentView.bounds.size.height + 1
   }
   
   /**
@@ -71,11 +71,13 @@ class TripDetailsSegmentCell: UITableViewCell {
    * Generates a summary text for segment.
    */
   private func createSummary(segment: TripSegment) -> String {
-    if segment.stops.count > 0 {
-      return "\(segment.stops.count + 1) hållplatser (\(segment.durationInMin) minuter)"
+    if segment.type == .Walk {
+      return "Gå i ca. \(segment.durationInMin) min"
+    } else if segment.stops.count > 0 {
+      return "\(segment.stops.count + 1) hållplatser (\(segment.durationInMin) min)"
     }
     
-    return "1 hållplats (\(segment.durationInMin) minuter)"
+    return "1 hållplats (\(segment.durationInMin) min)"
   }
   
   /**
@@ -86,7 +88,7 @@ class TripDetailsSegmentCell: UITableViewCell {
     if segment.isCancelled {
       warning = "Inställd"
     } else if !segment.isReachable {
-      warning = "Stora förseningar"
+      warning = "Kort byte"
     }
     return warning
   }

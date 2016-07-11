@@ -135,7 +135,7 @@ class RoutineTripCell: UICollectionViewCell {
     if !trip.isValid {
       let validTuple = trip.checkInvalidSegments()
       inAboutLabel.textColor = StyleHelper.sharedInstance.warningColor
-      inAboutLabel.text = (validTuple.isCancelled) ? "Inställd" : "Stora förseningar"
+      inAboutLabel.text = (validTuple.isCancelled) ? "Inställd" : "Kort byte"
       tripDurationLabel.text = ""
     }
   }

@@ -447,7 +447,7 @@ class TripListVC: UITableViewController {
       let cell = tableView!.dequeueReusableCellWithIdentifier(
         cancelledCellIdentifier, forIndexPath: indexPath) as! TripCell
       cell.setupData(trip)
-      cell.tripDurationLabel.text = (validTuple.isCancelled) ? "Inställd" : "Stora förseningar"
+      cell.tripDurationLabel.text = (validTuple.isCancelled) ? "Inställd" : "Kort byte"
       return cell
     }
     

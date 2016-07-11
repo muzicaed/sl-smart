@@ -21,12 +21,11 @@ class TripDetailsVC: UITableViewController {
   let originCellId = "Origin"
   let segmentCellId = "Segment"
   let subSegmentCellId = "SubSegment"
-  let changeCellId = "Change"
   let destinationCellId = "Destination"
   
   var trip = Trip(durationMin: 0, noOfChanges: 0, isValid: true, tripSegments: [TripSegment]())
   var stopsVisual = [(isVisible: Bool, hasStops: Bool)]()
-
+  
   let loadedTime = NSDate()
   
   override func viewDidLoad() {
@@ -39,7 +38,7 @@ class TripDetailsVC: UITableViewController {
     prepareVisualStops()
     loadStops()
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didBecomeActive),
-      name: UIApplicationDidBecomeActiveNotification, object: nil)
+                                                     name: UIApplicationDidBecomeActiveNotification, object: nil)
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -62,69 +61,41 @@ class TripDetailsVC: UITableViewController {
   // MARK: UITableViewController
   
   /**
-  * Number of sections
-  */
+   * Number of sections
+   */
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return trip.tripSegments.count + 1
+    return trip.tripSegments.count
   }
   
   /**
    * Number of rows in section
    */
   override func tableView(tableView: UITableView,
-    numberOfRowsInSection section: Int) -> Int {
-      if section == trip.tripSegments.count {
-        return 1
-      }
-      return calculateNumberOfRows(section)
+                          numberOfRowsInSection section: Int) -> Int {
+    return calculateNumberOfRows(section)
   }
   
   /**
    * Cell for index
    */
   override func tableView(tableView: UITableView,
-    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      let sec = indexPath.section
-      if sec == 0 {
-        return createOriginCell(indexPath)
-      } else if sec == trip.tripSegments.count {
-        return createDestinationCell()
-      }
-      
-      return createSegmentCell(indexPath)
-  }
-  
-  /**
-   * Row height
-   */
-  override func tableView(tableView: UITableView,
-    heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-      if indexPath.section == 0 {
-        if indexPath.row == 0 {
-          return 44
-        } else if indexPath.row == 1 {
-          return -1
-        }
-      } else if indexPath.section == trip.tripSegments.count {
-        return 44
-      }
-      
-      if indexPath.row == 0 {
-        return 60
-      } else if indexPath.row == 1 {
-        return -1
-      }
-      return 25
+                          cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    if indexPath.row == 0 {
+      return createOriginCell(indexPath)
+    } else if indexPath.row == (calculateNumberOfRows(indexPath.section) - 1) {
+      return createDestinationCell(indexPath)
+    }
+    return createSegmentCell(indexPath)
   }
   
   /**
    * Will display row at index
    */
   override func tableView(tableView: UITableView,
-    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-      let bgColorView = UIView()
-      bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
-      cell.selectedBackgroundView = bgColorView
+                          willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    let bgColorView = UIView()
+    bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
+    cell.selectedBackgroundView = bgColorView
   }
   
   /**
@@ -133,33 +104,22 @@ class TripDetailsVC: UITableViewController {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if (indexPath.section == 0 && indexPath.row == 1) ||
       (indexPath.section != trip.tripSegments.count && indexPath.row == 1) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if stopsVisual[indexPath.section].hasStops {
-          stopsVisual[indexPath.section].isVisible = !stopsVisual[indexPath.section].isVisible
-          updateStopsToggleAnimated(indexPath.section,
-            isVisible: stopsVisual[indexPath.section].isVisible)
-        }
+      tableView.deselectRowAtIndexPath(indexPath, animated: true)
+      if stopsVisual[indexPath.section].hasStops {
+        stopsVisual[indexPath.section].isVisible = !stopsVisual[indexPath.section].isVisible
+        updateStopsToggleAnimated(indexPath.section,
+                                  isVisible: stopsVisual[indexPath.section].isVisible)
+      }
     }
   }
   
   // MARK: Private
   
   /**
-  * Create table cell for origin row.
-  */
+   * Create table cell for origin row.
+   */
   private func createOriginCell(indexPath: NSIndexPath) -> UITableViewCell {
-    if indexPath.row == 0 {
-      let cell = tableView.dequeueReusableCellWithIdentifier(originCellId) as! TripDetailsOriginCell
-      cell.setData(indexPath, trip: trip)
-      return cell
-    } else if indexPath.row == 1 {
-      let visual = stopsVisual[indexPath.section]
-      let cell = tableView.dequeueReusableCellWithIdentifier(segmentCellId) as! TripDetailsSegmentCell
-      cell.setData(indexPath, visual: visual, trip: trip)
-      return cell
-    }
-    
-    let cell = tableView.dequeueReusableCellWithIdentifier(subSegmentCellId) as! TripDetailsSubSegmentCell
+    let cell = tableView.dequeueReusableCellWithIdentifier(originCellId) as! TripDetailsOriginCell
     cell.setData(indexPath, trip: trip)
     return cell
   }
@@ -168,11 +128,7 @@ class TripDetailsVC: UITableViewController {
    * Create table cell for segment row.
    */
   private func createSegmentCell(indexPath: NSIndexPath) -> UITableViewCell {
-    if indexPath.row == 0 {
-      let cell = tableView.dequeueReusableCellWithIdentifier(changeCellId) as! TripDetailsChangeCell
-      cell.setData(indexPath, trip: trip)
-      return cell
-    } else if indexPath.row == 1 {
+    if indexPath.row == 1 {
       let visual = stopsVisual[indexPath.section]
       let cell = tableView.dequeueReusableCellWithIdentifier(segmentCellId) as! TripDetailsSegmentCell
       cell.setData(indexPath, visual: visual, trip: trip)
@@ -187,9 +143,9 @@ class TripDetailsVC: UITableViewController {
   /**
    * Create table cell for segment row.
    */
-  private func createDestinationCell() -> UITableViewCell {
+  private func createDestinationCell(indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(destinationCellId) as! TripDetailsDestinationCell
-    cell.setData(NSIndexPath(), trip: trip)
+    cell.setData(indexPath, trip: trip)
     return cell
   }
   
@@ -200,10 +156,10 @@ class TripDetailsVC: UITableViewController {
     if section < trip.tripSegments.count && stopsVisual.count > 0 {
       let visual = stopsVisual[section]
       if visual.hasStops && visual.isVisible {
-        return 2 + trip.tripSegments[section].stops.count
+        return 3 + trip.tripSegments[section].stops.count
       }
     }
-    return 2
+    return 3
   }
   
   /**
@@ -274,22 +230,22 @@ class TripDetailsVC: UITableViewController {
    * Extracts relevant locations
    */
   private func extractLocations(locations: [CLLocation],
-    segment: TripSegment) -> [CLLocation] {
-      
-      var routeLocations = [CLLocation]()
-      var isPloting = false
-      for location in locations {
-        if location.distanceFromLocation(segment.origin.location) < 5 {
-          isPloting = true
-        } else if location.distanceFromLocation(segment.destination.location) < 5 {
-          break
-        }
-        
-        if isPloting {
-          routeLocations.append(location)
-        }
+                                segment: TripSegment) -> [CLLocation] {
+    
+    var routeLocations = [CLLocation]()
+    var isPloting = false
+    for location in locations {
+      if location.distanceFromLocation(segment.origin.location) < 5 {
+        isPloting = true
+      } else if location.distanceFromLocation(segment.destination.location) < 5 {
+        break
       }
-      return routeLocations
+      
+      if isPloting {
+        routeLocations.append(location)
+      }
+    }
+    return routeLocations
   }
   
   /**
