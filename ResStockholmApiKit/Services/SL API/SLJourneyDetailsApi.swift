@@ -32,6 +32,6 @@ class SLJourneyDetailsApi {
   */
   private func createJournyDetailsUrl(urlEncRef: String) -> String {
     let decoded = urlEncRef.stringByRemovingPercentEncoding!
-    return urlBase + "?key=\(apiKey)&\(decoded)"
+    return urlBase + "?key=\(apiKey)&realtime=true&\(decoded)"
   }
 }

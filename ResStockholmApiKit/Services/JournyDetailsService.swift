@@ -44,13 +44,35 @@ public class JournyDetailsService {
   * Converts the raw json string into array of Stops.
   */
   private static func convertStopJson(stopJson: JSON) -> Stop {
+    let timeDateTuple = extractTimeDate(stopJson)
+    
     return Stop(
       id: stopJson["id"].string!,
       routeIdx: stopJson["routeIdx"].string!,
       name: stopJson["name"].string!,
-      depDate: stopJson["depDate"].string,
-      depTime: stopJson["depTime"].string,
+      depDate: timeDateTuple.depDate,
+      depTime: timeDateTuple.depTime,
       lat: stopJson["lat"].string!,
       lon: stopJson["lon"].string!)
+  }
+  
+  /**
+   * Extracts departure date/time and arriaval date/time.
+   * Uses realtime data if available.
+   */
+  private static func extractTimeDate(stopJson: JSON)
+    -> (depDate: String?, depTime: String?) {
+
+      var depDate = stopJson["depDate"].string
+      var depTime = stopJson["depTime"].string
+      
+      if let rtDate = stopJson["rtDepDate"].string {
+        depDate = rtDate
+      }
+      if let rtTime = stopJson["rtDepTime"].string {
+        depTime = rtTime
+      }
+      
+      return (depDate, depTime)
   }
 }
