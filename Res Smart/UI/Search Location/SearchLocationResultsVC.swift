@@ -18,7 +18,6 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
   var searchOnlyForStations = true
   var noResults = false
   var isLocationForRealTimeSearch = false
-  var delegate: LocationSearchResponder?
   var searchQueryText: String?
   var selectedLocation: Location?
   

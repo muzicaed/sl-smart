@@ -257,6 +257,12 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
    * type (Station/Address).
    */
   private func createOriginQuery() -> String {
+    if origin != nil && origin?.type == .Current {
+      if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
+        return "&originCoordLat=\(currentLocation.lat)&originCoordLong=\(currentLocation.lon)&originCoordName=\(currentLocation.name)"
+      }
+    }
+    
     if origin == nil {
       return "&originId=\(originId)"
     } else if origin!.type == .Station {
@@ -270,6 +276,12 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
    * type (Station/Address).
    */
   private func createDestinationQuery() -> String {
+    if dest != nil && dest?.type == .Current {
+      if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
+        return "&destCoordLat=\(currentLocation.lat)&destCoordLong=\(currentLocation.lon)&destCoordName=\(currentLocation.name)"
+      }
+    }
+    
     if dest == nil {
       return "&destId=\(destId)"
     } else if dest!.type == .Station {

@@ -69,6 +69,13 @@ public class Location: NSObject, NSCoding, NSCopying {
   }
   
   /**
+   * Creates a current location instance.
+   */
+  public static func createCurrentLocation() -> Location {
+    return Location(id: nil, name: "Nuvarande plats", type: "Current", lat: "0.0", lon: "0.0")    
+  }
+  
+  /**
    * Extracts the name and area from a search result name.
    * Eg. "Spånga (Stockholm)" = "Spånga" and "Stockholm"
    */
@@ -186,6 +193,7 @@ public class Location: NSObject, NSCoding, NSCopying {
 public enum LocationType: String {
   case Station = "Station"
   case Address = "Address"
+  case Current = "Current"
   
   init?(fromShort: String) {
     switch fromShort.uppercaseString {
@@ -193,6 +201,8 @@ public enum LocationType: String {
       self = .Station
     case "ADR":
       self = .Address
+    case "CUR":
+      self = .Current
     default:
       return nil
     }

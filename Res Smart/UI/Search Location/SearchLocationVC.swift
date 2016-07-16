@@ -384,7 +384,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   private func selectLocation(indexPath: NSIndexPath) {
     if allowCurrentPosition &&
       indexPath.section == 0 && indexPath.row == 0 {
-      selectedLocation = MyLocationHelper.sharedInstance.getCurrentLocation()
+      selectedLocation = Location.createCurrentLocation()
     } else {
       let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
       let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
@@ -402,7 +402,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   private func navigateOnSelect() {
     if let loc = selectedLocation {
       searchController!.active = false
-      LatestLocationsStore.sharedInstance.addLatestLocation(loc)
+      if loc.type != .Current {
+        LatestLocationsStore.sharedInstance.addLatestLocation(loc)
+      }
       if isLocationForRealTimeSearch {
         performSegueWithIdentifier("showRealTime", sender: self)
       } else {
@@ -511,7 +513,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    */
   private func prepareSearchController() {
     let searchResultsVC = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchResult") as! SearchLocationResultsVC
-    searchResultsVC.delegate = self.delegate
     searchResultsVC.searchLocationVC = self
     searchResultsVC.searchOnlyForStations = searchOnlyForStations
     searchResultsVC.isLocationForRealTimeSearch = isLocationForRealTimeSearch
