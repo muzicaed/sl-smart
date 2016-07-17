@@ -111,7 +111,7 @@ public class DateUtils {
   /**
    * Creates an "(om xx min)" for depature time.
    */
-  public static func createAboutTimeText(departure: NSDate, isWalk: Bool) -> String {
+  public static func createAboutTimeText(departure: NSDate, isWalk: Bool) -> String {    
     var aboutStr = "Om"
     var nowStr = "Avgår nu"
     if isWalk {

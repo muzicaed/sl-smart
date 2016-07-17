@@ -352,6 +352,7 @@ class TripListVC: UITableViewController {
   private func loadTripData(shouldAppend: Bool) {
     if let criterions = self.criterions {
       NetworkActivity.displayActivityIndicator(true)
+      criterions.numTrips = (criterions.searchForArrival) ? 4 : criterions.numTrips
       SearchTripService.tripSearch(
         criterions, callback: { resTuple in
           NetworkActivity.displayActivityIndicator(false)
@@ -447,7 +448,7 @@ class TripListVC: UITableViewController {
       let cell = tableView!.dequeueReusableCellWithIdentifier(
         cancelledCellIdentifier, forIndexPath: indexPath) as! TripCell
       cell.setupData(trip)
-      cell.tripDurationLabel.text = (validTuple.isCancelled) ? "Inställd" : "Kort byte"
+      cell.tripDurationLabel.text = (validTuple.isCancelled) ? "Inställd" : "Kort bytestid"
       return cell
     }
     

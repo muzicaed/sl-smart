@@ -88,7 +88,7 @@ class TripDetailsSegmentCell: UITableViewCell {
     if segment.isCancelled {
       warning = "Inställd"
     } else if !segment.isReachable {
-      warning = "Kort byte"
+      warning = "Mycket kort bytestid"
     }
     return warning
   }

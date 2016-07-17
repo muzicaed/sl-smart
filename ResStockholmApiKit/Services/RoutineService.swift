@@ -104,7 +104,7 @@ public class RoutineService {
         if searchCrit.time != nil {
           searchCrit.searchForArrival = true
           searchCrit.numTrips = 1
-          routineTrip.title = "\(routineTrip.title!) (Imorgon)"
+          //routineTrip.title = "\(routineTrip.title!) (Imorgon)"
         }
         let timeDateTuple = createDateTimeTuple(routineTrip.criterions)
         searchCrit.date = timeDateTuple.date
