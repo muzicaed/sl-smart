@@ -11,7 +11,8 @@ import UIKit
 import ResStockholmApiKit
 
 class EditRoutineTripVC: UITableViewController, LocationSearchResponder, UITextFieldDelegate,
-TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePickerResponder {
+  TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePickerResponder,
+DateTimePickResponder {
   
   @IBOutlet weak var locationPickerRow: LocationPickerRow!
   @IBOutlet weak var viaLabel: UILabel!
@@ -25,12 +26,15 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePick
   var hasChanged = false
   var isViaSelected = false
   var isMakeRoutine = false
+  var selectedDate: NSDate?
+  var dimmer: UIView?
   
   @IBOutlet weak var isAlternative: UITableViewCell!
   @IBOutlet weak var maxWalkLabel: UILabel!
   @IBOutlet weak var numberOfChangesLabel: UILabel!
   @IBOutlet weak var changeTimeLabel: UILabel!
   @IBOutlet weak var linesLabel: UILabel!
+  @IBOutlet weak var arrivalTimeLabel: UILabel!
   
   /**
    * When view is done loading.
@@ -41,7 +45,9 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePick
     view.backgroundColor = StyleHelper.sharedInstance.background
     createFakeBackButton()
     updateGenericValues()
+    createDimmer()
     
+    // TODO: Refactoring, make function
     if routineTrip == nil && !isMakeRoutine {
       title = "Ny rutin"
       isNewTrip = true
@@ -137,6 +143,14 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePick
       vc.delegate = self
       vc.incText = routineTrip!.criterions.lineInc
       vc.excText = routineTrip!.criterions.lineExc
+      
+    } else if segue.identifier == "ShowTimePicker" {
+      let vc = segue.destinationViewController as! TimePickerVC
+      vc.selectedDate = selectedDate
+      vc.delegate = self
+      UIView.animateWithDuration(0.45, animations: {
+        self.dimmer?.alpha = 0.7
+      })
     }
   }
   
@@ -284,6 +298,26 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePick
     }
   }
   
+  // MARK: DateTimePickResponder
+  
+  /**
+   * Triggered whem date and time is picked
+   */
+  func pickedDate(date: NSDate?) -> Void {
+    if let routine = routineTrip, let date = date {
+      hasChanged = true
+      let dateTimeTuple = DateUtils.dateAsStringTuple(date)
+      routine.criterions.date = nil
+      routine.criterions.time = dateTimeTuple.time
+      arrivalTimeLabel.text = "Klockan \(dateTimeTuple.time)"
+      selectedDate = date
+      tableView.reloadData()
+    }
+    UIView.animateWithDuration(0.2, animations: {
+      self.dimmer?.alpha = 0.0
+    })
+  }
+  
   // MARK: UITableViewController
   
   /**
@@ -291,7 +325,7 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePick
    */
   override func tableView(tableView: UITableView,
                           numberOfRowsInSection section: Int) -> Int {
-    if section == 0 {
+    if section == 0 || section == 2 {
       return 1
     }
     return 2
@@ -311,30 +345,39 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePick
   /**
    * Can row be edited?
    */
-  override func tableView(tableView: UITableView,
-                          canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return (indexPath.section == 1 && indexPath.row == 1 && isViaSelected)
+  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return (
+      (indexPath.section == 1 && indexPath.row == 1 && isViaSelected) ||
+        (indexPath.section == 2 && selectedDate != nil)
+    )
   }
   
   /**
    * Editing style
    */
-  override func tableView(tableView: UITableView,
-                          editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-    return (indexPath.section == 1 && indexPath.row == 1) ? .Delete : .None
+  override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+    return (indexPath.section == 1 && indexPath.row == 1) || (indexPath.section == 2) ? .Delete : .None
   }
   
   /**
-   * Edit actions. (Only used for clear Via station)
+   * Edit actions. (Only used for clear Via station & Arrival time)
    */
-  override func tableView(tableView: UITableView,
-                          editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-    return [UITableViewRowAction(
-      style: UITableViewRowActionStyle.Normal,
-    title: "Rensa") { (_, _) -> Void in
-      self.resetViaStation()
-      tableView.reloadData()
-      }]
+  override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    if indexPath.section == 1 && indexPath.row == 1 {
+      return [
+        UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Rensa") { (_, _) -> Void in
+          self.resetViaStation()
+          tableView.reloadData()
+        }]
+    } else if indexPath.section == 2 {
+      return [
+        UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Rensa") { (_, _) -> Void in
+          self.selectedDate = nil
+          self.arrivalTimeLabel.text = "När som helst"
+          tableView.reloadData()
+        }]
+    }
+    return nil
   }
   
   /**
@@ -354,13 +397,15 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePick
    */
   override func tableView(
     tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if indexPath.section == 3 && indexPath.row == 1 {
+    if indexPath.section == 4 && indexPath.row == 1 {
       hasChanged = true
       if let routine = routineTrip {
         routine.criterions.unsharp = !routine.criterions.unsharp
         updateGenericValues()
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
       }
+    } else if indexPath.section == 2 && indexPath.row == 0 {
+      tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
   }
   
@@ -371,8 +416,8 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePick
     return true
   }
   
-  func textField(textField: UITextField,
-                 shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
+                 replacementString string: String) -> Bool {
     guard let text = textField.text else { return true }
     
     let newLength = text.characters.count + string.characters.count - range.length
@@ -587,5 +632,16 @@ TravelTypesResponder, PickLocationResponder, PickGenericValueResponder, LinePick
         linesLabel.text = "Använd inte: \(routine.criterions.lineExc!)"
       }
     }
+  }
+  
+  /**
+   * Creates a screen dimmer for date/time picker.
+   */
+  private func createDimmer() {
+    dimmer = UIView(frame: CGRect(origin: CGPoint.zero, size: view.bounds.size))
+    dimmer!.userInteractionEnabled = false
+    dimmer!.backgroundColor = UIColor.blackColor()
+    dimmer!.alpha = 0.0
+    view.addSubview(dimmer!)
   }
 }

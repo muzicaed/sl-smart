@@ -1499,10 +1499,34 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Senast framme" id="5BV-1Q-Q5K" userLabel="Arrival time">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="TravelTypesPicker" textLabel="PGQ-kb-Oig" style="IBUITableViewCellStyleDefault" id="jCl-Pe-T5a" userLabel="Arrival time picker">
+                                        <rect key="frame" x="0.0" y="325.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jCl-Pe-T5a" id="DwM-6b-bfn">
+                                            <rect key="frame" x="0.0" y="0.0" width="347" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="När som helst" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PGQ-kb-Oig">
+                                                    <rect key="frame" x="15" y="0.0" width="332" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vtd-et-fsf" kind="presentation" identifier="ShowTimePicker" modalPresentationStyle="overFullScreen" modalTransitionStyle="coverVertical" id="kf4-Vf-sAe"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Färdmedel" id="ruz-S1-zAJ" userLabel="Travel Types">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TravelTypesPicker" id="cNf-fO-L64" userLabel="Travel Types Picker" customClass="TravelTypesPickerRow" customModule="Res_Smart" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="325.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="419.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cNf-fO-L64" id="Agv-f5-cJm">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
@@ -1528,7 +1552,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Lines" id="DDI-bc-J6T" userLabel="Lines">
-                                        <rect key="frame" x="0.0" y="369.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="463.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DDI-bc-J6T" id="huo-MS-TPg">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
@@ -1558,13 +1582,13 @@
                             <tableViewSection headerTitle="Gångväg" id="mts-Rm-k4j" userLabel="Walk Options">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MaxWalkDistance" id="o2J-ba-jOU" userLabel="Max Walk Distance">
-                                        <rect key="frame" x="0.0" y="463.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="557.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o2J-ba-jOU" id="S5R-Ex-WVZ">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Högst 1 km gångväg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFI-Od-8cs" userLabel="Max Walk">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Högst 1 km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFI-Od-8cs" userLabel="Max Walk">
                                                     <rect key="frame" x="16" y="8" width="357" height="27"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1583,7 +1607,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="Alternative" textLabel="IU0-Eq-9Ct" detailTextLabel="16g-Ms-KWg" style="IBUITableViewCellStyleSubtitle" id="0qc-4b-ZGu" userLabel="Alternative">
-                                        <rect key="frame" x="0.0" y="507.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="601.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0qc-4b-ZGu" id="mbb-3o-yM5">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1612,7 +1636,7 @@
                             <tableViewSection headerTitle="Byten" id="j9k-cS-Otr" userLabel="Chagne Options">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeNumber" id="k8W-Px-77F" userLabel="Number of changes picker">
-                                        <rect key="frame" x="0.0" y="601.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="695.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k8W-Px-77F" id="wRy-If-usq">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
@@ -1637,7 +1661,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeNumber" id="bbK-Xa-Ur9" userLabel="Change time picker">
-                                        <rect key="frame" x="0.0" y="645.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="739.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bbK-Xa-Ur9" id="efy-Ca-cRH">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
@@ -1677,6 +1701,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="arrivalTimeLabel" destination="PGQ-kb-Oig" id="pZ2-Nm-IYf"/>
                         <outlet property="changeTimeLabel" destination="JgM-ch-i3t" id="HNM-me-iJG"/>
                         <outlet property="isAlternative" destination="0qc-4b-ZGu" id="q8e-zH-Ohe"/>
                         <outlet property="linesLabel" destination="dFc-z7-yUm" id="ox4-KB-H7S"/>
@@ -4855,6 +4880,110 @@ direkt från din iPhone.</string>
             </objects>
             <point key="canvasLocation" x="3332" y="2416"/>
         </scene>
+        <!--Date Time Picker-->
+        <scene sceneID="TUj-eK-593">
+            <objects>
+                <viewController title="Date Time Picker" id="vtd-et-fsf" customClass="TimePickerVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zVJ-5c-fFR"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rfg-xf-0Sj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gxg-2N-Spl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UgM-7R-J8T">
+                                <rect key="frame" x="0.0" y="476" width="414" height="260"/>
+                                <subviews>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="sPI-hj-375">
+                                        <rect key="frame" x="0.0" y="44" width="414" height="216"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="216" id="E4c-4c-qLz"/>
+                                        </constraints>
+                                        <date key="date" timeIntervalSinceReferenceDate="471350484.06288999">
+                                            <!--2015-12-09 10:41:24 +0000-->
+                                        </date>
+                                        <locale key="locale" localeIdentifier="sv"/>
+                                    </datePicker>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOB-b4-MAx" userLabel="Top bar">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EQG-fv-PPQ">
+                                                <rect key="frame" x="358" y="0.0" width="48" height="44"/>
+                                                <accessibility key="accessibilityConfiguration" label="Bekräfta val av tiden vald nedan."/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                <state key="normal" title="Välj tid">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onPickTimeButtonTap:" destination="vtd-et-fsf" eventType="touchUpInside" id="C0I-Oe-Zqi"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yff-Xq-SSK">
+                                                <rect key="frame" x="8" y="0.0" width="43" height="44"/>
+                                                <accessibility key="accessibilityConfiguration" label="Stäng tidväljare"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                <state key="normal" title="Stäng">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onCloseButtonTap:" destination="vtd-et-fsf" eventType="touchUpInside" id="uwb-Rm-rcl"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="När" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSg-b7-Aae">
+                                                <rect key="frame" x="157" y="0.0" width="100" height="44"/>
+                                                <accessibility key="accessibilityConfiguration" label="Välj tid. Använd klockobjekt nedan och bekräfta ditt val med knappen till höger om denna."/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="90Y-Ka-3dB"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="JSg-b7-Aae" firstAttribute="centerX" secondItem="XOB-b4-MAx" secondAttribute="centerX" id="2ey-zD-MQo"/>
+                                            <constraint firstAttribute="height" constant="44" id="6Q3-cy-lj1"/>
+                                            <constraint firstItem="EQG-fv-PPQ" firstAttribute="bottom" secondItem="XOB-b4-MAx" secondAttribute="bottom" id="J7c-pO-rWn"/>
+                                            <constraint firstAttribute="bottom" secondItem="Yff-Xq-SSK" secondAttribute="bottom" id="Kqv-ij-eXs"/>
+                                            <constraint firstItem="Yff-Xq-SSK" firstAttribute="top" secondItem="XOB-b4-MAx" secondAttribute="top" id="luw-gN-tmK"/>
+                                            <constraint firstItem="JSg-b7-Aae" firstAttribute="top" secondItem="XOB-b4-MAx" secondAttribute="top" id="nrb-Ib-0u0"/>
+                                            <constraint firstItem="EQG-fv-PPQ" firstAttribute="top" secondItem="XOB-b4-MAx" secondAttribute="top" id="pfR-hj-3qm"/>
+                                            <constraint firstItem="Yff-Xq-SSK" firstAttribute="leading" secondItem="XOB-b4-MAx" secondAttribute="leadingMargin" id="uXZ-om-luP"/>
+                                            <constraint firstItem="EQG-fv-PPQ" firstAttribute="trailing" secondItem="XOB-b4-MAx" secondAttribute="trailingMargin" id="w5o-c1-AJe"/>
+                                            <constraint firstAttribute="bottom" secondItem="JSg-b7-Aae" secondAttribute="bottom" id="xxP-Vs-Dfl"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="sPI-hj-375" secondAttribute="trailing" id="OdG-0i-NFR"/>
+                                    <constraint firstItem="sPI-hj-375" firstAttribute="leading" secondItem="UgM-7R-J8T" secondAttribute="leading" id="Pj1-II-qDW"/>
+                                    <constraint firstAttribute="trailing" secondItem="XOB-b4-MAx" secondAttribute="trailing" id="UlF-gQ-geg"/>
+                                    <constraint firstAttribute="bottom" secondItem="sPI-hj-375" secondAttribute="bottom" id="gL5-3Q-Ig2"/>
+                                    <constraint firstItem="XOB-b4-MAx" firstAttribute="leading" secondItem="UgM-7R-J8T" secondAttribute="leading" id="hVB-vt-ZfT"/>
+                                    <constraint firstItem="sPI-hj-375" firstAttribute="top" secondItem="XOB-b4-MAx" secondAttribute="bottom" id="kex-uI-iaH"/>
+                                    <constraint firstAttribute="height" constant="260" id="zlv-jP-bpC"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UgM-7R-J8T" firstAttribute="leading" secondItem="Gxg-2N-Spl" secondAttribute="leading" id="AwI-y9-C5F"/>
+                            <constraint firstItem="Rfg-xf-0Sj" firstAttribute="top" secondItem="UgM-7R-J8T" secondAttribute="bottom" id="XKY-x9-vgR"/>
+                            <constraint firstAttribute="trailing" secondItem="UgM-7R-J8T" secondAttribute="trailing" id="g43-zC-Fcs"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dateTimePicker" destination="sPI-hj-375" id="2et-Co-yNv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Om-Oi-UMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1512" y="302"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BUS" width="22" height="22"/>
@@ -4868,14 +4997,14 @@ direkt från din iPhone.</string>
         <image name="station-icon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zVB-lv-c0r"/>
-        <segue reference="WoO-7G-VaU"/>
-        <segue reference="fPH-Xr-GVg"/>
+        <segue reference="4rE-Hc-22D"/>
         <segue reference="Lg4-KG-mN0"/>
         <segue reference="L0K-5H-KeJ"/>
         <segue reference="GLI-h1-z4f"/>
+        <segue reference="yy0-ry-irx"/>
         <segue reference="eBt-27-ZxS"/>
-        <segue reference="kst-2L-81y"/>
         <segue reference="bAI-Ol-u0J"/>
+        <segue reference="kst-2L-81y"/>
+        <segue reference="zVB-lv-c0r"/>
     </inferredMetricsTieBreakers>
 </document>
