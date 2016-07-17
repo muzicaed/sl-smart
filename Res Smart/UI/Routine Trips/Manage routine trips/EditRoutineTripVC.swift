@@ -46,38 +46,7 @@ DateTimePickResponder {
     createFakeBackButton()
     updateGenericValues()
     createDimmer()
-    
-    // TODO: Refactoring, make function
-    if routineTrip == nil && !isMakeRoutine {
-      title = "Ny rutin"
-      isNewTrip = true
-      routineTrip = RoutineTrip()
-      routineTrip?.criterions.unsharp = false
-      locationPickerRow.setOriginLabelLocation(nil)
-      locationPickerRow.setDestinationLabelLocation(nil)
-      
-    } else if isMakeRoutine {
-      routineTrip?.criterions.unsharp = false
-      routineTripCopy = routineTrip!.copy() as? RoutineTrip
-      setupEditData()
-      title = "Ny rutin"
-      isNewTrip = true
-      
-    } else {
-      routineTrip?.criterions.unsharp = false
-      routineTripCopy = routineTrip!.copy() as? RoutineTrip
-      setupEditData()
-      isNewTrip = false
-      title = routineTrip!.title
-      self.navigationItem.rightBarButtonItems!.removeFirst()
-    }
-    
-    locationPickerRow.delegate = self
-    locationPickerRow.prepareGestures()
-    tripTitleTextField.delegate = self
-    tripTitleTextField.addTarget(
-      self, action: #selector(textFieldDidChange(_:)),
-      forControlEvents: UIControlEvents.EditingChanged)
+    prepareFields()
   }
   
   /**
@@ -364,6 +333,7 @@ DateTimePickResponder {
    */
   override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
     if indexPath.section == 1 && indexPath.row == 1 {
+      hasChanged = true
       return [
         UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Rensa") { (_, _) -> Void in
           self.resetViaStation()
@@ -372,8 +342,7 @@ DateTimePickResponder {
     } else if indexPath.section == 2 {
       return [
         UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Rensa") { (_, _) -> Void in
-          self.selectedDate = nil
-          self.arrivalTimeLabel.text = "När som helst"
+          self.resetArrivalTime()
           tableView.reloadData()
         }]
     }
@@ -427,6 +396,42 @@ DateTimePickResponder {
   // MARK: Private methods
   
   /**
+   * Prepares the fields.
+   */
+  private func prepareFields() {
+    if routineTrip == nil && !isMakeRoutine {
+      title = "Ny rutin"
+      isNewTrip = true
+      routineTrip = RoutineTrip()
+      routineTrip?.criterions.unsharp = false
+      locationPickerRow.setOriginLabelLocation(nil)
+      locationPickerRow.setDestinationLabelLocation(nil)
+      
+    } else if isMakeRoutine {
+      routineTrip?.criterions.unsharp = false
+      routineTripCopy = routineTrip!.copy() as? RoutineTrip
+      setupEditData()
+      title = "Ny rutin"
+      isNewTrip = true
+      
+    } else {
+      routineTrip?.criterions.unsharp = false
+      routineTripCopy = routineTrip!.copy() as? RoutineTrip
+      setupEditData()
+      isNewTrip = false
+      title = routineTrip!.title
+      self.navigationItem.rightBarButtonItems!.removeFirst()
+    }
+    
+    locationPickerRow.delegate = self
+    locationPickerRow.prepareGestures()
+    tripTitleTextField.delegate = self
+    tripTitleTextField.addTarget(
+      self, action: #selector(textFieldDidChange(_:)),
+      forControlEvents: UIControlEvents.EditingChanged)
+  }
+  
+  /**
    * Fills form with location data for edit.
    */
   private func setupEditData() {
@@ -435,6 +440,12 @@ DateTimePickResponder {
       locationPickerRow.setOriginLabelLocation(trip.criterions.origin)
       locationPickerRow.setDestinationLabelLocation(trip.criterions.dest)
       travelTypesPickerRow.updateLabel(trip.criterions)
+      
+      if let time = trip.criterions.time {
+        let today = NSDate()
+        selectedDate = DateUtils.convertDateString("\(DateUtils.dateAsDateString(today)) \(time)")
+        arrivalTimeLabel.text = "Klockan \(time)"
+      }
       
       if trip.criterions.via != nil {
         isViaSelected = true
@@ -561,6 +572,16 @@ DateTimePickResponder {
     isViaSelected = false
     routineTrip?.criterions.via = nil
     self.viaLabel.text = "(Välj station) - Valfri"
+  }
+  
+  /**
+   * Clear arrival time
+   */
+  private func resetArrivalTime() {
+    hasChanged = true
+    self.selectedDate = nil
+    routineTrip?.criterions.time = nil
+    self.arrivalTimeLabel.text = "När som helst"
   }
   
   /**
