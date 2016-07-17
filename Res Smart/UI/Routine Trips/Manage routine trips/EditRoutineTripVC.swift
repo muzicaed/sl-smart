@@ -352,10 +352,8 @@ DateTimePickResponder {
   /**
    * Will display row at index
    */
-  override func tableView(
-    tableView: UITableView, willDisplayCell cell: UITableViewCell,
-    forRowAtIndexPath indexPath: NSIndexPath) {
-    
+  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
+                          forRowAtIndexPath indexPath: NSIndexPath) {
     let bgColorView = UIView()
     bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
     cell.selectedBackgroundView = bgColorView
@@ -364,8 +362,7 @@ DateTimePickResponder {
   /**
    * User selected row
    */
-  override func tableView(
-    tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if indexPath.section == 4 && indexPath.row == 1 {
       hasChanged = true
       if let routine = routineTrip {
@@ -375,6 +372,15 @@ DateTimePickResponder {
       }
     } else if indexPath.section == 2 && indexPath.row == 0 {
       tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+  }
+  
+  /**
+   * User taps accessory button on row
+   */
+  override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+    if indexPath.section == 2 {
+      showArrivalTimeAlert()
     }
   }
   
@@ -469,7 +475,21 @@ DateTimePickResponder {
   }
   
   /**
-   * Show a invalid location alert
+   * Show a invalid title alert
+   */
+  private func showArrivalTimeAlert() {
+    let arrivalTimeAlert = UIAlertController(
+      title: "Senast framme",
+      message: "Du kan ange en tid när du senast behöver vara framme.\n\nDetta kan fungera bra med rutiner där du vill vara framme samma vid tid varje gång. T.ex. \"Åka till jobbet\" eller \"Fotbollsträning\"",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    arrivalTimeAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+    
+    presentViewController(arrivalTimeAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Show a arrival time info alert
    */
   private func showInvalidLocationAlert() {
     let invalidLocationAlert = UIAlertController(
