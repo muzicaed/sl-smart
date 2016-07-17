@@ -37,5 +37,17 @@ class DataMigration {
   }
   
   // Version 1.4
-  private static func migrateVersion_1_4() {}
+  private static func migrateVersion_1_4() {
+    print("Running migration v1.3")
+    let routines = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
+    for routine in routines {
+      if routine.isSmartSuggestion {
+        routine.criterions.date = nil
+        routine.criterions.time = nil
+        RoutineTripsStore.sharedInstance.updateRoutineTrip(routine)
+      }
+    }
+    defaults.setInteger(3, forKey: dataKey)
+    defaults.synchronize()
+  }
 }

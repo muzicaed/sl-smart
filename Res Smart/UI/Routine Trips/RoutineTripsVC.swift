@@ -91,8 +91,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         
       } else if let routineTrip = selectedRoutineTrip {
         if let crit = routineTrip.criterions.copy() as? TripSearchCriterion {
-          crit.date = DateUtils.dateAsDateString(NSDate())
-          crit.time = DateUtils.dateAsTimeString(NSDate())
+          crit.searchForArrival = (crit.time != nil) ? true : false
+          let timeDateTuple = createDateTimeTuple(routineTrip.criterions)
+          crit.date = timeDateTuple.date
+          crit.time = timeDateTuple.time
           
           let vc = segue.destinationViewController as! TripListVC
           vc.criterions = crit
@@ -585,6 +587,27 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       }))
     
     presentViewController(restoreAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Create date & time tuple.
+   * Takes routine arrival time in to consideration.
+   */
+  private func createDateTimeTuple(criterions: TripSearchCriterion) -> (date: String, time: String) {
+    if let time = criterions.time {
+      let now = NSDate()
+      let date = DateUtils.convertDateString("\(DateUtils.dateAsDateString(now)) \(time)")
+      if date.timeIntervalSinceNow > (60 * 60) * -1 {
+        print("Before.")
+        (DateUtils.dateAsDateString(now), time)
+      } else {
+        print("After.")
+        let tomorrow = now.dateByAddingTimeInterval(60 * 60 * 24 * 1)
+        return (DateUtils.dateAsDateString(tomorrow), time)
+      }
+    }
+    
+    return (DateUtils.dateAsDateString(NSDate()), DateUtils.dateAsTimeString(NSDate()))
   }
   
   deinit {
