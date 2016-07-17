@@ -283,9 +283,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     let screenSize = UIScreen.mainScreen().bounds.size
     if indexPath.section == 0 {
       if !isSubscribing {
-        return CGSizeMake(screenSize.width - 20, 300)
+        return CGSizeMake(screenSize.width - 20, 280)
       } else if isShowInfo {
-        return CGSizeMake(screenSize.width - 20, 275)
+        return CGSizeMake(screenSize.width - 20, 250)
       } else if bestRoutineTrip != nil {
         if indexPath.row == 0 {
           return CGSizeMake(screenSize.width - 20, 160)

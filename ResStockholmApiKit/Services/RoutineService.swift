@@ -103,8 +103,7 @@ public class RoutineService {
       if let searchCrit = routineTrip.criterions.copy() as? TripSearchCriterion {
         if searchCrit.time != nil {
           searchCrit.searchForArrival = true
-          searchCrit.numTrips = 1
-          //routineTrip.title = "\(routineTrip.title!) (Imorgon)"
+          searchCrit.numTrips = 1        
         }
         let timeDateTuple = createDateTimeTuple(routineTrip.criterions)
         searchCrit.date = timeDateTuple.date
