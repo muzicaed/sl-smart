@@ -131,10 +131,8 @@ public class RoutineService {
       let now = NSDate()
       let date = DateUtils.convertDateString("\(DateUtils.dateAsDateString(now)) \(time)")
       if date.timeIntervalSinceNow > (60 * 60) * -1 {
-        print("Before.")
-        (DateUtils.dateAsDateString(now), time)
+        return (DateUtils.dateAsDateString(now), time)
       } else {
-        print("After.")
         let tomorrow = now.dateByAddingTimeInterval(60 * 60 * 24 * 1)
         return (DateUtils.dateAsDateString(tomorrow), time)
       }

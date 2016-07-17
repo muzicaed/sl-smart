@@ -279,7 +279,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   func collectionView(collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                              sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-    
     let screenSize = UIScreen.mainScreen().bounds.size
     if indexPath.section == 0 {
       if !isSubscribing {
@@ -598,10 +597,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       let now = NSDate()
       let date = DateUtils.convertDateString("\(DateUtils.dateAsDateString(now)) \(time)")
       if date.timeIntervalSinceNow > (60 * 60) * -1 {
-        print("Before.")
-        (DateUtils.dateAsDateString(now), time)
+        return (DateUtils.dateAsDateString(now), time)
       } else {
-        print("After.")
         let tomorrow = now.dateByAddingTimeInterval(60 * 60 * 24 * 1)
         return (DateUtils.dateAsDateString(tomorrow), time)
       }
