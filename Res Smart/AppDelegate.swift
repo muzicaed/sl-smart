@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     DataMigration.migrateData()
     setupAppleWatchConnection()
     setupApp()
+    setupLocalNotifications()
     
     return true
   }
@@ -36,12 +37,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   func applicationDidEnterBackground(application: UIApplication) {
     let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
     defaults.synchronize()
+    
+    let notification = UILocalNotification()
+    notification.fireDate = NSDate(timeIntervalSinceNow: 5)
+    notification.alertBody = "Du har väll inte glömt mig? 😄"
+    UIApplication.sharedApplication().scheduledLocalNotifications = [notification]
   }
   
-  func applicationWillEnterForeground(application: UIApplication) {
-    // Optimize search early.
-    RoutineService.findRoutineTrip() {_ in }
-  }
+  func applicationWillEnterForeground(application: UIApplication) {}
   
   func applicationDidBecomeActive(application: UIApplication) {
     SubscriptionManager.sharedInstance.validateSubscription()
@@ -130,6 +133,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         self.notificationCenter.postNotificationName("TrafficSituations", object: count)
       }
     }
+  }
+  
+  /**
+   * Register for local notifications.
+   */
+  private func setupLocalNotifications() {
+    let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert], categories: nil)
+    UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
   }
 }
 
