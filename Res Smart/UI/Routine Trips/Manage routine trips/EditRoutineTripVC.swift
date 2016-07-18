@@ -421,7 +421,6 @@ DateTimePickResponder {
       isNewTrip = true
       
     } else {
-      routineTrip?.criterions.unsharp = false
       routineTripCopy = routineTrip!.copy() as? RoutineTrip
       setupEditData()
       isNewTrip = false
