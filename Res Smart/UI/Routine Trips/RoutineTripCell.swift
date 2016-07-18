@@ -149,6 +149,8 @@ class RoutineTripCell: UICollectionViewCell {
       inAboutLabel.textColor = StyleHelper.sharedInstance.warningColor
       inAboutLabel.text = (validTuple.isCancelled) ? "Inställd" : "Kort bytestid"
       tripDurationLabel.text = ""
+    } else if inAboutLabel.text == "Redan avgått" {
+      inAboutLabel.textColor = StyleHelper.sharedInstance.warningColor
     }
   }
   
