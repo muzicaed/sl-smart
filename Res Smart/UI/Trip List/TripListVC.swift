@@ -145,6 +145,8 @@ class TripListVC: UITableViewController {
         routine!.criterions = criterions!.copy() as! TripSearchCriterion
       }
       routine?.criterions.searchForArrival = false
+      routine?.criterions.date = nil
+      routine?.criterions.time = nil
       vc.routineTrip = routine
       vc.isMakeRoutine = true
     }
