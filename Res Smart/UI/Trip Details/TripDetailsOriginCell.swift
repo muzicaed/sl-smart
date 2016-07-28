@@ -19,10 +19,12 @@ class TripDetailsOriginCell: UITableViewCell, TripCellProtocol {
    * Set cell data.
    */
   func setData(indexPath: NSIndexPath, trip: Trip) {
-    timeLabel.text = DateUtils.dateAsTimeString(trip.tripSegments.first!.departureDateTime)
+    let segment = trip.tripSegments[indexPath.section]
+    timeLabel.text = DateUtils.dateAsTimeString(segment.departureDateTime)
     timeLabel.accessibilityLabel = "Avgång \(timeLabel.text!)"
-    locationLabel.text = trip.tripSegments.first!.origin.cleanName
+    locationLabel.text = segment.origin.cleanName
     locationLabel.accessibilityLabel = "från \(locationLabel.text!)"
+    locationLabel.textColor = UIColor.blackColor()
   }
 
 }

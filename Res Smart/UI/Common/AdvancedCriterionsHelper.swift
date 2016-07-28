@@ -16,7 +16,7 @@ class AdvancedCriterionsHelper {
    * describe the advanced search criterias.
    */
   static func createAdvCriterionText(criterions: TripSearchCriterion) -> String {
-    let isAdvancedString = (criterions.via != nil) ? "Via \(criterions.via!.name). " : ""
+    let isViaString = (criterions.via != nil) ? "Via \(criterions.via!.name). " : ""
     let travelTypesString = createTravelTypeString(criterions)
     let numChangeString = createNoChangeString(criterions)
     let walkDistanceString = createWalkDistanceString(criterions)
@@ -24,8 +24,10 @@ class AdvancedCriterionsHelper {
     let isUnsharpString = (criterions.unsharp) ? "Alternativa. " : ""
     let incLinesString = (criterions.lineInc != nil) ? "Endast \(criterions.lineInc!). " : ""
     let excLinesString = (criterions.lineExc != nil) ? "Inte \(criterions.lineExc!). " : ""
+    let arrivalTimeString = (criterions.time != nil) ? "Framme \(criterions.time!). " : ""
     
-    return (isAdvancedString + travelTypesString + numChangeString + walkDistanceString + extraTimeString + isUnsharpString + incLinesString + excLinesString)
+    return (isViaString + arrivalTimeString + travelTypesString + numChangeString +
+      walkDistanceString + extraTimeString + isUnsharpString + incLinesString + excLinesString)
   }
   
   /**
@@ -117,33 +119,33 @@ class AdvancedCriterionsHelper {
    */
   static private func createNotIncludedTravelTypeString(
     criterions: TripSearchCriterion) -> String {
-      
-      var travelTypesString = ""
-      if !criterions.useMetro {
-        travelTypesString += "tunnelbana, "
-      }
-      if !criterions.useTrain {
-        travelTypesString += "pendeltåg, "
-      }
-      if !criterions.useTram {
-        travelTypesString += "spårvagn, "
-      }
-      if !criterions.useBus {
-        travelTypesString += "buss, "
-      }
-      if !criterions.useFerry {
-        travelTypesString += "båt, "
-      }
-      
-      if travelTypesString != "" {
-        travelTypesString = "Ej med " + travelTypesString.substringToIndex(
-          travelTypesString.endIndex.predecessor().predecessor()) + ". "
-      }
-      if let lastRange = travelTypesString.rangeOfString(", ",
-        options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil) {
-          travelTypesString.replaceRange(lastRange, with: " eller ")
-      }
-      return travelTypesString
+    
+    var travelTypesString = ""
+    if !criterions.useMetro {
+      travelTypesString += "tunnelbana, "
+    }
+    if !criterions.useTrain {
+      travelTypesString += "pendeltåg, "
+    }
+    if !criterions.useTram {
+      travelTypesString += "spårvagn, "
+    }
+    if !criterions.useBus {
+      travelTypesString += "buss, "
+    }
+    if !criterions.useFerry {
+      travelTypesString += "båt, "
+    }
+    
+    if travelTypesString != "" {
+      travelTypesString = "Ej med " + travelTypesString.substringToIndex(
+        travelTypesString.endIndex.predecessor().predecessor()) + ". "
+    }
+    if let lastRange = travelTypesString.rangeOfString(", ",
+                                                       options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil) {
+      travelTypesString.replaceRange(lastRange, with: " eller ")
+    }
+    return travelTypesString
   }
   
   /**
@@ -152,32 +154,32 @@ class AdvancedCriterionsHelper {
    */
   static private func createIncludedTravelTypeString(
     criterions: TripSearchCriterion) -> String {
-      
-      var travelTypesString = ""
-      if criterions.useMetro {
-        travelTypesString += "tunnelbana, "
-      }
-      if criterions.useTrain {
-        travelTypesString += "pendeltåg, "
-      }
-      if criterions.useTram {
-        travelTypesString += "spårvagn, "
-      }
-      if criterions.useBus {
-        travelTypesString += "buss, "
-      }
-      if criterions.useFerry {
-        travelTypesString += "båt, "
-      }
-      
-      if travelTypesString != "" {
-        travelTypesString = "Endast med " + travelTypesString.substringToIndex(
-          travelTypesString.endIndex.predecessor().predecessor()) + ". "
-      }
-      if let lastRange = travelTypesString.rangeOfString(", ",
-        options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil) {
-          travelTypesString.replaceRange(lastRange, with: " och ")
-      }
-      return travelTypesString
+    
+    var travelTypesString = ""
+    if criterions.useMetro {
+      travelTypesString += "tunnelbana, "
+    }
+    if criterions.useTrain {
+      travelTypesString += "pendeltåg, "
+    }
+    if criterions.useTram {
+      travelTypesString += "spårvagn, "
+    }
+    if criterions.useBus {
+      travelTypesString += "buss, "
+    }
+    if criterions.useFerry {
+      travelTypesString += "båt, "
+    }
+    
+    if travelTypesString != "" {
+      travelTypesString = "Endast med " + travelTypesString.substringToIndex(
+        travelTypesString.endIndex.predecessor().predecessor()) + ". "
+    }
+    if let lastRange = travelTypesString.rangeOfString(", ",
+                                                       options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil) {
+      travelTypesString.replaceRange(lastRange, with: " och ")
+    }
+    return travelTypesString
   }
 }

@@ -72,11 +72,11 @@
 		18733C631C4E568500F66AEF /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C5F1C4E568500F66AEF /* SMSegment.swift */; };
 		18733C641C4E568500F66AEF /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C601C4E568500F66AEF /* SMSegmentView.swift */; };
 		18733C661C4E56C500F66AEF /* RTBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C651C4E56C500F66AEF /* RTBus.swift */; };
+		187808DF1D3A9DB100D297FF /* TimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187808DE1D3A9DB100D297FF /* TimePickerVC.swift */; };
 		188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367681C16EEA000A8BE16 /* TripDetailsVC.swift */; };
 		1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */; };
 		1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */; };
 		1883676F1C170DE500A8BE16 /* TripDetailsOriginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676E1C170DE500A8BE16 /* TripDetailsOriginCell.swift */; };
-		188367711C170E1800A8BE16 /* TripDetailsChangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367701C170E1800A8BE16 /* TripDetailsChangeCell.swift */; };
 		188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */; };
 		188367751C170E5500A8BE16 /* TripDetailsDestinationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */; };
 		1885A4131CDF95E300680F8E /* LinePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885A4121CDF95E300680F8E /* LinePickerVC.swift */; };
@@ -332,6 +332,7 @@
 		18733C5F1C4E568500F66AEF /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
 		18733C601C4E568500F66AEF /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
 		18733C651C4E56C500F66AEF /* RTBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBus.swift; sourceTree = "<group>"; };
+		187808DE1D3A9DB100D297FF /* TimePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerVC.swift; sourceTree = "<group>"; };
 		1880D4C31C8E429700648E3F /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Interface.strings; sourceTree = "<group>"; };
 		1880D4C41C8E429700648E3F /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchService.swift; sourceTree = "<group>"; };
@@ -339,7 +340,6 @@
 		1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCellProtocol.swift; sourceTree = "<group>"; };
 		1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsHeaderCell.swift; sourceTree = "<group>"; };
 		1883676E1C170DE500A8BE16 /* TripDetailsOriginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsOriginCell.swift; sourceTree = "<group>"; };
-		188367701C170E1800A8BE16 /* TripDetailsChangeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsChangeCell.swift; sourceTree = "<group>"; };
 		188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsSegmentCell.swift; sourceTree = "<group>"; };
 		188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsDestinationCell.swift; sourceTree = "<group>"; };
 		1885A4121CDF95E300680F8E /* LinePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinePickerVC.swift; sourceTree = "<group>"; };
@@ -518,6 +518,7 @@
 				18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */,
 				18232CAD1C01F1CA006334D1 /* ManageRoutineTripCell.swift */,
 				18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */,
+				187808DE1D3A9DB100D297FF /* TimePickerVC.swift */,
 			);
 			name = "Manage Routine Trips";
 			path = "Manage routine trips";
@@ -610,7 +611,6 @@
 				1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */,
 				1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */,
 				1883676E1C170DE500A8BE16 /* TripDetailsOriginCell.swift */,
-				188367701C170E1800A8BE16 /* TripDetailsChangeCell.swift */,
 				188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */,
 				188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */,
 				1843AC531C4A78020065A462 /* TripDetailsSubSegmentCell.swift */,
@@ -1275,7 +1275,6 @@
 				18609B381CC3B55E002F6346 /* LocationMapVC.swift in Sources */,
 				1869E2991C1E0E36001FE4B2 /* PickLocationResponder.swift in Sources */,
 				1885ED001C20BD7A000E803D /* UILabelExtention.swift in Sources */,
-				188367711C170E1800A8BE16 /* TripDetailsChangeCell.swift in Sources */,
 				1899F2691C4B9C9200534587 /* RoutePolyline.swift in Sources */,
 				1892BA3A1C1F188700BC191A /* TravelTypesVC.swift in Sources */,
 				18BC85241CA01A3D0061C0BA /* BusFilterVC.swift in Sources */,
@@ -1287,6 +1286,7 @@
 				1892BA3E1C1F26E100BC191A /* TravelTypesPickerRow.swift in Sources */,
 				188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */,
 				18698AA61C4E91000031D1AD /* RealTimeHeaderRow.swift in Sources */,
+				187808DF1D3A9DB100D297FF /* TimePickerVC.swift in Sources */,
 				18698AAC1C4E913A0031D1AD /* RealTimeTripRow.swift in Sources */,
 				185D8DBE1C189D0200300890 /* WatchService.swift in Sources */,
 				188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */,

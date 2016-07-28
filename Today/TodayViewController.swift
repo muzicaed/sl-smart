@@ -114,6 +114,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     if let iconWrapper = iconWrapperView {
       iconWrapper.subviews.forEach({ $0.removeFromSuperview() })
       var count = 0
+
       for (_, segment) in trip.tripSegments.enumerate() {
         if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
           if count > 6 { return }

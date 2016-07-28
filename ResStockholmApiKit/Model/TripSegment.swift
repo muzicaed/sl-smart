@@ -26,6 +26,9 @@ public class TripSegment: NSObject, NSCopying {
   public let rtuMessages: String?
   public let notes: String?
   public let isWarning: Bool
+  public let durationInMin: Int
+  public let isReachable: Bool
+  public let isCancelled: Bool
   
   public var stops = [Stop]()
   public var routeLineLocations = [CLLocation]()
@@ -37,35 +40,39 @@ public class TripSegment: NSObject, NSCopying {
     departureDate: String, arrivalDate: String,
     distance: Int?, isRealtime: Bool, journyRef: String?,
     geometryRef: String, rtuMessages: String?,
-    notes: String?, isWarning: Bool) {
-      
-      self.index = index
-      self.name = name
-      self.type = TripType(rawValue: type)!
-      if let dir = directionText {
-        self.directionText = StringUtils.fixBrokenEncoding(dir)
-      } else {
-        self.directionText = nil
-      }
-      self.lineNumber = lineNumber
-      self.origin = origin
-      self.destination = destination
-      self.departureDateTime =  DateUtils.convertDateString("\(departureDate) \(departureTime)")
-      self.arrivalDateTime =  DateUtils.convertDateString("\(arrivalDate) \(arrivalTime)")
-      self.distance = distance
-      self.isRealtime = isRealtime
-      self.journyRef = journyRef
-      self.geometryRef = geometryRef
-      self.rtuMessages = rtuMessages
-      self.notes = notes
-      self.isWarning = isWarning
+    notes: String?, isWarning: Bool, isReachable: Bool, isCancelled: Bool) {
+    
+    self.index = index
+    self.name = name
+    self.type = TripType(rawValue: type)!
+    if let dir = directionText {
+      self.directionText = StringUtils.fixBrokenEncoding(dir)
+    } else {
+      self.directionText = nil
+    }
+    self.lineNumber = lineNumber
+    self.origin = origin
+    self.destination = destination
+    self.departureDateTime =  DateUtils.convertDateString("\(departureDate) \(departureTime)")
+    self.arrivalDateTime =  DateUtils.convertDateString("\(arrivalDate) \(arrivalTime)")
+    self.distance = distance
+    self.isRealtime = isRealtime
+    self.journyRef = journyRef
+    self.geometryRef = geometryRef
+    self.rtuMessages = rtuMessages
+    self.notes = notes
+    self.isWarning = isWarning
+    self.isReachable = isReachable
+    self.isCancelled = isCancelled
+    
+    self.durationInMin = Int(self.arrivalDateTime.timeIntervalSinceDate(self.departureDateTime) / 60)
   }
   
   // MARK: NSCopying
   
   /**
-  * Copy self (Stops & route line locations are not copied!)
-  */
+   * Copy self (Stops & route line locations are not copied!)
+   */
   public func copyWithZone(zone: NSZone) -> AnyObject {
     let seg = TripSegment(
       index: index, name: name, type: type.rawValue,
@@ -78,8 +85,9 @@ public class TripSegment: NSObject, NSCopying {
       arrivalDate: DateUtils.dateAsDateString(departureDateTime),
       distance: distance, isRealtime: isRealtime, journyRef: journyRef,
       geometryRef: geometryRef, rtuMessages: rtuMessages,
-      notes: notes, isWarning: isWarning)
-
+      notes: notes, isWarning: isWarning, isReachable: isReachable,
+      isCancelled: isCancelled)
+    
     return seg
   }
 }

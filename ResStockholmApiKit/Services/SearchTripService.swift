@@ -73,9 +73,14 @@ public class SearchTripService {
    */
   private static func convertJsonToTrip(tripJson: JSON) -> Trip {
     let tripSegments = convertJsonToSegments(tripJson["LegList"]["Leg"])
+    var isValid = true
+    if let val = tripJson["valid"].string {
+      isValid = (val == "false") ? false : true
+    }
     return Trip(
       durationMin: Int(tripJson["dur"].string!)!,
       noOfChanges: Int(tripJson["chg"].string!)!,
+      isValid: isValid,
       tripSegments: tripSegments.sort({ $0.index < $1.index }))
   }
   
@@ -119,7 +124,12 @@ public class SearchTripService {
       rtuMessages = extractRtuMessages(segmentJson["RTUMessages"]["RTUMessage"])
     }
     
-    let isWarning = DisturbanceTextHelper.isDisturbance(rtuMessages)
+    var isWarning = DisturbanceTextHelper.isDisturbance(rtuMessages)
+    let isReachable = (segmentJson["reachable"].string == nil) ? true : false
+    let isCancelled = (segmentJson["cancelled"].string == nil) ? false : true
+    if !isReachable || isCancelled {
+      isWarning = true
+    }
     
     return TripSegment(
       index: Int(segmentJson["idx"].string!)!,
@@ -134,7 +144,8 @@ public class SearchTripService {
       distance: Int(distString), isRealtime: dateTimeTuple.isRealtime,
       journyRef: segmentJson["JourneyDetailRef"]["ref"].string,
       geometryRef: segmentJson["GeometryRef"]["ref"].string!,
-      rtuMessages: rtuMessages, notes: "", isWarning: isWarning)
+      rtuMessages: rtuMessages, notes: "", isWarning: isWarning,
+      isReachable: isReachable, isCancelled: isCancelled)
   }
   
   /**

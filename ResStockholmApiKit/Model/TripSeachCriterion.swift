@@ -23,7 +23,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   public var numChg = -1
   public var minChgTime = 0
   public var searchForArrival = false
-  public var unsharp = false
+  public var unsharp = true
   public var maxWalkDist = 1000
   
   public var useTrain = true
@@ -34,7 +34,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   public var useShip = true
   
   public var numTrips = 8
-  public var realtime = false
+  public var realtime = true
   
   public var isAdvanced = false
   
@@ -87,7 +87,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     
     query += (searchForArrival) ? "&searchForArrival=1" : ""
     query += (unsharp) ? "&unsharp=1" : ""
-    query += (realtime) ? "&realtime=true" : ""
+    query += "&realtime=true" //(realtime) ? "&realtime=true" : "" TODO: Hardcoded realtime, setting?
     query += (maxWalkDist > 0) ? "&maxWalkDist=\(maxWalkDist)" : ""
     query += (lineInc != nil) ? "&lineInc=\(lineInc!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))" : ""
     query += (lineExc != nil) ? "&lineExc=\(lineExc!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))" : ""
@@ -113,7 +113,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     maxWalkDist = 1000
     numChg = -1
     minChgTime = 0
-    unsharp = false
+    unsharp = true
     lineInc = nil
     lineExc = nil
   }
@@ -154,7 +154,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     self.useFerry = aDecoder.decodeBoolForKey(PropertyKey.useFerry)
     self.useShip = aDecoder.decodeBoolForKey(PropertyKey.useShip)
     self.numTrips = aDecoder.decodeIntegerForKey(PropertyKey.numTrips)
-    self.realtime = false // TODO: Check here for realtime! aDecoder.decodeBoolForKey(PropertyKey.realtime)
+    self.realtime = aDecoder.decodeBoolForKey(PropertyKey.realtime)
     self.isAdvanced = aDecoder.decodeBoolForKey(PropertyKey.isAdvanced)
     self.lineInc = aDecoder.decodeObjectForKey(PropertyKey.lineInc) as! String?
     self.lineExc = aDecoder.decodeObjectForKey(PropertyKey.lineExc) as! String?
@@ -257,6 +257,12 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
    * type (Station/Address).
    */
   private func createOriginQuery() -> String {
+    if origin != nil && origin?.type == .Current {
+      if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
+        return "&originCoordLat=\(currentLocation.lat)&originCoordLong=\(currentLocation.lon)&originCoordName=\(currentLocation.name)"
+      }
+    }
+    
     if origin == nil {
       return "&originId=\(originId)"
     } else if origin!.type == .Station {
@@ -270,6 +276,12 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
    * type (Station/Address).
    */
   private func createDestinationQuery() -> String {
+    if dest != nil && dest?.type == .Current {
+      if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
+        return "&destCoordLat=\(currentLocation.lat)&destCoordLong=\(currentLocation.lon)&destCoordName=\(currentLocation.name)"
+      }
+    }
+    
     if dest == nil {
       return "&destId=\(destId)"
     } else if dest!.type == .Station {

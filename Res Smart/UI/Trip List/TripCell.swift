@@ -31,7 +31,7 @@ class TripCell: UITableViewCell {
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setup()
-  }    
+  }
   
   /**
    * Shared init code.
@@ -51,17 +51,23 @@ class TripCell: UITableViewCell {
     destinationLabel.accessibilityLabel = "vid \(destinationLabel.text!)"
     if trip.tripSegments.count > 0 {
       let trip = trip
+      departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
       departureTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.first!.departureDateTime)
       departureTimeLabel.accessibilityLabel = "Avgår \(departureTimeLabel.text!)"
+      
+      arrivalTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.last!.arrivalDateTime)
       arrivalTimeLabel.accessibilityLabel = "Framme \(arrivalTimeLabel.text!)"
+      
       inAboutLabel.text = DateUtils.createAboutTimeText(
         trip.tripSegments.first!.departureDateTime,
         isWalk: trip.tripSegments.first!.type == TripType.Walk)
       
-      tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
+      if trip.isValid {
+        tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
+      }
       
       createTripSegmentIcons(trip)
     }
@@ -71,13 +77,14 @@ class TripCell: UITableViewCell {
   
   /**
    * Creates trip type icon per segment.
+   * TODO: Refactoring merge with RoutineTripCell.createTripSegmentIcons()
    */
   private func createTripSegmentIcons(trip: Trip) {
     iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
     var count = 0
     for (_, segment) in trip.tripSegments.enumerate() {
       if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
-        if count > 6 { return }
+        if count >= 6 { return }
         let data = TripHelper.friendlyLineData(segment)
         
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
@@ -91,7 +98,7 @@ class TripCell: UITableViewCell {
         label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true
         label.textColor = UIColor.whiteColor()
-        label.backgroundColor = data.color
+        label.layer.backgroundColor = data.color.CGColor
         label.frame.size.width = 22
         label.frame.size.height = 12
         label.center = CGPointMake((22 / 2), 22)

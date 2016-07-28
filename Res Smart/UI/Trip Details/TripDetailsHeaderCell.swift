@@ -17,6 +17,7 @@ class TripDetailsHeaderCell: UITableViewCell, TripCellProtocol {
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var miniMap: MKMapView!
+  @IBOutlet weak var realtimeLabel: UILabel!
 
   /**
    * Set cell data.

@@ -45,9 +45,9 @@ class RoutineTripCell: UICollectionViewCell {
   func setup() {
     layer.masksToBounds = false
     layer.shadowOffset = CGSizeMake(1, 1)
-    layer.shadowRadius = 2.0
+    layer.shadowRadius = 1.5
     layer.shadowColor = UIColor.blackColor().CGColor
-    layer.shadowOpacity = 0.15
+    layer.shadowOpacity = 0.10
     layer.cornerRadius = 4.0
     clipsToBounds = false
   }
@@ -107,23 +107,50 @@ class RoutineTripCell: UICollectionViewCell {
       departureTimeLabel.accessibilityLabel = "Avgår: " + departureTimeLabel.text!
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
       arrivalTimeLabel.accessibilityLabel = "Framme: " + arrivalTimeLabel.text!
-      inAboutLabel.text = DateUtils.createAboutTimeText(
-        first.departureDateTime, isWalk: first.type == TripType.Walk)
+      
+      if DateUtils.dateAsDateString(first.departureDateTime) != DateUtils.dateAsDateString(NSDate()) {
+        inAboutLabel.text = "Imorgon"
+      } else {
+        inAboutLabel.text = DateUtils.createAboutTimeText(
+          first.departureDateTime, isWalk: first.type == TripType.Walk)
+      }
       
       tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
-      
+      handleInvalidTrips(trip)
       createTripSegmentIcons(trip)
     }
     
-    if let second = secondTrip?.tripSegments.first, first = trip.tripSegments.first {
-      let depTimeInterval = first.departureDateTime.timeIntervalSinceNow
-      if depTimeInterval < (60 * 11) {
-        let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)) + 0.5)
-        if diffMin <= 60 {
-          nextInAboutLabel.text = String(format: NSLocalizedString("Nästa: %d min", comment: ""), diffMin)
-          nextInAboutLabel.hidden = false
-        }
+    if let first = trip.tripSegments.first, second = secondTrip?.tripSegments.first {
+      createNextInAboutText(first, second: second)
+    }
+  }
+  
+  /**
+   * Creates text for next in about text label
+   */
+  private func createNextInAboutText(first : TripSegment, second: TripSegment) {
+    let depTimeInterval = first.departureDateTime.timeIntervalSinceNow
+    if depTimeInterval < (60 * 11) {
+      let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)) + 0.5)
+      if diffMin <= 60 {
+        nextInAboutLabel.text = String(format: NSLocalizedString("Nästa: %d min", comment: ""), diffMin)
+        nextInAboutLabel.hidden = false
       }
+    }
+  }
+  
+  /**
+   * Handles invalid trips (Canccelled or not reachable)
+   */
+  private func handleInvalidTrips(trip: Trip) {
+    inAboutLabel.textColor = UIColor.blackColor()
+    if !trip.isValid {
+      let validTuple = trip.checkInvalidSegments()
+      inAboutLabel.textColor = StyleHelper.sharedInstance.warningColor
+      inAboutLabel.text = (validTuple.isCancelled) ? "Inställd" : "Kort bytestid"
+      tripDurationLabel.text = ""
+    } else if inAboutLabel.text == "Redan avgått" {
+      inAboutLabel.textColor = StyleHelper.sharedInstance.warningColor
     }
   }
   
@@ -135,7 +162,7 @@ class RoutineTripCell: UICollectionViewCell {
     var count = 0
     for (_, segment) in trip.tripSegments.enumerate() {
       if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
-        if count > 6 { return }
+        if count >= 6 { return }
         let data = TripHelper.friendlyLineData(segment)
         
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
@@ -181,7 +208,6 @@ class RoutineTripCell: UICollectionViewCell {
       }
     }
   }
-  
   
   /**
    * Sets no trips found UI

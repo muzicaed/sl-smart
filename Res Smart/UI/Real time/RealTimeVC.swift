@@ -76,7 +76,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * View did unload
    */
   override func viewWillDisappear(animated: Bool) {
-    super.viewDidDisappear(animated)
+    super.viewWillDisappear(animated)
     stopRefreshTimmer()
   }
   
@@ -200,6 +200,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
                           heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     if isLoading {
       return tableView.bounds.height - 49 - 64 - 20 + 39
+    } else if indexPath.row == 0 {
+      return 34
     }
     return -1
   }
@@ -225,8 +227,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       separatorWidth: 0.0,
       segmentProperties: [
         keySegmentOnSelectionTextColour: UIColor.blackColor(),
-        keySegmentTitleFont: UIFont.systemFontOfSize(12.0),
-        keySegmentOnSelectionColour: StyleHelper.sharedInstance.highlight,
+        keySegmentTitleFont: UIFont(name: "HelveticaNeue-Light", size: 12)!,
+        keySegmentOnSelectionColour: UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 0.5),
         keySegmentOffSelectionColour: UIColor.clearColor(),
         keyContentVerticalMargin: 10.0])
     
@@ -475,10 +477,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       let via = ((train.secondaryDestinationName != nil) ? " via \(train.secondaryDestinationName!)" : "")
       cell.infoLabel.text = "\(train.destination)" + via
       if train.displayTime == "Nu" {
-        cell.departureTimeLabel.font = UIFont.boldSystemFontOfSize(17)
+        cell.departureTimeLabel.font = UIFont(name: "HelveticaNeue", size: 16)!
         cell.departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
       } else {
-        cell.departureTimeLabel.font = UIFont.systemFontOfSize(17)
+        cell.departureTimeLabel.font = UIFont(name: "HelveticaNeue", size: 16)!
         cell.departureTimeLabel.textColor = UIColor.blackColor()
       }
       cell.departureTimeLabel.text = train.displayTime
@@ -501,7 +503,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       break
     }
     
-    if let data = data {
+    if let data = data {      
       cell.lineLabel.text = lineChar + data.lineNumber
       cell.infoLabel.text = "\(data.destination)"
       cell.infoLabel.accessibilityLabel = "Mot \(data.destination)"

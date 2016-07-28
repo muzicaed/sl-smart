@@ -111,7 +111,7 @@ public class DateUtils {
   /**
    * Creates an "(om xx min)" for depature time.
    */
-  public static func createAboutTimeText(departure: NSDate, isWalk: Bool) -> String {
+  public static func createAboutTimeText(departure: NSDate, isWalk: Bool) -> String {    
     var aboutStr = "Om"
     var nowStr = "Avgår nu"
     if isWalk {
@@ -120,9 +120,11 @@ public class DateUtils {
     }
     
     let diffMin = Int(ceil(((departure.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)) + 0.5)
-    if diffMin < 60 {
+    if diffMin < 60 && diffMin > 0 {
       let diffMinStr = (diffMin < 1) ? "\(nowStr)" : "\(aboutStr) \(diffMin) min"
       return diffMinStr
+    } else if (diffMin < 0) {
+      return "Redan avgått"
     }
     
     return ""

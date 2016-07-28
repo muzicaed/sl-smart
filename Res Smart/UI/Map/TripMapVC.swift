@@ -70,7 +70,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     var reuseId: String? = nil
     var image: UIImage? = nil
     var bgColor = UIColor.clearColor()
-    var isShaddow = false
+    var isShadow = false
     var zIndex = CGFloat(0)
     
     if annotation.isKindOfClass(BigPin) {
@@ -94,7 +94,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       if let name = tripTypeIcon.imageName {
         image = UIImage(named: name)!
         bgColor = UIColor(white: 1.0, alpha: 0.9)
-        isShaddow = true
+        isShadow = true
       }
     } else {
       return nil
@@ -111,7 +111,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       pinView!.calloutOffset = CGPointMake(0, -3)
       pinView!.backgroundColor = bgColor
       pinView!.layer.zPosition = zIndex
-      if isShaddow {
+      if isShadow {
         pinView!.layer.masksToBounds = false
         pinView!.layer.shadowOffset = CGSizeMake(1, 1)
         pinView!.layer.shadowRadius = 5.0

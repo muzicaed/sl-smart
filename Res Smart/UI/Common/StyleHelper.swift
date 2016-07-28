@@ -19,13 +19,38 @@ class StyleHelper {
   let background = UIColor(red: 231/255, green: 237/255, blue: 238/255, alpha: 1.0)
   let cardBackground = UIColor(red: 63/255, green: 73/255, blue: 62/255, alpha: 0.8)
   let warningColor = UIColor(red: 255/255, green: 75/255, blue: 0/255, alpha: 1.0)
+  let realtimeColor = UIColor(red: 0/255, green: 113/255, blue: 218/255, alpha: 1.0)
   
   func setupCustomStyle() {
     let navAppearance = UINavigationBar.appearance()
     navAppearance.translucent = false
     navAppearance.tintColor = UIColor.whiteColor()
     navAppearance.barTintColor = mainGreen
-    navAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+    navAppearance.titleTextAttributes = [
+      NSForegroundColorAttributeName: UIColor.whiteColor(),
+      NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 18)!]
+    
+    UILabel.appearanceWhenContainedInInstancesOfClasses([UIButton.self]).font = UIFont(name: "HelveticaNeue", size: 16)!    
+    
+    UIBarButtonItem.appearance().setTitleTextAttributes(
+      [
+        NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 16)!
+      ], forState: .Normal)
+    
+    UIBarButtonItem.appearance().setTitleTextAttributes(
+      [
+        NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 16)!
+      ], forState: .Highlighted)
+    
+    UISegmentedControl.appearance().setTitleTextAttributes(
+      [
+        NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 14)!
+      ], forState: .Normal)
+    
+    UISegmentedControl.appearance().setTitleTextAttributes(
+      [
+        NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 14)!
+      ], forState: .Highlighted)
     
     let tabBarAppearance = UITabBar.appearance()
     tabBarAppearance.tintColor = mainGreen
@@ -35,15 +60,42 @@ class StyleHelper {
     searchBarAppearance.barTintColor = mainGreen
     
     UITabBarItem.appearance().setTitleTextAttributes(
-      [NSForegroundColorAttributeName: UIColor(white: 0.0, alpha: 0.75)],
-      forState: UIControlState.Normal)
+      [
+        NSForegroundColorAttributeName: UIColor(white: 0.0, alpha: 0.75),
+        NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 12)!
+      ], forState: .Normal)
     
     UITabBarItem.appearance().setTitleTextAttributes(
-      [NSForegroundColorAttributeName: mainGreen],
-      forState: UIControlState.Selected)
+      [
+        NSForegroundColorAttributeName: mainGreen,
+        NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 12)!
+      ], forState: .Selected)
     
     UIApplication.sharedApplication().statusBarStyle = .LightContent
     (UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])).tintColor = UIColor.whiteColor()
+  }
+  
+  func tintImage(image: UIImage, color: UIColor) -> UIImage {
+    let size = image.size
+    
+    UIGraphicsBeginImageContextWithOptions(size, false, image.scale)
+    let context = UIGraphicsGetCurrentContext()
+    image.drawAtPoint(CGPointZero, blendMode: CGBlendMode.Normal, alpha: 1.0)
+    
+    CGContextSetFillColorWithColor(context, color.CGColor)
+    CGContextSetBlendMode(context, CGBlendMode.SourceIn)
+    CGContextSetAlpha(context, 1.0)
+    
+    let rect = CGRectMake(
+      CGPointZero.x,
+      CGPointZero.y,
+      image.size.width,
+      image.size.height)
+    CGContextFillRect(UIGraphicsGetCurrentContext(), rect)
+    let tintedImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    return tintedImage
   }
 }
 

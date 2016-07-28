@@ -14,7 +14,7 @@ import SafariServices
 
 class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, LocationSearchResponder {
   
-  let cellIdentifier = "RoutineTripCell"
+  let routineCellIdentifier = "RoutineTripCell"
   let simpleCellIdentifier = "SimpleRoutineTripCell"
   let loadingCellIdentifier = "LoadingCell"
   let headerCellIdentifier = "HeaderView"
@@ -91,8 +91,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         
       } else if let routineTrip = selectedRoutineTrip {
         if let crit = routineTrip.criterions.copy() as? TripSearchCriterion {
-          crit.date = DateUtils.dateAsDateString(NSDate())
-          crit.time = DateUtils.dateAsTimeString(NSDate())
+          crit.searchForArrival = (crit.time != nil) ? true : false
+          let timeDateTuple = createDateTimeTuple(routineTrip.criterions)
+          crit.date = timeDateTuple.date
+          crit.time = timeDateTuple.time
           
           let vc = segue.destinationViewController as! TripListVC
           vc.criterions = crit
@@ -178,18 +180,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   /**
-   * On user taps help
-   */
-  @IBAction func onHelpTap(sender: AnyObject) {
-    if let url = NSURL(string: "http://www.ressmartapp.se/faq.php") {
-      let svc = SFSafariViewController(URL: url)
-      
-      svc.navigationController?.navigationBar.barTintColor = StyleHelper.sharedInstance.mainGreen
-      self.presentViewController(svc, animated: true, completion: nil)
-    }
-  }
-  
-  /**
    * On user taps subscribe button
    */
   @IBAction func onSubscribeTap(sender: UIButton) {
@@ -258,7 +248,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       
       if indexPath.row == 0 {
         if let routineTrip = bestRoutineTrip {
-          return createRoutineTripCell(routineTrip, type: cellIdentifier, indexPath: indexPath)
+          return createRoutineTripCell(routineTrip, type: routineCellIdentifier, indexPath: indexPath)
         } else {
           return createHereToThereCell(indexPath)
         }
@@ -289,13 +279,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   func collectionView(collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                              sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-    
     let screenSize = UIScreen.mainScreen().bounds.size
     if indexPath.section == 0 {
       if !isSubscribing {
-        return CGSizeMake(screenSize.width - 20, 330)
+        return CGSizeMake(screenSize.width - 20, 280)
       } else if isShowInfo {
-        return CGSizeMake(screenSize.width - 20, 275)
+        return CGSizeMake(screenSize.width - 20, 250)
       } else if bestRoutineTrip != nil {
         if indexPath.row == 0 {
           return CGSizeMake(screenSize.width - 20, 160)
@@ -310,10 +299,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   /**
    * Size for headers.
    */
-  func collectionView(collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                             referenceSizeForHeaderInSection section: Int) -> CGSize {
-    
+  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                      referenceSizeForHeaderInSection section: Int) -> CGSize {
     if section == 0  {
       return CGSizeMake(0, 0)
     } else if section == 1 && otherRoutineTrips.count == 0 {
@@ -326,9 +313,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   /**
    * User taps an item.
    */
-  override func collectionView(
-    collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    
+  override func collectionView(collectionView: UICollectionView,
+                               didSelectItemAtIndexPath indexPath: NSIndexPath) {
     if !isShowInfo && !isLoading && isSubscribing {
       if indexPath.section == 0 && (indexPath.row == 1 || bestRoutineTrip == nil) {
         performSegueWithIdentifier(fromHereToThereSegue, sender: self)
@@ -359,8 +345,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   /**
    * Green highlight on selected row.
    */
-  override func collectionView(collectionView: UICollectionView,
-                               willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+  override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell,
+                               forItemAtIndexPath indexPath: NSIndexPath) {
     if isSubscribing && !isShowInfo && !isLoading {
       let bgColorView = UIView()
       bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
@@ -527,7 +513,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(
       type, forIndexPath: indexPath) as! RoutineTripCell
     
-    let isBest = (type == cellIdentifier) ? true : false
+    let isBest = (type == routineCellIdentifier) ? true : false
     cell.setupData(trip, isBest: isBest)
     return cell
   }
@@ -600,6 +586,25 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       }))
     
     presentViewController(restoreAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Create date & time tuple.
+   * Takes routine arrival time in to consideration.
+   */
+  private func createDateTimeTuple(criterions: TripSearchCriterion) -> (date: String, time: String) {
+    if let time = criterions.time {
+      let now = NSDate()
+      let date = DateUtils.convertDateString("\(DateUtils.dateAsDateString(now)) \(time)")
+      if date.timeIntervalSinceNow > (60 * 60) * -1 {
+        return (DateUtils.dateAsDateString(now), time)
+      } else {
+        let tomorrow = now.dateByAddingTimeInterval(60 * 60 * 24 * 1)
+        return (DateUtils.dateAsDateString(tomorrow), time)
+      }
+    }
+    
+    return (DateUtils.dateAsDateString(NSDate()), DateUtils.dateAsTimeString(NSDate()))
   }
   
   deinit {
