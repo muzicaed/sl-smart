@@ -91,11 +91,11 @@ public class TripHelper {
       return ("T-bana", "Tunnelbanan", "METRO", UIColor.darkGrayColor())
     case .Train:
       if lineNumber == "35" {
-        return ("J\(lineNumber)", "Pendeltåg linje J\(lineNumber)", "TRAIN", pinkTrain)
+        return ("J\(lineNumber!)", "Pendeltåg linje J\(lineNumber!)", "TRAIN", pinkTrain)
       }
-      return ("J\(lineNumber)", "Pendeltåg linje J\(lineNumber)", "TRAIN", greenTrain)
+      return ("J\(lineNumber!)", "Pendeltåg linje J\(lineNumber!)", "TRAIN", greenTrain)
     case .Narbuss:
-      return ("\(lineNumber)", "Närtrafikens buss J\(lineNumber)", "BUS", busColor)
+      return ("\(lineNumber!)", "Närtrafikens buss J\(lineNumber!)", "BUS", busColor)
     case .Walk:
       return ("→", "Gå", "WALK", walkColor)
     default:
