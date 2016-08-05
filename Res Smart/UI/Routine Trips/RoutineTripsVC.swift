@@ -239,6 +239,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func collectionView(collectionView: UICollectionView,
                                cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    
     if indexPath.section == 0 {
       if !isSubscribing {
         return createSubscriptionInfoCell(indexPath)
