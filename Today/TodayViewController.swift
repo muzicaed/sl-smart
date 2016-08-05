@@ -134,13 +134,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
           label.backgroundColor = data.color
           label.frame.size.width = 22
           label.frame.size.height = 12
-          label.center = CGPointMake((22 / 2), 20)
+          label.center = CGPointMake((22 / 2), 19)
           
           let wrapperView = UIView(
             frame:CGRect(
               origin: CGPointMake(0, 0),
               size: CGSizeMake(22, 36)))
-          wrapperView.frame.origin = CGPointMake((26 * CGFloat(count)), 10)
+          wrapperView.frame.origin = CGPointMake((28 * CGFloat(count)), 10)
           wrapperView.clipsToBounds = false
           
           wrapperView.addSubview(iconView)
@@ -152,7 +152,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
               warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
             }
             warnIconView.frame.size = CGSizeMake(10, 10)
-            warnIconView.center = CGPointMake((22 / 2) + 8, -2)
+            warnIconView.center = CGPointMake((22 / 2) + 10, -6)
             warnIconView.alpha = 0.9
             wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
           }
