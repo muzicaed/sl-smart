@@ -27,6 +27,9 @@ class TripIcons {
     "BUS": UIImage(named: "BUS"),
     "METRO": UIImage(named: "METRO"),
     "TRAIN": UIImage(named: "TRAIN"),
-    "WALK": UIImage(named: "WALK")
+    "WALK": UIImage(named: "WALK"),
+    
+    "WARNING-ICON": UIImage(named: "WARNING-ICON"),
+    "INFO-ICON": UIImage(named: "INFO-ICON")
   ]
 }
