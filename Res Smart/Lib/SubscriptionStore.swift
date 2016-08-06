@@ -13,6 +13,7 @@ public class SubscriptionStore {
   
   private let SubscriptionState = "SubscriptionState"
   private let SubscriptionEndDate = "SubscriptionEndDate"
+  private let TrialStartDate = "TrialStartDate"
   private let defaults = NSUserDefaults.standardUserDefaults()
   private var isSubscribedCache: Bool?
   
@@ -24,13 +25,25 @@ public class SubscriptionStore {
    */
   func isSubscribed() -> Bool {
     // TODO PAY: Remove this
-    return true
+    return false
     
     if isSubscribedCache == nil {
       isSubscribedCache = defaults.boolForKey(SubscriptionState)
     }
     
     return isSubscribedCache!
+  }
+  
+  /**
+   * Check if user have a active trial.
+   */
+  func isTrial() -> Bool {
+    if !isSubscribed() {
+      if let trialEndDate = defaults.objectForKey(TrialStartDate) as? NSDate {
+        return NSDate().timeIntervalSinceDate(trialEndDate) < (60 * 5) // TODO: Change from 5 min.
+      }
+    }
+    return false
   }
  
   /**
@@ -59,5 +72,16 @@ public class SubscriptionStore {
     defaults.setBool(isSubscribedCache!, forKey: SubscriptionState)
     defaults.setObject(nil, forKey: SubscriptionEndDate)
     defaults.synchronize()
+  }
+  
+  /**
+   * Setup trial on app start. 
+   * Will not set start date if trial is allready active.
+   */
+  func setupTrial() {
+    let trialEndDate = defaults.objectForKey(TrialStartDate) as? NSDate
+    if trialEndDate == nil {
+      defaults.setObject(NSDate(), forKey: TrialStartDate)
+    }
   }
 }

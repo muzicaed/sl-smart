@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   func applicationWillEnterForeground(application: UIApplication) {}
   
   func applicationDidBecomeActive(application: UIApplication) {
+    SubscriptionStore.sharedInstance.setupTrial()
     SubscriptionManager.sharedInstance.validateSubscription()
     checkTrafficSituation()
   }
