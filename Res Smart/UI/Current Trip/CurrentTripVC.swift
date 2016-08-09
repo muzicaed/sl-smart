@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import ResStockholmApiKit
+import CoreLocation
 
 class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
   
@@ -17,6 +18,7 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCollectionView()
+    loadStops()
   }
   
   /**
@@ -34,7 +36,12 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
   override func collectionView(collectionView: UICollectionView,
                                cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     
-    return createRoutineTripCell(indexPath)
+    if indexPath.row == 0 {
+      return createRoutineTripCell(indexPath)
+    } else if indexPath.row == 1 {
+      return createChangeCell(indexPath)
+    }
+    return UICollectionViewCell()
   }
   
   /**
@@ -42,7 +49,7 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
    */
   override func collectionView(collectionView: UICollectionView,
                                numberOfItemsInSection section: Int) -> Int {
-    return 1
+    return 2
   }
   
   /**
@@ -51,7 +58,12 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
   func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
     let screenSize = UIScreen.mainScreen().bounds.size
-    return CGSizeMake(screenSize.width - 20, 150)
+    if indexPath.row == 0 {
+      return CGSizeMake(screenSize.width - 20, 150)
+    } else if indexPath.row == 1 {
+      return CGSizeMake(screenSize.width - 20, 100)
+    }
+    return CGSizeMake(0,0)
   }
   
   // MARK: Private
@@ -66,6 +78,53 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
       cell.setupData(trip)
     }
     return cell
+  }
+  
+  /**
+   * Create change cell
+   */
+  private func createChangeCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(
+      "ChangeCell", forIndexPath: indexPath)
+    //if let trip = currentTrip {
+      //cell.setupData(trip)
+    //}
+    return cell
+  }
+  
+  /**
+   * Load stop data
+   */
+  private func loadStops() {
+    for segment in currentTrip!.tripSegments {
+      segment.routeLineLocations = [CLLocation]()
+      if let ref = segment.journyRef {
+        NetworkActivity.displayActivityIndicator(true)
+        JournyDetailsService.fetchJournyDetails(ref) { stops, error in
+          NetworkActivity.displayActivityIndicator(false)
+          segment.stops = JournyDetailsService.filterStops(stops, segment: segment)
+          dispatch_async(dispatch_get_main_queue()) {
+            self.collectionView?.reloadData()
+          }
+        }
+      }
+      
+      NetworkActivity.displayActivityIndicator(true)
+      GeometryService.fetchGeometry(segment.geometryRef) { locations, error in
+        NetworkActivity.displayActivityIndicator(false)
+        dispatch_async(dispatch_get_main_queue()) {
+          /*
+          if error == nil {
+            segment.routeLineLocations += self.extractLocations(locations, segment: segment)
+          }
+          loadCount += 1
+          if loadCount >= self.trip.tripSegments.count {
+            self.mapButton.enabled = true
+          }
+ */
+        }
+      }
+    }
   }
   
   /**

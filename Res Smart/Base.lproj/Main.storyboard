@@ -3215,6 +3215,98 @@ Har du en Apple Watch kan du snabbt och enkelt se nästa avgång även på klock
                                     <outlet property="tripTitleLabel" destination="GG3-T3-LaL" id="HIE-Pu-al1"/>
                                 </connections>
                             </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="ChangeCell" id="fgT-un-Ciq" userLabel="Change Cell" customClass="CurrentTripCell" customModule="Res_Smart" customModuleProvider="target">
+                                <rect key="frame" x="22" y="234" width="370" height="130"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="130"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Van-is-Rgm">
+                                            <rect key="frame" x="8" y="8" width="354" height="114"/>
+                                        </activityIndicatorView>
+                                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Q2u-Jv-nmQ">
+                                            <rect key="frame" x="0.0" y="8" width="370" height="122"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" verticalHuggingPriority="300" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="DkM-tG-BSd" userLabel="Title view">
+                                                    <rect key="frame" x="0.0" y="0.0" width="370" height="30"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Nästa byte" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWj-No-V2r">
+                                                            <rect key="frame" x="11" y="5" width="78" height="20"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.24667548210000001" green="0.28710690430000002" blue="0.2424794669" alpha="0.80441706729999995" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="SWj-No-V2r" firstAttribute="leading" secondItem="DkM-tG-BSd" secondAttribute="leadingMargin" constant="3" id="Auy-3z-VND"/>
+                                                        <constraint firstItem="SWj-No-V2r" firstAttribute="centerY" secondItem="DkM-tG-BSd" secondAttribute="centerY" id="BbF-rb-Ldx"/>
+                                                        <constraint firstAttribute="height" constant="30" id="x3e-oE-LFc"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" verticalHuggingPriority="300" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="INp-v9-V1f" userLabel="Content">
+                                                    <rect key="frame" x="0.0" y="30" width="370" height="92"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="JbF-HK-ZiI">
+                                                            <rect key="frame" x="8" y="8" width="354" height="76"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Stig av vid Stockholm Central" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBv-g7-Mi9" userLabel="19:23 (om 3 min.)">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="23"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="23" id="TXy-JP-FLz"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                                                    <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Åk 2 hållplatser (2 min)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gW1-tr-aGV">
+                                                                    <rect key="frame" x="0.0" y="59" width="354" height="17"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="JbF-HK-ZiI" secondAttribute="trailing" constant="8" id="7px-oR-euy"/>
+                                                        <constraint firstItem="JbF-HK-ZiI" firstAttribute="top" secondItem="INp-v9-V1f" secondAttribute="top" constant="8" id="GHR-F1-j4r"/>
+                                                        <constraint firstItem="JbF-HK-ZiI" firstAttribute="leading" secondItem="INp-v9-V1f" secondAttribute="leading" constant="8" id="f4t-9f-qZv"/>
+                                                        <constraint firstAttribute="bottom" secondItem="JbF-HK-ZiI" secondAttribute="bottom" constant="8" id="mmY-Zs-ahw"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="INp-v9-V1f" secondAttribute="trailing" id="SVg-44-ytU"/>
+                                                <constraint firstAttribute="bottom" secondItem="INp-v9-V1f" secondAttribute="bottom" id="cTt-f8-Or5"/>
+                                                <constraint firstItem="INp-v9-V1f" firstAttribute="leading" secondItem="Q2u-Jv-nmQ" secondAttribute="leading" id="ck6-Qf-wJP"/>
+                                                <constraint firstItem="INp-v9-V1f" firstAttribute="top" secondItem="DkM-tG-BSd" secondAttribute="bottom" id="kOO-4W-IkG"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Q2u-Jv-nmQ" firstAttribute="leading" secondItem="fgT-un-Ciq" secondAttribute="leading" id="7iV-nN-vsD"/>
+                                    <constraint firstAttribute="bottom" secondItem="Q2u-Jv-nmQ" secondAttribute="bottom" id="W3w-CB-6iE"/>
+                                    <constraint firstAttribute="trailing" secondItem="Q2u-Jv-nmQ" secondAttribute="trailing" id="Zkt-wC-sPd"/>
+                                    <constraint firstItem="Van-is-Rgm" firstAttribute="top" secondItem="fgT-un-Ciq" secondAttribute="topMargin" id="aDI-XS-ehE"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Van-is-Rgm" secondAttribute="trailing" id="eoE-F4-pRr"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="Van-is-Rgm" secondAttribute="bottom" id="jUi-KO-gaQ"/>
+                                    <constraint firstItem="Van-is-Rgm" firstAttribute="leading" secondItem="fgT-un-Ciq" secondAttribute="leadingMargin" id="n9t-Lz-M7e"/>
+                                    <constraint firstItem="Q2u-Jv-nmQ" firstAttribute="top" secondItem="fgT-un-Ciq" secondAttribute="topMargin" id="w9N-lm-bxe"/>
+                                    <constraint firstItem="Van-is-Rgm" firstAttribute="centerX" secondItem="fgT-un-Ciq" secondAttribute="centerX" id="wV9-qR-qhO"/>
+                                    <constraint firstItem="Van-is-Rgm" firstAttribute="centerY" secondItem="fgT-un-Ciq" secondAttribute="centerY" id="zmI-Jf-01J"/>
+                                </constraints>
+                                <size key="customSize" width="370" height="130"/>
+                                <connections>
+                                    <outlet property="tripTitleLabel" destination="SWj-No-V2r" id="XTn-UQ-1PL"/>
+                                </connections>
+                            </collectionViewCell>
                         </cells>
                         <connections>
                             <outlet property="dataSource" destination="qM7-ZJ-AAZ" id="1Le-2R-GDz"/>

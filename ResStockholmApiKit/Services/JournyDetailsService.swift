@@ -38,6 +38,26 @@ public class JournyDetailsService {
       }
   }
   
+  /**
+   * Filter out to show only relevat
+   * in between stops.
+   */
+  public static func filterStops(stops: [Stop], segment: TripSegment) -> [Stop] {
+    var filterStops = [Stop]()
+    var foundFirst = false
+    for stop in stops {
+      if foundFirst && stop.id == segment.destination.siteId! {
+        break
+      } else if foundFirst {
+        filterStops.append(stop)
+      } else if stop.id == segment.origin.siteId! {
+        foundFirst = true
+      }
+    }
+    
+    return filterStops
+  }
+  
   // MARK: Private
   
   /**

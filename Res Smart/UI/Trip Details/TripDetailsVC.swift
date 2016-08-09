@@ -186,7 +186,7 @@ class TripDetailsVC: UITableViewController {
         NetworkActivity.displayActivityIndicator(true)
         JournyDetailsService.fetchJournyDetails(ref) { stops, error in
           NetworkActivity.displayActivityIndicator(false)
-          segment.stops = self.filterStops(stops, segment: segment)
+          segment.stops = JournyDetailsService.filterStops(stops, segment: segment)
           self.stopsVisual[index] = (isVisible: false, hasStops: (segment.stops.count > 0))
           dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadData()
@@ -208,26 +208,6 @@ class TripDetailsVC: UITableViewController {
         }
       }
     }
-  }
-  
-  /**
-   * Filter out to show only relevat
-   * in between stops.
-   */
-  private func filterStops(stops: [Stop], segment: TripSegment) -> [Stop] {
-    var filterStops = [Stop]()
-    var foundFirst = false
-    for stop in stops {
-      if foundFirst && stop.id == segment.destination.siteId! {
-        break
-      } else if foundFirst {
-        filterStops.append(stop)
-      } else if stop.id == segment.origin.siteId! {
-        foundFirst = true
-      }
-    }
-    
-    return filterStops
   }
   
   /**
