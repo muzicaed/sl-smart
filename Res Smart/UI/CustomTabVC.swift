@@ -13,6 +13,7 @@ import ResStockholmApiKit
 class CustomTabVC: UITabBarController {
   
   let notificationCenter = NSNotificationCenter.defaultCenter()
+  var currentTrip: Trip?
   
   /**
    * View is done loading.
@@ -26,9 +27,27 @@ class CustomTabVC: UITabBarController {
       }
     }
     
-    notificationCenter.addObserver(self,
-      selector: #selector(onTrafficSituations(_:)),
-      name: "TrafficSituations", object: nil)
+    addObservers()
+  }
+  
+  /**
+   * Prepare for segue
+   */
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "ShowCurrentTrip" {
+      let nav = segue.destinationViewController as! UINavigationController
+      let vc = nav.visibleViewController as! CurrentTripVC
+      vc.currentTrip = currentTrip
+    }
+  }
+  
+  /**
+   * onStartTrip notification handler
+   * Initiates a current trip.
+   */
+  @objc func onStartTrip(notification: NSNotification) {
+    currentTrip = notification.object as? Trip
+    performSegueWithIdentifier("ShowCurrentTrip", sender: self)
   }
   
   /**
@@ -42,6 +61,15 @@ class CustomTabVC: UITabBarController {
     } else {
       items[3].badgeValue = nil
     }
+  }
+  
+  // MARK: Private
+  
+  private func addObservers() {
+    notificationCenter.addObserver(self, selector: #selector(onTrafficSituations(_:)),
+                                   name: "TrafficSituations", object: nil)
+    notificationCenter.addObserver(self, selector: #selector(onStartTrip(_:)),
+                                   name: "BeginTrip", object: nil)
   }
   
   deinit{

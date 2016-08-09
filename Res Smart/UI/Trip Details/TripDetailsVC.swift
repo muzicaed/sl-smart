@@ -30,10 +30,7 @@ class TripDetailsVC: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 60
-    view.backgroundColor = StyleHelper.sharedInstance.background
-    tableView.tableFooterView = UIView(frame: CGRect.zero)
+    prepareTableView()
     prepareHeader()
     prepareVisualStops()
     loadStops()
@@ -56,6 +53,13 @@ class TripDetailsVC: UITableViewController {
     if now.timeIntervalSinceDate(loadedTime) > (60 * 90) { // 1.5 hour
       navigationController?.popToRootViewControllerAnimated(false)
     }
+  }
+  
+  /**
+   * Selects this trip for current trip
+   */
+  @IBAction func beginTrip(sender: UIBarButtonItem) {
+    NSNotificationCenter.defaultCenter().postNotificationName("BeginTrip", object: trip)
   }
   
   // MARK: UITableViewController
@@ -275,6 +279,16 @@ class TripDetailsVC: UITableViewController {
     let cell = tableView.cellForRowAtIndexPath(
       NSIndexPath(forRow: 1, inSection: section)) as! TripDetailsSegmentCell
     cell.updateStops((isVisible: isVisible, hasStops: true))
+  }
+  
+  /**
+   * Prepares this table view
+   */
+  private func prepareTableView() {
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 60
+    view.backgroundColor = StyleHelper.sharedInstance.background
+    tableView.tableFooterView = UIView(frame: CGRect.zero)
   }
   
   deinit {
