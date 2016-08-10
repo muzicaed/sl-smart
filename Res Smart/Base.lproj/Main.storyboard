@@ -3215,23 +3215,23 @@ Har du en Apple Watch kan du snabbt och enkelt se nästa avgång även på klock
                                     <outlet property="tripTitleLabel" destination="GG3-T3-LaL" id="HIE-Pu-al1"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="ChangeCell" id="fgT-un-Ciq" userLabel="Change Cell" customClass="CurrentTripCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="234" width="370" height="130"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="ChangeCell" id="fgT-un-Ciq" userLabel="Change Cell" customClass="ChangeCell" customModule="Res_Smart" customModuleProvider="target">
+                                <rect key="frame" x="22" y="234" width="370" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="130"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Van-is-Rgm">
-                                            <rect key="frame" x="8" y="8" width="354" height="114"/>
+                                            <rect key="frame" x="8" y="8" width="354" height="104"/>
                                         </activityIndicatorView>
-                                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Q2u-Jv-nmQ">
-                                            <rect key="frame" x="0.0" y="8" width="370" height="122"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Q2u-Jv-nmQ">
+                                            <rect key="frame" x="0.0" y="8" width="370" height="112"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" verticalHuggingPriority="300" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="DkM-tG-BSd" userLabel="Title view">
                                                     <rect key="frame" x="0.0" y="0.0" width="370" height="30"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Nästa byte" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWj-No-V2r">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Nästa steg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWj-No-V2r">
                                                             <rect key="frame" x="11" y="5" width="78" height="20"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3247,22 +3247,28 @@ Har du en Apple Watch kan du snabbt och enkelt se nästa avgång även på klock
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" verticalHuggingPriority="300" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="INp-v9-V1f" userLabel="Content">
-                                                    <rect key="frame" x="0.0" y="30" width="370" height="92"/>
+                                                    <rect key="frame" x="0.0" y="30" width="370" height="82"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="JbF-HK-ZiI">
-                                                            <rect key="frame" x="8" y="8" width="354" height="76"/>
+                                                            <rect key="frame" x="8" y="8" width="354" height="66"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Stig av vid Stockholm Central" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBv-g7-Mi9" userLabel="19:23 (om 3 min.)">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="23"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="23" id="TXy-JP-FLz"/>
+                                                                        <constraint firstAttribute="height" constant="30" id="TXy-JP-FLz"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Åk 2 hållplatser (2 min)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gW1-tr-aGV">
-                                                                    <rect key="frame" x="0.0" y="59" width="354" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="30" width="354" height="17"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Åk 2 hållplatser (2 min)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dns-t0-eZN">
+                                                                    <rect key="frame" x="0.0" y="49" width="354" height="17"/>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -3302,9 +3308,13 @@ Har du en Apple Watch kan du snabbt och enkelt se nästa avgång även på klock
                                     <constraint firstItem="Van-is-Rgm" firstAttribute="centerX" secondItem="fgT-un-Ciq" secondAttribute="centerX" id="wV9-qR-qhO"/>
                                     <constraint firstItem="Van-is-Rgm" firstAttribute="centerY" secondItem="fgT-un-Ciq" secondAttribute="centerY" id="zmI-Jf-01J"/>
                                 </constraints>
-                                <size key="customSize" width="370" height="130"/>
+                                <size key="customSize" width="370" height="120"/>
                                 <connections>
-                                    <outlet property="tripTitleLabel" destination="SWj-No-V2r" id="XTn-UQ-1PL"/>
+                                    <outlet property="contentStackView" destination="Q2u-Jv-nmQ" id="On6-Ld-K8Y"/>
+                                    <outlet property="line1Label" destination="gW1-tr-aGV" id="N7S-g6-MtN"/>
+                                    <outlet property="line2Label" destination="dns-t0-eZN" id="WQY-Q7-lwl"/>
+                                    <outlet property="loadingSpinner" destination="Van-is-Rgm" id="tzU-Wz-pJp"/>
+                                    <outlet property="nextActionLabel" destination="WBv-g7-Mi9" id="JOf-wS-kyG"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -3314,7 +3324,7 @@ Har du en Apple Watch kan du snabbt och enkelt se nästa avgång även på klock
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="F4H-Pl-4no">
-                        <barButtonItem key="rightBarButtonItem" title="Avsluta resa" id="vaW-1Y-hCk">
+                        <barButtonItem key="leftBarButtonItem" title="Avsluta resa" id="vaW-1Y-hCk">
                             <connections>
                                 <action selector="closeCurrentTrip:" destination="qM7-ZJ-AAZ" id="Ojs-Od-Nvy"/>
                             </connections>

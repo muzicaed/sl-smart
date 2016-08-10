@@ -14,6 +14,8 @@ import CoreLocation
 class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
   
   var currentTrip: Trip?
+  var isStopsLoaded = false
+  var stopsLoadCount = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -61,7 +63,7 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     if indexPath.row == 0 {
       return CGSizeMake(screenSize.width - 20, 150)
     } else if indexPath.row == 1 {
-      return CGSizeMake(screenSize.width - 20, 100)
+      return CGSizeMake(screenSize.width - 20, 120)
     }
     return CGSizeMake(0,0)
   }
@@ -85,10 +87,10 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
    */
   private func createChangeCell(indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(
-      "ChangeCell", forIndexPath: indexPath)
-    //if let trip = currentTrip {
-      //cell.setupData(trip)
-    //}
+      "ChangeCell", forIndexPath: indexPath) as! ChangeCell
+    if isStopsLoaded && currentTrip != nil {
+      cell.setupData(currentTrip!.tripSegments.first!, isOrigin: true)
+    }
     return cell
   }
   
@@ -96,32 +98,21 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
    * Load stop data
    */
   private func loadStops() {
+    
     for segment in currentTrip!.tripSegments {
       segment.routeLineLocations = [CLLocation]()
+      self.stopsLoadCount += 1
       if let ref = segment.journyRef {
         NetworkActivity.displayActivityIndicator(true)
         JournyDetailsService.fetchJournyDetails(ref) { stops, error in
           NetworkActivity.displayActivityIndicator(false)
           segment.stops = JournyDetailsService.filterStops(stops, segment: segment)
-          dispatch_async(dispatch_get_main_queue()) {
-            self.collectionView?.reloadData()
+          if self.stopsLoadCount == self.currentTrip!.tripSegments.count {
+            dispatch_async(dispatch_get_main_queue()) {
+              self.isStopsLoaded = true
+              self.collectionView?.reloadData()
+            }
           }
-        }
-      }
-      
-      NetworkActivity.displayActivityIndicator(true)
-      GeometryService.fetchGeometry(segment.geometryRef) { locations, error in
-        NetworkActivity.displayActivityIndicator(false)
-        dispatch_async(dispatch_get_main_queue()) {
-          /*
-          if error == nil {
-            segment.routeLineLocations += self.extractLocations(locations, segment: segment)
-          }
-          loadCount += 1
-          if loadCount >= self.trip.tripSegments.count {
-            self.mapButton.enabled = true
-          }
- */
         }
       }
     }
