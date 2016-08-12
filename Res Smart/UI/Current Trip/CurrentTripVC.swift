@@ -101,14 +101,15 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     
     for segment in currentTrip!.tripSegments {
       segment.routeLineLocations = [CLLocation]()
-      self.stopsLoadCount += 1
       if let ref = segment.journyRef {
         NetworkActivity.displayActivityIndicator(true)
         JournyDetailsService.fetchJournyDetails(ref) { stops, error in
           NetworkActivity.displayActivityIndicator(false)
+          self.stopsLoadCount += 1
           segment.stops = JournyDetailsService.filterStops(stops, segment: segment)
-          if self.stopsLoadCount == self.currentTrip!.tripSegments.count {
+          if self.stopsLoadCount == self.coundNonWalkSegments(self.currentTrip!.tripSegments) {
             dispatch_async(dispatch_get_main_queue()) {
+              print("Stops are loaded.")
               self.isStopsLoaded = true
               self.collectionView?.reloadData()
             }
@@ -116,6 +117,13 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         }
       }
     }
+  }
+  
+  /**
+   * Counts segments that are not walk segments. 
+   */
+  private func coundNonWalkSegments(segments: [TripSegment]) -> Int {
+    return segments.filter{ $0.type != .Walk }.count
   }
   
   /**

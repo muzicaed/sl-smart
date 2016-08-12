@@ -45,17 +45,17 @@ class ChangeCell: UICollectionViewCell {
    * Populate cell data based on passed RoutineTrip
    */
   func setupData(segment: TripSegment, isOrigin: Bool) {
-    UIView.animateWithDuration(0.4) { 
-      self.loadingSpinner.alpha = 0.0
-      self.contentStackView.alpha = 1.0
-    }
     if segment.type == .Walk {
       setupWalkData(segment)
     } else if isOrigin {
       setupOriginData(segment)
-      return
+    } else {
+      setupDestinationData(segment)
     }
-    setupDestinationData(segment)
+    UIView.animateWithDuration(0.4) {
+      self.loadingSpinner.alpha = 0.0
+      self.contentStackView.alpha = 1.0
+    }
   }
   
   // MARK: Private
@@ -64,6 +64,12 @@ class ChangeCell: UICollectionViewCell {
    * Setup change row for origin.
    */
   private func setupOriginData(segment: TripSegment) {
+    let segmentData = TripHelper.friendlyLineData(segment)
+    let inAbout = DateUtils.createAboutTimeText(segment.departureDateTime, isWalk: false)
+    let departureTime = DateUtils.dateAsTimeString(segment.departureDateTime)
+    nextActionLabel.text = "Ta \(segmentData.long) från \(segment.origin.cleanName)"
+    line1Label.text = "Mot \(segment.directionText!)"
+    line2Label.text = "Avgår kl. \(departureTime) (\(inAbout))"
   }
   
   /**
