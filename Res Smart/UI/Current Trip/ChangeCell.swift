@@ -76,11 +76,25 @@ class ChangeCell: UICollectionViewCell {
    * Setup change row for destination.
    */
   private func setupDestinationData(segment: TripSegment) {
+    let segmentData = TripHelper.friendlyLineData(segment)
+    let inAbout = DateUtils.createAboutTimeText(segment.arrivalDateTime, isWalk: false)
+    let arrivalTime = DateUtils.dateAsTimeString(segment.arrivalDateTime)
+    nextActionLabel.text = "Åk till \(segment.destination.cleanName)"
+    line1Label.text = "\(segmentData.long) mot \(segment.directionText!)"
+    // Station count...
+    line2Label.text = "x stationer kvar, framme kl. \(arrivalTime) (\(inAbout))"
   }
   
   /**
    * Setup change row for walk.
    */
   private func setupWalkData(segment: TripSegment) {
+    let segmentData = TripHelper.friendlyLineData(segment)
+    let inAbout = DateUtils.createAboutTimeText(segment.departureDateTime, isWalk: false)
+    let departureTime = DateUtils.dateAsTimeString(segment.departureDateTime)
+    nextActionLabel.text = "Gå till \(segment.destination.cleanName)"
+    line1Label.text = "Ca. \(segment.distance!)"
+    // Station count...
+    line2Label.text = "Du behöver vara framme kl. \(departureTime) (\(inAbout))"
   }
 }
