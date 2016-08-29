@@ -84,11 +84,11 @@ class TripDetailsSegmentCell: UITableViewCell {
    * Generates a warning text
    */
   private func generateWarningText(segment: TripSegment) -> String? {
-    var warning = segment.rtuMessages
+    var warning = (segment.rtuMessages != nil) ? segment.rtuMessages! : ""
     if segment.isCancelled {
-      warning = "Inställd"
+      warning = "Inställd. " + warning
     } else if !segment.isReachable {
-      warning = "Mycket kort bytestid"
+      warning = "Mycket kort bytestid. " + warning
     }
     return warning
   }
