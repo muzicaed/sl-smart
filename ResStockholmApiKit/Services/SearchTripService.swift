@@ -152,9 +152,10 @@ public class SearchTripService {
    * Converts json to location object.
    */
   private static func convertJsonToLocation(locationJson: JSON) -> Location {
+    let name = (locationJson["name"].string != nil) ? locationJson["name"].string! : ""
     return Location(
       id: locationJson["id"].string,
-      name: ensureUTF8(locationJson["name"].string!),
+      name: name,
       type: locationJson["type"].string!,
       lat: locationJson["lat"].string!,
       lon: locationJson["lon"].string!)
