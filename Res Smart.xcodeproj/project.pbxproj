@@ -813,6 +813,7 @@
 		18937E781BFF5EF800C523C9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18F447DE1D7EC0B000B48D39 /* Static SL Data */,
 				18F447DB1D7EBF7A00B48D39 /* Trip */,
 				18F447DA1D7EBEDA00B48D39 /* Deviation */,
 				18F447D91D7EBE6800B48D39 /* Realtime */,
@@ -895,7 +896,6 @@
 		18AAC9281C2EE3BC00022C54 /* Data Store */ = {
 			isa = PBXGroup;
 			children = (
-				18F447CE1D7EBADC00B48D39 /* JSON */,
 				18AAC92D1C2EE3DF00022C54 /* SearchCriterionStore.swift */,
 				18AAC9331C2EE7BC00022C54 /* LatestLocationsStore.swift */,
 				18AAC92E1C2EE3DF00022C54 /* RoutineTripsStore.swift */,
@@ -990,6 +990,14 @@
 				18FA999B1C49321C0075C4C2 /* Stop.swift */,
 			);
 			path = Trip;
+			sourceTree = "<group>";
+		};
+		18F447DE1D7EC0B000B48D39 /* Static SL Data */ = {
+			isa = PBXGroup;
+			children = (
+				18F447CE1D7EBADC00B48D39 /* JSON */,
+			);
+			path = "Static SL Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
