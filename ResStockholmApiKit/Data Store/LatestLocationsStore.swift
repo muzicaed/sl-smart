@@ -15,14 +15,7 @@ public class LatestLocationsStore {
   private var cachedLocations = [Location]()
   
   // Singelton pattern
-  public static let sharedInstance = LatestLocationsStore()
-  
-  /**
-   * Preloads latest locations data.
-   */
-  public func preload() {
-    cachedLocations = retrieveLatestLocations()
-  }
+  public static let sharedInstance = LatestLocationsStore()  
   
   /**
    * Retrive "LatestLocations" from data store

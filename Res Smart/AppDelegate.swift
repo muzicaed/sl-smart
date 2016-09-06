@@ -94,9 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   private func setupApp() {
     StyleHelper.sharedInstance.setupCustomStyle()
     window?.tintColor = StyleHelper.sharedInstance.tintColor
-    SearchCriterionStore.sharedInstance.preload()
     RoutineTripsStore.sharedInstance.preload()
-    ScorePostStore.sharedInstance.preload()
   }
   
   /**

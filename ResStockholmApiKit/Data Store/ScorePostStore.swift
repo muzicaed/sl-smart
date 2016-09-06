@@ -16,14 +16,7 @@ public class ScorePostStore {
   public var lastReloaded = NSDate()
   
   // Singelton pattern
-  public static let sharedInstance = ScorePostStore()
-  
-  /**
-   * Preloads score post data.
-   */
-  public func preload() {
-    cachedScorePosts = retrieveScorePosts()
-  }
+  public static let sharedInstance = ScorePostStore()  
   
   /**
    * Retrive "ScoreList" from data store
