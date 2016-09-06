@@ -161,6 +161,7 @@
 		18F447D41D7EBC7600B48D39 /* line.json in Resources */ = {isa = PBXBuildFile; fileRef = 18F447D01D7EBC7600B48D39 /* line.json */; };
 		18F447D51D7EBC7600B48D39 /* site.json in Resources */ = {isa = PBXBuildFile; fileRef = 18F447D11D7EBC7600B48D39 /* site.json */; };
 		18F447D61D7EBC7600B48D39 /* stop.json in Resources */ = {isa = PBXBuildFile; fileRef = 18F447D21D7EBC7600B48D39 /* stop.json */; };
+		18F447D81D7EBE1E00B48D39 /* SitesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F447D71D7EBE1D00B48D39 /* SitesStore.swift */; };
 		18FA99941C492BDC0075C4C2 /* SLJourneyDetailsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */; };
 		18FA999A1C492E3F0075C4C2 /* JournyDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */; };
 		18FA999C1C49321C0075C4C2 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA999B1C49321C0075C4C2 /* Stop.swift */; };
@@ -280,7 +281,7 @@
 		1818B2751C405ACF004E3CA3 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Today.entitlements; sourceTree = "<group>"; };
 		181ABB851CD89283003CA251 /* NearbyStationsMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearbyStationsMapVC.swift; path = "Res Smart/UI/Search Location/Nearby/NearbyStationsMapVC.swift"; sourceTree = SOURCE_ROOT; };
 		181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLTravelPlannerV2Api.swift; sourceTree = "<group>"; };
-		181B9AF01C0375DC00B9145A /* TripSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSegment.swift; sourceTree = "<group>"; };
+		181B9AF01C0375DC00B9145A /* TripSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripSegment.swift; path = ResStockholmApiKit/Model/TripSegment.swift; sourceTree = SOURCE_ROOT; };
 		181B9AF21C0380FD00B9145A /* SearchTripService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTripService.swift; sourceTree = "<group>"; };
 		181B9AF51C03A9E100B9145A /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		181B9AF71C03B3FB00B9145A /* TripHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHelper.swift; sourceTree = "<group>"; };
@@ -385,11 +386,11 @@
 		18937E631BFF33FB00C523C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18937E651BFF33FB00C523C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18937E761BFF5D6B00C523C9 /* RoutineTripsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTripsVC.swift; sourceTree = "<group>"; };
-		18937E791BFF5F2F00C523C9 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
-		18937E7B1BFF5F8100C523C9 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		18937E791BFF5F2F00C523C9 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Trip.swift; path = ResStockholmApiKit/Model/Trip.swift; sourceTree = SOURCE_ROOT; };
+		18937E7B1BFF5F8100C523C9 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = ../Location.swift; sourceTree = "<group>"; };
 		18937E7D1BFF6AB700C523C9 /* RoutineTripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTripCell.swift; sourceTree = "<group>"; };
 		18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageRoutineTripsVC.swift; sourceTree = "<group>"; };
-		18937E861C00A17700C523C9 /* RoutineTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTrip.swift; sourceTree = "<group>"; };
+		18937E861C00A17700C523C9 /* RoutineTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoutineTrip.swift; path = ../RoutineTrip.swift; sourceTree = "<group>"; };
 		18946B161C18431500A5829D /* DateTimePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickerVC.swift; sourceTree = "<group>"; };
 		18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickResponder.swift; sourceTree = "<group>"; };
 		1894A6FD1C354ABD00CDF905 /* SubscribeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeVC.swift; sourceTree = "<group>"; };
@@ -421,15 +422,16 @@
 		18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerRow.swift; sourceTree = "<group>"; };
 		18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleHelper.swift; sourceTree = "<group>"; };
 		18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabVC.swift; sourceTree = "<group>"; };
-		18D1953E1C07964900FB1A93 /* TripSeachCriterion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSeachCriterion.swift; sourceTree = "<group>"; };
+		18D1953E1C07964900FB1A93 /* TripSeachCriterion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripSeachCriterion.swift; path = ResStockholmApiKit/Model/TripSeachCriterion.swift; sourceTree = SOURCE_ROOT; };
 		18D6521D1C3D9C510067FC60 /* HereToThereCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HereToThereCell.swift; sourceTree = "<group>"; };
 		18F447CF1D7EBC7600B48D39 /* jour.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jour.json; sourceTree = "<group>"; };
 		18F447D01D7EBC7600B48D39 /* line.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = line.json; sourceTree = "<group>"; };
 		18F447D11D7EBC7600B48D39 /* site.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = site.json; sourceTree = "<group>"; };
 		18F447D21D7EBC7600B48D39 /* stop.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stop.json; sourceTree = "<group>"; };
+		18F447D71D7EBE1D00B48D39 /* SitesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SitesStore.swift; sourceTree = "<group>"; };
 		18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLJourneyDetailsApi.swift; sourceTree = "<group>"; };
 		18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournyDetailsService.swift; sourceTree = "<group>"; };
-		18FA999B1C49321C0075C4C2 /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
+		18FA999B1C49321C0075C4C2 /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stop.swift; path = ../Stop.swift; sourceTree = "<group>"; };
 		18FC74781C7B771100980B0D /* SLDeviationsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLDeviationsApi.swift; sourceTree = "<group>"; };
 		18FC747E1C7B778F00980B0D /* DeviationsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviationsService.swift; sourceTree = "<group>"; };
 		18FC74801C7B7D2E00980B0D /* Deviation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deviation.swift; sourceTree = "<group>"; };
@@ -810,23 +812,9 @@
 		18937E781BFF5EF800C523C9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				18937E791BFF5F2F00C523C9 /* Trip.swift */,
-				18937E7B1BFF5F8100C523C9 /* Location.swift */,
-				18937E861C00A17700C523C9 /* RoutineTrip.swift */,
-				181B9AF01C0375DC00B9145A /* TripSegment.swift */,
-				181B9AF71C03B3FB00B9145A /* TripHelper.swift */,
-				18D1953E1C07964900FB1A93 /* TripSeachCriterion.swift */,
-				183D6EB51C19DEF400EB7537 /* SituationGroup.swift */,
-				183D6EB71C19DF0800EB7537 /* Situation.swift */,
-				18FA999B1C49321C0075C4C2 /* Stop.swift */,
-				18733C501C4E4B0C00F66AEF /* RealTimeDepartures.swift */,
-				18733C521C4E4DB800F66AEF /* RTTransportBase.swift */,
-				18733C651C4E56C500F66AEF /* RTBus.swift */,
-				18698AAD1C4EB51B0031D1AD /* RTMetro.swift */,
-				18698AAF1C4EE72C0031D1AD /* RTTrain.swift */,
-				186CACD01C55265800B1B5F6 /* RTTram.swift */,
-				186CACD61C55381100B1B5F6 /* RTBoat.swift */,
-				18FC74801C7B7D2E00980B0D /* Deviation.swift */,
+				18F447DB1D7EBF7A00B48D39 /* Trip */,
+				18F447DA1D7EBEDA00B48D39 /* Deviation */,
+				18F447D91D7EBE6800B48D39 /* Realtime */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -845,6 +833,7 @@
 				18733C4E1C4E482F00F66AEF /* RealTimeDeparturesService.swift */,
 				183D6EB11C19DBF000EB7537 /* TrafficSituationService.swift */,
 				18FC747E1C7B778F00980B0D /* DeviationsService.swift */,
+				181B9AF71C03B3FB00B9145A /* TripHelper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -911,6 +900,7 @@
 				18AAC92E1C2EE3DF00022C54 /* RoutineTripsStore.swift */,
 				18AAC9311C2EE61000022C54 /* ScorePostStore.swift */,
 				18630EEE1CC26C9E0085C0B8 /* FavouriteLocationsStore.swift */,
+				18F447D71D7EBE1D00B48D39 /* SitesStore.swift */,
 			);
 			path = "Data Store";
 			sourceTree = "<group>";
@@ -961,6 +951,43 @@
 				18F447D21D7EBC7600B48D39 /* stop.json */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		18F447D91D7EBE6800B48D39 /* Realtime */ = {
+			isa = PBXGroup;
+			children = (
+				18733C501C4E4B0C00F66AEF /* RealTimeDepartures.swift */,
+				18733C521C4E4DB800F66AEF /* RTTransportBase.swift */,
+				18733C651C4E56C500F66AEF /* RTBus.swift */,
+				18698AAD1C4EB51B0031D1AD /* RTMetro.swift */,
+				18698AAF1C4EE72C0031D1AD /* RTTrain.swift */,
+				186CACD01C55265800B1B5F6 /* RTTram.swift */,
+				186CACD61C55381100B1B5F6 /* RTBoat.swift */,
+			);
+			path = Realtime;
+			sourceTree = "<group>";
+		};
+		18F447DA1D7EBEDA00B48D39 /* Deviation */ = {
+			isa = PBXGroup;
+			children = (
+				183D6EB51C19DEF400EB7537 /* SituationGroup.swift */,
+				183D6EB71C19DF0800EB7537 /* Situation.swift */,
+				18FC74801C7B7D2E00980B0D /* Deviation.swift */,
+			);
+			path = Deviation;
+			sourceTree = "<group>";
+		};
+		18F447DB1D7EBF7A00B48D39 /* Trip */ = {
+			isa = PBXGroup;
+			children = (
+				18937E791BFF5F2F00C523C9 /* Trip.swift */,
+				18937E7B1BFF5F8100C523C9 /* Location.swift */,
+				18937E861C00A17700C523C9 /* RoutineTrip.swift */,
+				181B9AF01C0375DC00B9145A /* TripSegment.swift */,
+				18D1953E1C07964900FB1A93 /* TripSeachCriterion.swift */,
+				18FA999B1C49321C0075C4C2 /* Stop.swift */,
+			);
+			path = Trip;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1382,6 +1409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F447D81D7EBE1E00B48D39 /* SitesStore.swift in Sources */,
 				18A9E8731C189B97008F97C8 /* SwiftyJSON.swift in Sources */,
 				18A9E8611C189998008F97C8 /* MyLocationHelper.swift in Sources */,
 				183D6EB81C19DF0800EB7537 /* Situation.swift in Sources */,
