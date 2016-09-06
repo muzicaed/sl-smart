@@ -11,15 +11,15 @@ import CoreLocation
 
 public class StaticStop {
   
-  public let stopPointNumber: Int
+  public let stopPointNumber: String
   public let stopPointName: String
-  public let stopAreaNumber: Int
+  public let stopAreaNumber: String
   public let location: CLLocation
   
   /**
    * Standard init
    */
-  public init(stopPointNumber: Int, stopPointName: String, stopAreaNumber: Int, location: CLLocation) {
+  public init(stopPointNumber: String, stopPointName: String, stopAreaNumber: String, location: CLLocation) {
     self.stopPointNumber = stopPointNumber
     self.stopPointName = stopPointName
     self.stopAreaNumber = stopAreaNumber

@@ -10,14 +10,14 @@ import Foundation
 
 public class StaticSite {
   
-  public let siteId: Int
+  public let siteId: String
   public let siteName: String
-  public let stopAreaNumber: Int
+  public let stopAreaNumber: String
   
   /**
    * Standard init
    */
-  public init(siteId: Int, siteName: String, stopAreaNumber: Int) {
+  public init(siteId: String, siteName: String, stopAreaNumber: String) {
     self.siteId = siteId
     self.siteName = siteName
     self.stopAreaNumber = stopAreaNumber

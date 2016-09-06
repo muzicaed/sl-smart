@@ -156,14 +156,15 @@
 		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
 		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
 		18D6521E1C3D9C510067FC60 /* HereToThereCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6521D1C3D9C510067FC60 /* HereToThereCell.swift */; };
-		18F447D31D7EBC7600B48D39 /* jour.json in Resources */ = {isa = PBXBuildFile; fileRef = 18F447CF1D7EBC7600B48D39 /* jour.json */; };
-		18F447D41D7EBC7600B48D39 /* line.json in Resources */ = {isa = PBXBuildFile; fileRef = 18F447D01D7EBC7600B48D39 /* line.json */; };
-		18F447D51D7EBC7600B48D39 /* site.json in Resources */ = {isa = PBXBuildFile; fileRef = 18F447D11D7EBC7600B48D39 /* site.json */; };
-		18F447D61D7EBC7600B48D39 /* stop.json in Resources */ = {isa = PBXBuildFile; fileRef = 18F447D21D7EBC7600B48D39 /* stop.json */; };
 		18F447D81D7EBE1E00B48D39 /* SitesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F447D71D7EBE1D00B48D39 /* SitesStore.swift */; };
 		18F447DD1D7EC02C00B48D39 /* ScorePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F447DC1D7EC02C00B48D39 /* ScorePost.swift */; };
 		18F447E01D7EC4C700B48D39 /* StaticSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F447DF1D7EC4C700B48D39 /* StaticSite.swift */; };
 		18F447E21D7EC57200B48D39 /* StaticStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F447E11D7EC57200B48D39 /* StaticStop.swift */; };
+		18F447E31D7ECF0100B48D39 /* jour.json in Resources */ = {isa = PBXBuildFile; fileRef = 18F447CF1D7EBC7600B48D39 /* jour.json */; };
+		18F447E41D7ECF0800B48D39 /* line.json in Resources */ = {isa = PBXBuildFile; fileRef = 18F447D01D7EBC7600B48D39 /* line.json */; };
+		18F447E51D7ECF0C00B48D39 /* site.json in Resources */ = {isa = PBXBuildFile; fileRef = 18F447D11D7EBC7600B48D39 /* site.json */; };
+		18F447E61D7ECF0F00B48D39 /* stop.json in Resources */ = {isa = PBXBuildFile; fileRef = 18F447D21D7EBC7600B48D39 /* stop.json */; };
+		18F447E81D7ED47A00B48D39 /* StopsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F447E71D7ED47A00B48D39 /* StopsStore.swift */; };
 		18FA99941C492BDC0075C4C2 /* SLJourneyDetailsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */; };
 		18FA999A1C492E3F0075C4C2 /* JournyDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */; };
 		18FA999C1C49321C0075C4C2 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA999B1C49321C0075C4C2 /* Stop.swift */; };
@@ -273,7 +274,6 @@
 		180603651C0201A100AC1841 /* HttpRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHelper.swift; sourceTree = "<group>"; };
 		1806037B1C02165000AC1841 /* LocationSearchResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchResponder.swift; sourceTree = "<group>"; };
 		180F7D781C8CC987000C8207 /* UserPreferenceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferenceStore.swift; sourceTree = "<group>"; };
-		180FD8B41C0B087E0095C790 /* ScorePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScorePost.swift; path = ../../Model/ScorePost.swift; sourceTree = "<group>"; };
 		180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePostHelper.swift; sourceTree = "<group>"; };
 		181860A31C61613800413C18 /* RealTimeShowMoreRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeShowMoreRow.swift; sourceTree = "<group>"; };
 		1818B2661C404FE0004E3CA3 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -434,6 +434,7 @@
 		18F447DC1D7EC02C00B48D39 /* ScorePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePost.swift; sourceTree = "<group>"; };
 		18F447DF1D7EC4C700B48D39 /* StaticSite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticSite.swift; sourceTree = "<group>"; };
 		18F447E11D7EC57200B48D39 /* StaticStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticStop.swift; sourceTree = "<group>"; };
+		18F447E71D7ED47A00B48D39 /* StopsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopsStore.swift; sourceTree = "<group>"; };
 		18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLJourneyDetailsApi.swift; sourceTree = "<group>"; };
 		18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournyDetailsService.swift; sourceTree = "<group>"; };
 		18FA999B1C49321C0075C4C2 /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
@@ -559,7 +560,6 @@
 				188B85651C14ADF100098B00 /* SLNetworkError.swift */,
 				18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */,
 				1899F2611C4AF88B00534587 /* SLGeometryApi.swift */,
-				180FD8B41C0B087E0095C790 /* ScorePost.swift */,
 				18733C4C1C4E472F00F66AEF /* SLRealtimeDepartures.swift */,
 				18FC74781C7B771100980B0D /* SLDeviationsApi.swift */,
 			);
@@ -727,6 +727,7 @@
 		18937E281BFF33FA00C523C9 = {
 			isa = PBXGroup;
 			children = (
+				18F447CE1D7EBADC00B48D39 /* JSON */,
 				18635D981D7564A4007A495E /* res-smart.geojson */,
 				18B290301C46D9D900DCE585 /* Res Smart Playground.playground */,
 				18CE5CCC1C0329DA00E1F5A9 /* Libraries */,
@@ -906,6 +907,7 @@
 				18AAC9311C2EE61000022C54 /* ScorePostStore.swift */,
 				18630EEE1CC26C9E0085C0B8 /* FavouriteLocationsStore.swift */,
 				18F447D71D7EBE1D00B48D39 /* SitesStore.swift */,
+				18F447E71D7ED47A00B48D39 /* StopsStore.swift */,
 			);
 			path = "Data Store";
 			sourceTree = "<group>";
@@ -955,7 +957,8 @@
 				18F447D11D7EBC7600B48D39 /* site.json */,
 				18F447D21D7EBC7600B48D39 /* stop.json */,
 			);
-			path = JSON;
+			name = JSON;
+			path = "Res Smart/JSON";
 			sourceTree = "<group>";
 		};
 		18F447D91D7EBE6800B48D39 /* Realtime */ = {
@@ -999,7 +1002,6 @@
 		18F447DE1D7EC0B000B48D39 /* Static SL Data */ = {
 			isa = PBXGroup;
 			children = (
-				18F447CE1D7EBADC00B48D39 /* JSON */,
 				18F447DF1D7EC4C700B48D39 /* StaticSite.swift */,
 				18F447E11D7EC57200B48D39 /* StaticStop.swift */,
 			);
@@ -1239,6 +1241,10 @@
 				18937E3C1BFF33FA00C523C9 /* Assets.xcassets in Resources */,
 				18635D991D7564A4007A495E /* res-smart.geojson in Resources */,
 				18937E3A1BFF33FA00C523C9 /* Main.storyboard in Resources */,
+				18F447E31D7ECF0100B48D39 /* jour.json in Resources */,
+				18F447E41D7ECF0800B48D39 /* line.json in Resources */,
+				18F447E51D7ECF0C00B48D39 /* site.json in Resources */,
+				18F447E61D7ECF0F00B48D39 /* stop.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1263,10 +1269,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18F447D31D7EBC7600B48D39 /* jour.json in Resources */,
-				18F447D51D7EBC7600B48D39 /* site.json in Resources */,
-				18F447D41D7EBC7600B48D39 /* line.json in Resources */,
-				18F447D61D7EBC7600B48D39 /* stop.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1426,6 +1428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F447D81D7EBE1E00B48D39 /* SitesStore.swift in Sources */,
+				18F447E81D7ED47A00B48D39 /* StopsStore.swift in Sources */,
 				18A9E8731C189B97008F97C8 /* SwiftyJSON.swift in Sources */,
 				18A9E8611C189998008F97C8 /* MyLocationHelper.swift in Sources */,
 				183D6EB81C19DF0800EB7537 /* Situation.swift in Sources */,
