@@ -73,6 +73,7 @@
 		18733C631C4E568500F66AEF /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C5F1C4E568500F66AEF /* SMSegment.swift */; };
 		18733C641C4E568500F66AEF /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C601C4E568500F66AEF /* SMSegmentView.swift */; };
 		18733C661C4E56C500F66AEF /* RTBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C651C4E56C500F66AEF /* RTBus.swift */; };
+		18763F221D80A29500666718 /* StaticExit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18763F211D80A29500666718 /* StaticExit.swift */; };
 		187808DF1D3A9DB100D297FF /* TimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187808DE1D3A9DB100D297FF /* TimePickerVC.swift */; };
 		188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367681C16EEA000A8BE16 /* TripDetailsVC.swift */; };
 		1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */; };
@@ -156,7 +157,7 @@
 		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
 		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
 		18D6521E1C3D9C510067FC60 /* HereToThereCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6521D1C3D9C510067FC60 /* HereToThereCell.swift */; };
-		18DEAD981D8024C6009EF6BC /* StopDataEnhancer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEAD971D8024C6009EF6BC /* StopDataEnhancer.swift */; };
+		18DEAD981D8024C6009EF6BC /* ExitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEAD971D8024C6009EF6BC /* ExitData.swift */; };
 		18F447D81D7EBE1E00B48D39 /* SitesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F447D71D7EBE1D00B48D39 /* SitesStore.swift */; };
 		18F447DD1D7EC02C00B48D39 /* ScorePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F447DC1D7EC02C00B48D39 /* ScorePost.swift */; };
 		18F447E01D7EC4C700B48D39 /* StaticSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F447DF1D7EC4C700B48D39 /* StaticSite.swift */; };
@@ -345,6 +346,7 @@
 		18733C5F1C4E568500F66AEF /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
 		18733C601C4E568500F66AEF /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
 		18733C651C4E56C500F66AEF /* RTBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBus.swift; sourceTree = "<group>"; };
+		18763F211D80A29500666718 /* StaticExit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticExit.swift; sourceTree = "<group>"; };
 		187808DE1D3A9DB100D297FF /* TimePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerVC.swift; sourceTree = "<group>"; };
 		1880D4C31C8E429700648E3F /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Interface.strings; sourceTree = "<group>"; };
 		1880D4C41C8E429700648E3F /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/MainInterface.strings; sourceTree = "<group>"; };
@@ -427,7 +429,7 @@
 		18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabVC.swift; sourceTree = "<group>"; };
 		18D1953E1C07964900FB1A93 /* TripSeachCriterion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripSeachCriterion.swift; path = ResStockholmApiKit/Model/Trip/TripSeachCriterion.swift; sourceTree = SOURCE_ROOT; };
 		18D6521D1C3D9C510067FC60 /* HereToThereCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HereToThereCell.swift; sourceTree = "<group>"; };
-		18DEAD971D8024C6009EF6BC /* StopDataEnhancer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopDataEnhancer.swift; sourceTree = "<group>"; };
+		18DEAD971D8024C6009EF6BC /* ExitData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExitData.swift; sourceTree = "<group>"; };
 		18F447CF1D7EBC7600B48D39 /* jour.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jour.json; sourceTree = "<group>"; };
 		18F447D01D7EBC7600B48D39 /* line.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = line.json; sourceTree = "<group>"; };
 		18F447D11D7EBC7600B48D39 /* site.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = site.json; sourceTree = "<group>"; };
@@ -1006,7 +1008,8 @@
 			children = (
 				18F447DF1D7EC4C700B48D39 /* StaticSite.swift */,
 				18F447E11D7EC57200B48D39 /* StaticStop.swift */,
-				18DEAD971D8024C6009EF6BC /* StopDataEnhancer.swift */,
+				18DEAD971D8024C6009EF6BC /* ExitData.swift */,
+				18763F211D80A29500666718 /* StaticExit.swift */,
 			);
 			path = "Static SL Data";
 			sourceTree = "<group>";
@@ -1451,7 +1454,7 @@
 				186CACD11C55265800B1B5F6 /* RTTram.swift in Sources */,
 				183D6EB41C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift in Sources */,
 				1835A06E1C676180008355F9 /* DisturbanceTextHelper.swift in Sources */,
-				18DEAD981D8024C6009EF6BC /* StopDataEnhancer.swift in Sources */,
+				18DEAD981D8024C6009EF6BC /* ExitData.swift in Sources */,
 				18FA999A1C492E3F0075C4C2 /* JournyDetailsService.swift in Sources */,
 				18698AAE1C4EB51B0031D1AD /* RTMetro.swift in Sources */,
 				18F447E01D7EC4C700B48D39 /* StaticSite.swift in Sources */,
@@ -1459,6 +1462,7 @@
 				18AAC9321C2EE61000022C54 /* ScorePostStore.swift in Sources */,
 				18A9E8621C189998008F97C8 /* ScorePostHelper.swift in Sources */,
 				18FA999C1C49321C0075C4C2 /* Stop.swift in Sources */,
+				18763F221D80A29500666718 /* StaticExit.swift in Sources */,
 				18733C531C4E4DB800F66AEF /* RTTransportBase.swift in Sources */,
 				18A9E8651C1899E7008F97C8 /* SLSearchLocationApi.swift in Sources */,
 				18A9E8681C1899E7008F97C8 /* SLSearchNearbyStationsApi.swift in Sources */,

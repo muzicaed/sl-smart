@@ -26,9 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     setupApp()
     setupLocalNotifications()
     
-    // TODO: Remove test code
-    StopsStore.sharedInstance.getStops()
-    
     return true
   }
   

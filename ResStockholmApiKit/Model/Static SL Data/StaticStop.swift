@@ -16,6 +16,7 @@ public class StaticStop {
   public let stopAreaNumber: String
   public let location: CLLocation
   public let type: TripType
+  public var exits: [StaticExit]
   
   /**
    * Standard init
@@ -26,5 +27,6 @@ public class StaticStop {
     self.stopAreaNumber = stopAreaNumber
     self.location = location
     self.type = type
+    self.exits = ExitData.getExits(stopPointNumber)
   }
 }
