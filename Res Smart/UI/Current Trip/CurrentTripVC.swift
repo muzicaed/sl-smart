@@ -101,7 +101,6 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
   private func loadStops() {
     
     for segment in currentTrip!.tripSegments {
-      segment.routeLineLocations = [CLLocation]()
       if let ref = segment.journyRef {
         NetworkActivity.displayActivityIndicator(true)
         JournyDetailsService.fetchJournyDetails(ref) { stops, error in

@@ -31,7 +31,6 @@ public class TripSegment: NSObject, NSCopying {
   public let isCancelled: Bool
   
   public var stops = [Stop]()
-  public var routeLineLocations = [CLLocation]()
   
   public init(
     index: Int, name: String, type: String, directionText: String?,

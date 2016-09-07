@@ -47,10 +47,12 @@ public class JournyDetailsService {
     var foundFirst = false
     for stop in stops {
       if foundFirst && stop.id == segment.destination.siteId! {
+        filterStops.append(stop)
         break
       } else if foundFirst {
         filterStops.append(stop)
       } else if stop.id == segment.origin.siteId! {
+        filterStops.append(stop)
         foundFirst = true
       }
     }

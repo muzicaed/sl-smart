@@ -167,20 +167,17 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Plots the coordinates for the route.
    */
+  
   private func plotRoute(segment: TripSegment) -> [CLLocationCoordinate2D] {
-    
     var coords = [CLLocationCoordinate2D]()
-    if segment.routeLineLocations.count == 0 {
+    if segment.stops.count == 0 {
       coords.append(segment.origin.location.coordinate)
       coords.append(segment.destination.location.coordinate)
     } else {
-      coords.append(segment.origin.location.coordinate)
-      for location in segment.routeLineLocations {
-        coords.append(location.coordinate)
+      for stop in segment.stops {
+        coords.append(stop.location.coordinate)
       }
-      coords.append(segment.destination.location.coordinate)
     }
-    
     return coords
   }
   
@@ -203,22 +200,24 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    * Create location pins for each segment
    */
   private func createLocationPins(segment: TripSegment, coordinates: [CLLocationCoordinate2D]) {
+    let originCoord = (segment.stops.count == 0) ? segment.origin.location.coordinate : segment.stops.first!.location.coordinate
+    let destCoord = (segment.stops.count == 0) ? segment.destination.location.coordinate : segment.stops.last!.location.coordinate
     if segment == trip?.tripSegments.first! {
       let pin = OriginPin()
-      pin.coordinate = segment.origin.location.coordinate
+      pin.coordinate = originCoord
       pin.title = "Start: " + segment.origin.name
       pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
       mapView.addAnnotation(pin)
     } else if segment == trip?.tripSegments.last! {
       let pin = BigPin()
-      pin.coordinate = segment.destination.location.coordinate
+      pin.coordinate = destCoord
       pin.title = "Destination: " + segment.destination.name
       pin.subtitle = "Framme: " + DateUtils.dateAsTimeString(segment.arrivalDateTime)
       mapView.addAnnotation(pin)
       return
     } else {
       let pin = BigPin()
-      pin.coordinate = segment.origin.location.coordinate
+      pin.coordinate = originCoord
       pin.title = segment.origin.name
       pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
       
@@ -226,7 +225,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     }
     
     let destPin = BigPin()
-    destPin.coordinate = segment.destination.location.coordinate
+    destPin.coordinate = destCoord
     destPin.title = segment.destination.name
     destPin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
     mapView.addAnnotation(destPin)
@@ -237,13 +236,15 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    */
   private func createStopPins(segment: TripSegment) {
     for stop in segment.stops {
-      let pin = SmallPin()
-      pin.coordinate = stop.location.coordinate
-      pin.title = stop.name
-      if let depDate = stop.depDate {
-        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(depDate)
+      if stop.id != segment.stops.first!.id && stop.id != segment.stops.last!.id {
+        let pin = SmallPin()
+        pin.coordinate = stop.location.coordinate
+        pin.title = stop.name
+        if let depDate = stop.depDate {
+          pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(depDate)
+        }
+        mapView.addAnnotation(pin)
       }
-      mapView.addAnnotation(pin)
     }
   }
   
@@ -265,7 +266,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     let pin = TripTypeIconAnnotation()
     pin.coordinate = coord
     pin.imageName = data.icon
-    pin.title = data.long    
+    pin.title = data.long
     if segment.type == .Walk {
       pin.subtitle = "\(segment.distance!) meter"
     } else {

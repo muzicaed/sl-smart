@@ -180,9 +180,11 @@ class TripDetailsVC: UITableViewController {
    */
   private func loadStops() {
     var loadCount = 0
+    var doneCount = 0
+    
     for (index, segment) in trip.tripSegments.enumerate() {
-      segment.routeLineLocations = [CLLocation]()
       if let ref = segment.journyRef {
+        loadCount += 1
         NetworkActivity.displayActivityIndicator(true)
         JournyDetailsService.fetchJournyDetails(ref) { stops, error in
           NetworkActivity.displayActivityIndicator(false)
@@ -191,22 +193,18 @@ class TripDetailsVC: UITableViewController {
           dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadData()
           }
-        }
-      }
-      
-      NetworkActivity.displayActivityIndicator(true)
-      GeometryService.fetchGeometry(segment.geometryRef) { locations, error in
-        NetworkActivity.displayActivityIndicator(false)
-        dispatch_async(dispatch_get_main_queue()) {
-          if error == nil {
-            segment.routeLineLocations += self.extractLocations(locations, segment: segment)
-          }
-          loadCount += 1
-          if loadCount >= self.trip.tripSegments.count {
-            self.mapButton.enabled = true
+          doneCount += 1
+          if doneCount >= loadCount {
+            dispatch_async(dispatch_get_main_queue()) {
+              self.mapButton.enabled = true
+            }
           }
         }
       }
+    }
+    if doneCount >= loadCount {
+      self.mapButton.enabled = true
+      self.tableView.reloadData()
     }
   }
   
