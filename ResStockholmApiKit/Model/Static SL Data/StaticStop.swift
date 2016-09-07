@@ -16,7 +16,7 @@ public class StaticStop {
   public let stopAreaNumber: String
   public let location: CLLocation
   public let type: TripType
-  public var exits: [StaticExit]
+  public let exits: [StaticExit]
   
   /**
    * Standard init

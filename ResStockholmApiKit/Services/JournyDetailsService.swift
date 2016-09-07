@@ -70,12 +70,8 @@ public class JournyDetailsService {
     
     return Stop(
       id: stopJson["id"].string!,
-      routeIdx: stopJson["routeIdx"].string!,
-      name: stopJson["name"].string!,
       depDate: timeDateTuple.depDate,
-      depTime: timeDateTuple.depTime,
-      lat: stopJson["lat"].string!,
-      lon: stopJson["lon"].string!)
+      depTime: timeDateTuple.depTime)
   }
   
   /**

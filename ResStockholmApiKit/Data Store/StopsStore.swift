@@ -29,6 +29,17 @@ public class StopsStore {
   }
   
   /**
+   * Gets static stop on id
+   */
+  public func getOnId(id: String) -> StaticStop {
+    let stops = getFlatStops()
+    if let stop = stops[id] {
+      return stop
+    }
+    fatalError("Could not find stop with id: \(id)")
+  }
+  
+  /**
    * Gets all static stops in a flat list.
    */
   public func getFlatStops() -> [String: StaticStop] {
