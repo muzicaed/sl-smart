@@ -15,14 +15,16 @@ public class StaticStop {
   public let stopPointName: String
   public let stopAreaNumber: String
   public let location: CLLocation
+  public let type: TripType
   
   /**
    * Standard init
    */
-  public init(stopPointNumber: String, stopPointName: String, stopAreaNumber: String, location: CLLocation) {
+  public init(stopPointNumber: String, stopPointName: String, stopAreaNumber: String, location: CLLocation, type: TripType) {
     self.stopPointNumber = stopPointNumber
     self.stopPointName = stopPointName
     self.stopAreaNumber = stopAreaNumber
     self.location = location
+    self.type = type
   }
 }

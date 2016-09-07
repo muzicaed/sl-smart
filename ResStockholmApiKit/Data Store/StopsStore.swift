@@ -11,33 +11,45 @@ import CoreLocation
 
 public class StopsStore {
   
-  private var cachedStops = [String: [String: StaticStop]]()
+  private var cachedStops = [String: [StaticStop]]()
+  private var cachedFlatStops = [String: StaticStop]()
   
   // Singelton pattern
   public static let sharedInstance = StopsStore()
   
   /**
-   * Gets all static stops.
+   * Gets all static stops in a list grouped on StopAreaNumber.
    */
-  public func getStops() -> [String: [String: StaticStop]] {
+  public func getStops() -> [String: [StaticStop]] {
     if cachedStops.count == 0 {
-      cachedStops = readJson()
+      loadJson()
     }
     
     return cachedStops
   }
   
+  /**
+   * Gets all static stops in a flat list.
+   */
+  public func getFlatStops() -> [String: StaticStop] {
+    if cachedFlatStops.count == 0 {
+      loadJson()
+    }
+    
+    return cachedFlatStops
+  }
+  
   // MARK: Private
   
   /**
-   * Reads static site data from json file.
+   * Loads static site data from json file.
    */
-  private func readJson() -> [String: [String: StaticStop]] {
+  private func loadJson() {
     let bundle = NSBundle.mainBundle()
     do {
       if let path = bundle.pathForResource("stop", ofType: "json") {
         let data = try NSData(contentsOfFile: path,options: .DataReadingMappedIfSafe)
-        return convertData(data)
+        convertData(data)
       } else {
         print("Path not found for static sites.")
       }
@@ -45,25 +57,61 @@ public class StopsStore {
     catch {
       fatalError("Could not load site.json")
     }
-    
-    
-    return [String: [String: StaticStop]]()
   }
   
   /**
    * Converts json data to dictionary.
    */
-  private func convertData(data: NSData) -> [String: [String: StaticStop]] {
-    var results = [String: [String: StaticStop]]()
+  private func convertData(data: NSData) {
     let jsonData = JSON(data: data)
-    print(jsonData)
     if jsonData["ResponseData"].isExists() {
       if let stopsJson = jsonData["ResponseData"]["Result"].array {
-        for stop in stopsJson {
+        for stopJson in stopsJson {
+          let stop = StaticStop(
+            stopPointNumber: stopJson["StopPointNumber"].string!,
+            stopPointName: stopJson["StopPointName"].string!,
+            stopAreaNumber: stopJson["StopAreaNumber"].string!,
+            location: createLocation(stopJson),
+            type: createTripType(stopJson["StopAreaTypeCode"].string!))
+          
+          cachedFlatStops[stop.stopPointNumber] = stop
+          if cachedStops[stop.stopAreaNumber] == nil {
+            cachedStops[stop.stopAreaNumber] = [StaticStop]()
+          }
+          cachedStops[stop.stopAreaNumber]?.append(stop)
         }
       }
     }
-    
-    return results
+  }
+  
+  /**
+   * Creates a CLLocation from Stop Json lat/long.
+   */
+  private func createLocation(stopJson: JSON) -> CLLocation {
+    return CLLocation(
+      latitude: Double(stopJson["LocationNorthingCoordinate"].string!)!,
+      longitude: Double(stopJson["LocationEastingCoordinate"].string!)!)
+  }
+  
+  /**
+   * Creates trip type enum based on JSON StopAreaTypeCode
+   */
+  private func createTripType(typeCode: String) -> TripType {
+    switch typeCode {
+    case "BUSTERM":
+      return TripType.Bus
+    case "METROSTN":
+      return TripType.Metro
+    case "TRAMSTN":
+      return TripType.Tram
+    case "RAILWSTN":
+      return TripType.Train
+    case "SHIPBER":
+      return TripType.Ship
+    case "FERRYBER":
+      return TripType.Ferry
+    default:
+      fatalError("Could not convert stop type code.")
+    }
   }
 }
