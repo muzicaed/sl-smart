@@ -75,9 +75,11 @@ class TripDetailsSegmentCell: UITableViewCell {
   private func createSummary(segment: TripSegment) -> String {
     if segment.type == .Walk {
       return "ca. \(segment.durationInMin) min"
+    } else if segment.stops.count <= 2 {
+      return "1 hållplats (\(segment.durationInMin) min)"
     }
     
-    return "\(segment.stops.count + 1) stopp (\(segment.durationInMin) min)"
+    return "\(segment.stops.count - 1) hållplatser (\(segment.durationInMin) min)"
   }
   
   /**

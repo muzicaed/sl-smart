@@ -161,7 +161,7 @@ class TripDetailsVC: UITableViewController {
     if section < trip.tripSegments.count && stopsVisual.count > 0 {
       let visual = stopsVisual[section]
       if visual.hasStops && visual.isVisible {
-        return 3 + trip.tripSegments[section].stops.count
+        return 3 + max(trip.tripSegments[section].stops.count - 2, 0)
       }
     }
     return 3
@@ -190,7 +190,7 @@ class TripDetailsVC: UITableViewController {
         JournyDetailsService.fetchJournyDetails(ref) { stops, error in
           NetworkActivity.displayActivityIndicator(false)
           segment.stops = JournyDetailsService.filterStops(stops, segment: segment)
-          self.stopsVisual[index] = (isVisible: false, hasStops: (segment.stops.count > 0))
+          self.stopsVisual[index] = (isVisible: false, hasStops: (segment.stops.count > 2))
           dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadData()
           }
@@ -206,7 +206,6 @@ class TripDetailsVC: UITableViewController {
     if doneCount >= loadCount {
       self.mapButton.enabled = true
       StopEnhancer.enhance(trip)
-      self.tableView.reloadData()
     }
   }
   
@@ -247,7 +246,9 @@ class TripDetailsVC: UITableViewController {
   private func updateStopsToggleAnimated(section: Int, isVisible: Bool) {
     var indexPaths = [NSIndexPath]()
     for (index, _) in trip.tripSegments[section].stops.enumerate() {
-      indexPaths.append(NSIndexPath(forRow: index + 2, inSection: section))
+      if index < (trip.tripSegments[section].stops.count - 2) {
+        indexPaths.append(NSIndexPath(forRow: index + 2, inSection: section))
+      }
     }
     
     if isVisible {
