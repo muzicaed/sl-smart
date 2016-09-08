@@ -33,6 +33,9 @@ class TripDetailsSegmentCell: UITableViewCell {
     lineLabel.textColor = lineData.color
     directionLabel.text = TripHelper.friendlyTripSegmentDesc(segment)
     summaryLabel.text = createSummary(segment)
+    if let posText = segment.trainPositionText {
+      summaryLabel.text = summaryLabel.text! + ", \(posText)"
+    }
     warningLabel.text = generateWarningText(segment)
 
     warningLabel.hidden = false

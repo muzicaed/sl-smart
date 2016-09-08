@@ -22,13 +22,14 @@ public class TripSegment: NSObject, NSCopying {
   public let distance: Int?
   public let isRealtime: Bool
   public let journyRef: String?
-  public let geometryRef: String
   public let rtuMessages: String?
   public let notes: String?
   public let isWarning: Bool
   public let durationInMin: Int
   public let isReachable: Bool
   public let isCancelled: Bool
+  public var trainPositionText: String? = nil
+  public var exitText = ""
   
   public var stops = [Stop]()
   
@@ -38,8 +39,8 @@ public class TripSegment: NSObject, NSCopying {
     departureTime: String, arrivalTime: String,
     departureDate: String, arrivalDate: String,
     distance: Int?, isRealtime: Bool, journyRef: String?,
-    geometryRef: String, rtuMessages: String?,
-    notes: String?, isWarning: Bool, isReachable: Bool, isCancelled: Bool) {
+    rtuMessages: String?, notes: String?, isWarning: Bool,
+    isReachable: Bool, isCancelled: Bool) {
     
     self.index = index
     self.name = name
@@ -57,7 +58,6 @@ public class TripSegment: NSObject, NSCopying {
     self.distance = distance
     self.isRealtime = isRealtime
     self.journyRef = journyRef
-    self.geometryRef = geometryRef
     self.rtuMessages = rtuMessages
     self.notes = notes
     self.isWarning = isWarning
@@ -83,9 +83,8 @@ public class TripSegment: NSObject, NSCopying {
       departureDate: DateUtils.dateAsDateString(departureDateTime),
       arrivalDate: DateUtils.dateAsDateString(departureDateTime),
       distance: distance, isRealtime: isRealtime, journyRef: journyRef,
-      geometryRef: geometryRef, rtuMessages: rtuMessages,
-      notes: notes, isWarning: isWarning, isReachable: isReachable,
-      isCancelled: isCancelled)
+      rtuMessages: rtuMessages, notes: notes, isWarning: isWarning,
+      isReachable: isReachable, isCancelled: isCancelled)
     
     return seg
   }

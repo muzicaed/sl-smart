@@ -18,7 +18,7 @@ class ExitData {
     return [StaticExit]()
   }
   
-  static func pos(lon: String, _ lat: String) -> CLLocation {
+  static func pos(lat: String, _ lon: String) -> CLLocation {
     return CLLocation(latitude: Double(lat)!, longitude: Double(lon)!)
   }
   
@@ -87,7 +87,7 @@ class ExitData {
       StaticExit(name: "Kellgrensgatan", location: ExitData.pos("59.33686", "18.01671"), trainPosition: 2, changeToLines: []),
       StaticExit(name: "Stadshagens idrottsplats", location: ExitData.pos("59.33675", "18.01779"), trainPosition: 2, changeToLines: [])
     ],
-    // Fridhemsplan
+    // Fridhemsplan TODO: Check blue vs green
     "1151": [
       StaticExit(name: "St Eriksgatan 43T", location: ExitData.pos("59.334169", "18.032146"), trainPosition: 2, changeToLines: []),
       StaticExit(name: "St Eriksgatan 40A", location: ExitData.pos("59.334324", "18.032580"), trainPosition: 2, changeToLines: []),

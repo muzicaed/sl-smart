@@ -43,6 +43,7 @@
 		185073751C09CE84005D0D7E /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185073741C09CE84005D0D7E /* TripIcons.swift */; };
 		1851F2D71C35F56C0013CD6A /* SubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851F2D61C35F56C0013CD6A /* SubscriptionCell.swift */; };
 		1851F2DD1C36D71B0013CD6A /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851F2DC1C36D71B0013CD6A /* SubscriptionManager.swift */; };
+		18530B441D80C05C005AB9EC /* StopEnhancer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18530B431D80C05C005AB9EC /* StopEnhancer.swift */; };
 		1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854E1981C065EB70070C545 /* StandardGradient.swift */; };
 		185D8DBE1C189D0200300890 /* WatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367611C16264200A8BE16 /* WatchService.swift */; };
 		18609B381CC3B55E002F6346 /* LocationMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18609B371CC3B55E002F6346 /* LocationMapVC.swift */; };
@@ -316,6 +317,7 @@
 		185073741C09CE84005D0D7E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
 		1851F2D61C35F56C0013CD6A /* SubscriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionCell.swift; sourceTree = "<group>"; };
 		1851F2DC1C36D71B0013CD6A /* SubscriptionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
+		18530B431D80C05C005AB9EC /* StopEnhancer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopEnhancer.swift; sourceTree = "<group>"; };
 		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
 		18609B371CC3B55E002F6346 /* LocationMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMapVC.swift; sourceTree = "<group>"; };
 		186235FC1C411C2B0056338E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
@@ -845,6 +847,7 @@
 				183D6EB11C19DBF000EB7537 /* TrafficSituationService.swift */,
 				18FC747E1C7B778F00980B0D /* DeviationsService.swift */,
 				181B9AF71C03B3FB00B9145A /* TripHelper.swift */,
+				18530B431D80C05C005AB9EC /* StopEnhancer.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1450,6 +1453,7 @@
 				18FC747F1C7B778F00980B0D /* DeviationsService.swift in Sources */,
 				18FA99941C492BDC0075C4C2 /* SLJourneyDetailsApi.swift in Sources */,
 				186CACD71C55381100B1B5F6 /* RTBoat.swift in Sources */,
+				18530B441D80C05C005AB9EC /* StopEnhancer.swift in Sources */,
 				18630EEF1CC26C9E0085C0B8 /* FavouriteLocationsStore.swift in Sources */,
 				186CACD11C55265800B1B5F6 /* RTTram.swift in Sources */,
 				183D6EB41C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift in Sources */,

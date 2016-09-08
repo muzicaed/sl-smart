@@ -33,7 +33,7 @@ public class StopsStore {
    */
   public func getOnId(id: String) -> StaticStop {
     let stops = getFlatStops()
-    if let stop = stops[id] {
+    if let stop = stops[convertId(id)] {
       return stop
     }
     fatalError("Could not find stop with id: \(id)")
@@ -51,6 +51,18 @@ public class StopsStore {
   }
   
   // MARK: Private
+  
+  /**
+   * Converts id to StopPointNumber
+   */
+  private func convertId(id: String) -> String {
+    if id.characters.count > 5 {
+      let sub = id.substringFromIndex(id.startIndex.advancedBy(4))
+      let newId = String(Int(sub)!) // Remove leading zeros
+      return newId
+    }
+    return id
+  }
   
   /**
    * Loads static site data from json file.

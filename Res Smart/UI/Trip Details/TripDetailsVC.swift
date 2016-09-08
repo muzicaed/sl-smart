@@ -34,6 +34,7 @@ class TripDetailsVC: UITableViewController {
     prepareHeader()
     prepareVisualStops()
     loadStops()
+    StopEnhancer.enhance(trip)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didBecomeActive),
                                                      name: UIApplicationDidBecomeActiveNotification, object: nil)
   }
@@ -204,6 +205,7 @@ class TripDetailsVC: UITableViewController {
     }
     if doneCount >= loadCount {
       self.mapButton.enabled = true
+      StopEnhancer.enhance(trip)
       self.tableView.reloadData()
     }
   }

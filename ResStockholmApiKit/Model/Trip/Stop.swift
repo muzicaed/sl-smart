@@ -11,7 +11,6 @@ import CoreLocation
 
 public class Stop {
   public let id: String
-  public let stopPointNumber: String
   public let name: String
   public var depDate: NSDate?
   public var location: CLLocation
@@ -20,8 +19,7 @@ public class Stop {
   
   init(id: String, depDate: String?, depTime: String?) {
     self.id = id
-    self.stopPointNumber = Stop.convertId(id)
-    let staticStop = StopsStore.sharedInstance.getOnId(self.stopPointNumber)
+    let staticStop = StopsStore.sharedInstance.getOnId(self.id)
     self.name = staticStop.stopPointName
     self.location = staticStop.location
     self.type = staticStop.type
@@ -30,14 +28,5 @@ public class Stop {
     if let date = depDate, time = depTime {
       self.depDate = DateUtils.convertDateString("\(date) \(time)")
     }
-  }
-  
-  /**
-   * Converts id to StopPointNumber
-   */
-  static func convertId(id: String) -> String {
-    let sub = id.substringFromIndex(id.startIndex.advancedBy(4))
-    let newId = String(Int(sub)!) // Remove leading zeros
-    return newId
-  }
+  }  
 }
