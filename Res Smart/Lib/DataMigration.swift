@@ -15,12 +15,20 @@ class DataMigration {
   private static let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
   
   static func migrateData() {
-    let step = defaults.integerForKey(dataKey)
+    
+    // TODO: UPDATE HERE!!!
+    //let step = defaults.integerForKey(dataKey)
+    let step = 3
+    
+    
     if step <= 1 {
       migrateVersion_1_3()
     }
     if step <= 2 {
       migrateVersion_1_4()
+    }
+    if step <= 3 {
+      migrateVersion_1_5()
     }
   }
   
@@ -38,7 +46,7 @@ class DataMigration {
   
   // Version 1.4
   private static func migrateVersion_1_4() {
-    print("Running migration v1.3")
+    print("Running migration v1.4")
     let routines = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
     for routine in routines {
       if routine.isSmartSuggestion {
@@ -48,6 +56,14 @@ class DataMigration {
       }
     }
     defaults.setInteger(3, forKey: dataKey)
+    defaults.synchronize()
+  }
+  
+  // Version 1.5
+  private static func migrateVersion_1_5() {
+    print("Running migration v1.5")
+    StopsStore.sharedInstance.loadJson()
+    defaults.setInteger(4, forKey: dataKey)
     defaults.synchronize()
   }
 }

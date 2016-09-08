@@ -11,28 +11,18 @@ import CoreLocation
 
 public class StopsStore {
   
-  private var cachedStops = [String: [StaticStop]]()
-  private var cachedFlatStops = [String: StaticStop]()
+  private let StaticStopList = "StaticStopList"
+  private let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
+  private var cachedStops = [String: StaticStop]()
   
   // Singelton pattern
   public static let sharedInstance = StopsStore()
   
   /**
-   * Gets all static stops in a list grouped on StopAreaNumber.
-   */
-  public func getStops() -> [String: [StaticStop]] {
-    if cachedStops.count == 0 {
-      loadJson()
-    }
-    
-    return cachedStops
-  }
-  
-  /**
    * Gets static stop on id
    */
   public func getOnId(id: String) -> StaticStop {
-    let stops = getFlatStops()
+    let stops = getStops()
     if let stop = stops[convertId(id)] {
       return stop
     }
@@ -42,12 +32,32 @@ public class StopsStore {
   /**
    * Gets all static stops in a flat list.
    */
-  public func getFlatStops() -> [String: StaticStop] {
-    if cachedFlatStops.count == 0 {
-      loadJson()
+  public func getStops() -> [String: StaticStop] {
+    if cachedStops.count == 0 {
+      cachedStops = retrieveStaticStopsFromStore()
     }
     
-    return cachedFlatStops
+    return cachedStops
+  }
+  
+  /**
+   * Loads static site data from json file.
+   * Should only be triggred as part of migration.
+   */
+  public func loadJson() {
+    let bundle = NSBundle.mainBundle()
+    do {
+      if let path = bundle.pathForResource("stop", ofType: "json") {
+        let data = try NSData(contentsOfFile: path,options: .DataReadingMappedIfSafe)
+        convertData(data)
+        writeStaticStopsToStore()
+      } else {
+        print("Path not found for static sites.")
+      }
+    }
+    catch {
+      fatalError("Could not load site.json")
+    }
   }
   
   // MARK: Private
@@ -65,24 +75,6 @@ public class StopsStore {
   }
   
   /**
-   * Loads static site data from json file.
-   */
-  private func loadJson() {
-    let bundle = NSBundle.mainBundle()
-    do {
-      if let path = bundle.pathForResource("stop", ofType: "json") {
-        let data = try NSData(contentsOfFile: path,options: .DataReadingMappedIfSafe)
-        convertData(data)
-      } else {
-        print("Path not found for static sites.")
-      }
-    }
-    catch {
-      fatalError("Could not load site.json")
-    }
-  }
-  
-  /**
    * Converts json data to dictionary.
    */
   private func convertData(data: NSData) {
@@ -97,11 +89,7 @@ public class StopsStore {
             location: createLocation(stopJson),
             type: createTripType(stopJson["StopAreaTypeCode"].string!))
           
-          cachedFlatStops[stop.stopPointNumber] = stop
-          if cachedStops[stop.stopAreaNumber] == nil {
-            cachedStops[stop.stopAreaNumber] = [StaticStop]()
-          }
-          cachedStops[stop.stopAreaNumber]?.append(stop)
+          cachedStops[stop.stopPointNumber] = stop
         }
       }
     }
@@ -114,6 +102,27 @@ public class StopsStore {
     return CLLocation(
       latitude: Double(stopJson["LocationNorthingCoordinate"].string!)!,
       longitude: Double(stopJson["LocationEastingCoordinate"].string!)!)
+  }
+  
+  /**
+   * Retrive "StaticStopList" from data store
+   */
+  private func retrieveStaticStopsFromStore() -> [String: StaticStop] {
+    if let unarchivedObject = defaults.objectForKey(StaticStopList) as? NSData {
+      if let stops = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [String: StaticStop] {
+        return stops
+      }
+      
+    }
+    return [String: StaticStop]()
+  }
+  
+  /**
+   * Store static stops lists to "StaticStopList" in data store
+   */
+  private func writeStaticStopsToStore() {
+    let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(cachedStops)
+    defaults.setObject(archivedObject, forKey: StaticStopList)
   }
   
   /**
