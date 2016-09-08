@@ -193,7 +193,6 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     
     createStopPins(segment)
     createLocationPins(segment, coordinates: newCoordinates)
-    createTripTypeIcon(segment, coordinates: newCoordinates)
   }
   
   /**
@@ -246,34 +245,6 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
         mapView.addAnnotation(pin)
       }
     }
-  }
-  
-  /**
-   * Create trip type annotation icons.
-   */
-  private func createTripTypeIcon(segment: TripSegment, coordinates: [CLLocationCoordinate2D]) {
-    
-    var coord = CLLocationCoordinate2D()
-    if coordinates.count > 2 {
-      coord = findCenterCoordinate(
-        coordinates[Int(floor(Float(coordinates.count / 2)) - 1)],
-        coord2: coordinates[Int(ceil(Float(coordinates.count / 2)) + 1)])
-    } else {
-      coord = findCenterCoordinate(coordinates.first!, coord2: coordinates.last!)
-    }
-    
-    let data = TripHelper.friendlyLineData(segment)
-    let pin = TripTypeIconAnnotation()
-    pin.coordinate = coord
-    pin.imageName = data.icon
-    pin.title = data.long
-    if segment.type == .Walk {
-      pin.subtitle = "\(segment.distance!) meter"
-    } else {
-      pin.subtitle = "Mot \(segment.directionText!)"
-    }
-    
-    mapView.addAnnotation(pin)
   }
   
   /**
