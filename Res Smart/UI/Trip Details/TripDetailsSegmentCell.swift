@@ -34,7 +34,7 @@ class TripDetailsSegmentCell: UITableViewCell {
     directionLabel.text = TripHelper.friendlyTripSegmentDesc(segment)
     summaryLabel.text = createSummary(segment)
     if let posText = segment.trainPositionText {
-      summaryLabel.text = summaryLabel.text! + " \(posText)."
+      directionLabel.text = directionLabel.text! + ", \(posText)"
     }
     warningLabel.text = generateWarningText(segment)
 
@@ -50,7 +50,6 @@ class TripDetailsSegmentCell: UITableViewCell {
       warningLabel.hidden = true
     }
     updateStops(visual)
-    //segmentIcon.frame.size.height += contentView.bounds.size.height + 1
   }
   
   /**
@@ -78,7 +77,7 @@ class TripDetailsSegmentCell: UITableViewCell {
       return "ca. \(segment.durationInMin) min"
     }
     
-    return "\(segment.stops.count + 1) stopp i \(segment.durationInMin) min."
+    return "\(segment.stops.count + 1) stopp (\(segment.durationInMin) min)"
   }
   
   /**

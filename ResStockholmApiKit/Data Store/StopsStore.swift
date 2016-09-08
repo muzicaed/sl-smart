@@ -36,7 +36,7 @@ public class StopsStore {
     if let stop = stops[convertId(id)] {
       return stop
     }
-    fatalError("Could not find stop with id: \(id)")
+    fatalError("Could not find stop with id: \(id) = \(convertId(id))")
   }
   
   /**

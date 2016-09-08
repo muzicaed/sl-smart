@@ -85,17 +85,17 @@ public class StopEnhancer {
       default:
         // Invert
         if exit.trainPosition != .Middle {
-          trainPos = (exit.trainPosition == .Front) ? .Back : .Middle
+          trainPos = (exit.trainPosition == .Front) ? .Back : .Front
         }
       }
       
       switch trainPos {
       case .Front:
-        return "Åk långt fram"
+        return "långt fram i tåget"
       case .Middle:
-        return "Åk mitten av tåget"
+        return "mitten av tåget"
       case .Back:
-        return "Åk långt bak"
+        return "långt bak i tåget"
       }
     }
     return nil
