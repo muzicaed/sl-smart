@@ -34,7 +34,7 @@ class TripDetailsSegmentCell: UITableViewCell {
     directionLabel.text = TripHelper.friendlyTripSegmentDesc(segment)
     summaryLabel.text = createSummary(segment)
     if let posText = segment.trainPositionText {
-      summaryLabel.text = summaryLabel.text! + ", \(posText)"
+      summaryLabel.text = summaryLabel.text! + " \(posText)."
     }
     warningLabel.text = generateWarningText(segment)
 
@@ -76,11 +76,9 @@ class TripDetailsSegmentCell: UITableViewCell {
   private func createSummary(segment: TripSegment) -> String {
     if segment.type == .Walk {
       return "ca. \(segment.durationInMin) min"
-    } else if segment.stops.count > 0 {
-      return "\(segment.stops.count + 1) hållplatser (\(segment.durationInMin) min)"
     }
     
-    return "1 hållplats (\(segment.durationInMin) min)"
+    return "\(segment.stops.count + 1) stopp i \(segment.durationInMin) min."
   }
   
   /**
