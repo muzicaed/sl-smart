@@ -225,7 +225,7 @@ class ExitData {
       StaticExit(name: "Munkbroleden Södermalm", location: ExitData.pos("59.323043", "18.067613"), trainPosition: 1, changeToLines: []),
       StaticExit(name: "Gamla Stan", location: ExitData.pos("59.323384", "18.068162"), trainPosition: 1, changeToLines: []),
       StaticExit(name: "Från platformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T13", "T14", "T17", "T18", "T19"])
-    ],    
+    ],
     // Slussen
     "1011": [
       StaticExit(name: "Götgatan", location: ExitData.pos("59.318165", "18.071415"), trainPosition: 0, changeToLines: []),
@@ -233,6 +233,141 @@ class ExitData {
       StaticExit(name: "Slussenterminalen", location: ExitData.pos("59.320152", "18.072134"), trainPosition: 2, changeToLines: []),
       StaticExit(name: "Från platformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T13", "T14", "T17", "T18", "T19"])
     ],
-    
+    // Mariatorget
+    "2511": [
+      StaticExit(name: "Torkel Knutssonsgatan", location: ExitData.pos("59.317251", "18.057747"), trainPosition: 2, changeToLines: []),
+      StaticExit(name: "Mariatorget", location: ExitData.pos("59.316965", "18.063292"), trainPosition: 0, changeToLines: [])
+    ],
+    // Zinkensdamm
+    "2521": [
+      StaticExit(name: "Zinkensdamm", location: ExitData.pos("59.317716", "18.05006"), trainPosition: 1, changeToLines: [])
+    ],
+    // Hornstull
+    "2531": [
+      StaticExit(name: "Långholmsgatan/Högalidsgatan", location: ExitData.pos("59.315744", "18.034209"), trainPosition: 2, changeToLines: []),
+      StaticExit(name: "Högalidsparken", location: ExitData.pos("59.316575", "18.038637"), trainPosition: 0, changeToLines: []),
+      StaticExit(name: "Hornstull", location: ExitData.pos("59.315744", "18.034209"), trainPosition: 2, changeToLines: []),
+      StaticExit(name: "Bergsunds strand", location: ExitData.pos("59.315703", "18.03345"), trainPosition: 2, changeToLines: [])
+    ],
+    // Liljeholmen
+    "2601": [
+      StaticExit(name: "Liljeholmstorget (inomhus)", location: ExitData.pos("59.310073", "18.022192"), trainPosition: 0, changeToLines: []),
+      StaticExit(name: "Liljeholmsvägen/Tvärbana", location: ExitData.pos("59.310877", "18.024251"), trainPosition: 1, changeToLines: ["L22"]),
+      StaticExit(name: "Trekanten", location: ExitData.pos("59.31056", "18.021601"), trainPosition: 0, changeToLines: []),
+      StaticExit(name: "Hissbana/Nybohov", location: ExitData.pos("59.308680", "18.016616"), trainPosition: 0, changeToLines: []),
+      StaticExit(name: "Liljeholmstorget (utomhus)", location: ExitData.pos("59.310192", "18.022118"), trainPosition: 0, changeToLines: []),
+      StaticExit(name: "Liljeholmsvägen Höger", location: ExitData.pos("59.310832", "18.024180"), trainPosition: 1, changeToLines: []),
+      StaticExit(name: "Bussterminal", location: ExitData.pos("59.310102", "18.022563"), trainPosition: 0, changeToLines: []),
+      StaticExit(name: "Från platformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T13", "T14"])
+    ],
+    // Aspudden
+    "2611": [
+      StaticExit(name: "Aspudden", location: ExitData.pos("59.30642", "18.001142"), trainPosition: 1, changeToLines: [])
+    ],
+    // Örnsberg
+    "2621": [
+      StaticExit(name: "Örnsberg", location: ExitData.pos("59.305522", "17.989447"), trainPosition: 0, changeToLines: [])
+    ],
+    // Axelsberg
+    "2631": [
+      StaticExit(name: "Axelsberg", location: ExitData.pos("59.304540", "17.974860"), trainPosition: 0, changeToLines: [])
+    ],
+    // Mälarhöjden
+    "2641": [
+      StaticExit(name: "Mälarhöjden", location: ExitData.pos("59.301058", "17.957035"), trainPosition: 0, changeToLines: [])
+    ],
+    // Bredäng
+    "2651": [
+      StaticExit(name: "Bredängstorget", location: ExitData.pos("59.29478", "17.934333"), trainPosition: 0, changeToLines: []),
+      StaticExit(name: "Bredängshallen", location: ExitData.pos("59.294802", "17.934086"), trainPosition: 0, changeToLines: [])
+    ],
+    // Sätra
+    "2701": [
+      StaticExit(name: "Sätra", location: ExitData.pos("59.285545", "17.920396"), trainPosition: 0, changeToLines: []),
+      StaticExit(name: "Sätra Torg", location: ExitData.pos("59.284952", "17.922394"), trainPosition: 0, changeToLines: [])
+    ],
+    // Skärholmen
+    "2711": [
+      StaticExit(name: "Skärholmstorget", location: ExitData.pos("59.2767", "17.90629"), trainPosition: 1, changeToLines: []),
+      StaticExit(name: "Skärholmsplan", location: ExitData.pos("59.27678", "17.90867"), trainPosition: 2, changeToLines: [])
+    ],
+    // Vårberg
+    "2721": [
+      StaticExit(name: "Fjärdholmsgränd", location: ExitData.pos("59.27596", "17.88987"), trainPosition: 2, changeToLines: []),
+      StaticExit(name: "Vårberg centrum", location: ExitData.pos("59.27575", "17.8893"), trainPosition: 2, changeToLines: [])
+    ],
+    // Vårby gård
+    "2731": [
+      StaticExit(name: "Vårby gård", location: ExitData.pos("59.264521", "17.884444"), trainPosition: 2, changeToLines: [])
+    ],
+    // Masmo
+    "2741": [
+      StaticExit(name: "Masmo", location: ExitData.pos("59.24979", "17.881376"), trainPosition: 1, changeToLines: [])
+    ],
+    // Fittja
+    "2751": [
+      StaticExit(name: "Fittja", location: ExitData.pos("59.247859", "17.861162"), trainPosition: 0, changeToLines: [])
+    ],
+    // Alby
+    "2761": [
+      StaticExit(name: "Alby Centrum", location: ExitData.pos("59.238789", "17.84479"), trainPosition: 0, changeToLines: []),
+      StaticExit(name: "Albyberget", location: ExitData.pos("59.239969", "17.846164"), trainPosition: 0, changeToLines: [])
+    ],
+    // Hallunda
+    "2771": [
+      StaticExit(name: "Hallunda torg", location: ExitData.pos("59.24416", "17.82604"), trainPosition: 0, changeToLines: []),
+      StaticExit(name: "Eriksberg", location: ExitData.pos("59.24265", "17.82613"), trainPosition: 0, changeToLines: [])
+    ],
+    // Norsborg
+    "2781": [
+      StaticExit(name: "Bussar", location: ExitData.pos("59.24395", "17.81424"), trainPosition: 0, changeToLines: []),
+      StaticExit(name: "Norsborgs centrum", location: ExitData.pos("59.24431", "17.81427"), trainPosition: 0, changeToLines: []),
+      StaticExit(name: "Eriksberg", location: ExitData.pos("59.24305", "17.81436"), trainPosition: 0, changeToLines: [])
+    ],
+    // Ropsten
+    "2131": [
+      StaticExit(name: "Bussar", location: ExitData.pos("59.35741", "18.10276"), trainPosition: 1, changeToLines: []),
+      StaticExit(name: "Gasverksvägen", location: ExitData.pos("59.35745", "18.102304"), trainPosition: 1, changeToLines: []),
+      StaticExit(name: "Artemisgatan", location: ExitData.pos("59.35557", "18.09972"), trainPosition: 2, changeToLines: []),
+      StaticExit(name: "Jägmästargatan", location: ExitData.pos("59.35479", "18.09809"), trainPosition: 2, changeToLines: [])
+    ],
+    // Gärdet
+    "2121": [
+      StaticExit(name: "Brantingsg./Askrikeg.", location: ExitData.pos("59.34468", "18.09847"), trainPosition: 2, changeToLines: []),
+      StaticExit(name: "Värtavä./Sandhamnsg.", location: ExitData.pos("59.34781", "18.10143"), trainPosition: 0, changeToLines: [])
+    ],
+    // Karlaplan
+    "2111": [
+      StaticExit(name: "Karlaplan Nordväst", location: ExitData.pos("59.338437", "18.090255"), trainPosition: 2, changeToLines: []),
+      StaticExit(name: "Karlaplan Nordöst", location: ExitData.pos("59.338349", "18.090953"), trainPosition: 2, changeToLines: []),
+      StaticExit(name: "Valhallav./Värtav.", location: ExitData.pos("59.340292", "18.093849"), trainPosition: 0, changeToLines: []),
+      StaticExit(name: "Valhallav./Tessinparken", location: ExitData.pos("59.340729", "18.093013"), trainPosition: 0, changeToLines: [])
+    ],
+    // Midsommarkransen
+    "2811": [
+      StaticExit(name: "Tegelbruksv./SL Sporthall", location: ExitData.pos("59.302509", "18.010701"), trainPosition: 1, changeToLines: []),
+      StaticExit(name: "Svandammsvägen", location: ExitData.pos("59.30154", "18.012471"), trainPosition: 1, changeToLines: []),
+    ],
+    // Telefonplan
+    "2821": [
+      StaticExit(name: "Telefonplan", location: ExitData.pos("59.298182", "17.996750"), trainPosition: 2, changeToLines: []),
+      StaticExit(name: "Mikrofonvägen", location: ExitData.pos("59.298073", "17.996947"), trainPosition: 2, changeToLines: [])
+    ],
+    // Hägerstensåsen
+    "2831": [
+      StaticExit(name: "Personnevägen", location: ExitData.pos("59.294287", "17.976294"), trainPosition: 2, changeToLines: []),
+      StaticExit(name: "Hägerstensåsen", location: ExitData.pos("59.295558", "17.979448"), trainPosition: 0, changeToLines: [])
+    ],
+    // Västertorp
+    "2841": [
+      StaticExit(name: "Västertorpsvägen", location: ExitData.pos("59.29058", "17.96519"), trainPosition: 2, changeToLines: []),
+      StaticExit(name: "Störtloppsvägen", location: ExitData.pos("59.29215", "17.96854"), trainPosition: 0, changeToLines: [])
+    ],
+    // Fruängen
+    "2851": [
+      StaticExit(name: "Fruängsplan", location: ExitData.pos("59.28566", "17.96499"), trainPosition: 2, changeToLines: []),
+      StaticExit(name: "Fruängstorget", location: ExitData.pos("59.28586", "17.96479"), trainPosition: 2, changeToLines: [])
+
+    ]
   ]
 }
