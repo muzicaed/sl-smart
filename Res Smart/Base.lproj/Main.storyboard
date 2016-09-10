@@ -4755,7 +4755,7 @@ direkt från din iPhone.</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="m4f-mc-vKA">
-                                            <rect key="frame" x="0.0" y="0.0" width="406" height="40"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="402" height="40"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVu-LK-ZWM" userLabel="Time">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
@@ -4766,13 +4766,13 @@ direkt från din iPhone.</string>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalCompressionResistancePriority="751" misplaced="YES" text="Arlanda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="FXA-76-yac" userLabel="Location">
-                                                    <rect key="frame" x="60" y="0.0" width="59" height="40"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="751" text="Arlanda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="FXA-76-yac" userLabel="Location">
+                                                    <rect key="frame" x="60" y="0.0" width="218.5" height="40"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="nOT-xQ-poO" userLabel="Exit">
-                                                    <rect key="frame" x="119" y="0.0" width="287" height="40"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="nOT-xQ-poO" userLabel="Exit">
+                                                    <rect key="frame" x="278.5" y="0.0" width="123.5" height="40"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -4783,7 +4783,7 @@ direkt från din iPhone.</string>
                                     <constraints>
                                         <constraint firstItem="m4f-mc-vKA" firstAttribute="top" secondItem="Rzj-Ms-fM2" secondAttribute="top" id="Vt8-JE-h1e"/>
                                         <constraint firstAttribute="bottom" secondItem="m4f-mc-vKA" secondAttribute="bottom" id="iXj-yK-QQr"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="m4f-mc-vKA" secondAttribute="trailing" id="kfq-tN-2zG"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="m4f-mc-vKA" secondAttribute="trailing" constant="4" id="kfq-tN-2zG"/>
                                         <constraint firstItem="m4f-mc-vKA" firstAttribute="leading" secondItem="Rzj-Ms-fM2" secondAttribute="leading" id="uS9-KG-sHt"/>
                                     </constraints>
                                 </tableViewCellContentView>

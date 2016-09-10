@@ -24,8 +24,9 @@ class TripDetailsDestinationCell: UITableViewCell, TripCellProtocol {
     timeLabel.text = DateUtils.dateAsTimeString(segment.arrivalDateTime)
     timeLabel.accessibilityLabel = "Framme \(timeLabel.text!)"
     destinationLabel.text = segment.destination.cleanName
+    exitLabel.text = ""
     if segment.exitText != "" {
-      exitLabel.text = "Uppgång: \(segment.exitText)"
+      exitLabel.text = "Upp: \(segment.exitText)"
     }
     destinationLabel.accessibilityLabel = "vid \(destinationLabel.text!)"
   }

@@ -74,13 +74,17 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     var zIndex = CGFloat(0)
     
     if annotation.isKindOfClass(BigPin) {
-      reuseId = "dot"
-      image = UIImage(named: "MapDot")!
+      let bigPinIcon = annotation as! BigPin
+      if let name = bigPinIcon.imageName {
+        image = UIImage(named: name)!
+        bgColor = UIColor(white: 1.0, alpha: 0.9)
+        isShadow = true
+      }
       zIndex = 1
       
-    } else if annotation.isKindOfClass(OriginPin) {
-      reuseId = "origin-dot"
-      image = UIImage(named: "MapOriginDot")!
+    } else if annotation.isKindOfClass(DestinationPin) {
+      reuseId = "destination-dot"
+      image = UIImage(named: "MapDestinationDot")!
       zIndex = 1
       
     } else if annotation.isKindOfClass(SmallPin) {
@@ -88,14 +92,6 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       image = UIImage(named: "MapDotSmall")!
       zIndex = 1
       
-    } else if annotation.isKindOfClass(TripTypeIconAnnotation) {
-      let tripTypeIcon = annotation as! TripTypeIconAnnotation
-      zIndex = 10
-      if let name = tripTypeIcon.imageName {
-        image = UIImage(named: name)!
-        bgColor = UIColor(white: 1.0, alpha: 0.9)
-        isShadow = true
-      }
     } else {
       return nil
     }
@@ -137,14 +133,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     }
     return MKOverlayRenderer()
   }
-  
-  /**
-   * On annotaitions added.
-   * Move trip type icons to top.
-   */
-  func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
-    
-  }
+
   
   // MARK: Private
   
@@ -202,32 +191,36 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     let originCoord = (segment.stops.count == 0) ? segment.origin.location.coordinate : segment.stops.first!.location.coordinate
     let destCoord = (segment.stops.count == 0) ? segment.destination.location.coordinate : segment.stops.last!.location.coordinate
     if segment == trip?.tripSegments.first! {
-      let pin = OriginPin()
+      let pin = BigPin()
       pin.coordinate = originCoord
       pin.title = "Start: " + segment.origin.name
       pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+      pin.imageName = segment.type.rawValue
       mapView.addAnnotation(pin)
-    } else if segment == trip?.tripSegments.last! {
-      let pin = BigPin()
-      pin.coordinate = destCoord
-      pin.title = "Destination: " + segment.destination.name
-      pin.subtitle = "Framme: " + DateUtils.dateAsTimeString(segment.arrivalDateTime)
-      mapView.addAnnotation(pin)
+      mapView.selectAnnotation(pin, animated: true)
       return
-    } else {
+    } else if segment == trip?.tripSegments.last! {
       let pin = BigPin()
       pin.coordinate = originCoord
       pin.title = segment.origin.name
       pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
-      
+      pin.imageName = segment.type.rawValue
       mapView.addAnnotation(pin)
+      
+      let destPin = DestinationPin()
+      destPin.coordinate = destCoord
+      destPin.title = "Destination: " + segment.destination.name
+      destPin.subtitle = "Framme: " + DateUtils.dateAsTimeString(segment.arrivalDateTime)
+      mapView.addAnnotation(destPin)
+      return
     }
     
-    let destPin = BigPin()
-    destPin.coordinate = destCoord
-    destPin.title = segment.destination.name
-    destPin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
-    mapView.addAnnotation(destPin)
+    let pin = BigPin()
+    pin.coordinate = originCoord
+    pin.title = segment.origin.name
+    pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+    pin.imageName = segment.type.rawValue
+    mapView.addAnnotation(pin)
   }
   
   /**

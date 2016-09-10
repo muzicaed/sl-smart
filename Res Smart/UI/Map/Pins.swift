@@ -9,19 +9,15 @@
 import Foundation
 import MapKit
 
-class OriginPin: MKPointAnnotation {
+class DestinationPin: MKPointAnnotation {
   
 }
 
 class BigPin: MKPointAnnotation {
   var stationIndex = -1
-
+  var imageName: String?
 }
 
 class SmallPin: MKPointAnnotation {
-  
-}
-
-class TripTypeIconAnnotation: MKPointAnnotation {
   var imageName: String?
 }
