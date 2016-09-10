@@ -88,8 +88,12 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       zIndex = 1
       
     } else if annotation.isKindOfClass(SmallPin) {
-      reuseId = "small-dot"
-      image = UIImage(named: "MapDotSmall")!
+      let pinIcon = annotation as! SmallPin
+      if let name = pinIcon.imageName {
+        image = UIImage(named: name)!
+        bgColor = UIColor(white: 1.0, alpha: 0.9)
+        isShadow = true
+      }
       zIndex = 1
       
     } else {
@@ -235,6 +239,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
         if let depDate = stop.depDate {
           pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(depDate)
         }
+        pin.imageName = segment.type.rawValue + "-SMALL"
         mapView.addAnnotation(pin)
       }
     }
