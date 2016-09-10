@@ -26,7 +26,7 @@ class TripDetailsDestinationCell: UITableViewCell, TripCellProtocol {
     destinationLabel.text = segment.destination.cleanName
     exitLabel.text = ""
     if segment.exitText != "" {
-      exitLabel.text = "Upp: \(segment.exitText)"
+      exitLabel.text = "⤴ \(segment.exitText)"
     }
     destinationLabel.accessibilityLabel = "vid \(destinationLabel.text!)"
   }

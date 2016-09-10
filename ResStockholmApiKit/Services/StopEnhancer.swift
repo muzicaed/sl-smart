@@ -21,7 +21,8 @@ public class StopEnhancer {
         if index + 1 < trip.allTripSegments.count {
           nextSegment = trip.allTripSegments[index + 1]
         }
-        enhanceSegment(segment, next: nextSegment)
+        let stop = StopsStore.sharedInstance.getOnId(segment.destination.siteId!)
+        enhanceSegment(segment, next: nextSegment, stop: stop)
       }
     }
   }
@@ -29,14 +30,18 @@ public class StopEnhancer {
   /**
    * Enhance stop data for a segment.
    */
-  static private func enhanceSegment(segment: TripSegment, next: TripSegment?) {
+  static private func enhanceSegment(segment: TripSegment, next: TripSegment?, stop: StaticStop) {
     if let nextSegment = next {
-      if nextSegment.type == .Walk {
-        enhanceWalk(segment, nextSegment: nextSegment)
-      } else if nextSegment.type == .Bus {
-        enhanceBus(segment, nextSegment: nextSegment)
-      } else {
-        
+      var exit: StaticExit? = nil
+      if stop.exits.count > 0 {
+        if nextSegment.type == .Walk {
+          exit = enhanceWalk(segment, nextSegment: nextSegment, stop: stop)
+        } else if nextSegment.type == .Bus {
+          exit = enhanceBus(segment, nextSegment: nextSegment, stop: stop)
+        } else {
+          exit = enhanceChange(segment, nextSegment: nextSegment, stop: stop)
+        }
+        prepareExitText(exit, segment: segment)
       }
     }
   }
@@ -44,24 +49,33 @@ public class StopEnhancer {
   /**
    * Enhance stop data for walk segment.
    */
-  static private func enhanceWalk(segment: TripSegment, nextSegment: TripSegment) {
-    let stop = StopsStore.sharedInstance.getOnId(segment.destination.siteId!)
-    if stop.exits.count > 0  {
-      let exit = findClosestExit(nextSegment.destination.location, exits: stop.exits)
-      segment.exitText = exit.name
-      segment.trainPositionText = createTrainPositionText(segment, exit: exit)
-    }
+  static private func enhanceWalk(segment: TripSegment, nextSegment: TripSegment,
+                                  stop: StaticStop) -> StaticExit {
+    return findClosestExit(nextSegment.destination.location, exits: stop.exits)
   }
   
   /**
    * Enhance stop data for bus segment.
    */
-  static private func enhanceBus(segment: TripSegment, nextSegment: TripSegment) {
-    let stop = StopsStore.sharedInstance.getOnId(segment.destination.siteId!)
-    if stop.exits.count > 0  {
-      let exit = findClosestExit(nextSegment.stops.first!.location, exits: stop.exits)
-      segment.exitText = exit.name
+  static private func enhanceBus(segment: TripSegment, nextSegment: TripSegment,
+                                 stop: StaticStop) -> StaticExit {
+    return findClosestExit(nextSegment.origin.location, exits: stop.exits)
+  }
+  
+  /**
+   * Enhance stop data for change.
+   */
+  static private func enhanceChange(segment: TripSegment, nextSegment: TripSegment,
+                                    stop: StaticStop) -> StaticExit? {
+    let line = TripHelper.friendlyLineData(nextSegment).short
+    print("Change to line: \(line)")
+    for exit in stop.exits {
+      if exit.changeToLines.contains(line) {
+        print("Found: \(exit.name)")
+        return exit
+      }
     }
+    return nil
   }
   
   /**
@@ -69,6 +83,16 @@ public class StopEnhancer {
    */
   static private func findClosestExit(dest: CLLocation, exits: [StaticExit]) -> StaticExit {
     return exits.minElement { $0.location.distanceFromLocation(dest) < $1.location.distanceFromLocation(dest)}!
+  }
+  
+  /**
+   * Set the exit and train direction text to segemnt
+   */
+  static private func prepareExitText(exit: StaticExit?, segment: TripSegment) {
+    if let exit = exit {
+      segment.exitText = exit.name
+      segment.trainPositionText = createTrainPositionText(segment, exit: exit)
+    }
   }
   
   /**

@@ -220,10 +220,6 @@ class ExitData {
       StaticExit(name: "Thorildsplan", location: ExitData.pos("59.33179", "18.01599"), trainPosition: 2, changeToLines: []),
       StaticExit(name: "Lärarhögskolan", location: ExitData.pos("59.33112", "18.01606"), trainPosition: 2, changeToLines: [])
     ],
-    // Kristineberg
-    "1171": [
-      StaticExit(name: "Kristineberg", location: ExitData.pos("59.33289", "18.00303"), trainPosition: 0, changeToLines: [])
-    ],
     // S:t Eriksplan
     "1141": [
       StaticExit(name: "Sankt Eriksgatan", location: ExitData.pos("59.341703", "18.037748"), trainPosition: 2, changeToLines: []),
@@ -455,7 +451,6 @@ class ExitData {
     "2851": [
       StaticExit(name: "Fruängsplan", location: ExitData.pos("59.28566", "17.96499"), trainPosition: 2, changeToLines: []),
       StaticExit(name: "Fruängstorget", location: ExitData.pos("59.28586", "17.96479"), trainPosition: 2, changeToLines: [])
-
     ]
   ]
 }
