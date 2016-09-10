@@ -50,6 +50,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     SubscriptionStore.sharedInstance.setupTrial()
     SubscriptionManager.sharedInstance.validateSubscription()
     checkTrafficSituation()
+    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+    dispatch_async(dispatch_get_global_queue(priority, 0)) {
+      // Load stops i background
+      StopsStore.sharedInstance.getStops()
+    }
+    
   }
   
   func applicationWillTerminate(application: UIApplication) {
