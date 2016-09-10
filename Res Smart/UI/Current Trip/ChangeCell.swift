@@ -89,6 +89,7 @@ class ChangeCell: UICollectionViewCell {
    * Setup change row for walk.
    */
   private func setupWalkData(segment: TripSegment) {
+    /*
     let segmentData = TripHelper.friendlyLineData(segment)
     let inAbout = DateUtils.createAboutTimeText(segment.departureDateTime, isWalk: false)
     let departureTime = DateUtils.dateAsTimeString(segment.departureDateTime)
@@ -96,5 +97,6 @@ class ChangeCell: UICollectionViewCell {
     line1Label.text = "Ca. \(segment.distance!)"
     // Station count...
     line2Label.text = "Du behöver vara framme kl. \(departureTime) (\(inAbout))"
+     */
   }
 }

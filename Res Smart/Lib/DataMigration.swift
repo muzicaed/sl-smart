@@ -16,11 +16,7 @@ class DataMigration {
   
   static func migrateData() {
     
-    // TODO: UPDATE HERE!!!
-    //let step = defaults.integerForKey(dataKey)
-    let step = 3
-    
-    
+    let step = defaults.integerForKey(dataKey)        
     if step <= 1 {
       migrateVersion_1_3()
     }
