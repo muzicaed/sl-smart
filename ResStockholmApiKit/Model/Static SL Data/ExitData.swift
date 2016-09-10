@@ -298,7 +298,41 @@ class ExitData {
     "1951": [
       StaticExit(name: "Skarpnäck", location: ExitData.pos("59.266275", "18.132849"), trainPosition: 2, changeToLines: [])
     ],
-    
+    // Blåsut
+    "1811": [
+      StaticExit(name: "Blåsut", location: ExitData.pos("59.290101", "18.09092"), trainPosition: 0, changeToLines: [])
+    ],
+    // Sandsborg
+    "1821": [
+      StaticExit(name: "Sandsborg", location: ExitData.pos("59.28481", "18.09216"), trainPosition: 0, changeToLines: [])
+    ],
+    // Skogskyrkogården
+    "1831": [
+      StaticExit(name: "Skogskyrkogården", location: ExitData.pos("59.279213", "18.095255"), trainPosition: 2, changeToLines: [])
+    ],
+    // Tallkrogen
+    "1841": [
+      StaticExit(name: "Tallkrogen", location: ExitData.pos("59.2712", "18.08516"), trainPosition: 0, changeToLines: [])
+    ],
+    // Gubbängen
+    "1851": [
+      StaticExit(name: "Herrhagsvägen", location: ExitData.pos("59.264159", "18.082069"), trainPosition: 2, changeToLines: []),
+      StaticExit(name: "Gubbängstorget", location: ExitData.pos("59.262174", "18.082455"), trainPosition: 0, changeToLines: [])
+    ],
+    // Hökarängen
+    "1861": [
+      StaticExit(name: "Örbyleden", location: ExitData.pos("59.25794", "18.082724"), trainPosition: 2, changeToLines: []),
+      StaticExit(name: "Russinvägen", location: ExitData.pos("59.256229", "18.083754"), trainPosition: 0, changeToLines: [])
+    ],
+    // Farsta
+    "1871": [
+      StaticExit(name: "Farsta centrum", location: ExitData.pos("59.243289", "18.09312"), trainPosition: 1, changeToLines: []),
+      StaticExit(name: "Kroppaplan", location: ExitData.pos("59.24351", "18.09341"), trainPosition: 1, changeToLines: [])
+    ],
+    // Farsta strand
+    "1881": [
+      StaticExit(name: "Farsta Strand", location: ExitData.pos("59.235601", "18.101681"), trainPosition: 1, changeToLines: ["J35"])
+    ],
     
     
     
