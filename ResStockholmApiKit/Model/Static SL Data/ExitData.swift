@@ -333,10 +333,43 @@ class ExitData {
     "1881": [
       StaticExit(name: "Farsta Strand", location: ExitData.pos("59.235601", "18.101681"), trainPosition: 1, changeToLines: ["J35"])
     ],
-    
-    
-    
-    
+    // Globen
+    "4503": [
+      StaticExit(name: "Slakthusområdet", location: ExitData.pos("59.293685", "18.074859"), trainPosition: 0, changeToLines: []),
+      StaticExit(name: "Globenområdet", location: ExitData.pos("59.294479", "18.07825"), trainPosition: 2, changeToLines: ["L22"])
+    ],
+    // Enskede gård
+    "1621": [
+      StaticExit(name: "Enskede gård", location: ExitData.pos("59.28959", "18.07026"), trainPosition: 2, changeToLines: [])
+    ],
+    // Sockenplan
+    "1631": [
+      StaticExit(name: "Sockenplan", location: ExitData.pos("59.283427", "18.070654"), trainPosition: 2, changeToLines: [])
+    ],
+    // Svedmyra
+    "1641": [
+      StaticExit(name: "Svedmyra", location: ExitData.pos("59.27742", "18.0674"), trainPosition: 1, changeToLines: [])
+    ],
+    // Stureby
+    "1651": [
+      StaticExit(name: "Stureby", location: ExitData.pos("59.2747", "18.05523"), trainPosition: 0, changeToLines: [])
+    ],
+    // Bandhagen
+    "1661": [
+      StaticExit(name: "Bandhagen", location: ExitData.pos("59.269949", "18.049346"), trainPosition: 0, changeToLines: [])
+    ],
+    // Högdalen
+    "1701": [
+      StaticExit(name: "Högdalen", location: ExitData.pos("59.26336", "18.0426"), trainPosition: 0, changeToLines: [])
+    ],
+    // Rågsved
+    "1711": [
+      StaticExit(name: "Rågsved", location: ExitData.pos("59.25661", "18.02769"), trainPosition: 1, changeToLines: [])
+    ],    
+    // Hagsätra
+    "1721": [
+      StaticExit(name: "Hagsätra", location: ExitData.pos("59.262289", "18.013372"), trainPosition: 0, changeToLines: [])
+    ],
     
     // Red line ////////////////////////////
     
