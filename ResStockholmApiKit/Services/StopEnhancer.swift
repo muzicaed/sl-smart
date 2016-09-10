@@ -17,15 +17,32 @@ public class StopEnhancer {
   public static func enhance(trip: Trip) {
     for (index, segment) in trip.allTripSegments.enumerate() {
       if segment.type == .Metro {
-        var nextSegment: TripSegment? = nil
-        if index + 1 < trip.allTripSegments.count {
-          nextSegment = trip.allTripSegments[index + 1]
-        }
+        let nextSegment = findNextSegment(index, trip: trip)
         let stop = StopsStore.sharedInstance.getOnId(segment.destination.siteId!)
         enhanceSegment(segment, next: nextSegment, stop: stop)
       }
     }
   }
+  
+  // MARK: Private
+  
+  /**
+   * Enhance stop data for a segment.
+   */
+  static private func findNextSegment(index: Int, trip: Trip) -> TripSegment? {
+    var nextSegment: TripSegment? = nil
+    if index + 1 < trip.allTripSegments.count {
+      nextSegment = trip.allTripSegments[index + 1]
+      if nextSegment!.type == .Walk && nextSegment!.distance! < 50 {
+        if index + 2 < trip.allTripSegments.count {
+          nextSegment = trip.allTripSegments[index + 2]
+        }
+      }
+    }
+    
+    return nextSegment
+  }
+  
   
   /**
    * Enhance stop data for a segment.
@@ -35,6 +52,7 @@ public class StopEnhancer {
       var exit: StaticExit? = nil
       if stop.exits.count > 0 {
         if nextSegment.type == .Walk {
+          print(nextSegment.distance)
           exit = enhanceWalk(segment, nextSegment: nextSegment, stop: stop)
         } else if nextSegment.type == .Bus {
           exit = enhanceBus(segment, nextSegment: nextSegment, stop: stop)
