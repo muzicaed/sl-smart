@@ -36,9 +36,9 @@ class DataMigration {
       routine.criterions.numChg = -1
       RoutineTripsStore.sharedInstance.updateRoutineTrip(routine)
     }
-    defaults.setInteger(2, forKey: dataKey)
-    defaults.synchronize()
     UserPreferenceStore.sharedInstance.setShouldShowNews(true)
+    defaults.setInteger(2, forKey: dataKey)
+    defaults.synchronize()    
   }
   
   // Version 1.4
@@ -52,17 +52,18 @@ class DataMigration {
         RoutineTripsStore.sharedInstance.updateRoutineTrip(routine)
       }
     }
+    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
     defaults.setInteger(3, forKey: dataKey)
     defaults.synchronize()
-    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
   }
   
   // Version 1.5
   private static func migrateVersion_1_5() {
     print("Running migration v1.5")
     StopsStore.sharedInstance.loadJson()
+    SubscriptionStore.sharedInstance.resetTrial()
+    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
     defaults.setInteger(4, forKey: dataKey)
     defaults.synchronize()
-    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
   }
 }

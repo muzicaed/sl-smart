@@ -47,12 +47,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   func applicationWillEnterForeground(application: UIApplication) {}
   
   func applicationDidBecomeActive(application: UIApplication) {
+    SubscriptionStore.sharedInstance.resetTrial() // TODO: REMOVE THIS!!!
     SubscriptionStore.sharedInstance.setupTrial()
     SubscriptionManager.sharedInstance.validateSubscription()
     checkTrafficSituation()
     let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
     dispatch_async(dispatch_get_global_queue(priority, 0)) {
-      // Load stops i background
+      // Load stops in background
       StopsStore.sharedInstance.getStops()
     }
     

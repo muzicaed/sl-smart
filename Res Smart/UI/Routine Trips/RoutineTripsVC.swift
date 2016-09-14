@@ -19,6 +19,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   let loadingCellIdentifier = "LoadingCell"
   let headerCellIdentifier = "HeaderView"
   let infoCellIdentifier = "InfoCell"
+  let trialCellIdentifier = "TrialCell"
   let subscriptionInfoCellIdentifier = "SubscriptionInfoCell"
   let hereToThereCellIdentifier = "HereToThereCell"
   
@@ -228,6 +229,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       if MyLocationHelper.sharedInstance.getCurrentLocation() != nil {
         bestCount += 1
       }
+      if SubscriptionStore.sharedInstance.isTrial() {
+        bestCount += 1
+      }
       return bestCount
     }
     
@@ -242,8 +246,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     if indexPath.section == 0 {
       if !isSubscribing {
+        if indexPath.row == 1 {
+          return createTrialCell(indexPath)
+        }
         return createSubscriptionInfoCell(indexPath)
       } else if isShowInfo {
+        if indexPath.row == 1 {
+          return createTrialCell(indexPath)
+        }
         return createInfoTripCell(indexPath)
       }
       
@@ -255,6 +265,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
       } else if indexPath.row == 1 {
         return createHereToThereCell(indexPath)
+      } else if indexPath.row == 2 {
+        return createTrialCell(indexPath)
       }
       fatalError("Could not create cell.")
     }
@@ -283,12 +295,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     let screenSize = UIScreen.mainScreen().bounds.size
     if indexPath.section == 0 {
       if !isSubscribing {
-        return CGSizeMake(screenSize.width - 8, 280)
+        return CGSizeMake(screenSize.width - 8, 295)
       } else if isShowInfo {
         return CGSizeMake(screenSize.width - 8, 250)
       } else if bestRoutineTrip != nil {
         if indexPath.row == 0 {
           return CGSizeMake(screenSize.width - 8, 160)
+        } else if indexPath.row == 2 {
+          return CGSizeMake(screenSize.width - 8, 35)
         }
         return CGSizeMake(screenSize.width - 8, 60)
       }
@@ -546,6 +560,15 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       cell.setFromLocationText(currentLocation)
     }
     
+    return cell
+  }
+  
+  /**
+   * Create trial cell
+   */
+  private func createTrialCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(
+      trialCellIdentifier, forIndexPath: indexPath)
     return cell
   }
   

@@ -25,22 +25,23 @@ public class SubscriptionStore {
    */
   func isSubscribed() -> Bool {
     // TODO PAY: Remove this
-    return true
+    //return true
     
-    if isSubscribedCache == nil {
-      isSubscribedCache = defaults.boolForKey(SubscriptionState)
-    }
-    
-    return isSubscribedCache!
+    loadSubscribedCache()
+    return (isSubscribedCache! || isTrial())
   }
   
   /**
    * Check if user have a active trial.
    */
   func isTrial() -> Bool {
-    if !isSubscribed() {
+    loadSubscribedCache()
+    if !isSubscribedCache! {
       if let trialEndDate = defaults.objectForKey(TrialStartDate) as? NSDate {
-        return NSDate().timeIntervalSinceDate(trialEndDate) < (60 * 5) // TODO: Change from 5 min.
+        let isTrial = (NSDate().timeIntervalSinceDate(trialEndDate) < (60 * 5))  // TODO: Change from 5 min.
+        print("Trial check: \(isTrial)")
+        print("End: \(NSDate().timeIntervalSinceDate(trialEndDate))")
+        return isTrial
       }
     }
     return false
@@ -82,6 +83,24 @@ public class SubscriptionStore {
     let trialEndDate = defaults.objectForKey(TrialStartDate) as? NSDate
     if trialEndDate == nil {
       defaults.setObject(NSDate(), forKey: TrialStartDate)
+    }
+  }
+  
+  /**
+   * Reset the trial
+   */
+  func resetTrial() {
+    defaults.setObject(nil, forKey: TrialStartDate)
+  }
+  
+  // MARK: Private
+  
+  /**
+   * Loads is subscribed data
+   */
+  private func loadSubscribedCache() {
+    if isSubscribedCache == nil {
+      isSubscribedCache = defaults.boolForKey(SubscriptionState)
     }
   }
 }
