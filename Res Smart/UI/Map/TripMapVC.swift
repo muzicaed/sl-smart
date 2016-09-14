@@ -127,7 +127,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   }
   
   func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-    if (mapView.region.span.latitudeDelta > 0.25) {
+    if (mapView.region.span.latitudeDelta > 0.20) {
       if isSmallPinsVisible {
         mapView.removeAnnotations(smallPins)
         isSmallPinsVisible = false
