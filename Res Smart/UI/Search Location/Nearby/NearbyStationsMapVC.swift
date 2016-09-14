@@ -72,13 +72,12 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
    * Annotation views
    */
   func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-    if let pinAnnotation = annotation as? BigPin {
+    if let pinAnnotation = annotation as? DestinationPin {
       let pinView = TouchStationAnnotationView(annotation: pinAnnotation, reuseIdentifier: "dot")
-      pinView.image = UIImage(named: "MapDot")!
+      pinView.image = UIImage(named: "MapDestinationDot")!
       pinView.canShowCallout = true
       pinView.centerOffset = CGPointMake(0, 0)
       pinView.calloutOffset = CGPointMake(0, -3)
-      pinView.stationIndex = pinAnnotation.stationIndex
       
       let imageView = UIImageView(image: UIImage(named: "station-icon"))
       imageView.frame = CGRectMake(0, 0, 22, 22)
@@ -123,11 +122,10 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
    * Create location pin
    */
   private func createStopPin(index: Int, locationTuple: (location: Location, dist: Int)) {
-    let pin = BigPin()
+    let pin = DestinationPin()
     pin.coordinate = locationTuple.location.location.coordinate
     pin.title = locationTuple.location.name
     pin.subtitle = "Avstånd \(locationTuple.dist) meter"
-    pin.stationIndex = index
     mapView.addAnnotation(pin)
   }
   
