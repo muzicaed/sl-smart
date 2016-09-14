@@ -31,6 +31,16 @@ class CustomTabVC: UITabBarController {
   }
   
   /**
+   * View have appeard
+   */
+  override func viewDidAppear(animated: Bool) {
+    if UserPreferenceStore.sharedInstance.shouldShowNews() {
+      performSegueWithIdentifier("ShowNews", sender: self)
+      UserPreferenceStore.sharedInstance.setShouldShowNews(false)
+    }
+  }
+  
+  /**
    * Prepare for segue
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

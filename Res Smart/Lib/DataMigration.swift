@@ -16,7 +16,7 @@ class DataMigration {
   
   static func migrateData() {
     
-    let step = defaults.integerForKey(dataKey)        
+    let step = defaults.integerForKey(dataKey)
     if step <= 1 {
       migrateVersion_1_3()
     }
@@ -38,6 +38,7 @@ class DataMigration {
     }
     defaults.setInteger(2, forKey: dataKey)
     defaults.synchronize()
+    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
   }
   
   // Version 1.4
@@ -53,6 +54,7 @@ class DataMigration {
     }
     defaults.setInteger(3, forKey: dataKey)
     defaults.synchronize()
+    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
   }
   
   // Version 1.5
@@ -61,5 +63,6 @@ class DataMigration {
     StopsStore.sharedInstance.loadJson()
     defaults.setInteger(4, forKey: dataKey)
     defaults.synchronize()
+    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
   }
 }

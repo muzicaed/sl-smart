@@ -11,8 +11,10 @@ import Foundation
 public class UserPreferenceStore {
   
   private let LastRealTimeTripType = "USER-LastRealTimeTripType"
+  private let ShouldShowNews = "USER-ShouldShowNews"
   private let defaults = NSUserDefaults.standardUserDefaults()
   private var lastRealTimeTripTypeCache: String?
+  private var shouldShowNewsCache: Bool?
   
   // Singelton pattern
   static let sharedInstance = UserPreferenceStore()
@@ -34,5 +36,24 @@ public class UserPreferenceStore {
   func setLastRealTimeTripType(lastRealTimeTripType: String) {
     lastRealTimeTripTypeCache = lastRealTimeTripType
     defaults.setObject(lastRealTimeTripTypeCache, forKey: LastRealTimeTripType)
+  }
+  
+  /**
+   * Returns if news should be displayed.
+   */
+  func shouldShowNews() -> Bool {
+    if shouldShowNewsCache == nil {
+      shouldShowNewsCache = defaults.boolForKey(ShouldShowNews)
+    }
+    
+    return shouldShowNewsCache!
+  }
+  
+  /**
+   * Set user's last real time trip type.
+   */
+  func setShouldShowNews(shouldShowNews: Bool) {
+    shouldShowNewsCache = shouldShowNews
+    defaults.setBool(shouldShowNewsCache!, forKey: ShouldShowNews)
   }
 }
