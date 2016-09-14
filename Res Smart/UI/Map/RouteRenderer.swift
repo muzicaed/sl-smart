@@ -18,7 +18,9 @@ class RouteRenderer: MKPolylineRenderer {
       if let segment = routePolyline.segment {
         setupRenderer(segment)
       }
-    }    
+    } else {
+      setupWalkRenderer()
+    }
   }
   
   /**
@@ -29,10 +31,19 @@ class RouteRenderer: MKPolylineRenderer {
     self.strokeColor = data.color
     self.lineJoin = CGLineJoin.Bevel
     self.lineWidth = 4.5
-    if segment.type == .Walk || segment.type == .Ferry {
+    if segment.type == .Ferry || segment.type == .Walk {
       self.strokeColor = UIColor.blackColor()
       self.lineWidth = 3.5
       self.lineDashPattern = [6, 8]
     }
+  }
+  
+  /**
+   * Setup renderer based on walk trip type
+   */
+  private func setupWalkRenderer() {
+    self.strokeColor = UIColor.blackColor()
+    self.lineWidth = 3.5
+    self.lineDashPattern = [6, 8]
   }
 }

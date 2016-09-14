@@ -16,6 +16,7 @@ class DestinationPin: MKPointAnnotation {
 class BigPin: MKPointAnnotation {
   var stationIndex = -1
   var imageName: String?
+  var zIndexMod: CGFloat = 0.0
 }
 
 class SmallPin: MKPointAnnotation {
