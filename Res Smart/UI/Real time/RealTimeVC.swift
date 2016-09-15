@@ -33,7 +33,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   var tabTypesKeys = [String]()
   var segmentView = SMSegmentView()
   var refreshTimmer: NSTimer?
-  let loadedTime = NSDate()
+  var loadedTime = NSDate()
   let refreshController = UIRefreshControl()
   var tableActivityIndicator = UIActivityIndicatorView(
     activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
@@ -85,7 +85,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   func didBecomeActive() {
     let now = NSDate()
-    if now.timeIntervalSinceDate(loadedTime) > (60 * 60) { // 1 hour
+    if now.timeIntervalSinceDate(loadedTime) > (60 * 30) { // 30 minutes
       navigationController?.popToRootViewControllerAnimated(false)
       return
     }
@@ -105,6 +105,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Starts the refresh timmer
    */
   func startRefreshTimmer() {
+    loadedTime = NSDate()
     stopRefreshTimmer()
     refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
       15.0, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
