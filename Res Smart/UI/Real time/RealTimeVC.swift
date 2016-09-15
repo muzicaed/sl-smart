@@ -140,6 +140,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
             self.tableView.reloadData()
           })
         }
+      } else {
+        print("Real time error: \(error.debugDescription)")
+        self.handleLoadDataError()
       }
     }
   }
@@ -523,6 +526,23 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         cell.deviationsLabel.textColor = UIColor.darkGrayColor()
       }
     }
+  }
+  
+  /**
+   * Setup table's background spinner.
+   */
+  private func handleLoadDataError() {
+    stopRefreshTimmer()
+    let invalidLoadingAlert = UIAlertController(
+      title: "Kan inte nå söktjänsten",
+      message: "Söktjänsten kan inte nås just nu. Prova igen om en liten stund.",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    invalidLoadingAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: { _ in
+        self.navigationController?.popToRootViewControllerAnimated(false)
+      }))
+    
+    presentViewController(invalidLoadingAlert, animated: true, completion: nil)
   }
   
   /**
