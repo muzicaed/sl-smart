@@ -14,6 +14,7 @@ class CustomTabVC: UITabBarController {
   
   let notificationCenter = NSNotificationCenter.defaultCenter()
   var currentTrip: Trip?
+  var isPremium = true
   
   /**
    * View is done loading.
@@ -26,8 +27,23 @@ class CustomTabVC: UITabBarController {
           UIColor(white: 0.0, alpha: 0.75)).imageWithRenderingMode(.AlwaysOriginal)
       }
     }
-    
     addObservers()
+  }
+
+  
+  /**
+   * Updates the tabs based on premium.
+   */
+  func updateTabs() {
+    isPremium = NSUserDefaults.standardUserDefaults().boolForKey("res_smart_premium_preference")
+    print(isPremium)
+    if !isPremium && self.tabBar.items!.count == 4 {
+      let indexToRemove = 0
+      if indexToRemove < viewControllers?.count {
+        viewControllers?.removeAtIndex(indexToRemove)
+        viewControllers = viewControllers
+      }
+    }
   }
   
   /**
@@ -65,13 +81,23 @@ class CustomTabVC: UITabBarController {
    */
   @objc func onTrafficSituations(notification: NSNotification) {
     let count = notification.object as! Int
+    let noOfTabs = self.tabBar.items!.count
     let items = self.tabBar.items!
     if count > 0 {
-      items[3].badgeValue = String(count)
+      items[noOfTabs - 1].badgeValue = String(count)
     } else {
-      items[3].badgeValue = nil
+      items[noOfTabs - 1].badgeValue = nil
     }
   }
+  
+  /**
+   * onPremiumDisabled notification handler
+   */
+  @objc func onPremiumDisabled(notification: NSNotification) {
+    isPremium = false
+  }
+  
+  
   
   // MARK: Private
   
@@ -80,6 +106,8 @@ class CustomTabVC: UITabBarController {
                                    name: "TrafficSituations", object: nil)
     notificationCenter.addObserver(self, selector: #selector(onStartTrip(_:)),
                                    name: "BeginTrip", object: nil)
+    notificationCenter.addObserver(self, selector: #selector(onPremiumDisabled(_:)),
+                                   name: "PremiumDisabled", object: nil)
   }
   
   deinit{

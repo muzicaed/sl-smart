@@ -11,6 +11,7 @@
 		1801A3FE1C39317C0068E1FC /* SubscribeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801A3FD1C39317C0068E1FC /* SubscribeDelegate.swift */; };
 		180603641C01FCBE00AC1841 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180603631C01FCBE00AC1841 /* SwiftyJSON.swift */; };
 		1806037C1C02165000AC1841 /* LocationSearchResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037B1C02165000AC1841 /* LocationSearchResponder.swift */; };
+		180B657E1D8A985400D2A50F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 180B657D1D8A985400D2A50F /* Settings.bundle */; };
 		180F7D791C8CC987000C8207 /* UserPreferenceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F7D781C8CC987000C8207 /* UserPreferenceStore.swift */; };
 		181860A41C61613800413C18 /* RealTimeShowMoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181860A31C61613800413C18 /* RealTimeShowMoreRow.swift */; };
 		1818B2671C404FE0004E3CA3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188B80441C175D9600E7D90C /* NotificationCenter.framework */; };
@@ -275,6 +276,7 @@
 		180603631C01FCBE00AC1841 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		180603651C0201A100AC1841 /* HttpRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHelper.swift; sourceTree = "<group>"; };
 		1806037B1C02165000AC1841 /* LocationSearchResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchResponder.swift; sourceTree = "<group>"; };
+		180B657D1D8A985400D2A50F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "Res Smart/Settings.bundle"; sourceTree = "<group>"; };
 		180F7D781C8CC987000C8207 /* UserPreferenceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferenceStore.swift; sourceTree = "<group>"; };
 		180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePostHelper.swift; sourceTree = "<group>"; };
 		181860A31C61613800413C18 /* RealTimeShowMoreRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeShowMoreRow.swift; sourceTree = "<group>"; };
@@ -731,6 +733,7 @@
 		18937E281BFF33FA00C523C9 = {
 			isa = PBXGroup;
 			children = (
+				180B657D1D8A985400D2A50F /* Settings.bundle */,
 				18F447CE1D7EBADC00B48D39 /* JSON */,
 				18635D981D7564A4007A495E /* res-smart.geojson */,
 				18B290301C46D9D900DCE585 /* Res Smart Playground.playground */,
@@ -1250,6 +1253,7 @@
 				18F447E31D7ECF0100B48D39 /* jour.json in Resources */,
 				18F447E41D7ECF0800B48D39 /* line.json in Resources */,
 				18F447E51D7ECF0C00B48D39 /* site.json in Resources */,
+				180B657E1D8A985400D2A50F /* Settings.bundle in Resources */,
 				18F447E61D7ECF0F00B48D39 /* stop.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
