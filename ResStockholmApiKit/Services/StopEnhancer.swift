@@ -35,7 +35,6 @@ public class StopEnhancer {
       nextSegment = trip.allTripSegments[index + 1]
       if nextSegment!.type == .Walk && nextSegment!.distance! < 250 {
         if index + 2 < trip.allTripSegments.count {
-          print("Skipped one")
           nextSegment = trip.allTripSegments[index + 2]
         }
       }
