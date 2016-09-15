@@ -151,19 +151,36 @@ class NearbyStationsVC: UITableViewController {
       LocationSearchService.searchNearby(
         currentPostion, distance: 1000,
         callback: { (data, error) -> Void in
-          NetworkActivity.displayActivityIndicator(false)
-          if error != nil {
-            // TODO: HANDLE ERROR!!
-            return
-          }
-          self.nearbyLocations = data
           dispatch_async(dispatch_get_main_queue()) {
+            NetworkActivity.displayActivityIndicator(false)
+            if error != nil {
+              self.handleLoadDataError()
+              return
+            }
+            self.nearbyLocations = data
+            
             self.isLoading = false
             self.spinnerView.removeFromSuperview()
             self.tableView.reloadData()
             self.showOnMapButton.enabled = true
-          }
+          }          
       })
     }
+  }
+  
+  /**
+   * Hadle load data (network) error
+   */
+  private func handleLoadDataError() {
+    let invalidLoadingAlert = UIAlertController(
+      title: "Kan inte nå söktjänsten",
+      message: "Söktjänsten kan inte nås just nu. Prova igen om en liten stund.",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    invalidLoadingAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: { _ in
+        self.navigationController?.popToRootViewControllerAnimated(false)
+      }))
+    
+    presentViewController(invalidLoadingAlert, animated: true, completion: nil)
   }
 }

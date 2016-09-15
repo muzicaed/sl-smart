@@ -54,7 +54,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       name: UIApplicationWillResignActiveNotification, object: nil)
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 44
-
+    
     refreshController.addTarget(
       self, action: #selector(loadData), forControlEvents: UIControlEvents.ValueChanged)
     refreshController.tintColor = UIColor.lightGrayColor()
@@ -125,10 +125,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   func loadData() {
     NetworkActivity.displayActivityIndicator(true)
     RealTimeDeparturesService.fetch(siteId) { (rtDepartures, error) -> Void in
-      NetworkActivity.displayActivityIndicator(false)
-      if error == nil {
-        if let departures = rtDepartures {
-          dispatch_async(dispatch_get_main_queue(), {
+      dispatch_async(dispatch_get_main_queue()) {
+        NetworkActivity.displayActivityIndicator(false)
+        if error == nil {
+          if let departures = rtDepartures {
             self.spinnerView.removeFromSuperview()
             self.refreshController.endRefreshing()
             self.isLoading = false
@@ -138,11 +138,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
             self.prepareSegmentView()
             self.tableView.backgroundView = nil
             self.tableView.reloadData()
-          })
+          }
+        } else {
+          self.handleLoadDataError()
         }
-      } else {
-        print("Real time error: \(error.debugDescription)")
-        self.handleLoadDataError()
       }
     }
   }
@@ -507,7 +506,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       break
     }
     
-    if let data = data {      
+    if let data = data {
       cell.lineLabel.text = lineChar + data.lineNumber
       cell.infoLabel.text = "\(data.destination)"
       cell.infoLabel.accessibilityLabel = "Mot \(data.destination)"
@@ -529,7 +528,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   }
   
   /**
-   * Setup table's background spinner.
+   * Hadle load data (network) error
    */
   private func handleLoadDataError() {
     stopRefreshTimmer()
