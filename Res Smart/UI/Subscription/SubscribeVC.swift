@@ -156,14 +156,9 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
       }
       
       if indexPath.row == 0 {
-        return CGSizeMake(screenSize.width - 20, 70)
-      } else if indexPath.row == 1 {
-        return CGSizeMake(screenSize.width - 20, 235)
-      } else if indexPath.row == 2 {
-        return CGSizeMake(screenSize.width - 20, 235)
+        return CGSizeMake(screenSize.width - 20, 75)
       }
-      
-      return CGSize.zero
+      return CGSizeMake(screenSize.width - 20, 150)
   }
   
   // MARK: Private methods

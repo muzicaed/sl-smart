@@ -52,7 +52,7 @@ public class StopsStore {
         convertData(data)
         writeStaticStopsToStore()
       } else {
-        print("Path not found for static sites.")
+        fatalError("Path not found for static sites.")
       }
     }
     catch {

@@ -163,7 +163,6 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    */
   
   private func plotRoute(segment: TripSegment) -> [CLLocationCoordinate2D] {
-    print("Plot route")
     var coords = [CLLocationCoordinate2D]()
     if segment.type == .Walk && (segment.origin.type == .Address || segment.destination.type == .Address){
       plotWalk(segment)
@@ -184,7 +183,6 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    * Plot a walk segment using directions
    */
   private func plotWalk(segment: TripSegment) {
-    print("Plot walk route")
     let source = MKMapItem(placemark: MKPlacemark(coordinate: segment.origin.location.coordinate, addressDictionary: nil))
     let dest = MKMapItem(placemark: MKPlacemark(coordinate: segment.destination.location.coordinate, addressDictionary: nil))
     
@@ -198,7 +196,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
         
         guard let response = response else {
           if let error = error {
-            print("Error: \(error)")
+            fatalError("Error: \(error)")
           }
           return
         }

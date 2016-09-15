@@ -52,7 +52,6 @@ public class StopEnhancer {
       var exit: StaticExit? = nil
       if stop.exits.count > 0 {
         if nextSegment.type == .Walk {
-          print(nextSegment.distance)
           exit = enhanceWalk(segment, nextSegment: nextSegment, stop: stop)
         } else if nextSegment.type == .Bus {
           exit = enhanceBus(segment, nextSegment: nextSegment, stop: stop)
@@ -86,10 +85,8 @@ public class StopEnhancer {
   static private func enhanceChange(segment: TripSegment, nextSegment: TripSegment,
                                     stop: StaticStop) -> StaticExit? {
     let line = TripHelper.friendlyLineData(nextSegment).short
-    print("Change to line: \(line)")
     for exit in stop.exits {
       if exit.changeToLines.contains(line) {
-        print("Found: \(exit.name)")
         return exit
       }
     }

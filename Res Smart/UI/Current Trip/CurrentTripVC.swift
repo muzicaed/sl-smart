@@ -109,7 +109,6 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
           segment.stops = JournyDetailsService.filterStops(stops, segment: segment)
           if self.stopsLoadCount == self.coundNonWalkSegments(self.currentTrip!.tripSegments) {
             dispatch_async(dispatch_get_main_queue()) {
-              print("Stops are loaded.")
               self.isStopsLoaded = true
               self.collectionView?.reloadData()
             }

@@ -2679,10 +2679,10 @@ Välkommen till ett smartare sätt att pendla.</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xRC-Uu-tbN">
-                                            <rect key="frame" x="8" y="8" width="354" height="29"/>
+                                            <rect key="frame" x="8" y="0.0" width="354" height="45"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Du provar premium gratis i 14 dagar." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhG-v6-sUF">
-                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="29"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <string key="label">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att trycka på knappen "Mina rutiner" i övre högra hörnet.</string>
                                                     </accessibility>
@@ -2698,8 +2698,8 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 </view>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="xRC-Uu-tbN" firstAttribute="top" secondItem="JFX-n8-8rG" secondAttribute="topMargin" id="2vd-44-XV2"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="xRC-Uu-tbN" secondAttribute="bottom" id="W4w-PX-lgs"/>
+                                    <constraint firstItem="xRC-Uu-tbN" firstAttribute="top" secondItem="JFX-n8-8rG" secondAttribute="top" id="2vd-44-XV2"/>
+                                    <constraint firstAttribute="bottom" secondItem="xRC-Uu-tbN" secondAttribute="bottom" id="W4w-PX-lgs"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="xRC-Uu-tbN" secondAttribute="trailing" id="bir-ng-Yxn"/>
                                     <constraint firstItem="xRC-Uu-tbN" firstAttribute="leading" secondItem="JFX-n8-8rG" secondAttribute="leadingMargin" id="nT7-Jh-TRe"/>
                                 </constraints>
@@ -2745,7 +2745,7 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                     <rect key="frame" x="0.0" y="29" width="339" height="176"/>
                                                                     <string key="text">Din provperiod är nu över.
 
-För att fortsätta använda de fantastiska premium funktionerna behöver du en prenumeration.  I prenumerationen ingår: Smarta Rutiner
+För att fortsätta använda de fantastiska premium-funktionerna behöver du en prenumeration.  I prenumerationen ingår: Smarta Rutiner
 Ta mig till...
 Res Smart på din Apple Watch</string>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
@@ -2925,13 +2925,13 @@ Res Smart på din Apple Watch</string>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eTu-pW-AjU">
-                                    <rect key="frame" x="8" y="8" width="398" height="34"/>
+                                    <rect key="frame" x="4" y="8" width="406" height="34"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiK-10-sGX">
-                                            <rect key="frame" x="10" y="8" width="378" height="18"/>
+                                            <rect key="frame" x="10" y="8" width="386" height="18"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Andra rutiner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xD-MP-Srz">
-                                                    <rect key="frame" x="0.0" y="0.0" width="378" height="18"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="386" height="18"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2953,8 +2953,8 @@ Res Smart på din Apple Watch</string>
                                 </view>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="eTu-pW-AjU" firstAttribute="leading" secondItem="GjQ-i1-UMc" secondAttribute="leadingMargin" id="BhF-Ph-vzn"/>
-                                <constraint firstAttribute="trailingMargin" secondItem="eTu-pW-AjU" secondAttribute="trailing" id="UXv-tg-b6R"/>
+                                <constraint firstItem="eTu-pW-AjU" firstAttribute="leading" secondItem="GjQ-i1-UMc" secondAttribute="leading" constant="4" id="BhF-Ph-vzn"/>
+                                <constraint firstAttribute="trailing" secondItem="eTu-pW-AjU" secondAttribute="trailing" constant="4" id="UXv-tg-b6R"/>
                                 <constraint firstAttribute="bottomMargin" secondItem="eTu-pW-AjU" secondAttribute="bottom" id="lrx-Do-tV3"/>
                                 <constraint firstItem="eTu-pW-AjU" firstAttribute="top" secondItem="GjQ-i1-UMc" secondAttribute="topMargin" id="mLx-3n-Yqo"/>
                             </constraints>
@@ -3571,17 +3571,17 @@ Cg
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InfoRow" id="wdM-5H-c4m">
-                                <rect key="frame" x="22" y="84" width="370" height="70"/>
+                                <rect key="frame" x="22" y="84" width="370" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="70"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbz-vX-7Gw">
-                                            <rect key="frame" x="8" y="10" width="354" height="51"/>
+                                            <rect key="frame" x="8" y="4" width="354" height="67"/>
                                             <string key="text">Genom att prenumerera får du: 
-• Smarta rutiner, appen föreslår nästa resa
-• Res Smart på din Apple Watch </string>
+ • Smarta rutiner  • Ta mig till...
+ • Res Smart på din Apple Watch </string>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -3593,17 +3593,17 @@ Cg
                                     <constraint firstItem="Nbz-vX-7Gw" firstAttribute="centerY" secondItem="wdM-5H-c4m" secondAttribute="centerY" id="a1R-GT-r4m"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="Nbz-vX-7Gw" secondAttribute="trailing" id="v4Q-jJ-ihw"/>
                                 </constraints>
-                                <size key="customSize" width="370" height="70"/>
+                                <size key="customSize" width="370" height="75"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SubscriptionMonthRow" id="qfs-Dm-H33" customClass="SubscriptionCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="164" width="370" height="235"/>
+                                <rect key="frame" x="22" y="169" width="370" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="235"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Betala varje månad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uY9-C4-SdB">
-                                            <rect key="frame" x="8" y="18" width="354" height="21.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Betala varje år" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uY9-C4-SdB">
+                                            <rect key="frame" x="8" y="18" width="354" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -3613,20 +3613,6 @@ Cg
                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <size key="shadowOffset" width="-1" height="-1"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ny kund - Prova gratis i en vecka" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drh-G9-r3L">
-                                            <rect key="frame" x="8" y="143.5" width="354" height="20.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOB-Pm-snD">
-                                            <rect key="frame" x="8" y="163.5" width="354" height="50.5"/>
-                                            <string key="text">Du betalar först när provperioden är över 
-och prenumerationen kan avbrytas 
-direkt från din iPhone.</string>
-                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                            <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq0-kD-DXn">
                                             <rect key="frame" x="28" y="84" width="314" height="40"/>
@@ -3646,49 +3632,36 @@ direkt från din iPhone.</string>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.67458152770996094" green="0.92629909515380859" blue="0.82844549417495728" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.99873173240000002" green="0.93631595369999998" blue="0.69870877269999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="aOB-Pm-snD" firstAttribute="centerX" secondItem="qfs-Dm-H33" secondAttribute="centerX" id="1zX-ZC-3Fb"/>
-                                    <constraint firstItem="aOB-Pm-snD" firstAttribute="leading" secondItem="qfs-Dm-H33" secondAttribute="leadingMargin" id="48V-bj-lqr"/>
                                     <constraint firstItem="uY9-C4-SdB" firstAttribute="top" secondItem="qfs-Dm-H33" secondAttribute="topMargin" constant="10" id="5GE-Oe-t0p"/>
                                     <constraint firstItem="R6D-UG-yKm" firstAttribute="trailing" secondItem="qfs-Dm-H33" secondAttribute="trailingMargin" id="93g-7K-fuD"/>
-                                    <constraint firstItem="aOB-Pm-snD" firstAttribute="trailing" secondItem="qfs-Dm-H33" secondAttribute="trailingMargin" id="Dq2-Gx-dfu"/>
                                     <constraint firstItem="uY9-C4-SdB" firstAttribute="centerX" secondItem="qfs-Dm-H33" secondAttribute="centerX" id="IiB-2q-y0U"/>
-                                    <constraint firstItem="drh-G9-r3L" firstAttribute="leading" secondItem="qfs-Dm-H33" secondAttribute="leadingMargin" id="JyU-kh-em4"/>
                                     <constraint firstItem="uY9-C4-SdB" firstAttribute="leading" secondItem="qfs-Dm-H33" secondAttribute="leadingMargin" id="L6K-EJ-4Z6"/>
                                     <constraint firstItem="uY9-C4-SdB" firstAttribute="trailing" secondItem="qfs-Dm-H33" secondAttribute="trailingMargin" id="Lso-gw-hcq"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="aq0-kD-DXn" secondAttribute="trailing" constant="20" id="MHf-o0-MDw"/>
-                                    <constraint firstItem="drh-G9-r3L" firstAttribute="top" secondItem="aq0-kD-DXn" secondAttribute="bottom" constant="20" id="Ts4-4x-oW5"/>
                                     <constraint firstItem="aq0-kD-DXn" firstAttribute="leading" secondItem="qfs-Dm-H33" secondAttribute="leadingMargin" constant="20" id="Vc8-C1-UWW"/>
                                     <constraint firstItem="R6D-UG-yKm" firstAttribute="top" secondItem="uY9-C4-SdB" secondAttribute="bottom" constant="5" id="bBE-tJ-gBM"/>
                                     <constraint firstItem="R6D-UG-yKm" firstAttribute="leading" secondItem="qfs-Dm-H33" secondAttribute="leadingMargin" id="fpb-Hu-Yhb"/>
                                     <constraint firstItem="R6D-UG-yKm" firstAttribute="centerX" secondItem="qfs-Dm-H33" secondAttribute="centerX" id="kB7-g9-3pj"/>
-                                    <constraint firstItem="drh-G9-r3L" firstAttribute="centerX" secondItem="qfs-Dm-H33" secondAttribute="centerX" id="qBa-Bj-rut"/>
-                                    <constraint firstItem="aOB-Pm-snD" firstAttribute="top" secondItem="drh-G9-r3L" secondAttribute="bottom" id="vJR-Hc-vL1"/>
-                                    <constraint firstItem="drh-G9-r3L" firstAttribute="trailing" secondItem="qfs-Dm-H33" secondAttribute="trailingMargin" id="vJk-av-Cva"/>
                                     <constraint firstItem="aq0-kD-DXn" firstAttribute="top" secondItem="R6D-UG-yKm" secondAttribute="bottom" constant="10" id="wUZ-E5-RQ7"/>
                                     <constraint firstItem="aq0-kD-DXn" firstAttribute="centerX" secondItem="qfs-Dm-H33" secondAttribute="centerX" id="zug-Hk-Yil"/>
                                 </constraints>
-                                <size key="customSize" width="370" height="235"/>
+                                <size key="customSize" width="370" height="150"/>
                                 <connections>
                                     <outlet property="priceLabel" destination="R6D-UG-yKm" id="b7G-9z-Dxc"/>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SubscriptionHalfYearRow" id="DLs-8p-FrW" customClass="SubscriptionCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="409" width="370" height="235"/>
+                                <rect key="frame" x="22" y="329" width="370" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="235"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Betala varje halvår" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhz-4O-QDp">
                                             <rect key="frame" x="8" y="18" width="354" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ny kund - Prova gratis i en månad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6A3-uG-BcN">
-                                            <rect key="frame" x="8" y="144" width="354" height="20.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ust-ci-qjV">
@@ -3706,15 +3679,7 @@ direkt från din iPhone.</string>
                                                 <action selector="onBuyHalfYearTap:" destination="9oH-AC-RT9" eventType="touchUpInside" id="z0g-FZ-iGx"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Obj-aa-Yx8">
-                                            <rect key="frame" x="8" y="164" width="354" height="54"/>
-                                            <string key="text">Du betalar först när provperioden är över 
-och prenumerationen kan avbrytas 
-direkt från din iPhone.</string>
-                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?? kr / månad *" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQ6-SZ-vqG">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?? kr / månad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQ6-SZ-vqG">
                                             <rect key="frame" x="8" y="44" width="354" height="30"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -3724,35 +3689,28 @@ direkt från din iPhone.</string>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.99873173236846924" green="0.93631595373153687" blue="0.69870877265930176" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.67458152770000002" green="0.92629909519999998" blue="0.82844549420000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="hhz-4O-QDp" firstAttribute="top" secondItem="DLs-8p-FrW" secondAttribute="topMargin" constant="10" id="1al-ia-fFf"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="ust-ci-qjV" secondAttribute="trailing" constant="20" id="1ni-gd-DV7"/>
-                                    <constraint firstItem="Obj-aa-Yx8" firstAttribute="trailing" secondItem="DLs-8p-FrW" secondAttribute="trailingMargin" id="5qv-Ku-cMy"/>
-                                    <constraint firstItem="6A3-uG-BcN" firstAttribute="centerX" secondItem="DLs-8p-FrW" secondAttribute="centerX" id="7he-WH-A3w"/>
                                     <constraint firstItem="hhz-4O-QDp" firstAttribute="centerX" secondItem="DLs-8p-FrW" secondAttribute="centerX" id="FS4-ff-LOf"/>
                                     <constraint firstItem="ust-ci-qjV" firstAttribute="top" secondItem="NQ6-SZ-vqG" secondAttribute="bottom" constant="10" id="Jka-oW-LsW"/>
                                     <constraint firstItem="NQ6-SZ-vqG" firstAttribute="top" secondItem="hhz-4O-QDp" secondAttribute="bottom" constant="5" id="L6J-AG-vNZ"/>
                                     <constraint firstItem="NQ6-SZ-vqG" firstAttribute="centerX" secondItem="DLs-8p-FrW" secondAttribute="centerX" id="MNN-eP-fMK"/>
-                                    <constraint firstItem="6A3-uG-BcN" firstAttribute="trailing" secondItem="DLs-8p-FrW" secondAttribute="trailingMargin" id="MnX-gt-ETd"/>
                                     <constraint firstItem="NQ6-SZ-vqG" firstAttribute="leading" secondItem="DLs-8p-FrW" secondAttribute="leadingMargin" id="OK5-PO-KGA"/>
                                     <constraint firstItem="ust-ci-qjV" firstAttribute="centerX" secondItem="DLs-8p-FrW" secondAttribute="centerX" id="WMm-OK-zPD"/>
                                     <constraint firstItem="hhz-4O-QDp" firstAttribute="leading" secondItem="DLs-8p-FrW" secondAttribute="leadingMargin" id="cd6-7J-09j"/>
-                                    <constraint firstItem="6A3-uG-BcN" firstAttribute="leading" secondItem="DLs-8p-FrW" secondAttribute="leadingMargin" id="fhd-QW-err"/>
-                                    <constraint firstItem="Obj-aa-Yx8" firstAttribute="leading" secondItem="DLs-8p-FrW" secondAttribute="leadingMargin" id="hPZ-2R-60T"/>
                                     <constraint firstItem="ust-ci-qjV" firstAttribute="leading" secondItem="DLs-8p-FrW" secondAttribute="leadingMargin" constant="20" id="jN6-8k-FgR"/>
                                     <constraint firstItem="NQ6-SZ-vqG" firstAttribute="trailing" secondItem="DLs-8p-FrW" secondAttribute="trailingMargin" id="jWu-Pg-wfO"/>
-                                    <constraint firstItem="Obj-aa-Yx8" firstAttribute="top" secondItem="6A3-uG-BcN" secondAttribute="bottom" id="mUE-jS-L4F"/>
                                     <constraint firstItem="hhz-4O-QDp" firstAttribute="trailing" secondItem="DLs-8p-FrW" secondAttribute="trailingMargin" id="tUI-Fs-6zf"/>
-                                    <constraint firstItem="6A3-uG-BcN" firstAttribute="top" secondItem="ust-ci-qjV" secondAttribute="bottom" constant="20" id="wBQ-p0-dzN"/>
                                 </constraints>
-                                <size key="customSize" width="370" height="235"/>
+                                <size key="customSize" width="370" height="150"/>
                                 <connections>
                                     <outlet property="priceLabel" destination="NQ6-SZ-vqG" id="n4k-IM-45c"/>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LoadingRow" id="ych-hj-5fw">
-                                <rect key="frame" x="22" y="654" width="370" height="70"/>
+                                <rect key="frame" x="22" y="489" width="370" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="70"/>
