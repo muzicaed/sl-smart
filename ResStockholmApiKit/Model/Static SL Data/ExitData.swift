@@ -158,11 +158,11 @@ class ExitData {
       StaticExit(name: "Hässelby gård", location: ExitData.pos("59.36695", "17.84337"), trainPosition: 0, changeToLines: [])
     ],
     // Johannelund
-    "1301": [
+    "1311": [
       StaticExit(name: "Johannelund", location: ExitData.pos("59.368079", "17.858158"), trainPosition: 1, changeToLines: [])
     ],
     // Vällingby
-    "1311": [
+    "1301": [
       StaticExit(name: "Vällingbyplan", location: ExitData.pos("59.36308", "17.87257"), trainPosition: 2, changeToLines: []),
       StaticExit(name: "Vällingbyplan 13", location: ExitData.pos("59.363142", "17.871657"), trainPosition: 2, changeToLines: []),
       StaticExit(name: "Kirunaplan", location: ExitData.pos("59.363410", "17.871785"), trainPosition: 2, changeToLines: []),
