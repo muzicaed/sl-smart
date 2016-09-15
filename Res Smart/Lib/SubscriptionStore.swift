@@ -39,8 +39,6 @@ public class SubscriptionStore {
     if !isSubscribedCache! {
       if let trialEndDate = defaults.objectForKey(TrialStartDate) as? NSDate {
         let isTrial = (NSDate().timeIntervalSinceDate(trialEndDate) < (60 * 5))  // TODO: Change from 5 min.
-        print("Trial check: \(isTrial)")
-        print("End: \(NSDate().timeIntervalSinceDate(trialEndDate))")
         return isTrial
       }
     }

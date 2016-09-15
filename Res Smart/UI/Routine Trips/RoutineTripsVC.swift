@@ -302,7 +302,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         if indexPath.row == 0 {
           return CGSizeMake(screenSize.width - 8, 160)
         } else if indexPath.row == 2 {
-          return CGSizeMake(screenSize.width - 8, 35)
+          return CGSizeMake(screenSize.width - 8, 25)
         }
         return CGSizeMake(screenSize.width - 8, 60)
       }
