@@ -92,10 +92,11 @@ class ExitData {
       StaticExit(name: "St Eriksg. 43T", location: ExitData.pos("59.334169", "18.032146"), trainPosition: 2, changeToLines: []),
       StaticExit(name: "St Eriksg. 40A", location: ExitData.pos("59.334324", "18.032580"), trainPosition: 2, changeToLines: []),
       StaticExit(name: "St Eriksg./Fleming.", location: ExitData.pos("59.334399", "18.032786"), trainPosition: 2, changeToLines: []),
-      StaticExit(name: "Drottningholmsv.", location: ExitData.pos("59.33221", "18.02897"), trainPosition: 0, changeToLines: ["T17", "T18", "T19"]),
+      StaticExit(name: "Drottningholmsv.", location: ExitData.pos("59.33221", "18.02897"), trainPosition: 0, changeToLines: []),
       StaticExit(name: "Fridhemsg.", location: ExitData.pos("59.332436", "18.028839"), trainPosition: 0, changeToLines: []),
       StaticExit(name: "Mariebergsg.", location: ExitData.pos("59.334953", "18.025167"), trainPosition: 0, changeToLines: []),
-      StaticExit(name: "Från platformen", location: ExitData.pos("59.333662", "18.029192"), trainPosition: 1, changeToLines: ["T10", "T11"])
+      StaticExit(name: "Från platformen", location: ExitData.pos("59.333662", "18.029192"), trainPosition: 1, changeToLines: ["T10", "T11"]),
+      StaticExit(name: "Från platformen", location: ExitData.pos("59.333662", "18.029192"), trainPosition: 2, changeToLines: ["T17", "T18", "T19"])
     ],
     // Rådhuset
     "3131": [
