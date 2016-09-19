@@ -33,7 +33,7 @@ class ExitData {
       StaticExit(name: "Klara kyrka", location: ExitData.pos("59.330933", "18.060536"), trainPosition: 0, changeToLines: []),
       StaticExit(name: "Vasag. 22", location: ExitData.pos("59.330669", "18.059553"), trainPosition: 0, changeToLines: []),
       StaticExit(name: "Centralplan", location: ExitData.pos("59.330344", "18.059255"), trainPosition: 0, changeToLines: ["J35", "J36", "J37", "J38"]),
-      StaticExit(name: "Från platformen", location: ExitData.pos("59.331354", "18.0614891"), trainPosition: 0, changeToLines: ["T10", "T11", "T13", "T14", "T17", "T18", "T18"])
+      StaticExit(name: "Från plattformen", location: ExitData.pos("59.331354", "18.0614891"), trainPosition: 0, changeToLines: ["T10", "T11", "T13", "T14", "T17", "T18", "T18"])
     ],
     
     // Blue line ////////////////////////////
@@ -95,8 +95,8 @@ class ExitData {
       StaticExit(name: "Drottningholmsv.", location: ExitData.pos("59.33221", "18.02897"), trainPosition: 0, changeToLines: []),
       StaticExit(name: "Fridhemsg.", location: ExitData.pos("59.332436", "18.028839"), trainPosition: 0, changeToLines: []),
       StaticExit(name: "Mariebergsg.", location: ExitData.pos("59.334953", "18.025167"), trainPosition: 0, changeToLines: []),
-      StaticExit(name: "Från platformen", location: ExitData.pos("59.333662", "18.029192"), trainPosition: 1, changeToLines: ["T10", "T11"]),
-      StaticExit(name: "Från platformen", location: ExitData.pos("59.333662", "18.029192"), trainPosition: 2, changeToLines: ["T17", "T18", "T19"])
+      StaticExit(name: "Från plattformen", location: ExitData.pos("59.333662", "18.029192"), trainPosition: 1, changeToLines: ["T10", "T11"]),
+      StaticExit(name: "Från plattformen", location: ExitData.pos("59.333662", "18.029192"), trainPosition: 2, changeToLines: ["T17", "T18", "T19"])
     ],
     // Rådhuset
     "3131": [
@@ -192,7 +192,7 @@ class ExitData {
     "1241": [
       StaticExit(name: "Åkeshovs slott/udarskogen", location: ExitData.pos("59.341873", "17.925514"), trainPosition: 2, changeToLines: []),
       StaticExit(name: "Åkeshovs sim- och idrottshall", location: ExitData.pos("59.342628", "17.926168"), trainPosition: 2, changeToLines: []),
-      StaticExit(name: "Från platformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T17", "T18", "T19"])
+      StaticExit(name: "Från plattformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T17", "T18", "T19"])
     ],
     // Brommaplan
     "1231": [
@@ -210,7 +210,7 @@ class ExitData {
     "1201": [
       StaticExit(name: "Alviks torg", location: ExitData.pos("59.333042", "17.980167"), trainPosition: 0, changeToLines: ["L22"]),
       StaticExit(name: "Tranebergsv.", location: ExitData.pos("59.333469", "17.983879"), trainPosition: 2, changeToLines: []),
-      StaticExit(name: "Från platformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T17", "T18", "T19"]),
+      StaticExit(name: "Från plattformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T17", "T18", "T19"]),
     ],
     // Kristineberg
     "1171": [
@@ -276,7 +276,7 @@ class ExitData {
     // Skärmarbrink
     "1601": [
       StaticExit(name: "Skärmarbrink", location: ExitData.pos("59.29534", "18.09049"), trainPosition: 0, changeToLines: []),
-      StaticExit(name: "Från platformen", location: ExitData.pos("59.2955", "18.090474"), trainPosition: 1, changeToLines: ["T17", "T18", "T19"])
+      StaticExit(name: "Från plattformen", location: ExitData.pos("59.2955", "18.090474"), trainPosition: 1, changeToLines: ["T17", "T18", "T19"])
     ],
     // Hammarbyhöjden
     "1911": [
@@ -418,21 +418,21 @@ class ExitData {
       StaticExit(name: "Birger Jarlsg.", location: ExitData.pos("59.335055", "18.073862"), trainPosition: 2, changeToLines: []),
       StaticExit(name: "Birger Jarlsg./Jakobsbergsg.", location: ExitData.pos("59.334809", "18.073701"), trainPosition: 2, changeToLines: []),
       StaticExit(name: "Birger Jarlsg./Mäster Samuelsg.", location: ExitData.pos("59.334618", "18.073937"), trainPosition: 2, changeToLines: []),
-      StaticExit(name: "Från platformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T13", "T14"])
+      StaticExit(name: "Från plattformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T13", "T14"])
     ],
     // Gamla stan
     "1021": [
       StaticExit(name: "Riddarholmen", location: ExitData.pos("59.322962", "18.066605"), trainPosition: 1, changeToLines: []),
       StaticExit(name: "Munkbroleden Södermalm", location: ExitData.pos("59.323043", "18.067613"), trainPosition: 1, changeToLines: []),
       StaticExit(name: "Gamla Stan", location: ExitData.pos("59.323384", "18.068162"), trainPosition: 1, changeToLines: []),
-      StaticExit(name: "Från platformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T13", "T14", "T17", "T18", "T19"])
+      StaticExit(name: "Från plattformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T13", "T14", "T17", "T18", "T19"])
     ],
     // Slussen
     "1011": [
       StaticExit(name: "Götg.", location: ExitData.pos("59.318165", "18.071415"), trainPosition: 0, changeToLines: []),
       StaticExit(name: "Södermalmstorg", location: ExitData.pos("59.319659", "18.072263"), trainPosition: 1, changeToLines: []),
       StaticExit(name: "Slussenterminalen", location: ExitData.pos("59.320152", "18.072134"), trainPosition: 2, changeToLines: ["L25", "L26"]),
-      StaticExit(name: "Från platformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T13", "T14", "T17", "T18", "T19"])
+      StaticExit(name: "Från plattformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T13", "T14", "T17", "T18", "T19"])
     ],
     // Mariatorget
     "2511": [
@@ -459,7 +459,7 @@ class ExitData {
       StaticExit(name: "Liljeholmstorget (utomhus)", location: ExitData.pos("59.310192", "18.022118"), trainPosition: 0, changeToLines: []),
       StaticExit(name: "Liljeholmsv. Höger", location: ExitData.pos("59.310832", "18.024180"), trainPosition: 1, changeToLines: []),
       StaticExit(name: "Bussterminal", location: ExitData.pos("59.310102", "18.022563"), trainPosition: 0, changeToLines: []),
-      StaticExit(name: "Från platformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T13", "T14"])
+      StaticExit(name: "Från plattformen", location: ExitData.pos("59.335709", "18.077385"), trainPosition: 1, changeToLines: ["T13", "T14"])
     ],
     // Aspudden
     "2611": [
