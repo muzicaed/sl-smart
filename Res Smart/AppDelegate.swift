@@ -44,12 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     UIApplication.sharedApplication().scheduledLocalNotifications = [notification]
   }
   
-  func applicationWillEnterForeground(application: UIApplication) {
-    let root = window?.rootViewController! as! CustomTabVC
-    root.updateTabs()
-  }
-  
   func applicationDidBecomeActive(application: UIApplication) {
+    print("applicationDidBecomeActive")
     SubscriptionStore.sharedInstance.setupTrial()
     SubscriptionManager.sharedInstance.validateSubscription()
     checkTrafficSituation()

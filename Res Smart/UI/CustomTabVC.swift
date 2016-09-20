@@ -15,6 +15,7 @@ class CustomTabVC: UITabBarController {
   let notificationCenter = NSNotificationCenter.defaultCenter()
   var currentTrip: Trip?
   var isPremium = true
+  var premiumVC: UIViewController?
   
   /**
    * View is done loading.
@@ -29,19 +30,23 @@ class CustomTabVC: UITabBarController {
     }
     addObservers()
   }
-
+  
   
   /**
    * Updates the tabs based on premium.
    */
   func updateTabs() {
     isPremium = NSUserDefaults.standardUserDefaults().boolForKey("res_smart_premium_preference")
-    print(isPremium)
+    
     if !isPremium && self.tabBar.items!.count == 4 {
       let indexToRemove = 0
       if indexToRemove < viewControllers?.count {
+        premiumVC = viewControllers?[indexToRemove]
         viewControllers?.removeAtIndex(indexToRemove)
-        viewControllers = viewControllers
+      }
+    } else if isPremium && self.tabBar.items!.count == 3 {
+      if let vc = premiumVC {
+        viewControllers?.insert(vc, atIndex: 0)
       }
     }
   }
