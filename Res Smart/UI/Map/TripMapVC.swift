@@ -148,8 +148,11 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   private func loadRoute() {
     if let trip = trip {
       var allCoords = [CLLocationCoordinate2D]()
-      for segment in trip.allTripSegments {
-        let coords = plotRoute(segment)
+      for (index, segment) in trip.allTripSegments.enumerate() {
+        let next: TripSegment? = (trip.allTripSegments.count > index + 1) ? trip.allTripSegments[index + 1] : nil
+        let before: TripSegment? = (index > 0) ? trip.allTripSegments[index - 1] : nil
+        let isLast = (segment == trip.allTripSegments.last)
+        let coords = plotRoute(segment, before: before, next: next, isLast: isLast)
         createOverlays(coords, segment: segment)
         allCoords += coords
       }
@@ -162,9 +165,9 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    * Plots the coordinates for the route.
    */
   
-  private func plotRoute(segment: TripSegment) -> [CLLocationCoordinate2D] {
+  private func plotRoute(segment: TripSegment, before: TripSegment?, next: TripSegment?, isLast: Bool) -> [CLLocationCoordinate2D] {
     var coords = [CLLocationCoordinate2D]()
-    if segment.type == .Walk && (segment.origin.type == .Address || segment.destination.type == .Address){
+    if canPlotRoute(segment, before: before, next: next, isLast: isLast) {
       plotWalk(segment)
     } else {
       if segment.stops.count == 0 {
@@ -179,6 +182,20 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     
     return coords
   }
+  
+  /**
+   * Check if segment can be ploted as walk route.
+   */
+  private func canPlotRoute(segment: TripSegment, before: TripSegment?, next: TripSegment?, isLast: Bool) -> Bool {
+    return (
+      segment.type == .Walk &&
+      (
+        (segment.origin.type == .Address || segment.destination.type == .Address) ||
+        ((before?.type == .Bus || before == nil) && (next?.type == .Bus || isLast))
+      )
+    )
+  }
+  
   /**
    * Plot a walk segment using directions
    */
