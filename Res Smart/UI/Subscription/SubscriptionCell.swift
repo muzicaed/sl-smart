@@ -31,8 +31,10 @@ class SubscriptionCell: UICollectionViewCell {
   func setData(product: SKProduct) {
     if product.productIdentifier == "6_MONTHS_NO_TRIAL" {
       priceLabel.text = "\(product.price) kr / halvår"
+      priceLabel.accessibilityLabel = "\(product.price) kronor per halvår"
     } else if product.productIdentifier == "12_MONTHS_NO_TRIAL" {
       priceLabel.text = "\(product.price) kr / år"
+      priceLabel.accessibilityLabel = "\(product.price) kronor per år"
     }
   }
   
