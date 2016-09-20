@@ -2623,13 +2623,13 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Smartare reseförslag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLm-xw-Eh5">
-                                                                    <rect key="frame" x="0.0" y="10" width="339" height="19"/>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                                    <rect key="frame" x="0.0" y="10" width="339" height="21"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-tn-fDB">
-                                                                    <rect key="frame" x="0.0" y="29" width="339" height="205"/>
+                                                                    <rect key="frame" x="0.0" y="31" width="339" height="203"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <string key="label">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att trycka på knappen "Mina rutiner" i övre högra hörnet.</string>
                                                                     </accessibility>
@@ -2706,27 +2706,27 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <size key="customSize" width="370" height="45"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SubscriptionInfoCell" id="Ovm-fK-jZf" userLabel="SubscriptionInfoCell">
-                                <rect key="frame" x="22" y="645" width="370" height="490"/>
+                                <rect key="frame" x="22" y="645" width="370" height="500"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="490"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="500"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L9j-7Y-kwJ">
-                                            <rect key="frame" x="8" y="8" width="354" height="474"/>
+                                            <rect key="frame" x="8" y="8" width="354" height="484"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWL-fE-bsG" userLabel="Space">
-                                                    <rect key="frame" x="0.0" y="0.0" width="10" height="474"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="10" height="484"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="10" id="Mhy-wK-OOa"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SO4-Ka-NKH">
-                                                    <rect key="frame" x="10" y="0.0" width="339" height="474"/>
+                                                    <rect key="frame" x="10" y="0.0" width="339" height="484"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="X0Q-ct-S2g">
-                                                            <rect key="frame" x="0.0" y="0.0" width="339" height="474"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="339" height="484"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZu-th-Qv1">
                                                                     <rect key="frame" x="0.0" y="0.0" width="339" height="10"/>
@@ -2736,16 +2736,23 @@ Välkommen till ett smartare sätt att pendla.</string>
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Res Smart Premium" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjN-eh-EaF">
-                                                                    <rect key="frame" x="0.0" y="12.5" width="339" height="19"/>
+                                                                    <rect key="frame" x="0.0" y="12" width="339" height="19"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="19" id="wuf-fY-Dpc"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ry2-Gh-Tpn">
+                                                                    <rect key="frame" x="0.0" y="32" width="339" height="10"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="10" id="6p1-so-FIa"/>
+                                                                    </constraints>
+                                                                </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YW8-Gc-pDf">
-                                                                    <rect key="frame" x="0.0" y="34" width="339" height="149"/>
+                                                                    <rect key="frame" x="0.0" y="43" width="339" height="149"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="Gsi-Rn-c03"/>
                                                                     </constraints>
@@ -2758,14 +2765,14 @@ Res Smart på din Apple Watch</string>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aqb-xB-Ouy">
-                                                                    <rect key="frame" x="0.0" y="186" width="339" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="194" width="339" height="10"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="10" id="yjC-02-dC0"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjv-rA-0Gi">
-                                                                    <rect key="frame" x="0.0" y="198.5" width="339" height="44"/>
+                                                                    <rect key="frame" x="0.0" y="205" width="339" height="44"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wm-te-znF" userLabel="Prova gratis och börja prenumera">
                                                                             <rect key="frame" x="29" y="0.0" width="280" height="44"/>
@@ -2791,14 +2798,14 @@ Res Smart på din Apple Watch</string>
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itx-ei-gqf">
-                                                                    <rect key="frame" x="0.0" y="245" width="339" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="250" width="339" height="30"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="ZGM-rP-cjT"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Är Premium inget för dig?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3l-mD-WVM">
-                                                                    <rect key="frame" x="0.0" y="277.5" width="339" height="19"/>
+                                                                    <rect key="frame" x="0.0" y="282" width="339" height="19"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="19" id="GAb-qI-ITx"/>
                                                                     </constraints>
@@ -2806,8 +2813,15 @@ Res Smart på din Apple Watch</string>
                                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FN8-lq-XTj">
+                                                                    <rect key="frame" x="0.0" y="302" width="339" height="10"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="10" id="LzN-jb-Khe"/>
+                                                                    </constraints>
+                                                                </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYO-lk-4bk">
-                                                                    <rect key="frame" x="0.0" y="299" width="339" height="83"/>
+                                                                    <rect key="frame" x="0.0" y="313" width="339" height="83"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="8y6-44-q9x"/>
                                                                     </constraints>
@@ -2816,14 +2830,14 @@ Res Smart på din Apple Watch</string>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XbX-ex-sgs">
-                                                                    <rect key="frame" x="0.0" y="385" width="339" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="398" width="339" height="10"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="10" id="BLz-hn-p9z"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfS-Vo-L4A">
-                                                                    <rect key="frame" x="0.0" y="397.5" width="339" height="44"/>
+                                                                    <rect key="frame" x="0.0" y="409" width="339" height="44"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvy-LS-fvC" userLabel="Prova gratis och börja prenumera">
                                                                             <rect key="frame" x="29" y="0.0" width="280" height="44"/>
@@ -2849,7 +2863,7 @@ Res Smart på din Apple Watch</string>
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eNf-3p-GyD">
-                                                                    <rect key="frame" x="0.0" y="444" width="339" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="454" width="339" height="30"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="da8-ZX-eva" userLabel="Har redan prenumeration">
                                                                             <rect key="frame" x="0.0" y="0.0" width="339" height="30"/>
@@ -2882,7 +2896,7 @@ Res Smart på din Apple Watch</string>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49u-jR-jh9" userLabel="Space">
-                                                    <rect key="frame" x="349" y="0.0" width="5" height="474"/>
+                                                    <rect key="frame" x="349" y="0.0" width="5" height="484"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="5" id="sJ2-qy-jjz"/>
@@ -2900,10 +2914,10 @@ Res Smart på din Apple Watch</string>
                                     <constraint firstAttribute="trailingMargin" secondItem="L9j-7Y-kwJ" secondAttribute="trailing" id="ahA-6a-c4e"/>
                                     <constraint firstItem="L9j-7Y-kwJ" firstAttribute="top" secondItem="Ovm-fK-jZf" secondAttribute="topMargin" id="z46-9O-7iF"/>
                                 </constraints>
-                                <size key="customSize" width="370" height="490"/>
+                                <size key="customSize" width="370" height="500"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HereToThereCell" id="esv-Pr-9mX" customClass="HereToThereCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="1145" width="370" height="60"/>
+                                <rect key="frame" x="22" y="1155" width="370" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="60"/>
