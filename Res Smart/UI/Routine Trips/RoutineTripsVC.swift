@@ -187,6 +187,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     performSegueWithIdentifier("ShowSubscribe", sender: self)
   }
   
+  @IBAction func onConvertToFreeTap(sender: UIButton) {
+    showConvertToFreeAlert()
+  }
+  
   /**
    * On user taps restore button
    */
@@ -295,7 +299,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     let screenSize = UIScreen.mainScreen().bounds.size
     if indexPath.section == 0 {
       if !isSubscribing {
-        return CGSizeMake(screenSize.width - 8, 300)
+        return CGSizeMake(screenSize.width - 8, 470)
       } else if isShowInfo {
         return CGSizeMake(screenSize.width - 8, 250)
       } else if bestRoutineTrip != nil {
@@ -581,9 +585,27 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       message: "Kontrollera att platstjänster är aktiverade och att de tillåts för Res Smart.\n\n(Inställningar -> Integritetsskydd -> Platstjänster)",
       preferredStyle: UIAlertControllerStyle.Alert)
     invalidLocationAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+      UIAlertAction(title: "Okej", style: .Default, handler: nil))
     
     presentViewController(invalidLocationAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Show convert to free app alert
+   */
+  private func showConvertToFreeAlert() {
+    let convertAlert = UIAlertController(
+      title: "Använd Res Smart gratis?",
+      message: "Du kan aktivera premium igen från Inställningar -> Res Smart\n\nÄr du säker på att du vill stänga av premium och använda Res Smart gratis?",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    convertAlert.addAction(
+      UIAlertAction(title: "Ja", style: .Default, handler: { _ in
+        NSNotificationCenter.defaultCenter().postNotificationName("PremiumDisabled", object: nil)
+      }))
+    convertAlert.addAction(
+      UIAlertAction(title: "Nej, avbryt", style: .Cancel, handler: nil))
+    
+    presentViewController(convertAlert, animated: true, completion: nil)
   }
   
   /**
@@ -595,7 +617,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       message: NSLocalizedString("Om en aktiv prenumeration finns kommer denna automatiskt att aktiveras för denna enhet.\n\nDu kan själv kontrollera dina prenumerationer på din iPhone under Inställningar -> App Store och iTunes Store -> Tryck på ditt Apple-ID -> Visa Apple-ID", comment: ""),
       preferredStyle: UIAlertControllerStyle.Alert)
     restoreAlert.addAction(
-      UIAlertAction(title: NSLocalizedString("Okej", comment: ""), style: UIAlertActionStyle.Default, handler: { _ in
+      UIAlertAction(title: NSLocalizedString("Okej", comment: ""), style: .Default, handler: { _ in
         self.startLoading()
         self.isSubscribing = true
         self.collectionView?.reloadData()

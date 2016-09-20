@@ -95,9 +95,9 @@ class CustomTabVC: UITabBarController {
    */
   @objc func onPremiumDisabled(notification: NSNotification) {
     isPremium = false
+    NSUserDefaults.standardUserDefaults().setBool(isPremium, forKey: "res_smart_premium_preference")
+    updateTabs()
   }
-  
-  
   
   // MARK: Private
   
