@@ -235,7 +235,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
       pin.imageName = segment.type.rawValue
       mapView.addAnnotation(pin)
-      mapView.selectAnnotation(pin, animated: true)
+      mapView.selectAnnotation(pin, animated: false)
     }
     if segment == trip?.tripSegments.last! {
       pin.coordinate = originCoord
@@ -283,6 +283,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   private func setMapViewport(coordinates: [CLLocationCoordinate2D]) {
     var newCoordinates = coordinates
     let allPolyline = MKPolyline(coordinates: &newCoordinates, count: newCoordinates.count)
+    
     self.mapView.setVisibleMapRect(
       self.mapView.mapRectThatFits(allPolyline.boundingMapRect),
       edgePadding: UIEdgeInsets(top: 100, left: 50, bottom: 100, right: 50),
