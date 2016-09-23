@@ -21,12 +21,13 @@ public class StopsStore {
   /**
    * Gets static stop on id
    */
-  public func getOnId(id: String) -> StaticStop {
+  public func getOnId(id: String) -> StaticStop? {
     let stops = getStops()
     if let stop = stops[convertId(id)] {
       return stop
     }
-    fatalError("Could not find stop with id: \(id) = \(convertId(id))")
+    print("Could not find stop with id: \(id) = \(convertId(id))")
+    return nil
   }
   
   /**

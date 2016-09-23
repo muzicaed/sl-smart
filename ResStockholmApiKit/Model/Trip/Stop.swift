@@ -17,16 +17,17 @@ public class Stop {
   public let type: TripType
   public let exits: [StaticExit]
   
-  init(id: String, depDate: String?, depTime: String?) {
+  init(id: String, name: String, location: CLLocation, type: TripType,
+       exits: [StaticExit], depDate: String?, depTime: String?) {
+    
     self.id = id
-    let staticStop = StopsStore.sharedInstance.getOnId(self.id)
-    self.name = staticStop.stopPointName
-    self.location = staticStop.location
-    self.type = staticStop.type
-    self.exits = staticStop.exits
+    self.name = name
+    self.location = location
+    self.type = type
+    self.exits = exits
     
     if let date = depDate, time = depTime {
       self.depDate = DateUtils.convertDateString("\(date) \(time)")
     }
-  }  
+  }
 }

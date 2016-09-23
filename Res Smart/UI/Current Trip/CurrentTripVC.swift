@@ -99,7 +99,7 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
    * Load stop data
    */
   private func loadStops() {
-    
+    /*
     for segment in currentTrip!.tripSegments {
       if let ref = segment.journyRef {
         NetworkActivity.displayActivityIndicator(true)
@@ -116,6 +116,7 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         }
       }
     }
+     */
   }
   
   /**

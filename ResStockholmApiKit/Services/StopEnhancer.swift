@@ -18,8 +18,9 @@ public class StopEnhancer {
     for (index, segment) in trip.allTripSegments.enumerate() {
       if segment.type == .Metro {
         let nextSegment = findNextSegment(index, trip: trip)
-        let stop = StopsStore.sharedInstance.getOnId(segment.destination.siteId!)
-        enhanceSegment(segment, next: nextSegment, stop: stop)
+        if let stop = StopsStore.sharedInstance.getOnId(segment.destination.siteId!) {
+          enhanceSegment(segment, next: nextSegment, stop: stop)
+        }
       }
     }
   }
