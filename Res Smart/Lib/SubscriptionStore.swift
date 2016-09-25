@@ -23,10 +23,7 @@ public class SubscriptionStore {
   /**
    * Check if user have a active subscription.
    */
-  func isSubscribed() -> Bool {
-    // TODO PAY: Remove this
-    //return true
-    
+  func isSubscribed() -> Bool {    
     loadSubscribedCache()
     return (isSubscribedCache! || isTrial())
   }
