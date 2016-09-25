@@ -29,9 +29,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
     productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
     super.init()
     productsRequest.delegate = self
-    
-    // TODO PAY: Uncomment
-    //SKPaymentQueue.defaultQueue().addTransactionObserver(self)
+    SKPaymentQueue.defaultQueue().addTransactionObserver(self)
   }
   
   /**
@@ -43,14 +41,11 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    * Validate subscription
    */
   func validateSubscription() {
-    // TODO PAY: Remove this
-    /*
-     if shouldCheckForNewReciept() {
-     let refresh = SKReceiptRefreshRequest()
-     refresh.delegate = self
-     refresh.start()
-     }
-     */
+    if shouldCheckForNewReciept() {
+      let refresh = SKReceiptRefreshRequest()
+      refresh.delegate = self
+      refresh.start()
+    }
   }
   
   /**
@@ -107,7 +102,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   
   func paymentQueue(
     queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-
+    
     for transaction:AnyObject in transactions {
       let trans = transaction as! SKPaymentTransaction
       switch trans.transactionState {

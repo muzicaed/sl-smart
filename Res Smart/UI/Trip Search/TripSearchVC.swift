@@ -409,11 +409,6 @@ PickGenericValueResponder, LinePickerResponder {
         isViaSelected = true
       }
       
-      // TODO: For migration purpose can be removed with version 1.4
-      if !isAdvancedMode {
-        crit.resetAdvancedTripTypes()
-      }
-      
       travelTypePicker.updateLabel(crit)
       updateGenericValues()
       crit.searchForArrival = false

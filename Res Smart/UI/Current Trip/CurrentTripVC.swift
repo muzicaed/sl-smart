@@ -89,7 +89,6 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(
       "ChangeCell", forIndexPath: indexPath) as! ChangeCell
     if isStopsLoaded && currentTrip != nil {
-      // TODO: Remove test code and replace with real analyzer...
       //cell.setupData(currentTrip!.tripSegments[2], isOrigin: false)
     }
     return cell

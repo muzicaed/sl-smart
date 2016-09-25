@@ -14,7 +14,7 @@ class CustomTabVC: UITabBarController {
   
   let notificationCenter = NSNotificationCenter.defaultCenter()
   var currentTrip: Trip?
-  var isPremium = true
+  var isPremiumSettingOn = true
   var premiumVC: UIViewController?
   
   /**
@@ -36,15 +36,15 @@ class CustomTabVC: UITabBarController {
    * Updates the tabs based on premium.
    */
   func updateTabs() {
-    isPremium = NSUserDefaults.standardUserDefaults().boolForKey("res_smart_premium_preference")
-    
-    if !isPremium && self.tabBar.items!.count == 4 {
+    isPremiumSettingOn = NSUserDefaults.standardUserDefaults().boolForKey("res_smart_premium_preference")
+    print("Updated tabs premium on: \(isPremiumSettingOn)")
+    if !isPremiumSettingOn && self.tabBar.items!.count == 4 {
       let indexToRemove = 0
       if indexToRemove < viewControllers?.count {
         premiumVC = viewControllers?[indexToRemove]
         viewControllers?.removeAtIndex(indexToRemove)
       }
-    } else if isPremium && self.tabBar.items!.count == 3 {
+    } else if isPremiumSettingOn && self.tabBar.items!.count == 3 {
       if let vc = premiumVC {
         viewControllers?.insert(vc, atIndex: 0)
       }
@@ -99,8 +99,8 @@ class CustomTabVC: UITabBarController {
    * onPremiumDisabled notification handler
    */
   @objc func onPremiumDisabled(notification: NSNotification) {
-    isPremium = false
-    NSUserDefaults.standardUserDefaults().setBool(isPremium, forKey: "res_smart_premium_preference")
+    isPremiumSettingOn = false
+    NSUserDefaults.standardUserDefaults().setBool(isPremiumSettingOn, forKey: "res_smart_premium_preference")
     updateTabs()
   }
   

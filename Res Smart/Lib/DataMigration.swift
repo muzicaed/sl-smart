@@ -60,6 +60,7 @@ class DataMigration {
   // Version 1.5
   private static func migrateVersion_1_5() {
     print("Running migration v1.5")
+    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "res_smart_premium_preference")
     StopsStore.sharedInstance.loadJson()
     SubscriptionStore.sharedInstance.resetTrial()
     UserPreferenceStore.sharedInstance.setShouldShowNews(true)

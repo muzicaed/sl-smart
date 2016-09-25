@@ -87,7 +87,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     
     query += (searchForArrival) ? "&searchForArrival=1" : ""
     query += (unsharp) ? "&unsharp=1" : ""
-    query += "&realtime=true" //(realtime) ? "&realtime=true" : "" TODO: Hardcoded realtime, setting?
+    query += "&realtime=true"
     query += (maxWalkDist > 0) ? "&maxWalkDist=\(maxWalkDist)" : ""
     query += (lineInc != nil) ? "&lineInc=\(lineInc!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))" : ""
     query += (lineExc != nil) ? "&lineExc=\(lineExc!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))" : ""

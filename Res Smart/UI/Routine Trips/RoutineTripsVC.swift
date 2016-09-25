@@ -30,7 +30,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   var bestRoutineTrip: RoutineTrip?
   var otherRoutineTrips = [RoutineTrip]()
   var selectedRoutineTrip: RoutineTrip?
-  var isSubscribing = false
+  var isSubscribed = false
   var isLoading = true
   var isShowInfo = false
   var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
@@ -58,8 +58,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     stopLoading()
-    isSubscribing = SubscriptionStore.sharedInstance.isSubscribed()
-    if isSubscribing {
+    isSubscribed = SubscriptionStore.sharedInstance.isSubscribed()
+    if isSubscribed {
       navigationItem.rightBarButtonItem?.enabled = true
       if CLLocationManager.authorizationStatus() == .Denied || !CLLocationManager.locationServicesEnabled() {
         showLocationServicesNotAllowed()
@@ -130,8 +130,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       MyLocationHelper.sharedInstance.isStarted = false
       return
     }
-    isSubscribing = SubscriptionStore.sharedInstance.isSubscribed()
-    if isSubscribing {
+    isSubscribed = SubscriptionStore.sharedInstance.isSubscribed()
+    if isSubscribed {
       loadTripData(true)
       startRefreshTimmer()
     }
@@ -156,7 +156,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   func refreshUI() {
-    if isSubscribing {
+    if isSubscribed {
       loadTripData(false)
     }
   }
@@ -173,7 +173,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * On user drags down to refresh
    */
   func onRefreshController() {
-    if isSubscribing {
+    if isSubscribed {
       loadTripData(true)
     } else {
       refreshController.endRefreshing()
@@ -210,7 +210,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Section count
    */
   override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-    if !isSubscribing {
+    if !isSubscribed {
       return 1
     }
     return 2
@@ -226,7 +226,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     if section == 0 {
-      if isShowInfo || !isSubscribing {
+      if isShowInfo || !isSubscribed {
         return 1
       }
       var bestCount = (bestRoutineTrip == nil ? 0 : 1)
@@ -249,7 +249,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
                                cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     
     if indexPath.section == 0 {
-      if !isSubscribing {
+      if !isSubscribed {
         if indexPath.row == 1 {
           return createTrialCell(indexPath)
         }
@@ -298,7 +298,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
                              sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
     let screenSize = UIScreen.mainScreen().bounds.size
     if indexPath.section == 0 {
-      if !isSubscribing {
+      if !isSubscribed {
         return CGSizeMake(screenSize.width - 8, 490)
       } else if isShowInfo {
         return CGSizeMake(screenSize.width - 8, 250)
@@ -334,7 +334,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func collectionView(collectionView: UICollectionView,
                                didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    if !isShowInfo && !isLoading && isSubscribing {
+    if !isShowInfo && !isLoading && isSubscribed {
       if indexPath.section == 0 && (indexPath.row == 1 || bestRoutineTrip == nil) {
         performSegueWithIdentifier(fromHereToThereSegue, sender: self)
         return
@@ -366,7 +366,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell,
                                forItemAtIndexPath indexPath: NSIndexPath) {
-    if isSubscribing && !isShowInfo && !isLoading {
+    if isSubscribed && !isShowInfo && !isLoading {
       let bgColorView = UIView()
       bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
       cell.selectedBackgroundView = bgColorView
@@ -459,7 +459,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Will show big spinner when loading.
    */
   private func loadTripData(force: Bool) {
-    if isSubscribing {
+    if isSubscribed {
       if RoutineTripsStore.sharedInstance.isRoutineTripsEmpty(){
         isShowInfo = true
         otherRoutineTrips = [RoutineTrip]()
@@ -619,12 +619,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     restoreAlert.addAction(
       UIAlertAction(title: NSLocalizedString("Okej", comment: ""), style: .Default, handler: { _ in
         self.startLoading()
-        self.isSubscribing = true
+        self.isSubscribed = true
         self.collectionView?.reloadData()
         SubscriptionManager.sharedInstance.restoreSubscription()
         let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10.0 * Double(NSEC_PER_SEC)))
         dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-          self.isSubscribing = false
+          self.isSubscribed = false
           self.stopLoading()
           NetworkActivity.displayActivityIndicator(false)
           self.viewWillAppear(true)
