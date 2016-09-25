@@ -28,7 +28,6 @@ public class SubscriptionStore {
     //return true
     
     loadSubscribedCache()
-    print("Is subscribed: \((isSubscribedCache! || isTrial()))")
     return (isSubscribedCache! || isTrial())
   }
   
@@ -39,13 +38,10 @@ public class SubscriptionStore {
     loadSubscribedCache()
     if !isSubscribedCache! {
       if let trialEndDate = defaults.objectForKey(TrialStartDate) as? NSDate {
-        print("Trial time: \((60 * 5) - NSDate().timeIntervalSinceDate(trialEndDate))")
-        let isTrial = (NSDate().timeIntervalSinceDate(trialEndDate) < (60 * 5))  // TODO: Change from 5 min.
-        print("isTrial: \(isTrial)")
+        let isTrial = (NSDate().timeIntervalSinceDate(trialEndDate) < (60 * 60 * 24 * 14))
         return isTrial
       }
     }
-    print("isTrial: false")
     return false
   }
  
