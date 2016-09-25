@@ -13,6 +13,7 @@ public class SubscriptionStore {
   
   private let SubscriptionState = "SubscriptionState"
   private let SubscriptionEndDate = "SubscriptionEndDate"
+  private let TrialStartDate = "TrialStartDate"
   private let defaults = NSUserDefaults.standardUserDefaults()
   private var isSubscribedCache: Bool?
   
@@ -22,12 +23,30 @@ public class SubscriptionStore {
   /**
    * Check if user have a active subscription.
    */
-  func isSubscribed() -> Bool {    
-    if isSubscribedCache == nil {
-      isSubscribedCache = defaults.boolForKey(SubscriptionState)
-    }
+  func isSubscribed() -> Bool {
+    // TODO PAY: Remove this
+    //return true
     
-    return isSubscribedCache!
+    loadSubscribedCache()
+    print("Is subscribed: \((isSubscribedCache! || isTrial()))")
+    return (isSubscribedCache! || isTrial())
+  }
+  
+  /**
+   * Check if user have a active trial.
+   */
+  func isTrial() -> Bool {
+    loadSubscribedCache()
+    if !isSubscribedCache! {
+      if let trialEndDate = defaults.objectForKey(TrialStartDate) as? NSDate {
+        print("Trial time: \((60 * 5) - NSDate().timeIntervalSinceDate(trialEndDate))")
+        let isTrial = (NSDate().timeIntervalSinceDate(trialEndDate) < (60 * 5))  // TODO: Change from 5 min.
+        print("isTrial: \(isTrial)")
+        return isTrial
+      }
+    }
+    print("isTrial: false")
+    return false
   }
  
   /**
@@ -56,5 +75,34 @@ public class SubscriptionStore {
     defaults.setBool(isSubscribedCache!, forKey: SubscriptionState)
     defaults.setObject(nil, forKey: SubscriptionEndDate)
     defaults.synchronize()
+  }
+  
+  /**
+   * Setup trial on app start. 
+   * Will not set start date if trial is allready active.
+   */
+  func setupTrial() {
+    let trialEndDate = defaults.objectForKey(TrialStartDate) as? NSDate
+    if trialEndDate == nil {
+      defaults.setObject(NSDate(), forKey: TrialStartDate)
+    }
+  }
+  
+  /**
+   * Reset the trial
+   */
+  func resetTrial() {
+    defaults.setObject(nil, forKey: TrialStartDate)
+  }
+  
+  // MARK: Private
+  
+  /**
+   * Loads is subscribed data
+   */
+  private func loadSubscribedCache() {
+    if isSubscribedCache == nil {
+      isSubscribedCache = defaults.boolForKey(SubscriptionState)
+    }
   }
 }

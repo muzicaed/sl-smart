@@ -14,6 +14,7 @@ class TripDetailsDestinationCell: UITableViewCell, TripCellProtocol {
   
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
+  @IBOutlet weak var exitLabel: UILabel!
   
   /**
    * Set cell data.
@@ -23,6 +24,10 @@ class TripDetailsDestinationCell: UITableViewCell, TripCellProtocol {
     timeLabel.text = DateUtils.dateAsTimeString(segment.arrivalDateTime)
     timeLabel.accessibilityLabel = "Framme \(timeLabel.text!)"
     destinationLabel.text = segment.destination.cleanName
+    exitLabel.text = ""
+    if segment.exitText != "" {
+      exitLabel.text = "⤴ \(segment.exitText)"
+    }
     destinationLabel.accessibilityLabel = "vid \(destinationLabel.text!)"
   }
 }

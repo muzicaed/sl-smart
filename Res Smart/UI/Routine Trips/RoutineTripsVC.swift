@@ -19,6 +19,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   let loadingCellIdentifier = "LoadingCell"
   let headerCellIdentifier = "HeaderView"
   let infoCellIdentifier = "InfoCell"
+  let trialCellIdentifier = "TrialCell"
   let subscriptionInfoCellIdentifier = "SubscriptionInfoCell"
   let hereToThereCellIdentifier = "HereToThereCell"
   
@@ -29,7 +30,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   var bestRoutineTrip: RoutineTrip?
   var otherRoutineTrips = [RoutineTrip]()
   var selectedRoutineTrip: RoutineTrip?
-  var isSubscribing = false
+  var isSubscribed = false
   var isLoading = true
   var isShowInfo = false
   var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
@@ -57,8 +58,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     stopLoading()
-    isSubscribing = SubscriptionStore.sharedInstance.isSubscribed()
-    if isSubscribing {
+    isSubscribed = SubscriptionStore.sharedInstance.isSubscribed()
+    if isSubscribed {
       navigationItem.rightBarButtonItem?.enabled = true
       if CLLocationManager.authorizationStatus() == .Denied || !CLLocationManager.locationServicesEnabled() {
         showLocationServicesNotAllowed()
@@ -129,8 +130,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       MyLocationHelper.sharedInstance.isStarted = false
       return
     }
-    isSubscribing = SubscriptionStore.sharedInstance.isSubscribed()
-    if isSubscribing {
+    isSubscribed = SubscriptionStore.sharedInstance.isSubscribed()
+    if isSubscribed {
       loadTripData(true)
       startRefreshTimmer()
     }
@@ -155,7 +156,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   func refreshUI() {
-    if isSubscribing {
+    if isSubscribed {
       loadTripData(false)
     }
   }
@@ -172,7 +173,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * On user drags down to refresh
    */
   func onRefreshController() {
-    if isSubscribing {
+    if isSubscribed {
       loadTripData(true)
     } else {
       refreshController.endRefreshing()
@@ -184,6 +185,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   @IBAction func onSubscribeTap(sender: UIButton) {
     performSegueWithIdentifier("ShowSubscribe", sender: self)
+  }
+  
+  @IBAction func onConvertToFreeTap(sender: UIButton) {
+    showConvertToFreeAlert()
   }
   
   /**
@@ -205,7 +210,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Section count
    */
   override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-    if !isSubscribing {
+    if !isSubscribed {
       return 1
     }
     return 2
@@ -221,11 +226,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     if section == 0 {
-      if isShowInfo || !isSubscribing {
+      if isShowInfo || !isSubscribed {
         return 1
       }
       var bestCount = (bestRoutineTrip == nil ? 0 : 1)
       if MyLocationHelper.sharedInstance.getCurrentLocation() != nil {
+        bestCount += 1
+      }
+      if SubscriptionStore.sharedInstance.isTrial() {
         bestCount += 1
       }
       return bestCount
@@ -241,9 +249,15 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
                                cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     
     if indexPath.section == 0 {
-      if !isSubscribing {
+      if !isSubscribed {
+        if indexPath.row == 1 {
+          return createTrialCell(indexPath)
+        }
         return createSubscriptionInfoCell(indexPath)
       } else if isShowInfo {
+        if indexPath.row == 1 {
+          return createTrialCell(indexPath)
+        }
         return createInfoTripCell(indexPath)
       }
       
@@ -255,6 +269,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
       } else if indexPath.row == 1 {
         return createHereToThereCell(indexPath)
+      } else if indexPath.row == 2 {
+        return createTrialCell(indexPath)
       }
       fatalError("Could not create cell.")
     }
@@ -282,19 +298,21 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
                              sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
     let screenSize = UIScreen.mainScreen().bounds.size
     if indexPath.section == 0 {
-      if !isSubscribing {
-        return CGSizeMake(screenSize.width - 20, 280)
+      if !isSubscribed {
+        return CGSizeMake(screenSize.width - 8, 490)
       } else if isShowInfo {
-        return CGSizeMake(screenSize.width - 20, 250)
+        return CGSizeMake(screenSize.width - 8, 250)
       } else if bestRoutineTrip != nil {
         if indexPath.row == 0 {
-          return CGSizeMake(screenSize.width - 20, 160)
+          return CGSizeMake(screenSize.width - 8, 160)
+        } else if indexPath.row == 2 {
+          return CGSizeMake(screenSize.width - 8, 25)
         }
-        return CGSizeMake(screenSize.width - 20, 60)
+        return CGSizeMake(screenSize.width - 8, 60)
       }
     }
     
-    return CGSizeMake(screenSize.width - 20, 90)
+    return CGSizeMake(screenSize.width - 8, 90)
   }
   
   /**
@@ -316,7 +334,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func collectionView(collectionView: UICollectionView,
                                didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    if !isShowInfo && !isLoading && isSubscribing {
+    if !isShowInfo && !isLoading && isSubscribed {
       if indexPath.section == 0 && (indexPath.row == 1 || bestRoutineTrip == nil) {
         performSegueWithIdentifier(fromHereToThereSegue, sender: self)
         return
@@ -348,7 +366,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell,
                                forItemAtIndexPath indexPath: NSIndexPath) {
-    if isSubscribing && !isShowInfo && !isLoading {
+    if isSubscribed && !isShowInfo && !isLoading {
       let bgColorView = UIView()
       bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
       cell.selectedBackgroundView = bgColorView
@@ -441,7 +459,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Will show big spinner when loading.
    */
   private func loadTripData(force: Bool) {
-    if isSubscribing {
+    if isSubscribed {
       if RoutineTripsStore.sharedInstance.isRoutineTripsEmpty(){
         isShowInfo = true
         otherRoutineTrips = [RoutineTrip]()
@@ -550,6 +568,15 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   /**
+   * Create trial cell
+   */
+  private func createTrialCell(indexPath: NSIndexPath) -> UICollectionViewCell {
+    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(
+      trialCellIdentifier, forIndexPath: indexPath)
+    return cell
+  }
+  
+  /**
    * Show no location servie popup
    */
   private func showLocationServicesNotAllowed() {
@@ -558,9 +585,27 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       message: "Kontrollera att platstjänster är aktiverade och att de tillåts för Res Smart.\n\n(Inställningar -> Integritetsskydd -> Platstjänster)",
       preferredStyle: UIAlertControllerStyle.Alert)
     invalidLocationAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+      UIAlertAction(title: "Okej", style: .Default, handler: nil))
     
     presentViewController(invalidLocationAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Show convert to free app alert
+   */
+  private func showConvertToFreeAlert() {
+    let convertAlert = UIAlertController(
+      title: "Använd Res Smart gratis?",
+      message: "Du kan aktivera premium igen från Inställningar -> Res Smart\n\nÄr du säker på att du vill stänga av premium och använda Res Smart gratis?",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    convertAlert.addAction(
+      UIAlertAction(title: "Ja", style: .Default, handler: { _ in
+        NSNotificationCenter.defaultCenter().postNotificationName("PremiumDisabled", object: nil)
+      }))
+    convertAlert.addAction(
+      UIAlertAction(title: "Nej, avbryt", style: .Cancel, handler: nil))
+    
+    presentViewController(convertAlert, animated: true, completion: nil)
   }
   
   /**
@@ -572,14 +617,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       message: NSLocalizedString("Om en aktiv prenumeration finns kommer denna automatiskt att aktiveras för denna enhet.\n\nDu kan själv kontrollera dina prenumerationer på din iPhone under Inställningar -> App Store och iTunes Store -> Tryck på ditt Apple-ID -> Visa Apple-ID", comment: ""),
       preferredStyle: UIAlertControllerStyle.Alert)
     restoreAlert.addAction(
-      UIAlertAction(title: NSLocalizedString("Okej", comment: ""), style: UIAlertActionStyle.Default, handler: { _ in
+      UIAlertAction(title: NSLocalizedString("Okej", comment: ""), style: .Default, handler: { _ in
         self.startLoading()
-        self.isSubscribing = true
+        self.isSubscribed = true
         self.collectionView?.reloadData()
         SubscriptionManager.sharedInstance.restoreSubscription()
         let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10.0 * Double(NSEC_PER_SEC)))
         dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-          self.isSubscribing = false
+          self.isSubscribed = false
           self.stopLoading()
           NetworkActivity.displayActivityIndicator(false)
           self.viewWillAppear(true)

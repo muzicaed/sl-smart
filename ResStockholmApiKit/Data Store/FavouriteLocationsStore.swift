@@ -15,14 +15,7 @@ public class FavouriteLocationsStore {
   private var cachedLocations = [Location]()
   
   // Singelton pattern
-  public static let sharedInstance = FavouriteLocationsStore()
-  
-  /**
-   * Preloads favourite locations data.
-   */
-  public func preload() {
-    cachedLocations = retrieveFavouriteLocations()
-  }
+  public static let sharedInstance = FavouriteLocationsStore()  
   
   /**
    * Retrive "FavouriteLocations" from data store

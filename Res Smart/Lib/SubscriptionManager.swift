@@ -16,7 +16,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   // Singelton pattern
   static let sharedInstance = SubscriptionManager()
   
-  let productIdentifiers = Set(["1_MONTH_RES_SMART", "6_MONTH_RES_SMART"])
+  let productIdentifiers = Set(["6_MONTHS_NO_TRIAL", "12_MONTHS_NO_TRIAL"])
   var product: SKProduct?
   var products = [SKProduct]()
   var productsRequest: SKProductsRequest

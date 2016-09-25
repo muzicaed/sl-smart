@@ -33,7 +33,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   var tabTypesKeys = [String]()
   var segmentView = SMSegmentView()
   var refreshTimmer: NSTimer?
-  let loadedTime = NSDate()
+  var loadedTime = NSDate()
   let refreshController = UIRefreshControl()
   var tableActivityIndicator = UIActivityIndicatorView(
     activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
@@ -54,7 +54,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       name: UIApplicationWillResignActiveNotification, object: nil)
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 44
-
+    
     refreshController.addTarget(
       self, action: #selector(loadData), forControlEvents: UIControlEvents.ValueChanged)
     refreshController.tintColor = UIColor.lightGrayColor()
@@ -85,7 +85,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   func didBecomeActive() {
     let now = NSDate()
-    if now.timeIntervalSinceDate(loadedTime) > (60 * 60) { // 1 hour
+    if now.timeIntervalSinceDate(loadedTime) > (60 * 30) { // 30 minutes
       navigationController?.popToRootViewControllerAnimated(false)
       return
     }
@@ -105,6 +105,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Starts the refresh timmer
    */
   func startRefreshTimmer() {
+    loadedTime = NSDate()
     stopRefreshTimmer()
     refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
       15.0, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
@@ -124,10 +125,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   func loadData() {
     NetworkActivity.displayActivityIndicator(true)
     RealTimeDeparturesService.fetch(siteId) { (rtDepartures, error) -> Void in
-      NetworkActivity.displayActivityIndicator(false)
-      if error == nil {
-        if let departures = rtDepartures {
-          dispatch_async(dispatch_get_main_queue(), {
+      dispatch_async(dispatch_get_main_queue()) {
+        NetworkActivity.displayActivityIndicator(false)
+        if error == nil {
+          if let departures = rtDepartures {
             self.spinnerView.removeFromSuperview()
             self.refreshController.endRefreshing()
             self.isLoading = false
@@ -137,7 +138,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
             self.prepareSegmentView()
             self.tableView.backgroundView = nil
             self.tableView.reloadData()
-          })
+          }
+        } else {
+          self.handleLoadDataError()
         }
       }
     }
@@ -503,7 +506,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       break
     }
     
-    if let data = data {      
+    if let data = data {
       cell.lineLabel.text = lineChar + data.lineNumber
       cell.infoLabel.text = "\(data.destination)"
       cell.infoLabel.accessibilityLabel = "Mot \(data.destination)"
@@ -522,6 +525,23 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         cell.deviationsLabel.textColor = UIColor.darkGrayColor()
       }
     }
+  }
+  
+  /**
+   * Hadle load data (network) error
+   */
+  private func handleLoadDataError() {
+    stopRefreshTimmer()
+    let invalidLoadingAlert = UIAlertController(
+      title: "Kan inte nå söktjänsten",
+      message: "Söktjänsten kan inte nås just nu. Prova igen om en liten stund.",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    invalidLoadingAlert.addAction(
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: { _ in
+        self.navigationController?.popToRootViewControllerAnimated(false)
+      }))
+    
+    presentViewController(invalidLoadingAlert, animated: true, completion: nil)
   }
   
   /**

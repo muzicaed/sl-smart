@@ -143,7 +143,6 @@ public class SearchTripService {
       arrivalDate: dateTimeTuple.arrDate,
       distance: Int(distString), isRealtime: dateTimeTuple.isRealtime,
       journyRef: segmentJson["JourneyDetailRef"]["ref"].string,
-      geometryRef: segmentJson["GeometryRef"]["ref"].string!,
       rtuMessages: rtuMessages, notes: "", isWarning: isWarning,
       isReachable: isReachable, isCancelled: isCancelled)
   }
@@ -155,7 +154,7 @@ public class SearchTripService {
     let name = (locationJson["name"].string != nil) ? locationJson["name"].string! : ""
     return Location(
       id: locationJson["id"].string,
-      name: name,
+      name: ensureUTF8(name),
       type: locationJson["type"].string!,
       lat: locationJson["lat"].string!,
       lon: locationJson["lon"].string!)

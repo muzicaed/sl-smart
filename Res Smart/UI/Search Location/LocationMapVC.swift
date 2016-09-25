@@ -72,7 +72,7 @@ class LocationMapVC: UIViewController, MKMapViewDelegate {
   func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
     if annotation.isKindOfClass(BigPin) {
       let pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: "dot")
-      pinView.image = UIImage(named: "MapDot")!
+      pinView.image = UIImage(named: "MapDestinationDot")!
       pinView.canShowCallout = true
       pinView.centerOffset = CGPointMake(0, 0)
       pinView.calloutOffset = CGPointMake(0, -3)

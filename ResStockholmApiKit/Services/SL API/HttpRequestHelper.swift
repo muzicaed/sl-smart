@@ -20,6 +20,9 @@ class HttpRequestHelper {
     url: String, callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
     
     print(url)
+    let urlconfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+    urlconfig.timeoutIntervalForRequest = 5
+    urlconfig.timeoutIntervalForResource = 5
     
     if let cacheData = handleCache(url) {
       callback((cacheData, nil))
@@ -28,7 +31,8 @@ class HttpRequestHelper {
     
     if let nsUrl = NSURL(string: url) {
       let request = NSMutableURLRequest(URL: nsUrl)
-      let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+      let session = NSURLSession(configuration: urlconfig)
+      let task = session.dataTaskWithRequest(request) {
         data, response, error in
         if error != nil {
           callback((nil, error: SLNetworkError.NetworkError))

@@ -30,13 +30,11 @@ class TripDetailsVC: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 60
-    view.backgroundColor = StyleHelper.sharedInstance.background
-    tableView.tableFooterView = UIView(frame: CGRect.zero)
+    prepareTableView()
     prepareHeader()
     prepareVisualStops()
     loadStops()
+    StopEnhancer.enhance(trip)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didBecomeActive),
                                                      name: UIApplicationDidBecomeActiveNotification, object: nil)
   }
@@ -56,6 +54,13 @@ class TripDetailsVC: UITableViewController {
     if now.timeIntervalSinceDate(loadedTime) > (60 * 90) { // 1.5 hour
       navigationController?.popToRootViewControllerAnimated(false)
     }
+  }
+  
+  /**
+   * Selects this trip for current trip
+   */
+  @IBAction func beginTrip(sender: UIBarButtonItem) {
+    NSNotificationCenter.defaultCenter().postNotificationName("BeginTrip", object: trip)
   }
   
   // MARK: UITableViewController
@@ -156,7 +161,7 @@ class TripDetailsVC: UITableViewController {
     if section < trip.tripSegments.count && stopsVisual.count > 0 {
       let visual = stopsVisual[section]
       if visual.hasStops && visual.isVisible {
-        return 3 + trip.tripSegments[section].stops.count
+        return 3 + max(trip.tripSegments[section].stops.count - 2, 0)
       }
     }
     return 3
@@ -176,54 +181,32 @@ class TripDetailsVC: UITableViewController {
    */
   private func loadStops() {
     var loadCount = 0
+    var doneCount = 0
+    
     for (index, segment) in trip.tripSegments.enumerate() {
-      segment.routeLineLocations = [CLLocation]()
       if let ref = segment.journyRef {
+        loadCount += 1
         NetworkActivity.displayActivityIndicator(true)
         JournyDetailsService.fetchJournyDetails(ref) { stops, error in
           NetworkActivity.displayActivityIndicator(false)
-          segment.stops = self.filterStops(stops, segment: segment)
-          self.stopsVisual[index] = (isVisible: false, hasStops: (segment.stops.count > 0))
+          segment.stops = JournyDetailsService.filterStops(stops, segment: segment)
+          self.stopsVisual[index] = (isVisible: false, hasStops: (segment.stops.count > 2))
           dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadData()
           }
-        }
-      }
-      
-      NetworkActivity.displayActivityIndicator(true)
-      GeometryService.fetchGeometry(segment.geometryRef) { locations, error in
-        NetworkActivity.displayActivityIndicator(false)
-        dispatch_async(dispatch_get_main_queue()) {
-          if error == nil {
-            segment.routeLineLocations += self.extractLocations(locations, segment: segment)
-          }
-          loadCount += 1
-          if loadCount >= self.trip.tripSegments.count {
-            self.mapButton.enabled = true
+          doneCount += 1
+          if doneCount >= loadCount {
+            dispatch_async(dispatch_get_main_queue()) {
+              self.mapButton.enabled = true
+            }
           }
         }
       }
     }
-  }
-  
-  /**
-   * Filter out to show only relevat
-   * in between stops.
-   */
-  private func filterStops(stops: [Stop], segment: TripSegment) -> [Stop] {
-    var filterStops = [Stop]()
-    var foundFirst = false
-    for stop in stops {
-      if foundFirst && stop.id == segment.destination.siteId! {
-        break
-      } else if foundFirst {
-        filterStops.append(stop)
-      } else if stop.id == segment.origin.siteId! {
-        foundFirst = true
-      }
+    if doneCount >= loadCount {
+      self.mapButton.enabled = true
+      StopEnhancer.enhance(trip)
     }
-    
-    return filterStops
   }
   
   /**
@@ -263,7 +246,9 @@ class TripDetailsVC: UITableViewController {
   private func updateStopsToggleAnimated(section: Int, isVisible: Bool) {
     var indexPaths = [NSIndexPath]()
     for (index, _) in trip.tripSegments[section].stops.enumerate() {
-      indexPaths.append(NSIndexPath(forRow: index + 2, inSection: section))
+      if index < (trip.tripSegments[section].stops.count - 2) {
+        indexPaths.append(NSIndexPath(forRow: index + 2, inSection: section))
+      }
     }
     
     if isVisible {
@@ -275,6 +260,16 @@ class TripDetailsVC: UITableViewController {
     let cell = tableView.cellForRowAtIndexPath(
       NSIndexPath(forRow: 1, inSection: section)) as! TripDetailsSegmentCell
     cell.updateStops((isVisible: isVisible, hasStops: true))
+  }
+  
+  /**
+   * Prepares this table view
+   */
+  private func prepareTableView() {
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 60
+    view.backgroundColor = StyleHelper.sharedInstance.background
+    tableView.tableFooterView = UIView(frame: CGRect.zero)
   }
   
   deinit {

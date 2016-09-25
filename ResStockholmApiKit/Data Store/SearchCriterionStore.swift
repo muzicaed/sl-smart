@@ -18,18 +18,10 @@ public class SearchCriterionStore {
   public static let sharedInstance = SearchCriterionStore()
   
   /**
-   * Preloads search criterion
-   */
-  public func preload() {
-    cachedSearchCriterions = retrieveSearchCriterions()
-  }
-  
-  /**
    * Retrive "LastSearchCriterions" from data store
    */
   public func retrieveSearchCriterions() -> TripSearchCriterion {
     if cachedSearchCriterions.origin == nil && cachedSearchCriterions.dest == nil {
-      
       if let unarchivedObject = defaults.objectForKey(
         LastSearchCriterions) as? NSData {
           if let crit = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? TripSearchCriterion {

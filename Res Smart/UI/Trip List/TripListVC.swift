@@ -46,12 +46,6 @@ class TripListVC: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = StyleHelper.sharedInstance.background
-    if trips.count == 0 {
-      loadTripData(true)
-    } else {
-      isLoading = false
-      self.tableView?.reloadData()
-    }
     NSNotificationCenter.defaultCenter().addObserver(
       self, selector: #selector(didBecomeActive),
       name: UIApplicationDidBecomeActiveNotification, object: nil)
@@ -70,6 +64,12 @@ class TripListVC: UITableViewController {
     isLoadingMoreBlocked = false
     startRefreshTimmer()
     handleMakeRoutineButton()
+    if trips.count == 0 {
+      loadTripData(true)
+    } else {
+      isLoading = false
+      self.tableView?.reloadData()
+    }
   }
   
   /**

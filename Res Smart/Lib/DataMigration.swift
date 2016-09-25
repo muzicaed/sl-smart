@@ -15,12 +15,16 @@ class DataMigration {
   private static let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
   
   static func migrateData() {
+    
     let step = defaults.integerForKey(dataKey)
     if step <= 1 {
       migrateVersion_1_3()
     }
     if step <= 2 {
       migrateVersion_1_4()
+    }
+    if step <= 3 {
+      migrateVersion_1_5()
     }
   }
   
@@ -32,13 +36,14 @@ class DataMigration {
       routine.criterions.numChg = -1
       RoutineTripsStore.sharedInstance.updateRoutineTrip(routine)
     }
+    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
     defaults.setInteger(2, forKey: dataKey)
-    defaults.synchronize()
+    defaults.synchronize()    
   }
   
   // Version 1.4
   private static func migrateVersion_1_4() {
-    print("Running migration v1.3")
+    print("Running migration v1.4")
     let routines = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
     for routine in routines {
       if routine.isSmartSuggestion {
@@ -47,7 +52,19 @@ class DataMigration {
         RoutineTripsStore.sharedInstance.updateRoutineTrip(routine)
       }
     }
+    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
     defaults.setInteger(3, forKey: dataKey)
+    defaults.synchronize()
+  }
+  
+  // Version 1.5
+  private static func migrateVersion_1_5() {
+    print("Running migration v1.5")
+    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "res_smart_premium_preference")
+    StopsStore.sharedInstance.loadJson()
+    SubscriptionStore.sharedInstance.resetTrial()
+    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
+    defaults.setInteger(4, forKey: dataKey)
     defaults.synchronize()
   }
 }

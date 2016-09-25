@@ -44,11 +44,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     UIApplication.sharedApplication().scheduledLocalNotifications = [notification]
   }
   
-  func applicationWillEnterForeground(application: UIApplication) {}
-  
   func applicationDidBecomeActive(application: UIApplication) {
+    print("applicationDidBecomeActive")
+    SubscriptionStore.sharedInstance.setupTrial()
     SubscriptionManager.sharedInstance.validateSubscription()
     checkTrafficSituation()
+    
+    let root = window?.rootViewController! as! CustomTabVC
+    root.updateTabs()
+    
+    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+    dispatch_async(dispatch_get_global_queue(priority, 0)) {
+      // Load stops in background
+      StopsStore.sharedInstance.getStops()
+    }
   }
   
   func applicationWillTerminate(application: UIApplication) {
@@ -93,9 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   private func setupApp() {
     StyleHelper.sharedInstance.setupCustomStyle()
     window?.tintColor = StyleHelper.sharedInstance.tintColor
-    SearchCriterionStore.sharedInstance.preload()
     RoutineTripsStore.sharedInstance.preload()
-    ScorePostStore.sharedInstance.preload()
   }
   
   /**
@@ -108,7 +115,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
       defaultSession.activateSession()
     }
   }
-  
   
   /**
    * Checks current traffic situation.
