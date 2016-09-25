@@ -25,7 +25,7 @@ public class SubscriptionStore {
    */
   func isSubscribed() -> Bool {
     // TODO PAY: Remove this
-    //return true
+    return true
     
     loadSubscribedCache()
     return (isSubscribedCache! || isTrial())
@@ -38,8 +38,6 @@ public class SubscriptionStore {
     loadSubscribedCache()
     if !isSubscribedCache! {
       if let trialEndDate = defaults.objectForKey(TrialStartDate) as? NSDate {
-        let left = (60 * 5) - NSDate().timeIntervalSinceDate(trialEndDate) // TODO: Remove
-        print("Time left: \(left)")
         let isTrial = (NSDate().timeIntervalSinceDate(trialEndDate) < (60 * 5))  // TODO: Change from 5 min.
         return isTrial
       }

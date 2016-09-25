@@ -115,7 +115,6 @@ public class StopEnhancer {
    * Create train position text
    */
   static private func createTrainPositionText(segment: TripSegment, exit: StaticExit) -> String? {
-    // TODO: More directions here...
     if let trainDirection = segment.directionText {
       var trainPos = StaticExit.TrainPosition.Middle
       
