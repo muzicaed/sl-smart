@@ -22,6 +22,7 @@ public class GeometryService {
       api.fetchGeometry(urlEncRef) { (data, error) -> Void in
         if let d = data {
           if d.length == 0 {
+            HttpRequestHelper.clearCache()
             callback(data: [CLLocation](), error: SLNetworkError.NoDataFound)
             return
           }

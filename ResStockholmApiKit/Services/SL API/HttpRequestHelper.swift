@@ -21,8 +21,8 @@ class HttpRequestHelper {
     
     print(url)
     let urlconfig = NSURLSessionConfiguration.defaultSessionConfiguration()
-    urlconfig.timeoutIntervalForRequest = 5
-    urlconfig.timeoutIntervalForResource = 5
+    urlconfig.timeoutIntervalForRequest = 10
+    urlconfig.timeoutIntervalForResource = 10
     
     if let cacheData = handleCache(url) {
       callback((cacheData, nil))
@@ -50,6 +50,13 @@ class HttpRequestHelper {
       return
     }
     callback((nil, error: SLNetworkError.InvalidRequest))
+  }
+  
+  /**
+   * Clears the http response cache.
+   */
+  static func clearCache() {
+    cache = [String: (data: NSData, date: NSDate)]()
   }
   
   // MARK: Private
