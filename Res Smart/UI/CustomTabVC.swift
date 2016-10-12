@@ -59,6 +59,8 @@ class CustomTabVC: UITabBarController {
       performSegueWithIdentifier("ShowNews", sender: self)
       UserPreferenceStore.sharedInstance.setShouldShowNews(false)
     }
+    
+    performSegueWithIdentifier("ShowCurrentTrip", sender: nil)
   }
   
   /**
@@ -66,9 +68,9 @@ class CustomTabVC: UITabBarController {
    */
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "ShowCurrentTrip" {
-      let nav = segue.destinationViewController as! UINavigationController
-      let vc = nav.visibleViewController as! CurrentTripVC
-      vc.currentTrip = currentTrip
+      //let nav = segue.destinationViewController as! UINavigationController
+      //let vc = nav.visibleViewController as! CurrentTripVC
+      //vc.currentTrip = currentTrip
     }
   }
   

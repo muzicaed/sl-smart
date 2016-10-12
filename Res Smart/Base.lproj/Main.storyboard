@@ -3075,8 +3075,8 @@ Res Smart på din Apple Watch</string>
                         <segue destination="8Uj-Rb-gfM" kind="relationship" relationship="viewControllers" id="KKd-KH-7HF"/>
                         <segue destination="hVd-so-0b5" kind="relationship" relationship="viewControllers" id="5uF-hU-1OS"/>
                         <segue destination="cgm-qe-xun" kind="relationship" relationship="viewControllers" id="whp-zm-fWe"/>
-                        <segue destination="oQ5-GK-ChJ" kind="presentation" identifier="ShowCurrentTrip" id="zfP-1R-jnK"/>
                         <segue destination="YNB-MR-UvS" kind="presentation" identifier="ShowNews" id="ihM-Xs-K20"/>
+                        <segue destination="1OL-Vc-xzl" kind="presentation" identifier="ShowCurrentTrip" id="LAQ-Cq-MIF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EdR-la-kgO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3091,9 +3091,6 @@ Res Smart på din Apple Watch</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="qM7-ZJ-AAZ" kind="relationship" relationship="rootViewController" id="qfI-Za-d4u"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vKK-rF-IAk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3118,6 +3115,88 @@ Res Smart på din Apple Watch</string>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4w-yf-ETy">
+                                <rect key="frame" x="20" y="185" width="374" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="yhV-Kn-xeq"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Förbättrad karta">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="16" name="HelveticaNeue-CondensedBold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Kartan över resor har fått ett rejält ansiktslyft och är nu både snyggare och bättre.">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llc-Au-j8V" userLabel="Prova gratis och börja prenumera">
+                                <rect key="frame" x="67" y="672" width="280" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="GlJ-Ig-arW"/>
+                                    <constraint firstAttribute="width" constant="280" id="hkb-b9-zz5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Stäng">
+                                    <color key="titleColor" red="0.99873173240000002" green="0.93631595369999998" blue="0.69870877269999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onCloseButton:" destination="YNB-MR-UvS" eventType="touchUpInside" id="VD1-AD-FS3"/>
+                                    <action selector="onSubscribeTap:" destination="TL9-Eb-L0b" eventType="touchUpInside" id="BFj-0l-owf"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLv-4I-tKi">
+                                <rect key="frame" x="20" y="260" width="374" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="h1K-R6-043"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Gratis prova på">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="16" name="HelveticaNeue-CondensedBold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Alla får nu prova premium helt gratis utan att behöva skriva upp sig för en prenumeration.">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGW-N1-Eg0">
@@ -3176,88 +3255,6 @@ Cg
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4w-yf-ETy">
-                                <rect key="frame" x="20" y="185" width="374" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="yhV-Kn-xeq"/>
-                                </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="Förbättrad karta">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue-CondensedBold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="Kartan över resor har fått ett rejält ansiktslyft och är nu både snyggare och bättre.">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llc-Au-j8V" userLabel="Prova gratis och börja prenumera">
-                                <rect key="frame" x="67" y="672" width="280" height="44"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="GlJ-Ig-arW"/>
-                                    <constraint firstAttribute="width" constant="280" id="hkb-b9-zz5"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                <state key="normal" title="Stäng">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onCloseButton:" destination="YNB-MR-UvS" eventType="touchUpInside" id="VD1-AD-FS3"/>
-                                    <action selector="onSubscribeTap:" destination="TL9-Eb-L0b" eventType="touchUpInside" id="BFj-0l-owf"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLv-4I-tKi">
-                                <rect key="frame" x="20" y="260" width="374" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="h1K-R6-043"/>
-                                </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="Gratis prova på">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue-CondensedBold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="Alla får nu prova premium helt gratis utan att behöva skriva upp sig för en prenumeration.">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -3288,7 +3285,7 @@ Cg
             <objects>
                 <collectionViewController id="qM7-ZJ-AAZ" userLabel="Pågående resa" customClass="CurrentTripVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="HBW-7H-Vp3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LFL-jg-tbg">
@@ -3299,7 +3296,7 @@ Cg
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="CurrentTripCell" id="222-jl-dos" userLabel="Trip Cell" customClass="CurrentTripCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="64" width="370" height="160"/>
+                                <rect key="frame" x="115" y="0.0" width="370" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="160"/>
@@ -3513,7 +3510,7 @@ Cg
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="ChangeCell" id="fgT-un-Ciq" userLabel="Change Cell" customClass="ChangeCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="22" y="234" width="370" height="120"/>
+                                <rect key="frame" x="115" y="170" width="370" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
@@ -3630,6 +3627,90 @@ Cg
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcb-ys-jcV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-646" y="3869"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="1H4-Oe-81W">
+            <objects>
+                <viewController id="1OL-Vc-xzl" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jN0-H1-AhO"/>
+                        <viewControllerLayoutGuide type="bottom" id="P5Z-mn-7Vj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kl3-Ew-BN0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGk-Z4-DCe">
+                                <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ODE-Xx-h0d"/>
+                                    <barButtonItem title="Avsluta reseassistent" id="aK9-o8-Ig8">
+                                        <color key="tintColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="SUH-dw-8Zz"/>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reseassistenten" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNc-a0-I3N">
+                                <rect key="frame" x="20" y="40" width="374" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Till centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ums-Bg-V3w" userLabel="Till centralen">
+                                <rect key="frame" x="20" y="70" width="374" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cio-8W-LCD">
+                                <rect key="frame" x="20" y="129" width="374" height="19"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Nästa steg">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="16" name="HelveticaNeue-CondensedBold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rqv-JI-W39">
+                                <rect key="frame" x="20" y="152" width="374" height="167.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="IZs-XM-hMs"/>
+                                </constraints>
+                                <string key="text">Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok. Lorem ipsum har inte bara överlevt fem århundraden, utan även övergången till elektronisk typografi utan större förändringar. Det blev allmänt känt på 1960-talet i samband med lanseringen av Letraset-ark med avsnitt av Lorem Ipsum, och senare med mjukvaror som Aldus PageMaker.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Ums-Bg-V3w" firstAttribute="top" secondItem="ZNc-a0-I3N" secondAttribute="bottom" id="0ZV-Th-4kf"/>
+                            <constraint firstAttribute="trailing" secondItem="hGk-Z4-DCe" secondAttribute="trailing" id="5i4-hr-Lym"/>
+                            <constraint firstItem="Ums-Bg-V3w" firstAttribute="leading" secondItem="Kl3-Ew-BN0" secondAttribute="leadingMargin" id="BtR-6j-1E9"/>
+                            <constraint firstItem="Rqv-JI-W39" firstAttribute="leading" secondItem="Kl3-Ew-BN0" secondAttribute="leadingMargin" id="BtX-ZR-H7r"/>
+                            <constraint firstItem="hGk-Z4-DCe" firstAttribute="leading" secondItem="Kl3-Ew-BN0" secondAttribute="leading" id="Ep3-gN-Jmz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rqv-JI-W39" secondAttribute="trailing" id="M5T-lb-f5k"/>
+                            <constraint firstItem="P5Z-mn-7Vj" firstAttribute="top" secondItem="hGk-Z4-DCe" secondAttribute="bottom" id="Oh3-dN-590"/>
+                            <constraint firstItem="Rqv-JI-W39" firstAttribute="top" secondItem="cio-8W-LCD" secondAttribute="bottom" constant="4" id="U8b-Z3-Z8H"/>
+                            <constraint firstItem="ZNc-a0-I3N" firstAttribute="top" secondItem="jN0-H1-AhO" secondAttribute="bottom" constant="20" id="Wfo-Wd-nhY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZNc-a0-I3N" secondAttribute="trailing" id="ZiT-Og-Hpm"/>
+                            <constraint firstItem="ZNc-a0-I3N" firstAttribute="leading" secondItem="Kl3-Ew-BN0" secondAttribute="leadingMargin" id="am9-wE-e09"/>
+                            <constraint firstItem="cio-8W-LCD" firstAttribute="leading" secondItem="Kl3-Ew-BN0" secondAttribute="leadingMargin" id="atJ-zQ-sUL"/>
+                            <constraint firstItem="ZNc-a0-I3N" firstAttribute="centerX" secondItem="Kl3-Ew-BN0" secondAttribute="centerX" id="ed3-Js-Qqt"/>
+                            <constraint firstItem="cio-8W-LCD" firstAttribute="trailing" secondItem="Kl3-Ew-BN0" secondAttribute="trailingMargin" id="hph-A5-AsK"/>
+                            <constraint firstItem="cio-8W-LCD" firstAttribute="top" secondItem="Ums-Bg-V3w" secondAttribute="bottom" constant="40" id="pbb-im-Pa7"/>
+                            <constraint firstItem="Ums-Bg-V3w" firstAttribute="trailing" secondItem="Kl3-Ew-BN0" secondAttribute="trailingMargin" id="uYc-lt-bcr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Qm8-Dc-uRK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nGj-zG-dYL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-24" y="3747"/>
         </scene>
         <!--Prenumerera-->
         <scene sceneID="Hmy-Fs-bl5">
@@ -5620,10 +5701,10 @@ Cg
         <segue reference="WoO-7G-VaU"/>
         <segue reference="fPH-Xr-GVg"/>
         <segue reference="Lg4-KG-mN0"/>
-        <segue reference="eBt-27-ZxS"/>
         <segue reference="GLI-h1-z4f"/>
+        <segue reference="eBt-27-ZxS"/>
         <segue reference="L0K-5H-KeJ"/>
-        <segue reference="kst-2L-81y"/>
         <segue reference="bAI-Ol-u0J"/>
+        <segue reference="kst-2L-81y"/>
     </inferredMetricsTieBreakers>
 </document>
