@@ -21,6 +21,7 @@ class DeviationsService {
         var deviations = [Deviation]()
         if let data = resTuple.data {
           if data.length == 0 {
+            HttpRequestHelper.clearCache()
             callback(data: deviations, error: SLNetworkError.NoDataFound)
             return
           }

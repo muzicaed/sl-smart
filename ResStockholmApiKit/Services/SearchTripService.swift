@@ -22,7 +22,8 @@ public class SearchTripService {
       var trips = [Trip]()
       if let data = resTuple.data {
         if data.length == 0 {
-          callback(data: trips, error: SLNetworkError.NoDataFound)
+          HttpRequestHelper.clearCache()
+          callback(data: trips, error: SLNetworkError.NoDataFound)          
           return
         }
         trips = self.convertJsonResponse(data)

@@ -21,6 +21,7 @@ public class TrafficSituationService {
         var situations = [SituationGroup]()
         if let data = resTuple.data {
           if data.length == 0 {
+            HttpRequestHelper.clearCache()
             callback(data: situations, error: SLNetworkError.NoDataFound)
             return
           }
