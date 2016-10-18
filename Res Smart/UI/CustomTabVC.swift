@@ -60,7 +60,7 @@ class CustomTabVC: UITabBarController {
       UserPreferenceStore.sharedInstance.setShouldShowNews(false)
     }
     
-    performSegueWithIdentifier("ShowCurrentTrip", sender: nil)
+    //performSegueWithIdentifier("ShowCurrentTrip", sender: nil)
   }
   
   /**
