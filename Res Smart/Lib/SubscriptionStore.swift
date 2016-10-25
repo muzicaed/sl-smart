@@ -23,7 +23,7 @@ public class SubscriptionStore {
   /**
    * Check if user have a active subscription.
    */
-  func isSubscribed() -> Bool {    
+  func isSubscribed() -> Bool {
     loadSubscribedCache()
     return (isSubscribedCache! || isTrial())
   }
@@ -34,14 +34,15 @@ public class SubscriptionStore {
   func isTrial() -> Bool {
     loadSubscribedCache()
     if !isSubscribedCache! {
-      if let trialEndDate = defaults.objectForKey(TrialStartDate) as? NSDate {
-        let isTrial = (NSDate().timeIntervalSinceDate(trialEndDate) < (60 * 60 * 24 * 14))
+      if let trialStartDate = defaults.objectForKey(TrialStartDate) as? NSDate {
+        let isTrial = (NSDate().timeIntervalSinceDate(trialStartDate) < (60 * 60 * 24 * 14))
         return isTrial
       }
     }
+    
     return false
   }
- 
+  
   /**
    * Get local expire date.
    */
@@ -71,7 +72,7 @@ public class SubscriptionStore {
   }
   
   /**
-   * Setup trial on app start. 
+   * Setup trial on app start.
    * Will not set start date if trial is allready active.
    */
   func setupTrial() {

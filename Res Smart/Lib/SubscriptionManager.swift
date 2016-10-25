@@ -164,7 +164,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    */
   private func shouldCheckForNewReciept() -> Bool {
     if let localEndDate = SubscriptionStore.sharedInstance.getLocalExpireDate() {
-      if localEndDate.timeIntervalSinceNow < 0 {
+      if localEndDate.timeIntervalSinceNow > 0 {
         return true
       } else {
         return false
