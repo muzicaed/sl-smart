@@ -152,29 +152,16 @@ public class SearchTripService {
    * Converts json to location object.
    */
   private static func convertJsonToLocation(locationJson: JSON) -> Location {
-    let name = (locationJson["name"].string != nil) ? locationJson["name"].string! : ""
     return Location(
       id: locationJson["id"].string,
-      name: ensureUTF8(name),
-      type: locationJson["type"].string!,
+      name: locationJson["name"].string,
+      type: locationJson["type"].string,
       lat: locationJson["lat"].string!,
       lon: locationJson["lon"].string!)
   }
   
   
-  /**
-   * Ensures the string is UTF8
-   */
-  private static func ensureUTF8(string: String) -> String {
-    var newString = string
-    let data = newString.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)!
-    let convertedName = NSString(data: data, encoding: NSUTF8StringEncoding)
-    if let convName = convertedName {
-      newString = convName as String
-    }
-    
-    return newString
-  }
+
   
   /**
    * Extracts departure date/time and arriaval date/time.

@@ -16,7 +16,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   // Singelton pattern
   static let sharedInstance = SubscriptionManager()
   
-  let productIdentifiers = Set(["6_MONTHS_NO_TRIAL", "12_MONTHS_NO_TRIAL"])
+  let productIdentifiers = Set(["6_MONTHS_NO_TRIAL", "12_MONTHS_NO_TRIAL", "1_MONTH_NO_TRIAL"])
   var product: SKProduct?
   var products = [SKProduct]()
   var productsRequest: SKProductsRequest
@@ -163,7 +163,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    */
   private func shouldCheckForNewReciept() -> Bool {
     if let localEndDate = SubscriptionStore.sharedInstance.getLocalExpireDate() {
-      if localEndDate.timeIntervalSinceNow > 0 {
+      if localEndDate.timeIntervalSinceNow < 0 {
         return true
       } else {
         return false

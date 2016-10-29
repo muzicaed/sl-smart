@@ -39,33 +39,28 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
    * User tap buy monthly subscription.
    */
   @IBAction func onBuyMonthTap(sender: UIButton) {
-    if !isBuying {
-      sender.enabled = false
-      noThanksButton.enabled = false
-      isBuying = true
-      self.collectionView?.reloadData()
-      SubscriptionManager.sharedInstance.executePayment(products[0])
-    }
+    sender.enabled = false
+    buyProduct(0)
   }
   
   /**
    * User tap buy half year subscription.
    */
   @IBAction func onBuyHalfYearTap(sender: UIButton) {
-    if !isBuying {
-      sender.enabled = false
-      noThanksButton.enabled = false
-      isBuying = true
-      self.collectionView?.reloadData()
-      SubscriptionManager.sharedInstance.executePayment(products[1])
-    }
+    sender.enabled = false
+    buyProduct(1)
+  }
+  
+  @IBAction func onBuyYearTap(sender: UIButton) {
+    sender.enabled = false
+    buyProduct(2)
   }
   
   // MARK: SubscribeDelegate
   
   /**
-  * On successful subscription
-  */
+   * On successful subscription
+   */
   func subscriptionSuccessful() {
     dispatch_async(dispatch_get_main_queue()) {
       self.showThanks()
@@ -104,68 +99,86 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   // MARK: UICollectionViewController
   
   /**
-  * Item count for section
-  */
+   * Item count for section
+   */
   override func collectionView(collectionView: UICollectionView,
-    numberOfItemsInSection section: Int) -> Int {
-      return (isProductsLoaded && !isBuying) ? 3 : 1
+                               numberOfItemsInSection section: Int) -> Int {
+    return (isProductsLoaded && !isBuying) ? 4 : 1
   }
   
   /**
    * Create cells for each data post.
    */
   override func collectionView(collectionView: UICollectionView,
-    cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+                               cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    
+    if !isProductsLoaded || isBuying {
+      return collectionView.dequeueReusableCellWithReuseIdentifier(
+        "LoadingRow", forIndexPath: indexPath)
+    }
+    
+    if indexPath.row == 0 {
+      return collectionView.dequeueReusableCellWithReuseIdentifier(
+        "InfoRow", forIndexPath: indexPath)
       
-      if !isProductsLoaded || isBuying {
-        return collectionView.dequeueReusableCellWithReuseIdentifier("LoadingRow",
-          forIndexPath: indexPath)
-      }
-      
-      if indexPath.row == 0 {
-        return collectionView.dequeueReusableCellWithReuseIdentifier("InfoRow",
-          forIndexPath: indexPath)
-        
-      } else if indexPath.row == 1 {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SubscriptionMonthRow",
-          forIndexPath: indexPath) as! SubscriptionCell
-        cell.setData(products[0])
-        return cell
-        
-      } else if indexPath.row == 2 {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SubscriptionHalfYearRow",
-          forIndexPath: indexPath) as! SubscriptionCell
-        cell.setData(products[1])
-        return cell
-      }
-      
-      fatalError("Could not create row")
+    } else if indexPath.row == 1 {
+      let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+        "SubscriptionYearRow", forIndexPath: indexPath) as! SubscriptionCell
+      cell.setData(products[0])
+      return cell
+     
+    } else if indexPath.row == 2 {
+      let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+        "SubscriptionMonthRow", forIndexPath: indexPath) as! SubscriptionCell
+      cell.setData(products[1])
+      return cell
+
+    } else if indexPath.row == 3 {
+      let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+        "SubscriptionHalfYearRow", forIndexPath: indexPath) as! SubscriptionCell
+      cell.setData(products[2])
+      return cell
+    }
+    
+    fatalError("Could not create row")
   }
   
   /**
    * Size for items.
    */
   func collectionView(collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-      
-      let screenSize = UIScreen.mainScreen().bounds.size
-      
-      if !isProductsLoaded {
-        return CGSizeMake(screenSize.width - 20, collectionView.bounds.height - 49 - 64 - 20)
-      }
-      
-      if indexPath.row == 0 {
-        return CGSizeMake(screenSize.width - 20, 75)
-      }
-      return CGSizeMake(screenSize.width - 20, 150)
+                      layout collectionViewLayout: UICollectionViewLayout,
+                             sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    
+    let screenSize = UIScreen.mainScreen().bounds.size
+    
+    if !isProductsLoaded {
+      return CGSizeMake(screenSize.width - 20, collectionView.bounds.height - 49 - 64 - 20)
+    }
+    
+    if indexPath.row == 0 {
+      return CGSizeMake(screenSize.width - 20, 75)
+    }
+    return CGSizeMake(screenSize.width - 20, 150)
   }
   
   // MARK: Private methods
   
   /**
-  * Setup collection view properties and layout.
-  */
+   * Purchase a specific product item.
+   */
+  private func buyProduct(productIndex: Int) {
+    if !isBuying {
+      noThanksButton.enabled = false
+      isBuying = true
+      self.collectionView?.reloadData()
+      SubscriptionManager.sharedInstance.executePayment(products[1])
+    }
+  }
+  
+  /**
+   * Setup collection view properties and layout.
+   */
   private func setupCollectionView() {
     let flowLayout = UICollectionViewFlowLayout()
     flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 10, 0)

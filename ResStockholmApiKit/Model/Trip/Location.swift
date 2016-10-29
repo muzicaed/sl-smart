@@ -23,18 +23,22 @@ public class Location: NSObject, NSCoding, NSCopying {
   /**
    * Standard init
    */
-  public init(id: String?, name: String, type: String, lat: String, lon: String) {
+  public init(id: String?, name: String?, type: String?, lat: String, lon: String) {
     self.lat = Location.convertCoordinateFormat(lat)
     self.lon = Location.convertCoordinateFormat(lon)
-
+    
     self.location = CLLocation(
       latitude: Double(self.lat)!,
       longitude: Double(self.lon)!)
     
-    if let enumType = LocationType(rawValue: type) {
-      self.type = enumType
-    } else if let enumType = LocationType(fromShort: type){
-      self.type = enumType
+    if let type = type {
+      if let enumType = LocationType(rawValue: type) {
+        self.type = enumType
+      } else if let enumType = LocationType(fromShort: type){
+        self.type = enumType
+      } else {
+        self.type = LocationType.Station
+      }
     } else {
       self.type = LocationType.Station
     }
@@ -45,34 +49,40 @@ public class Location: NSObject, NSCoding, NSCopying {
       self.siteId = id!
     }
     
-    let nameAreaTuple = Location.extractNameAndArea(StringUtils.fixBrokenEncoding(name), type: self.type)
-    self.name = nameAreaTuple.name
-    self.area = nameAreaTuple.area
-    self.cleanName = Location.createCleanName(nameAreaTuple.name)
+    if let name = name {
+      let nameAreaTuple = Location.extractNameAndArea(StringUtils.fixBrokenEncoding(Location.ensureUTF8(name)), type: self.type)
+      self.name = nameAreaTuple.name
+      self.area = nameAreaTuple.area
+      self.cleanName = Location.createCleanName(nameAreaTuple.name)
+    } else {
+      self.name = ""
+      self.area = ""
+      self.cleanName = ""
+    }
   }
   
   /**
    * Standard init
    */
   public init(id: String, name: String, cleanName: String,
-    area: String, type: LocationType, lat: String, lon: String) {
-      self.siteId = id
-      self.name = name
-      self.cleanName = cleanName
-      self.area = area
-      self.type = type
-      self.lat = lat
-      self.lon = lon
-      self.location = CLLocation(
-        latitude: Double(self.lat)!,
-        longitude: Double(self.lon)!)
+              area: String, type: LocationType, lat: String, lon: String) {
+    self.siteId = id
+    self.name = name
+    self.cleanName = cleanName
+    self.area = area
+    self.type = type
+    self.lat = lat
+    self.lon = lon
+    self.location = CLLocation(
+      latitude: Double(self.lat)!,
+      longitude: Double(self.lon)!)
   }
   
   /**
    * Creates a current location instance.
    */
   public static func createCurrentLocation() -> Location {
-    return Location(id: nil, name: "Nuvarande plats", type: "Current", lat: "0.0", lon: "0.0")    
+    return Location(id: nil, name: "Nuvarande plats", type: "Current", lat: "0.0", lon: "0.0")
   }
   
   /**
@@ -81,32 +91,32 @@ public class Location: NSObject, NSCoding, NSCopying {
    */
   private static func extractNameAndArea(
     nameString: String, type: LocationType) -> (name: String, area: String) {
-      
-      if type == .Station {
-        let res = nameString.rangeOfString("(", options: NSStringCompareOptions.BackwardsSearch)
-        if let res = res {
-          let name = nameString.substringToIndex(res.startIndex)
-            .stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-          
-          let area = nameString.substringFromIndex(res.startIndex)
-            .stringByReplacingOccurrencesOfString("(", withString: "",
-              options: NSStringCompareOptions.LiteralSearch, range: nil)
-            .stringByReplacingOccurrencesOfString(")", withString: "",
-              options: NSStringCompareOptions.LiteralSearch, range: nil)
-          
-          return (name, "\(area) (Hållplats)")
-        }
+    
+    if type == .Station {
+      let res = nameString.rangeOfString("(", options: NSStringCompareOptions.BackwardsSearch)
+      if let res = res {
+        let name = nameString.substringToIndex(res.startIndex)
+          .stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
+        let area = nameString.substringFromIndex(res.startIndex)
+          .stringByReplacingOccurrencesOfString("(", withString: "",
+            options: NSStringCompareOptions.LiteralSearch, range: nil)
+          .stringByReplacingOccurrencesOfString(")", withString: "",
+                                                options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        return (name, "\(area) (Hållplats)")
       }
-      let nameSegments = nameString.characters.split{$0 == ","}.map(String.init)
-      if nameSegments.count > 1 {
-        return (
-          nameSegments[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()),
-          nameSegments[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + " (Adress)"
-        )
-      }
-      return (nameString, "")
       
+    }
+    let nameSegments = nameString.characters.split{$0 == ","}.map(String.init)
+    if nameSegments.count > 1 {
+      return (
+        nameSegments[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()),
+        nameSegments[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + " (Adress)"
+      )
+    }
+    return (nameString, "")
+    
   }
   
   /**
@@ -134,11 +144,25 @@ public class Location: NSObject, NSCoding, NSCopying {
     return coordinate
   }
   
+  /**
+   * Ensures the string is UTF8
+   */
+  private static func ensureUTF8(string: String) -> String {
+    var newString = string
+    let data = newString.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)!
+    let convertedName = NSString(data: data, encoding: NSUTF8StringEncoding)
+    if let convName = convertedName {
+      newString = convName as String
+    }
+    
+    return newString
+  }
+  
   // MARK: NSCoding
   
   /**
-  * Decoder init
-  */
+   * Decoder init
+   */
   required convenience public init?(coder aDecoder: NSCoder) {
     let siteId = aDecoder.decodeObjectForKey(PropertyKey.siteId) as! String
     let name = aDecoder.decodeObjectForKey(PropertyKey.name) as! String
@@ -180,8 +204,8 @@ public class Location: NSObject, NSCoding, NSCopying {
   // MARK: NSCopying
   
   /**
-  * Copy self
-  */
+   * Copy self
+   */
   public func copyWithZone(zone: NSZone) -> AnyObject {
     return Location(
       id: siteId!, name: name, cleanName: cleanName,

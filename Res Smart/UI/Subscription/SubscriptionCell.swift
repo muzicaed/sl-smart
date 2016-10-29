@@ -35,6 +35,9 @@ class SubscriptionCell: UICollectionViewCell {
     } else if product.productIdentifier == "12_MONTHS_NO_TRIAL" {
       priceLabel.text = "\(product.price) kr / år"
       priceLabel.accessibilityLabel = "\(product.price) kronor per år"
+    } else if product.productIdentifier == "1_MONTH_NO_TRIAL" {
+      priceLabel.text = "\(product.price) kr / månad"
+      priceLabel.accessibilityLabel = "\(product.price) kronor per månad"
     }
   }
   
