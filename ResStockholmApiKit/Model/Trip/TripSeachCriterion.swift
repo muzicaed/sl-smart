@@ -23,7 +23,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   public var numChg = -1
   public var minChgTime = 0
   public var searchForArrival = false
-  public var unsharp = true
+  public var unsharp = false
   public var maxWalkDist = 1000
   
   public var useTrain = true
@@ -113,7 +113,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     maxWalkDist = 1000
     numChg = -1
     minChgTime = 0
-    unsharp = true
+    unsharp = false
     lineInc = nil
     lineExc = nil
   }

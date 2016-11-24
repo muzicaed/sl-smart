@@ -26,6 +26,9 @@ class DataMigration {
     if step <= 3 {
       migrateVersion_1_5()
     }
+    if step <= 4 {
+      migrateVersion_1_6()
+    }
   }
   
   // Version 1.3
@@ -65,6 +68,16 @@ class DataMigration {
     SubscriptionStore.sharedInstance.resetTrial()
     UserPreferenceStore.sharedInstance.setShouldShowNews(true)
     defaults.setInteger(4, forKey: dataKey)
+    defaults.synchronize()
+  }
+  
+  // Version 1.6
+  private static func migrateVersion_1_6() {
+    print("Running migration v1.6")
+    let criterions = SearchCriterionStore.sharedInstance.retrieveSearchCriterions()
+    criterions.unsharp = false
+    SearchCriterionStore.sharedInstance.writeLastSearchCriterions(criterions)    
+    defaults.setInteger(5, forKey: dataKey)
     defaults.synchronize()
   }
 }
