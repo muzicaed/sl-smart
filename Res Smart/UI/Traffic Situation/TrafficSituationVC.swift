@@ -189,6 +189,7 @@ class TrafficSituationVC: UITableViewController {
     cell.messageLabel.textColor = StyleHelper.sharedInstance.warningColor
     cell.accessoryType = .None
     cell.userInteractionEnabled = false
+    cell.setData(situation)
     return cell
   }
   
