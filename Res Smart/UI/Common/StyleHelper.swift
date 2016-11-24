@@ -27,30 +27,7 @@ class StyleHelper {
     navAppearance.tintColor = UIColor.whiteColor()
     navAppearance.barTintColor = mainGreen
     navAppearance.titleTextAttributes = [
-      NSForegroundColorAttributeName: UIColor.whiteColor(),
-      NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 18)!]
-    
-    UILabel.appearanceWhenContainedInInstancesOfClasses([UIButton.self]).font = UIFont(name: "HelveticaNeue", size: 16)!    
-    
-    UIBarButtonItem.appearance().setTitleTextAttributes(
-      [
-        NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 16)!
-      ], forState: .Normal)
-    
-    UIBarButtonItem.appearance().setTitleTextAttributes(
-      [
-        NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 16)!
-      ], forState: .Highlighted)
-    
-    UISegmentedControl.appearance().setTitleTextAttributes(
-      [
-        NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 14)!
-      ], forState: .Normal)
-    
-    UISegmentedControl.appearance().setTitleTextAttributes(
-      [
-        NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 14)!
-      ], forState: .Highlighted)
+      NSForegroundColorAttributeName: UIColor.whiteColor()]
     
     let tabBarAppearance = UITabBar.appearance()
     tabBarAppearance.tintColor = mainGreen
@@ -61,14 +38,12 @@ class StyleHelper {
     
     UITabBarItem.appearance().setTitleTextAttributes(
       [
-        NSForegroundColorAttributeName: UIColor(white: 0.0, alpha: 0.75),
-        NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 12)!
+        NSForegroundColorAttributeName: UIColor(white: 0.0, alpha: 0.75)
       ], forState: .Normal)
     
     UITabBarItem.appearance().setTitleTextAttributes(
       [
-        NSForegroundColorAttributeName: mainGreen,
-        NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 12)!
+        NSForegroundColorAttributeName: mainGreen
       ], forState: .Selected)
     
     UIApplication.sharedApplication().statusBarStyle = .LightContent

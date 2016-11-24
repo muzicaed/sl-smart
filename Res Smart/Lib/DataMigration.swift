@@ -76,7 +76,7 @@ class DataMigration {
     print("Running migration v1.6")
     let criterions = SearchCriterionStore.sharedInstance.retrieveSearchCriterions()
     criterions.unsharp = false
-    SearchCriterionStore.sharedInstance.writeLastSearchCriterions(criterions)    
+    SearchCriterionStore.sharedInstance.writeLastSearchCriterions(criterions)
     defaults.setInteger(5, forKey: dataKey)
     defaults.synchronize()
   }

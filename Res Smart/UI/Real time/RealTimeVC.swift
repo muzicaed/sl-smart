@@ -230,7 +230,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       separatorWidth: 0.0,
       segmentProperties: [
         keySegmentOnSelectionTextColour: UIColor.blackColor(),
-        keySegmentTitleFont: UIFont(name: "HelveticaNeue-Light", size: 12)!,
+        keySegmentTitleFont: UIFont.systemFontOfSize(12),
         keySegmentOnSelectionColour: UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 0.5),
         keySegmentOffSelectionColour: UIColor.clearColor(),
         keyContentVerticalMargin: 10.0])
@@ -480,10 +480,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       let via = ((train.secondaryDestinationName != nil) ? " via \(train.secondaryDestinationName!)" : "")
       cell.infoLabel.text = "\(train.destination)" + via
       if train.displayTime == "Nu" {
-        cell.departureTimeLabel.font = UIFont(name: "HelveticaNeue", size: 16)!
+        cell.departureTimeLabel.font = UIFont.systemFontOfSize(16)
         cell.departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
       } else {
-        cell.departureTimeLabel.font = UIFont(name: "HelveticaNeue", size: 16)!
+        cell.departureTimeLabel.font = UIFont.systemFontOfSize(16)
         cell.departureTimeLabel.textColor = UIColor.blackColor()
       }
       cell.departureTimeLabel.text = train.displayTime
