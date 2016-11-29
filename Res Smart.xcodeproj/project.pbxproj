@@ -48,8 +48,6 @@
 		1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854E1981C065EB70070C545 /* StandardGradient.swift */; };
 		185D8DBE1C189D0200300890 /* WatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367611C16264200A8BE16 /* WatchService.swift */; };
 		18609B381CC3B55E002F6346 /* LocationMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18609B371CC3B55E002F6346 /* LocationMapVC.swift */; };
-		186235FD1C411C2B0056338E /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186235FC1C411C2B0056338E /* TripIcons.swift */; };
-		186236011C411CE40056338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186236001C411CE40056338E /* Assets.xcassets */; };
 		18630EE01CC2366A0085C0B8 /* ResStockholmApiKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18630EDF1CC2366A0085C0B8 /* ResStockholmApiKitTests.swift */; };
 		18630EE21CC2366A0085C0B8 /* ResStockholmApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; };
 		18630EED1CC236A80085C0B8 /* SearchCriterionStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18630EEC1CC236A80085C0B8 /* SearchCriterionStoreTests.swift */; };
@@ -321,8 +319,6 @@
 		18530B431D80C05C005AB9EC /* StopEnhancer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopEnhancer.swift; sourceTree = "<group>"; };
 		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
 		18609B371CC3B55E002F6346 /* LocationMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMapVC.swift; sourceTree = "<group>"; };
-		186235FC1C411C2B0056338E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
-		186236001C411CE40056338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18630EDD1CC2366A0085C0B8 /* ResStockholmApiKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResStockholmApiKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18630EDF1CC2366A0085C0B8 /* ResStockholmApiKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResStockholmApiKitTests.swift; sourceTree = "<group>"; };
 		18630EE11CC2366A0085C0B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -517,8 +513,6 @@
 				1818B2691C404FE0004E3CA3 /* TodayViewController.swift */,
 				1818B26B1C404FE0004E3CA3 /* MainInterface.storyboard */,
 				1818B26E1C404FE0004E3CA3 /* Info.plist */,
-				186235FC1C411C2B0056338E /* TripIcons.swift */,
-				186236001C411CE40056338E /* Assets.xcassets */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -1235,7 +1229,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				186236011C411CE40056338E /* Assets.xcassets in Resources */,
 				1818B26D1C404FE0004E3CA3 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1324,7 +1317,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1818B26A1C404FE0004E3CA3 /* TodayViewController.swift in Sources */,
-				186235FD1C411C2B0056338E /* TripIcons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
