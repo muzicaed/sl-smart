@@ -17,32 +17,30 @@ open class RealTimeDeparturesService {
    * Fetch geometry data
    */
   open static func fetch(_ siteId: Int,
-    callback: @escaping (_ data: RealTimeDepartures?, _ error: SLNetworkError?) -> Void) {
-      api.getRealTimeTable(siteId) { (data, error) -> Void in
-        if let d = data {
-          if d.count == 0 {
-            HttpRequestHelper.clearCache()
-            callback(data: nil, error: SLNetworkError.noDataFound)            
-            return
-          }
-          
-          let jsonData = JSON(data: d)
-          if jsonData["ResponseData"].isExists() {
-            let result = convertJson(jsonData["ResponseData"])
-            callback(data: result, error: error)
-          }
+                         callback: @escaping (_ data: RealTimeDepartures?, _ error: SLNetworkError?) -> Void) {
+    api.getRealTimeTable(siteId) { (data, error) -> Void in
+      if let d = data {
+        if d.count == 0 {
+          HttpRequestHelper.clearCache()
+          callback(nil, SLNetworkError.noDataFound)
           return
         }
         
-        callback(data: nil, error: error)
+        let jsonData = JSON(data: d)
+        let result = convertJson(jsonData["ResponseData"])
+        callback(result, error)        
+        return
       }
+      
+      callback(nil, error)
+    }
   }
   
   // MARK: Private
   
   /**
-  * Converts the raw json string into array of Location.
-  */
+   * Converts the raw json string into array of Location.
+   */
   fileprivate static func convertJson(_ json: JSON) -> RealTimeDepartures {
     let departures = RealTimeDepartures(
       lastUpdated: json["LatestUpdate"].string,

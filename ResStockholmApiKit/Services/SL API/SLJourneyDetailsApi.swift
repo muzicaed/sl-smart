@@ -31,7 +31,7 @@ class SLJourneyDetailsApi {
   * Creates api url for journy details search
   */
   fileprivate func createJournyDetailsUrl(_ urlEncRef: String) -> String {
-    let decoded = urlEncRef.stringByRemovingPercentEncoding!
+    let decoded = urlEncRef.removingPercentEncoding!
     return urlBase + "?key=\(apiKey)&realtime=true&\(decoded)"
   }
 }

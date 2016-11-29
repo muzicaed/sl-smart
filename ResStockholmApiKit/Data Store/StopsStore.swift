@@ -79,19 +79,17 @@ open class StopsStore {
    * Converts json data to dictionary.
    */
   fileprivate func convertData(_ data: Data) {
-    let jsonData = JSON(data: data)
-    if jsonData["ResponseData"].isExists() {
-      if let stopsJson = jsonData["ResponseData"]["Result"].array {
-        for stopJson in stopsJson {
-          let stop = StaticStop(
-            stopPointNumber: stopJson["StopPointNumber"].string!,
-            stopPointName: stopJson["StopPointName"].string!,
-            stopAreaNumber: stopJson["StopAreaNumber"].string!,
-            location: createLocation(stopJson),
-            type: createTripType(stopJson["StopAreaTypeCode"].string!))
-          
-          cachedStops[stop.stopPointNumber] = stop
-        }
+    let jsonData = JSON(data: data)    
+    if let stopsJson = jsonData["ResponseData"]["Result"].array {
+      for stopJson in stopsJson {
+        let stop = StaticStop(
+          stopPointNumber: stopJson["StopPointNumber"].string!,
+          stopPointName: stopJson["StopPointName"].string!,
+          stopAreaNumber: stopJson["StopAreaNumber"].string!,
+          location: createLocation(stopJson),
+          type: createTripType(stopJson["StopAreaTypeCode"].string!))
+        
+        cachedStops[stop.stopPointNumber] = stop
       }
     }
   }

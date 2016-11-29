@@ -17,25 +17,23 @@ open class JournyDetailsService {
    * Fetch journy details
    */
   open static func fetchJournyDetails(_ urlEncRef: String,
-                                        callback: @escaping (_ data: [Stop], _ error: SLNetworkError?) -> Void) {
+                                      callback: @escaping (_ data: [Stop], _ error: SLNetworkError?) -> Void) {
     var result = [Stop]()
     api.getDetails(urlEncRef) { (data, error) -> Void in
       if let d = data {
         if d.count == 0 {
-          callback(data: result, error: SLNetworkError.noDataFound)
+          callback(result, SLNetworkError.noDataFound)
           return
         }
         
         let jsonData = JSON(data: d)
-        if jsonData["JourneyDetail"].isExists() {
-          if let stopsJson = jsonData["JourneyDetail"]["Stops"]["Stop"].array {
-            for stopJson in stopsJson {
-              result.append(convertStopJson(stopJson))
-            }
+        if let stopsJson = jsonData["JourneyDetail"]["Stops"]["Stop"].array {
+          for stopJson in stopsJson {
+            result.append(convertStopJson(stopJson))
           }
         }
       }
-      callback(data: result, error: error)
+      callback(result, error)
     }
   }
   

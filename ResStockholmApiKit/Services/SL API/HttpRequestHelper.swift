@@ -30,26 +30,26 @@ class HttpRequestHelper {
     }
     
     if let nsUrl = URL(string: url) {
-      let request = NSMutableURLRequest(url: nsUrl)
+      let request = URLRequest(url: nsUrl)
       let session = URLSession(configuration: urlconfig)
       let task = session.dataTask(with: request, completionHandler: {
         data, response, error in
         if error != nil {
-          callback((nil, error: SLNetworkError.networkError))
+          callback((data: nil, error: SLNetworkError.networkError))
           return
         } else if data != nil {
           addDataToCache(url, data: data!)
-          callback((data, error: nil))
+          callback((data: data, error: nil))
           return
         }
-        callback((nil, error: SLNetworkError.noDataFound))
+        callback((data: nil, error: SLNetworkError.noDataFound))
         return
       }) 
       
       task.resume()
       return
     }
-    callback((nil, error: SLNetworkError.invalidRequest))
+    callback((data: nil, error: SLNetworkError.invalidRequest))
   }
   
   /**

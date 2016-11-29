@@ -17,18 +17,18 @@ open class SearchTripService {
    */
   open static func tripSearch(
     _ criterion: TripSearchCriterion,
-    callback: @escaping (_ data: [Trip], _ error: SLNetworkError?) -> Void) {
+    callback: @escaping ([Trip], SLNetworkError?) -> Void) {
     api.tripSearch(criterion) { resTuple in
       var trips = [Trip]()
-      if let data = resTuple.data {
+      if let data = resTuple.0 {
         if data.count == 0 {
           HttpRequestHelper.clearCache()
-          callback(data: trips, error: SLNetworkError.noDataFound)          
+          callback(trips, SLNetworkError.noDataFound)
           return
         }
         trips = self.convertJsonResponse(data)
       }
-      callback(data: trips, error: resTuple.error)
+      callback(trips, resTuple.1)
     }
   }
   
@@ -44,14 +44,12 @@ open class SearchTripService {
       return [Trip]()
     }
     
-    if data["TripList"].isExists() {
-      if let tripsJson = data["TripList"]["Trip"].array {
-        for tripJson in tripsJson {
-          result.append(convertJsonToTrip(tripJson))
-        }
-      } else {
-        result.append(convertJsonToTrip(data["TripList"]["Trip"]))
+    if let tripsJson = data["TripList"]["Trip"].array {
+      for tripJson in tripsJson {
+        result.append(convertJsonToTrip(tripJson))
       }
+    } else {
+      result.append(convertJsonToTrip(data["TripList"]["Trip"]))
     }
     
     return result
@@ -90,21 +88,15 @@ open class SearchTripService {
    */
   fileprivate static func convertJsonToSegments(_ segmentsJson: JSON) -> [TripSegment] {
     var tripSegments = [TripSegment]()
-    if segmentsJson.isExists() {
-      if let segmentsArr = segmentsJson.array  {
-        for segmentJson in segmentsArr {
-          if segmentsJson.isExists() {
-            let segment = convertJsonToTripSegment(segmentJson)
-            tripSegments.append(segment)
-          }
-        }
-      } else {
-        if segmentsJson.isExists() {
-          let segment = convertJsonToTripSegment(segmentsJson)
-          if !(segment.type == .Walk && segment.distance! < 250) {
-            tripSegments.append(segment)
-          }
-        }
+    if let segmentsArr = segmentsJson.array  {
+      for segmentJson in segmentsArr {
+        let segment = convertJsonToTripSegment(segmentJson)
+        tripSegments.append(segment)
+      }
+    } else {
+      let segment = convertJsonToTripSegment(segmentsJson)
+      if !(segment.type == .Walk && segment.distance! < 250) {
+        tripSegments.append(segment)
       }
     }
     return tripSegments
@@ -119,11 +111,7 @@ open class SearchTripService {
     
     let distString = (segmentJson["dist"].string != nil) ? segmentJson["dist"].string! : ""
     let dateTimeTuple = extractTimeDate(segmentJson)
-    
-    var rtuMessages: String? = nil
-    if segmentJson["RTUMessages"].isExists() {
-      rtuMessages = extractRtuMessages(segmentJson["RTUMessages"]["RTUMessage"])
-    }
+    var rtuMessages = extractRtuMessages(segmentJson["RTUMessages"]["RTUMessage"])
     
     var isWarning = DisturbanceTextHelper.isDisturbance(rtuMessages)
     let isReachable = (segmentJson["reachable"].string == nil) ? true : false
@@ -161,7 +149,7 @@ open class SearchTripService {
   }
   
   
-
+  
   
   /**
    * Extracts departure date/time and arriaval date/time.
@@ -200,17 +188,16 @@ open class SearchTripService {
   /**
    * Extract RTU Messages (trip warnings).
    */
-  fileprivate static func extractRtuMessages(_ data: JSON) -> String {
-    var result = ""
+  fileprivate static func extractRtuMessages(_ data: JSON) -> String? {
     if let messages = data.array {
+      var result = ""
       for mess in messages {
-        result += mess["$"].string! + "\n\n"
+        result += mess["$"].string!
+        result += (mess == messages.last) ? "\n\n" : ""
       }
-      result = result.substring(to: <#T##Collection corresponding to your index##Collection#>.index(before: result.characters.index(before: result.endIndex)))
-    } else {
-      result = data["$"].string!
+      return result
     }
     
-    return result
+    return data["$"].string
   }
 }

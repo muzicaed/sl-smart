@@ -20,8 +20,8 @@ class WatchService {
       if let bestRoutineTrip = routineTrips.first {
         let bestData = bestRoutineTrip
         response = [
-          "b": bestData.watchTransferData(1),
-          "?": true
+          "b": bestData.watchTransferData(1) as AnyObject,
+          "?": true as AnyObject
         ]
         
         var otherRoutines = [Dictionary<String, AnyObject>]()
@@ -35,9 +35,9 @@ class WatchService {
             }
           }
         }
-        response["o"] = otherRoutines
+        response["o"] = otherRoutines as AnyObject?
       } else {
-        response["?"] = false
+        response["?"] = false as AnyObject?
       }
       
       callback(response)
@@ -68,15 +68,15 @@ class WatchService {
         
         SearchTripService.tripSearch(crit,
           callback: { resTuple in
-            if resTuple.error != nil {
-              response["error"] = true
+            if resTuple.1 != nil {
+              response["error"] = true as AnyObject?
             }
             
             var foundTrips = [Dictionary<String, AnyObject>]()
-            for trip in resTuple.data {
+            for trip in resTuple.0 {
               foundTrips.append(trip.watchTransferData())
             }
-            response["trips"] = foundTrips
+            response["trips"] = foundTrips as AnyObject?
             callback(response)
             
         })
@@ -104,15 +104,15 @@ class WatchService {
     
     SearchTripService.tripSearch(crit,
       callback: { resTuple in
-        if resTuple.error != nil {
-          response["error"] = true
+        if resTuple.1 != nil {
+          response["error"] = true as AnyObject?
         }
         
         var foundTrips = [Dictionary<String, AnyObject>]()
-        for trip in resTuple.data {
+        for trip in resTuple.0 {
           foundTrips.append(trip.watchTransferData())
         }
-        response["trips"] = foundTrips
+        response["trips"] = foundTrips as AnyObject?
         callback(response)
     })
   }

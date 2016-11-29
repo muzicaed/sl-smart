@@ -10,7 +10,7 @@ import WatchKit
 import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
-  
+
   let notificationCenter = NotificationCenter.default
   let session = WCSession.default()
   
@@ -34,21 +34,19 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
   
   // MARK: WCSessionDelegate
   
-  func sessionWatchStateDidChange(_ session: WCSession) {
-    func sessionReachabilityDidChange(_ session: WCSession) {
-      if session.isReachable {
-        notificationCenter.post(name: Notification.Name(rawValue: "SessionBecameReachable"), object: nil)
-        return
-      }
-      notificationCenter.post(name: Notification.Name(rawValue: "SessionNoLongerReachable"), object: nil)
-    }
-  }
-  
   func sessionReachabilityDidChange(_ session: WCSession) {
     if session.isReachable {
       notificationCenter.post(name: Notification.Name(rawValue: "SessionBecameReachable"), object: nil)
       return
     }
     notificationCenter.post(name: Notification.Name(rawValue: "SessionNoLongerReachable"), object: nil)
+  }
+  
+  /** Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */
+  @available(watchOS 2.2, *)
+  public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+    if activationState == .activated {
+      notificationCenter.post(name: Notification.Name(rawValue: "SessionBecameReachable"), object: nil)
+    }
   }
 }

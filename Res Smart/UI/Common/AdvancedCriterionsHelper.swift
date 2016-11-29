@@ -139,7 +139,7 @@ class AdvancedCriterionsHelper {
     
     if travelTypesString != "" {
       travelTypesString = "Ej med " + travelTypesString.substring(
-        to: <#T##Collection corresponding to your index##Collection#>.index(before: travelTypesString.characters.index(before: travelTypesString.endIndex))) + ". "
+        to: travelTypesString.index(before: travelTypesString.characters.index(before: travelTypesString.endIndex))) + ". "
     }
     if let lastRange = travelTypesString.range(of: ", ",
                                                        options: NSString.CompareOptions.backwards, range: nil, locale: nil) {
@@ -174,7 +174,7 @@ class AdvancedCriterionsHelper {
     
     if travelTypesString != "" {
       travelTypesString = "Endast med " + travelTypesString.substring(
-        to: <#T##Collection corresponding to your index##Collection#>.index(before: travelTypesString.characters.index(before: travelTypesString.endIndex))) + ". "
+        to: travelTypesString.index(before: travelTypesString.characters.index(before: travelTypesString.endIndex))) + ". "
     }
     if let lastRange = travelTypesString.range(of: ", ",
                                                        options: NSString.CompareOptions.backwards, range: nil, locale: nil) {

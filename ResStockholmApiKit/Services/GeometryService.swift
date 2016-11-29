@@ -17,41 +17,39 @@ open class GeometryService {
    * Fetch geometry data
    */
   open static func fetchGeometry(_ urlEncRef: String,
-    callback: @escaping (_ data: [CLLocation], _ error: SLNetworkError?) -> Void) {
-      var result = [CLLocation]()
-      api.fetchGeometry(urlEncRef) { (data, error) -> Void in
-        if let d = data {
-          if d.count == 0 {
-            HttpRequestHelper.clearCache()
-            callback(data: [CLLocation](), error: SLNetworkError.noDataFound)
-            return
-          }
-          
-          let jsonData = JSON(data: d)
-          result = convertJson(jsonData["Geometry"]["Points"]["Point"])
+                                 callback: @escaping (_ data: [CLLocation], _ error: SLNetworkError?) -> Void) {
+    var result = [CLLocation]()
+    api.fetchGeometry(urlEncRef) { (data, error) -> Void in
+      if let d = data {
+        if d.count == 0 {
+          HttpRequestHelper.clearCache()
+          callback([CLLocation](), SLNetworkError.noDataFound)
+          return
         }
-        callback(data: result, error: error)
+        
+        let jsonData = JSON(data: d)
+        result = convertJson(jsonData["Geometry"]["Points"]["Point"])
       }
+      callback(result, error)
+    }
   }
   
   // MARK: Private
   
   /**
-  * Converts the raw json string into array of Location.
-  */
+   * Converts the raw json string into array of Location.
+   */
   fileprivate static func convertJson(_ pointsJson: JSON) -> [CLLocation] {
     var result = [CLLocation]()
     if let pointsArr = pointsJson.array  {
       for pointJson in pointsArr {
-        if pointJson.isExists() {
-          if pointJson["lat"].string! != "" && pointJson["lon"].string! != "" {
-            let location = CLLocation(
-              latitude: Double(pointJson["lat"].string!)!,
-              longitude: Double(pointJson["lon"].string!)!)
-            result.append(location)
-          }
+        if pointJson["lat"].string! != "" && pointJson["lon"].string! != "" {
+          let location = CLLocation(
+            latitude: Double(pointJson["lat"].string!)!,
+            longitude: Double(pointJson["lon"].string!)!)
+          result.append(location)
         }
-      }
+      }      
     }
     return result
   }

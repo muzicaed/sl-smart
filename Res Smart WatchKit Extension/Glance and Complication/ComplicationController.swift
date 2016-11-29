@@ -51,6 +51,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
       template = nil
     case .circularSmall:
       template = createCircularSmall()
+    default:
+      template = nil
     }
     
     if let template = template {
@@ -99,6 +101,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         template = nil
       case .circularSmall:
         template = createCircularSmall()
+      default:
+        template = nil
       }
       handler(template)
   }

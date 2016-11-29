@@ -88,7 +88,7 @@ open class MyLocationHelper: NSObject, CLLocationManagerDelegate {
    * On error
    */
   open func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-    if error.code != 0 {
+    if error._code != 0 {
       isStarted = false
     }
   }

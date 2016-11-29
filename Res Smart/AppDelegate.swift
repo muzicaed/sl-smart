@@ -10,6 +10,8 @@ import UIKit
 import WatchConnectivity
 import ResStockholmApiKit
 
+
+//TODO: Move WCSessionDelegate out to a helper object
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   
@@ -93,6 +95,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
       }
     }
   }
+  
+  /** Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */
+  @available(iOS 9.3, *)
+  public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+  }
+  
+  /** Called when the session can no longer be used to modify or add any new transfers and, all interactive messages will be cancelled, but delegate callbacks for background transfers can still occur. This will happen when the selected watch is being changed. */
+  @available(iOS 9.3, *)
+  public func sessionDidBecomeInactive(_ session: WCSession) {
+  }
+  
+  @available(iOS 9.3, *)
+  public func sessionDidDeactivate(_ session: WCSession) {}
+  
   
   //MARK: Private
   

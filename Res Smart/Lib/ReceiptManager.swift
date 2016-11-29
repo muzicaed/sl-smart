@@ -88,7 +88,7 @@ class ReceiptManager {
           return
       }
       
-      let request = NSMutableURLRequest(url: url)
+      var request = URLRequest(url: url)
       request.httpMethod = "POST"
       request.httpBody = receiptData
       
@@ -101,17 +101,18 @@ class ReceiptManager {
           }
           
           do {
-            let json = try JSONSerialization.jsonObject(with: data, options:[])
-            guard let statusCode = json["status"] as? Int else {
+            let json = JSON(data)
+            let statusCode = json["status"].int
+            if statusCode == nil {
               onCompletion(nil, errorDate)
               return
             }
             
             var date = errorDate
             if statusCode == 0 {
-              if let reciepts = json["latest_receipt_info"] as? Array<[String: String]> {
+              if let reciepts = json["latest_receipt_info"].array {
                 if let reciept = reciepts.last {
-                  if let timeStr = reciept["expires_date_ms"] {
+                  if let timeStr = reciept["expires_date_ms"].string {
                     date = Date(timeIntervalSince1970: Double(timeStr)! / 1000)
                   }
                 }
@@ -119,9 +120,6 @@ class ReceiptManager {
 
             }
             onCompletion(statusCode, date)
-          }
-          catch {
-            onCompletion(nil, errorDate)
           }
       })
       task.resume()

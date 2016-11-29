@@ -18,14 +18,14 @@ open class RoutineService {
   open static func findRoutineTrip(_ callback: @escaping ([RoutineTrip]) -> Void) {
     MyLocationHelper.sharedInstance.requestLocationUpdate { location in
       LocationSearchService.searchNearby(location, distance: 2000) { resTuple in
-        if let error = resTuple.error {
+        if let error = resTuple.1 {
           if error != SLNetworkError.noDataFound {
             callback([RoutineTrip]())
           }
         }
         
         let allRoutineTrips = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
-        scoreRoutineTrips(allRoutineTrips, locations: resTuple.data)
+        scoreRoutineTrips(allRoutineTrips, locations: resTuple.0)
         createPrioList(allRoutineTrips, callback: callback)
       }
     }
@@ -111,10 +111,10 @@ open class RoutineService {
         
         
         SearchTripService.tripSearch(searchCrit, callback: { resTuple in
-          if let _ = resTuple.error {
+          if let _ = resTuple.1 {
             callback([Trip]())
           }
-          callback(resTuple.data)
+          callback(resTuple.0)
         })
         return
       }

@@ -91,8 +91,8 @@ open class Trip: NSObject, NSCopying {
       "val": isValid as AnyObject,
       "ori": tripSegments.first!.origin.name as AnyObject,
       "des": tripSegments.last!.destination.name as AnyObject,
-      "ot": DateUtils.dateAsDateAndTimeString(tripSegments.first!.departureDateTime),
-      "dt": DateUtils.dateAsDateAndTimeString(tripSegments.last!.arrivalDateTime),
+      "ot": DateUtils.dateAsDateAndTimeString(tripSegments.first!.departureDateTime) as AnyObject,
+      "dt": DateUtils.dateAsDateAndTimeString(tripSegments.last!.arrivalDateTime) as AnyObject,
     ]
   }
   

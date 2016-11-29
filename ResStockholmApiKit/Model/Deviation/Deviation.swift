@@ -31,9 +31,8 @@ open class Deviation {
    * Converts "2016-02-21T11:49:58.79+01:00" into NSDate object
    */
   fileprivate static func convertDate(_ dateStr: String) -> Date {
-    let start = dateStr.characters.index(dateStr.startIndex, offsetBy: 0)
-    let end = <#T##String.CharacterView corresponding to `start`##String.CharacterView#>.index(start, offsetBy: 16)
-    var croppedStr = dateStr[start ..< end]
+    let end = dateStr.characters.index(dateStr.startIndex, offsetBy: 16)
+    var croppedStr = dateStr[dateStr.startIndex ..< end]
     croppedStr = croppedStr.replacingOccurrences(
       of: "T",
       with: " ",

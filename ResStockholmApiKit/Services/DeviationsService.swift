@@ -16,20 +16,20 @@ class DeviationsService {
    * Fetch deviations data
    */
   static func fetchInformation(
-    _ callback: (_ data: [Deviation], _ error: SLNetworkError?) -> Void) {
-      api.fetchInformation { resTuple -> Void in
-        var deviations = [Deviation]()
-        if let data = resTuple.data {
-          if data.count == 0 {
-            HttpRequestHelper.clearCache()
-            callback(deviations, SLNetworkError.noDataFound)
-            return
-          }
-          
-          deviations = self.convertJsonResponse(data)
+    _ callback: @escaping ([Deviation], SLNetworkError?) -> Void) {
+    api.fetchInformation { resTuple -> Void in
+      var deviations = [Deviation]()
+      if let data = resTuple.0 {
+        if data.count == 0 {
+          HttpRequestHelper.clearCache()
+          callback(deviations, SLNetworkError.noDataFound)
+          return
         }
-        callback(deviations, resTuple.error)
+        
+        deviations = self.convertJsonResponse(data)
       }
+      callback(deviations, resTuple.1)
+    }
   }
   
   /**
@@ -38,12 +38,11 @@ class DeviationsService {
   fileprivate static func convertJsonResponse(_ data: Data) -> [Deviation] {
     var deviations = [Deviation]()
     let jsonData = JSON(data: data)
-    if jsonData["ResponseData"].isExists() {
-      if let response = jsonData["ResponseData"].array {
-        for deviationJson in response {
-          deviations.append(convertDeviationJson(deviationJson))
-        }
+    if let response = jsonData["ResponseData"].array {
+      for deviationJson in response {
+        deviations.append(convertDeviationJson(deviationJson))
       }
+      
     }
     
     return deviations

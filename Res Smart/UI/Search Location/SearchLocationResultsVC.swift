@@ -166,13 +166,13 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
         LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
           NetworkActivity.displayActivityIndicator(false)
           DispatchQueue.main.async {
-            if resTuple.error != nil {
+            if resTuple.1 != nil {
               self.noResults = true
               self.tableView.reloadData()
               return
             }
-            self.searchResult = resTuple.data
-            if resTuple.data.count > 0 {
+            self.searchResult = resTuple.0
+            if resTuple.0.count > 0 {
               self.tableView.reloadData()
             }
           }

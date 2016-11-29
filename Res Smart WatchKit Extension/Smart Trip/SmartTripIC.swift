@@ -160,19 +160,20 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Handles any session send messages errors.
    */
-  func messageErrorHandler(_ error: NSError) {
+  func messageErrorHandler(error: Error) {
+    let error = error as! WCError
     isLoading = false
     WKInterfaceDevice.current().play(WKHapticType.failure)
     
-    if error.code == WCError.deliveryFailed.rawValue ||
-      error.code == WCError.messageReplyTimedOut.rawValue ||
-      error.code == WCError.genericError.rawValue {
+    if error.code == WCError.deliveryFailed ||
+      error.code == WCError.messageReplyTimedOut ||
+      error.code == WCError.genericError {
       stopRefreshTimer()
       retryTimer = Timer.scheduledTimer(
         timeInterval: TimeInterval(0.1), target: self, selector: #selector(forceRefreshData),
         userInfo: nil, repeats: false)
       return
-    } else if error.code == WCError.notReachable.rawValue {
+    } else if error.code == WCError.notReachable {
       displayError(
         "Kan inte nå din iPhone",
         message: "Kontrollera att din iPhone är i närheten och påslagen.")

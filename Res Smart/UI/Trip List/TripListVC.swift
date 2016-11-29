@@ -359,14 +359,14 @@ class TripListVC: UITableViewController {
         criterions, callback: { resTuple in
           NetworkActivity.displayActivityIndicator(false)
           DispatchQueue.main.async {
-            if resTuple.error != nil {
+            if resTuple.1 != nil {
               self.showNetworkErrorAlert()
               self.isLoading = false
               self.tableView?.reloadData()
               return
             }
-            self.appendToDictionary(resTuple.data, shouldAppend: shouldAppend)
-            if resTuple.data.count == 0 {
+            self.appendToDictionary(resTuple.0, shouldAppend: shouldAppend)
+            if resTuple.0.count == 0 {
               self.navigationItem.rightBarButtonItem = nil
             }
             self.isLoading = false

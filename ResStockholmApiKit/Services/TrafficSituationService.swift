@@ -16,41 +16,41 @@ open class TrafficSituationService {
    * Fetch trafic situation data
    */
   open static func fetchInformation(
-    _ callback: (_ data: [SituationGroup], _ error: SLNetworkError?) -> Void) {
-      situationsApi.fetchInformation { resTuple -> Void in
-        var situations = [SituationGroup]()
-        if let data = resTuple.data {
-          if data.count == 0 {
-            HttpRequestHelper.clearCache()
-            callback(situations, SLNetworkError.noDataFound)
-            return
-          }
-          
-          situations = self.convertJsonResponse(data)
-          mergeDeviations(situations, callback: callback)
-        } else {
-          callback(situations, resTuple.error)
+    _ callback: @escaping ([SituationGroup], SLNetworkError?) -> Void) {
+    situationsApi.fetchInformation { resTuple -> Void in
+      var situations = [SituationGroup]()
+      if let data = resTuple.0 {
+        if data.count == 0 {
+          HttpRequestHelper.clearCache()
+          callback(situations, SLNetworkError.noDataFound)
+          return
         }
         
+        situations = self.convertJsonResponse(data)
+        mergeDeviations(situations, callback: callback)
+      } else {
+        callback(situations, resTuple.1)
       }
+      
+    }
   }
   
   /**
    * Handle traffic situations and merge with deviations.
    */
   fileprivate static func mergeDeviations(_ situations: [SituationGroup],
-    callback: (_ data: [SituationGroup], _ error: SLNetworkError?) -> Void) {
-
-      DeviationsService.fetchInformation { (data, error) -> Void in
-        if let err = error {
-          callback([SituationGroup](), err)
-        }
-        
-        for group in situations {
-          addDeviationsToGroup(group, deviations: data)
-        }
-        callback(situations, nil)
+                                          callback: @escaping (_ data: [SituationGroup], _ error: SLNetworkError?) -> Void) {
+    
+    DeviationsService.fetchInformation { (data, error) -> Void in
+      if let err = error {
+        callback([SituationGroup](), err)
       }
+      
+      for group in situations {
+        addDeviationsToGroup(group, deviations: data)
+      }
+      callback(situations, nil)
+    }
   }
   
   /**
@@ -74,11 +74,9 @@ open class TrafficSituationService {
       return [SituationGroup]()
     }
     
-    if data["ResponseData"].isExists() {
-      if let groupsJson = data["ResponseData"]["TrafficTypes"].array {
-        for groupJson in groupsJson {
-          result.append(convertJsonToGroup(groupJson))
-        }
+    if let groupsJson = data["ResponseData"]["TrafficTypes"].array {
+      for groupJson in groupsJson {
+        result.append(convertJsonToGroup(groupJson))
       }
     }
     return result

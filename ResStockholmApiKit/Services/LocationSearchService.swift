@@ -22,14 +22,14 @@ open class LocationSearchService {
     callback: @escaping (_ data: [Location], _ error: SLNetworkError?) -> Void) {
       api.search(query, stationsOnly: stationsOnly) { resTuple in
         var locations = [Location]()
-        if let data = resTuple.data {
+        if let data = resTuple.0 {
           locations = LocationSearchService.convertJsonResponse(data)
           if locations.count == 0 {
-            callback(data: locations, error: SLNetworkError.noDataFound)
+            callback(locations, SLNetworkError.noDataFound)
             return
           }
         }
-        callback(data: locations, error: resTuple.error)
+        callback(locations, resTuple.1)
       }
   }
   
@@ -42,7 +42,7 @@ open class LocationSearchService {
       
       nearbyApi.search(location, distance: distance) { resTuple in
         var result = [(location: Location, dist: Int)]()
-        if let resData = resTuple.data {
+        if let resData = resTuple.0 {
           let data = JSON(data: resData)
           
           if let locationJson = data["LocationList"]["StopLocation"].array {
@@ -67,10 +67,10 @@ open class LocationSearchService {
         }
         
         if result.count == 0 {
-          callback(data: result, error: SLNetworkError.noDataFound)
+          callback(result, SLNetworkError.noDataFound)
           return
         }
-        callback(data: result, error: resTuple.error)
+        callback(result, resTuple.1)
       }
   }
   
