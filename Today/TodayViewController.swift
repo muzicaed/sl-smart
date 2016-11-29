@@ -117,6 +117,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     if let bestRoutineTrip = self.bestRoutine {
       if let trip = bestRoutineTrip.trips.first {
         self.titleLabel.text = bestRoutineTrip.title
+        if self.titleLabel.text == "" {
+          self.titleLabel.text = "Vana"
+        }
         self.departureStationLabel.text = trip.tripSegments.first?.origin.name
         self.departureTimeLabel.text = DateUtils.dateAsTimeString(
           trip.tripSegments.first!.departureDateTime)
