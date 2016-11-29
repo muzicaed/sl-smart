@@ -111,7 +111,7 @@ open class SearchTripService {
     
     let distString = (segmentJson["dist"].string != nil) ? segmentJson["dist"].string! : ""
     let dateTimeTuple = extractTimeDate(segmentJson)
-    var rtuMessages = extractRtuMessages(segmentJson["RTUMessages"]["RTUMessage"])
+    let rtuMessages = extractRtuMessages(segmentJson["RTUMessages"]["RTUMessage"])
     
     var isWarning = DisturbanceTextHelper.isDisturbance(rtuMessages)
     let isReachable = (segmentJson["reachable"].string == nil) ? true : false
