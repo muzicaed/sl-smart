@@ -10,17 +10,17 @@ import Foundation
 
 class HttpRequestHelper {
   
-  private static var cache = [String: (data: NSData, date: NSDate)]()
+  fileprivate static var cache = [String: (data: Data, date: Date)]()
   
   /**
    * Makes a async get request to passed url.
    * Returns the response data using callback.
    */
   static func makeGetRequest(
-    url: String, callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
+    _ url: String, callback: @escaping ((data: Data?, error: SLNetworkError?)) -> Void) {
     
     print(url)
-    let urlconfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+    let urlconfig = URLSessionConfiguration.default
     urlconfig.timeoutIntervalForRequest = 10
     urlconfig.timeoutIntervalForResource = 10
     
@@ -29,34 +29,34 @@ class HttpRequestHelper {
       return
     }
     
-    if let nsUrl = NSURL(string: url) {
-      let request = NSMutableURLRequest(URL: nsUrl)
-      let session = NSURLSession(configuration: urlconfig)
-      let task = session.dataTaskWithRequest(request) {
+    if let nsUrl = URL(string: url) {
+      let request = NSMutableURLRequest(url: nsUrl)
+      let session = URLSession(configuration: urlconfig)
+      let task = session.dataTask(with: request, completionHandler: {
         data, response, error in
         if error != nil {
-          callback((nil, error: SLNetworkError.NetworkError))
+          callback((nil, error: SLNetworkError.networkError))
           return
         } else if data != nil {
           addDataToCache(url, data: data!)
           callback((data, error: nil))
           return
         }
-        callback((nil, error: SLNetworkError.NoDataFound))
+        callback((nil, error: SLNetworkError.noDataFound))
         return
-      }
+      }) 
       
       task.resume()
       return
     }
-    callback((nil, error: SLNetworkError.InvalidRequest))
+    callback((nil, error: SLNetworkError.invalidRequest))
   }
   
   /**
    * Clears the http response cache.
    */
   static func clearCache() {
-    cache = [String: (data: NSData, date: NSDate)]()
+    cache = [String: (data: Data, date: Date)]()
   }
   
   // MARK: Private
@@ -64,9 +64,9 @@ class HttpRequestHelper {
   /**
    * Handle cache lookup
    */
-  private static func handleCache(url: String) -> NSData? {
+  fileprivate static func handleCache(_ url: String) -> Data? {
     if let dataTuple = cache[url] {
-      if NSDate().timeIntervalSinceDate(dataTuple.date) < cacheTolerance(url) {
+      if Date().timeIntervalSince(dataTuple.date) < cacheTolerance(url) {
         return dataTuple.data
       }
     }
@@ -76,20 +76,20 @@ class HttpRequestHelper {
   /**
    * Add data to cache
    */
-  private static func addDataToCache(url: String, data: NSData) {
-    cache[url] = (data, NSDate())
+  fileprivate static func addDataToCache(_ url: String, data: Data) {
+    cache[url] = (data, Date())
   }
   
   /**
    * The maximum time (in seconds) to store cache
    */
-  private static func cacheTolerance(url: String) -> NSTimeInterval {
-    if url.lowercaseString.rangeOfString("journeydetail.json") != nil ||
-      url.lowercaseString.rangeOfString("geometry.json") != nil {
+  fileprivate static func cacheTolerance(_ url: String) -> TimeInterval {
+    if url.lowercased().range(of: "journeydetail.json") != nil ||
+      url.lowercased().range(of: "geometry.json") != nil {
       return (60 * 60 * 18) // 18 hours
-    } else if url.lowercaseString.rangeOfString("realtimedepartures.json") != nil {
+    } else if url.lowercased().range(of: "realtimedepartures.json") != nil {
       return 30 // 30 seconds
-    } else if url.lowercaseString.rangeOfString("trafficsituation.json") != nil {
+    } else if url.lowercased().range(of: "trafficsituation.json") != nil {
       return (60 * 10) // 10 minutes
     }
     

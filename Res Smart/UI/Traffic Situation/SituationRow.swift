@@ -18,12 +18,12 @@ class SituationRow: UITableViewCell {
   /**
    * Sets data based on situation.
    */
-  func setData(situation: Situation) {
+  func setData(_ situation: Situation) {
     let header = (situation.trafficLine != nil) ? situation.trafficLine! + "\n" : ""
     messageLabel.text = header + situation.message
     messageLabel.accessibilityLabel = "Trafikstörning: " + situation.message
     messageLabel.textColor = StyleHelper.sharedInstance.warningColor
-    accessoryType = .None
-    userInteractionEnabled = false
+    accessoryType = .none
+    isUserInteractionEnabled = false
   }
 }

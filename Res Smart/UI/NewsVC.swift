@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class NewsVC: UIViewController {
-  @IBAction func onCloseButton(sender: AnyObject) {
-    dismissViewControllerAnimated(true, completion: nil)
+  @IBAction func onCloseButton(_ sender: AnyObject) {
+    dismiss(animated: true, completion: nil)
   }
 }

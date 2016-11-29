@@ -44,7 +44,7 @@ class TripCell: UITableViewCell {
   /**
    * Populate cell data based on passed RoutineTrip
    */
-  func setupData(trip: Trip) {
+  func setupData(_ trip: Trip) {
     originLabel.text = trip.tripSegments.first?.origin.cleanName
     originLabel.accessibilityLabel = "Från \(originLabel.text!)"
     destinationLabel.text = trip.tripSegments.last?.destination.cleanName
@@ -79,36 +79,36 @@ class TripCell: UITableViewCell {
    * Creates trip type icon per segment.
    * TODO: Refactoring merge with RoutineTripCell.createTripSegmentIcons()
    */
-  private func createTripSegmentIcons(trip: Trip) {
+  fileprivate func createTripSegmentIcons(_ trip: Trip) {
     iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
     var count = 0
-    for (_, segment) in trip.tripSegments.enumerate() {
+    for (_, segment) in trip.tripSegments.enumerated() {
       if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
         if count >= 6 { return }
         let data = TripHelper.friendlyLineData(segment)
         
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
-        iconView.frame.size = CGSizeMake(22, 23)
-        iconView.center = CGPointMake(22 / 2, 5)
+        iconView.frame.size = CGSize(width: 22, height: 23)
+        iconView.center = CGPoint(x: 22 / 2, y: 5)
         
         let label = UILabel()
         label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
-        label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont.boldSystemFontOfSize(9)
+        label.textAlignment = NSTextAlignment.center
+        label.font = UIFont.boldSystemFont(ofSize: 9)
         label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = UIColor.whiteColor()
-        label.layer.backgroundColor = data.color.CGColor
+        label.textColor = UIColor.white
+        label.layer.backgroundColor = data.color.cgColor
         label.frame.size.width = 22
         label.frame.size.height = 12
-        label.center = CGPointMake((22 / 2), 22)
+        label.center = CGPoint(x: (22 / 2), y: 22)
         label.isAccessibilityElement = false
         
         let wrapperView = UIView(
           frame:CGRect(
-            origin: CGPointMake(0, 0),
-            size: CGSizeMake(22, 39)))
-        wrapperView.frame.origin = CGPointMake((26 * CGFloat(count)), 5)
+            origin: CGPoint(x: 0, y: 0),
+            size: CGSize(width: 22, height: 39)))
+        wrapperView.frame.origin = CGPoint(x: (26 * CGFloat(count)), y: 5)
         wrapperView.clipsToBounds = false
         
         wrapperView.addSubview(iconView)
@@ -119,8 +119,8 @@ class TripCell: UITableViewCell {
           if segment.isWarning {
             warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
           }
-          warnIconView.frame.size = CGSizeMake(10, 10)
-          warnIconView.center = CGPointMake((22 / 2) + 10, -5)
+          warnIconView.frame.size = CGSize(width: 10, height: 10)
+          warnIconView.center = CGPoint(x: (22 / 2) + 10, y: -5)
           warnIconView.alpha = 0.9
           wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
         }

@@ -9,29 +9,29 @@
 import Foundation
 import CoreLocation
 
-public class TripSegment: NSObject, NSCopying {
-  public let index: Int
-  public let name: String
-  public let type: TripType
-  public let directionText: String?
-  public let lineNumber: String?
-  public let origin: Location
-  public let destination: Location
-  public let departureDateTime: NSDate
-  public let arrivalDateTime: NSDate
-  public let distance: Int?
-  public let isRealtime: Bool
-  public let journyRef: String?
-  public let rtuMessages: String?
-  public let notes: String?
-  public let isWarning: Bool
-  public let durationInMin: Int
-  public let isReachable: Bool
-  public let isCancelled: Bool
-  public var trainPositionText: String? = nil
-  public var exitText = ""
+open class TripSegment: NSObject, NSCopying {
+  open let index: Int
+  open let name: String
+  open let type: TripType
+  open let directionText: String?
+  open let lineNumber: String?
+  open let origin: Location
+  open let destination: Location
+  open let departureDateTime: Date
+  open let arrivalDateTime: Date
+  open let distance: Int?
+  open let isRealtime: Bool
+  open let journyRef: String?
+  open let rtuMessages: String?
+  open let notes: String?
+  open let isWarning: Bool
+  open let durationInMin: Int
+  open let isReachable: Bool
+  open let isCancelled: Bool
+  open var trainPositionText: String? = nil
+  open var exitText = ""
   
-  public var stops = [Stop]()
+  open var stops = [Stop]()
   
   public init(
     index: Int, name: String, type: String, directionText: String?,
@@ -64,7 +64,7 @@ public class TripSegment: NSObject, NSCopying {
     self.isReachable = isReachable
     self.isCancelled = isCancelled
     
-    self.durationInMin = Int(self.arrivalDateTime.timeIntervalSinceDate(self.departureDateTime) / 60)
+    self.durationInMin = Int(self.arrivalDateTime.timeIntervalSince(self.departureDateTime) / 60)
   }
   
   // MARK: NSCopying
@@ -72,7 +72,7 @@ public class TripSegment: NSObject, NSCopying {
   /**
    * Copy self (Stops & route line locations are not copied!)
    */
-  public func copyWithZone(zone: NSZone) -> AnyObject {
+  open func copy(with zone: NSZone?) -> Any {
     let seg = TripSegment(
       index: index, name: name, type: type.rawValue,
       directionText: directionText, lineNumber: lineNumber,

@@ -10,5 +10,5 @@ import Foundation
 
 protocol DateTimePickResponder {
   
-  func pickedDate(date: NSDate?) -> Void
+  func pickedDate(_ date: Date?) -> Void
 }

@@ -15,6 +15,6 @@ class MyCustomButton: UIButton {
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     layer.cornerRadius = 6;
-    tintColor = UIColor.whiteColor()
+    tintColor = UIColor.white
   }
 }

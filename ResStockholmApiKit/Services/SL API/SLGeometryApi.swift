@@ -17,8 +17,8 @@ class SLGeometryApi {
    * Fetch geometry data for a trip
    */
   func fetchGeometry(
-    urlEncRef: String,
-    callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
+    _ urlEncRef: String,
+    callback: @escaping ((data: Data?, error: SLNetworkError?)) -> Void) {
       let url = createGeometryUrl(urlEncRef)
       HttpRequestHelper.makeGetRequest(url) { resTuple in
         callback(resTuple)
@@ -30,7 +30,7 @@ class SLGeometryApi {
   /**
   * Creates api url for geometry search
   */
-  private func createGeometryUrl(urlEncRef: String) -> String {
+  fileprivate func createGeometryUrl(_ urlEncRef: String) -> String {
     let decoded = urlEncRef.stringByRemovingPercentEncoding!
     return urlBase + "?key=\(apiKey)&\(decoded)"
   }

@@ -9,21 +9,21 @@
 import Foundation
 import CoreLocation
 
-public class GeometryService {
+open class GeometryService {
   
-  private static let api = SLGeometryApi()
+  fileprivate static let api = SLGeometryApi()
   
   /**
    * Fetch geometry data
    */
-  public static func fetchGeometry(urlEncRef: String,
-    callback: (data: [CLLocation], error: SLNetworkError?) -> Void) {
+  open static func fetchGeometry(_ urlEncRef: String,
+    callback: @escaping (_ data: [CLLocation], _ error: SLNetworkError?) -> Void) {
       var result = [CLLocation]()
       api.fetchGeometry(urlEncRef) { (data, error) -> Void in
         if let d = data {
-          if d.length == 0 {
+          if d.count == 0 {
             HttpRequestHelper.clearCache()
-            callback(data: [CLLocation](), error: SLNetworkError.NoDataFound)
+            callback(data: [CLLocation](), error: SLNetworkError.noDataFound)
             return
           }
           
@@ -39,7 +39,7 @@ public class GeometryService {
   /**
   * Converts the raw json string into array of Location.
   */
-  private static func convertJson(pointsJson: JSON) -> [CLLocation] {
+  fileprivate static func convertJson(_ pointsJson: JSON) -> [CLLocation] {
     var result = [CLLocation]()
     if let pointsArr = pointsJson.array  {
       for pointJson in pointsArr {

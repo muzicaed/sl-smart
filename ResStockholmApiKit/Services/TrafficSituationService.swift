@@ -8,28 +8,28 @@
 
 import Foundation
 
-public class TrafficSituationService {
+open class TrafficSituationService {
   
-  private static let situationsApi = SLTrafficSituationServiceApi()
+  fileprivate static let situationsApi = SLTrafficSituationServiceApi()
   
   /**
    * Fetch trafic situation data
    */
-  public static func fetchInformation(
-    callback: (data: [SituationGroup], error: SLNetworkError?) -> Void) {
+  open static func fetchInformation(
+    _ callback: (_ data: [SituationGroup], _ error: SLNetworkError?) -> Void) {
       situationsApi.fetchInformation { resTuple -> Void in
         var situations = [SituationGroup]()
         if let data = resTuple.data {
-          if data.length == 0 {
+          if data.count == 0 {
             HttpRequestHelper.clearCache()
-            callback(data: situations, error: SLNetworkError.NoDataFound)
+            callback(situations, SLNetworkError.noDataFound)
             return
           }
           
           situations = self.convertJsonResponse(data)
           mergeDeviations(situations, callback: callback)
         } else {
-          callback(data: situations, error: resTuple.error)
+          callback(situations, resTuple.error)
         }
         
       }
@@ -38,25 +38,25 @@ public class TrafficSituationService {
   /**
    * Handle traffic situations and merge with deviations.
    */
-  private static func mergeDeviations(situations: [SituationGroup],
-    callback: (data: [SituationGroup], error: SLNetworkError?) -> Void) {
+  fileprivate static func mergeDeviations(_ situations: [SituationGroup],
+    callback: (_ data: [SituationGroup], _ error: SLNetworkError?) -> Void) {
 
       DeviationsService.fetchInformation { (data, error) -> Void in
         if let err = error {
-          callback(data: [SituationGroup](), error: err)
+          callback([SituationGroup](), err)
         }
         
         for group in situations {
           addDeviationsToGroup(group, deviations: data)
         }
-        callback(data: situations, error: nil)
+        callback(situations, nil)
       }
   }
   
   /**
    * Add deviations to a situation group.
    */
-  private static func addDeviationsToGroup(group: SituationGroup, deviations: [Deviation]) {
+  fileprivate static func addDeviationsToGroup(_ group: SituationGroup, deviations: [Deviation]) {
     for deviation in deviations {
       if group.tripType == deviation.tripType {
         group.deviations.append(deviation)
@@ -67,7 +67,7 @@ public class TrafficSituationService {
   /**
    * Converts the raw json string into array of SituationGroup.
    */
-  private static func convertJsonResponse(jsonDataString: NSData) -> [SituationGroup] {
+  fileprivate static func convertJsonResponse(_ jsonDataString: Data) -> [SituationGroup] {
     var result = [SituationGroup]()
     let data = JSON(data: jsonDataString)
     if checkErrors(data) {
@@ -87,7 +87,7 @@ public class TrafficSituationService {
   /**
    * Converts the raw json string into a SituationGroup
    */
-  private static func convertJsonToGroup(groupJson: JSON) -> SituationGroup {
+  fileprivate static func convertJsonToGroup(_ groupJson: JSON) -> SituationGroup {
     return SituationGroup(
       statusIcon: groupJson["StatusIcon"].string!,
       hasPlannedEvent: groupJson["HasPlannedEvent"].bool!,
@@ -99,7 +99,7 @@ public class TrafficSituationService {
   /**
    * Converts the raw json string into array of situations
    */
-  private static func convertJsonToSituations(situationsJson: JSON) -> [Situation] {
+  fileprivate static func convertJsonToSituations(_ situationsJson: JSON) -> [Situation] {
     var situations = [Situation]()
     
     for situationJson in situationsJson.array! {
@@ -118,7 +118,7 @@ public class TrafficSituationService {
   /**
    * Checks if service returned error.
    */
-  private static func checkErrors(data: JSON) -> Bool {
+  fileprivate static func checkErrors(_ data: JSON) -> Bool {
     if let statusCode = data["StatusCode"].int {
       return (statusCode != 0) ? true : false
     }

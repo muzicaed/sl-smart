@@ -17,8 +17,8 @@ class SLJourneyDetailsApi {
    * Search for journy details.
    */
   func getDetails(
-    urlEncRef: String,
-    callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
+    _ urlEncRef: String,
+    callback: @escaping ((data: Data?, error: SLNetworkError?)) -> Void) {
       let url = createJournyDetailsUrl(urlEncRef)
       HttpRequestHelper.makeGetRequest(url) { resTuple in
         callback(resTuple)
@@ -30,7 +30,7 @@ class SLJourneyDetailsApi {
   /**
   * Creates api url for journy details search
   */
-  private func createJournyDetailsUrl(urlEncRef: String) -> String {
+  fileprivate func createJournyDetailsUrl(_ urlEncRef: String) -> String {
     let decoded = urlEncRef.stringByRemovingPercentEncoding!
     return urlBase + "?key=\(apiKey)&realtime=true&\(decoded)"
   }

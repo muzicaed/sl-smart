@@ -11,12 +11,12 @@ import StoreKit
 
 protocol SubscribeDelegate {
   func subscriptionSuccessful()
-  func subscriptionError(error: SubscriptionError)
-  func recievedProducts(products: [SKProduct])
+  func subscriptionError(_ error: SubscriptionError)
+  func recievedProducts(_ products: [SKProduct])
 }
 
 enum SubscriptionError {
-  case PaymentError
-  case CanNotMakePayments
-  case NoProductsFound
+  case paymentError
+  case canNotMakePayments
+  case noProductsFound
 }

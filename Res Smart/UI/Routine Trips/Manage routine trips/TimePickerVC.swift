@@ -14,7 +14,7 @@ class TimePickerVC: UIViewController {
   @IBOutlet weak var dateTimePicker: UIDatePicker!
   
   var delegate: DateTimePickResponder?
-  var selectedDate: NSDate?
+  var selectedDate: Date?
   
   
   /**
@@ -29,18 +29,18 @@ class TimePickerVC: UIViewController {
   /**
    * On close button tap
    */
-  @IBAction func onCloseButtonTap(sender: AnyObject) {
+  @IBAction func onCloseButtonTap(_ sender: AnyObject) {
     delegate?.pickedDate(nil)
-    dismissViewControllerAnimated(true, completion: nil)
+    dismiss(animated: true, completion: nil)
     
   }
   
   /**
    * On pick time button tap
    */
-  @IBAction func onPickTimeButtonTap(sender: AnyObject) {
+  @IBAction func onPickTimeButtonTap(_ sender: AnyObject) {
     delegate?.pickedDate(dateTimePicker.date)
-    dismissViewControllerAnimated(true, completion: nil)
+    dismiss(animated: true, completion: nil)
   }
 }
 

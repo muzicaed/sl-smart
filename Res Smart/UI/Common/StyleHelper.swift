@@ -23,11 +23,11 @@ class StyleHelper {
   
   func setupCustomStyle() {
     let navAppearance = UINavigationBar.appearance()
-    navAppearance.translucent = false
-    navAppearance.tintColor = UIColor.whiteColor()
+    navAppearance.isTranslucent = false
+    navAppearance.tintColor = UIColor.white
     navAppearance.barTintColor = mainGreen
     navAppearance.titleTextAttributes = [
-      NSForegroundColorAttributeName: UIColor.whiteColor()]
+      NSForegroundColorAttributeName: UIColor.white]
     
     let tabBarAppearance = UITabBar.appearance()
     tabBarAppearance.tintColor = mainGreen
@@ -39,56 +39,56 @@ class StyleHelper {
     UITabBarItem.appearance().setTitleTextAttributes(
       [
         NSForegroundColorAttributeName: UIColor(white: 0.0, alpha: 0.75)
-      ], forState: .Normal)
+      ], for: UIControlState())
     
     UITabBarItem.appearance().setTitleTextAttributes(
       [
         NSForegroundColorAttributeName: mainGreen
-      ], forState: .Selected)
+      ], for: .selected)
     
-    UIApplication.sharedApplication().statusBarStyle = .LightContent
-    (UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])).tintColor = UIColor.whiteColor()
+    UIApplication.shared.statusBarStyle = .lightContent
+    (UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])).tintColor = UIColor.white
   }
   
-  func tintImage(image: UIImage, color: UIColor) -> UIImage {
+  func tintImage(_ image: UIImage, color: UIColor) -> UIImage {
     let size = image.size
     
     UIGraphicsBeginImageContextWithOptions(size, false, image.scale)
     let context = UIGraphicsGetCurrentContext()
-    image.drawAtPoint(CGPointZero, blendMode: CGBlendMode.Normal, alpha: 1.0)
+    image.draw(at: CGPoint.zero, blendMode: CGBlendMode.normal, alpha: 1.0)
     
-    CGContextSetFillColorWithColor(context, color.CGColor)
-    CGContextSetBlendMode(context, CGBlendMode.SourceIn)
-    CGContextSetAlpha(context, 1.0)
+    context?.setFillColor(color.cgColor)
+    context?.setBlendMode(CGBlendMode.sourceIn)
+    context?.setAlpha(1.0)
     
-    let rect = CGRectMake(
-      CGPointZero.x,
-      CGPointZero.y,
-      image.size.width,
-      image.size.height)
-    CGContextFillRect(UIGraphicsGetCurrentContext(), rect)
+    let rect = CGRect(
+      x: CGPoint.zero.x,
+      y: CGPoint.zero.y,
+      width: image.size.width,
+      height: image.size.height)
+    UIGraphicsGetCurrentContext()?.fill(rect)
     let tintedImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     
-    return tintedImage
+    return tintedImage!
   }
 }
 
 extension UIImage {
-  func imageWithColor(color1: UIColor) -> UIImage {
+  func imageWithColor(_ color1: UIColor) -> UIImage {
     UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
     
-    let context = UIGraphicsGetCurrentContext()! as CGContextRef
-    CGContextTranslateCTM(context, 0, self.size.height)
-    CGContextScaleCTM(context, 1.0, -1.0);
-    CGContextSetBlendMode(context, CGBlendMode.Normal)
+    let context = UIGraphicsGetCurrentContext()! as CGContext
+    context.translateBy(x: 0, y: self.size.height)
+    context.scaleBy(x: 1.0, y: -1.0);
+    context.setBlendMode(CGBlendMode.normal)
     
-    let rect = CGRectMake(0, 0, self.size.width, self.size.height) as CGRect
-    CGContextClipToMask(context, rect, self.CGImage)
+    let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height) as CGRect
+    context.clip(to: rect, mask: self.cgImage!)
     color1.setFill()
-    CGContextFillRect(context, rect)
+    context.fill(rect)
     
-    let newImage = UIGraphicsGetImageFromCurrentImageContext() as UIImage
+    let newImage = UIGraphicsGetImageFromCurrentImageContext()! as UIImage
     UIGraphicsEndImageContext()
     
     return newImage

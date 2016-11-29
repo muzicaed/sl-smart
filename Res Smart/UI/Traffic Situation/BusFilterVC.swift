@@ -31,9 +31,9 @@ class BusFilterVC: UITableViewController {
   /**
    * Prepares for segue
    */
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ShowReports" {
-      let vc = segue.destinationViewController as! ReportsVC
+      let vc = segue.destination as! ReportsVC
       if let dictKey = selectedKey {
         vc.deviations = organisedDeviations[dictKey]!
       }
@@ -45,14 +45,14 @@ class BusFilterVC: UITableViewController {
   /**
    * Number of sections
    */
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return (deviations.count > 0 && situations.count > 0) ? 2 : 1
   }
   
   /**
    * Item count for section
    */
-  override func tableView(tableView: UITableView,
+  override func tableView(_ tableView: UITableView,
                           numberOfRowsInSection section: Int) -> Int {
     if hasBothDeviationsAndSituations() {
       if section == 0 {
@@ -67,8 +67,8 @@ class BusFilterVC: UITableViewController {
   /**
    * Cell for index.
    */
-  override func tableView(tableView: UITableView,
-                          cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView,
+                          cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if hasBothDeviationsAndSituations() {
       if indexPath.section == 0 {
         return createSituationRow(indexPath)
@@ -82,8 +82,8 @@ class BusFilterVC: UITableViewController {
   /**
    * Before displaying cell
    */
-  override func tableView(tableView: UITableView,
-                          willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView,
+                          willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     let bgColorView = UIView()
     bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
     cell.selectedBackgroundView = bgColorView
@@ -92,25 +92,25 @@ class BusFilterVC: UITableViewController {
   /**
    * User selected row
    */
-  override func tableView(tableView: UITableView,
-                          didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView,
+                          didSelectRowAt indexPath: IndexPath) {
     selectedKey = sortedKeys[indexPath.row]
-    performSegueWithIdentifier("ShowReports", sender: nil)
+    performSegue(withIdentifier: "ShowReports", sender: nil)
   }
   
   /**
    * View for header
    */
-  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 25))
-    let label = UILabel(frame: CGRectMake(10, 0, tableView.frame.size.width - 10, 25))
-    label.font = UIFont.systemFontOfSize(12)
-    label.textColor = UIColor.whiteColor()
+  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 25))
+    let label = UILabel(frame: CGRect(x: 10, y: 0, width: tableView.frame.size.width - 10, height: 25))
+    label.font = UIFont.systemFont(ofSize: 12)
+    label.textColor = UIColor.white
     label.text = createHeaderTitle(section)
     view.addSubview(label)
     
     let color = StyleHelper.sharedInstance.mainGreen
-    view.backgroundColor = color.colorWithAlphaComponent(0.95)
+    view.backgroundColor = color.withAlphaComponent(0.95)
     return view
   }
   
@@ -119,11 +119,11 @@ class BusFilterVC: UITableViewController {
   /**
    * Prepares the data for bus filter
    */
-  private func prepareData() {
+  fileprivate func prepareData() {
     for deviation in deviations {
       organiseDeviation(deviation)
     }
-    sortedKeys = Array(organisedDeviations.keys).sort() {
+    sortedKeys = Array(organisedDeviations.keys).sorted() {
       if $0 == "STOPS" || $1 == "STOPS" {
         return $0 == "STOPS"
       }
@@ -137,7 +137,7 @@ class BusFilterVC: UITableViewController {
   /**
    * Organise deviation
    */
-  private func organiseDeviation(deviation: Deviation) {
+  fileprivate func organiseDeviation(_ deviation: Deviation) {
     if isBusDeviation(deviation) {
       let lines = extractLines(deviation)
       for line in lines {
@@ -153,16 +153,16 @@ class BusFilterVC: UITableViewController {
    * Check if deviation is about bus.
    * (else about station/stop)
    */
-  private func isBusDeviation(deviation: Deviation) -> Bool {
-    return deviation.scope.lowercaseString.rangeOfString("bus") != nil ||
-      deviation.scope.lowercaseString.rangeOfString("närtrafiken") != nil ||
-      deviation.scope.lowercaseString.rangeOfString("blå") != nil
+  fileprivate func isBusDeviation(_ deviation: Deviation) -> Bool {
+    return deviation.scope.lowercased().range(of: "bus") != nil ||
+      deviation.scope.lowercased().range(of: "närtrafiken") != nil ||
+      deviation.scope.lowercased().range(of: "blå") != nil
   }
   
   /**
    * Adds to organised dictionary on key.
    */
-  private func addToOrganised(key: String, deviation: Deviation) {
+  fileprivate func addToOrganised(_ key: String, deviation: Deviation) {
     if organisedDeviations[key] == nil {
       organisedDeviations[key] = [Deviation]()
     }
@@ -172,23 +172,23 @@ class BusFilterVC: UITableViewController {
   /**
    * Extracts all line numbers from deviation scope.
    */
-  private func extractLines(deviation: Deviation) -> [String] {
-    var scope = deviation.scope.lowercaseString
-    scope = scope.stringByReplacingOccurrencesOfString("buss", withString: "")
-    scope = scope.stringByReplacingOccurrencesOfString("närtrafiken", withString: "")
-    scope = scope.stringByReplacingOccurrencesOfString("blå", withString: "")
-    scope = scope.stringByReplacingOccurrencesOfString(";", withString: "")
-    scope = scope.stringByReplacingOccurrencesOfString(" ", withString: "")
-    return scope.componentsSeparatedByString(",")
+  fileprivate func extractLines(_ deviation: Deviation) -> [String] {
+    var scope = deviation.scope.lowercased()
+    scope = scope.replacingOccurrences(of: "buss", with: "")
+    scope = scope.replacingOccurrences(of: "närtrafiken", with: "")
+    scope = scope.replacingOccurrences(of: "blå", with: "")
+    scope = scope.replacingOccurrences(of: ";", with: "")
+    scope = scope.replacingOccurrences(of: " ", with: "")
+    return scope.components(separatedBy: ",")
   }
   
   /**
    * Setup view properties
    */
-  private func setupView() {
+  fileprivate func setupView() {
     view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    tableView.separatorInset = UIEdgeInsetsZero
+    tableView.separatorInset = UIEdgeInsets.zero
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 130
   }
@@ -196,13 +196,13 @@ class BusFilterVC: UITableViewController {
   /**
    * Creates a deviation row.
    */
-  private func createDeviationRow(indexPath: NSIndexPath) -> UITableViewCell {
+  fileprivate func createDeviationRow(_ indexPath: IndexPath) -> UITableViewCell {
     let key = sortedKeys[indexPath.row]
     let deviations = organisedDeviations[key]
     let countText = (deviations!.count > 1) ? "\(deviations!.count) avikelser" : "1 avvikelse"
     
-    let cell = tableView.dequeueReusableCellWithIdentifier(
-      "DeviationRow", forIndexPath: indexPath)
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: "DeviationRow", for: indexPath)
     if key == "STOPS" {
       cell.textLabel?.text = "Avvikelser för hållplatser"
       cell.imageView?.image = nil
@@ -218,10 +218,10 @@ class BusFilterVC: UITableViewController {
   /**
    * Creates a situation row.
    */
-  private func createSituationRow(indexPath: NSIndexPath) -> UITableViewCell {
+  fileprivate func createSituationRow(_ indexPath: IndexPath) -> UITableViewCell {
     let situation = situations[indexPath.row]
-    let cell = tableView.dequeueReusableCellWithIdentifier(
-      "SituationRow", forIndexPath: indexPath) as! ReportSituationRow
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: "SituationRow", for: indexPath) as! ReportSituationRow
     cell.titleLabel.text = situation.trafficLine
     cell.messageLabel.text = situation.message
     return cell
@@ -230,14 +230,14 @@ class BusFilterVC: UITableViewController {
   /**
    * Check if both deviations and situations are present.
    */
-  private func hasBothDeviationsAndSituations() -> Bool {
+  fileprivate func hasBothDeviationsAndSituations() -> Bool {
     return (deviations.count > 0 && situations.count > 0)
   }
   
   /**
    * Create the header title.
    */
-  private func createHeaderTitle(section: Int) -> String {
+  fileprivate func createHeaderTitle(_ section: Int) -> String {
     if hasBothDeviationsAndSituations() {
       return (section == 0) ? "Planerade störningar" : "Lokala avvikelser"
     } else {

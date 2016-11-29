@@ -20,7 +20,7 @@ class GlanceController: SmartTripIC {
    * Updates UI if no trips was found
    * for best routine.
    */
-  override func updateUINoTripsFound(bestRoutine: Dictionary<String, AnyObject>) {
+  override func updateUINoTripsFound(_ bestRoutine: Dictionary<String, AnyObject>) {
     if bestRoutine["ha"] as! Bool {
       subTitleLabel.setText("Smart vana")
     } else {
@@ -31,7 +31,7 @@ class GlanceController: SmartTripIC {
     originLabel.setText("")
     destinationLabel.setText("")
     contentGroup.setHidden(false)
-    for (index, _) in icons.enumerate() {
+    for (index, _) in icons.enumerated() {
       iconGroups[index].setHidden(true)
     }
   }
@@ -71,17 +71,17 @@ class GlanceController: SmartTripIC {
       return
     }
     // Retry after 1.5 seconds...
-    retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-      NSTimeInterval(1.5), target: self, selector: #selector(forceRefreshData),
+    retryTimer = Timer.scheduledTimer(
+      timeInterval: TimeInterval(1.5), target: self, selector: #selector(forceRefreshData),
       userInfo: nil, repeats: false)
   }
   
   /**
    * Displays an error
    */
-  override func displayError(title: String, message: String?) {
+  override func displayError(_ title: String, message: String?) {
     subTitleLabel.setText(title)
-    subTitleLabel.setTextColor(UIColor.redColor())
+    subTitleLabel.setTextColor(UIColor.red)
     isLoading = false
   }
   
@@ -91,7 +91,7 @@ class GlanceController: SmartTripIC {
   override func setLoadingUIState() {
     contentGroup.setHidden(true)
     subTitleLabel.setText("Söker resa...")
-    subTitleLabel.setTextColor(UIColor.lightGrayColor())
+    subTitleLabel.setTextColor(UIColor.lightGray)
   }
   
   /**
@@ -108,7 +108,7 @@ class GlanceController: SmartTripIC {
         } else {
           subTitleLabel.setText(bestRoutine["ti"] as? String)
         }
-        subTitleLabel.setTextColor(UIColor.whiteColor())
+        subTitleLabel.setTextColor(UIColor.white)
       }
     }
   }
@@ -124,7 +124,7 @@ class GlanceController: SmartTripIC {
   override func hideLiveData() {
     isLoading = false
     if let text = currentDepartureText {
-      if text.rangeOfString("Om") != nil {
+      if text.range(of: "Om") != nil {
         departureLabel.setText("Uppdaterar")
       }
     }

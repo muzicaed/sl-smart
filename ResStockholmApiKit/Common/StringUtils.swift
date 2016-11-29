@@ -14,13 +14,13 @@ class StringUtils {
    * Helper. Fixes broken UTF-8 encoding that sometimes
    * occur in the SL Api
    */
-  static func fixBrokenEncoding(str: String) -> String {
-    var fixedStr = str.stringByReplacingOccurrencesOfString("Ã¥", withString: "å")
-    fixedStr = fixedStr.stringByReplacingOccurrencesOfString("Ã¤", withString: "ä")
-    fixedStr = fixedStr.stringByReplacingOccurrencesOfString("Ã¶", withString: "ö")
-    fixedStr = fixedStr.stringByReplacingOccurrencesOfString("Ã…", withString: "Å")
-    fixedStr = fixedStr.stringByReplacingOccurrencesOfString("Ã„", withString: "Ä")
-    fixedStr = fixedStr.stringByReplacingOccurrencesOfString("Ã–", withString: "Ö")
+  static func fixBrokenEncoding(_ str: String) -> String {
+    var fixedStr = str.replacingOccurrences(of: "Ã¥", with: "å")
+    fixedStr = fixedStr.replacingOccurrences(of: "Ã¤", with: "ä")
+    fixedStr = fixedStr.replacingOccurrences(of: "Ã¶", with: "ö")
+    fixedStr = fixedStr.replacingOccurrences(of: "Ã…", with: "Å")
+    fixedStr = fixedStr.replacingOccurrences(of: "Ã„", with: "Ä")
+    fixedStr = fixedStr.replacingOccurrences(of: "Ã–", with: "Ö")
     return fixedStr
   }
 }

@@ -8,22 +8,22 @@
 
 import Foundation
 
-public class SearchTripService {
+open class SearchTripService {
   
-  private static let api = SLTravelPlannerV2Api()
+  fileprivate static let api = SLTravelPlannerV2Api()
   
   /**
    * Trip search.
    */
-  public static func tripSearch(
-    criterion: TripSearchCriterion,
-    callback: (data: [Trip], error: SLNetworkError?) -> Void) {
+  open static func tripSearch(
+    _ criterion: TripSearchCriterion,
+    callback: @escaping (_ data: [Trip], _ error: SLNetworkError?) -> Void) {
     api.tripSearch(criterion) { resTuple in
       var trips = [Trip]()
       if let data = resTuple.data {
-        if data.length == 0 {
+        if data.count == 0 {
           HttpRequestHelper.clearCache()
-          callback(data: trips, error: SLNetworkError.NoDataFound)          
+          callback(data: trips, error: SLNetworkError.noDataFound)          
           return
         }
         trips = self.convertJsonResponse(data)
@@ -37,7 +37,7 @@ public class SearchTripService {
   /**
    * Converts the raw json string into array of Trip.
    */
-  private static func convertJsonResponse(jsonDataString: NSData) -> [Trip] {
+  fileprivate static func convertJsonResponse(_ jsonDataString: Data) -> [Trip] {
     var result = [Trip]()
     let data = JSON(data: jsonDataString)
     if checkErrors(data) {
@@ -60,7 +60,7 @@ public class SearchTripService {
   /**
    * Checks if service returned error.
    */
-  private static func checkErrors(data: JSON) -> Bool {
+  fileprivate static func checkErrors(_ data: JSON) -> Bool {
     if data["TripList"]["errorCode"].string != nil {
       return true
     } else if data["StatusCode"].string != nil {
@@ -72,7 +72,7 @@ public class SearchTripService {
   /**
    * Converts json to trip object.
    */
-  private static func convertJsonToTrip(tripJson: JSON) -> Trip {
+  fileprivate static func convertJsonToTrip(_ tripJson: JSON) -> Trip {
     let tripSegments = convertJsonToSegments(tripJson["LegList"]["Leg"])
     var isValid = true
     if let val = tripJson["valid"].string {
@@ -82,13 +82,13 @@ public class SearchTripService {
       durationMin: Int(tripJson["dur"].string!)!,
       noOfChanges: Int(tripJson["chg"].string!)!,
       isValid: isValid,
-      tripSegments: tripSegments.sort({ $0.index < $1.index }))
+      tripSegments: tripSegments.sorted(by: { $0.index < $1.index }))
   }
   
   /**
    * Converts json to trip segment object.
    */
-  private static func convertJsonToSegments(segmentsJson: JSON) -> [TripSegment] {
+  fileprivate static func convertJsonToSegments(_ segmentsJson: JSON) -> [TripSegment] {
     var tripSegments = [TripSegment]()
     if segmentsJson.isExists() {
       if let segmentsArr = segmentsJson.array  {
@@ -113,7 +113,7 @@ public class SearchTripService {
   /**
    * Converts json to trip segment object.
    */
-  private static func convertJsonToTripSegment(segmentJson: JSON) -> TripSegment {
+  fileprivate static func convertJsonToTripSegment(_ segmentJson: JSON) -> TripSegment {
     let origin = convertJsonToLocation(segmentJson["Origin"])
     let destination = convertJsonToLocation(segmentJson["Destination"])
     
@@ -151,7 +151,7 @@ public class SearchTripService {
   /**
    * Converts json to location object.
    */
-  private static func convertJsonToLocation(locationJson: JSON) -> Location {
+  fileprivate static func convertJsonToLocation(_ locationJson: JSON) -> Location {
     return Location(
       id: locationJson["id"].string,
       name: locationJson["name"].string,
@@ -167,7 +167,7 @@ public class SearchTripService {
    * Extracts departure date/time and arriaval date/time.
    * Uses realtime data if available.
    */
-  private static func extractTimeDate(segment: JSON)
+  fileprivate static func extractTimeDate(_ segment: JSON)
     -> (isRealtime: Bool, depDate: String, depTime: String, arrDate: String, arrTime: String) {
       
       var isRealtime = false
@@ -200,13 +200,13 @@ public class SearchTripService {
   /**
    * Extract RTU Messages (trip warnings).
    */
-  private static func extractRtuMessages(data: JSON) -> String {
+  fileprivate static func extractRtuMessages(_ data: JSON) -> String {
     var result = ""
     if let messages = data.array {
       for mess in messages {
         result += mess["$"].string! + "\n\n"
       }
-      result = result.substringToIndex(result.endIndex.predecessor().predecessor())
+      result = result.substring(to: <#T##Collection corresponding to your index##Collection#>.index(before: result.characters.index(before: result.endIndex)))
     } else {
       result = data["$"].string!
     }

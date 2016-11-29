@@ -10,32 +10,32 @@ import Foundation
 
 class DeviationsService {
   
-  private static let api = SLDeviationsApi()
+  fileprivate static let api = SLDeviationsApi()
   
   /**
    * Fetch deviations data
    */
   static func fetchInformation(
-    callback: (data: [Deviation], error: SLNetworkError?) -> Void) {
+    _ callback: (_ data: [Deviation], _ error: SLNetworkError?) -> Void) {
       api.fetchInformation { resTuple -> Void in
         var deviations = [Deviation]()
         if let data = resTuple.data {
-          if data.length == 0 {
+          if data.count == 0 {
             HttpRequestHelper.clearCache()
-            callback(data: deviations, error: SLNetworkError.NoDataFound)
+            callback(deviations, SLNetworkError.noDataFound)
             return
           }
           
           deviations = self.convertJsonResponse(data)
         }
-        callback(data: deviations, error: resTuple.error)
+        callback(deviations, resTuple.error)
       }
   }
   
   /**
    * Converts the raw json string into array of Deviation.
    */
-  private static func convertJsonResponse(data: NSData) -> [Deviation] {
+  fileprivate static func convertJsonResponse(_ data: Data) -> [Deviation] {
     var deviations = [Deviation]()
     let jsonData = JSON(data: data)
     if jsonData["ResponseData"].isExists() {
@@ -52,7 +52,7 @@ class DeviationsService {
   /**
    * Converts the raw json string into a Deviation
    */
-  private static func convertDeviationJson(json: JSON) -> Deviation {
+  fileprivate static func convertDeviationJson(_ json: JSON) -> Deviation {
     return Deviation(
       scope: json["Scope"].string!,
       title: json["Header"].string!,

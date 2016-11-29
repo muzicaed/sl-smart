@@ -30,9 +30,9 @@ class HereToThereCell: UICollectionViewCell {
    */
   func setup() {
     layer.masksToBounds = false
-    layer.shadowOffset = CGSizeMake(1, 1)
+    layer.shadowOffset = CGSize(width: 1, height: 1)
     layer.shadowRadius = 1.5
-    layer.shadowColor = UIColor.blackColor().CGColor
+    layer.shadowColor = UIColor.black.cgColor
     layer.shadowOpacity = 0.10
     layer.cornerRadius = 4.0
     clipsToBounds = false
@@ -42,7 +42,7 @@ class HereToThereCell: UICollectionViewCell {
   /**
    * Set the from location text.
    */
-  func setFromLocationText(location: Location) {
+  func setFromLocationText(_ location: Location) {
     hereToThereLabel.text = "Från \(location.name)"
     wrapperView.accessibilityLabel = "Ta mig till valfri plats. Från \(location.name)"
   }

@@ -9,19 +9,19 @@
 import Foundation
 import CoreLocation
 
-public class StopsStore {
+open class StopsStore {
   
-  private let StaticStopList = "StaticStopList"
-  private let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
-  private var cachedStops = [String: StaticStop]()
+  fileprivate let StaticStopList = "StaticStopList"
+  fileprivate let defaults = UserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
+  fileprivate var cachedStops = [String: StaticStop]()
   
   // Singelton pattern
-  public static let sharedInstance = StopsStore()
+  open static let sharedInstance = StopsStore()
   
   /**
    * Gets static stop on id
    */
-  public func getOnId(id: String) -> StaticStop? {
+  open func getOnId(_ id: String) -> StaticStop? {
     let stops = getStops()
     if let stop = stops[convertId(id)] {
       return stop
@@ -33,7 +33,7 @@ public class StopsStore {
   /**
    * Gets all static stops in a flat list.
    */
-  public func getStops() -> [String: StaticStop] {
+  open func getStops() -> [String: StaticStop] {
     if cachedStops.count == 0 {
       cachedStops = retrieveStaticStopsFromStore()
     }
@@ -45,11 +45,11 @@ public class StopsStore {
    * Loads static site data from json file.
    * Should only be triggred as part of migration.
    */
-  public func loadJson() {
-    let bundle = NSBundle.mainBundle()
+  open func loadJson() {
+    let bundle = Bundle.main
     do {
-      if let path = bundle.pathForResource("stop", ofType: "json") {
-        let data = try NSData(contentsOfFile: path,options: .DataReadingMappedIfSafe)
+      if let path = bundle.path(forResource: "stop", ofType: "json") {
+        let data = try Data(contentsOf: URL(fileURLWithPath: path),options: .mappedIfSafe)
         convertData(data)
         writeStaticStopsToStore()
       } else {
@@ -66,9 +66,9 @@ public class StopsStore {
   /**
    * Converts id to StopPointNumber
    */
-  private func convertId(id: String) -> String {
+  fileprivate func convertId(_ id: String) -> String {
     if id.characters.count > 5 {
-      let sub = id.substringFromIndex(id.startIndex.advancedBy(4))
+      let sub = id.substring(from: id.characters.index(id.startIndex, offsetBy: 4))
       let newId = String(Int(sub)!) // Remove leading zeros
       return newId
     }
@@ -78,7 +78,7 @@ public class StopsStore {
   /**
    * Converts json data to dictionary.
    */
-  private func convertData(data: NSData) {
+  fileprivate func convertData(_ data: Data) {
     let jsonData = JSON(data: data)
     if jsonData["ResponseData"].isExists() {
       if let stopsJson = jsonData["ResponseData"]["Result"].array {
@@ -99,7 +99,7 @@ public class StopsStore {
   /**
    * Creates a CLLocation from Stop Json lat/long.
    */
-  private func createLocation(stopJson: JSON) -> CLLocation {
+  fileprivate func createLocation(_ stopJson: JSON) -> CLLocation {
     return CLLocation(
       latitude: Double(stopJson["LocationNorthingCoordinate"].string!)!,
       longitude: Double(stopJson["LocationEastingCoordinate"].string!)!)
@@ -108,9 +108,9 @@ public class StopsStore {
   /**
    * Retrive "StaticStopList" from data store
    */
-  private func retrieveStaticStopsFromStore() -> [String: StaticStop] {
-    if let unarchivedObject = defaults.objectForKey(StaticStopList) as? NSData {
-      if let stops = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [String: StaticStop] {
+  fileprivate func retrieveStaticStopsFromStore() -> [String: StaticStop] {
+    if let unarchivedObject = defaults.object(forKey: StaticStopList) as? Data {
+      if let stops = NSKeyedUnarchiver.unarchiveObject(with: unarchivedObject) as? [String: StaticStop] {
         return stops
       }
       
@@ -121,15 +121,15 @@ public class StopsStore {
   /**
    * Store static stops lists to "StaticStopList" in data store
    */
-  private func writeStaticStopsToStore() {
-    let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(cachedStops)
-    defaults.setObject(archivedObject, forKey: StaticStopList)
+  fileprivate func writeStaticStopsToStore() {
+    let archivedObject = NSKeyedArchiver.archivedData(withRootObject: cachedStops)
+    defaults.set(archivedObject, forKey: StaticStopList)
   }
   
   /**
    * Creates trip type enum based on JSON StopAreaTypeCode
    */
-  private func createTripType(typeCode: String) -> TripType {
+  fileprivate func createTripType(_ typeCode: String) -> TripType {
     switch typeCode {
     case "BUSTERM":
       return TripType.Bus

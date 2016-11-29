@@ -10,17 +10,17 @@ import Foundation
 
 class ReceiptManager {
   
-  static private let secret = "b45d638c835947888d7d9a6204295b3c"
-  static private let appStoreReceiptURL = NSBundle.mainBundle().appStoreReceiptURL
-  static private let errorDate = NSDate(timeIntervalSince1970: 0)
+  static fileprivate let secret = "b45d638c835947888d7d9a6204295b3c"
+  static fileprivate let appStoreReceiptURL = Bundle.main.appStoreReceiptURL
+  static fileprivate let errorDate = Date(timeIntervalSince1970: 0)
   
   /**
    * Validate purchase receipt
    */
-  static func validateReceipt(onCompletion: (Bool, NSDate) -> Void) {
+  static func validateReceipt(_ onCompletion: @escaping (Bool, Date) -> Void) {
     
     validateReceiptInternal(
-      appStoreReceiptURL, isProd: true) { (statusCode: Int?, date: NSDate) -> Void in
+      appStoreReceiptURL, isProd: true) { (statusCode: Int?, date: Date) -> Void in
         guard let status = statusCode else {
           onCompletion(false, date)
           return
@@ -28,7 +28,7 @@ class ReceiptManager {
         
         if status == 21007 {
           self.validateReceiptInternal(
-            appStoreReceiptURL, isProd: false) { (statusCode: Int?, date: NSDate) -> Void in
+            appStoreReceiptURL, isProd: false) { (statusCode: Int?, date: Date) -> Void in
               guard let statusValue = statusCode else {
                 onCompletion(false, date)
                 return
@@ -56,17 +56,17 @@ class ReceiptManager {
   /**
   * Get receipt data
   */
-  static private func receiptData(appStoreReceiptURL : NSURL?) -> NSData? {
+  static fileprivate func receiptData(_ appStoreReceiptURL : URL?) -> Data? {
     
     guard let receiptURL = appStoreReceiptURL,
-      receipt = NSData(contentsOfURL: receiptURL) else {
+      let receipt = try? Data(contentsOf: receiptURL) else {
         return nil
     }
     
     do {
-      let receiptData = receipt.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+      let receiptData = receipt.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
       let requestContents = ["receipt-data": receiptData, "password": secret]
-      let requestData = try NSJSONSerialization.dataWithJSONObject(requestContents, options: [])
+      let requestData = try JSONSerialization.data(withJSONObject: requestContents, options: [])
       return requestData
     }
     catch {
@@ -77,31 +77,31 @@ class ReceiptManager {
   /**
    * Perform validation
    */
-  static private func validateReceiptInternal(
-    appStoreReceiptURL : NSURL?, isProd: Bool , onCompletion: (Int?, NSDate) -> Void) {
+  static fileprivate func validateReceiptInternal(
+    _ appStoreReceiptURL : URL?, isProd: Bool , onCompletion: @escaping (Int?, Date) -> Void) {
       
       let serverURL = isProd ? "https://buy.itunes.apple.com/verifyReceipt" : "https://sandbox.itunes.apple.com/verifyReceipt"
       
       guard let receiptData = receiptData(appStoreReceiptURL),
-        url = NSURL(string: serverURL)  else {
+        let url = URL(string: serverURL)  else {
           onCompletion(nil, errorDate)
           return
       }
       
-      let request = NSMutableURLRequest(URL: url)
-      request.HTTPMethod = "POST"
-      request.HTTPBody = receiptData
+      let request = NSMutableURLRequest(url: url)
+      request.httpMethod = "POST"
+      request.httpBody = receiptData
       
-      let task = NSURLSession.sharedSession().dataTaskWithRequest(request,
+      let task = URLSession.shared.dataTask(with: request,
         completionHandler: {data, response, error -> Void in
           
-          guard let data = data where error == nil else {
+          guard let data = data, error == nil else {
             onCompletion(nil, errorDate)
             return
           }
           
           do {
-            let json = try NSJSONSerialization.JSONObjectWithData(data, options:[])
+            let json = try JSONSerialization.jsonObject(with: data, options:[])
             guard let statusCode = json["status"] as? Int else {
               onCompletion(nil, errorDate)
               return
@@ -112,7 +112,7 @@ class ReceiptManager {
               if let reciepts = json["latest_receipt_info"] as? Array<[String: String]> {
                 if let reciept = reciepts.last {
                   if let timeStr = reciept["expires_date_ms"] {
-                    date = NSDate(timeIntervalSince1970: Double(timeStr)! / 1000)
+                    date = Date(timeIntervalSince1970: Double(timeStr)! / 1000)
                   }
                 }
               }

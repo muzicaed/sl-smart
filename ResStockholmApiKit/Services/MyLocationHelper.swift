@@ -9,21 +9,21 @@
 import Foundation
 import CoreLocation
 
-public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
+open class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   
-  public static let sharedInstance = MyLocationHelper()
-  public let locationManager = CLLocationManager()
-  public var currentLocation: CLLocation?
-  public var currentStreet: String?
-  public var callback: ((CLLocation) -> Void)?
-  public var isStarted = false
+  open static let sharedInstance = MyLocationHelper()
+  open let locationManager = CLLocationManager()
+  open var currentLocation: CLLocation?
+  open var currentStreet: String?
+  open var callback: ((CLLocation) -> Void)?
+  open var isStarted = false
   
   override public init() {
     super.init()
     locationManager.delegate = self
     if CLLocationManager.locationServicesEnabled() {
       if isAllowed() {
-        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
           startLocationManager()
         } else {
           locationManager.requestWhenInUseAuthorization()
@@ -35,10 +35,10 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   /**
    * Request a force updat of current location.
    */
-  public func requestLocationUpdate(callback: ((location: CLLocation) -> ())?) {
+  open func requestLocationUpdate(_ callback: ((_ location: CLLocation) -> ())?) {
     locationManager.requestLocation()    
     if let location = currentLocation {
-      callback?(location: location)
+      callback?(location)
       self.callback = nil
       return
     }
@@ -46,8 +46,8 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
     self.callback = callback
   }
   
-  public func getCurrentLocation() -> Location? {
-    if let loc = currentLocation, street = currentStreet {
+  open func getCurrentLocation() -> Location? {
+    if let loc = currentLocation, let street = currentStreet {
       return Location(
         id: nil,
         name: street, type: "Address",
@@ -62,24 +62,24 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   /**
   * On location update
   */
-  public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+  open func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     
-    let sortedLocations = locations.sort {$0.timestamp.timeIntervalSince1970 > $1.timestamp.timeIntervalSince1970}
+    let sortedLocations = locations.sorted {$0.timestamp.timeIntervalSince1970 > $1.timestamp.timeIntervalSince1970}
     currentLocation = sortedLocations[0]
     callback?(currentLocation!)
     callback = nil
     updateAddressForCurrentLocation()
   }
   
-  public func locationManager(
-    manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-      if status == .NotDetermined {
+  open func locationManager(
+    _ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+      if status == .notDetermined {
         return
       }
       
-      if status == .AuthorizedWhenInUse && !isStarted {
+      if status == .authorizedWhenInUse && !isStarted {
         startLocationManager()
-      } else if status == .Denied {
+      } else if status == .denied {
         isStarted = false
       }
   }
@@ -87,7 +87,7 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   /**
    * On error
    */
-  public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+  open func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     if error.code != 0 {
       isStarted = false
     }
@@ -96,8 +96,8 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   /**
    * Starts the location manager
    */
-  public func startLocationManager() {
-    if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+  open func startLocationManager() {
+    if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
       locationManager.pausesLocationUpdatesAutomatically = true
       locationManager.desiredAccuracy = 25
       locationManager.distanceFilter = 25
@@ -111,7 +111,7 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   /**
    * Get address for current location
    */
-  private func updateAddressForCurrentLocation() {
+  fileprivate func updateAddressForCurrentLocation() {
     CLGeocoder().reverseGeocodeLocation(currentLocation!) { (placemarks, error) -> Void in
       if error != nil {
         return
@@ -134,10 +134,10 @@ public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   /**
    * Checks if Location features are allowed.
    */
-  private func isAllowed() -> Bool {
+  fileprivate func isAllowed() -> Bool {
     return  (
-      CLLocationManager.authorizationStatus() != .Restricted &&
-        CLLocationManager.authorizationStatus() != .Denied
+      CLLocationManager.authorizationStatus() != .restricted &&
+        CLLocationManager.authorizationStatus() != .denied
     )
   }
 }

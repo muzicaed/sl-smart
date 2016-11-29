@@ -14,7 +14,7 @@ class WatchService {
   /**
    * Request routine trips
    */
-  static func requestRoutineTrips(callback: (Dictionary<String, AnyObject>) -> Void) {
+  static func requestRoutineTrips(_ callback: @escaping (Dictionary<String, AnyObject>) -> Void) {
     var response = Dictionary<String, AnyObject>()
     RoutineService.findRoutineTrip({ routineTrips in
       if let bestRoutineTrip = routineTrips.first {
@@ -26,7 +26,7 @@ class WatchService {
         
         var otherRoutines = [Dictionary<String, AnyObject>]()
         if routineTrips.count > 1 {
-          for (index, routineTrip) in routineTrips.enumerate() {
+          for (index, routineTrip) in routineTrips.enumerated() {
             if index != 0 {
               otherRoutines.append(routineTrip.watchTransferData(0))
             }
@@ -48,11 +48,11 @@ class WatchService {
    * Search for trips
    */
   static func searchTrips(
-    routineTripId: String,
-    callback: (Dictionary<String, AnyObject>) -> Void) {
+    _ routineTripId: String,
+    callback: @escaping (Dictionary<String, AnyObject>) -> Void) {
       
       var response: Dictionary<String, AnyObject> = [
-        "error": false
+        "error": false as AnyObject
       ]
       
       if let routineTrip = RoutineTripsStore.sharedInstance.retriveRoutineTripOnId(routineTripId) {
@@ -63,8 +63,8 @@ class WatchService {
           score: ScorePostHelper.BestTapCountScore)
         
         let crit = routineTrip.criterions.copy() as! TripSearchCriterion
-        crit.date = DateUtils.dateAsDateString(NSDate())
-        crit.time = DateUtils.dateAsTimeString(NSDate())
+        crit.date = DateUtils.dateAsDateString(Date())
+        crit.time = DateUtils.dateAsTimeString(Date())
         
         SearchTripService.tripSearch(crit,
           callback: { resTuple in
@@ -82,7 +82,7 @@ class WatchService {
         })
         
       } else {
-        response["error"] = true
+        response["error"] = true as AnyObject?
         callback(response)
       }
   }
@@ -90,14 +90,14 @@ class WatchService {
   /**
    * Search last trip made on phone.
    */
-  static func lastTripSearch(callback: (Dictionary<String, AnyObject>) -> Void) {
+  static func lastTripSearch(_ callback: @escaping (Dictionary<String, AnyObject>) -> Void) {
     let crit = SearchCriterionStore.sharedInstance.retrieveSearchCriterions()
     var response: Dictionary<String, AnyObject> = [
-      "error": false
+      "error": false as AnyObject
     ]
     
     if crit.origin == nil || crit.dest == nil {
-      response["trips"] = [Dictionary<String, AnyObject>]()
+      response["trips"] = [Dictionary<String, AnyObject>]() as AnyObject?
       callback(response)
       return
     }

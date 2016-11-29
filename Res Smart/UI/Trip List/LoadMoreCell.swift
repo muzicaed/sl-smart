@@ -14,7 +14,7 @@ class LoadMoreCell: UITableViewCell {
   @IBOutlet weak var spinnerView: UIActivityIndicatorView!
   @IBOutlet weak var loadButton: UIButton!
   
-  func displaySpinner(alpha: CGFloat) {
+  func displaySpinner(_ alpha: CGFloat) {
     spinnerView.alpha = alpha
     loadButton.alpha = 1.0 - (alpha)
     if spinnerView.alpha >= 1.0 {

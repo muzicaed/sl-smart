@@ -9,16 +9,16 @@
 import Foundation
 import CoreLocation
 
-public class Location: NSObject, NSCoding, NSCopying {
+open class Location: NSObject, NSCoding, NSCopying {
   
-  public let siteId: String?
-  public let name: String
-  public let cleanName: String
-  public let area: String
-  public let type: LocationType
-  public let lat: String
-  public let lon: String
-  public let location: CLLocation
+  open let siteId: String?
+  open let name: String
+  open let cleanName: String
+  open let area: String
+  open let type: LocationType
+  open let lat: String
+  open let lon: String
+  open let location: CLLocation
   
   /**
    * Standard init
@@ -81,7 +81,7 @@ public class Location: NSObject, NSCoding, NSCopying {
   /**
    * Creates a current location instance.
    */
-  public static func createCurrentLocation() -> Location {
+  open static func createCurrentLocation() -> Location {
     return Location(id: nil, name: "Nuvarande plats", type: "Current", lat: "0.0", lon: "0.0")
   }
   
@@ -89,20 +89,20 @@ public class Location: NSObject, NSCoding, NSCopying {
    * Extracts the name and area from a search result name.
    * Eg. "Spånga (Stockholm)" = "Spånga" and "Stockholm"
    */
-  private static func extractNameAndArea(
-    nameString: String, type: LocationType) -> (name: String, area: String) {
+  fileprivate static func extractNameAndArea(
+    _ nameString: String, type: LocationType) -> (name: String, area: String) {
     
     if type == .Station {
-      let res = nameString.rangeOfString("(", options: NSStringCompareOptions.BackwardsSearch)
+      let res = nameString.range(of: "(", options: NSString.CompareOptions.backwards)
       if let res = res {
-        let name = nameString.substringToIndex(res.startIndex)
-          .stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let name = nameString.substring(to: res.lowerBound)
+          .trimmingCharacters(in: CharacterSet.whitespaces)
         
-        let area = nameString.substringFromIndex(res.startIndex)
-          .stringByReplacingOccurrencesOfString("(", withString: "",
-            options: NSStringCompareOptions.LiteralSearch, range: nil)
-          .stringByReplacingOccurrencesOfString(")", withString: "",
-                                                options: NSStringCompareOptions.LiteralSearch, range: nil)
+        let area = nameString.substring(from: res.lowerBound)
+          .replacingOccurrences(of: "(", with: "",
+            options: NSString.CompareOptions.literal, range: nil)
+          .replacingOccurrences(of: ")", with: "",
+                                                options: NSString.CompareOptions.literal, range: nil)
         
         return (name, "\(area) (Hållplats)")
       }
@@ -111,8 +111,8 @@ public class Location: NSObject, NSCoding, NSCopying {
     let nameSegments = nameString.characters.split{$0 == ","}.map(String.init)
     if nameSegments.count > 1 {
       return (
-        nameSegments[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()),
-        nameSegments[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + " (Adress)"
+        nameSegments[0].trimmingCharacters(in: CharacterSet.whitespaces),
+        nameSegments[1].trimmingCharacters(in: CharacterSet.whitespaces) + " (Adress)"
       )
     }
     return (nameString, "")
@@ -122,11 +122,11 @@ public class Location: NSObject, NSCoding, NSCopying {
   /**
    * Cleans name (removes any additional info from name)
    */
-  private static func createCleanName(nameString: String) -> String {
-    let res = nameString.rangeOfString("(", options: NSStringCompareOptions.BackwardsSearch)
+  fileprivate static func createCleanName(_ nameString: String) -> String {
+    let res = nameString.range(of: "(", options: NSString.CompareOptions.backwards)
     if let res = res {
-      return nameString.substringToIndex(res.startIndex)
-        .stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+      return nameString.substring(to: res.lowerBound)
+        .trimmingCharacters(in: CharacterSet.whitespaces)
     }
     return nameString
   }
@@ -135,7 +135,7 @@ public class Location: NSObject, NSCoding, NSCopying {
    * Converts Xpos & Ypos returned from some SL Services
    * into true lat/lon values
    */
-  private static func convertCoordinateFormat(coordinate: String) -> String {
+  fileprivate static func convertCoordinateFormat(_ coordinate: String) -> String {
     if !coordinate.characters.contains(".") {
       let index = 2
       return String(coordinate.characters.prefix(index)) +
@@ -147,10 +147,10 @@ public class Location: NSObject, NSCoding, NSCopying {
   /**
    * Ensures the string is UTF8
    */
-  private static func ensureUTF8(string: String) -> String {
+  fileprivate static func ensureUTF8(_ string: String) -> String {
     var newString = string
-    let data = newString.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)!
-    let convertedName = NSString(data: data, encoding: NSUTF8StringEncoding)
+    let data = newString.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)!
+    let convertedName = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
     if let convName = convertedName {
       newString = convName as String
     }
@@ -164,13 +164,13 @@ public class Location: NSObject, NSCoding, NSCopying {
    * Decoder init
    */
   required convenience public init?(coder aDecoder: NSCoder) {
-    let siteId = aDecoder.decodeObjectForKey(PropertyKey.siteId) as! String
-    let name = aDecoder.decodeObjectForKey(PropertyKey.name) as! String
-    let cleanName = aDecoder.decodeObjectForKey(PropertyKey.cleanName) as! String
-    let area = aDecoder.decodeObjectForKey(PropertyKey.area) as! String
-    let type = aDecoder.decodeObjectForKey(PropertyKey.type) as! String
-    let lat = aDecoder.decodeObjectForKey(PropertyKey.lat) as! String
-    let lon = aDecoder.decodeObjectForKey(PropertyKey.lon) as! String
+    let siteId = aDecoder.decodeObject(forKey: PropertyKey.siteId) as! String
+    let name = aDecoder.decodeObject(forKey: PropertyKey.name) as! String
+    let cleanName = aDecoder.decodeObject(forKey: PropertyKey.cleanName) as! String
+    let area = aDecoder.decodeObject(forKey: PropertyKey.area) as! String
+    let type = aDecoder.decodeObject(forKey: PropertyKey.type) as! String
+    let lat = aDecoder.decodeObject(forKey: PropertyKey.lat) as! String
+    let lon = aDecoder.decodeObject(forKey: PropertyKey.lon) as! String
     
     self.init(
       id: siteId, name: name, cleanName: cleanName,
@@ -181,14 +181,14 @@ public class Location: NSObject, NSCoding, NSCopying {
   /**
    * Encode this object
    */
-  public func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodeObject(siteId, forKey: PropertyKey.siteId)
-    aCoder.encodeObject(name, forKey: PropertyKey.name)
-    aCoder.encodeObject(cleanName, forKey: PropertyKey.cleanName)
-    aCoder.encodeObject(area, forKey: PropertyKey.area)
-    aCoder.encodeObject(type.rawValue, forKey: PropertyKey.type)
-    aCoder.encodeObject(lat, forKey: PropertyKey.lat)
-    aCoder.encodeObject(lon, forKey: PropertyKey.lon)
+  open func encode(with aCoder: NSCoder) {
+    aCoder.encode(siteId, forKey: PropertyKey.siteId)
+    aCoder.encode(name, forKey: PropertyKey.name)
+    aCoder.encode(cleanName, forKey: PropertyKey.cleanName)
+    aCoder.encode(area, forKey: PropertyKey.area)
+    aCoder.encode(type.rawValue, forKey: PropertyKey.type)
+    aCoder.encode(lat, forKey: PropertyKey.lat)
+    aCoder.encode(lon, forKey: PropertyKey.lon)
   }
   
   struct PropertyKey {
@@ -206,7 +206,7 @@ public class Location: NSObject, NSCoding, NSCopying {
   /**
    * Copy self
    */
-  public func copyWithZone(zone: NSZone) -> AnyObject {
+  open func copy(with zone: NSZone?) -> Any {
     return Location(
       id: siteId!, name: name, cleanName: cleanName,
       area: area, type: LocationType(rawValue: type.rawValue)!,
@@ -220,7 +220,7 @@ public enum LocationType: String {
   case Current = "Current"
   
   init?(fromShort: String) {
-    switch fromShort.uppercaseString {
+    switch fromShort.uppercased() {
     case "ST":
       self = .Station
     case "ADR":

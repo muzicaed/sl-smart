@@ -31,13 +31,13 @@ class TripListVC: UITableViewController {
   var isLoading = true
   var isLoadingMoreBlocked = false
   var isLoadingMore = false
-  var refreshTimer: NSTimer?
+  var refreshTimer: Timer?
   var headerHight = CGFloat(25)
   
   var loadMoreEarlier: LoadMoreCell?
   var loadMoreLater: LoadMoreCell?
   
-  let loadedTime = NSDate()
+  let loadedTime = Date()
   var firstTime = true
   
   /**
@@ -46,12 +46,12 @@ class TripListVC: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = StyleHelper.sharedInstance.background
-    NSNotificationCenter.defaultCenter().addObserver(
+    NotificationCenter.default.addObserver(
       self, selector: #selector(didBecomeActive),
-      name: UIApplicationDidBecomeActiveNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(
+      name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    NotificationCenter.default.addObserver(
       self, selector: #selector(didBecomeInactive),
-      name: UIApplicationWillResignActiveNotification, object: nil)
+      name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
     
     handleMakeRoutineButton()
   }
@@ -59,7 +59,7 @@ class TripListVC: UITableViewController {
   /**
    * View about to appear
    */
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     isLoadingMoreBlocked = false
     startRefreshTimmer()
@@ -75,7 +75,7 @@ class TripListVC: UITableViewController {
   /**
    * View about to disappear
    */
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     stopRefreshTimmer()
   }
@@ -84,9 +84,9 @@ class TripListVC: UITableViewController {
    * Returned to the app.
    */
   func didBecomeActive() {
-    let now = NSDate()
-    if now.timeIntervalSinceDate(loadedTime) > (60 * 60) { // 1 hour
-      navigationController?.popToRootViewControllerAnimated(false)
+    let now = Date()
+    if now.timeIntervalSince(loadedTime) > (60 * 60) { // 1 hour
+      navigationController?.popToRootViewController(animated: false)
       return
     }
     refreshUI()
@@ -105,8 +105,8 @@ class TripListVC: UITableViewController {
    */
   func startRefreshTimmer() {
     stopRefreshTimmer()
-    self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(
-      15, target: self, selector: #selector(refreshUI), userInfo: nil, repeats: true)
+    self.refreshTimer = Timer.scheduledTimer(
+      timeInterval: 15, target: self, selector: #selector(refreshUI), userInfo: nil, repeats: true)
   }
   
   /**
@@ -127,18 +127,18 @@ class TripListVC: UITableViewController {
   /**
    * Unwind (back) to this view.
    */
-  @IBAction func unwindToTripListVC(segue: UIStoryboardSegue) {}
+  @IBAction func unwindToTripListVC(_ segue: UIStoryboardSegue) {}
   
-  @IBAction func unwindToManageRoutineTripsVC(segue: UIStoryboardSegue) {}
+  @IBAction func unwindToManageRoutineTripsVC(_ segue: UIStoryboardSegue) {}
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     isLoadingMoreBlocked = true
     if segue.identifier == showDetailsSegue {
-      let vc = segue.destinationViewController as! TripDetailsVC
+      let vc = segue.destination as! TripDetailsVC
       vc.trip = selectedTrip!
       
     } else if segue.identifier == makeRoutineSegue {
-      let vc = segue.destinationViewController as! EditRoutineTripVC
+      let vc = segue.destination as! EditRoutineTripVC
       var routine = routineTrip
       if routine == nil {
         routine = RoutineTrip()
@@ -165,7 +165,7 @@ class TripListVC: UITableViewController {
     criterions?.numTrips = 8
     
     criterions?.time = DateUtils.dateAsTimeString(
-      trip.tripSegments.first!.departureDateTime.dateByAddingTimeInterval(60))
+      trip.tripSegments.first!.departureDateTime.addingTimeInterval(60))
     loadTripData(true)
   }
   
@@ -182,7 +182,7 @@ class TripListVC: UITableViewController {
     criterions?.numTrips = 3
     
     let dateTuple = DateUtils.dateAsStringTuple(
-      trip.tripSegments.last!.arrivalDateTime.dateByAddingTimeInterval(-60))
+      trip.tripSegments.last!.arrivalDateTime.addingTimeInterval(-60))
     criterions?.date = dateTuple.date
     criterions?.time = dateTuple.time
     
@@ -194,7 +194,7 @@ class TripListVC: UITableViewController {
   /**
    * Number of sections
    */
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     if isLoading || trips.count == 0 {
       return 1
     }
@@ -205,7 +205,7 @@ class TripListVC: UITableViewController {
    * Item count for section
    */
   override func tableView(
-    tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if isLoading || trips.count == 0 {
       return 1
     }
@@ -224,7 +224,7 @@ class TripListVC: UITableViewController {
    * Create cells for each data post.
    */
   override func tableView(
-    tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if isLoading {
       return createLoadingTripCell(indexPath)
     } else if trips.count == 0 {
@@ -242,7 +242,7 @@ class TripListVC: UITableViewController {
    * Size for headers.
    */
   override func tableView(
-    tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    _ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     if isLoading || trips.count == 0  {
       return 0
     }
@@ -253,7 +253,7 @@ class TripListVC: UITableViewController {
    * Size for footers.
    */
   override func tableView(
-    tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    _ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
     return 0
   }
   
@@ -261,7 +261,7 @@ class TripListVC: UITableViewController {
    * Size for rows.
    */
   override func tableView(
-    tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    _ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     if isLoading {
       return tableView.bounds.height - 49 - 64 - 20
     } else if isLoadMoreEarlierRow(indexPath) || isLoadMoreLaterRow(indexPath) {
@@ -273,8 +273,8 @@ class TripListVC: UITableViewController {
   /**
    * User tapped a row.
    */
-  override func tableView(tableView: UITableView,
-                          didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView,
+                          didSelectRowAt indexPath: IndexPath) {
     
     if !isLoadMoreEarlierRow(indexPath) && !isLoadMoreLaterRow(indexPath) {
       let key = keys[indexPath.section]
@@ -284,19 +284,19 @@ class TripListVC: UITableViewController {
       }
       
       selectedTrip = trips[key]![rowIdx]
-      performSegueWithIdentifier(showDetailsSegue, sender: self)
+      performSegue(withIdentifier: showDetailsSegue, sender: self)
     }
   }
   
   /**
    * View for header
    */
-  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, headerHight))
-    let label = UILabel(frame: CGRectMake(0, 0, tableView.frame.size.width, headerHight))
-    label.font = UIFont.systemFontOfSize(12)
-    label.textColor = UIColor.whiteColor()
-    label.textAlignment = NSTextAlignment.Center
+  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: headerHight))
+    let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: headerHight))
+    label.font = UIFont.systemFont(ofSize: 12)
+    label.textColor = UIColor.white
+    label.textAlignment = NSTextAlignment.center
     
     if trips.count > 0 {
       let date = DateUtils.convertDateString("\(keys[section]) 00:00")
@@ -305,15 +305,15 @@ class TripListVC: UITableViewController {
     
     view.addSubview(label)
     let color = StyleHelper.sharedInstance.mainGreen
-    view.backgroundColor = color.colorWithAlphaComponent(0.95)
+    view.backgroundColor = color.withAlphaComponent(0.95)
     return view
   }
   
   /**
    * Green highlight on selected row.
    */
-  override func tableView(tableView: UITableView,
-                          willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView,
+                          willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     let bgColorView = UIView()
     bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
     cell.selectedBackgroundView = bgColorView    
@@ -325,7 +325,7 @@ class TripListVC: UITableViewController {
    * On scroll
    * Will check if we scrolled to bottom
    */
-  override func scrollViewDidScroll(scrollView: UIScrollView) {
+  override func scrollViewDidScroll(_ scrollView: UIScrollView) {
     if scrollView.contentSize.height > 100 {
       let bottomEdge = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.bounds.height
       var overflow = scrollView.contentOffset.y - bottomEdge
@@ -351,14 +351,14 @@ class TripListVC: UITableViewController {
    * collection of time table data.
    * TODO: Refactoring
    */
-  private func loadTripData(shouldAppend: Bool) {
+  fileprivate func loadTripData(_ shouldAppend: Bool) {
     if let criterions = self.criterions {
       NetworkActivity.displayActivityIndicator(true)
       criterions.numTrips = (criterions.searchForArrival) ? 4 : criterions.numTrips
       SearchTripService.tripSearch(
         criterions, callback: { resTuple in
           NetworkActivity.displayActivityIndicator(false)
-          dispatch_async(dispatch_get_main_queue()) {
+          DispatchQueue.main.async {
             if resTuple.error != nil {
               self.showNetworkErrorAlert()
               self.isLoading = false
@@ -389,10 +389,10 @@ class TripListVC: UITableViewController {
   /**
    * Appends search result to dictionary
    */
-  private func appendToDictionary(tripsArr: [Trip], shouldAppend: Bool) {
+  fileprivate func appendToDictionary(_ tripsArr: [Trip], shouldAppend: Bool) {
     var newTripsArr = tripsArr
     if !shouldAppend {
-      newTripsArr = newTripsArr.reverse()
+      newTripsArr = newTripsArr.reversed()
     }
     for trip in newTripsArr {
       let destDateString = DateUtils.dateAsDateString(trip.tripSegments.first!.departureDateTime)
@@ -400,14 +400,14 @@ class TripListVC: UITableViewController {
         if shouldAppend {
           keys.append(destDateString)
         } else {
-          keys.insert(destDateString, atIndex: 0)
+          keys.insert(destDateString, at: 0)
         }
         trips[destDateString] = [Trip]()
       }
       if shouldAppend {
         trips[destDateString]!.append(trip)
       } else {
-        trips[destDateString]!.insert(trip, atIndex: 0)
+        trips[destDateString]!.insert(trip, at: 0)
       }
     }
   }
@@ -416,15 +416,15 @@ class TripListVC: UITableViewController {
    * Checks if a day passed in the search result, and update
    * the search criterions in that case.
    */
-  private func updateDateCriterions() {
+  fileprivate func updateDateCriterions() {
     if trips.count > 0 {
-      let cal = NSCalendar.currentCalendar()
+      let cal = Calendar.current
       let trip = trips[keys.last!]!.last!
       
       let departDate = trip.tripSegments.last!.departureDateTime
-      let departDay = cal.ordinalityOfUnit(.Day, inUnit: .Year, forDate: departDate)
+      let departDay = (cal as NSCalendar).ordinality(of: .day, in: .year, for: departDate)
       let criterionDate = DateUtils.convertDateString("\(criterions!.date!) \(criterions!.time!)")
-      let criterionDay = cal.ordinalityOfUnit(.Day, inUnit: .Year, forDate: criterionDate)
+      let criterionDay = (cal as NSCalendar).ordinality(of: .day, in: .year, for: criterionDate)
       
       if departDay != criterionDay {
         criterions?.date = DateUtils.dateAsDateString(departDate)
@@ -435,8 +435,8 @@ class TripListVC: UITableViewController {
   /**
    * Create trip cell
    */
-  private func createTripCell(
-    indexPath: NSIndexPath) -> TripCell {
+  fileprivate func createTripCell(
+    _ indexPath: IndexPath) -> TripCell {
     let key = keys[indexPath.section]
     var idx = indexPath.row
     if indexPath.section == 0 {
@@ -447,22 +447,22 @@ class TripListVC: UITableViewController {
     
     if !trip.isValid {
       let validTuple = trip.checkInvalidSegments()
-      let cell = tableView!.dequeueReusableCellWithIdentifier(
-        cancelledCellIdentifier, forIndexPath: indexPath) as! TripCell
+      let cell = tableView!.dequeueReusableCell(
+        withIdentifier: cancelledCellIdentifier, for: indexPath) as! TripCell
       cell.setupData(trip)
       cell.tripDurationLabel.text = (validTuple.isCancelled) ? "Inställd" : "Kort bytestid"
       return cell
     }
     
     if checkInPast(trip) {
-      let cell = tableView!.dequeueReusableCellWithIdentifier(
-        pastCellIdentifier, forIndexPath: indexPath) as! TripCell
+      let cell = tableView!.dequeueReusableCell(
+        withIdentifier: pastCellIdentifier, for: indexPath) as! TripCell
       cell.setupData(trip)
       return cell
     }
     
-    let cell = tableView!.dequeueReusableCellWithIdentifier(
-      cellIdentifier, forIndexPath: indexPath) as! TripCell
+    let cell = tableView!.dequeueReusableCell(
+      withIdentifier: cellIdentifier, for: indexPath) as! TripCell
     cell.setupData(trip)
     return cell
   }
@@ -470,40 +470,40 @@ class TripListVC: UITableViewController {
   /**
    * Check if trip is in past.
    */
-  private func checkInPast(trip: Trip) -> Bool{
+  fileprivate func checkInPast(_ trip: Trip) -> Bool{
     let date = trip.tripSegments.first!.departureDateTime
-    return (NSDate().timeIntervalSince1970 > date.timeIntervalSince1970)
+    return (Date().timeIntervalSince1970 > date.timeIntervalSince1970)
   }
   
   /**
    * Create loading cell
    */
-  private func createLoadingTripCell(
-    indexPath: NSIndexPath) -> UITableViewCell {
-    return tableView!.dequeueReusableCellWithIdentifier(
-      loadingCellIdentifier, forIndexPath: indexPath)
+  fileprivate func createLoadingTripCell(
+    _ indexPath: IndexPath) -> UITableViewCell {
+    return tableView!.dequeueReusableCell(
+      withIdentifier: loadingCellIdentifier, for: indexPath)
   }
   
   /**
    * Create "No trips found" cell
    */
-  private func createNoTripsFoundCell(
-    indexPath: NSIndexPath) -> UITableViewCell {
-    return tableView!.dequeueReusableCellWithIdentifier(
-      noTripsFoundCell, forIndexPath: indexPath)
+  fileprivate func createNoTripsFoundCell(
+    _ indexPath: IndexPath) -> UITableViewCell {
+    return tableView!.dequeueReusableCell(
+      withIdentifier: noTripsFoundCell, for: indexPath)
   }
   
   /**
    * Create "Load more" cell
    */
-  private func createLoadMoreEarlierCell(
-    indexPath: NSIndexPath) -> UITableViewCell {
+  fileprivate func createLoadMoreEarlierCell(
+    _ indexPath: IndexPath) -> UITableViewCell {
     if loadMoreEarlier == nil {
-      loadMoreEarlier = tableView!.dequeueReusableCellWithIdentifier(
-        loadMoreEarlierIdentifier, forIndexPath: indexPath) as? LoadMoreCell
+      loadMoreEarlier = tableView!.dequeueReusableCell(
+        withIdentifier: loadMoreEarlierIdentifier, for: indexPath) as? LoadMoreCell
       
       loadMoreEarlier!.loadButton.addTarget(
-        self, action: #selector(loadEarlierTrips), forControlEvents: UIControlEvents.TouchUpInside)
+        self, action: #selector(loadEarlierTrips), for: UIControlEvents.touchUpInside)
     }
     
     return loadMoreEarlier!
@@ -512,15 +512,15 @@ class TripListVC: UITableViewController {
   /**
    * Create "Load more" cell
    */
-  private func createLoadMoreLaterCell(
-    indexPath: NSIndexPath) -> UITableViewCell {
+  fileprivate func createLoadMoreLaterCell(
+    _ indexPath: IndexPath) -> UITableViewCell {
     if loadMoreLater == nil {
-      loadMoreLater = tableView!.dequeueReusableCellWithIdentifier(
-        loadMoreLaterIdentifier, forIndexPath: indexPath) as? LoadMoreCell
+      loadMoreLater = tableView!.dequeueReusableCell(
+        withIdentifier: loadMoreLaterIdentifier, for: indexPath) as? LoadMoreCell
       
       loadMoreLater!.loadButton.accessibilityLabel = "Visa fler resor"
       loadMoreLater!.loadButton.addTarget(
-        self, action: #selector(loadMoreTrips), forControlEvents: UIControlEvents.TouchUpInside)
+        self, action: #selector(loadMoreTrips), for: UIControlEvents.touchUpInside)
     }
     
     return loadMoreLater!
@@ -529,28 +529,28 @@ class TripListVC: UITableViewController {
   /**
    * Show a network error alert
    */
-  private func showNetworkErrorAlert() {
+  fileprivate func showNetworkErrorAlert() {
     let networkErrorAlert = UIAlertController(
       title: "Tjänsten är otillgänglig",
       message: "Det gick inte att kontakta söktjänsten.",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     networkErrorAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: nil))
     
-    presentViewController(networkErrorAlert, animated: true, completion: nil)
+    present(networkErrorAlert, animated: true, completion: nil)
   }
   
   /**
    * Checks if row is a "load more" row.
    */
-  private func isLoadMoreEarlierRow(indexPath: NSIndexPath) -> Bool {
+  fileprivate func isLoadMoreEarlierRow(_ indexPath: IndexPath) -> Bool {
     return (indexPath.section == 0 && indexPath.row == 0)
   }
   
   /**
    * Checks if row is a "load more" row.
    */
-  private func isLoadMoreLaterRow(indexPath: NSIndexPath) -> Bool {
+  fileprivate func isLoadMoreLaterRow(_ indexPath: IndexPath) -> Bool {
     var rowCount = trips[keys[indexPath.section]]!.count
     if indexPath.section == 0 {
       rowCount = rowCount + 1
@@ -563,7 +563,7 @@ class TripListVC: UITableViewController {
   /**
    * Checks if there should be a "Make routine" buttons.
    */
-  private func handleMakeRoutineButton() {
+  fileprivate func handleMakeRoutineButton() {
     if !SubscriptionStore.sharedInstance.isSubscribed() {
       navigationItem.rightBarButtonItem = nil
       return
@@ -585,6 +585,6 @@ class TripListVC: UITableViewController {
   }
   
   deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
+    NotificationCenter.default.removeObserver(self)
   }
 }

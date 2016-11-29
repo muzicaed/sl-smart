@@ -24,7 +24,7 @@ class TripDetailsSegmentCell: UITableViewCell {
    * Set cell data.
    */
   func setData(
-    indexPath: NSIndexPath, visual: (isVisible: Bool, hasStops: Bool), trip: Trip) {
+    _ indexPath: IndexPath, visual: (isVisible: Bool, hasStops: Bool), trip: Trip) {
     
     let segment = trip.tripSegments[indexPath.section]
     let lineData = TripHelper.friendlyLineData(segment)
@@ -38,16 +38,16 @@ class TripDetailsSegmentCell: UITableViewCell {
     }
     warningLabel.text = generateWarningText(segment)
 
-    warningLabel.hidden = false
+    warningLabel.isHidden = false
     if warningLabel.text == nil {
-      warningLabel.hidden = true
+      warningLabel.isHidden = true
     } else if !segment.isWarning {
       warningLabel.textColor = UIColor(red: 39/255, green: 44/255, blue: 211/255, alpha: 1.0)
     }
     
     if segment.type == .Walk {
-      lineLabel.hidden = true
-      warningLabel.hidden = true
+      lineLabel.isHidden = true
+      warningLabel.isHidden = true
     }
     updateStops(visual)
   }
@@ -55,12 +55,12 @@ class TripDetailsSegmentCell: UITableViewCell {
   /**
    * Update state based on stops
    */
-  func updateStops(visual: (isVisible: Bool, hasStops: Bool)) {
+  func updateStops(_ visual: (isVisible: Bool, hasStops: Bool)) {
     arrowLabel.text = ""
     arrowLabel.isAccessibilityElement = false
     if visual.hasStops {
-      userInteractionEnabled = true
-      selectionStyle = .Default
+      isUserInteractionEnabled = true
+      selectionStyle = .default
       if visual.isVisible {
         arrowLabel.text = "▲"
       } else {
@@ -72,7 +72,7 @@ class TripDetailsSegmentCell: UITableViewCell {
   /**
    * Generates a summary text for segment.
    */
-  private func createSummary(segment: TripSegment) -> String {
+  fileprivate func createSummary(_ segment: TripSegment) -> String {
     if segment.type == .Walk {
       return "ca. \(segment.durationInMin) min"
     } else if segment.stops.count == 0 {
@@ -87,7 +87,7 @@ class TripDetailsSegmentCell: UITableViewCell {
   /**
    * Generates a warning text
    */
-  private func generateWarningText(segment: TripSegment) -> String? {
+  fileprivate func generateWarningText(_ segment: TripSegment) -> String? {
     var warning = (segment.rtuMessages != nil) ? segment.rtuMessages! : ""
     if segment.isCancelled {
       warning = "Inställd. " + warning

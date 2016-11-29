@@ -17,8 +17,8 @@ class SLTravelPlannerV2Api {
    * Search for trips.
    */
   func tripSearch(
-    criterions: TripSearchCriterion,
-    callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
+    _ criterions: TripSearchCriterion,
+    callback: @escaping ((data: Data?, error: SLNetworkError?)) -> Void) {
       let url = createSimpleSearchApiUrl(criterions)
       HttpRequestHelper.makeGetRequest(url) { resTuple in
         callback(resTuple)        
@@ -30,7 +30,7 @@ class SLTravelPlannerV2Api {
   /**
   * Creates api url for simple search
   */
-  private func createSimpleSearchApiUrl(criterions: TripSearchCriterion) -> String {
+  fileprivate func createSimpleSearchApiUrl(_ criterions: TripSearchCriterion) -> String {
     let criterionsUrl = criterions.generateQueryString(false)
     return urlBase + "?key=\(apiKey)\(criterionsUrl)"
   }

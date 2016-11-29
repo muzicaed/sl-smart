@@ -18,8 +18,8 @@ class SLSearchNearbyStationsApi {
    * Search for nearby stations.
    */
   func search(
-    position: CLLocation, distance: Int,
-    callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
+    _ position: CLLocation, distance: Int,
+    callback: @escaping ((data: Data?, error: SLNetworkError?)) -> Void) {
       let url = createApiUrl(position, distance: distance)
       HttpRequestHelper.makeGetRequest(url) { resTuple in
         callback(resTuple)
@@ -31,7 +31,7 @@ class SLSearchNearbyStationsApi {
   /**
   * Creates api url for nearby station search
   */
-  private func createApiUrl(position: CLLocation, distance: Int) -> String {
+  fileprivate func createApiUrl(_ position: CLLocation, distance: Int) -> String {
     var url = urlBase + "?key=\(apiKey)"
     url += "&originCoordLat=\(position.coordinate.latitude)"
     url += "&originCoordLong=\(position.coordinate.longitude)"

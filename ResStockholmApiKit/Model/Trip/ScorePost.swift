@@ -9,14 +9,14 @@
 import Foundation
 import CoreLocation
 
-public class ScorePost: NSObject, NSCoding, NSCopying {
+open class ScorePost: NSObject, NSCoding, NSCopying {
   
-  public var dayInWeek = 0
-  public var hourOfDay = 0
-  public var originId = "0"
-  public var destId = "0"
-  public var score = Float(0.0)
-  public var location: CLLocation?
+  open var dayInWeek = 0
+  open var hourOfDay = 0
+  open var originId = "0"
+  open var destId = "0"
+  open var score = Float(0.0)
+  open var location: CLLocation?
   
   /**
    * Standard init
@@ -37,12 +37,12 @@ public class ScorePost: NSObject, NSCoding, NSCopying {
   * Decoder init
   */
   required convenience public init?(coder aDecoder: NSCoder) {
-    let dayInWeek = aDecoder.decodeIntegerForKey(PropertyKey.dayInWeek)
-    let hourOfDay = aDecoder.decodeIntegerForKey(PropertyKey.hourOfDay)
-    let originId = aDecoder.decodeObjectForKey(PropertyKey.originId) as! String
-    let destId = aDecoder.decodeObjectForKey(PropertyKey.destId) as! String
-    let score = aDecoder.decodeFloatForKey(PropertyKey.score)
-    let location = aDecoder.decodeObjectForKey(PropertyKey.location) as! CLLocation?
+    let dayInWeek = aDecoder.decodeInteger(forKey: PropertyKey.dayInWeek)
+    let hourOfDay = aDecoder.decodeInteger(forKey: PropertyKey.hourOfDay)
+    let originId = aDecoder.decodeObject(forKey: PropertyKey.originId) as! String
+    let destId = aDecoder.decodeObject(forKey: PropertyKey.destId) as! String
+    let score = aDecoder.decodeFloat(forKey: PropertyKey.score)
+    let location = aDecoder.decodeObject(forKey: PropertyKey.location) as! CLLocation?
     
     self.init(
       dayInWeek: dayInWeek, hourOfDay: hourOfDay,
@@ -53,13 +53,13 @@ public class ScorePost: NSObject, NSCoding, NSCopying {
   /**
    * Encode this object
    */
-  public func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodeInteger(dayInWeek, forKey: PropertyKey.dayInWeek)
-    aCoder.encodeInteger(hourOfDay, forKey: PropertyKey.hourOfDay)
-    aCoder.encodeObject(originId, forKey: PropertyKey.originId)
-    aCoder.encodeObject(destId, forKey: PropertyKey.destId)
-    aCoder.encodeFloat(score, forKey: PropertyKey.score)
-    aCoder.encodeObject(location, forKey: PropertyKey.location)
+  open func encode(with aCoder: NSCoder) {
+    aCoder.encode(dayInWeek, forKey: PropertyKey.dayInWeek)
+    aCoder.encode(hourOfDay, forKey: PropertyKey.hourOfDay)
+    aCoder.encode(originId, forKey: PropertyKey.originId)
+    aCoder.encode(destId, forKey: PropertyKey.destId)
+    aCoder.encode(score, forKey: PropertyKey.score)
+    aCoder.encode(location, forKey: PropertyKey.location)
   }
   
   struct PropertyKey {
@@ -76,7 +76,7 @@ public class ScorePost: NSObject, NSCoding, NSCopying {
   /**
   * Copy self
   */
-  public func copyWithZone(zone: NSZone) -> AnyObject {
+  open func copy(with zone: NSZone?) -> Any {
     var locationCopy: CLLocation? = nil
     if let location = location {
       locationCopy = location.copy() as? CLLocation

@@ -26,8 +26,8 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
   /**
    * Close and terminate current trip.
    */
-  @IBAction func closeCurrentTrip(sender: UIBarButtonItem) {
-    dismissViewControllerAnimated(true, completion: nil)
+  @IBAction func closeCurrentTrip(_ sender: UIBarButtonItem) {
+    dismiss(animated: true, completion: nil)
   }
   
   // MARK: UICollectionViewController
@@ -35,8 +35,8 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
   /**
    * Create cells for each data post.
    */
-  override func collectionView(collectionView: UICollectionView,
-                               cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+  override func collectionView(_ collectionView: UICollectionView,
+                               cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
     if indexPath.row == 0 {
       return createRoutineTripCell(indexPath)
@@ -49,7 +49,7 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
   /**
    * Item count for section
    */
-  override func collectionView(collectionView: UICollectionView,
+  override func collectionView(_ collectionView: UICollectionView,
                                numberOfItemsInSection section: Int) -> Int {
     return 2
   }
@@ -57,15 +57,15 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
   /**
    * Size for items.
    */
-  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                      sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-    let screenSize = UIScreen.mainScreen().bounds.size
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                      sizeForItemAt indexPath: IndexPath) -> CGSize {
+    let screenSize = UIScreen.main.bounds.size
     if indexPath.row == 0 {
-      return CGSizeMake(screenSize.width - 20, 150)
+      return CGSize(width: screenSize.width - 20, height: 150)
     } else if indexPath.row == 1 {
-      return CGSizeMake(screenSize.width - 20, 120)
+      return CGSize(width: screenSize.width - 20, height: 120)
     }
-    return CGSizeMake(0,0)
+    return CGSize(width: 0,height: 0)
   }
   
   // MARK: Private
@@ -73,9 +73,9 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
   /**
    * Create trip cell
    */
-  private func createRoutineTripCell(indexPath: NSIndexPath) -> CurrentTripCell {
-    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(
-      "CurrentTripCell", forIndexPath: indexPath) as! CurrentTripCell
+  fileprivate func createRoutineTripCell(_ indexPath: IndexPath) -> CurrentTripCell {
+    let cell = collectionView!.dequeueReusableCell(
+      withReuseIdentifier: "CurrentTripCell", for: indexPath) as! CurrentTripCell
     if let trip = currentTrip {
       cell.setupData(trip)
     }
@@ -85,9 +85,9 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
   /**
    * Create change cell
    */
-  private func createChangeCell(indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView!.dequeueReusableCellWithReuseIdentifier(
-      "ChangeCell", forIndexPath: indexPath) as! ChangeCell
+  fileprivate func createChangeCell(_ indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView!.dequeueReusableCell(
+      withReuseIdentifier: "ChangeCell", for: indexPath) as! ChangeCell
     if isStopsLoaded && currentTrip != nil {
       //cell.setupData(currentTrip!.tripSegments[2], isOrigin: false)
     }
@@ -97,7 +97,7 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
   /**
    * Load stop data
    */
-  private func loadStops() {
+  fileprivate func loadStops() {
     /*
     for segment in currentTrip!.tripSegments {
       if let ref = segment.journyRef {
@@ -121,14 +121,14 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
   /**
    * Counts segments that are not walk segments. 
    */
-  private func coundNonWalkSegments(segments: [TripSegment]) -> Int {
+  fileprivate func coundNonWalkSegments(_ segments: [TripSegment]) -> Int {
     return segments.filter{ $0.type != .Walk }.count
   }
   
   /**
    * Setup collection view properties and layout.
    */
-  private func setupCollectionView() {
+  fileprivate func setupCollectionView() {
     let flowLayout = UICollectionViewFlowLayout()
     flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
     
@@ -140,9 +140,9 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     
     let wrapper = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
     let imageView = UIImageView(
-      image: UIImage(named: "TrainSplash")?.imageWithRenderingMode(.AlwaysTemplate))
-    imageView.tintColor = UIColor.whiteColor()
-    imageView.frame.size = CGSizeMake(30, 30)
+      image: UIImage(named: "TrainSplash")?.withRenderingMode(.alwaysTemplate))
+    imageView.tintColor = UIColor.white
+    imageView.frame.size = CGSize(width: 30, height: 30)
     imageView.frame.origin.y = 5
     imageView.frame.origin.x = 6
     

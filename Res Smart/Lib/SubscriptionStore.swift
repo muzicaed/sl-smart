@@ -9,13 +9,13 @@
 import Foundation
 import ResStockholmApiKit
 
-public class SubscriptionStore {
+open class SubscriptionStore {
   
-  private let SubscriptionState = "SubscriptionState"
-  private let SubscriptionEndDate = "SubscriptionEndDate"
-  private let TrialStartDate = "TrialStartDate"
-  private let defaults = NSUserDefaults.standardUserDefaults()
-  private var isSubscribedCache: Bool?
+  fileprivate let SubscriptionState = "SubscriptionState"
+  fileprivate let SubscriptionEndDate = "SubscriptionEndDate"
+  fileprivate let TrialStartDate = "TrialStartDate"
+  fileprivate let defaults = UserDefaults.standard
+  fileprivate var isSubscribedCache: Bool?
   
   // Singelton pattern
   static let sharedInstance = SubscriptionStore()
@@ -38,8 +38,8 @@ public class SubscriptionStore {
     return false
     loadSubscribedCache()
     if !isSubscribedCache! {
-      if let trialEndDate = defaults.objectForKey(TrialStartDate) as? NSDate {
-        let isTrial = (NSDate().timeIntervalSinceDate(trialEndDate) < (60 * 60 * 24 * 14))
+      if let trialEndDate = defaults.object(forKey: TrialStartDate) as? Date {
+        let isTrial = (Date().timeIntervalSince(trialEndDate) < (60 * 60 * 24 * 14))
         return isTrial
       }
     }
@@ -49,18 +49,18 @@ public class SubscriptionStore {
   /**
    * Get local expire date.
    */
-  func getLocalExpireDate() -> NSDate? {
-    let endDate = defaults.objectForKey(SubscriptionEndDate) as? NSDate
+  func getLocalExpireDate() -> Date? {
+    let endDate = defaults.object(forKey: SubscriptionEndDate) as? Date
     return endDate
   }
   
   /**
    * Set a renewed subscription date.
    */
-  func setNewSubscriptionDate(endDate: NSDate) {
+  func setNewSubscriptionDate(_ endDate: Date) {
     isSubscribedCache = true
-    defaults.setBool(isSubscribedCache!, forKey: SubscriptionState)
-    defaults.setObject(endDate, forKey: SubscriptionEndDate)
+    defaults.set(isSubscribedCache!, forKey: SubscriptionState)
+    defaults.set(endDate, forKey: SubscriptionEndDate)
     defaults.synchronize()
   }
   
@@ -69,8 +69,8 @@ public class SubscriptionStore {
    */
   func setSubscriptionHaveExpired() {
     isSubscribedCache = false
-    defaults.setBool(isSubscribedCache!, forKey: SubscriptionState)
-    defaults.setObject(nil, forKey: SubscriptionEndDate)
+    defaults.set(isSubscribedCache!, forKey: SubscriptionState)
+    defaults.set(nil, forKey: SubscriptionEndDate)
     defaults.synchronize()
   }
   
@@ -79,9 +79,9 @@ public class SubscriptionStore {
    * Will not set start date if trial is allready active.
    */
   func setupTrial() {
-    let trialEndDate = defaults.objectForKey(TrialStartDate) as? NSDate
+    let trialEndDate = defaults.object(forKey: TrialStartDate) as? Date
     if trialEndDate == nil {
-      defaults.setObject(NSDate(), forKey: TrialStartDate)
+      defaults.set(Date(), forKey: TrialStartDate)
     }
   }
   
@@ -89,7 +89,7 @@ public class SubscriptionStore {
    * Reset the trial
    */
   func resetTrial() {
-    defaults.setObject(nil, forKey: TrialStartDate)
+    defaults.set(nil, forKey: TrialStartDate)
   }
   
   // MARK: Private
@@ -97,9 +97,9 @@ public class SubscriptionStore {
   /**
    * Loads is subscribed data
    */
-  private func loadSubscribedCache() {
+  fileprivate func loadSubscribedCache() {
     if isSubscribedCache == nil {
-      isSubscribedCache = defaults.boolForKey(SubscriptionState)
+      isSubscribedCache = defaults.bool(forKey: SubscriptionState)
     }
   }
 }

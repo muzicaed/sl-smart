@@ -17,8 +17,8 @@ class SLRealtimeDepartures {
    * Search for real time.
    */
   func getRealTimeTable(
-    siteId: Int,
-    callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
+    _ siteId: Int,
+    callback: @escaping ((data: Data?, error: SLNetworkError?)) -> Void) {
       let url = createRealTimeSearchUrl(siteId)
       HttpRequestHelper.makeGetRequest(url) { resTuple in
         callback(resTuple)
@@ -30,7 +30,7 @@ class SLRealtimeDepartures {
   /**
   * Creates api url for real time search
   */
-  private func createRealTimeSearchUrl(siteId: Int) -> String {
+  fileprivate func createRealTimeSearchUrl(_ siteId: Int) -> String {
     return urlBase + "?key=\(apiKey)&SiteId=\(siteId)&TimeWindow=60"
   }
 }

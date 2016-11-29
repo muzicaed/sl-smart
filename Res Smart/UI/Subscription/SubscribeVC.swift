@@ -31,28 +31,28 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   /**
    * User taps "No, thank you"
    */
-  @IBAction func onNoTap(sender: UIBarButtonItem) {
-    parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+  @IBAction func onNoTap(_ sender: UIBarButtonItem) {
+    parent?.dismiss(animated: true, completion: nil)
   }
   
   /**
    * User tap buy monthly subscription.
    */
-  @IBAction func onBuyMonthTap(sender: UIButton) {
-    sender.enabled = false
+  @IBAction func onBuyMonthTap(_ sender: UIButton) {
+    sender.isEnabled = false
     buyProduct(0)
   }
   
   /**
    * User tap buy half year subscription.
    */
-  @IBAction func onBuyHalfYearTap(sender: UIButton) {
-    sender.enabled = false
+  @IBAction func onBuyHalfYearTap(_ sender: UIButton) {
+    sender.isEnabled = false
     buyProduct(1)
   }
   
-  @IBAction func onBuyYearTap(sender: UIButton) {
-    sender.enabled = false
+  @IBAction func onBuyYearTap(_ sender: UIButton) {
+    sender.isEnabled = false
     buyProduct(2)
   }
   
@@ -62,15 +62,15 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
    * On successful subscription
    */
   func subscriptionSuccessful() {
-    dispatch_async(dispatch_get_main_queue()) {
+    DispatchQueue.main.async {
       self.showThanks()
     }
   }
   /**
    * Received product list
    */
-  func recievedProducts(products: [SKProduct]) {
-    dispatch_async(dispatch_get_main_queue()) {
+  func recievedProducts(_ products: [SKProduct]) {
+    DispatchQueue.main.async {
       self.products = products
       self.isProductsLoaded = true
       self.collectionView?.reloadData()
@@ -80,16 +80,16 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   /**
    * On faild subscription
    */
-  func subscriptionError(error: SubscriptionError) {
-    dispatch_async(dispatch_get_main_queue()) {
+  func subscriptionError(_ error: SubscriptionError) {
+    DispatchQueue.main.async {
       switch error {
-      case .CanNotMakePayments:
+      case .canNotMakePayments:
         self.showCanNotMakePayments()
         break
-      case .NoProductsFound:
+      case .noProductsFound:
         self.showNoProductsFound()
         break
-      case .PaymentError:
+      case .paymentError:
         self.showPaymentError()
         break
       }
@@ -101,7 +101,7 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   /**
    * Item count for section
    */
-  override func collectionView(collectionView: UICollectionView,
+  override func collectionView(_ collectionView: UICollectionView,
                                numberOfItemsInSection section: Int) -> Int {
     return (isProductsLoaded && !isBuying) ? 4 : 1
   }
@@ -109,33 +109,33 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   /**
    * Create cells for each data post.
    */
-  override func collectionView(collectionView: UICollectionView,
-                               cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+  override func collectionView(_ collectionView: UICollectionView,
+                               cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
     if !isProductsLoaded || isBuying {
-      return collectionView.dequeueReusableCellWithReuseIdentifier(
-        "LoadingRow", forIndexPath: indexPath)
+      return collectionView.dequeueReusableCell(
+        withReuseIdentifier: "LoadingRow", for: indexPath)
     }
     
     if indexPath.row == 0 {
-      return collectionView.dequeueReusableCellWithReuseIdentifier(
-        "InfoRow", forIndexPath: indexPath)
+      return collectionView.dequeueReusableCell(
+        withReuseIdentifier: "InfoRow", for: indexPath)
       
     } else if indexPath.row == 1 {
-      let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-        "SubscriptionYearRow", forIndexPath: indexPath) as! SubscriptionCell
+      let cell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: "SubscriptionYearRow", for: indexPath) as! SubscriptionCell
       cell.setData(products[0])
       return cell
      
     } else if indexPath.row == 2 {
-      let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-        "SubscriptionMonthRow", forIndexPath: indexPath) as! SubscriptionCell
+      let cell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: "SubscriptionMonthRow", for: indexPath) as! SubscriptionCell
       cell.setData(products[1])
       return cell
 
     } else if indexPath.row == 3 {
-      let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-        "SubscriptionHalfYearRow", forIndexPath: indexPath) as! SubscriptionCell
+      let cell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: "SubscriptionHalfYearRow", for: indexPath) as! SubscriptionCell
       cell.setData(products[2])
       return cell
     }
@@ -146,20 +146,20 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   /**
    * Size for items.
    */
-  func collectionView(collectionView: UICollectionView,
+  func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
-                             sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+                             sizeForItemAt indexPath: IndexPath) -> CGSize {
     
-    let screenSize = UIScreen.mainScreen().bounds.size
+    let screenSize = UIScreen.main.bounds.size
     
     if !isProductsLoaded {
-      return CGSizeMake(screenSize.width - 20, collectionView.bounds.height - 49 - 64 - 20)
+      return CGSize(width: screenSize.width - 20, height: collectionView.bounds.height - 49 - 64 - 20)
     }
     
     if indexPath.row == 0 {
-      return CGSizeMake(screenSize.width - 20, 75)
+      return CGSize(width: screenSize.width - 20, height: 75)
     }
-    return CGSizeMake(screenSize.width - 20, 150)
+    return CGSize(width: screenSize.width - 20, height: 150)
   }
   
   // MARK: Private methods
@@ -167,9 +167,9 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   /**
    * Purchase a specific product item.
    */
-  private func buyProduct(productIndex: Int) {
+  fileprivate func buyProduct(_ productIndex: Int) {
     if !isBuying {
-      noThanksButton.enabled = false
+      noThanksButton.isEnabled = false
       isBuying = true
       self.collectionView?.reloadData()
       SubscriptionManager.sharedInstance.executePayment(products[1])
@@ -179,7 +179,7 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   /**
    * Setup collection view properties and layout.
    */
-  private func setupCollectionView() {
+  fileprivate func setupCollectionView() {
     let flowLayout = UICollectionViewFlowLayout()
     flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 10, 0)
     
@@ -193,64 +193,64 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   /**
    * Show a thanks alert
    */
-  private func showThanks() {
+  fileprivate func showThanks() {
     let invalidAlert = UIAlertController(
       title: "Tack!",
       message: "Prenumerationen är nu påbörjad och alla funktioner är upplåsta. Tack för att du väljer att prenumera.",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     invalidAlert.addAction(
-      UIAlertAction(title: "Varsågod!", style: UIAlertActionStyle.Default, handler: { _ in
-        self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+      UIAlertAction(title: "Varsågod!", style: UIAlertActionStyle.default, handler: { _ in
+        self.parent?.dismiss(animated: true, completion: nil)
       }))
     
-    presentViewController(invalidAlert, animated: true, completion: nil)
+    present(invalidAlert, animated: true, completion: nil)
   }
   
   /**
    * Show a no products found alert
    */
-  private func showNoProductsFound() {
+  fileprivate func showNoProductsFound() {
     let invalidAlert = UIAlertController(
       title: "Inga prenummerationer",
       message: "Det finns inga prenumerationer tillgängliga nu. Försök igen lite senare.",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     invalidAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: { _ in
-        self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: { _ in
+        self.parent?.dismiss(animated: true, completion: nil)
       }))
     
-    presentViewController(invalidAlert, animated: true, completion: nil)
+    present(invalidAlert, animated: true, completion: nil)
   }
   
   /**
    * Show a device cannot make payments alert
    */
-  private func showCanNotMakePayments() {
+  fileprivate func showCanNotMakePayments() {
     let invalidAlert = UIAlertController(
       title: "Eheten kan inte betala",
       message: "Denna enheten är inställd att inte tillåta betalningar. Kontrollera dina betalningsuppgifter, och oönskad föräldrakontroll. Är du ett barn måste du fråga dina föräldrar om lov.",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     invalidAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: { _ in
-        self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: { _ in
+        self.parent?.dismiss(animated: true, completion: nil)
       }))
     
-    presentViewController(invalidAlert, animated: true, completion: nil)
+    present(invalidAlert, animated: true, completion: nil)
   }
   
   /**
    * Show a payment faild alert
    */
-  private func showPaymentError() {
+  fileprivate func showPaymentError() {
     let invalidAlert = UIAlertController(
       title: "Betalningen misslyckades",
       message: "Ingen betalning har utförts. Kontrollera kortuppgifterna som är kopplad till ditt iTunes/App Store konto. Kontrollera även att dina bankinställningar tillåter internet betalningar.",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     invalidAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: { _ in
-        self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: { _ in
+        self.parent?.dismiss(animated: true, completion: nil)
       }))
     
-    presentViewController(invalidAlert, animated: true, completion: nil)
+    present(invalidAlert, animated: true, completion: nil)
   }
 }

@@ -26,7 +26,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   var isLocationForRealTimeSearch = false
   var editFavouritebutton = UIButton()
   
-  let loadedTime = NSDate()
+  let loadedTime = Date()
   
   /**
    * View is done loading.
@@ -45,19 +45,19 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     
     if isLocationForRealTimeSearch {
       let newBackButton = UIBarButtonItem(
-        title: "Realtid", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        title: "Realtid", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
       self.navigationItem.backBarButtonItem = newBackButton
     }
-    NSNotificationCenter.defaultCenter().addObserver(
+    NotificationCenter.default.addObserver(
       self, selector: #selector(didBecomeActive),
-      name: UIApplicationDidBecomeActiveNotification, object: nil)
+      name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    navigationController?.navigationBar.translucent = false
+    navigationController?.navigationBar.isTranslucent = false
     loadListedLocations()
-    tableView.editing = false
+    tableView.isEditing = false
     tableView.reloadData()
   }
   
@@ -65,9 +65,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    * Returned to the app.
    */
   func didBecomeActive() {
-    let now = NSDate()
-    if now.timeIntervalSinceDate(loadedTime) > (60 * 30) { // 0.5 hour
-      navigationController?.popToRootViewControllerAnimated(false)
+    let now = Date()
+    if now.timeIntervalSince(loadedTime) > (60 * 30) { // 0.5 hour
+      navigationController?.popToRootViewController(animated: false)
     } else {
       loadListedLocations()
     }
@@ -76,20 +76,20 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   /**
    * Before segue is performed
    */
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showRealTime" {
-      if let realTimeVC = segue.destinationViewController as? RealTimeVC {
+      if let realTimeVC = segue.destination as? RealTimeVC {
         realTimeVC.title = selectedLocation?.name
         realTimeVC.siteId = Int(selectedLocation!.siteId!)!
       }
     } else if segue.identifier == "ShowNearbyStations" {
-      if let nearbyVC = segue.destinationViewController as? NearbyStationsVC {
+      if let nearbyVC = segue.destination as? NearbyStationsVC {
         
         nearbyVC.delegate = delegate
         nearbyVC.isLocationForRealTimeSearch = isLocationForRealTimeSearch
       }
     } else if segue.identifier == "ShowLocationMap" {
-      if let mapVC = segue.destinationViewController as? LocationMapVC {
+      if let mapVC = segue.destination as? LocationMapVC {
         mapVC.location = selectedLocation
       }
     }
@@ -98,7 +98,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   /**
    * Toggle selected station as favourite station
    */
-  func toggleFavouriteStation(alertAction: UIAlertAction) {
+  func toggleFavouriteStation(_ alertAction: UIAlertAction) {
     if FavouriteLocationsStore.sharedInstance.isLocationFavourite(selectedLocation!) {
       FavouriteLocationsStore.sharedInstance.removeFavouriteLocation(selectedLocation!)
     } else {
@@ -112,14 +112,14 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   /**
    * Show selected station on map.
    */
-  func showLocationOnMap(alertAction: UIAlertAction) {
-    performSegueWithIdentifier("ShowLocationMap", sender: self)
+  func showLocationOnMap(_ alertAction: UIAlertAction) {
+    performSegue(withIdentifier: "ShowLocationMap", sender: self)
   }
   
   /**
    * Location wes selected on search result.
    */
-  func onSearchSelectLocation(location: Location) {
+  func onSearchSelectLocation(_ location: Location) {
     selectedLocation = location
     navigateOnSelect()
   }
@@ -129,7 +129,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   /**
    * Number of section
    */
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     let count = (allowCurrentPosition || allowNearbyStations) ? 2 : 1
     return (favouriteLocations.count > 0) ? count + 1 : count
   }
@@ -138,16 +138,16 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    * View for header
    */
   override func tableView(
-    tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    _ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     
-    let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 25))
-    let label = UILabel(frame: CGRectMake(18, 0, tableView.frame.size.width, 25))
-    label.font = UIFont.systemFontOfSize(14)
-    label.textColor = UIColor.whiteColor()
-    label.textAlignment = .Left
+    let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 25))
+    let label = UILabel(frame: CGRect(x: 18, y: 0, width: tableView.frame.size.width, height: 25))
+    label.font = UIFont.systemFont(ofSize: 14)
+    label.textColor = UIColor.white
+    label.textAlignment = .left
     view.addSubview(label)
     let color = StyleHelper.sharedInstance.mainGreen
-    view.backgroundColor = color.colorWithAlphaComponent(0.95)
+    view.backgroundColor = color.withAlphaComponent(0.95)
     
     let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
     let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
@@ -163,18 +163,18 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   }
   
   func toggleEditFavourites() {
-    tableView.editing = !tableView.editing
-    let title = (tableView.editing) ? "Klar" : "Ändra ordning"
-    editFavouritebutton.setTitle(title, forState: .Normal)
-    editFavouritebutton.frame = CGRectMake(tableView.frame.size.width - 118, 0, 100, 25)
-    editFavouritebutton.contentHorizontalAlignment = .Right
+    tableView.isEditing = !tableView.isEditing
+    let title = (tableView.isEditing) ? "Klar" : "Ändra ordning"
+    editFavouritebutton.setTitle(title, for: UIControlState())
+    editFavouritebutton.frame = CGRect(x: tableView.frame.size.width - 118, y: 0, width: 100, height: 25)
+    editFavouritebutton.contentHorizontalAlignment = .right
   }
   
   /**
    * Size for headers.
    */
   override func tableView(
-    tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    _ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     if (allowCurrentPosition || allowNearbyStations) && section == 0 {
       return 0
     }
@@ -185,7 +185,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    * Size for footer.
    */
   override func tableView(
-    tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    _ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
     return 0.01
   }
   
@@ -193,7 +193,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    * Number of rows
    */
   override func tableView(
-    tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
     let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
     let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
@@ -212,7 +212,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    * Cell for index
    */
   override func tableView(
-    tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
     let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
@@ -246,13 +246,13 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    * User selects row
    */
   override func tableView(
-    tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    _ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
     if allowNearbyStations && indexPath.section == 0 {
       if (allowCurrentPosition && indexPath.row == 1) ||
         (!allowCurrentPosition && indexPath.row == 0) {
-        searchController!.active = false
-        performSegueWithIdentifier("ShowNearbyStations", sender: self)
+        searchController!.isActive = false
+        performSegue(withIdentifier: "ShowNearbyStations", sender: self)
         return
       }
     }
@@ -265,14 +265,14 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    * User tapped accessory
    */
   override func tableView(
-    tableView: UITableView,
-    accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+    _ tableView: UITableView,
+    accessoryButtonTappedForRowWith indexPath: IndexPath) {
     
     selectLocation(indexPath)
     let stationOptionsAlert = UIAlertController(
       title: nil,
       message: selectedLocation!.cleanName,
-      preferredStyle: .ActionSheet)
+      preferredStyle: .actionSheet)
     
     var favouriteTitle = "Gör till favorit"
     if FavouriteLocationsStore.sharedInstance.isLocationFavourite(selectedLocation!) {
@@ -280,23 +280,23 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     }
     
     stationOptionsAlert.addAction(
-      UIAlertAction(title: favouriteTitle, style: .Default, handler: toggleFavouriteStation))
+      UIAlertAction(title: favouriteTitle, style: .default, handler: toggleFavouriteStation))
     stationOptionsAlert.addAction(
-      UIAlertAction(title: "Visa på karta", style: .Default, handler: showLocationOnMap))
+      UIAlertAction(title: "Visa på karta", style: .default, handler: showLocationOnMap))
     stationOptionsAlert.addAction(
-      UIAlertAction(title: "Avbryt", style: .Cancel, handler: { _ in
+      UIAlertAction(title: "Avbryt", style: .cancel, handler: { _ in
         self.selectedLocation = nil
       }))
     
-    presentViewController(stationOptionsAlert, animated: true, completion: nil)
+    present(stationOptionsAlert, animated: true, completion: nil)
   }
   
   /**
    * Green highlight on selected row.
    */
   override func tableView(
-    tableView: UITableView, willDisplayCell cell: UITableViewCell,
-    forRowAtIndexPath indexPath: NSIndexPath) {
+    _ tableView: UITableView, willDisplay cell: UITableViewCell,
+    forRowAt indexPath: IndexPath) {
     
     let bgColorView = UIView()
     bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
@@ -308,8 +308,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    * Is row editable?
    */
   override func tableView(
-    tableView: UITableView,
-    canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    _ tableView: UITableView,
+    canEditRowAt indexPath: IndexPath) -> Bool {
     if indexPath.section == 1 && favouriteLocations.count > 0 {
       return true
     }
@@ -320,8 +320,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    * Is row movable?
    */
   override func tableView(
-    tableView: UITableView,
-    canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    _ tableView: UITableView,
+    canMoveRowAt indexPath: IndexPath) -> Bool {
     if indexPath.section == 1 && favouriteLocations.count > 0 {
       return true
     }
@@ -332,8 +332,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    * Should indent row?
    */
   override func tableView(
-    tableView: UITableView,
-    shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    _ tableView: UITableView,
+    shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
     return false
   }
   
@@ -341,39 +341,39 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    * Editing style for row
    */
   override func tableView(
-    tableView: UITableView,
-    editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-    return .None
+    _ tableView: UITableView,
+    editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    return .none
   }
   
   /**
    * Move a row
    */
   override func tableView(
-    tableView: UITableView,
-    moveRowAtIndexPath sourceIndexPath: NSIndexPath,
-                       toIndexPath destinationIndexPath: NSIndexPath) {
+    _ tableView: UITableView,
+    moveRowAt sourceIndexPath: IndexPath,
+                       to destinationIndexPath: IndexPath) {
     
     FavouriteLocationsStore.sharedInstance.moveFavouriteLocation(
       sourceIndexPath.row, targetIndex: destinationIndexPath.row)
-    let location = favouriteLocations.removeAtIndex(sourceIndexPath.row)
-    favouriteLocations.insert(location, atIndex: destinationIndexPath.row)
+    let location = favouriteLocations.remove(at: sourceIndexPath.row)
+    favouriteLocations.insert(location, at: destinationIndexPath.row)
   }
   
   /**
    * Fix for broken search bar when tranlucent navbar is off.
    * TODO: Remove if future update fixes this.
    */
-  func willPresentSearchController(searchController: UISearchController) {
-    navigationController?.navigationBar.translucent = true
+  func willPresentSearchController(_ searchController: UISearchController) {
+    navigationController?.navigationBar.isTranslucent = true
   }
   
   /**
    * Fix for broken search bar when tranlucent navbar is off.
    * TODO: Remove if future update fixes this.
    */
-  func willDismissSearchController(searchController: UISearchController) {
-    navigationController?.navigationBar.translucent = false
+  func willDismissSearchController(_ searchController: UISearchController) {
+    navigationController?.navigationBar.isTranslucent = false
   }
   
   // MARK: Private
@@ -381,7 +381,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   /**
    * Select loation at index path
    */
-  private func selectLocation(indexPath: NSIndexPath) {
+  fileprivate func selectLocation(_ indexPath: IndexPath) {
     if allowCurrentPosition &&
       indexPath.section == 0 && indexPath.row == 0 {
       selectedLocation = Location.createCurrentLocation()
@@ -399,16 +399,16 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   /**
    * Perfroms correct navigation on selected location.
    */
-  private func navigateOnSelect() {
+  fileprivate func navigateOnSelect() {
     if let loc = selectedLocation {
-      searchController!.active = false
+      searchController!.isActive = false
       if loc.type != .Current {
         LatestLocationsStore.sharedInstance.addLatestLocation(loc)
       }
       if isLocationForRealTimeSearch {
-        performSegueWithIdentifier("showRealTime", sender: self)
+        performSegue(withIdentifier: "showRealTime", sender: self)
       } else {
-        performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
+        performSegue(withIdentifier: "unwindToStationSearchParent", sender: self)
         delegate?.selectedLocationFromSearch(loc)
       }
       loadListedLocations()
@@ -418,11 +418,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   /**
    * Create location cell.
    */
-  private func createLocationCell(
-    indexPath: NSIndexPath, location: Location, isFavourite: Bool) -> UITableViewCell {
+  fileprivate func createLocationCell(
+    _ indexPath: IndexPath, location: Location, isFavourite: Bool) -> UITableViewCell {
     
-    let cell = tableView.dequeueReusableCellWithIdentifier(
-      cellReusableId, forIndexPath: indexPath)
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: cellReusableId, for: indexPath)
     
     cell.textLabel?.text = location.name
     cell.detailTextLabel?.text = location.area
@@ -434,9 +434,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     }
     cell.imageView?.alpha = 0.4
     if isLocationForRealTimeSearch {
-      cell.accessoryType = UITableViewCellAccessoryType.DetailDisclosureButton
+      cell.accessoryType = UITableViewCellAccessoryType.detailDisclosureButton
     } else {
-      cell.accessoryType = UITableViewCellAccessoryType.DetailButton
+      cell.accessoryType = UITableViewCellAccessoryType.detailButton
     }
     
     if isFavourite {
@@ -449,10 +449,10 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   /**
    * Create location cell.
    */
-  private func createCurrentLocationCell(indexPath: NSIndexPath) -> UITableViewCell {
+  fileprivate func createCurrentLocationCell(_ indexPath: IndexPath) -> UITableViewCell {
     let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation()
-    let cell = tableView.dequeueReusableCellWithIdentifier(cellReusableId,
-                                                           forIndexPath: indexPath)
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellReusableId,
+                                                           for: indexPath)
     if let loc = currentLocation {
       cell.textLabel?.text = "Nuvarande plats"
       cell.detailTextLabel?.text = "\(loc.cleanName), \(loc.area)"
@@ -462,42 +462,42 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     }
     cell.imageView?.image = UIImage(named: "current-location-icon")
     cell.imageView?.alpha = 0.4
-    cell.accessoryType = UITableViewCellAccessoryType.None
+    cell.accessoryType = UITableViewCellAccessoryType.none
     return cell
   }
   
   /**
    * Create nearby stations cell.
    */
-  private func createNearbyStationsCell(indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(
-      cellReusableId, forIndexPath: indexPath)
+  fileprivate func createNearbyStationsCell(_ indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: cellReusableId, for: indexPath)
     cell.textLabel?.text = "Hållplatser nära mig"
     cell.detailTextLabel?.text = nil
     cell.imageView?.image = UIImage(named: "near-me-icon")
     cell.imageView?.alpha = 0.4
-    cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+    cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
     return cell
   }
   
   /**
    * Show a network error alert
    */
-  private func showNetworkErrorAlert() {
+  fileprivate func showNetworkErrorAlert() {
     let networkErrorAlert = UIAlertController(
       title: "Tjänsten är otillgänglig",
       message: "Det gick inte att kontakta söktjänsten.",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     networkErrorAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: nil))
     
-    presentViewController(networkErrorAlert, animated: true, completion: nil)
+    present(networkErrorAlert, animated: true, completion: nil)
   }
   
   /**
    * Loads listed locations (latests and favourites)
    */
-  private func loadListedLocations() {
+  fileprivate func loadListedLocations() {
     if searchOnlyForStations {
       latestLocations = LatestLocationsStore.sharedInstance.retrieveLatestStationsOnly()
       favouriteLocations = FavouriteLocationsStore.sharedInstance.retrieveFavouriteStationsOnly()
@@ -511,8 +511,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   /**
    * Prepares search controller
    */
-  private func prepareSearchController() {
-    let searchResultsVC = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchResult") as! SearchLocationResultsVC
+  fileprivate func prepareSearchController() {
+    let searchResultsVC = storyboard!.instantiateViewController(withIdentifier: "LocationSearchResult") as! SearchLocationResultsVC
     searchResultsVC.searchLocationVC = self
     searchResultsVC.searchOnlyForStations = searchOnlyForStations
     searchResultsVC.isLocationForRealTimeSearch = isLocationForRealTimeSearch
@@ -529,19 +529,19 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     tableView.tableHeaderView = searchController!.searchBar
   }
   
-  private func prepareEditFavouriteButton() {
+  fileprivate func prepareEditFavouriteButton() {
     editFavouritebutton = UIButton(
-      frame: CGRectMake(tableView.frame.size.width - 118, 0, 100, 25))
-    editFavouritebutton.setTitle("Ändra ordning", forState: .Normal)
-    editFavouritebutton.titleLabel?.font = UIFont.systemFontOfSize(14)
-    editFavouritebutton.contentHorizontalAlignment = .Right
+      frame: CGRect(x: tableView.frame.size.width - 118, y: 0, width: 100, height: 25))
+    editFavouritebutton.setTitle("Ändra ordning", for: UIControlState())
+    editFavouritebutton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+    editFavouritebutton.contentHorizontalAlignment = .right
     editFavouritebutton.addTarget(self,
                                   action: #selector(toggleEditFavourites),
-                                  forControlEvents: .TouchUpInside)
+                                  for: .touchUpInside)
   }
   
   deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
+    NotificationCenter.default.removeObserver(self)
     if let superView = searchController!.view.superview {
       superView.removeFromSuperview()
     }

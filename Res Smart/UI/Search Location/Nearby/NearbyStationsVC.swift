@@ -26,7 +26,7 @@ class NearbyStationsVC: UITableViewController {
    */
   override func viewDidLoad() {
     view.backgroundColor = StyleHelper.sharedInstance.background
-    tableView.tableFooterView = UIView(frame: CGRectZero)
+    tableView.tableFooterView = UIView(frame: CGRect.zero)
     loadLocations()
     spinnerView.frame.size = tableView.frame.size
     spinnerView.frame.origin.y -= 84
@@ -36,15 +36,15 @@ class NearbyStationsVC: UITableViewController {
   /**
    * Before segue is performed
    */
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     if segue.identifier == "ShowRealTime" {
-      if let realTimeVC = segue.destinationViewController as? RealTimeVC {
+      if let realTimeVC = segue.destination as? RealTimeVC {
         realTimeVC.title = selectedLocation?.name
         realTimeVC.siteId = Int(selectedLocation!.siteId!)!
       }
     } else if segue.identifier == "ShowMap" {
-      if let mapVC = segue.destinationViewController as? NearbyStationsMapVC {
+      if let mapVC = segue.destination as? NearbyStationsMapVC {
         mapVC.nearbyLocations = nearbyLocations
         mapVC.nearbyStationsVC = self
       }
@@ -54,7 +54,7 @@ class NearbyStationsVC: UITableViewController {
   /**
    * User selected location from map.
    */
-  func selectedOnMap(location: Location) {
+  func selectedOnMap(_ location: Location) {
     selectedLocation = location
     performSelectedNavigation()
   }
@@ -65,7 +65,7 @@ class NearbyStationsVC: UITableViewController {
    * Row count
    */
   override func tableView(
-    tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return nearbyLocations.count
   }
   
@@ -73,11 +73,11 @@ class NearbyStationsVC: UITableViewController {
    * Cell for index
    */
   override func tableView(
-    tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let locationTuple = nearbyLocations[indexPath.row]
-    let cell = tableView.dequeueReusableCellWithIdentifier("NearbyStationRow",
-                                                           forIndexPath: indexPath)
+    let cell = tableView.dequeueReusableCell(withIdentifier: "NearbyStationRow",
+                                                           for: indexPath)
     cell.textLabel?.text = "\(locationTuple.location.name)"
     cell.detailTextLabel?.text = "ca. \(locationTuple.dist) meter bort."
     cell.imageView?.alpha = 0.4
@@ -87,15 +87,15 @@ class NearbyStationsVC: UITableViewController {
   /**
    * Height for row
    */
-  override func tableView(tableView: UITableView,
-                          heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  override func tableView(_ tableView: UITableView,
+                          heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 44
   }
   
   /**
    * Size for headers.
    */
-  override func tableView(tableView: UITableView,
+  override func tableView(_ tableView: UITableView,
                           heightForHeaderInSection section: Int) -> CGFloat {
     return 0.01
   }
@@ -103,7 +103,7 @@ class NearbyStationsVC: UITableViewController {
   /**
    * Size for headers.
    */
-  override func tableView(tableView: UITableView,
+  override func tableView(_ tableView: UITableView,
                           heightForFooterInSection section: Int) -> CGFloat {
     return 0.01
   }
@@ -111,8 +111,8 @@ class NearbyStationsVC: UITableViewController {
   /**
    * Green highlight on selected row.
    */
-  override func tableView(tableView: UITableView,
-                          willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView,
+                          willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     let bgColorView = UIView()
     bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
     cell.selectedBackgroundView = bgColorView
@@ -122,7 +122,7 @@ class NearbyStationsVC: UITableViewController {
    * User selects row
    */
   override func tableView(
-    tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    _ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     selectedLocation = nearbyLocations[indexPath.row].location
     performSelectedNavigation()
   }
@@ -132,12 +132,12 @@ class NearbyStationsVC: UITableViewController {
   /**
    * Perform correct navigation when user select locaiton.
    */
-  private func performSelectedNavigation() {
+  fileprivate func performSelectedNavigation() {
     LatestLocationsStore.sharedInstance.addLatestLocation(selectedLocation!)
     if isLocationForRealTimeSearch {
-      performSegueWithIdentifier("ShowRealTime", sender: self)
+      performSegue(withIdentifier: "ShowRealTime", sender: self)
     } else {
-      performSegueWithIdentifier("unwindToStationSearchParent", sender: self)
+      performSegue(withIdentifier: "unwindToStationSearchParent", sender: self)
       delegate?.selectedLocationFromSearch(selectedLocation!)
     }
   }
@@ -145,13 +145,13 @@ class NearbyStationsVC: UITableViewController {
   /**
    * Search for nearby locations
    */
-  private func loadLocations() {
+  fileprivate func loadLocations() {
     if let currentPostion = MyLocationHelper.sharedInstance.currentLocation {
       NetworkActivity.displayActivityIndicator(true)
       LocationSearchService.searchNearby(
         currentPostion, distance: 1000,
         callback: { (data, error) -> Void in
-          dispatch_async(dispatch_get_main_queue()) {
+          DispatchQueue.main.async {
             NetworkActivity.displayActivityIndicator(false)
             if error != nil {
               self.handleLoadDataError()
@@ -162,7 +162,7 @@ class NearbyStationsVC: UITableViewController {
             self.isLoading = false
             self.spinnerView.removeFromSuperview()
             self.tableView.reloadData()
-            self.showOnMapButton.enabled = true
+            self.showOnMapButton.isEnabled = true
           }          
       })
     }
@@ -171,16 +171,16 @@ class NearbyStationsVC: UITableViewController {
   /**
    * Hadle load data (network) error
    */
-  private func handleLoadDataError() {
+  fileprivate func handleLoadDataError() {
     let invalidLoadingAlert = UIAlertController(
       title: "Kan inte nå söktjänsten",
       message: "Söktjänsten kan inte nås just nu. Prova igen om en liten stund.",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     invalidLoadingAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: { _ in
-        self.navigationController?.popToRootViewControllerAnimated(false)
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: { _ in
+        self.navigationController?.popToRootViewController(animated: false)
       }))
     
-    presentViewController(invalidLoadingAlert, animated: true, completion: nil)
+    present(invalidLoadingAlert, animated: true, completion: nil)
   }
 }

@@ -8,23 +8,23 @@
 
 import Foundation
 
-public class LatestLocationsStore {
+open class LatestLocationsStore {
   
-  private let LatestLocations = "LatestLocations"
-  private let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
-  private var cachedLocations = [Location]()
+  fileprivate let LatestLocations = "LatestLocations"
+  fileprivate let defaults = UserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
+  fileprivate var cachedLocations = [Location]()
   
   // Singelton pattern
-  public static let sharedInstance = LatestLocationsStore()  
+  open static let sharedInstance = LatestLocationsStore()  
   
   /**
    * Retrive "LatestLocations" from data store
    */
-  public func retrieveLatestLocations() -> [Location] {
+  open func retrieveLatestLocations() -> [Location] {
     if cachedLocations.count == 0 {
-      if let unarchivedObject = defaults.objectForKey(
-        LatestLocations) as? NSData {
-          if let locations = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [Location] {
+      if let unarchivedObject = defaults.object(
+        forKey: LatestLocations) as? Data {
+          if let locations = NSKeyedUnarchiver.unarchiveObject(with: unarchivedObject) as? [Location] {
             cachedLocations = locations
           }
       }
@@ -40,7 +40,7 @@ public class LatestLocationsStore {
   /**
    * Retrive "LatestLocations" filtered on stations from data store
    */
-  public func retrieveLatestStationsOnly() -> [Location] {
+  open func retrieveLatestStationsOnly() -> [Location] {
     cachedLocations = retrieveLatestLocations()
     return cachedLocations.filter() {
       if $0.type == LocationType.Station {
@@ -53,7 +53,7 @@ public class LatestLocationsStore {
   /**
    * Add a location to latest location list.
    */
-  public func addLatestLocation(location: Location) {
+  open func addLatestLocation(_ location: Location) {
     cachedLocations = retrieveLatestLocations()
     cachedLocations = cachedLocations.filter() {
       if $0.siteId == location.siteId {
@@ -62,7 +62,7 @@ public class LatestLocationsStore {
       return true
     }
     
-    cachedLocations.insert(location, atIndex: 0)
+    cachedLocations.insert(location, at: 0)
     if cachedLocations.count < 20 {
       writeLatestLocations(cachedLocations)
       return
@@ -74,9 +74,9 @@ public class LatestLocationsStore {
   /**
    * Store "LatestLocations" in data store.
    */
-  private func writeLatestLocations(locations: [Location]) {
-    let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(locations)
-    defaults.setObject(archivedObject, forKey: LatestLocations)
+  fileprivate func writeLatestLocations(_ locations: [Location]) {
+    let archivedObject = NSKeyedArchiver.archivedData(withRootObject: locations)
+    defaults.set(archivedObject, forKey: LatestLocations)
     cachedLocations = locations
   }
 }

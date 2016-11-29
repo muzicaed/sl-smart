@@ -9,6 +9,30 @@
 import Foundation
 import UIKit
 import ResStockholmApiKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class ManageRoutineTripsVC: UITableViewController {
   
@@ -33,30 +57,30 @@ class ManageRoutineTripsVC: UITableViewController {
     addButton = navigationItem.rightBarButtonItems![0]
     editButton = navigationItem.rightBarButtonItems![1]
     doneButton = navigationItem.rightBarButtonItems![2]
-    navigationItem.rightBarButtonItems?.removeAtIndex(2)
+    navigationItem.rightBarButtonItems?.remove(at: 2)
     tableView.tableFooterView = UIView()
   }
   
   /**
    * View about to show
    */
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     trips = RoutineTripsStore.sharedInstance.retriveRoutineTripsNoSuggestions()
     tableView.reloadData()
     if trips.count == 0 && navigationItem.rightBarButtonItems?.count > 1 {
-      navigationItem.rightBarButtonItems?.removeAtIndex(1)
-    } else if trips.count > 0 && navigationItem.rightBarButtonItems?.count == 1 && !tableView.editing {
-      navigationItem.rightBarButtonItems?.insert(editButton, atIndex: 1)
+      navigationItem.rightBarButtonItems?.remove(at: 1)
+    } else if trips.count > 0 && navigationItem.rightBarButtonItems?.count == 1 && !tableView.isEditing {
+      navigationItem.rightBarButtonItems?.insert(editButton, at: 1)
     }
   }
   
   /**
    * Prepare for seque to another vc.
    */
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == showEditTripsSegue {
-      let vc = segue.destinationViewController as! EditRoutineTripVC
+      let vc = segue.destination as! EditRoutineTripVC
       vc.routineTrip = selectedRoutineTrip
     }
   }
@@ -64,26 +88,26 @@ class ManageRoutineTripsVC: UITableViewController {
   /**
    * User taps edit.
    */
-  @IBAction func onEditTap(sender: UIBarButtonItem) {
+  @IBAction func onEditTap(_ sender: UIBarButtonItem) {
     tableView.setEditing(true, animated: true)
-    navigationItem.rightBarButtonItems?.removeAtIndex(1)
-    navigationItem.rightBarButtonItems?.removeAtIndex(0)
-    navigationItem.rightBarButtonItems?.insert(doneButton, atIndex: 0)
+    navigationItem.rightBarButtonItems?.remove(at: 1)
+    navigationItem.rightBarButtonItems?.remove(at: 0)
+    navigationItem.rightBarButtonItems?.insert(doneButton, at: 0)
     self.navigationItem.setHidesBackButton(true, animated: true)
   }
   
   /**
    * User taps done (when editing).
    */
-  @IBAction func onDoneTap(sender: UIBarButtonItem) {
+  @IBAction func onDoneTap(_ sender: UIBarButtonItem) {
     tableView.setEditing(false, animated: true)
-    navigationItem.rightBarButtonItems?.removeAtIndex(0)
-    navigationItem.rightBarButtonItems?.insert(addButton, atIndex: 0)
-    navigationItem.rightBarButtonItems?.insert(editButton, atIndex: 1)
+    navigationItem.rightBarButtonItems?.remove(at: 0)
+    navigationItem.rightBarButtonItems?.insert(addButton, at: 0)
+    navigationItem.rightBarButtonItems?.insert(editButton, at: 1)
     self.navigationItem.setHidesBackButton(false, animated: true)
   }
   
-  @IBAction func unwindToManageRoutineTripsVC(segue: UIStoryboardSegue) {
+  @IBAction func unwindToManageRoutineTripsVC(_ segue: UIStoryboardSegue) {
     selectedRoutineTrip = nil
   }
   
@@ -92,7 +116,7 @@ class ManageRoutineTripsVC: UITableViewController {
   /**
   * Data source count
   */
-  override func tableView(tableView: UITableView,
+  override func tableView(_ tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
       if trips.count == 0 {
         return 1
@@ -103,8 +127,8 @@ class ManageRoutineTripsVC: UITableViewController {
   /**
    * Height for cells
    */
-  override func tableView(tableView: UITableView,
-    heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  override func tableView(_ tableView: UITableView,
+    heightForRowAt indexPath: IndexPath) -> CGFloat {
       if trips.count == 0 {
         return 100
       }
@@ -114,18 +138,18 @@ class ManageRoutineTripsVC: UITableViewController {
   /**
    * Create cells for each data post.
    */
-  override func tableView(tableView: UITableView,
-    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView,
+    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       
       if trips.count == 0 {
-        let cell =  tableView.dequeueReusableCellWithIdentifier(
-          emptyCellIdentifier, forIndexPath: indexPath)
+        let cell =  tableView.dequeueReusableCell(
+          withIdentifier: emptyCellIdentifier, for: indexPath)
         return cell
       }
       
       let trip = trips[indexPath.row]
-      let cell =  tableView.dequeueReusableCellWithIdentifier(
-        cellIdentifier, forIndexPath: indexPath) as! ManageRoutineTripCell
+      let cell =  tableView.dequeueReusableCell(
+        withIdentifier: cellIdentifier, for: indexPath) as! ManageRoutineTripCell
       
       cell.setData(trip)
       return cell
@@ -134,19 +158,19 @@ class ManageRoutineTripsVC: UITableViewController {
   /**
    * On user confirms action
    */
-  override func tableView(tableView: UITableView,
-    commitEditingStyle editingStyle: UITableViewCellEditingStyle,
-    forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView,
+    commit editingStyle: UITableViewCellEditingStyle,
+    forRowAt indexPath: IndexPath) {
       switch editingStyle {
-      case .Delete:
+      case .delete:
         let trip = trips[indexPath.row]
         RoutineTripsStore.sharedInstance.deleteRoutineTrip(trip.id)
-        trips.removeAtIndex(indexPath.row)
+        trips.remove(at: indexPath.row)
         
         tableView.beginUpdates()
-        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
         if trips.count == 0 {
-          tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+          tableView.insertRows(at: [indexPath], with: .automatic)
         }
         tableView.endUpdates()
       default:
@@ -157,33 +181,33 @@ class ManageRoutineTripsVC: UITableViewController {
   /**
    * User moved a cell in the table view.
    */
-  override func tableView(tableView: UITableView,
-    moveRowAtIndexPath sourceIndexPath: NSIndexPath,
-    toIndexPath destinationIndexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView,
+    moveRowAt sourceIndexPath: IndexPath,
+    to destinationIndexPath: IndexPath) {
       RoutineTripsStore.sharedInstance.moveRoutineTrip(
         sourceIndexPath.row, targetIndex: destinationIndexPath.row)
-      let moveTrip = trips.removeAtIndex(sourceIndexPath.row)
-      trips.insert(moveTrip, atIndex: destinationIndexPath.row)
+      let moveTrip = trips.remove(at: sourceIndexPath.row)
+      trips.insert(moveTrip, at: destinationIndexPath.row)
   }
   
   /**
    * When user selects a row.
    */
-  override func tableView(tableView: UITableView,
-    didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView,
+    didSelectRowAt indexPath: IndexPath) {
       if trips.count == 0 {
-        performSegueWithIdentifier(showAddTripsSegue, sender: self)
+        performSegue(withIdentifier: showAddTripsSegue, sender: self)
         return
       }
       selectedRoutineTrip = trips[indexPath.row]
-      performSegueWithIdentifier(showEditTripsSegue, sender: self)
+      performSegue(withIdentifier: showEditTripsSegue, sender: self)
   }
   
   /**
    * Green highlight on selected row.
    */
-  override func tableView(tableView: UITableView,
-    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView,
+    willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
       let bgColorView = UIView()
       bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
       cell.selectedBackgroundView = bgColorView
@@ -192,7 +216,7 @@ class ManageRoutineTripsVC: UITableViewController {
   /**
    * Height for header section.
    */
-  override func tableView(tableView: UITableView,
+  override func tableView(_ tableView: UITableView,
     heightForHeaderInSection section: Int) -> CGFloat {
     return 1
   }
@@ -200,8 +224,8 @@ class ManageRoutineTripsVC: UITableViewController {
   /**
    * Title for delete button.
    */
-  override func tableView(tableView: UITableView,
-    titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
+  override func tableView(_ tableView: UITableView,
+    titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
       return "Ta bort"
   }
 }

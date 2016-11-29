@@ -23,7 +23,7 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
    */
   override func viewDidLoad() {
     mapView.delegate = self
-    mapView.mapType = MKMapType.Standard
+    mapView.mapType = MKMapType.standard
     mapView.showsBuildings = true
     mapView.showsCompass = true
     mapView.showsTraffic = false
@@ -38,19 +38,19 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
   /**
    * User tapped close
    */
-  @IBAction func onCloseTap(sender: AnyObject) {
-    presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+  @IBAction func onCloseTap(_ sender: AnyObject) {
+    presentingViewController?.dismiss(animated: true, completion: {})
   }
   
   /**
    * Map type segment changed
    */
-  @IBAction func onSegmentChanged(sender: UISegmentedControl) {
+  @IBAction func onSegmentChanged(_ sender: UISegmentedControl) {
     switch sender.selectedSegmentIndex {
     case 0:
-      mapView.mapType = MKMapType.Standard
+      mapView.mapType = MKMapType.standard
     case 1:
-      mapView.mapType = MKMapType.Hybrid
+      mapView.mapType = MKMapType.hybrid
     default: break
     }
   }
@@ -58,9 +58,9 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
   /**
    * User tapped my position
    */
-  @IBAction func myPositionTap(sender: AnyObject) {
+  @IBAction func myPositionTap(_ sender: AnyObject) {
     if mapView.showsUserLocation {
-      mapView.setCenterCoordinate(mapView.userLocation.coordinate, animated: true)
+      mapView.setCenter(mapView.userLocation.coordinate, animated: true)
     } else {
       mapView.showsUserLocation = true
     }
@@ -71,16 +71,16 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Annotation views
    */
-  func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
     if let pinAnnotation = annotation as? DestinationPin {
       let pinView = TouchStationAnnotationView(annotation: pinAnnotation, reuseIdentifier: "dot")
       pinView.image = UIImage(named: "MapDestinationDot")!
       pinView.canShowCallout = true
-      pinView.centerOffset = CGPointMake(0, 0)
-      pinView.calloutOffset = CGPointMake(0, -3)
+      pinView.centerOffset = CGPoint(x: 0, y: 0)
+      pinView.calloutOffset = CGPoint(x: 0, y: -3)
       
       let imageView = UIImageView(image: UIImage(named: "station-icon"))
-      imageView.frame = CGRectMake(0, 0, 22, 22)
+      imageView.frame = CGRect(x: 0, y: 0, width: 22, height: 22)
       pinView.leftCalloutAccessoryView = imageView
       
       return pinView
@@ -89,7 +89,7 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
     return nil
   }
   
-  func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+  func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
     if let touchPinView = view as? TouchStationAnnotationView {
       selectedPin = touchPinView
       let g = UITapGestureRecognizer(target: self, action: #selector(onCalloutTap))
@@ -102,7 +102,7 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
     if let index = selectedPin?.stationIndex {
       let locationTuple = nearbyLocations[index]
       self.nearbyStationsVC?.selectedOnMap(locationTuple.location)
-      presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+      presentingViewController?.dismiss(animated: true, completion: {})
     }
   }
   
@@ -112,8 +112,8 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Prepares map data and placing pins.
    */
-  private func loadMapData() {
-    for (index, locationTuple) in nearbyLocations.enumerate() {
+  fileprivate func loadMapData() {
+    for (index, locationTuple) in nearbyLocations.enumerated() {
       createStopPin(index, locationTuple: locationTuple)
     }
   }
@@ -121,7 +121,7 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Create location pin
    */
-  private func createStopPin(index: Int, locationTuple: (location: Location, dist: Int)) {
+  fileprivate func createStopPin(_ index: Int, locationTuple: (location: Location, dist: Int)) {
     let pin = DestinationPin()
     pin.coordinate = locationTuple.location.location.coordinate
     pin.title = locationTuple.location.name
@@ -132,7 +132,7 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Centers & zooms map on pin
    */
-  private func centerMap(location: CLLocation) {
+  fileprivate func centerMap(_ location: CLLocation) {
     let region = MKCoordinateRegion(
       center: location.coordinate,
       span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))

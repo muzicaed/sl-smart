@@ -7,10 +7,10 @@
 //
 import Foundation
 
-public class RTMetro: RTTransportBase {
+open class RTMetro: RTTransportBase {
   
-  public let platformMessage: String?
-  public let metroLineId: Int
+  open let platformMessage: String?
+  open let metroLineId: Int
   
   /**
    * Init

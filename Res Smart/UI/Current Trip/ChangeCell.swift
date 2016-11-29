@@ -33,9 +33,9 @@ class ChangeCell: UICollectionViewCell {
    */
   func setup() {
     layer.masksToBounds = false
-    layer.shadowOffset = CGSizeMake(1, 1)
+    layer.shadowOffset = CGSize(width: 1, height: 1)
     layer.shadowRadius = 1.5
-    layer.shadowColor = UIColor.blackColor().CGColor
+    layer.shadowColor = UIColor.black.cgColor
     layer.shadowOpacity = 0.10
     layer.cornerRadius = 4.0
     clipsToBounds = false
@@ -44,7 +44,7 @@ class ChangeCell: UICollectionViewCell {
   /**
    * Populate cell data based on passed RoutineTrip
    */
-  func setupData(segment: TripSegment, isOrigin: Bool) {
+  func setupData(_ segment: TripSegment, isOrigin: Bool) {
     if segment.type == .Walk {
       setupWalkData(segment)
     } else if isOrigin {
@@ -52,10 +52,10 @@ class ChangeCell: UICollectionViewCell {
     } else {
       setupDestinationData(segment)
     }
-    UIView.animateWithDuration(0.4) {
+    UIView.animate(withDuration: 0.4, animations: {
       self.loadingSpinner.alpha = 0.0
       self.contentStackView.alpha = 1.0
-    }
+    }) 
   }
   
   // MARK: Private
@@ -63,7 +63,7 @@ class ChangeCell: UICollectionViewCell {
   /**
    * Setup change row for origin.
    */
-  private func setupOriginData(segment: TripSegment) {
+  fileprivate func setupOriginData(_ segment: TripSegment) {
     let segmentData = TripHelper.friendlyLineData(segment)
     let inAbout = DateUtils.createAboutTimeText(segment.departureDateTime, isWalk: false)
     let departureTime = DateUtils.dateAsTimeString(segment.departureDateTime)
@@ -75,7 +75,7 @@ class ChangeCell: UICollectionViewCell {
   /**
    * Setup change row for destination.
    */
-  private func setupDestinationData(segment: TripSegment) {
+  fileprivate func setupDestinationData(_ segment: TripSegment) {
     let segmentData = TripHelper.friendlyLineData(segment)
     let inAbout = DateUtils.createAboutTimeText(segment.arrivalDateTime, isWalk: false)
     let arrivalTime = DateUtils.dateAsTimeString(segment.arrivalDateTime)
@@ -88,7 +88,7 @@ class ChangeCell: UICollectionViewCell {
   /**
    * Setup change row for walk.
    */
-  private func setupWalkData(segment: TripSegment) {
+  fileprivate func setupWalkData(_ segment: TripSegment) {
     /*
     let segmentData = TripHelper.friendlyLineData(segment)
     let inAbout = DateUtils.createAboutTimeText(segment.departureDateTime, isWalk: false)

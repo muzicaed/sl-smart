@@ -28,9 +28,9 @@ class ReportsVC: UITableViewController {
   /**
    * Prepares for segue
    */
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ShowDeviation" {
-      let vc = segue.destinationViewController as! DeviationVC
+      let vc = segue.destination as! DeviationVC
       if let deviation = selectedDeviation {
         vc.deviation = deviation
       }
@@ -42,7 +42,7 @@ class ReportsVC: UITableViewController {
   /**
   * Number of sections
   */
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     if isBothSituationsAndDeviations() {
       return 2
     }
@@ -52,7 +52,7 @@ class ReportsVC: UITableViewController {
   /**
    * Item count for section
    */
-  override func tableView(tableView: UITableView,
+  override func tableView(_ tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
       if isBothSituationsAndDeviations() {
         return (section == 0) ? situations.count : deviations.count
@@ -65,8 +65,8 @@ class ReportsVC: UITableViewController {
   /**
    * Cell for index.
    */
-  override func tableView(tableView: UITableView,
-    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView,
+    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       
       if isBothSituationsAndDeviations() {
         return (indexPath.section == 0) ? createSituationCell(indexPath) : createDeviationCell(indexPath)
@@ -79,24 +79,24 @@ class ReportsVC: UITableViewController {
   /**
    * View for header
    */
-  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 25))
-    let label = UILabel(frame: CGRectMake(10, 0, tableView.frame.size.width - 10, 25))
-    label.font = UIFont.systemFontOfSize(12)
-    label.textColor = UIColor.whiteColor()
+  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 25))
+    let label = UILabel(frame: CGRect(x: 10, y: 0, width: tableView.frame.size.width - 10, height: 25))
+    label.font = UIFont.systemFont(ofSize: 12)
+    label.textColor = UIColor.white
     label.text = createHeaderTitle(section)
     view.addSubview(label)
     
     let color = StyleHelper.sharedInstance.mainGreen
-    view.backgroundColor = color.colorWithAlphaComponent(0.95)
+    view.backgroundColor = color.withAlphaComponent(0.95)
     return view
   }
   
   /**
    * Before displaying cell
    */
-  override func tableView(tableView: UITableView,
-    willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView,
+    willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
       let bgColorView = UIView()
       bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
       cell.selectedBackgroundView = bgColorView
@@ -105,10 +105,10 @@ class ReportsVC: UITableViewController {
   /**
    * User selected row
    */
-  override func tableView(tableView: UITableView,
-    didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView,
+    didSelectRowAt indexPath: IndexPath) {
       selectedDeviation = deviations[indexPath.row]
-      performSegueWithIdentifier("ShowDeviation", sender: nil)
+      performSegue(withIdentifier: "ShowDeviation", sender: nil)
   }
   
   // MARK: Private
@@ -116,7 +116,7 @@ class ReportsVC: UITableViewController {
   /**
   * Create the header title.
   */
-  private func createHeaderTitle(section: Int) -> String {
+  fileprivate func createHeaderTitle(_ section: Int) -> String {
     if isBothSituationsAndDeviations() {
       return (section == 0) ? "Planerade störningar" : "Lokala avvikelser"
     } else {
@@ -127,10 +127,10 @@ class ReportsVC: UITableViewController {
   /**
    * Setup view properties
    */
-  private func setupView() {
+  fileprivate func setupView() {
     view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    tableView.separatorInset = UIEdgeInsetsZero
+    tableView.separatorInset = UIEdgeInsets.zero
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 130
   }
@@ -138,17 +138,17 @@ class ReportsVC: UITableViewController {
   /**
    * Checks if there is both situations and deviations.
    */
-  private func isBothSituationsAndDeviations() -> Bool {
+  fileprivate func isBothSituationsAndDeviations() -> Bool {
     return (situations.count > 0 && deviations.count > 0)
   }
   
   /**
    * Create a situation row
    */
-  private func createSituationCell(indexPath: NSIndexPath) -> UITableViewCell {
+  fileprivate func createSituationCell(_ indexPath: IndexPath) -> UITableViewCell {
     let situation = situations[indexPath.row]
-    let cell = tableView.dequeueReusableCellWithIdentifier(
-      "SituationRow", forIndexPath: indexPath) as! ReportSituationRow
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: "SituationRow", for: indexPath) as! ReportSituationRow
     cell.titleLabel.text = situation.trafficLine
     cell.messageLabel.text = situation.message
     return cell
@@ -157,10 +157,10 @@ class ReportsVC: UITableViewController {
   /**
    * Create a deviation row
    */
-  private func createDeviationCell(indexPath: NSIndexPath) -> UITableViewCell {
+  fileprivate func createDeviationCell(_ indexPath: IndexPath) -> UITableViewCell {
     let deviation = deviations[indexPath.row]
-    let cell = tableView.dequeueReusableCellWithIdentifier(
-      "DeviationRow", forIndexPath: indexPath) as! ReportDeviationRow
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: "DeviationRow", for: indexPath) as! ReportDeviationRow
     cell.titleLabel.text = deviation.scope
     cell.messageLabel.text = deviation.title
     cell.dateLabel.text = "Gäller från: " + DateUtils.friendlyDateAndTime(deviation.fromDate)

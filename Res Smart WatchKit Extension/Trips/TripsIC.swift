@@ -19,16 +19,16 @@ class TripsIC: WKInterfaceController {
   @IBOutlet var loadingLabel: WKInterfaceLabel!
   @IBOutlet var tripTable: WKInterfaceTable!
   
-  let session = WCSession.defaultSession()
+  let session = WCSession.default()
   var data: Dictionary<String, AnyObject>?
   var tripData = [Dictionary<String, AnyObject>]()
-  var wasLoadedDate = NSDate()
+  var wasLoadedDate = Date()
   
   /**
    * On load
    */
-  override func awakeWithContext(context: AnyObject?) {
-    super.awakeWithContext(context)
+  override func awake(withContext context: Any?) {
+    super.awake(withContext: context)
     tripTable.setHidden(true)
     data = context as? Dictionary<String, AnyObject>
   }
@@ -60,15 +60,15 @@ class TripsIC: WKInterfaceController {
    * outdated.
    */
   func checkOldData() -> Bool {
-    let diffMin = Int((NSDate().timeIntervalSince1970 - wasLoadedDate.timeIntervalSince1970) / 60)
+    let diffMin = Int((Date().timeIntervalSince1970 - wasLoadedDate.timeIntervalSince1970) / 60)
     return diffMin > 2
   }
   
   /**
    * Handle reply for a "SearchTrips" message.
    */
-  func searchTripsHandler(reply: NSData) {
-    let dictionary = NSKeyedUnarchiver.unarchiveObjectWithData(reply)! as! Dictionary<String, AnyObject>
+  func searchTripsHandler(_ reply: Data) {
+    let dictionary = NSKeyedUnarchiver.unarchiveObject(with: reply)! as! Dictionary<String, AnyObject>
     if dictionary["error"] as! Bool {
       displayError(
         "Något gick fel",
@@ -95,7 +95,7 @@ class TripsIC: WKInterfaceController {
   /**
    * Loads trip data from partner iPhone
    */
-  private func loadData() {
+  fileprivate func loadData() {
     var id = ""
     var action = "SearchLastTrip"
     if let data = data {
@@ -104,8 +104,8 @@ class TripsIC: WKInterfaceController {
     }
     
     let dictionary = ["action": action, "id": id]
-    let nsData = NSKeyedArchiver.archivedDataWithRootObject(dictionary)
-    if session.reachable {
+    let nsData = NSKeyedArchiver.archivedData(withRootObject: dictionary)
+    if session.isReachable {
       session.sendMessageData(
         nsData,
         replyHandler: searchTripsHandler,
@@ -124,7 +124,7 @@ class TripsIC: WKInterfaceController {
   /**
    * Update ui
    */
-  private func updateUI() {
+  fileprivate func updateUI() {
     if let data = data {
       titleLabel.setText(data["tit"] as? String)
       originLabel.setText(data["ori"] as? String)
@@ -139,11 +139,11 @@ class TripsIC: WKInterfaceController {
   /**
    * Update table based on trip data.
    */
-  private func updateTripTable() {
+  fileprivate func updateTripTable() {
     if tripData.count > 0 {
       tripTable.setNumberOfRows(tripData.count, withRowType: "TripRow")
-      for (index, data) in tripData.enumerate() {
-        let row = tripTable.rowControllerAtIndex(index) as! TripRow
+      for (index, data) in tripData.enumerated() {
+        let row = tripTable.rowController(at: index) as! TripRow
         row.setData(data)
       }
     }
@@ -153,12 +153,12 @@ class TripsIC: WKInterfaceController {
   /**
    * Displays an error
    */
-  private func displayError(title: String, message: String?) {
-    WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Failure)
-    let okAction = WKAlertAction(title: "Försök igen", style: .Default, handler: {
+  fileprivate func displayError(_ title: String, message: String?) {
+    WKInterfaceDevice.current().play(WKHapticType.failure)
+    let okAction = WKAlertAction(title: "Försök igen", style: .default, handler: {
       self.popToRootController()
     })
-    presentAlertControllerWithTitle(title,
-                                    message: message, preferredStyle: .Alert, actions: [okAction])
+    presentAlert(withTitle: title,
+                                    message: message, preferredStyle: .alert, actions: [okAction])
   }
 }

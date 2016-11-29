@@ -26,7 +26,7 @@ DateTimePickResponder {
   var hasChanged = false
   var isViaSelected = false
   var isMakeRoutine = false
-  var selectedDate: NSDate?
+  var selectedDate: Date?
   var dimmer: UIView?
   
   @IBOutlet weak var isAlternative: UITableViewCell!
@@ -41,7 +41,7 @@ DateTimePickResponder {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.editing = true
+    tableView.isEditing = true
     view.backgroundColor = StyleHelper.sharedInstance.background
     createFakeBackButton()
     updateGenericValues()
@@ -52,7 +52,7 @@ DateTimePickResponder {
   /**
    * When view is about to disappear.
    */
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
     if !isNewTrip && routineTrip != nil && hasChanged && !isMakeRoutine {
       RoutineTripsStore.sharedInstance.updateRoutineTrip(routineTrip!)
@@ -62,62 +62,62 @@ DateTimePickResponder {
   /**
    * Before seque is triggred.
    */
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     tripTitleTextField.resignFirstResponder()
     if segue.identifier == "SearchOriginLocation" {
       locationSearchType = "Origin"
-      let vc = segue.destinationViewController as! SearchLocationVC
+      let vc = segue.destination as! SearchLocationVC
       vc.searchOnlyForStations = false
       vc.allowNearbyStations = true
       vc.delegate = self
       
     } else if segue.identifier == "SearchDestinationLocation" {
       locationSearchType = "Destination"
-      let vc = segue.destinationViewController as! SearchLocationVC
+      let vc = segue.destination as! SearchLocationVC
       vc.searchOnlyForStations = false
       vc.allowNearbyStations = true
       vc.delegate = self
       
     } else if segue.identifier == "SearchViaLocation" {
       locationSearchType = "Via"
-      let vc = segue.destinationViewController as! SearchLocationVC
+      let vc = segue.destination as! SearchLocationVC
       vc.delegate = self
       
     } else if segue.identifier == "ShowTravelTypesPicker" {
-      let vc = segue.destinationViewController as! TravelTypesVC
+      let vc = segue.destination as! TravelTypesVC
       vc.delegate = self
       if let crit = routineTrip?.criterions {
         vc.setData(crit)
       }
     } else if segue.identifier == "MaxWalkDistance" {
-      let vc = segue.destinationViewController as! GenericValuePickerVC
+      let vc = segue.destination as! GenericValuePickerVC
       vc.delegate = self
       vc.title = "Max gångavstånd"
       vc.setValue(routineTrip!.criterions.maxWalkDist, valueType: .WalkDistance)
       
     } else if segue.identifier == "NumberOfChanges" {
-      let vc = segue.destinationViewController as! GenericValuePickerVC
+      let vc = segue.destination as! GenericValuePickerVC
       vc.delegate = self
       vc.title = "Antal byten"
       vc.setValue(routineTrip!.criterions.numChg, valueType: .NoOfChanges)
       
     } else if segue.identifier == "ChangeTime" {
-      let vc = segue.destinationViewController as! GenericValuePickerVC
+      let vc = segue.destination as! GenericValuePickerVC
       vc.delegate = self
       vc.title = "Extra tid vid byte"
       vc.setValue(routineTrip!.criterions.minChgTime, valueType: .TimeForChange)
       
     } else if segue.identifier == "PickLines" {
-      let vc = segue.destinationViewController as! LinePickerVC
+      let vc = segue.destination as! LinePickerVC
       vc.delegate = self
       vc.incText = routineTrip!.criterions.lineInc
       vc.excText = routineTrip!.criterions.lineExc
       
     } else if segue.identifier == "ShowTimePicker" {
-      let vc = segue.destinationViewController as! TimePickerVC
+      let vc = segue.destination as! TimePickerVC
       vc.selectedDate = selectedDate
       vc.delegate = self
-      UIView.animateWithDuration(0.45, animations: {
+      UIView.animate(withDuration: 0.45, animations: {
         self.dimmer?.alpha = 0.7
       })
     }
@@ -126,14 +126,14 @@ DateTimePickResponder {
   /**
    * Tap on Add Routine Trip button in navigation bar
    */
-  @IBAction func onRoutineTripNavAddTap(sender: UIBarButtonItem) {
+  @IBAction func onRoutineTripNavAddTap(_ sender: UIBarButtonItem) {
     createRoutineTrip()
   }
   
   /**
    * On trip title text field change.
    */
-  func textFieldDidChange(textField: UITextField) {
+  func textFieldDidChange(_ textField: UITextField) {
     hasChanged = true
     routineTrip?.title = tripTitleTextField.text
     if !isNewTrip {
@@ -157,7 +157,7 @@ DateTimePickResponder {
       }
       routineTrip?.criterions.isAdvanced = isAdvacedCriterions()
     }
-    navigationController?.popViewControllerAnimated(true)
+    navigationController?.popViewController(animated: true)
   }
   
   // MARK: PickLocationResponder
@@ -165,11 +165,11 @@ DateTimePickResponder {
   /**
    * Called when user taped on orign or destination row.
    */
-  func pickLocation(isOrigin: Bool) {
+  func pickLocation(_ isOrigin: Bool) {
     if isOrigin {
-      performSegueWithIdentifier("SearchOriginLocation", sender: self)
+      performSegue(withIdentifier: "SearchOriginLocation", sender: self)
     } else {
-      performSegueWithIdentifier("SearchDestinationLocation", sender: self)
+      performSegue(withIdentifier: "SearchDestinationLocation", sender: self)
     }
   }
   
@@ -192,15 +192,15 @@ DateTimePickResponder {
     tableView.endUpdates()
   }
   
-  @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
-  @IBAction func unwindToTripTypePickerParent(segue: UIStoryboardSegue) {}
+  @IBAction func unwindToStationSearchParent(_ segue: UIStoryboardSegue) {}
+  @IBAction func unwindToTripTypePickerParent(_ segue: UIStoryboardSegue) {}
   
   // MARK: PickGenericValueResponder
   
   /**
    * User picked a value using the generic value picker.
    */
-  func pickedValue(type: GenericValuePickerVC.ValueType, value: Int) {
+  func pickedValue(_ type: GenericValuePickerVC.ValueType, value: Int) {
     if let routine = routineTrip {
       switch type {
       case .WalkDistance:
@@ -217,7 +217,7 @@ DateTimePickResponder {
   
   // MARK: LinePickerResponder
   
-  func pickedLines(included: String?, excluded: String?) {
+  func pickedLines(_ included: String?, excluded: String?) {
     if let routine = routineTrip {
       routine.criterions.lineInc = included
       routine.criterions.lineExc = excluded
@@ -231,7 +231,7 @@ DateTimePickResponder {
   /**
    * Triggered whem location is selected on location search VC.
    */
-  func selectedLocationFromSearch(location: Location) {
+  func selectedLocationFromSearch(_ location: Location) {
     hasChanged = true
     if locationSearchType == "Origin" {
       routineTrip?.criterions.origin = location
@@ -253,7 +253,7 @@ DateTimePickResponder {
    * User selected travel types.
    */
   func selectedTravelType(
-    useMetro: Bool, useTrain: Bool, useTram: Bool,
+    _ useMetro: Bool, useTrain: Bool, useTram: Bool,
     useBus: Bool, useBoat: Bool) {
     if let crit = routineTrip?.criterions {
       hasChanged = true
@@ -272,7 +272,7 @@ DateTimePickResponder {
   /**
    * Triggered whem date and time is picked
    */
-  func pickedDate(date: NSDate?) -> Void {
+  func pickedDate(_ date: Date?) -> Void {
     if let routine = routineTrip, let date = date {
       hasChanged = true
       let dateTimeTuple = DateUtils.dateAsStringTuple(date)
@@ -282,7 +282,7 @@ DateTimePickResponder {
       selectedDate = date
       tableView.reloadData()
     }
-    UIView.animateWithDuration(0.2, animations: {
+    UIView.animate(withDuration: 0.2, animations: {
       self.dimmer?.alpha = 0.0
     })
   }
@@ -292,7 +292,7 @@ DateTimePickResponder {
   /**
    * Row count for section
    */
-  override func tableView(tableView: UITableView,
+  override func tableView(_ tableView: UITableView,
                           numberOfRowsInSection section: Int) -> Int {
     if section == 0 || section == 2 {
       return 1
@@ -303,8 +303,8 @@ DateTimePickResponder {
   /**
    * Will select row at index.
    */
-  override func tableView(tableView: UITableView,
-                          willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+  override func tableView(_ tableView: UITableView,
+                          willSelectRowAt indexPath: IndexPath) -> IndexPath? {
     if indexPath.section == 0 || (indexPath.section == 1 && indexPath.row == 0) {
       return nil
     }
@@ -314,7 +314,7 @@ DateTimePickResponder {
   /**
    * Can row be edited?
    */
-  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+  override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return (
       (indexPath.section == 1 && indexPath.row == 1 && isViaSelected) ||
         (indexPath.section == 2 && selectedDate != nil)
@@ -324,24 +324,24 @@ DateTimePickResponder {
   /**
    * Editing style
    */
-  override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-    return (indexPath.section == 1 && indexPath.row == 1) || (indexPath.section == 2) ? .Delete : .None
+  override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    return (indexPath.section == 1 && indexPath.row == 1) || (indexPath.section == 2) ? .delete : .none
   }
   
   /**
    * Edit actions. (Only used for clear Via station & Arrival time)
    */
-  override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+  override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
     if indexPath.section == 1 && indexPath.row == 1 {
       hasChanged = true
       return [
-        UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Rensa") { (_, _) -> Void in
+        UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Rensa") { (_, _) -> Void in
           self.resetViaStation()
           tableView.reloadData()
         }]
     } else if indexPath.section == 2 {
       return [
-        UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Rensa") { (_, _) -> Void in
+        UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Rensa") { (_, _) -> Void in
           self.resetArrivalTime()
           tableView.reloadData()
         }]
@@ -352,8 +352,8 @@ DateTimePickResponder {
   /**
    * Will display row at index
    */
-  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
-                          forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
+                          forRowAt indexPath: IndexPath) {
     let bgColorView = UIView()
     bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
     cell.selectedBackgroundView = bgColorView
@@ -362,23 +362,23 @@ DateTimePickResponder {
   /**
    * User selected row
    */
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.section == 4 && indexPath.row == 1 {
       hasChanged = true
       if let routine = routineTrip {
         routine.criterions.unsharp = !routine.criterions.unsharp
         updateGenericValues()
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
       }
     } else if indexPath.section == 2 && indexPath.row == 0 {
-      tableView.deselectRowAtIndexPath(indexPath, animated: true)
+      tableView.deselectRow(at: indexPath, animated: true)
     }
   }
   
   /**
    * User taps accessory button on row
    */
-  override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
     if indexPath.section == 2 {
       showArrivalTimeAlert()
     }
@@ -386,12 +386,12 @@ DateTimePickResponder {
   
   // MARK: UITextFieldDelegate
   
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     tripTitleTextField.resignFirstResponder()
     return true
   }
   
-  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
                  replacementString string: String) -> Bool {
     guard let text = textField.text else { return true }
     
@@ -404,7 +404,7 @@ DateTimePickResponder {
   /**
    * Prepares the fields.
    */
-  private func prepareFields() {
+  fileprivate func prepareFields() {
     if routineTrip == nil && !isMakeRoutine {
       title = "Ny rutin"
       isNewTrip = true
@@ -433,13 +433,13 @@ DateTimePickResponder {
     tripTitleTextField.delegate = self
     tripTitleTextField.addTarget(
       self, action: #selector(textFieldDidChange(_:)),
-      forControlEvents: UIControlEvents.EditingChanged)
+      for: UIControlEvents.editingChanged)
   }
   
   /**
    * Fills form with location data for edit.
    */
-  private func setupEditData() {
+  fileprivate func setupEditData() {
     if let trip = routineTrip {
       tripTitleTextField.text = trip.title
       locationPickerRow.setOriginLabelLocation(trip.criterions.origin)
@@ -447,7 +447,7 @@ DateTimePickResponder {
       travelTypesPickerRow.updateLabel(trip.criterions)
       
       if let time = trip.criterions.time {
-        let today = NSDate()
+        let today = Date()
         selectedDate = DateUtils.convertDateString("\(DateUtils.dateAsDateString(today)) \(time)")
         arrivalTimeLabel.text = "Klockan \(time)"
       }
@@ -462,64 +462,64 @@ DateTimePickResponder {
   /**
    * Show a invalid title alert
    */
-  private func showInvalidTitleAlert() {
+  fileprivate func showInvalidTitleAlert() {
     let invalidTitleAlert = UIAlertController(
       title: "Titel saknas",
       message: "Du behöver ange en titel för din resa.",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     invalidTitleAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: nil))
     
-    presentViewController(invalidTitleAlert, animated: true, completion: nil)
+    present(invalidTitleAlert, animated: true, completion: nil)
   }
   
   /**
    * Show a invalid title alert
    */
-  private func showArrivalTimeAlert() {
+  fileprivate func showArrivalTimeAlert() {
     let arrivalTimeAlert = UIAlertController(
       title: "Senast framme",
       message: "Du kan ange en tid när du senast behöver vara framme.\n\nDetta kan fungera bra med rutiner där du vill vara framme samma vid tid varje gång. T.ex. \"Åka till jobbet\" eller \"Fotbollsträning\"",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     arrivalTimeAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: nil))
     
-    presentViewController(arrivalTimeAlert, animated: true, completion: nil)
+    present(arrivalTimeAlert, animated: true, completion: nil)
   }
   
   /**
    * Show a arrival time info alert
    */
-  private func showInvalidLocationAlert() {
+  fileprivate func showInvalidLocationAlert() {
     let invalidLocationAlert = UIAlertController(
       title: "Station saknas",
       message: "Du behöver ange två olika stationerna som du brukar åka mellan.",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     invalidLocationAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: nil))
     
-    presentViewController(invalidLocationAlert, animated: true, completion: nil)
+    present(invalidLocationAlert, animated: true, completion: nil)
   }
   
   /**
    * Show a invalid via location alert
    */
-  private func showInvalidViaAlert() {
+  fileprivate func showInvalidViaAlert() {
     let invalidLocationAlert = UIAlertController(
       title: "Felaktig \"Via station\"",
       message: "Via kan ej vara samma station som Från eller Till station.",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     invalidLocationAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: nil))
     
-    presentViewController(invalidLocationAlert, animated: true, completion: nil)
+    present(invalidLocationAlert, animated: true, completion: nil)
   }
   
   /**
    * Creats and persists a routine trip based
    * on data on current form. Also navigates back.
    */
-  private func createRoutineTrip() {
+  fileprivate func createRoutineTrip() {
     tripTitleTextField.resignFirstResponder()
     if tripTitleTextField.text == nil || tripTitleTextField.text == "" {
       showInvalidTitleAlert()
@@ -541,13 +541,13 @@ DateTimePickResponder {
     routineTrip?.criterions.isAdvanced = isAdvacedCriterions()
     routineTrip?.isSmartSuggestion = false
     RoutineTripsStore.sharedInstance.addRoutineTrip(routineTrip!)
-    performSegueWithIdentifier("unwindToManageRoutineTrips", sender: self)
+    performSegue(withIdentifier: "unwindToManageRoutineTrips", sender: self)
   }
   
   /**
    * Checks if user entred location data is valid.
    */
-  private func isInvalidLocationData() -> Bool {
+  fileprivate func isInvalidLocationData() -> Bool {
     return (routineTrip == nil ||
       routineTrip?.criterions.origin == nil ||
       routineTrip?.criterions.dest == nil ||
@@ -561,7 +561,7 @@ DateTimePickResponder {
   /**
    * Checks if user entred via location is valid.
    */
-  private func isInvalidViaLocation() -> Bool {
+  fileprivate func isInvalidViaLocation() -> Bool {
     if let crit = routineTrip?.criterions {
       return (crit.via != nil &&
         (
@@ -577,16 +577,16 @@ DateTimePickResponder {
    * Replaces the navbar back button so
    * that it is possible to trap back tap event.
    */
-  private func createFakeBackButton() {
+  fileprivate func createFakeBackButton() {
     let backButton = UIBarButtonItem(
-      title: "Tillbaka", style: .Plain, target: self, action: #selector(onBackTap))
+      title: "Tillbaka", style: .plain, target: self, action: #selector(onBackTap))
     self.navigationItem.leftBarButtonItem = backButton
   }
   
   /**
    * Clear via location
    */
-  private func resetViaStation() {
+  fileprivate func resetViaStation() {
     hasChanged = true
     isViaSelected = false
     routineTrip?.criterions.via = nil
@@ -596,7 +596,7 @@ DateTimePickResponder {
   /**
    * Clear arrival time
    */
-  private func resetArrivalTime() {
+  fileprivate func resetArrivalTime() {
     hasChanged = true
     self.selectedDate = nil
     routineTrip?.criterions.time = nil
@@ -607,7 +607,7 @@ DateTimePickResponder {
    * Checks if any advanced settings are actually used.
    * If not automatically set advanced flag to false.
    */
-  private func isAdvacedCriterions() -> Bool {
+  fileprivate func isAdvacedCriterions() -> Bool {
     if let crit = routineTrip?.criterions {
       return (
         !isTravelTypeDefault(crit) ||
@@ -624,7 +624,7 @@ DateTimePickResponder {
    * Checks if any travel types
    * are used.
    */
-  private func isTravelTypeDefault(crit: TripSearchCriterion) -> Bool {
+  fileprivate func isTravelTypeDefault(_ crit: TripSearchCriterion) -> Bool {
     return (crit.useBus && crit.useFerry && crit.useMetro &&
       crit.useShip && crit.useTrain && crit.useTram)
   }
@@ -632,7 +632,7 @@ DateTimePickResponder {
   /**
    * Updates generic value picker labels
    */
-  private func updateGenericValues() {
+  fileprivate func updateGenericValues() {
     if let routine = routineTrip {
       switch routine.criterions.maxWalkDist {
       case 1000, 2000:
@@ -659,9 +659,9 @@ DateTimePickResponder {
         changeTimeLabel.text = "\(routine.criterions.minChgTime) minuter extra vid byte"
       }
       
-      isAlternative.accessoryType = .None
+      isAlternative.accessoryType = .none
       if routine.criterions.unsharp {
-        isAlternative.accessoryType = .Checkmark
+        isAlternative.accessoryType = .checkmark
       }
       
       if routine.criterions.lineInc == nil && routine.criterions.lineExc == nil {
@@ -677,10 +677,10 @@ DateTimePickResponder {
   /**
    * Creates a screen dimmer for date/time picker.
    */
-  private func createDimmer() {
+  fileprivate func createDimmer() {
     dimmer = UIView(frame: CGRect(origin: CGPoint.zero, size: view.bounds.size))
-    dimmer!.userInteractionEnabled = false
-    dimmer!.backgroundColor = UIColor.blackColor()
+    dimmer!.isUserInteractionEnabled = false
+    dimmer!.backgroundColor = UIColor.black
     dimmer!.alpha = 0.0
     view.addSubview(dimmer!)
   }

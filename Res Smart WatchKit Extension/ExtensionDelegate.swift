@@ -11,13 +11,13 @@ import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
   
-  let notificationCenter = NSNotificationCenter.defaultCenter()
-  let session = WCSession.defaultSession()
+  let notificationCenter = NotificationCenter.default
+  let session = WCSession.default()
   
   override init() {
     super.init()
     session.delegate = self
-    session.activateSession()
+    session.activate()
   }
   
   
@@ -34,21 +34,21 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
   
   // MARK: WCSessionDelegate
   
-  func sessionWatchStateDidChange(session: WCSession) {
-    func sessionReachabilityDidChange(session: WCSession) {
-      if session.reachable {
-        notificationCenter.postNotificationName("SessionBecameReachable", object: nil)
+  func sessionWatchStateDidChange(_ session: WCSession) {
+    func sessionReachabilityDidChange(_ session: WCSession) {
+      if session.isReachable {
+        notificationCenter.post(name: Notification.Name(rawValue: "SessionBecameReachable"), object: nil)
         return
       }
-      notificationCenter.postNotificationName("SessionNoLongerReachable", object: nil)
+      notificationCenter.post(name: Notification.Name(rawValue: "SessionNoLongerReachable"), object: nil)
     }
   }
   
-  func sessionReachabilityDidChange(session: WCSession) {
-    if session.reachable {
-      notificationCenter.postNotificationName("SessionBecameReachable", object: nil)
+  func sessionReachabilityDidChange(_ session: WCSession) {
+    if session.isReachable {
+      notificationCenter.post(name: Notification.Name(rawValue: "SessionBecameReachable"), object: nil)
       return
     }
-    notificationCenter.postNotificationName("SessionNoLongerReachable", object: nil)
+    notificationCenter.post(name: Notification.Name(rawValue: "SessionNoLongerReachable"), object: nil)
   }
 }

@@ -8,14 +8,14 @@
 
 import Foundation
 
-public class Deviation {
+open class Deviation {
   
-  public let scope: String
-  public let title: String
-  public let details: String
-  public let reported: NSDate
-  public let fromDate: NSDate
-  public let tripType: TripType
+  open let scope: String
+  open let title: String
+  open let details: String
+  open let reported: Date
+  open let fromDate: Date
+  open let tripType: TripType
   
   init(scope: String, title: String, details: String, reportedDate: String, fromDate: String) {
     
@@ -30,14 +30,14 @@ public class Deviation {
   /**
    * Converts "2016-02-21T11:49:58.79+01:00" into NSDate object
    */
-  private static func convertDate(dateStr: String) -> NSDate {
-    let start = dateStr.startIndex.advancedBy(0)
-    let end = start.advancedBy(16)
+  fileprivate static func convertDate(_ dateStr: String) -> Date {
+    let start = dateStr.characters.index(dateStr.startIndex, offsetBy: 0)
+    let end = <#T##String.CharacterView corresponding to `start`##String.CharacterView#>.index(start, offsetBy: 16)
     var croppedStr = dateStr[start ..< end]
-    croppedStr = croppedStr.stringByReplacingOccurrencesOfString(
-      "T",
-      withString: " ",
-      options: NSStringCompareOptions.LiteralSearch,
+    croppedStr = croppedStr.replacingOccurrences(
+      of: "T",
+      with: " ",
+      options: NSString.CompareOptions.literal,
       range: nil)
     return DateUtils.convertDateString(croppedStr)
   }
@@ -45,20 +45,20 @@ public class Deviation {
   /**
    * Extracts trip type from scope string.
    */
-  private static func extractTripType(scope: String) -> TripType {
-    if scope.lowercaseString.rangeOfString("pendeltåg") != nil {
+  fileprivate static func extractTripType(_ scope: String) -> TripType {
+    if scope.lowercased().range(of: "pendeltåg") != nil {
       return TripType.Train
-    } else if scope.lowercaseString.rangeOfString("buss") != nil {
+    } else if scope.lowercased().range(of: "buss") != nil {
       return TripType.Bus
-    } else if scope.lowercaseString.rangeOfString("närtrafiken") != nil {
+    } else if scope.lowercased().range(of: "närtrafiken") != nil {
       return TripType.Bus
-    } else if scope.lowercaseString.rangeOfString("tunnelbana") != nil {
+    } else if scope.lowercased().range(of: "tunnelbana") != nil {
       return TripType.Metro
-    } else if scope.lowercaseString.rangeOfString("spårvagn") != nil {
+    } else if scope.lowercased().range(of: "spårvagn") != nil {
       return TripType.Tram
-    } else if scope.lowercaseString.rangeOfString("saltsjöbanan") != nil {
+    } else if scope.lowercased().range(of: "saltsjöbanan") != nil {
       return TripType.Local
-    } else if scope.lowercaseString.rangeOfString("roslagsbanan") != nil {
+    } else if scope.lowercased().range(of: "roslagsbanan") != nil {
       return TripType.Local
     }
     
@@ -68,11 +68,11 @@ public class Deviation {
   /**
    * Fix scope text to match sematics
    */
-  private static func makeFriendlyScope(scope: String) -> String {
+  fileprivate static func makeFriendlyScope(_ scope: String) -> String {
     var newScope = scope
-    newScope = scope.stringByReplacingOccurrencesOfString("Tunnelbanans röda linje", withString: "Röda linjen")
-    newScope = scope.stringByReplacingOccurrencesOfString("Tunnelbanans gröna linje", withString: "Gröna linjen")
-    newScope = scope.stringByReplacingOccurrencesOfString("Tunnelbanans blå linje", withString: "Blå linjen")
+    newScope = scope.replacingOccurrences(of: "Tunnelbanans röda linje", with: "Röda linjen")
+    newScope = scope.replacingOccurrences(of: "Tunnelbanans gröna linje", with: "Gröna linjen")
+    newScope = scope.replacingOccurrences(of: "Tunnelbanans blå linje", with: "Blå linjen")
     
     return newScope
   }

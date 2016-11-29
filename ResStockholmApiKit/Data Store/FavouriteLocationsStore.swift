@@ -8,23 +8,23 @@
 
 import Foundation
 
-public class FavouriteLocationsStore {
+open class FavouriteLocationsStore {
   
-  private let FavouriteLocations = "FavouriteLocations"
-  private let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
-  private var cachedLocations = [Location]()
+  fileprivate let FavouriteLocations = "FavouriteLocations"
+  fileprivate let defaults = UserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
+  fileprivate var cachedLocations = [Location]()
   
   // Singelton pattern
-  public static let sharedInstance = FavouriteLocationsStore()  
+  open static let sharedInstance = FavouriteLocationsStore()  
   
   /**
    * Retrive "FavouriteLocations" from data store
    */
-  public func retrieveFavouriteLocations() -> [Location] {
+  open func retrieveFavouriteLocations() -> [Location] {
     if cachedLocations.count == 0 {
       
-      if let unarchivedObject = defaults.objectForKey(FavouriteLocations) as? NSData {
-        if let locations = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [Location] {
+      if let unarchivedObject = defaults.object(forKey: FavouriteLocations) as? Data {
+        if let locations = NSKeyedUnarchiver.unarchiveObject(with: unarchivedObject) as? [Location] {
           cachedLocations = locations
           return cachedLocations
         }
@@ -36,7 +36,7 @@ public class FavouriteLocationsStore {
   /**
    * Retrive "LatestLocations" filtered on stations from data store
    */
-  public func retrieveFavouriteStationsOnly() -> [Location] {
+  open func retrieveFavouriteStationsOnly() -> [Location] {
     cachedLocations = retrieveFavouriteLocations()
     return cachedLocations.filter() {
       if $0.type == LocationType.Station {
@@ -49,7 +49,7 @@ public class FavouriteLocationsStore {
   /**
    * Add a location to favourite location list.
    */
-  public func addFavouriteLocation(location: Location) {
+  open func addFavouriteLocation(_ location: Location) {
     cachedLocations = retrieveFavouriteLocations()
     cachedLocations = cachedLocations.filter() {
       if $0.siteId == location.siteId {
@@ -64,7 +64,7 @@ public class FavouriteLocationsStore {
   /**
    * Remove a location from favourite location list.
    */
-  public func removeFavouriteLocation(location: Location) {
+  open func removeFavouriteLocation(_ location: Location) {
     cachedLocations = retrieveFavouriteLocations()
     cachedLocations = cachedLocations.filter() {
       if $0.siteId == location.siteId {
@@ -78,7 +78,7 @@ public class FavouriteLocationsStore {
   /**
    * Check if location is a favourite.
    */
-  public func isLocationFavourite(location: Location) -> Bool {
+  open func isLocationFavourite(_ location: Location) -> Bool {
     let filteredLocations = cachedLocations.filter() {
       if $0.siteId == location.siteId {
         return true
@@ -91,9 +91,9 @@ public class FavouriteLocationsStore {
   /**
    * Moves a routine trip in data store
    */
-  public func moveFavouriteLocation(index: Int, targetIndex: Int) {
-    let moveLocation = cachedLocations.removeAtIndex(index)
-    cachedLocations.insert(moveLocation, atIndex: targetIndex)
+  open func moveFavouriteLocation(_ index: Int, targetIndex: Int) {
+    let moveLocation = cachedLocations.remove(at: index)
+    cachedLocations.insert(moveLocation, at: targetIndex)
     writeFavouriteLocations(cachedLocations)
   }
   
@@ -102,9 +102,9 @@ public class FavouriteLocationsStore {
   /**
    * Store "FavouriteLocations" in data store.
    */
-  private func writeFavouriteLocations(locations: [Location]) {
-    let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(locations)
-    defaults.setObject(archivedObject, forKey: FavouriteLocations)
+  fileprivate func writeFavouriteLocations(_ locations: [Location]) {
+    let archivedObject = NSKeyedArchiver.archivedData(withRootObject: locations)
+    defaults.set(archivedObject, forKey: FavouriteLocations)
     cachedLocations = locations
   }
 }

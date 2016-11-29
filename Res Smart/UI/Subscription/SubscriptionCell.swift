@@ -28,7 +28,7 @@ class SubscriptionCell: UICollectionViewCell {
   /**
    * Set cell data
    */
-  func setData(product: SKProduct) {
+  func setData(_ product: SKProduct) {
     if product.productIdentifier == "6_MONTHS_NO_TRIAL" {
       priceLabel.text = "\(product.price) kr / halvår"
       priceLabel.accessibilityLabel = "\(product.price) kronor per halvår"
@@ -46,9 +46,9 @@ class SubscriptionCell: UICollectionViewCell {
    */
   func setup() {
     layer.masksToBounds = false
-    layer.shadowOffset = CGSizeMake(1, 1)
+    layer.shadowOffset = CGSize(width: 1, height: 1)
     layer.shadowRadius = 1.5
-    layer.shadowColor = UIColor.blackColor().CGColor
+    layer.shadowColor = UIColor.black.cgColor
     layer.shadowOpacity = 0.10
     layer.cornerRadius = 4.0
     clipsToBounds = false

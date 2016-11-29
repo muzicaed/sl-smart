@@ -8,71 +8,71 @@
 
 import Foundation
 
-public class DateUtils {
+open class DateUtils {
   
   /**
    * Converts date and time string ("2015-01-01 13:32") to
    * NSDate object.
    */
-  public static func convertDateString(dateTime: String) -> NSDate {
+  open static func convertDateString(_ dateTime: String) -> Date {
     let formatter = getSwedishFormatter()
     formatter.dateFormat = "yyyy-MM-dd HH:mm"
-    return formatter.dateFromString(dateTime)!
+    return formatter.date(from: dateTime)!
   }
   
   /**
    * Converts a NSDate to a swedish local date string
    * eg. "2015-02-06"
    */
-  public static func dateAsDateString(date: NSDate) -> String {
+  open static func dateAsDateString(_ date: Date) -> String {
     let formatter = getSwedishFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
-    return formatter.stringFromDate(date)
+    return formatter.string(from: date)
   }
   
   /**
    * Converts a NSDate to a swedish local time string
    * eg. "17:04"
    */
-  public static func dateAsTimeString(date: NSDate) -> String {
+  open static func dateAsTimeString(_ date: Date) -> String {
     let formatter = getSwedishFormatter()
     formatter.dateFormat = "HH:mm"
-    return formatter.stringFromDate(date)
+    return formatter.string(from: date)
   }
   
   /**
    * Converts a NSDate to a swedish local date and time string
    * eg. "2015-02-06 11:32"
    */
-  public static func dateAsDateAndTimeString(date: NSDate) -> String {
+  open static func dateAsDateAndTimeString(_ date: Date) -> String {
     let formatter = getSwedishFormatter()
     formatter.dateFormat = "yyyy-MM-dd HH:mm"
-    return formatter.stringFromDate(date)
+    return formatter.string(from: date)
   }
   
   /**
    * Converts a NSDate to a swedish local friendly
    * date string.
    */
-  public static func friendlyDate(date: NSDate) -> String {
+  open static func friendlyDate(_ date: Date) -> String {
     let formatter = getSwedishFormatter()
     
     formatter.dateFormat = "EEEE"
-    var weekDay = formatter.stringFromDate(date)
-    if formatter.stringFromDate(NSDate()) == weekDay {
+    var weekDay = formatter.string(from: date)
+    if formatter.string(from: Date()) == weekDay {
       weekDay = "Idag, \(weekDay)en"
-    } else if formatter.stringFromDate(NSDate(timeIntervalSinceNow: 86400)) == weekDay {
+    } else if formatter.string(from: Date(timeIntervalSinceNow: 86400)) == weekDay {
       weekDay = "Imorgon, \(weekDay)en"
     } else {
-      weekDay = (weekDay + "en").capitalizedString
+      weekDay = (weekDay + "en").capitalized
     }
     
     formatter.dateFormat = "d"
-    var day = formatter.stringFromDate(date)
+    var day = formatter.string(from: date)
     day = (day == "1" || day == "2") ? day + ":a" : day + ":e"
     
     formatter.dateFormat = "MMMM"
-    let month = formatter.stringFromDate(date)
+    let month = formatter.string(from: date)
     
     return ("\(weekDay) den \(day) \(month)")
   }
@@ -81,29 +81,29 @@ public class DateUtils {
    * Converts a NSDate to a swedish local friendly
    * date string.
    */
-  public static func friendlyDateAndTime(date: NSDate) -> String {
+  open static func friendlyDateAndTime(_ date: Date) -> String {
     let formatter = getSwedishFormatter()
     
     formatter.dateFormat = "d"
-    var day = formatter.stringFromDate(date)
+    var day = formatter.string(from: date)
     day = (day == "1" || day == "2") ? day + ":a" : day + ":e"
     
     formatter.dateFormat = "MMMM"
-    let month = formatter.stringFromDate(date)
+    let month = formatter.string(from: date)
     
     formatter.dateFormat = "EEEE"
-    var weekDay = formatter.stringFromDate(date)
+    var weekDay = formatter.string(from: date)
     
-    if formatter.stringFromDate(NSDate()) == weekDay {
+    if formatter.string(from: Date()) == weekDay {
       weekDay = "Idag"
-    } else if formatter.stringFromDate(NSDate(timeIntervalSinceNow: 86400)) == weekDay {
+    } else if formatter.string(from: Date(timeIntervalSinceNow: 86400)) == weekDay {
       weekDay = "imorgon"
     } else {
-      weekDay = weekDay.capitalizedString + " den \(day) \(month)"
+      weekDay = weekDay.capitalized + " den \(day) \(month)"
     }
     
     formatter.dateFormat = "HH:mm"
-    let time = formatter.stringFromDate(date)
+    let time = formatter.string(from: date)
     
     return ("\(weekDay), kl. \(time)")
   }
@@ -111,7 +111,7 @@ public class DateUtils {
   /**
    * Creates an "(om xx min)" for depature time.
    */
-  public static func createAboutTimeText(departure: NSDate, isWalk: Bool) -> String {    
+  open static func createAboutTimeText(_ departure: Date, isWalk: Bool) -> String {    
     var aboutStr = "Om"
     var nowStr = "Avgår nu"
     if isWalk {
@@ -119,7 +119,7 @@ public class DateUtils {
       nowStr = "Gå nu"
     }
     
-    let diffMin = Int(ceil(((departure.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)) + 0.5)
+    let diffMin = Int(ceil(((departure.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
     if diffMin < 60 && diffMin > 0 {
       let diffMinStr = (diffMin < 1) ? "\(nowStr)" : "\(aboutStr) \(diffMin) min"
       return diffMinStr
@@ -135,32 +135,32 @@ public class DateUtils {
    * date and time string
    * eg. "2015-02-06" and "17:04"
    */
-  public static func dateAsStringTuple(date: NSDate) -> (date: String, time: String) {
+  open static func dateAsStringTuple(_ date: Date) -> (date: String, time: String) {
     return (dateAsDateString(date), dateAsTimeString(date))
   }
   
   /**
    * Gets today's day of week as integer.
    */
-  public static func getDayOfWeek() -> Int {
+  open static func getDayOfWeek() -> Int {
     let formatter = getSwedishFormatter()
     formatter.dateFormat = "c"
-    return Int(formatter.stringFromDate(NSDate()))!
+    return Int(formatter.string(from: Date()))!
   }
   
   /**
    * Gets today's hour of day as integer.
    */
-  public static func getHourOfDay() -> Int {
+  open static func getHourOfDay() -> Int {
     let formatter = getSwedishFormatter()
     formatter.dateFormat = "H"
-    return Int(formatter.stringFromDate(NSDate()))!
+    return Int(formatter.string(from: Date()))!
   }
   
   /**
    * Creates human friendly trip duration string.
    */
-  public static func createTripDurationString(min: Int) -> String {
+  open static func createTripDurationString(_ min: Int) -> String {
     if min < 60 {
       return "Restid: \(min) min"
     }
@@ -174,9 +174,9 @@ public class DateUtils {
   
   // MARK: Private
   
-  private static func getSwedishFormatter() -> NSDateFormatter {
-    let formatter = NSDateFormatter()
-    formatter.locale = NSLocale(localeIdentifier: "sv_SE")
+  fileprivate static func getSwedishFormatter() -> DateFormatter {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "sv_SE")
     return formatter
   }
 }

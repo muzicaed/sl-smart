@@ -9,6 +9,30 @@
 import Foundation
 import UIKit
 import ResStockholmApiKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 /**
  * TODO: This VC could use a lot of refactoring...
@@ -32,11 +56,11 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   
   var tabTypesKeys = [String]()
   var segmentView = SMSegmentView()
-  var refreshTimmer: NSTimer?
-  var loadedTime = NSDate()
+  var refreshTimmer: Timer?
+  var loadedTime = Date()
   let refreshController = UIRefreshControl()
   var tableActivityIndicator = UIActivityIndicatorView(
-    activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+    activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
   
   /**
    * On load
@@ -46,18 +70,18 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     tableView.tableFooterView = UIView()
     setupTableActivityIndicator()
     
-    NSNotificationCenter.defaultCenter().addObserver(
+    NotificationCenter.default.addObserver(
       self, selector: #selector(didBecomeActive),
-      name: UIApplicationDidBecomeActiveNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(
+      name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    NotificationCenter.default.addObserver(
       self, selector: #selector(didBecomeInactive),
-      name: UIApplicationWillResignActiveNotification, object: nil)
+      name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 44
     
     refreshController.addTarget(
-      self, action: #selector(loadData), forControlEvents: UIControlEvents.ValueChanged)
-    refreshController.tintColor = UIColor.lightGrayColor()
+      self, action: #selector(loadData), for: UIControlEvents.valueChanged)
+    refreshController.tintColor = UIColor.lightGray
     tableView.addSubview(refreshController)
     tableView.alwaysBounceVertical = true
   }
@@ -65,7 +89,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * View will appear
    */
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     tableView.reloadData()
     loadData()
@@ -75,7 +99,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * View did unload
    */
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     stopRefreshTimmer()
   }
@@ -84,9 +108,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Returned to the app.
    */
   func didBecomeActive() {
-    let now = NSDate()
-    if now.timeIntervalSinceDate(loadedTime) > (60 * 30) { // 30 minutes
-      navigationController?.popToRootViewControllerAnimated(false)
+    let now = Date()
+    if now.timeIntervalSince(loadedTime) > (60 * 30) { // 30 minutes
+      navigationController?.popToRootViewController(animated: false)
       return
     }
     tableView.reloadData()
@@ -105,10 +129,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Starts the refresh timmer
    */
   func startRefreshTimmer() {
-    loadedTime = NSDate()
+    loadedTime = Date()
     stopRefreshTimmer()
-    refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
-      15.0, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
+    refreshTimmer = Timer.scheduledTimer(
+      timeInterval: 15.0, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
   }
   
   /**
@@ -125,7 +149,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   func loadData() {
     NetworkActivity.displayActivityIndicator(true)
     RealTimeDeparturesService.fetch(siteId) { (rtDepartures, error) -> Void in
-      dispatch_async(dispatch_get_main_queue()) {
+      DispatchQueue.main.async {
         NetworkActivity.displayActivityIndicator(false)
         if error == nil {
           if let departures = rtDepartures {
@@ -153,8 +177,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     setupTableActivityIndicator()
     isLoading = true
     tableView.reloadData()
-    NSTimer.scheduledTimerWithTimeInterval(
-      0.7, target: self, selector: #selector(loadData), userInfo: nil, repeats: false)
+    Timer.scheduledTimer(
+      timeInterval: 0.7, target: self, selector: #selector(loadData), userInfo: nil, repeats: false)
   }
   
   // MARK: UITableViewController
@@ -162,7 +186,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Section count
    */
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     if isLoading {
       return 0
     }
@@ -173,7 +197,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Row count
    */
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if isLoading {
       return 0
     }
@@ -184,8 +208,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Cell on index
    */
-  override func tableView(tableView: UITableView,
-                          cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView,
+                          cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.row == 0  {
       if tabTypesKeys.count == 0 {
         return createNotFoundCell(indexPath)
@@ -199,8 +223,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Size for rows.
    */
-  override func tableView(tableView: UITableView,
-                          heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  override func tableView(_ tableView: UITableView,
+                          heightForRowAt indexPath: IndexPath) -> CGFloat {
     if isLoading {
       return tableView.bounds.height - 49 - 64 - 20 + 39
     } else if indexPath.row == 0 {
@@ -211,7 +235,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   
   // MARK: SMSegmentViewDelegate
   
-  func segmentView(segmentView: SMBasicSegmentView, didSelectSegmentAtIndex index: Int) {
+  func segmentView(_ segmentView: SMBasicSegmentView, didSelectSegmentAtIndex index: Int) {
     lastSelected = index
     UserPreferenceStore.sharedInstance.setLastRealTimeTripType(tabTypesKeys[index])
     tableView.reloadData()
@@ -222,18 +246,18 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Prepares Segment View
    */
-  private func prepareSegmentView() {
+  fileprivate func prepareSegmentView() {
     segmentView.removeFromSuperview()
     segmentView = SMSegmentView(
       frame: CGRect(x: 0, y: 0, width: 100.0, height: 44),
-      separatorColour: UIColor.lightGrayColor(),
+      separatorColour: UIColor.lightGray,
       separatorWidth: 0.0,
       segmentProperties: [
-        keySegmentOnSelectionTextColour: UIColor.blackColor(),
-        keySegmentTitleFont: UIFont.systemFontOfSize(12),
+        keySegmentOnSelectionTextColour: UIColor.black,
+        keySegmentTitleFont: UIFont.systemFont(ofSize: 12),
         keySegmentOnSelectionColour: UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 0.5),
-        keySegmentOffSelectionColour: UIColor.clearColor(),
-        keyContentVerticalMargin: 10.0])
+        keySegmentOffSelectionColour: UIColor.clear,
+        keyContentVerticalMargin: 10.0 as AnyObject])
     
     var tabCount = 0
     let lastStoredSelected = UserPreferenceStore.sharedInstance.getLastRealTimeTripType()
@@ -294,7 +318,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     }
     
     if tabCount > 0 {
-      let screenWidth = UIScreen.mainScreen().bounds.width
+      let screenWidth = UIScreen.main.bounds.width
       segmentView.delegate = self
       segmentView.selectSegmentAtIndex(lastSelected)
       segmentView.frame.size.width = CGFloat((screenWidth / 4) * CGFloat(tabCount))
@@ -306,9 +330,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Create header cell
    */
-  private func createHeaderCell(indexPath: NSIndexPath) -> RealTimeHeaderRow {
-    let cell = tableView!.dequeueReusableCellWithIdentifier(
-      "Header", forIndexPath: indexPath) as! RealTimeHeaderRow
+  fileprivate func createHeaderCell(_ indexPath: IndexPath) -> RealTimeHeaderRow {
+    let cell = tableView!.dequeueReusableCell(
+      withIdentifier: "Header", for: indexPath) as! RealTimeHeaderRow
     
     setHeaderData(cell, indexPath: indexPath)
     return cell
@@ -317,9 +341,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Create bus trip cell
    */
-  private func createBussTripCell(indexPath: NSIndexPath) -> RealTimeTripRow {
-    let cell = tableView!.dequeueReusableCellWithIdentifier(
-      "TripRow", forIndexPath: indexPath) as! RealTimeTripRow
+  fileprivate func createBussTripCell(_ indexPath: IndexPath) -> RealTimeTripRow {
+    let cell = tableView!.dequeueReusableCell(
+      withIdentifier: "TripRow", for: indexPath) as! RealTimeTripRow
     
     setRowData(cell, indexPath: indexPath)
     return cell
@@ -328,27 +352,27 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Create not found cell
    */
-  private func createNotFoundCell(indexPath: NSIndexPath) -> UITableViewCell {
-    return tableView!.dequeueReusableCellWithIdentifier(
-      "NotFoundRow", forIndexPath: indexPath)
+  fileprivate func createNotFoundCell(_ indexPath: IndexPath) -> UITableViewCell {
+    return tableView!.dequeueReusableCell(
+      withIdentifier: "NotFoundRow", for: indexPath)
   }
   
   /**
    * Setup key arrays
    */
-  private func setupKeys() {
-    busKeys = realTimeDepartures!.busses.keys.sort(<)
-    metroKeys = realTimeDepartures!.metros.keys.sort(<)
-    trainKeys = realTimeDepartures!.trains.keys.sort(<)
-    tramKeys = realTimeDepartures!.trams.keys.sort(<)
-    localTramKeys = realTimeDepartures!.localTrams.keys.sort(<)
-    boatKeys = realTimeDepartures!.boats.keys.sort(<)
+  fileprivate func setupKeys() {
+    busKeys = realTimeDepartures!.busses.keys.sorted(by: <)
+    metroKeys = realTimeDepartures!.metros.keys.sorted(by: <)
+    trainKeys = realTimeDepartures!.trains.keys.sorted(by: <)
+    tramKeys = realTimeDepartures!.trams.keys.sorted(by: <)
+    localTramKeys = realTimeDepartures!.localTrams.keys.sorted(by: <)
+    boatKeys = realTimeDepartures!.boats.keys.sorted(by: <)
   }
   
   /**
    * Calculates the needed sections.
    */
-  private func calcSectionCount() -> Int {
+  fileprivate func calcSectionCount() -> Int {
     if tabTypesKeys.count == 0 {
       return 1
     }
@@ -378,7 +402,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Calculates the needed rows.
    */
-  private func calcRowCount(section: Int) -> Int {
+  fileprivate func calcRowCount(_ section: Int) -> Int {
     if tabTypesKeys.count == 0 {
       return 1
     }
@@ -410,7 +434,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Set header cell data
    */
-  private func setHeaderData(cell: RealTimeHeaderRow, indexPath: NSIndexPath) {
+  fileprivate func setHeaderData(_ cell: RealTimeHeaderRow, indexPath: IndexPath) {
     let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
     switch tabKeys {
     case "BUS":
@@ -456,11 +480,11 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Set row cell data
    */
-  private func setRowData(cell: RealTimeTripRow, indexPath: NSIndexPath) {
+  fileprivate func setRowData(_ cell: RealTimeTripRow, indexPath: IndexPath) {
     var data: RTTransportBase?
     var lineChar = ""
     let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
-    cell.stopPointDesignation.hidden = true
+    cell.stopPointDesignation.isHidden = true
     
     switch tabKeys {
     case "BUS":
@@ -469,7 +493,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       if let designation = bus.stopPointDesignation {
         cell.stopPointDesignation.text = designation
         cell.stopPointDesignation.accessibilityLabel = "Hållplatsläge: " + designation
-        cell.stopPointDesignation.hidden = false
+        cell.stopPointDesignation.isHidden = false
       }
     case "METRO":
       lineChar = "T"
@@ -480,18 +504,18 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       let via = ((train.secondaryDestinationName != nil) ? " via \(train.secondaryDestinationName!)" : "")
       cell.infoLabel.text = "\(train.destination)" + via
       if train.displayTime == "Nu" {
-        cell.departureTimeLabel.font = UIFont.systemFontOfSize(16)
+        cell.departureTimeLabel.font = UIFont.systemFont(ofSize: 16)
         cell.departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
       } else {
-        cell.departureTimeLabel.font = UIFont.systemFontOfSize(16)
-        cell.departureTimeLabel.textColor = UIColor.blackColor()
+        cell.departureTimeLabel.font = UIFont.systemFont(ofSize: 16)
+        cell.departureTimeLabel.textColor = UIColor.black
       }
       cell.departureTimeLabel.text = train.displayTime
-      cell.deviationsLabel.text = train.deviations.joinWithSeparator(" ")
+      cell.deviationsLabel.text = train.deviations.joined(separator: " ")
       if DisturbanceTextHelper.isDisturbance(cell.deviationsLabel.text) {
         cell.deviationsLabel.textColor = StyleHelper.sharedInstance.warningColor
       } else {
-        cell.deviationsLabel.textColor = UIColor.darkGrayColor()
+        cell.deviationsLabel.textColor = UIColor.darkGray
       }
       return
     case "TRAM":
@@ -511,18 +535,18 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       cell.infoLabel.text = "\(data.destination)"
       cell.infoLabel.accessibilityLabel = "Mot \(data.destination)"
       if data.displayTime == "Nu" {
-        cell.departureTimeLabel.font = UIFont.boldSystemFontOfSize(17)
+        cell.departureTimeLabel.font = UIFont.boldSystemFont(ofSize: 17)
         cell.departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
       } else {
-        cell.departureTimeLabel.font = UIFont.systemFontOfSize(17)
-        cell.departureTimeLabel.textColor = UIColor.blackColor()
+        cell.departureTimeLabel.font = UIFont.systemFont(ofSize: 17)
+        cell.departureTimeLabel.textColor = UIColor.black
       }
       cell.departureTimeLabel.text = data.displayTime
-      cell.deviationsLabel.text = data.deviations.joinWithSeparator(" ")
+      cell.deviationsLabel.text = data.deviations.joined(separator: " ")
       if DisturbanceTextHelper.isDisturbance(cell.deviationsLabel.text) {
         cell.deviationsLabel.textColor = StyleHelper.sharedInstance.warningColor
       } else {
-        cell.deviationsLabel.textColor = UIColor.darkGrayColor()
+        cell.deviationsLabel.textColor = UIColor.darkGray
       }
     }
   }
@@ -530,30 +554,30 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Hadle load data (network) error
    */
-  private func handleLoadDataError() {
+  fileprivate func handleLoadDataError() {
     stopRefreshTimmer()
     let invalidLoadingAlert = UIAlertController(
       title: "Kan inte nå söktjänsten",
       message: "Söktjänsten kan inte nås just nu. Prova igen om en liten stund.",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     invalidLoadingAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: { _ in
-        self.navigationController?.popToRootViewControllerAnimated(false)
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: { _ in
+        self.navigationController?.popToRootViewController(animated: false)
       }))
     
-    presentViewController(invalidLoadingAlert, animated: true, completion: nil)
+    present(invalidLoadingAlert, animated: true, completion: nil)
   }
   
   /**
    * Setup table's background spinner.
    */
-  private func setupTableActivityIndicator() {
+  fileprivate func setupTableActivityIndicator() {
     tableActivityIndicator.startAnimating()
-    tableActivityIndicator.color = UIColor.lightGrayColor()
+    tableActivityIndicator.color = UIColor.lightGray
     tableView?.backgroundView = tableActivityIndicator
   }
   
   deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
+    NotificationCenter.default.removeObserver(self)
   }
 }

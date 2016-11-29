@@ -17,8 +17,8 @@ class TravelTypesPickerRow: UITableViewCell {
   /**
    * Update the text label based on criterions.
    */
-  func updateLabel(criterions: TripSearchCriterion) {
-    tripTypeLabel.textColor = UIColor.darkGrayColor()
+  func updateLabel(_ criterions: TripSearchCriterion) {
+    tripTypeLabel.textColor = UIColor.darkGray
     if isAllSelected(criterions) {
       tripTypeLabel.text = "Alla färdmedel"
       return
@@ -43,10 +43,10 @@ class TravelTypesPickerRow: UITableViewCell {
     
     if text == "" {
       tripTypeLabel.text = "Inga färdmedel"
-      tripTypeLabel.textColor = UIColor.redColor()
+      tripTypeLabel.textColor = UIColor.red
       return
     }
-    text = text.substringToIndex(text.endIndex.predecessor().predecessor())
+    text = text.substring(to: <#T##Collection corresponding to your index##Collection#>.index(before: text.characters.index(before: text.endIndex)))
     tripTypeLabel.text = text
   }
   
@@ -56,7 +56,7 @@ class TravelTypesPickerRow: UITableViewCell {
   /**
   * Checks if all travel types are selected.
   */
-  private func isAllSelected(criterions: TripSearchCriterion) -> Bool {
+  fileprivate func isAllSelected(_ criterions: TripSearchCriterion) -> Bool {
     return (
       criterions.useBus && criterions.useFerry && criterions.useMetro &&
         criterions.useShip && criterions.useTrain && criterions.useTram)

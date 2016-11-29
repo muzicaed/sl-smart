@@ -21,7 +21,7 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
   var searchQueryText: String?
   var selectedLocation: Location?
   
-  let loadedTime = NSDate()
+  let loadedTime = Date()
   
   weak var searchLocationVC: SearchLocationVC?
   
@@ -32,15 +32,15 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
     super.viewDidLoad()
     view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView()
-    edgesForExtendedLayout = UIRectEdge.None
+    edgesForExtendedLayout = UIRectEdge()
   }
   
   /**
    * Before segue is performed
    */
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ShowLocationMap" {
-      if let mapVC = segue.destinationViewController as? LocationMapVC {
+      if let mapVC = segue.destination as? LocationMapVC {
         mapVC.location = selectedLocation
       }
     }
@@ -49,7 +49,7 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
   /**
    * Toggle selected station as favourite station
    */
-  func toggleFavouriteStation(alertAction: UIAlertAction) {
+  func toggleFavouriteStation(_ alertAction: UIAlertAction) {
     if FavouriteLocationsStore.sharedInstance.isLocationFavourite(selectedLocation!) {
       FavouriteLocationsStore.sharedInstance.removeFavouriteLocation(selectedLocation!)
     } else {
@@ -62,8 +62,8 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
   /**
    * Show selected station on map.
    */
-  func showLocationOnMap(alertAction: UIAlertAction) {
-    performSegueWithIdentifier("ShowLocationMap", sender: self)
+  func showLocationOnMap(_ alertAction: UIAlertAction) {
+    performSegue(withIdentifier: "ShowLocationMap", sender: self)
   }
   
   // MARK: UITableViewController
@@ -72,7 +72,7 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
    * Number of rows
    */
   override func tableView(
-    tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if noResults {
       return 1
     }
@@ -83,11 +83,11 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
    * Cell for index
    */
   override func tableView(
-    tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     if noResults {
-      let cell = tableView.dequeueReusableCellWithIdentifier(
-        cellNotFoundId, forIndexPath: indexPath)
+      let cell = tableView.dequeueReusableCell(
+        withIdentifier: cellNotFoundId, for: indexPath)
       return cell
     }
     
@@ -99,7 +99,7 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
    * User selects row
    */
   override func tableView(
-    tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    _ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
     searchLocationVC?.onSearchSelectLocation(searchResult[indexPath.row])
   }
@@ -108,14 +108,14 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
    * User tapped accessory
    */
   override func tableView(
-    tableView: UITableView,
-    accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+    _ tableView: UITableView,
+    accessoryButtonTappedForRowWith indexPath: IndexPath) {
     
     selectedLocation = searchResult[indexPath.row]
     let stationOptionsAlert = UIAlertController(
       title: nil,
       message: selectedLocation!.cleanName,
-      preferredStyle: .ActionSheet)
+      preferredStyle: .actionSheet)
     
     var favouriteTitle = "Gör till favorit"
     if FavouriteLocationsStore.sharedInstance.isLocationFavourite(selectedLocation!) {
@@ -123,23 +123,23 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
     }
     
     stationOptionsAlert.addAction(
-      UIAlertAction(title: favouriteTitle, style: .Default, handler: toggleFavouriteStation))
+      UIAlertAction(title: favouriteTitle, style: .default, handler: toggleFavouriteStation))
     stationOptionsAlert.addAction(
-      UIAlertAction(title: "Visa på karta", style: .Default, handler: showLocationOnMap))
+      UIAlertAction(title: "Visa på karta", style: .default, handler: showLocationOnMap))
     stationOptionsAlert.addAction(
-      UIAlertAction(title: "Avbryt", style: .Cancel, handler: { _ in
+      UIAlertAction(title: "Avbryt", style: .cancel, handler: { _ in
         self.selectedLocation = nil
       }))
     
-    presentViewController(stationOptionsAlert, animated: true, completion: nil)
+    present(stationOptionsAlert, animated: true, completion: nil)
   }
   
   /**
    * Green highlight on selected row.
    */
   override func tableView(
-    tableView: UITableView, willDisplayCell cell: UITableViewCell,
-    forRowAtIndexPath indexPath: NSIndexPath) {
+    _ tableView: UITableView, willDisplay cell: UITableViewCell,
+    forRowAt indexPath: IndexPath) {
     
     let bgColorView = UIView()
     bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
@@ -148,11 +148,11 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
   
   // MARK: UISearchResultsUpdating
   
-  @objc func updateSearchResultsForSearchController(searchController: UISearchController) {
-    NSObject.cancelPreviousPerformRequestsWithTarget(
-      self, selector: #selector(searchLocation), object: nil)
+  @objc func updateSearchResults(for searchController: UISearchController) {
+    NSObject.cancelPreviousPerformRequests(
+      withTarget: self, selector: #selector(searchLocation), object: nil)
     searchQueryText = searchController.searchBar.text
-    self.performSelector(#selector(searchLocation), withObject: nil, afterDelay: 0.3)
+    self.perform(#selector(searchLocation), with: nil, afterDelay: 0.3)
   }
   
   /**
@@ -165,7 +165,7 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
         NetworkActivity.displayActivityIndicator(true)
         LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
           NetworkActivity.displayActivityIndicator(false)
-          dispatch_async(dispatch_get_main_queue()) {
+          DispatchQueue.main.async {
             if resTuple.error != nil {
               self.noResults = true
               self.tableView.reloadData()
@@ -189,11 +189,11 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
   /**
    * Create location cell.
    */
-  private func createLocationCell(
-    indexPath: NSIndexPath, location: Location) -> UITableViewCell {
+  fileprivate func createLocationCell(
+    _ indexPath: IndexPath, location: Location) -> UITableViewCell {
     
-    let cell = tableView.dequeueReusableCellWithIdentifier(
-      cellReusableId, forIndexPath: indexPath)
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: cellReusableId, for: indexPath)
     
     cell.textLabel?.text = location.name
     cell.detailTextLabel?.text = location.area
@@ -207,9 +207,9 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
     }
     cell.imageView?.alpha = 0.4
     if isLocationForRealTimeSearch {
-      cell.accessoryType = UITableViewCellAccessoryType.DetailDisclosureButton
+      cell.accessoryType = UITableViewCellAccessoryType.detailDisclosureButton
     } else {
-      cell.accessoryType = UITableViewCellAccessoryType.DetailButton
+      cell.accessoryType = UITableViewCellAccessoryType.detailButton
     }
     return cell
   }
@@ -217,14 +217,14 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
   /**
    * Show a network error alert
    */
-  private func showNetworkErrorAlert() {
+  fileprivate func showNetworkErrorAlert() {
     let networkErrorAlert = UIAlertController(
       title: "Tjänsten är otillgänglig",
       message: "Det gick inte att kontakta söktjänsten.",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     networkErrorAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: nil))
     
-    presentViewController(networkErrorAlert, animated: true, completion: nil)
+    present(networkErrorAlert, animated: true, completion: nil)
   }
 }

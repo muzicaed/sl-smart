@@ -9,23 +9,23 @@
 import Foundation
 import CoreLocation
 
-public class LocationSearchService {
+open class LocationSearchService {
   
-  private static let api = SLSearchLocationApi()
-  private static let nearbyApi = SLSearchNearbyStationsApi()
+  fileprivate static let api = SLSearchLocationApi()
+  fileprivate static let nearbyApi = SLSearchNearbyStationsApi()
   
   /**
    * Searches for locations based on the query
    */
-  public static func search(
-    query: String, stationsOnly: Bool,
-    callback: (data: [Location], error: SLNetworkError?) -> Void) {
+  open static func search(
+    _ query: String, stationsOnly: Bool,
+    callback: @escaping (_ data: [Location], _ error: SLNetworkError?) -> Void) {
       api.search(query, stationsOnly: stationsOnly) { resTuple in
         var locations = [Location]()
         if let data = resTuple.data {
           locations = LocationSearchService.convertJsonResponse(data)
           if locations.count == 0 {
-            callback(data: locations, error: SLNetworkError.NoDataFound)
+            callback(data: locations, error: SLNetworkError.noDataFound)
             return
           }
         }
@@ -36,9 +36,9 @@ public class LocationSearchService {
   /**
    * Searches for nearby locations.
    */
-  public static func searchNearby(
-    location: CLLocation, distance: Int,
-    callback: (data: [(location: Location, dist: Int)], error: SLNetworkError?) -> Void) {
+  open static func searchNearby(
+    _ location: CLLocation, distance: Int,
+    callback: @escaping (_ data: [(location: Location, dist: Int)], _ error: SLNetworkError?) -> Void) {
       
       nearbyApi.search(location, distance: distance) { resTuple in
         var result = [(location: Location, dist: Int)]()
@@ -47,7 +47,7 @@ public class LocationSearchService {
           
           if let locationJson = data["LocationList"]["StopLocation"].array {
             for locationJson in locationJson {
-              let id = locationJson["id"].string!.stringByReplacingOccurrencesOfString("30010", withString: "")
+              let id = locationJson["id"].string!.replacingOccurrences(of: "30010", with: "")
               let location = Location(
                 id: id, name: locationJson["name"].string!, type: "ST",
                 lat: locationJson["lat"].string!, lon: locationJson["lon"].string!)
@@ -56,7 +56,7 @@ public class LocationSearchService {
               result.append(res)
             }
           } else if let locationJson = data["LocationList"]["StopLocation"].object as? JSON {
-            let id = locationJson["id"].string!.stringByReplacingOccurrencesOfString("30010", withString: "")
+            let id = locationJson["id"].string!.replacingOccurrences(of: "30010", with: "")
             let location = Location(
               id: id, name: locationJson["name"].string!, type: "ST",
               lat: locationJson["lat"].string!, lon: locationJson["lon"].string!)
@@ -67,7 +67,7 @@ public class LocationSearchService {
         }
         
         if result.count == 0 {
-          callback(data: result, error: SLNetworkError.NoDataFound)
+          callback(data: result, error: SLNetworkError.noDataFound)
           return
         }
         callback(data: result, error: resTuple.error)
@@ -77,7 +77,7 @@ public class LocationSearchService {
   /**
    * Converts the raw json string into array of Location.
    */
-  private static func convertJsonResponse(jsonData: NSData) -> [Location] {
+  fileprivate static func convertJsonResponse(_ jsonData: Data) -> [Location] {
     var result = [Location]()
     let data = JSON(data: jsonData)
     
@@ -103,9 +103,9 @@ public class LocationSearchService {
   /**
    * Check if location is "code location" eg. SPA, TERT
    */
-  private static func isCodeLocation(locationJson: JSON) -> Bool {
+  fileprivate static func isCodeLocation(_ locationJson: JSON) -> Bool {
     let name = locationJson["Name"].string!
-    if name == name.uppercaseString && name.characters.count < 5 {
+    if name == name.uppercased() && name.characters.count < 5 {
       return true
     }
     return false

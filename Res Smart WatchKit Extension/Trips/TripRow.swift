@@ -39,7 +39,7 @@ class TripRow: NSObject {
   /**
    * Set data for row
    */
-  func setData(data: Dictionary<String, AnyObject>) {
+  func setData(_ data: Dictionary<String, AnyObject>) {
     let depDateString = DateUtils.createDepartureTimeString(
       data["ot"] as! String, isWalk: checkIfWalk(data))
     let arrivalDate = DateUtils.convertDateString(data["dt"] as! String)
@@ -59,9 +59,9 @@ class TripRow: NSObject {
   /**
   * Handle travel date label
   */
-  private func handleTravelDateLabel(dateStr: String) {
+  fileprivate func handleTravelDateLabel(_ dateStr: String) {
     let date = DateUtils.convertDateString(dateStr)
-    if NSCalendar.currentCalendar().isDateInToday(date) {
+    if Calendar.current.isDateInToday(date) {
       travelDateLabel.setHidden(true)
     } else {
       travelDateLabel.setHidden(false)
@@ -70,14 +70,14 @@ class TripRow: NSObject {
     
     if date.timeIntervalSinceNow < (60*1) * -1 {
       travelTimeLabel.setText("Redan avgått")
-      scheduleLabel.setTextColor(UIColor.lightGrayColor())
+      scheduleLabel.setTextColor(UIColor.lightGray)
     }
   }
   
   /**
    * Check if first segment is a walk.
    */
-  private func checkIfWalk(data: Dictionary<String, AnyObject>) -> Bool {
+  fileprivate func checkIfWalk(_ data: Dictionary<String, AnyObject>) -> Bool {
     let first = (data["icn"] as! [String]).first!
     return (first == "WALK-NEUTRAL")
   }
@@ -85,10 +85,10 @@ class TripRow: NSObject {
   /**
    * Creates trip icons
    */
-  private func createTripIcons(iconNames: [String], lines: [String], warnings: [String]) {
+  fileprivate func createTripIcons(_ iconNames: [String], lines: [String], warnings: [String]) {
     prepareIcons()
     let nameCount = iconNames.count
-    for (index, iconImage) in icons.enumerate() {
+    for (index, iconImage) in icons.enumerated() {
       if index < nameCount {
         iconImage.setImageNamed("W_\(iconNames[index])")
         iconImage.setHidden(false)
@@ -97,9 +97,9 @@ class TripRow: NSObject {
         if warnings[index] == "I" {
           iconLables[index].setTextColor(UIColor(red: 100/255, green: 100/255, blue: 255/255, alpha: 1.0))
         } else if warnings[index] == "W" {
-          iconLables[index].setTextColor(UIColor.redColor())
+          iconLables[index].setTextColor(UIColor.red)
         } else {
-          iconLables[index].setTextColor(UIColor.whiteColor())
+          iconLables[index].setTextColor(UIColor.white)
         }
         iconGroups[index].setHidden(false)
       } else {
@@ -115,7 +115,7 @@ class TripRow: NSObject {
    * Stores all trip icons in a array
    * for easier manipulation.
    */
-  private func prepareIcons() {
+  fileprivate func prepareIcons() {
     icons = [WKInterfaceImage]()
     icons.append(icon1)
     icons.append(icon2)
@@ -140,7 +140,7 @@ class TripRow: NSObject {
    * Creates a human readable trip duration string.
    * eg "1:32" eller "20 minuter"
    */
-  private func createHumanTripDuration(duration: Int) -> String {
+  fileprivate func createHumanTripDuration(_ duration: Int) -> String {
     if duration < 60 {
       return "\(duration) minuter"
     }

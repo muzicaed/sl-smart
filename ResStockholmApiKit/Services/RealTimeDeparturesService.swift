@@ -9,20 +9,20 @@
 import Foundation
 import CoreLocation
 
-public class RealTimeDeparturesService {
+open class RealTimeDeparturesService {
   
-  private static let api = SLRealtimeDepartures()
+  fileprivate static let api = SLRealtimeDepartures()
   
   /**
    * Fetch geometry data
    */
-  public static func fetch(siteId: Int,
-    callback: (data: RealTimeDepartures?, error: SLNetworkError?) -> Void) {
+  open static func fetch(_ siteId: Int,
+    callback: @escaping (_ data: RealTimeDepartures?, _ error: SLNetworkError?) -> Void) {
       api.getRealTimeTable(siteId) { (data, error) -> Void in
         if let d = data {
-          if d.length == 0 {
+          if d.count == 0 {
             HttpRequestHelper.clearCache()
-            callback(data: nil, error: SLNetworkError.NoDataFound)            
+            callback(data: nil, error: SLNetworkError.noDataFound)            
             return
           }
           
@@ -43,7 +43,7 @@ public class RealTimeDeparturesService {
   /**
   * Converts the raw json string into array of Location.
   */
-  private static func convertJson(json: JSON) -> RealTimeDepartures {
+  fileprivate static func convertJson(_ json: JSON) -> RealTimeDepartures {
     let departures = RealTimeDepartures(
       lastUpdated: json["LatestUpdate"].string,
       dataAge: json["DataAge"].int!)
@@ -70,7 +70,7 @@ public class RealTimeDeparturesService {
   /**
    * Converts the bus json in to objects.
    */
-  private static func convertBusesJson(json: JSON) -> [String: [RTBus]] {
+  fileprivate static func convertBusesJson(_ json: JSON) -> [String: [RTBus]] {
     var result = [String: [RTBus]]()
     
     for busJson in json.array! {
@@ -95,7 +95,7 @@ public class RealTimeDeparturesService {
   /**
    * Converts the metro json in to objects.
    */
-  private static func convertMetrosJson(json: JSON) -> [String: [RTMetro]] {
+  fileprivate static func convertMetrosJson(_ json: JSON) -> [String: [RTMetro]] {
     var result = [String: [RTMetro]]()
     
     for metroJson in json.array! {
@@ -126,7 +126,7 @@ public class RealTimeDeparturesService {
   /**
    * Converts the train json in to objects.
    */
-  private static func convertTrainsJson(json: JSON) -> [String: [RTTrain]] {
+  fileprivate static func convertTrainsJson(_ json: JSON) -> [String: [RTTrain]] {
     var result = [String: [RTTrain]]()
     
     for trainJson in json.array! {
@@ -151,7 +151,7 @@ public class RealTimeDeparturesService {
   /**
    * Converts the tram json in to objects.
    */
-  private static func convertTramsJson(json: JSON, isLocal: Bool) -> [String: [RTTram]] {
+  fileprivate static func convertTramsJson(_ json: JSON, isLocal: Bool) -> [String: [RTTram]] {
     var result = [String: [RTTram]]()
     
     for tramJson in json.array! {
@@ -180,7 +180,7 @@ public class RealTimeDeparturesService {
   /**
    * Converts the tram json in to objects.
    */
-  private static func convertBoatsJson(json: JSON) -> [String: [RTBoat]] {
+  fileprivate static func convertBoatsJson(_ json: JSON) -> [String: [RTBoat]] {
     var result = [String: [RTBoat]]()
     
     for boatJson in json.array! {
@@ -205,7 +205,7 @@ public class RealTimeDeparturesService {
   /**
    * Extracts deviation messages.
    */
-  private static func extractDeviations(messagesJson: [JSON]?) -> [String] {
+  fileprivate static func extractDeviations(_ messagesJson: [JSON]?) -> [String] {
     var result = [String]()
     if let messagesJson = messagesJson {
       for messJson in messagesJson {

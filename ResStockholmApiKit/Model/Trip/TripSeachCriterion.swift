@@ -11,35 +11,35 @@ import Foundation
 /**
  * Simple data object.
  */
-public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
+open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
 
-  public var originId = "0"
-  public var destId = "0"
-  public var origin: Location?
-  public var dest: Location?
-  public var via: Location?
-  public var date: String?
-  public var time: String?
-  public var numChg = -1
-  public var minChgTime = 0
-  public var searchForArrival = false
-  public var unsharp = false
-  public var maxWalkDist = 1000
+  open var originId = "0"
+  open var destId = "0"
+  open var origin: Location?
+  open var dest: Location?
+  open var via: Location?
+  open var date: String?
+  open var time: String?
+  open var numChg = -1
+  open var minChgTime = 0
+  open var searchForArrival = false
+  open var unsharp = false
+  open var maxWalkDist = 1000
   
-  public var useTrain = true
-  public var useMetro = true
-  public var useTram = true
-  public var useBus = true
-  public var useFerry = true
-  public var useShip = true
+  open var useTrain = true
+  open var useMetro = true
+  open var useTram = true
+  open var useBus = true
+  open var useFerry = true
+  open var useShip = true
   
-  public var numTrips = 8
-  public var realtime = true
+  open var numTrips = 8
+  open var realtime = true
   
-  public var isAdvanced = false
+  open var isAdvanced = false
   
-  public var lineInc: String?
-  public var lineExc: String?
+  open var lineInc: String?
+  open var lineExc: String?
   
   
   /**
@@ -61,7 +61,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   /**
    * Query string.
    */
-  public func generateQueryString(beginsWithQuestionMark: Bool) -> String {
+  open func generateQueryString(_ beginsWithQuestionMark: Bool) -> String {
     if (origin == nil && originId == "0") || (dest == nil && destId == "0") {
       fatalError("TripSearchCriterion: Can not generate query without origin/destination")
     }
@@ -89,11 +89,11 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     query += (unsharp) ? "&unsharp=1" : ""
     query += "&realtime=true"
     query += (maxWalkDist > 0) ? "&maxWalkDist=\(maxWalkDist)" : ""
-    query += (lineInc != nil) ? "&lineInc=\(lineInc!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))" : ""
-    query += (lineExc != nil) ? "&lineExc=\(lineExc!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))" : ""
+    query += (lineInc != nil) ? "&lineInc=\(lineInc!.trimmingCharacters(in: CharacterSet.whitespaces))" : ""
+    query += (lineExc != nil) ? "&lineExc=\(lineExc!.trimmingCharacters(in: CharacterSet.whitespaces))" : ""
     
-    if let escapedQuery = query.stringByAddingPercentEncodingWithAllowedCharacters(
-      .URLQueryAllowedCharacterSet()) {
+    if let escapedQuery = query.addingPercentEncoding(
+      withAllowedCharacters: .urlQueryAllowed) {
         return escapedQuery
     }
     fatalError("Could not encode query string.")
@@ -102,7 +102,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   /**
    * Resets advanced search criterions
    */
-  public func resetAdvancedTripTypes() {
+  open func resetAdvancedTripTypes() {
     isAdvanced = (via != nil)
     useTrain = true
     useMetro = true
@@ -121,7 +121,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   /**
    * Gets smart id.
    */
-  public func smartId() -> String{
+  open func smartId() -> String{
     if (origin == nil && originId == "0") || (dest == nil && destId == "0") {
       fatalError("Can not generate smart id without origin/destination")
     }
@@ -135,58 +135,58 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   // MARK: NSCoding
   
   required public init?(coder aDecoder: NSCoder) {
-    self.originId = aDecoder.decodeObjectForKey(PropertyKey.originId) as! String
-    self.destId = aDecoder.decodeObjectForKey(PropertyKey.destId) as! String
-    self.origin = aDecoder.decodeObjectForKey(PropertyKey.origin) as! Location?
-    self.dest = aDecoder.decodeObjectForKey(PropertyKey.dest) as! Location?
-    self.via = aDecoder.decodeObjectForKey(PropertyKey.via) as! Location?
-    self.date = aDecoder.decodeObjectForKey(PropertyKey.date) as! String?
-    self.time = aDecoder.decodeObjectForKey(PropertyKey.time) as! String?
-    self.numChg = aDecoder.decodeIntegerForKey(PropertyKey.numChg)
-    self.minChgTime = aDecoder.decodeIntegerForKey(PropertyKey.minChgTime)
-    self.searchForArrival = aDecoder.decodeBoolForKey(PropertyKey.searchForArrival)
-    self.unsharp = aDecoder.decodeBoolForKey(PropertyKey.unsharp)
-    self.maxWalkDist = aDecoder.decodeIntegerForKey(PropertyKey.maxWalkDist)
-    self.useTrain = aDecoder.decodeBoolForKey(PropertyKey.useTrain)
-    self.useMetro = aDecoder.decodeBoolForKey(PropertyKey.useMetro)
-    self.useTram = aDecoder.decodeBoolForKey(PropertyKey.useTram)
-    self.useBus = aDecoder.decodeBoolForKey(PropertyKey.useBus)
-    self.useFerry = aDecoder.decodeBoolForKey(PropertyKey.useFerry)
-    self.useShip = aDecoder.decodeBoolForKey(PropertyKey.useShip)
-    self.numTrips = aDecoder.decodeIntegerForKey(PropertyKey.numTrips)
-    self.realtime = aDecoder.decodeBoolForKey(PropertyKey.realtime)
-    self.isAdvanced = aDecoder.decodeBoolForKey(PropertyKey.isAdvanced)
-    self.lineInc = aDecoder.decodeObjectForKey(PropertyKey.lineInc) as! String?
-    self.lineExc = aDecoder.decodeObjectForKey(PropertyKey.lineExc) as! String?
+    self.originId = aDecoder.decodeObject(forKey: PropertyKey.originId) as! String
+    self.destId = aDecoder.decodeObject(forKey: PropertyKey.destId) as! String
+    self.origin = aDecoder.decodeObject(forKey: PropertyKey.origin) as! Location?
+    self.dest = aDecoder.decodeObject(forKey: PropertyKey.dest) as! Location?
+    self.via = aDecoder.decodeObject(forKey: PropertyKey.via) as! Location?
+    self.date = aDecoder.decodeObject(forKey: PropertyKey.date) as! String?
+    self.time = aDecoder.decodeObject(forKey: PropertyKey.time) as! String?
+    self.numChg = aDecoder.decodeInteger(forKey: PropertyKey.numChg)
+    self.minChgTime = aDecoder.decodeInteger(forKey: PropertyKey.minChgTime)
+    self.searchForArrival = aDecoder.decodeBool(forKey: PropertyKey.searchForArrival)
+    self.unsharp = aDecoder.decodeBool(forKey: PropertyKey.unsharp)
+    self.maxWalkDist = aDecoder.decodeInteger(forKey: PropertyKey.maxWalkDist)
+    self.useTrain = aDecoder.decodeBool(forKey: PropertyKey.useTrain)
+    self.useMetro = aDecoder.decodeBool(forKey: PropertyKey.useMetro)
+    self.useTram = aDecoder.decodeBool(forKey: PropertyKey.useTram)
+    self.useBus = aDecoder.decodeBool(forKey: PropertyKey.useBus)
+    self.useFerry = aDecoder.decodeBool(forKey: PropertyKey.useFerry)
+    self.useShip = aDecoder.decodeBool(forKey: PropertyKey.useShip)
+    self.numTrips = aDecoder.decodeInteger(forKey: PropertyKey.numTrips)
+    self.realtime = aDecoder.decodeBool(forKey: PropertyKey.realtime)
+    self.isAdvanced = aDecoder.decodeBool(forKey: PropertyKey.isAdvanced)
+    self.lineInc = aDecoder.decodeObject(forKey: PropertyKey.lineInc) as! String?
+    self.lineExc = aDecoder.decodeObject(forKey: PropertyKey.lineExc) as! String?
   }
   
   /**
    * Encode this object
    */
-  public func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodeObject(originId, forKey: PropertyKey.originId)
-    aCoder.encodeObject(destId, forKey: PropertyKey.destId)
-    aCoder.encodeObject(origin, forKey: PropertyKey.origin)
-    aCoder.encodeObject(dest, forKey: PropertyKey.dest)
-    aCoder.encodeObject(via, forKey: PropertyKey.via)
-    aCoder.encodeObject(date, forKey: PropertyKey.date)
-    aCoder.encodeObject(time, forKey: PropertyKey.time)
-    aCoder.encodeInteger(numChg, forKey: PropertyKey.numChg)
-    aCoder.encodeInteger(minChgTime, forKey: PropertyKey.minChgTime)
-    aCoder.encodeBool(searchForArrival, forKey: PropertyKey.searchForArrival)
-    aCoder.encodeBool(unsharp, forKey: PropertyKey.unsharp)
-    aCoder.encodeInteger(maxWalkDist, forKey: PropertyKey.maxWalkDist)
-    aCoder.encodeBool(useTrain, forKey: PropertyKey.useTrain)
-    aCoder.encodeBool(useMetro, forKey: PropertyKey.useMetro)
-    aCoder.encodeBool(useTram, forKey: PropertyKey.useTram)
-    aCoder.encodeBool(useBus, forKey: PropertyKey.useBus)
-    aCoder.encodeBool(useFerry, forKey: PropertyKey.useFerry)
-    aCoder.encodeBool(useShip, forKey: PropertyKey.useShip)
-    aCoder.encodeInteger(numTrips, forKey: PropertyKey.numTrips)
-    aCoder.encodeBool(realtime, forKey: PropertyKey.realtime)
-    aCoder.encodeBool(isAdvanced, forKey: PropertyKey.isAdvanced)
-    aCoder.encodeObject(lineInc, forKey: PropertyKey.lineInc)
-    aCoder.encodeObject(lineExc, forKey: PropertyKey.lineExc)
+  open func encode(with aCoder: NSCoder) {
+    aCoder.encode(originId, forKey: PropertyKey.originId)
+    aCoder.encode(destId, forKey: PropertyKey.destId)
+    aCoder.encode(origin, forKey: PropertyKey.origin)
+    aCoder.encode(dest, forKey: PropertyKey.dest)
+    aCoder.encode(via, forKey: PropertyKey.via)
+    aCoder.encode(date, forKey: PropertyKey.date)
+    aCoder.encode(time, forKey: PropertyKey.time)
+    aCoder.encode(numChg, forKey: PropertyKey.numChg)
+    aCoder.encode(minChgTime, forKey: PropertyKey.minChgTime)
+    aCoder.encode(searchForArrival, forKey: PropertyKey.searchForArrival)
+    aCoder.encode(unsharp, forKey: PropertyKey.unsharp)
+    aCoder.encode(maxWalkDist, forKey: PropertyKey.maxWalkDist)
+    aCoder.encode(useTrain, forKey: PropertyKey.useTrain)
+    aCoder.encode(useMetro, forKey: PropertyKey.useMetro)
+    aCoder.encode(useTram, forKey: PropertyKey.useTram)
+    aCoder.encode(useBus, forKey: PropertyKey.useBus)
+    aCoder.encode(useFerry, forKey: PropertyKey.useFerry)
+    aCoder.encode(useShip, forKey: PropertyKey.useShip)
+    aCoder.encode(numTrips, forKey: PropertyKey.numTrips)
+    aCoder.encode(realtime, forKey: PropertyKey.realtime)
+    aCoder.encode(isAdvanced, forKey: PropertyKey.isAdvanced)
+    aCoder.encode(lineInc, forKey: PropertyKey.lineInc)
+    aCoder.encode(lineExc, forKey: PropertyKey.lineExc)
   }
   
   struct PropertyKey {
@@ -220,7 +220,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   /**
   * Copy self
   */
-  public func copyWithZone(zone: NSZone) -> AnyObject {
+  open func copy(with zone: NSZone?) -> Any {
     let copy = TripSearchCriterion(
       origin: self.origin?.copy() as! Location?,
       dest: self.dest?.copy() as! Location?)
@@ -256,7 +256,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
    * Creates a query mathing the origin location
    * type (Station/Address).
    */
-  private func createOriginQuery() -> String {
+  fileprivate func createOriginQuery() -> String {
     if origin != nil && origin?.type == .Current {
       if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
         return "&originCoordLat=\(currentLocation.lat)&originCoordLong=\(currentLocation.lon)&originCoordName=\(currentLocation.name)"
@@ -275,7 +275,7 @@ public class TripSearchCriterion: NSObject, NSCoding, NSCopying {
    * Creates a query mathing the destination location
    * type (Station/Address).
    */
-  private func createDestinationQuery() -> String {
+  fileprivate func createDestinationQuery() -> String {
     if dest != nil && dest?.type == .Current {
       if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
         return "&destCoordLat=\(currentLocation.lat)&destCoordLong=\(currentLocation.lon)&destCoordName=\(currentLocation.name)"

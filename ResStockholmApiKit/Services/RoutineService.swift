@@ -9,17 +9,17 @@
 import Foundation
 import CoreLocation
 
-public class RoutineService {
+open class RoutineService {
   
   /**
    * Finds the all routine trip based on
    * current position, time and week day.
    */
-  public static func findRoutineTrip(callback: ([RoutineTrip]) -> Void) {
+  open static func findRoutineTrip(_ callback: @escaping ([RoutineTrip]) -> Void) {
     MyLocationHelper.sharedInstance.requestLocationUpdate { location in
       LocationSearchService.searchNearby(location, distance: 2000) { resTuple in
         if let error = resTuple.error {
-          if error != SLNetworkError.NoDataFound {
+          if error != SLNetworkError.noDataFound {
             callback([RoutineTrip]())
           }
         }
@@ -34,7 +34,7 @@ public class RoutineService {
   /**
    * Adds a habit routine (Smart suggestion).
    */
-  public static func addHabitRoutine(crit: TripSearchCriterion) {
+  open static func addHabitRoutine(_ crit: TripSearchCriterion) {
     let criterion = crit.copy() as! TripSearchCriterion
     criterion.resetAdvancedTripTypes()
     criterion.date = nil
@@ -60,7 +60,7 @@ public class RoutineService {
    * Calcualtes and assinges search score
    * for the found routine trips.
    */
-  private static func scoreRoutineTrips(routineTrips: [RoutineTrip], locations: [(location: Location, dist: Int)]) {
+  fileprivate static func scoreRoutineTrips(_ routineTrips: [RoutineTrip], locations: [(location: Location, dist: Int)]) {
     let todayTimeTuple = createTimeTuple()
     
     for trip in routineTrips {
@@ -76,9 +76,9 @@ public class RoutineService {
   /**
    * Creates a prioritized routine trip list.
    */
-  private static func createPrioList(
-    routineTrips: [RoutineTrip], callback: ([RoutineTrip]) -> Void) {
-    let prioList = routineTrips.sort {$0.score > $1.score}
+  fileprivate static func createPrioList(
+    _ routineTrips: [RoutineTrip], callback: @escaping ([RoutineTrip]) -> Void) {
+    let prioList = routineTrips.sorted {$0.score > $1.score}
     let filteredList = filterSmartSuggestions(prioList)
     if filteredList.count > 0 {
       searchTripsForBestRoutine(filteredList[0]) { trips in
@@ -96,8 +96,8 @@ public class RoutineService {
   /**
    * Searches trips data for best RoutineTrip
    */
-  static private func searchTripsForBestRoutine(
-    bestRoutineTrip: RoutineTrip?, callback: ([Trip]) -> Void) {
+  static fileprivate func searchTripsForBestRoutine(
+    _ bestRoutineTrip: RoutineTrip?, callback: @escaping ([Trip]) -> Void) {
     if let routineTrip = bestRoutineTrip {
       
       if let searchCrit = routineTrip.criterions.copy() as? TripSearchCriterion {
@@ -126,25 +126,25 @@ public class RoutineService {
    * Create date & time tuple.
    * Takes routine arrival time in to consideration.
    */
-  static private func createDateTimeTuple(criterions: TripSearchCriterion) -> (date: String, time: String) {
+  static fileprivate func createDateTimeTuple(_ criterions: TripSearchCriterion) -> (date: String, time: String) {
     if let time = criterions.time {
-      let now = NSDate()
+      let now = Date()
       let date = DateUtils.convertDateString("\(DateUtils.dateAsDateString(now)) \(time)")
       if date.timeIntervalSinceNow > (60 * 60) * -1 {
         return (DateUtils.dateAsDateString(now), time)
       } else {
-        let tomorrow = now.dateByAddingTimeInterval(60 * 60 * 24 * 1)
+        let tomorrow = now.addingTimeInterval(60 * 60 * 24 * 1)
         return (DateUtils.dateAsDateString(tomorrow), time)
       }
     }
     
-    return (DateUtils.dateAsDateString(NSDate()), DateUtils.dateAsTimeString(NSDate()))
+    return (DateUtils.dateAsDateString(Date()), DateUtils.dateAsTimeString(Date()))
   }
   
   /**
    * Score multiplier based on proximity to location.
    */
-  static private func multiplierBasedOnProximityToLocation(trip: RoutineTrip,
+  static fileprivate func multiplierBasedOnProximityToLocation(_ trip: RoutineTrip,
                                                            locations: [(location: Location, dist: Int)]) -> Float {
     
     if trip.criterions.origin?.type == LocationType.Station {
@@ -155,7 +155,7 @@ public class RoutineService {
       }
     } else {
       if let currentLocation = MyLocationHelper.sharedInstance.currentLocation {
-        let distance = Int(currentLocation.distanceFromLocation(trip.criterions.origin!.location))
+        let distance = Int(currentLocation.distance(from: trip.criterions.origin!.location))
         return calcMultiplierBasedOnProximityToLocation(distance)
       }
       
@@ -167,7 +167,7 @@ public class RoutineService {
   /**
    * Calculates score multiplier based on distance to location.
    */
-  static private func calcMultiplierBasedOnProximityToLocation(distance: Int) -> Float {
+  static fileprivate func calcMultiplierBasedOnProximityToLocation(_ distance: Int) -> Float {
     var tempMultiplier = Float(2000 - distance)
     tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
     return tempMultiplier
@@ -176,8 +176,8 @@ public class RoutineService {
   /**
    * Score based on routine scheudle score.
    */
-  static private func scoreBasedOnRoutineSchedule(
-    trip: RoutineTrip, today: (dayInWeek: Int, hourOfDay: Int)) -> Float {
+  static fileprivate func scoreBasedOnRoutineSchedule(
+    _ trip: RoutineTrip, today: (dayInWeek: Int, hourOfDay: Int)) -> Float {
     
     let scorePosts = ScorePostStore.sharedInstance.retrieveScorePosts()
     var score = Float(0)
@@ -197,14 +197,14 @@ public class RoutineService {
   /**
    * Score based on current location proximity to locations logged with ScorePost.
    */
-  static private func multiplierBasedOnProximityToScorePostLocation(trip: RoutineTrip) -> Float {
+  static fileprivate func multiplierBasedOnProximityToScorePostLocation(_ trip: RoutineTrip) -> Float {
     var highestMulitplier = Float(0.0)
     if let currentLocation = MyLocationHelper.sharedInstance.currentLocation {
       let scorePosts = ScorePostStore.sharedInstance.retrieveScorePosts()
       for post in scorePosts {
         if checkMatch(post, trip: trip) {
           if let postLocation = post.location {
-            let distance = postLocation.distanceFromLocation(currentLocation)
+            let distance = postLocation.distance(from: currentLocation)
             var tempMultiplier = Float(800 - distance)
             tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
             highestMulitplier = (tempMultiplier > highestMulitplier) ? tempMultiplier : highestMulitplier
@@ -218,9 +218,9 @@ public class RoutineService {
   /**
    * Calculate multiplier in realtion arrival time.
    */
-  static private func multiplierBasedOnArrivalTime(trip: RoutineTrip) -> Float {
+  static fileprivate func multiplierBasedOnArrivalTime(_ trip: RoutineTrip) -> Float {
     if let time = trip.criterions.time {
-      let now = NSDate()
+      let now = Date()
       let date = DateUtils.convertDateString("\(DateUtils.dateAsDateString(now)) \(time)")
       if date.timeIntervalSinceNow > (60 * 60) * -1 {
         return 1.5
@@ -235,16 +235,16 @@ public class RoutineService {
    * Extracts an score post compative int tuple describing
    * time and date for RoutineTrip.
    */
-  static private func createTimeTuple() -> (dayInWeek: Int, hourOfDay: Int) {
+  static fileprivate func createTimeTuple() -> (dayInWeek: Int, hourOfDay: Int) {
     return (DateUtils.getDayOfWeek(), DateUtils.getHourOfDay())
   }
   
   /**
    * Filters out smart suggestions from list.
    */
-  static private func filterSmartSuggestions(routineTrips: [RoutineTrip]) -> [RoutineTrip] {
+  static fileprivate func filterSmartSuggestions(_ routineTrips: [RoutineTrip]) -> [RoutineTrip] {
     var filteredList = [RoutineTrip]()
-    for (index, routine) in routineTrips.enumerate() {
+    for (index, routine) in routineTrips.enumerated() {
       if index == 0 && routine.isSmartSuggestion && routine.score > 25 && routineTrips.count > 1 {
         filteredList.append(routineTrips[0])
       } else if !routine.isSmartSuggestion {
@@ -258,7 +258,7 @@ public class RoutineService {
   /**
    * Checks if score post is a match.
    */
-  static private func checkMatch(post: ScorePost, trip: RoutineTrip) -> Bool {
+  static fileprivate func checkMatch(_ post: ScorePost, trip: RoutineTrip) -> Bool {
     return (post.originId == trip.criterions.origin?.siteId &&
       post.destId == trip.criterions.dest?.siteId)
   }

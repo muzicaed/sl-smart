@@ -14,13 +14,13 @@ import ResStockholmApiKit
 class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   
   var window: UIWindow?
-  let notificationCenter = NSNotificationCenter.defaultCenter()
+  let notificationCenter = NotificationCenter.default
   
   // MARK: UIApplicationDelegate
   
   func application(
-    application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     DataMigration.migrateData()
     setupAppleWatchConnection()
     setupApp()
@@ -29,22 +29,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     return true
   }
   
-  func applicationWillResignActive(application: UIApplication) {
+  func applicationWillResignActive(_ application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
   }
   
-  func applicationDidEnterBackground(application: UIApplication) {
-    let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
+  func applicationDidEnterBackground(_ application: UIApplication) {
+    let defaults = UserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
     defaults.synchronize()
     
     let notification = UILocalNotification()
-    notification.fireDate = NSDate(timeIntervalSinceNow: (60*60*24*7))
+    notification.fireDate = Date(timeIntervalSinceNow: (60*60*24*7))
     notification.alertBody = "Du har väll inte glömt mig? 😄"
-    UIApplication.sharedApplication().scheduledLocalNotifications = [notification]
+    UIApplication.shared.scheduledLocalNotifications = [notification]
   }
   
-  func applicationDidBecomeActive(application: UIApplication) {
+  func applicationDidBecomeActive(_ application: UIApplication) {
     print("applicationDidBecomeActive")
     SubscriptionStore.sharedInstance.setupTrial()
     SubscriptionManager.sharedInstance.validateSubscription()
@@ -53,39 +53,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     let root = window?.rootViewController! as! CustomTabVC
     root.updateTabs()
     
-    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-    dispatch_async(dispatch_get_global_queue(priority, 0)) {
+    let priority = DispatchQueue.GlobalQueuePriority.default
+    DispatchQueue.global(priority: priority).async {
       // Load stops in background
       StopsStore.sharedInstance.getStops()
     }
   }
   
-  func applicationWillTerminate(application: UIApplication) {
+  func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
   
   // MARK: WCSessionDelegate
   
-  func session(session: WCSession, didReceiveMessageData messageData: NSData, replyHandler: (NSData) -> Void) {
+  func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
     
-    let message = NSKeyedUnarchiver.unarchiveObjectWithData(messageData)! as! Dictionary<String, AnyObject>
+    let message = NSKeyedUnarchiver.unarchiveObject(with: messageData)! as! Dictionary<String, AnyObject>
     let action = message["action"] as! String
-    dispatch_async(dispatch_get_main_queue()) {
+    DispatchQueue.main.async {
       switch action {
       case "RequestRoutineTrips":
         WatchService.requestRoutineTrips() { response in
-          let data = NSKeyedArchiver.archivedDataWithRootObject(response)
+          let data = NSKeyedArchiver.archivedData(withRootObject: response)
           replyHandler(data)
         }
       case "SearchTrips":
         let routineTripId = message["id"] as! String
         WatchService.searchTrips(routineTripId) { response in
-          let data = NSKeyedArchiver.archivedDataWithRootObject(response)
+          let data = NSKeyedArchiver.archivedData(withRootObject: response)
           replyHandler(data)
         }
       case "SearchLastTrip":
         WatchService.lastTripSearch() { response in
-          let data = NSKeyedArchiver.archivedDataWithRootObject(response)
+          let data = NSKeyedArchiver.archivedData(withRootObject: response)
           replyHandler(data)
         }
       default:
@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   /**
    * Prepares the app.
    */
-  private func setupApp() {
+  fileprivate func setupApp() {
     StyleHelper.sharedInstance.setupCustomStyle()
     window?.tintColor = StyleHelper.sharedInstance.tintColor
     RoutineTripsStore.sharedInstance.preload()
@@ -108,22 +108,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   /**
    * Prepares AppleWatch session.
    */
-  private func setupAppleWatchConnection() {
+  fileprivate func setupAppleWatchConnection() {
     if (WCSession.isSupported()) {
-      let defaultSession = WCSession.defaultSession()
+      let defaultSession = WCSession.default()
       defaultSession.delegate = self
-      defaultSession.activateSession()
+      defaultSession.activate()
     }
   }
   
   /**
    * Checks current traffic situation.
    */
-  private func checkTrafficSituation() {
+  fileprivate func checkTrafficSituation() {
     NetworkActivity.displayActivityIndicator(true)
     TrafficSituationService.fetchInformation() {data, error in
       NetworkActivity.displayActivityIndicator(false)
-      dispatch_async(dispatch_get_main_queue()) {
+      DispatchQueue.main.async {
         if error != nil {
           return
         }
@@ -136,7 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             }
           }
         }
-        self.notificationCenter.postNotificationName("TrafficSituations", object: count)
+        self.notificationCenter.post(name: Notification.Name(rawValue: "TrafficSituations"), object: count)
       }
     }
   }
@@ -144,9 +144,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   /**
    * Register for local notifications.
    */
-  private func setupLocalNotifications() {
-    let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert], categories: nil)
-    UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+  fileprivate func setupLocalNotifications() {
+    let notificationSettings = UIUserNotificationSettings(types: [.alert], categories: nil)
+    UIApplication.shared.registerUserNotificationSettings(notificationSettings)
   }
 }
 

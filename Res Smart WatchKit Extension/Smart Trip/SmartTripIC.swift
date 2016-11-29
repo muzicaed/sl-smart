@@ -38,23 +38,23 @@ class SmartTripIC: WKInterfaceController {
   @IBOutlet var icnGrp4: WKInterfaceGroup!
   @IBOutlet var icnGrp5: WKInterfaceGroup!
   
-  let session = WCSession.defaultSession()
-  let notificationCenter = NSNotificationCenter.defaultCenter()
+  let session = WCSession.default()
+  let notificationCenter = NotificationCenter.default
   let ReloadRateMinutes = 3
   
   var icons = [WKInterfaceImage]()
   var iconLables = [WKInterfaceLabel]()
   var iconGroups = [WKInterfaceGroup]()
-  var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
+  var lastUpdated = Date(timeIntervalSince1970: TimeInterval(0.0))
   var routineData: Dictionary<String, AnyObject>?
   var isLoading = false
-  var timer: NSTimer?
-  var retryTimer: NSTimer?
+  var timer: Timer?
+  var retryTimer: Timer?
   var retryCount = 0
   var currentDepartureText: String?
   
-  override func awakeWithContext(context: AnyObject?) {
-    super.awakeWithContext(context)
+  override func awake(withContext context: Any?) {
+    super.awake(withContext: context)
     prepareIcons()
   }
   
@@ -102,18 +102,18 @@ class SmartTripIC: WKInterfaceController {
    */
   func reloadRoutineTripData() {
     if !isLoading {
-      if session.reachable {
+      if session.isReachable {
         isLoading = true
         stopRefreshTimer()
         
         let dictionary = ["action": "RequestRoutineTrips"]
-        let data = NSKeyedArchiver.archivedDataWithRootObject(dictionary)
+        let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
         session.sendMessageData(
           data,
           replyHandler: requestRoutineTripsHandler,
           errorHandler: messageErrorHandler)
-        retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-          NSTimeInterval(10), target: self, selector: #selector(forceRefreshData), userInfo: nil, repeats: false)
+        retryTimer = Timer.scheduledTimer(
+          timeInterval: TimeInterval(10), target: self, selector: #selector(forceRefreshData), userInfo: nil, repeats: false)
       } else {
         retryCount += 1
         if retryCount > 10 {
@@ -125,8 +125,8 @@ class SmartTripIC: WKInterfaceController {
           return
         }
         stopRefreshTimer()
-        retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-          NSTimeInterval(1), target: self,
+        retryTimer = Timer.scheduledTimer(
+          timeInterval: TimeInterval(1), target: self,
           selector: #selector(forceRefreshData),
           userInfo: nil, repeats: false)
       }
@@ -136,8 +136,8 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Handle reply for a "RequestRoutineTrips" message.
    */
-  func requestRoutineTripsHandler(reply: NSData) {
-    let dictionary = NSKeyedUnarchiver.unarchiveObjectWithData(reply)! as! Dictionary<String, AnyObject>
+  func requestRoutineTripsHandler(_ reply: Data) {
+    let dictionary = NSKeyedUnarchiver.unarchiveObject(with: reply)! as! Dictionary<String, AnyObject>
     retryCount = 0
     stopRefreshTimer()
     isLoading = false
@@ -147,7 +147,7 @@ class SmartTripIC: WKInterfaceController {
       routineData = dictionary
       if !handleEmptyTripResponse() {
         showContentUIState()
-        lastUpdated = NSDate()
+        lastUpdated = Date()
         startRefreshTimer()
       }
     } else {
@@ -160,19 +160,19 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Handles any session send messages errors.
    */
-  func messageErrorHandler(error: NSError) {
+  func messageErrorHandler(_ error: NSError) {
     isLoading = false
-    WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Failure)
+    WKInterfaceDevice.current().play(WKHapticType.failure)
     
-    if error.code == WCErrorCode.DeliveryFailed.rawValue ||
-      error.code == WCErrorCode.MessageReplyTimedOut.rawValue ||
-      error.code == WCErrorCode.GenericError.rawValue {
+    if error.code == WCError.deliveryFailed.rawValue ||
+      error.code == WCError.messageReplyTimedOut.rawValue ||
+      error.code == WCError.genericError.rawValue {
       stopRefreshTimer()
-      retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-        NSTimeInterval(0.1), target: self, selector: #selector(forceRefreshData),
+      retryTimer = Timer.scheduledTimer(
+        timeInterval: TimeInterval(0.1), target: self, selector: #selector(forceRefreshData),
         userInfo: nil, repeats: false)
       return
-    } else if error.code == WCErrorCode.NotReachable.rawValue {
+    } else if error.code == WCError.notReachable.rawValue {
       displayError(
         "Kan inte nå din iPhone",
         message: "Kontrollera att din iPhone är i närheten och påslagen.")
@@ -195,7 +195,7 @@ class SmartTripIC: WKInterfaceController {
       let trips = bestRoutine["tr"] as! [Dictionary<String, AnyObject>]
       
       if trips.count == 0 {
-        WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Failure)
+        WKInterfaceDevice.current().play(WKHapticType.failure)
         updateUINoTripsFound(bestRoutine)
         return true
       }
@@ -208,7 +208,7 @@ class SmartTripIC: WKInterfaceController {
    * Updates UI if no trips was found
    * for best routine.
    */
-  func updateUINoTripsFound(bestRoutine: Dictionary<String, AnyObject>) {
+  func updateUINoTripsFound(_ bestRoutine: Dictionary<String, AnyObject>) {
     if bestRoutine["ha"] as! Bool {
       titleLabel.setText("Smart vana")
     } else {
@@ -219,7 +219,7 @@ class SmartTripIC: WKInterfaceController {
     destinationLabel.setText("")
     containerGroup.setHidden(false)
     loadingLabel.setHidden(true)
-    for (index, _) in icons.enumerate() {
+    for (index, _) in icons.enumerated() {
       iconGroups[index].setHidden(true)
     }
   }
@@ -261,8 +261,8 @@ class SmartTripIC: WKInterfaceController {
       return
     }
     // Retry after 1.5 seconds...
-    retryTimer = NSTimer.scheduledTimerWithTimeInterval(
-      NSTimeInterval(1.5), target: self, selector: #selector(forceRefreshData),
+    retryTimer = Timer.scheduledTimer(
+      timeInterval: TimeInterval(1.5), target: self, selector: #selector(forceRefreshData),
       userInfo: nil, repeats: false)
   }
   
@@ -279,9 +279,9 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Creates trip icons
    */
-  func createTripIcons(iconNames: [String], lines: [String], warnings: [String]) {
+  func createTripIcons(_ iconNames: [String], lines: [String], warnings: [String]) {
     let nameCount = iconNames.count
-    for (index, iconImage) in icons.enumerate() {
+    for (index, iconImage) in icons.enumerated() {
       if index < nameCount {
         iconImage.setImageNamed("W_\(iconNames[index])")
         iconImage.setHidden(false)
@@ -290,9 +290,9 @@ class SmartTripIC: WKInterfaceController {
         if warnings[index] == "I" {
           iconLables[index].setTextColor(UIColor(red: 100/255, green: 100/255, blue: 255/255, alpha: 1.0))
         } else if warnings[index] == "W" {
-          iconLables[index].setTextColor(UIColor.redColor())
+          iconLables[index].setTextColor(UIColor.red)
         } else {
-          iconLables[index].setTextColor(UIColor.whiteColor())
+          iconLables[index].setTextColor(UIColor.white)
         }
         iconGroups[index].setHidden(false)
       } else {
@@ -332,12 +332,12 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Displays an error
    */
-  func displayError(title: String, message: String?) {
+  func displayError(_ title: String, message: String?) {
     isLoading = false
     let okAction = WKAlertAction(
-      title: "Försök igen", style: .Default, handler: {})
-    presentAlertControllerWithTitle(
-      title, message: message, preferredStyle: .Alert, actions: [okAction])
+      title: "Försök igen", style: .default, handler: {})
+    presentAlert(
+      withTitle: title, message: message, preferredStyle: .alert, actions: [okAction])
   }
   
   /**
@@ -367,7 +367,7 @@ class SmartTripIC: WKInterfaceController {
       let bestRoutine = data["b"] as! Dictionary<String, AnyObject>
       let depTime = bestRoutine["dp"] as! String
       let departureDate = DateUtils.convertDateString(depTime)
-      let diffMin = Int((departureDate.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)
+      let diffMin = Int((departureDate.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)
       if diffMin < 0 {
         return true
       }
@@ -379,7 +379,7 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Check if first segment is a walk.
    */
-  func checkIfWalk(data: Dictionary<String, AnyObject>) -> Bool {
+  func checkIfWalk(_ data: Dictionary<String, AnyObject>) -> Bool {
     let icons = (data["tr"] as! [Dictionary<String, AnyObject>]).first!["icn"] as! [String]
     return (icons.first! == "WALK-NEUTRAL")
   }
@@ -391,17 +391,17 @@ class SmartTripIC: WKInterfaceController {
     forceRefreshData()
   }
   
-  override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
+  override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
     if let data = routineData {
       let routines = data["o"] as! [Dictionary<String, AnyObject>]
-      pushControllerWithName("Trips", context: routines[rowIndex])
+      pushController(withName: "Trips", context: routines[rowIndex])
     }
   }
   
   /**
    * Handle segue
    */
-  override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
+  override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
     if segueIdentifier == "ShowTrips" {
       if let data = routineData {
         return data["b"] as! Dictionary<String, AnyObject>
@@ -417,11 +417,11 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Updates the other routine trips table.
    */
-  private func updateOtherTable(otherTripsData: [Dictionary<String, AnyObject>]) {
+  fileprivate func updateOtherTable(_ otherTripsData: [Dictionary<String, AnyObject>]) {
     if otherTripsData.count > 0 {
       otherRoutinesTable.setNumberOfRows(otherTripsData.count, withRowType: "RoutineRow")
-      for (index, data) in otherTripsData.enumerate() {
-        let row = otherRoutinesTable.rowControllerAtIndex(index) as! OtherRoutinesRow
+      for (index, data) in otherTripsData.enumerated() {
+        let row = otherRoutinesTable.rowController(at: index) as! OtherRoutinesRow
         row.titleLabel.setText(data["ti"] as? String)
         row.originLabel.setText(data["or"] as? String)
         row.destinationLabel.setText(data["ds"] as? String)
@@ -435,7 +435,7 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Trigger a UI refresh of routine trip data
    */
-  private func perfromRefreshData(force: Bool) {
+  fileprivate func perfromRefreshData(_ force: Bool) {
     if (shouldReloadData() && !isLoading) || force {
       setLoadingUIState()
       reloadRoutineTripData()
@@ -447,9 +447,9 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Checks if data should be reloaded.
    */
-  private func shouldReloadData() -> Bool {
+  fileprivate func shouldReloadData() -> Bool {
     return (
-      NSDate().timeIntervalSinceDate(lastUpdated) > Double(60 * ReloadRateMinutes) ||
+      Date().timeIntervalSince(lastUpdated) > Double(60 * ReloadRateMinutes) ||
         routineData == nil ||
         checkIfTripPassed()
     )
@@ -464,7 +464,7 @@ class SmartTripIC: WKInterfaceController {
   func hideLiveData() {
     isLoading = false
     if let text = currentDepartureText {
-      if text.rangeOfString("Om") != nil {
+      if text.range(of: "Om") != nil {
         departureTimeLabel.setText("Uppdaterar")
       }
     }
@@ -473,9 +473,9 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Start the refresh timer.
    */
-  private func startRefreshTimer() {
-    timer = NSTimer.scheduledTimerWithTimeInterval(
-      10, target: self,
+  fileprivate func startRefreshTimer() {
+    timer = Timer.scheduledTimer(
+      timeInterval: 10, target: self,
       selector: #selector(updateDepatureUI),
       userInfo: nil, repeats: true)
   }
@@ -483,7 +483,7 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Stop the refresh timer.
    */
-  private func stopRefreshTimer() {
+  fileprivate func stopRefreshTimer() {
     timer?.invalidate()
     timer = nil
     retryTimer?.invalidate()
