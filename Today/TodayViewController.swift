@@ -18,7 +18,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   @IBOutlet weak var departureStationLabel: UILabel!
   @IBOutlet weak var arrivalTimeLabel: UILabel!
   @IBOutlet weak var arrivalStationLabel: UILabel!
-  @IBOutlet weak var iconWrapperView: UIView?
   @IBOutlet weak var inAboutLabel: UILabel!
   @IBOutlet weak var nextLabel: UILabel!
   
@@ -31,7 +30,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   override func viewDidLoad() {
     super.viewDidLoad()
     MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
-    self.preferredContentSize = CGSize(width: 320, height: 160)
+    if #available(iOSApplicationExtension 10.0, *) {
+      self.extensionContext?.widgetLargestAvailableDisplayMode = .compact
+    } else {
+      self.preferredContentSize = CGSize(width: 320, height: 160)
+    }
     let gesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
     view.addGestureRecognizer(gesture)
   }
@@ -108,63 +111,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   }
   
   /**
-   * Creates trip type icon per segment.
-   */
-  fileprivate func createTripSegmentIcons(_ trip: Trip) {
-    if let iconWrapper = iconWrapperView {
-      iconWrapper.subviews.forEach({ $0.removeFromSuperview() })
-      var count = 0
-
-      for (_, segment) in trip.tripSegments.enumerated() {
-        if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
-          if count > 6 { return }
-          let data = TripHelper.friendlyLineData(segment)
-          
-          let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
-          iconView.frame.size = CGSize(width: 22, height: 22)
-          iconView.center = CGPoint(x: 22 / 2, y: 3)
-          
-          let label = UILabel()
-          label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
-          label.textAlignment = NSTextAlignment.center
-          label.font = UIFont.boldSystemFont(ofSize: 9)
-          label.minimumScaleFactor = 0.5
-          label.adjustsFontSizeToFitWidth = true
-          label.textColor = UIColor.white
-          label.backgroundColor = data.color
-          label.frame.size.width = 22
-          label.frame.size.height = 12
-          label.center = CGPoint(x: (22 / 2), y: 19)
-          
-          let wrapperView = UIView(
-            frame:CGRect(
-              origin: CGPoint(x: 0, y: 0),
-              size: CGSize(width: 22, height: 36)))
-          wrapperView.frame.origin = CGPoint(x: (28 * CGFloat(count)), y: 10)
-          wrapperView.clipsToBounds = false
-          
-          wrapperView.addSubview(iconView)
-          wrapperView.addSubview(label)
-          
-          if segment.rtuMessages != nil {
-            var warnIconView = UIImageView(image: TripIcons.icons["INFO-ICON"]!)
-            if segment.isWarning {
-              warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
-            }
-            warnIconView.frame.size = CGSize(width: 10, height: 10)
-            warnIconView.center = CGPoint(x: (22 / 2) + 10, y: -6)
-            warnIconView.alpha = 0.9
-            wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
-          }
-          
-          iconWrapper.addSubview(wrapperView)
-          count += 1
-        }
-      }
-    }
-  }
-  
-  /**
    * Update widget UI
    */
   func updateUI() {
@@ -181,10 +127,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         self.inAboutLabel.text = DateUtils.createAboutTimeText(
           trip.tripSegments.first!.departureDateTime,
           isWalk: (trip.tripSegments.first!.type == TripType.Walk))
-        
-        self.createTripSegmentIcons(trip)
-        
-        
+
         var second: Trip? = nil
         if bestRoutineTrip.trips.count > 1 {
           second = bestRoutineTrip.trips[1]
