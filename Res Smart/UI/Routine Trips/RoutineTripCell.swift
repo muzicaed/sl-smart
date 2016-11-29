@@ -160,8 +160,8 @@ class RoutineTripCell: UICollectionViewCell {
   fileprivate func createTripSegmentIcons(_ trip: Trip) {
     iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
     var count = 0
-    for (_, segment) in trip.tripSegments.enumerated() {
-      if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
+    for (idx, segment) in trip.tripSegments.enumerated() {
+      if segment.type != .Walk || (segment.type == .Walk && (segment.distance! > 30 || idx == 0) ) {
         if count >= 6 { return }
         let data = TripHelper.friendlyLineData(segment)
         

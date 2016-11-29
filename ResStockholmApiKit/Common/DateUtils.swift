@@ -17,7 +17,10 @@ open class DateUtils {
   open static func convertDateString(_ dateTime: String) -> Date {
     let formatter = getSwedishFormatter()
     formatter.dateFormat = "yyyy-MM-dd HH:mm"
-    return formatter.date(from: dateTime)!
+    if let date =  formatter.date(from: dateTime) {
+      return date
+    }
+    return Date.distantPast
   }
   
   /**
