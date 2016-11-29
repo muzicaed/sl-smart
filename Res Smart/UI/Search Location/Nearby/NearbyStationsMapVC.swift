@@ -122,11 +122,13 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
    * Create location pin
    */
   fileprivate func createStopPin(_ index: Int, locationTuple: (location: Location, dist: Int)) {
-    let pin = DestinationPin()
-    pin.coordinate = locationTuple.location.location.coordinate
-    pin.title = locationTuple.location.name
-    pin.subtitle = "Avstånd \(locationTuple.dist) meter"
-    mapView.addAnnotation(pin)
+    if let loc = locationTuple.location.location {
+      let pin = DestinationPin()
+      pin.coordinate = loc.coordinate
+      pin.title = locationTuple.location.name
+      pin.subtitle = "Avstånd \(locationTuple.dist) meter"
+      mapView.addAnnotation(pin)
+    }
   }
   
   /**

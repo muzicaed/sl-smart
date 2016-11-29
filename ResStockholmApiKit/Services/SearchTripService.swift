@@ -144,8 +144,8 @@ open class SearchTripService {
       id: locationJson["id"].string,
       name: locationJson["name"].string,
       type: locationJson["type"].string,
-      lat: locationJson["lat"].string!,
-      lon: locationJson["lon"].string!)
+      lat: locationJson["lat"].string,
+      lon: locationJson["lon"].string)
   }
   
   

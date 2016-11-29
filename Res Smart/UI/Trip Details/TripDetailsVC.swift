@@ -36,7 +36,7 @@ class TripDetailsVC: UITableViewController {
     loadStops()
     StopEnhancer.enhance(trip)
     NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive),
-                                                     name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+                                           name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -213,19 +213,21 @@ class TripDetailsVC: UITableViewController {
    * Extracts relevant locations
    */
   fileprivate func extractLocations(_ locations: [CLLocation],
-                                segment: TripSegment) -> [CLLocation] {
+                                    segment: TripSegment) -> [CLLocation] {
     
     var routeLocations = [CLLocation]()
     var isPloting = false
     for location in locations {
-      if location.distance(from: segment.origin.location) < 5 {
-        isPloting = true
-      } else if location.distance(from: segment.destination.location) < 5 {
-        break
-      }
-      
-      if isPloting {
-        routeLocations.append(location)
+      if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
+        if location.distance(from: originLocation) < 5 {
+          isPloting = true
+        } else if location.distance(from: destLocation) < 5 {
+          break
+        }
+        
+        if isPloting {
+          routeLocations.append(location)
+        }
       }
     }
     return routeLocations

@@ -89,11 +89,13 @@ class LocationMapVC: UIViewController, MKMapViewDelegate {
    * Create location pin
    */
   fileprivate func createStopPin(_ location: Location) {
-    let pin = BigPin()
-    pin.coordinate = location.location.coordinate
-    pin.title = location.name
-    mapView.addAnnotation(pin)
-    centerMap(pin)
+    if let loc = location.location {
+      let pin = BigPin()
+      pin.coordinate = loc.coordinate
+      pin.title = location.name
+      mapView.addAnnotation(pin)
+      centerMap(pin)
+    }
   }
   
   /**

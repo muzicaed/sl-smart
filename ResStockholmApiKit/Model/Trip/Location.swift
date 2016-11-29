@@ -4,6 +4,7 @@
 //
 //  Created by Mikael Hellman on 2015-11-20.
 //  Copyright © 2015 Mikael Hellman. All rights reserved.
+// TODO: Needs refactoring
 //
 
 import Foundation
@@ -16,20 +17,25 @@ open class Location: NSObject, NSCoding, NSCopying {
   open let cleanName: String
   open let area: String
   open let type: LocationType
-  open let lat: String
-  open let lon: String
-  open let location: CLLocation
+  open let lat: String?
+  open let lon: String?
+  open let location: CLLocation?
   
   /**
    * Standard init
    */
-  public init(id: String?, name: String?, type: String?, lat: String, lon: String) {
-    self.lat = Location.convertCoordinateFormat(lat)
-    self.lon = Location.convertCoordinateFormat(lon)
-    
-    self.location = CLLocation(
-      latitude: Double(self.lat)!,
-      longitude: Double(self.lon)!)
+  public init(id: String?, name: String?, type: String?, lat: String?, lon: String?) {
+    if let lat = lat, let lon = lon {
+      self.lat = Location.convertCoordinateFormat(lat)
+      self.lon = Location.convertCoordinateFormat(lon)
+      self.location = CLLocation(
+        latitude: Double(lat)!,
+        longitude: Double(lon)!)
+    } else {
+      self.lat = nil
+      self.lon = nil
+      self.location = nil
+    }
     
     if let type = type {
       if let enumType = LocationType(rawValue: type) {
@@ -65,17 +71,23 @@ open class Location: NSObject, NSCoding, NSCopying {
    * Standard init
    */
   public init(id: String, name: String, cleanName: String,
-              area: String, type: LocationType, lat: String, lon: String) {
+              area: String, type: LocationType, lat: String?, lon: String?) {
     self.siteId = id
     self.name = name
     self.cleanName = cleanName
     self.area = area
     self.type = type
-    self.lat = lat
-    self.lon = lon
-    self.location = CLLocation(
-      latitude: Double(self.lat)!,
-      longitude: Double(self.lon)!)
+    if let lat = lat, let lon = lon {
+      self.lat = lat
+      self.lon = lon
+      self.location = CLLocation(
+        latitude: Double(lat)!,
+        longitude: Double(lon)!)
+    } else {
+      self.lat = nil
+      self.lon = nil
+      self.location = nil
+    }
   }
   
   /**
@@ -100,9 +112,9 @@ open class Location: NSObject, NSCoding, NSCopying {
         
         let area = nameString.substring(from: res.lowerBound)
           .replacingOccurrences(of: "(", with: "",
-            options: NSString.CompareOptions.literal, range: nil)
+                                options: NSString.CompareOptions.literal, range: nil)
           .replacingOccurrences(of: ")", with: "",
-                                                options: NSString.CompareOptions.literal, range: nil)
+                                options: NSString.CompareOptions.literal, range: nil)
         
         return (name, "\(area) (Hållplats)")
       }

@@ -68,23 +68,29 @@ open class StopEnhancer {
    * Enhance stop data for walk segment.
    */
   static fileprivate func enhanceWalk(_ segment: TripSegment, nextSegment: TripSegment,
-                                  stop: StaticStop) -> StaticExit {
-    return findClosestExit(nextSegment.destination.location, exits: stop.exits)
+                                      stop: StaticStop) -> StaticExit? {
+    if let location = nextSegment.destination.location {
+      return findClosestExit(location, exits: stop.exits)
+    }
+    return nil
   }
   
   /**
    * Enhance stop data for bus segment.
    */
   static fileprivate func enhanceBus(_ segment: TripSegment, nextSegment: TripSegment,
-                                 stop: StaticStop) -> StaticExit {
-    return findClosestExit(nextSegment.origin.location, exits: stop.exits)
+                                     stop: StaticStop) -> StaticExit? {
+    if let location = nextSegment.origin.location {
+      return findClosestExit(location, exits: stop.exits)
+    }
+    return nil
   }
   
   /**
    * Enhance stop data for change.
    */
   static fileprivate func enhanceChange(_ segment: TripSegment, nextSegment: TripSegment,
-                                    stop: StaticStop) -> StaticExit? {
+                                        stop: StaticStop) -> StaticExit? {
     let line = TripHelper.friendlyLineData(nextSegment).short
     for exit in stop.exits {
       if exit.changeToLines.contains(line) {

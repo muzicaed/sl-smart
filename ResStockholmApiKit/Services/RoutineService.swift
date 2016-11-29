@@ -103,7 +103,7 @@ open class RoutineService {
       if let searchCrit = routineTrip.criterions.copy() as? TripSearchCriterion {
         if searchCrit.time != nil {
           searchCrit.searchForArrival = true
-          searchCrit.numTrips = 1        
+          searchCrit.numTrips = 1
         }
         let timeDateTuple = createDateTimeTuple(routineTrip.criterions)
         searchCrit.date = timeDateTuple.date
@@ -145,7 +145,7 @@ open class RoutineService {
    * Score multiplier based on proximity to location.
    */
   static fileprivate func multiplierBasedOnProximityToLocation(_ trip: RoutineTrip,
-                                                           locations: [(location: Location, dist: Int)]) -> Float {
+                                                               locations: [(location: Location, dist: Int)]) -> Float {
     
     if trip.criterions.origin?.type == LocationType.Station {
       for location in locations {
@@ -155,8 +155,10 @@ open class RoutineService {
       }
     } else {
       if let currentLocation = MyLocationHelper.sharedInstance.currentLocation {
-        let distance = Int(currentLocation.distance(from: trip.criterions.origin!.location))
-        return calcMultiplierBasedOnProximityToLocation(distance)
+        if let originLocation = trip.criterions.origin!.location {
+          let distance = Int(currentLocation.distance(from: originLocation))
+          return calcMultiplierBasedOnProximityToLocation(distance)
+        }
       }
       
     }

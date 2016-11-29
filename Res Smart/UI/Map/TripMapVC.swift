@@ -171,8 +171,10 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       plotWalk(segment)
     } else {
       if segment.stops.count == 0 {
-        coords.append(segment.origin.location.coordinate)
-        coords.append(segment.destination.location.coordinate)
+        if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
+          coords.append(originLocation.coordinate)
+          coords.append(destLocation.coordinate)
+        }
       } else {
         for stop in segment.stops {
           coords.append(stop.location.coordinate)
@@ -189,9 +191,9 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   fileprivate func canPlotRoute(_ segment: TripSegment, before: TripSegment?, next: TripSegment?, isLast: Bool) -> Bool {
     return (
       segment.type == .Walk &&
-      (
-        (segment.origin.type == .Address || segment.destination.type == .Address) ||
-        ((before?.type == .Bus || before == nil) && (next?.type == .Bus || isLast))
+        (
+          (segment.origin.type == .Address || segment.destination.type == .Address) ||
+            ((before?.type == .Bus || before == nil) && (next?.type == .Bus || isLast))
       )
     )
   }
@@ -200,27 +202,29 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    * Plot a walk segment using directions
    */
   fileprivate func plotWalk(_ segment: TripSegment) {
-    let source = MKMapItem(placemark: MKPlacemark(coordinate: segment.origin.location.coordinate, addressDictionary: nil))
-    let dest = MKMapItem(placemark: MKPlacemark(coordinate: segment.destination.location.coordinate, addressDictionary: nil))
-    
-    let directionRequest = MKDirectionsRequest()
-    directionRequest.source = source
-    directionRequest.destination = dest
-    directionRequest.transportType = .walking
-    
-    MKDirections(request: directionRequest)
-      .calculate { (response, error) -> Void in
-        
-        guard let response = response else {
-          if let error = error {
-            fatalError("Error: \(error)")
+    if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
+      let source = MKMapItem(placemark: MKPlacemark(coordinate: originLocation.coordinate, addressDictionary: nil))
+      let dest = MKMapItem(placemark: MKPlacemark(coordinate: destLocation.coordinate, addressDictionary: nil))
+      
+      let directionRequest = MKDirectionsRequest()
+      directionRequest.source = source
+      directionRequest.destination = dest
+      directionRequest.transportType = .walking
+      
+      MKDirections(request: directionRequest)
+        .calculate { (response, error) -> Void in
+          
+          guard let response = response else {
+            if let error = error {
+              fatalError("Error: \(error)")
+            }
+            return
           }
-          return
-        }
-        
-        if let route = response.routes.first {
-          self.mapView.add(route.polyline, level: .aboveRoads)
-        }
+          
+          if let route = response.routes.first {
+            self.mapView.add(route.polyline, level: .aboveRoads)
+          }
+      }
     }
   }
   
@@ -242,37 +246,40 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    * Create location pins for each segment
    */
   fileprivate func createLocationPins(_ segment: TripSegment, coordinates: [CLLocationCoordinate2D]) {
-    let originCoord = (segment.stops.count == 0) ? segment.origin.location.coordinate : segment.stops.first!.location.coordinate
-    let destCoord = (segment.stops.count == 0) ? segment.destination.location.coordinate : segment.stops.last!.location.coordinate
-    let pin = BigPin()
-    pin.zIndexMod = (segment.type == .Walk) ? -1 : 0
-    if segment == trip?.tripSegments.first! {
-      pin.coordinate = originCoord
-      pin.title = "Start: " + segment.origin.name
-      pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
-      pin.imageName = segment.type.rawValue
-      mapView.addAnnotation(pin)
-      mapView.selectAnnotation(pin, animated: false)
-    }
-    if segment == trip?.tripSegments.last! {
-      pin.coordinate = originCoord
-      pin.title = segment.origin.name
-      pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
-      pin.imageName = segment.type.rawValue
-      mapView.addAnnotation(pin)
+    if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
+      let originCoord = (segment.stops.count == 0) ? originLocation.coordinate : segment.stops.first!.location.coordinate
+      let destCoord = (segment.stops.count == 0) ? destLocation.coordinate : segment.stops.last!.location.coordinate
       
-      let destPin = DestinationPin()
-      destPin.coordinate = destCoord
-      destPin.title = "Destination: " + segment.destination.name
-      destPin.subtitle = "Framme: " + DateUtils.dateAsTimeString(segment.arrivalDateTime)
-      mapView.addAnnotation(destPin)
-    }
-    if segment != trip?.tripSegments.first! && segment != trip?.tripSegments.last! {
-      pin.coordinate = originCoord
-      pin.title = segment.origin.name
-      pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
-      pin.imageName = segment.type.rawValue
-      mapView.addAnnotation(pin)
+      let pin = BigPin()
+      pin.zIndexMod = (segment.type == .Walk) ? -1 : 0
+      if segment == trip?.tripSegments.first! {
+        pin.coordinate = originCoord
+        pin.title = "Start: " + segment.origin.name
+        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+        pin.imageName = segment.type.rawValue
+        mapView.addAnnotation(pin)
+        mapView.selectAnnotation(pin, animated: false)
+      }
+      if segment == trip?.tripSegments.last! {
+        pin.coordinate = originCoord
+        pin.title = segment.origin.name
+        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+        pin.imageName = segment.type.rawValue
+        mapView.addAnnotation(pin)
+        
+        let destPin = DestinationPin()
+        destPin.coordinate = destCoord
+        destPin.title = "Destination: " + segment.destination.name
+        destPin.subtitle = "Framme: " + DateUtils.dateAsTimeString(segment.arrivalDateTime)
+        mapView.addAnnotation(destPin)
+      }
+      if segment != trip?.tripSegments.first! && segment != trip?.tripSegments.last! {
+        pin.coordinate = originCoord
+        pin.title = segment.origin.name
+        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+        pin.imageName = segment.type.rawValue
+        mapView.addAnnotation(pin)
+      }
     }
   }
   
