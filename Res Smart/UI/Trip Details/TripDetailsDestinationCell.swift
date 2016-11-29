@@ -16,6 +16,28 @@ class TripDetailsDestinationCell: UITableViewCell, TripCellProtocol {
   @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var exitLabel: UILabel!
   
+  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    setup()
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    setup()
+  }
+  
+  /**
+   * Shared init code.
+   */
+  func setup() {
+    layer.masksToBounds = false
+    layer.shadowOffset = CGSize(width: 0, height: 1)
+    layer.shadowRadius = 1.0
+    layer.shadowColor = UIColor.black.cgColor
+    layer.shadowOpacity = 0.15
+    clipsToBounds = false
+  }
+  
   /**
    * Set cell data.
    */

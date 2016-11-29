@@ -299,20 +299,20 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     let screenSize = UIScreen.main.bounds.size
     if indexPath.section == 0 {
       if !isSubscribed {
-        return CGSize(width: screenSize.width - 8, height: 620)
+        return CGSize(width: screenSize.width, height: 620)
       } else if isShowInfo {
-        return CGSize(width: screenSize.width - 8, height: 250)
+        return CGSize(width: screenSize.width, height: 250)
       } else if bestRoutineTrip != nil {
         if indexPath.row == 0 {
-          return CGSize(width: screenSize.width - 8, height: 160)
+          return CGSize(width: screenSize.width, height: 160)
         } else if indexPath.row == 2 {
-          return CGSize(width: screenSize.width - 8, height: 25)
+          return CGSize(width: screenSize.width, height: 25)
         }
-        return CGSize(width: screenSize.width - 8, height: 60)
+        return CGSize(width: screenSize.width, height: 60)
       }
     }
     
-    return CGSize(width: screenSize.width - 8, height: 90)
+    return CGSize(width: screenSize.width, height: 90)
   }
   
   /**
@@ -326,7 +326,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       return CGSize(width: 0, height: 0)
     }
     
-    return CGSize(width: self.collectionView!.frame.size.width, height: 50)
+    return CGSize(width: self.collectionView!.frame.size.width, height: 40)
   }
   
   /**
