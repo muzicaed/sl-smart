@@ -157,7 +157,7 @@ DateTimePickResponder {
       }
       routineTrip?.criterions.isAdvanced = isAdvacedCriterions()
     }
-    navigationController?.popViewController(animated: true)
+    let _ = navigationController?.popViewController(animated: true)
   }
   
   // MARK: PickLocationResponder

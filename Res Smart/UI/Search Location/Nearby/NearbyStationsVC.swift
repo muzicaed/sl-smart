@@ -178,7 +178,7 @@ class NearbyStationsVC: UITableViewController {
       preferredStyle: UIAlertControllerStyle.alert)
     invalidLoadingAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: { _ in
-        self.navigationController?.popToRootViewController(animated: false)
+        let _ = self.navigationController?.popToRootViewController(animated: false)
       }))
     
     present(invalidLoadingAlert, animated: true, completion: nil)

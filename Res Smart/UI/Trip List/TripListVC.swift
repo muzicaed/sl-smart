@@ -86,7 +86,7 @@ class TripListVC: UITableViewController {
   func didBecomeActive() {
     let now = Date()
     if now.timeIntervalSince(loadedTime) > (60 * 60) { // 1 hour
-      navigationController?.popToRootViewController(animated: false)
+      let _ = navigationController?.popToRootViewController(animated: false)
       return
     }
     refreshUI()

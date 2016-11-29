@@ -55,10 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     let root = window?.rootViewController! as! CustomTabVC
     root.updateTabs()
     
-    let priority = DispatchQueue.GlobalQueuePriority.default
-    DispatchQueue.global(priority: priority).async {
+    DispatchQueue.global(qos: .default).async {
       // Load stops in background
-      StopsStore.sharedInstance.getStops()
+      let _ = StopsStore.sharedInstance.getStops()
     }
   }
   

@@ -52,7 +52,7 @@ class TripDetailsVC: UITableViewController {
   func didBecomeActive() {
     let now = Date()
     if now.timeIntervalSince(loadedTime) > (60 * 90) { // 1.5 hour
-      navigationController?.popToRootViewController(animated: false)
+      let _ = navigationController?.popToRootViewController(animated: false)
     }
   }
   

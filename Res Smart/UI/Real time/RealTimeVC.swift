@@ -110,7 +110,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   func didBecomeActive() {
     let now = Date()
     if now.timeIntervalSince(loadedTime) > (60 * 30) { // 30 minutes
-      navigationController?.popToRootViewController(animated: false)
+      let _ = navigationController?.popToRootViewController(animated: false)
       return
     }
     tableView.reloadData()
@@ -265,7 +265,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       lastSelected = (lastStoredSelected == "BUS") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("BUS")
-      segmentView.addSegmentWithTitle(
+      let _ = segmentView.addSegmentWithTitle(
         "Bussar",
         onSelectionImage: UIImage(named: "BUS"),
         offSelectionImage: UIImage(named: "BUS"))
@@ -275,7 +275,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       lastSelected = (lastStoredSelected == "METRO") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("METRO")
-      segmentView.addSegmentWithTitle(
+      let _ = segmentView.addSegmentWithTitle(
         "T-bana",
         onSelectionImage: UIImage(named: "METRO"),
         offSelectionImage: UIImage(named: "METRO"))
@@ -284,7 +284,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       lastSelected = (lastStoredSelected == "TRAIN") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("TRAIN")
-      segmentView.addSegmentWithTitle(
+      let _ = segmentView.addSegmentWithTitle(
         "Pendel",
         onSelectionImage: UIImage(named: "TRAIN"),
         offSelectionImage: UIImage(named: "TRAIN"))
@@ -293,7 +293,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       lastSelected = (lastStoredSelected == "TRAM") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("TRAM")
-      segmentView.addSegmentWithTitle(
+      let _ = segmentView.addSegmentWithTitle(
         "Spår",
         onSelectionImage: UIImage(named: "TRAM"),
         offSelectionImage: UIImage(named: "TRAM"))
@@ -302,7 +302,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       lastSelected = (lastStoredSelected == "LOCAL-TRAM") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("LOCAL-TRAM")
-      segmentView.addSegmentWithTitle(
+      let _ = segmentView.addSegmentWithTitle(
         "Spår",
         onSelectionImage: UIImage(named: "TRAM"),
         offSelectionImage: UIImage(named: "TRAM"))
@@ -311,7 +311,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       lastSelected = (lastStoredSelected == "BOAT") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("BOAT")
-      segmentView.addSegmentWithTitle(
+      let _ = segmentView.addSegmentWithTitle(
         "Färja",
         onSelectionImage: UIImage(named: "SHIP"),
         offSelectionImage: UIImage(named: "SHIP"))
@@ -562,7 +562,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       preferredStyle: UIAlertControllerStyle.alert)
     invalidLoadingAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: { _ in
-        self.navigationController?.popToRootViewController(animated: false)
+        let _ = self.navigationController?.popToRootViewController(animated: false)
       }))
     
     present(invalidLoadingAlert, animated: true, completion: nil)

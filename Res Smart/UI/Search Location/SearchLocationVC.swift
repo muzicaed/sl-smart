@@ -67,7 +67,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   func didBecomeActive() {
     let now = Date()
     if now.timeIntervalSince(loadedTime) > (60 * 30) { // 0.5 hour
-      navigationController?.popToRootViewController(animated: false)
+      let _ = navigationController?.popToRootViewController(animated: false)
     } else {
       loadListedLocations()
     }

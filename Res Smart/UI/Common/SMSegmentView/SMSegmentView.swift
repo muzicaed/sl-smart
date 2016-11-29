@@ -148,7 +148,6 @@ open class SMSegmentView: SMBasicSegmentView {
     segment.offSelectionImage = offSelectionImage
     
     super.addSegment(segment)
-    
     return segment
   }
   
