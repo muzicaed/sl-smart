@@ -704,21 +704,16 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1C-Mj-3GQ">
-                                                    <rect key="frame" x="40" y="0.0" width="15" height="51.5"/>
+                                                    <rect key="frame" x="40" y="0.0" width="335" height="51.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="b7X-zO-zU0"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gl7-Al-Pu9" userLabel="Type Icon">
-                                                    <rect key="frame" x="55" y="0.0" width="320" height="51.5"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="wpw-7H-K3n" firstAttribute="leading" secondItem="U5F-4c-N0a" secondAttribute="leadingMargin" id="QgO-sN-itV"/>
-                                                <constraint firstItem="gl7-Al-Pu9" firstAttribute="trailing" secondItem="U5F-4c-N0a" secondAttribute="trailingMargin" id="ynT-uz-Oqn"/>
                                             </constraints>
                                         </stackView>
                                     </subviews>
@@ -748,7 +743,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="hZH-Fh-bnR"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -780,7 +775,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1i-hj-Qno" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2224" y="4565"/>
+            <point key="canvasLocation" x="2223.1999999999998" y="4564.7676161919044"/>
         </scene>
         <!--Rapporter-->
         <scene sceneID="IqQ-eV-8MA">
@@ -791,32 +786,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SituationRow" rowHeight="80" id="cIC-pa-EWX" userLabel="Situation Row" customClass="ReportSituationRow" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SituationRow" rowHeight="100" id="cIC-pa-EWX" userLabel="Situation Row" customClass="ReportSituationRow" customModule="Res_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cIC-pa-EWX" id="9jq-dh-M8c">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eZv-rx-478">
-                                            <rect key="frame" x="12" y="8" width="351" height="63"/>
+                                            <rect key="frame" x="12" y="8" width="351" height="83.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAs-h8-2RK" userLabel="Title">
-                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNR-qM-EbX">
-                                                    <rect key="frame" x="0.0" y="19.5" width="351" height="5"/>
+                                                    <rect key="frame" x="0.0" y="14" width="351" height="5"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="5" id="ICH-8m-jXH"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text text tet text text asdf adsfasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asd f" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXG-Bt-aVK" userLabel="Text">
-                                                    <rect key="frame" x="0.0" y="24.5" width="351" height="38.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <rect key="frame" x="0.0" y="19" width="351" height="64.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -836,7 +831,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DeviationRow" rowHeight="90" id="4lQ-OL-W5k" userLabel="Deviation Row" customClass="ReportDeviationRow" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="108" width="375" height="90"/>
+                                <rect key="frame" x="0.0" y="128" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4lQ-OL-W5k" id="DqY-nC-QBh">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="89.5"/>
@@ -846,8 +841,8 @@
                                             <rect key="frame" x="12" y="8" width="322" height="73"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B39-EH-UOh" userLabel="Title">
-                                                    <rect key="frame" x="0.0" y="0.0" width="322" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="322" height="20.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -859,13 +854,13 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text text tet text text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7z-TW-4Qo" userLabel="Text">
-                                                    <rect key="frame" x="0.0" y="30.5" width="322" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <rect key="frame" x="0.0" y="29.5" width="322" height="20.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b6W-O3-hmT">
-                                                    <rect key="frame" x="0.0" y="50.5" width="322" height="5"/>
+                                                    <rect key="frame" x="0.0" y="51.5" width="322" height="5"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="5" id="L1Q-D6-4eY"/>
@@ -873,7 +868,7 @@
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sj4-Fc-e9N" userLabel="Date">
                                                     <rect key="frame" x="0.0" y="58.5" width="322" height="14.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -917,32 +912,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SituationRow" rowHeight="80" id="nIr-zB-V0U" userLabel="Situation Row" customClass="ReportSituationRow" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SituationRow" rowHeight="100" id="nIr-zB-V0U" userLabel="Situation Row" customClass="ReportSituationRow" customModule="Res_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nIr-zB-V0U" id="IRk-If-Ciq">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kEk-g2-A9b">
-                                            <rect key="frame" x="12" y="8" width="351" height="63"/>
+                                            <rect key="frame" x="12" y="8" width="351" height="83.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ks7-W9-LFj" userLabel="Title">
-                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="19"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9th-1C-56b">
-                                                    <rect key="frame" x="0.0" y="19" width="351" height="5"/>
+                                                    <rect key="frame" x="0.0" y="14" width="351" height="5"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="5" id="3Oi-jK-I0M"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text text tet text text asdf adsfasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asd f" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyM-oI-p7C" userLabel="Text">
-                                                    <rect key="frame" x="0.0" y="24" width="351" height="39"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <rect key="frame" x="0.0" y="19" width="351" height="64.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -962,23 +957,23 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DeviationRow" textLabel="P9v-cx-eEt" detailTextLabel="TEm-Ap-rOE" imageView="eBb-wv-IrV" style="IBUITableViewCellStyleSubtitle" id="9O8-0i-iu9">
-                                <rect key="frame" x="0.0" y="108" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="128" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9O8-0i-iu9" id="3eC-R0-CFo">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Line number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P9v-cx-eEt">
-                                            <rect key="frame" x="52" y="5" width="90" height="19"/>
+                                            <rect key="frame" x="52" y="4" width="96" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TEm-Ap-rOE">
-                                            <rect key="frame" x="52" y="24" width="32" height="15"/>
+                                            <rect key="frame" x="52" y="25" width="35" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1014,22 +1009,22 @@
                         <sections>
                             <tableViewSection id="MvK-cN-zXG">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="120" id="lBb-0S-3rM">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="120"/>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="180" id="lBb-0S-3rM">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lBb-0S-3rM" id="uXC-25-YuP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="179"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JzT-6O-biE">
-                                                    <rect key="frame" x="12" y="8" width="351" height="103"/>
+                                                    <rect key="frame" x="12" y="8" width="351" height="163.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Line" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqU-CL-9za" userLabel="Line">
                                                             <rect key="frame" x="0.0" y="0.0" width="351" height="19"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="19" id="AFh-8C-oxx"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1041,40 +1036,40 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knb-9a-Xf8" userLabel="Title">
-                                                            <rect key="frame" x="0.0" y="29" width="351" height="5.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <rect key="frame" x="0.0" y="29" width="351" height="18"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9k4-qS-Gri">
-                                                            <rect key="frame" x="0.0" y="34.5" width="351" height="10"/>
+                                                            <rect key="frame" x="0.0" y="47" width="351" height="10"/>
                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="5Le-xn-n3s"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="Date text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PS3-C7-FF7" userLabel="Date line">
-                                                            <rect key="frame" x="0.0" y="44.5" width="351" height="15"/>
+                                                            <rect key="frame" x="0.0" y="57" width="351" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="15" id="LXZ-yH-yZ9"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aav-cr-L5A">
-                                                            <rect key="frame" x="0.0" y="59.5" width="351" height="10"/>
+                                                            <rect key="frame" x="0.0" y="72" width="351" height="10"/>
                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="akF-xH-vGH"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="246" verticalCompressionResistancePriority="751" text="Text text tet text text asdf adsfasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asd f" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYF-Vi-Ge9" userLabel="Message">
-                                                            <rect key="frame" x="0.0" y="69.5" width="351" height="33.5"/>
+                                                            <rect key="frame" x="0.0" y="82" width="351" height="81.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="2000" id="nLK-jH-d4p"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1263,15 +1258,15 @@
                             <tableViewSection headerTitle="Namn för den här resan" id="5x3-Rl-oaV">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NameRow" id="Tce-EE-HiO">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tce-EE-HiO" id="7WL-1V-DPT">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="T.ex. &quot;Åka till jobbet&quot;, &quot;Hälsa på Petter&quot;" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UcP-ws-VIP">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="T.ex. &quot;Åka till jobbet&quot;" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UcP-ws-VIP">
                                                     <rect key="frame" x="23" y="8" width="329" height="27"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
@@ -1288,7 +1283,7 @@
                             <tableViewSection headerTitle="Mellan vilka stationer åker du?" id="jzR-6r-YTn">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="LocationPickerRow" rowHeight="88" id="vhe-P6-C2c" userLabel="Location Picker Row" customClass="LocationPickerRow" customModule="Res_Smart" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="157" width="375" height="88"/>
+                                        <rect key="frame" x="0.0" y="155.5" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vhe-P6-C2c" id="Org-67-faj">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
@@ -1318,13 +1313,13 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="50" id="Djc-tg-wdf"/>
                                                                                     </constraints>
-                                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station eller adress)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUt-oC-SAR">
                                                                                     <rect key="frame" x="65" y="0.0" width="250" height="43"/>
-                                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
@@ -1383,13 +1378,13 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="50" id="IPW-Va-mqs"/>
                                                                                     </constraints>
-                                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(Välj station eller adress)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fuh-qQ-1c6">
                                                                                     <rect key="frame" x="65" y="0.0" width="250" height="43"/>
-                                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
@@ -1456,7 +1451,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="ViaRow" id="Hjw-7a-iaG" userLabel="Via Location Row">
-                                        <rect key="frame" x="0.0" y="245" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="243.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hjw-7a-iaG" id="ZHM-x8-aap">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -1477,13 +1472,13 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" priority="999" constant="50" id="yFB-Rs-3Wf"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="(Välj station)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qF-mL-Zry">
                                                             <rect key="frame" x="65" y="0.0" width="269" height="50"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1506,16 +1501,16 @@
                             <tableViewSection headerTitle="Senast framme" id="5BV-1Q-Q5K" userLabel="Arrival time">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="TravelTypesPicker" textLabel="PGQ-kb-Oig" style="IBUITableViewCellStyleDefault" id="jCl-Pe-T5a" userLabel="Arrival time picker">
-                                        <rect key="frame" x="0.0" y="346" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="343.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jCl-Pe-T5a" id="DwM-6b-bfn">
-                                            <rect key="frame" x="0.0" y="0.0" width="308" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="308" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="När som helst" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PGQ-kb-Oig">
-                                                    <rect key="frame" x="15" y="0.0" width="293" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="293" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1530,7 +1525,7 @@
                             <tableViewSection headerTitle="Färdmedel" id="ruz-S1-zAJ" userLabel="Travel Types">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TravelTypesPicker" id="cNf-fO-L64" userLabel="Travel Types Picker" customClass="TravelTypesPickerRow" customModule="Res_Smart" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="447" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="443.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cNf-fO-L64" id="Agv-f5-cJm">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -1538,7 +1533,7 @@
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alla färdmedel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMF-wf-OcH" userLabel="Färdmedel">
                                                     <rect key="frame" x="16" y="8" width="318" height="27"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1556,7 +1551,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Lines" id="DDI-bc-J6T" userLabel="Lines">
-                                        <rect key="frame" x="0.0" y="491" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="487.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DDI-bc-J6T" id="huo-MS-TPg">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -1564,7 +1559,7 @@
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alla linjer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFc-z7-yUm" userLabel="Lines">
                                                     <rect key="frame" x="16" y="8" width="318" height="27"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1586,7 +1581,7 @@
                             <tableViewSection headerTitle="Gångväg" id="mts-Rm-k4j" userLabel="Walk Options">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MaxWalkDistance" id="o2J-ba-jOU" userLabel="Max Walk Distance">
-                                        <rect key="frame" x="0.0" y="592" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="587.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o2J-ba-jOU" id="S5R-Ex-WVZ">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -1594,7 +1589,7 @@
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Högst 1 km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFI-Od-8cs" userLabel="Max Walk">
                                                     <rect key="frame" x="16" y="8" width="318" height="27"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1611,23 +1606,23 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Alternative" textLabel="IU0-Eq-9Ct" detailTextLabel="16g-Ms-KWg" style="IBUITableViewCellStyleSubtitle" id="0qc-4b-ZGu" userLabel="Alternative">
-                                        <rect key="frame" x="0.0" y="636" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="631.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0qc-4b-ZGu" id="mbb-3o-yM5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alternativa förslag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IU0-Eq-9Ct">
-                                                    <rect key="frame" x="15" y="6" width="107" height="17"/>
+                                                    <rect key="frame" x="15" y="4" width="139" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alternativ hållplats om det ger en snabbare resa?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="16g-Ms-KWg">
-                                                    <rect key="frame" x="15" y="23" width="252" height="14.5"/>
+                                                    <rect key="frame" x="15" y="25" width="277" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1640,7 +1635,7 @@
                             <tableViewSection headerTitle="Byten" id="j9k-cS-Otr" userLabel="Chagne Options">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeNumber" id="k8W-Px-77F" userLabel="Number of changes picker">
-                                        <rect key="frame" x="0.0" y="737" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="731.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k8W-Px-77F" id="wRy-If-usq">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -1648,7 +1643,7 @@
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Inga begränsningar för antal byten" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzG-VG-C41" userLabel="NoOfChanges">
                                                     <rect key="frame" x="16" y="8" width="318" height="27"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1665,7 +1660,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeNumber" id="bbK-Xa-Ur9" userLabel="Change time picker">
-                                        <rect key="frame" x="0.0" y="781" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="775.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bbK-Xa-Ur9" id="efy-Ca-cRH">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -1673,7 +1668,7 @@
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Ingen extra tid vid byte" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JgM-ch-i3t" userLabel="ChangeTime">
                                                     <rect key="frame" x="16" y="8" width="318" height="27"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1743,16 +1738,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7tf-V3-lvF">
-                                            <rect key="frame" x="55" y="6" width="29" height="17"/>
+                                            <rect key="frame" x="55" y="4" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bGr-Sp-Q9i">
-                                            <rect key="frame" x="55" y="23" width="44" height="15"/>
+                                            <rect key="frame" x="55" y="25" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1800,9 +1795,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" contentMode="left" text="Centralen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hma-gB-jL6">
-                                            <rect key="frame" x="55" y="6" width="63" height="17"/>
+                                            <rect key="frame" x="55" y="4" width="75" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1811,9 +1806,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                         <label opaque="NO" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="86g-mI-a0z">
-                                            <rect key="frame" x="55" y="23" width="44" height="15"/>
+                                            <rect key="frame" x="55" y="25" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1862,7 +1857,7 @@
                 </view>
                 <exit id="HfH-GM-1lM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4657" y="2312"/>
+            <point key="canvasLocation" x="4500" y="2311"/>
         </scene>
         <!--Travel Types-->
         <scene sceneID="6nv-mG-FjN">
@@ -1877,13 +1872,13 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aes-71-aFG" id="22D-IN-Hjx">
-                                    <rect key="frame" x="0.0" y="0.0" width="336" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="336" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Färdmedel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lyl-wI-8aW">
-                                            <rect key="frame" x="15" y="0.0" width="321" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="321" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1921,13 +1916,13 @@
                                 <rect key="frame" x="0.0" y="100" width="375" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m1M-CY-SRW" id="bcj-rl-tla">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="29"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Buss" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GVr-Fw-3dz">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="29.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                             <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1956,33 +1951,33 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dm8-vo-hoZ">
                                                     <rect key="frame" x="0.0" y="0.0" width="359" height="43"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="873C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="4th-Df-XzP">
-                                                            <rect key="frame" x="0.0" y="0.0" width="35" height="43"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="873C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4th-Df-XzP">
+                                                            <rect key="frame" x="0.0" y="0.0" width="55" height="43"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="35" id="fk9-Wa-PaU"/>
+                                                                <constraint firstAttribute="width" constant="55" id="fk9-Wa-PaU"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y6x-T4-hRl">
-                                                            <rect key="frame" x="35" y="0.0" width="6" height="43"/>
+                                                            <rect key="frame" x="55" y="0.0" width="6" height="43"/>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="6" id="Woh-I4-8OB"/>
                                                             </constraints>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b6m-gg-bLZ">
-                                                            <rect key="frame" x="41" y="0.0" width="238" height="43"/>
+                                                            <rect key="frame" x="61" y="0.0" width="218" height="43"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Mot Tyresö centrum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiA-Wb-6Yu">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="238" height="43"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="218" height="43"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVj-cg-43Q">
-                                                                    <rect key="frame" x="0.0" y="43" width="238" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="43" width="218" height="0.0"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" id="rQj-Yr-ir0"/>
                                                                     </constraints>
@@ -2002,7 +1997,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="20" id="NIw-if-hJD"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </label>
@@ -2011,7 +2006,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="60" id="f6M-Mj-VG4"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -2044,7 +2039,7 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hittade inga avgångar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHZ-HP-yxN">
                                             <rect key="frame" x="8" y="8" width="359" height="27.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -2068,8 +2063,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1U-iK-9Wu">
-                                            <rect key="frame" x="122.5" y="6" width="130" height="32"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <rect key="frame" x="119" y="5.5" width="137" height="33"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <state key="normal" title="Visa fler avgångar"/>
                                         </button>
                                     </subviews>
@@ -4975,16 +4970,16 @@ Cg
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j6a-uZ-ui0">
-                                            <rect key="frame" x="55" y="6" width="29" height="17"/>
+                                            <rect key="frame" x="55" y="4" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CUZ-2W-VoI">
-                                            <rect key="frame" x="55" y="23" width="44" height="15"/>
+                                            <rect key="frame" x="55" y="25" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -5037,7 +5032,7 @@ Cg
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="4276" y="857"/>
+            <point key="canvasLocation" x="4801" y="657"/>
         </scene>
         <!--Platskarta-->
         <scene sceneID="w4c-vZ-Iqe">
@@ -5126,13 +5121,13 @@ Cg
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bqB-zq-5vk" id="dQE-G3-vXp">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Value 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x2g-Ms-Wb9">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -5149,7 +5144,7 @@ Cg
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQD-4Q-GYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2750" y="2416"/>
+            <point key="canvasLocation" x="2897" y="2416"/>
         </scene>
         <!--Välj linjer-->
         <scene sceneID="R43-pV-9l1">
@@ -5203,7 +5198,7 @@ Cg
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Exempel: 540,242,35" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PF3-mi-Eq0">
                                                     <rect key="frame" x="8" y="8" width="359" height="27.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="onLineTextFieldEditEnd:" destination="gY1-Ay-9fo" eventType="editingDidEnd" id="nDS-o0-xCM"/>
@@ -5234,7 +5229,7 @@ Cg
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b76-KY-OBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3332" y="2416"/>
+            <point key="canvasLocation" x="3585" y="2416"/>
         </scene>
         <!--Date Time Picker-->
         <scene sceneID="TUj-eK-593">
@@ -5354,12 +5349,12 @@ Cg
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gZB-Im-USu"/>
-        <segue reference="geV-cu-rvh"/>
-        <segue reference="OZb-MD-G7j"/>
         <segue reference="4rE-Hc-22D"/>
-        <segue reference="ypq-Up-6Af"/>
-        <segue reference="alv-6I-0jl"/>
         <segue reference="Lg4-KG-mN0"/>
+        <segue reference="eBt-27-ZxS"/>
+        <segue reference="GLI-h1-z4f"/>
+        <segue reference="yy0-ry-irx"/>
+        <segue reference="L0K-5H-KeJ"/>
         <segue reference="bAI-Ol-u0J"/>
         <segue reference="kst-2L-81y"/>
     </inferredMetricsTieBreakers>
