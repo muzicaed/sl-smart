@@ -159,6 +159,7 @@ open class SearchTripService {
     -> (isRealtime: Bool, depDate: String, depTime: String, arrDate: String, arrTime: String) {
       
       var isRealtime = false
+      // TODO: Crash here!!!
       var depDate = segment["Origin"]["date"].string!
       var depTime = segment["Origin"]["time"].string!
       var arrDate = segment["Destination"]["date"].string!

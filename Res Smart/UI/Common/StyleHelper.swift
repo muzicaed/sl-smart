@@ -16,7 +16,7 @@ class StyleHelper {
   let mainGreen = UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 1.0)
   
   let highlight = UIColor(red: 229/255, green: 255/255, blue: 255/255, alpha: 0.95)
-  let background = UIColor(red: 231/255, green: 237/255, blue: 238/255, alpha: 1.0)
+  let background = UIColor(red: 226/255, green: 232/255, blue: 233/255, alpha: 1.0)
   let cardBackground = UIColor(red: 63/255, green: 73/255, blue: 62/255, alpha: 0.8)
   let warningColor = UIColor(red: 255/255, green: 75/255, blue: 0/255, alpha: 1.0)
   let realtimeColor = UIColor(red: 0/255, green: 113/255, blue: 218/255, alpha: 1.0)

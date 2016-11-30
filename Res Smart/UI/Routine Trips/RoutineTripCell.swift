@@ -29,28 +29,6 @@ class RoutineTripCell: UICollectionViewCell {
   
   let normalColor = UIColor(red: 63/255, green: 73/255, blue: 62/255, alpha: 0.6)
   
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  /**
-   * Shared init code.
-   */
-  func setup() {
-    layer.masksToBounds = false
-    layer.shadowOffset = CGSize(width: 0, height: 1)
-    layer.shadowRadius = 1.0
-    layer.shadowColor = UIColor.black.cgColor
-    layer.shadowOpacity = 0.15
-    clipsToBounds = false
-  }
-  
   /**
    * Populate cell data based on passed RoutineTrip
    */
