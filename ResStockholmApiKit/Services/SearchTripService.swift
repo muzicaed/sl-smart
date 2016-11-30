@@ -96,9 +96,11 @@ open class SearchTripService {
         }
       }
     } else {
-      let segment = convertJsonToTripSegment(segmentsJson)
-      if !(segment.type == .Walk && segment.distance! < 250) {
-        tripSegments.append(segment)
+      if segmentsJson["Origin"]["date"].string != nil {
+        let segment = convertJsonToTripSegment(segmentsJson)
+        if !(segment.type == .Walk && segment.distance! < 250) {
+          tripSegments.append(segment)
+        }
       }
     }
     return tripSegments
