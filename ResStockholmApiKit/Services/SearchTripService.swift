@@ -90,7 +90,7 @@ open class SearchTripService {
     var tripSegments = [TripSegment]()
     if let segmentsArr = segmentsJson.array  {
       for segmentJson in segmentsArr {
-        if !segmentJson["Origin"].isEmpty {
+        if segmentJson["Origin"]["date"].string != nil {
           let segment = convertJsonToTripSegment(segmentJson)
           tripSegments.append(segment)
         }

@@ -108,7 +108,7 @@ class TripCell: UITableViewCell {
           frame:CGRect(
             origin: CGPoint(x: 0, y: 0),
             size: CGSize(width: 22, height: 39)))
-        wrapperView.frame.origin = CGPoint(x: (26 * CGFloat(count)), y: 5)
+        wrapperView.frame.origin = CGPoint(x: (26 * CGFloat(count)), y: 7)
         wrapperView.clipsToBounds = false
         
         wrapperView.addSubview(iconView)
