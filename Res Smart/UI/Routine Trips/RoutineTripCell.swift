@@ -162,8 +162,8 @@ class RoutineTripCell: UICollectionViewCell {
         let wrapperView = UIView(
           frame:CGRect(
             origin: CGPoint(x: 0, y: 0),
-            size: CGSize(width: 22, height: 36)))
-        wrapperView.frame.origin = CGPoint(x: (26 * CGFloat(count)), y: 3)
+            size: CGSize(width: 22, height: 34)))
+        wrapperView.frame.origin = CGPoint(x: (26 * CGFloat(count)), y: 9)
         wrapperView.clipsToBounds = false
         
         wrapperView.addSubview(iconView)

@@ -13,13 +13,11 @@ import ResStockholmApiKit
 class HereToThereCell: UICollectionViewCell {
   
   @IBOutlet weak var hereToThereLabel: UILabel!
-  @IBOutlet weak var wrapperView: UIView!
   
   /**
    * Set the from location text.
    */
   func setFromLocationText(_ location: Location) {
     hereToThereLabel.text = "Från \(location.name)"
-    wrapperView.accessibilityLabel = "Ta mig till valfri plats. Från \(location.name)"
   }
 }

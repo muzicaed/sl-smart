@@ -90,8 +90,10 @@ open class SearchTripService {
     var tripSegments = [TripSegment]()
     if let segmentsArr = segmentsJson.array  {
       for segmentJson in segmentsArr {
-        let segment = convertJsonToTripSegment(segmentJson)
-        tripSegments.append(segment)
+        if !segmentJson["Origin"].isEmpty {
+          let segment = convertJsonToTripSegment(segmentJson)
+          tripSegments.append(segment)
+        }
       }
     } else {
       let segment = convertJsonToTripSegment(segmentsJson)
