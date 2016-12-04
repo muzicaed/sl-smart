@@ -20,6 +20,7 @@ class HttpRequestHelper {
     _ url: String, callback: @escaping ((data: Data?, error: SLNetworkError?)) -> Void) {
     
     print(url)
+    print("")
     let urlconfig = URLSessionConfiguration.default
     urlconfig.timeoutIntervalForRequest = 10
     urlconfig.timeoutIntervalForResource = 10

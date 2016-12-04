@@ -259,7 +259,7 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   fileprivate func createOriginQuery() -> String {
     if origin != nil && origin?.type == .Current {
       if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
-        return "&originCoordLat=\(currentLocation.lat)&originCoordLong=\(currentLocation.lon)&originCoordName=\(currentLocation.name)"
+        return "&originCoordLat=\(currentLocation.lat!)&originCoordLong=\(currentLocation.lon!)&originCoordName=\(currentLocation.name)"
       }
     }
     
@@ -268,7 +268,7 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     } else if origin!.type == .Station {
       return "&originId=\(origin!.siteId!)"
     }
-    return "&originCoordLat=\(origin!.lat)&originCoordLong=\(origin!.lon)&originCoordName=\(origin!.name)"
+    return "&originCoordLat=\(origin!.lat!)&originCoordLong=\(origin!.lon!)&originCoordName=\(origin!.name)"
   }
   
   /**
@@ -278,7 +278,7 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   fileprivate func createDestinationQuery() -> String {
     if dest != nil && dest?.type == .Current {
       if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
-        return "&destCoordLat=\(currentLocation.lat)&destCoordLong=\(currentLocation.lon)&destCoordName=\(currentLocation.name)"
+        return "&destCoordLat=\(currentLocation.lat!)&destCoordLong=\(currentLocation.lon!)&destCoordName=\(currentLocation.name)"
       }
     }
     
@@ -288,6 +288,6 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
       return "&destId=\(dest!.siteId!)"
     }
 
-    return "&destCoordLat=\(dest!.lat)&destCoordLong=\(dest!.lon)&destCoordName=\(dest!.name)"
+    return "&destCoordLat=\(dest!.lat!)&destCoordLong=\(dest!.lon!)&destCoordName=\(dest!.name)"
   }
 }
