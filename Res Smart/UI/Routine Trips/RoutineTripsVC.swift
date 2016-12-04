@@ -57,21 +57,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    stopLoading()
-    isSubscribed = SubscriptionStore.sharedInstance.isSubscribed()
-    if isSubscribed {
-      navigationItem.rightBarButtonItem?.isEnabled = true
-      if CLLocationManager.authorizationStatus() == .denied || !CLLocationManager.locationServicesEnabled() {
-        showLocationServicesNotAllowed()
-        MyLocationHelper.sharedInstance.isStarted = false
-        collectionView?.reloadData()
-        return
-      }
-      startRefreshTimmer()
-      loadTripData(false)
-      return
-    }
-    navigationItem.rightBarButtonItem?.isEnabled = false
+    refreshScreen()
   }
   
   override func viewDidDisappear(_ animated: Bool) {
@@ -407,17 +393,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     collectionView?.delegate = self
     
     view.backgroundColor = StyleHelper.sharedInstance.background
-    
-    let wrapper = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-    let imageView = UIImageView(
-      image: UIImage(named: "TrainSplash")?.withRenderingMode(.alwaysTemplate))
-    imageView.tintColor = UIColor.white
-    imageView.frame.size = CGSize(width: 30, height: 30)
-    imageView.frame.origin.y = 5
-    imageView.frame.origin.x = 6
-    
-    wrapper.addSubview(imageView)
-    self.navigationItem.titleView = wrapper
   }
   
   /**
@@ -451,6 +426,30 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     NotificationCenter.default.addObserver(
       self, selector: #selector(didBecomeInactive),
       name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+  }
+  
+  /**
+   * Refresh screen and reload data.
+   */
+  fileprivate func refreshScreen() {
+    print("View did appear")
+    stopLoading()
+    isSubscribed = SubscriptionStore.sharedInstance.isSubscribed()
+    if isSubscribed {
+      print("is subscribed")
+      navigationItem.rightBarButtonItem?.isEnabled = true
+      if CLLocationManager.authorizationStatus() == .denied || !CLLocationManager.locationServicesEnabled() {
+        showLocationServicesNotAllowed()
+        MyLocationHelper.sharedInstance.isStarted = false
+        collectionView?.reloadData()
+        return
+      }
+      print("reload")
+      startRefreshTimmer()
+      loadTripData(false)
+      return
+    }
+    navigationItem.rightBarButtonItem?.isEnabled = false
   }
   
   /**
