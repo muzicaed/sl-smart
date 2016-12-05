@@ -63,6 +63,22 @@ class TripDetailsVC: UITableViewController {
     NotificationCenter.default.post(name: Notification.Name(rawValue: "BeginTrip"), object: trip)
   }
   
+  @IBAction func onSMSTicketTap(_ sender: UIBarButtonItem) {
+    let ticketAlert = UIAlertController(
+      title: "Vilken typ av biljett?",
+      message: "Den som är under 20 eller över 65 kan köpa biljett till reducerat pris.",
+      preferredStyle: .actionSheet)
+    
+    ticketAlert.addAction(
+      UIAlertAction(title: "Helt pris", style: .default, handler: nil))
+    ticketAlert.addAction(
+      UIAlertAction(title: "Reducerat pris", style: .default, handler: nil))
+    ticketAlert.addAction(
+      UIAlertAction(title: "Avbryt", style: .cancel, handler: nil))
+    
+    present(ticketAlert, animated: true, completion: nil)
+  }
+  
   // MARK: UITableViewController
   
   /**
