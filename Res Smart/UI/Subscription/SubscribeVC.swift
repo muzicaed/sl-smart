@@ -14,7 +14,7 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   
   var isProductsLoaded = false
   var isBuying = false
-  var products = [SKProduct]()
+  var products = [String: SKProduct]()
   
   @IBOutlet weak var noThanksButton: UIBarButtonItem!
   
@@ -40,7 +40,7 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
    */
   @IBAction func onBuyMonthTap(_ sender: UIButton) {
     sender.isEnabled = false
-    buyProduct(0)
+    buyProduct("1_MONTH_NO_TRIAL")
   }
   
   /**
@@ -48,12 +48,12 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
    */
   @IBAction func onBuyHalfYearTap(_ sender: UIButton) {
     sender.isEnabled = false
-    buyProduct(1)
+    buyProduct("6_MONTHS_NO_TRIAL")
   }
   
   @IBAction func onBuyYearTap(_ sender: UIButton) {
     sender.isEnabled = false
-    buyProduct(2)
+    buyProduct("12_MONTHS_NO_TRIAL")
   }
   
   // MARK: SubscribeDelegate
@@ -71,8 +71,11 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
    */
   func recievedProducts(_ products: [SKProduct]) {
     DispatchQueue.main.async {
-      self.products = products
       self.isProductsLoaded = true
+      for product in products {
+        self.products[product.productIdentifier] = product
+      }
+      
       self.collectionView?.reloadData()
     }
   }
@@ -124,19 +127,19 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
     } else if indexPath.row == 1 {
       let cell = collectionView.dequeueReusableCell(
         withReuseIdentifier: "SubscriptionYearRow", for: indexPath) as! SubscriptionCell
-      cell.setData(products[0])
+      cell.setData(products["12_MONTHS_NO_TRIAL"]!)
       return cell
      
     } else if indexPath.row == 2 {
       let cell = collectionView.dequeueReusableCell(
         withReuseIdentifier: "SubscriptionMonthRow", for: indexPath) as! SubscriptionCell
-      cell.setData(products[1])
+      cell.setData(products["1_MONTH_NO_TRIAL"]!)
       return cell
 
     } else if indexPath.row == 3 {
       let cell = collectionView.dequeueReusableCell(
         withReuseIdentifier: "SubscriptionHalfYearRow", for: indexPath) as! SubscriptionCell
-      cell.setData(products[2])
+      cell.setData(products["6_MONTHS_NO_TRIAL"]!)
       return cell
     }
     
@@ -167,12 +170,12 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   /**
    * Purchase a specific product item.
    */
-  fileprivate func buyProduct(_ productIndex: Int) {
+  fileprivate func buyProduct(_ productId: String) {
     if !isBuying {
       noThanksButton.isEnabled = false
       isBuying = true
       self.collectionView?.reloadData()
-      SubscriptionManager.sharedInstance.executePayment(products[1])
+      SubscriptionManager.sharedInstance.executePayment(products[productId]!)
     }
   }
   
