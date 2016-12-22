@@ -110,12 +110,13 @@ open class RealTimeDeparturesService {
         deviations: messages,
         journeyDirection: metroJson["JourneyDirection"].int!,
         platformMessage: metroJson["PlatformMessage"].string,
-        metroLineId: metroJson["GroupOfLineId"].int!)
+        groupOfLine: metroJson["GroupOfLine"].string!)
       
-      if result["\(rtMetro.stopAreaName)-\(rtMetro.metroLineId)-\(rtMetro.journeyDirection)"] == nil {
-        result["\(rtMetro.stopAreaName)-\(rtMetro.metroLineId)-\(rtMetro.journeyDirection)"] = [RTMetro]()
+      let groupKey = "\(rtMetro.stopAreaName)-\(metroJson["GroupOfLine"].string!)-\(rtMetro.journeyDirection)"
+      if result[groupKey] == nil {
+        result[groupKey] = [RTMetro]()
       }
-      result["\(rtMetro.stopAreaName)-\(rtMetro.metroLineId)-\(rtMetro.journeyDirection)"]?.append(rtMetro)
+      result[groupKey]?.append(rtMetro)
     }
     
     return result

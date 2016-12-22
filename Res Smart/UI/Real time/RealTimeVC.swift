@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import ResStockholmApiKit
+
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -417,7 +418,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       }
       return min(realTimeDepartures!.busses[busKeys[section]]!.count + 1, 5)
     case "METRO":
-      return min(realTimeDepartures!.metros[metroKeys[section]]!.count + 1, 5)
+      return min(realTimeDepartures!.metros[metroKeys[section]]!.count + 1, 4)
     case "TRAIN":
       return min(realTimeDepartures!.trains[trainKeys[section]]!.count + 1, 5)
     case "TRAM":
@@ -443,19 +444,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       cell.titleLabel.accessibilityLabel = "Bussar, \(bus.stopAreaName)"
     case "METRO":
       let metro = realTimeDepartures!.metros[metroKeys[indexPath.section]]!.first!
-      switch metro.metroLineId {
-      case 1:
-        cell.titleLabel.text = "Gröna linjen"
-        cell.titleLabel.accessibilityLabel = "Tunnelbanas gröna linjen"
-      case 2:
-        cell.titleLabel.text = "Röda linjen"
-        cell.titleLabel.accessibilityLabel = "Tunnelbanas röda linjen"
-      case 3:
-        cell.titleLabel.text = "Blå linjen"
-        cell.titleLabel.accessibilityLabel = "Tunnelbanas blå linjen"
-      default:
-        break
-      }
+      cell.titleLabel.text = metro.groupOfLine.capitalized
     case "TRAIN":
       let train = realTimeDepartures!.trains[trainKeys[indexPath.section]]!.first!
       if train.journeyDirection == 1 {
