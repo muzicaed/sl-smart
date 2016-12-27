@@ -77,7 +77,7 @@ open class SearchTripService {
       isValid = (val == "false") ? false : true
     }
     return Trip(
-      durationMin: Int(tripJson["dur"].string!)!,
+      durationMin: (tripJson["dur"].string != nil) ? Int(tripJson["dur"].string!)! : 0,
       noOfChanges: Int(tripJson["chg"].string!)!,
       isValid: isValid,
       tripSegments: tripSegments.sorted(by: { $0.index < $1.index }))
