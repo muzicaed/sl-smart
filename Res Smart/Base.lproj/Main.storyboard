@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z2r-oZ-gqC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z2r-oZ-gqC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -2727,10 +2727,10 @@ Res Smart på din Apple Watch</string>
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiK-10-sGX">
-                                            <rect key="frame" x="12" y="12" width="351" height="28"/>
+                                            <rect key="frame" x="8" y="12" width="359" height="28"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Fler rutiner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xD-MP-Srz">
-                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="28"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="28"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2743,8 +2743,8 @@ Res Smart på din Apple Watch</string>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="hiK-10-sGX" firstAttribute="leading" secondItem="eTu-pW-AjU" secondAttribute="leadingMargin" constant="4" id="MG0-Mo-hnN"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="hiK-10-sGX" secondAttribute="trailing" constant="4" id="PHu-sP-PGm"/>
+                                        <constraint firstItem="hiK-10-sGX" firstAttribute="leading" secondItem="eTu-pW-AjU" secondAttribute="leadingMargin" id="MG0-Mo-hnN"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="hiK-10-sGX" secondAttribute="trailing" id="PHu-sP-PGm"/>
                                         <constraint firstAttribute="bottom" secondItem="hiK-10-sGX" secondAttribute="bottom" id="VlO-SN-Nfe"/>
                                         <constraint firstItem="hiK-10-sGX" firstAttribute="top" secondItem="eTu-pW-AjU" secondAttribute="top" constant="12" id="yra-1c-amM"/>
                                     </constraints>
@@ -5348,14 +5348,14 @@ Cg
         <image name="station-icon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WoO-7G-VaU"/>
-        <segue reference="Lg4-KG-mN0"/>
-        <segue reference="eBt-27-ZxS"/>
-        <segue reference="L0K-5H-KeJ"/>
-        <segue reference="GLI-h1-z4f"/>
         <segue reference="zVB-lv-c0r"/>
-        <segue reference="U7s-yj-dLR"/>
+        <segue reference="fPH-Xr-GVg"/>
+        <segue reference="WoO-7G-VaU"/>
         <segue reference="bAI-Ol-u0J"/>
         <segue reference="kst-2L-81y"/>
+        <segue reference="Lg4-KG-mN0"/>
+        <segue reference="L0K-5H-KeJ"/>
+        <segue reference="eBt-27-ZxS"/>
+        <segue reference="GLI-h1-z4f"/>
     </inferredMetricsTieBreakers>
 </document>
