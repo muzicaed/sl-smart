@@ -250,7 +250,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   fileprivate func prepareSegmentView() {
     segmentView.removeFromSuperview()
     segmentView = SMSegmentView(
-      frame: CGRect(x: 0, y: 0, width: 100.0, height: 44),
+      frame: CGRect(x: 0, y: 0, width: 100.0, height: 33),
       separatorColour: UIColor.lightGray,
       separatorWidth: 0.0,
       segmentProperties: [
