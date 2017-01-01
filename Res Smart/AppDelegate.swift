@@ -138,22 +138,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     NetworkActivity.displayActivityIndicator(true)
     TrafficSituationService.fetchInformation() {data, error in
       NetworkActivity.displayActivityIndicator(false)
-      DispatchQueue.main.async {
-        if error != nil {
-          return
-        }
-        
-        var count = 0
-        for group in data {
-          for situation in group.situations {
-            if situation.statusIcon != "EventGood" && situation.statusIcon != "EventPlanned" {
-              count += 1
-            }
+      if error != nil {
+        return
+      }
+      
+      var count = 0
+      for group in data {
+        for situation in group.situations {
+          if situation.statusIcon != "EventGood" && situation.statusIcon != "EventPlanned" {
+            count += 1
           }
         }
-        self.notificationCenter.post(name: Notification.Name(rawValue: "TrafficSituations"), object: count)
       }
+      self.notificationCenter.post(name: Notification.Name(rawValue: "TrafficSituations"), object: count)
     }
+    
   }
   
   /**

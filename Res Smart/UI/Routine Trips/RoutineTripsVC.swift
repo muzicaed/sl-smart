@@ -46,8 +46,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupNotificationListeners()
     setupCollectionView()
+    setupNotificationListeners()
     setupRefreshController()
     setupTableActivityIndicator()
   }
@@ -469,13 +469,13 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         startLoading()
         RoutineService.findRoutineTrip({ routineTrips in
           DispatchQueue.main.async {
-            self.stopLoading()
-            NetworkActivity.displayActivityIndicator(false)
             if routineTrips.count > 0 {
               self.bestRoutineTrip = routineTrips.first!
               self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
               self.lastUpdated = Date()
             }
+            NetworkActivity.displayActivityIndicator(false)
+            self.stopLoading()
           }
         })
       } else {
@@ -508,8 +508,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     otherRoutineTrips = [RoutineTrip]()
     bestRoutineTrip = nil
     selectedRoutineTrip = nil
-    collectionView?.reloadData()
-    refreshController.endRefreshing()
     collectionView?.backgroundView = tableActivityIndicator
     tableActivityIndicator.startAnimating()
   }

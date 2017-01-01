@@ -35,12 +35,6 @@ class CustomTabVC: UITabBarController {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    for item in tabBar.items! as [UITabBarItem] {
-      if let image = item.image {
-        item.image = image.imageWithColor(
-          UIColor(white: 0.0, alpha: 0.75)).withRenderingMode(.alwaysOriginal)
-      }
-    }
     addObservers()
   }
   
@@ -100,13 +94,15 @@ class CustomTabVC: UITabBarController {
    * onTrafficSituations notification handler
    */
   @objc func onTrafficSituations(_ notification: Notification) {
-    let count = notification.object as! Int
-    let noOfTabs = self.tabBar.items!.count
-    let items = self.tabBar.items!
-    if count > 0 {
-      items[noOfTabs - 1].badgeValue = String(count)
-    } else {
-      items[noOfTabs - 1].badgeValue = nil
+    DispatchQueue.main.async {
+      let count = notification.object as! Int
+      let noOfTabs = self.tabBar.items!.count
+      let items = self.tabBar.items!
+      if count > 0 {
+        items[noOfTabs - 1].badgeValue = String(count)
+      } else {
+        items[noOfTabs - 1].badgeValue = nil
+      }
     }
   }
   

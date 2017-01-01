@@ -25,7 +25,7 @@ open class SubscriptionStore {
    */
   func isSubscribed() -> Bool {
     // TODO PAY: Remove this
-    //return true
+    return true
     
     loadSubscribedCache()
     return (isSubscribedCache! || isTrial())
@@ -37,6 +37,7 @@ open class SubscriptionStore {
   func isTrial() -> Bool {
     // TODO PAY: Remove this
     return false
+    
     loadSubscribedCache()
     if !isSubscribedCache! {
       if let trialEndDate = defaults.object(forKey: TrialStartDate) as? Date {
