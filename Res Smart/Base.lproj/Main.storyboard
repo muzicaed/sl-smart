@@ -1913,7 +1913,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Header" textLabel="GVr-Fw-3dz" imageView="t9W-Wd-bbR" rowHeight="30" style="IBUITableViewCellStyleDefault" id="m1M-CY-SRW" userLabel="Header" customClass="RealTimeHeaderRow" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="93" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="92.5" width="375" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m1M-CY-SRW" id="bcj-rl-tla">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
@@ -1939,7 +1939,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripRow" rowHeight="60" id="tDc-Jo-aw6" userLabel="Trip row" customClass="RealTimeTripRow" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="123" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="122.5" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tDc-Jo-aw6" id="ivo-i4-R6V">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
@@ -2031,7 +2031,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NotFoundRow" id="Wdh-LD-zra" userLabel="Not found row" customClass="RealTimeTripRow" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="183" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="182.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wdh-LD-zra" id="aj1-Jl-urO">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -2056,7 +2056,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShowMoreRow" id="LuF-e7-6sg" userLabel="Show more row" customClass="RealTimeShowMoreRow" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="227" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="226.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LuF-e7-6sg" id="cGC-UU-GdK">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -2770,7 +2770,7 @@ Res Smart på din Apple Watch</string>
         <!--News-->
         <scene sceneID="UjS-Vw-lnk">
             <objects>
-                <viewController id="YNB-MR-UvS" userLabel="News" customClass="NewsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Nyheter" id="YNB-MR-UvS" userLabel="News" customClass="NewsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1vw-dC-ZR4"/>
                         <viewControllerLayoutGuide type="bottom" id="Pgc-TR-w6d"/>
@@ -2788,58 +2788,34 @@ Res Smart på din Apple Watch</string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGW-N1-Eg0">
-                                <rect key="frame" x="16" y="90" width="343" height="75"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="ikP-lB-120"/>
-                                </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment>
-                                        <string key="content">Nyhet 1 
-Text text</string>
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nytt användargränssnitt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPw-hy-0Nb">
+                                <rect key="frame" x="16" y="90" width="194" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4w-yf-ETy">
-                                <rect key="frame" x="16" y="185" width="343" height="55"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Res Smart har fått ett ansiktslyft med tydligare text och snyggare utseende." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qx0-Ca-TJC">
+                                <rect key="frame" x="16" y="110.5" width="343" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="yhV-Kn-xeq"/>
+                                    <constraint firstAttribute="height" constant="50" id="E4f-Sa-PaQ"/>
                                 </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="Nyhet 2">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue-CondensedBold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="Text text">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llc-Au-j8V" userLabel="Prova gratis och börja prenumera">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SMS Biljett" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vg0-wo-WZh">
+                                <rect key="frame" x="16" y="180.5" width="343" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prenumeration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GXp-NI-XS2">
+                                <rect key="frame" x="16" y="271" width="343" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llc-Au-j8V" userLabel="Close">
                                 <rect key="frame" x="47.5" y="603" width="280" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -2855,56 +2831,50 @@ Cg
                                     <action selector="onSubscribeTap:" destination="TL9-Eb-L0b" eventType="touchUpInside" id="BFj-0l-owf"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLv-4I-tKi">
-                                <rect key="frame" x="16" y="260" width="343" height="55"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Det går nu att skicka SMS biljett! Du hittar funktionen under detaljer för en resa." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDe-Mc-Zc9">
+                                <rect key="frame" x="16" y="201" width="343" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="h1K-R6-043"/>
+                                    <constraint firstAttribute="height" constant="50" id="uJw-VQ-R54"/>
                                 </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="Nuhet 3">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue-CondensedBold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="Text text">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Problemen med att påbörja en prenumeration är nu åtgärdade." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHa-PZ-kRw">
+                                <rect key="frame" x="16" y="291.5" width="343" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="NEQ-4f-XqO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="rLv-4I-tKi" secondAttribute="trailing" id="9rv-yw-wAR"/>
+                            <constraint firstItem="qDe-Mc-Zc9" firstAttribute="trailing" secondItem="QvQ-qX-7be" secondAttribute="trailingMargin" id="0j8-yD-8fM"/>
+                            <constraint firstItem="mHa-PZ-kRw" firstAttribute="trailing" secondItem="QvQ-qX-7be" secondAttribute="trailingMargin" id="7gE-TT-6Lm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qx0-Ca-TJC" secondAttribute="trailing" id="9VS-C2-rLW"/>
+                            <constraint firstItem="GXp-NI-XS2" firstAttribute="trailing" secondItem="QvQ-qX-7be" secondAttribute="trailingMargin" id="Cbd-BS-obg"/>
+                            <constraint firstItem="mHa-PZ-kRw" firstAttribute="top" secondItem="GXp-NI-XS2" secondAttribute="bottom" id="Co7-Ze-TpU"/>
                             <constraint firstItem="Pgc-TR-w6d" firstAttribute="top" secondItem="llc-Au-j8V" secondAttribute="bottom" constant="20" id="EQY-C3-EaK"/>
                             <constraint firstItem="llc-Au-j8V" firstAttribute="centerX" secondItem="QvQ-qX-7be" secondAttribute="centerX" id="Etf-gD-qRk"/>
-                            <constraint firstItem="rLv-4I-tKi" firstAttribute="top" secondItem="u4w-yf-ETy" secondAttribute="bottom" constant="20" id="Qm0-7E-3Ev"/>
-                            <constraint firstItem="rLv-4I-tKi" firstAttribute="leading" secondItem="QvQ-qX-7be" secondAttribute="leadingMargin" id="Udm-t1-qhV"/>
-                            <constraint firstItem="u4w-yf-ETy" firstAttribute="top" secondItem="OGW-N1-Eg0" secondAttribute="bottom" constant="20" id="b1t-9I-GtL"/>
+                            <constraint firstItem="GXp-NI-XS2" firstAttribute="top" secondItem="qDe-Mc-Zc9" secondAttribute="bottom" constant="20" id="MGb-bJ-aPE"/>
+                            <constraint firstItem="vg0-wo-WZh" firstAttribute="top" secondItem="qx0-Ca-TJC" secondAttribute="bottom" constant="20" id="Msa-On-QLf"/>
+                            <constraint firstItem="gPw-hy-0Nb" firstAttribute="top" secondItem="r4v-yU-tIW" secondAttribute="bottom" constant="20" id="Upy-VW-7rv"/>
+                            <constraint firstItem="mHa-PZ-kRw" firstAttribute="leading" secondItem="QvQ-qX-7be" secondAttribute="leadingMargin" id="YIJ-bR-lzs"/>
+                            <constraint firstItem="qDe-Mc-Zc9" firstAttribute="leading" secondItem="QvQ-qX-7be" secondAttribute="leadingMargin" id="ZtD-nd-5eO"/>
+                            <constraint firstItem="vg0-wo-WZh" firstAttribute="leading" secondItem="QvQ-qX-7be" secondAttribute="leadingMargin" id="bOg-Ps-JiH"/>
                             <constraint firstItem="r4v-yU-tIW" firstAttribute="leading" secondItem="QvQ-qX-7be" secondAttribute="leadingMargin" id="cfL-wm-J9y"/>
-                            <constraint firstItem="u4w-yf-ETy" firstAttribute="leading" secondItem="QvQ-qX-7be" secondAttribute="leadingMargin" id="eZq-tV-oN9"/>
-                            <constraint firstItem="u4w-yf-ETy" firstAttribute="trailing" secondItem="QvQ-qX-7be" secondAttribute="trailingMargin" id="kwP-Z2-5h1"/>
-                            <constraint firstItem="OGW-N1-Eg0" firstAttribute="leading" secondItem="QvQ-qX-7be" secondAttribute="leadingMargin" id="mY0-hR-wdG"/>
-                            <constraint firstItem="OGW-N1-Eg0" firstAttribute="top" secondItem="r4v-yU-tIW" secondAttribute="bottom" constant="20" id="n4I-tL-gsh"/>
+                            <constraint firstItem="GXp-NI-XS2" firstAttribute="leading" secondItem="QvQ-qX-7be" secondAttribute="leadingMargin" id="ggt-kw-ZhJ"/>
+                            <constraint firstItem="gPw-hy-0Nb" firstAttribute="leading" secondItem="QvQ-qX-7be" secondAttribute="leadingMargin" id="lHg-DM-E0h"/>
+                            <constraint firstItem="qDe-Mc-Zc9" firstAttribute="top" secondItem="vg0-wo-WZh" secondAttribute="bottom" id="oXK-IA-lUh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vg0-wo-WZh" secondAttribute="trailing" id="ooE-ms-zv6"/>
                             <constraint firstItem="r4v-yU-tIW" firstAttribute="trailing" secondItem="QvQ-qX-7be" secondAttribute="trailingMargin" id="qNU-Sc-7lv"/>
                             <constraint firstItem="r4v-yU-tIW" firstAttribute="top" secondItem="1vw-dC-ZR4" secondAttribute="bottom" constant="20" id="sDT-7I-w3c"/>
-                            <constraint firstItem="OGW-N1-Eg0" firstAttribute="trailing" secondItem="QvQ-qX-7be" secondAttribute="trailingMargin" id="w6W-A5-qYV"/>
+                            <constraint firstItem="qx0-Ca-TJC" firstAttribute="top" secondItem="gPw-hy-0Nb" secondAttribute="bottom" id="sPn-lQ-li1"/>
+                            <constraint firstItem="qx0-Ca-TJC" firstAttribute="leading" secondItem="QvQ-qX-7be" secondAttribute="leadingMargin" id="yPx-jP-2ua"/>
+                            <constraint firstItem="qDe-Mc-Zc9" firstAttribute="top" secondItem="vg0-wo-WZh" secondAttribute="bottom" id="z3E-ng-pad"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YWb-iI-IU3"/>

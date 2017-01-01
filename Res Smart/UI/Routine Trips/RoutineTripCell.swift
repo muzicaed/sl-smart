@@ -35,8 +35,7 @@ class RoutineTripCell: UICollectionViewCell {
   func setupData(_ routineTrip: RoutineTrip, isBest: Bool) {
     var title = routineTrip.title!
     if routineTrip.isSmartSuggestion {
-      title = "\(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName)"
-      title += NSLocalizedString(" (Vana)", comment: "")
+      title = "Vana: \(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName)"
     }
     
     tripTitleLabel.text = title
