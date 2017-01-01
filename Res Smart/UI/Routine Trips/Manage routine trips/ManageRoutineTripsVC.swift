@@ -9,30 +9,6 @@
 import Foundation
 import UIKit
 import ResStockholmApiKit
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
 
 class ManageRoutineTripsVC: UITableViewController {
   
@@ -68,7 +44,8 @@ class ManageRoutineTripsVC: UITableViewController {
     super.viewWillAppear(animated)
     trips = RoutineTripsStore.sharedInstance.retriveRoutineTripsNoSuggestions()
     tableView.reloadData()
-    if trips.count == 0 && navigationItem.rightBarButtonItems?.count > 1 {
+    let buttonCount = (navigationItem.rightBarButtonItems != nil) ? navigationItem.rightBarButtonItems!.count : 0
+    if trips.count == 0 && buttonCount > 1 {
       navigationItem.rightBarButtonItems?.remove(at: 1)
     } else if trips.count > 0 && navigationItem.rightBarButtonItems?.count == 1 && !tableView.isEditing {
       navigationItem.rightBarButtonItems?.insert(editButton, at: 1)

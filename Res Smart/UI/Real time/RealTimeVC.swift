@@ -10,31 +10,6 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
-
 /**
  * TODO: This VC could use a lot of refactoring...
  */
@@ -262,7 +237,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     
     var tabCount = 0
     let lastStoredSelected = UserPreferenceStore.sharedInstance.getLastRealTimeTripType()
-    if realTimeDepartures?.busses.count > 0 {
+    
+    let busCount = (realTimeDepartures != nil) ? realTimeDepartures!.busses.count : 0
+    if busCount > 0 {
       lastSelected = (lastStoredSelected == "BUS") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("BUS")
@@ -272,7 +249,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         offSelectionImage: UIImage(named: "BUS"))
     }
     
-    if realTimeDepartures?.metros.count > 0 {
+    let metroCount = (realTimeDepartures != nil) ? realTimeDepartures!.metros.count : 0
+    if metroCount > 0 {
       lastSelected = (lastStoredSelected == "METRO") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("METRO")
@@ -281,7 +259,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         onSelectionImage: UIImage(named: "METRO"),
         offSelectionImage: UIImage(named: "METRO"))
     }
-    if realTimeDepartures?.trains.count > 0 {
+    
+    let trainCount = (realTimeDepartures != nil) ? realTimeDepartures!.trains.count : 0
+    if trainCount > 0 {
       lastSelected = (lastStoredSelected == "TRAIN") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("TRAIN")
@@ -290,7 +270,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         onSelectionImage: UIImage(named: "TRAIN"),
         offSelectionImage: UIImage(named: "TRAIN"))
     }
-    if realTimeDepartures?.trams.count > 0 {
+    
+    let tramCount = (realTimeDepartures != nil) ? realTimeDepartures!.trams.count : 0
+    if tramCount > 0 {
       lastSelected = (lastStoredSelected == "TRAM") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("TRAM")
@@ -299,7 +281,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         onSelectionImage: UIImage(named: "TRAM"),
         offSelectionImage: UIImage(named: "TRAM"))
     }
-    if realTimeDepartures?.localTrams.count > 0 {
+    
+    let localTramCount = (realTimeDepartures != nil) ? realTimeDepartures!.localTrams.count : 0
+    if localTramCount > 0 {
       lastSelected = (lastStoredSelected == "LOCAL-TRAM") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("LOCAL-TRAM")
@@ -308,7 +292,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         onSelectionImage: UIImage(named: "TRAM"),
         offSelectionImage: UIImage(named: "TRAM"))
     }
-    if realTimeDepartures?.boats.count > 0 {
+    
+    let boatCount = (realTimeDepartures != nil) ? realTimeDepartures!.boats.count : 0
+    if boatCount > 0 {
       lastSelected = (lastStoredSelected == "BOAT") ? tabCount : lastSelected
       tabCount += 1
       tabTypesKeys.append("BOAT")

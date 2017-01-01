@@ -9,19 +9,6 @@
 import Foundation
 import UIKit
 import ResStockholmApiKit
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
 
 class CustomTabVC: UITabBarController {
   
@@ -46,11 +33,13 @@ class CustomTabVC: UITabBarController {
     isPremiumSettingOn = UserDefaults.standard.bool(forKey: "res_smart_premium_preference")
     print("Updated tabs premium on: \(isPremiumSettingOn)")
     if !isPremiumSettingOn && self.tabBar.items!.count == 4 {
-      let indexToRemove = 0
-      if indexToRemove < viewControllers?.count {
-        print("Remove preminum tab.")
-        premiumVC = viewControllers?[indexToRemove]
-        viewControllers?.remove(at: indexToRemove)
+      if let count = viewControllers?.count {
+        let indexToRemove = 0
+        if indexToRemove < count {
+          print("Remove preminum tab.")
+          premiumVC = viewControllers?[indexToRemove]
+          viewControllers?.remove(at: indexToRemove)
+        }
       }
     } else if isPremiumSettingOn && self.tabBar.items!.count == 3 {
       if let vc = premiumVC {
