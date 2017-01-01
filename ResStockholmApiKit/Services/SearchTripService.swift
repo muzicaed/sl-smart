@@ -78,7 +78,7 @@ open class SearchTripService {
     }
     return Trip(
       durationMin: (tripJson["dur"].string != nil) ? Int(tripJson["dur"].string!)! : 0,
-      noOfChanges: Int(tripJson["chg"].string!)!,
+      noOfChanges: (tripJson["chg"].string != nil) ? Int(tripJson["chg"].string!)! : 0,
       isValid: isValid,
       tripSegments: tripSegments.sorted(by: { $0.index < $1.index }))
   }
