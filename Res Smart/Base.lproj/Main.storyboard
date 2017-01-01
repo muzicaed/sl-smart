@@ -1913,7 +1913,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Header" textLabel="GVr-Fw-3dz" imageView="t9W-Wd-bbR" rowHeight="30" style="IBUITableViewCellStyleDefault" id="m1M-CY-SRW" userLabel="Header" customClass="RealTimeHeaderRow" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="89" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="88.5" width="375" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m1M-CY-SRW" id="bcj-rl-tla">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
@@ -1939,7 +1939,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripRow" rowHeight="60" id="tDc-Jo-aw6" userLabel="Trip row" customClass="RealTimeTripRow" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="119" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="118.5" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tDc-Jo-aw6" id="ivo-i4-R6V">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
@@ -1968,16 +1968,16 @@
                                                             </constraints>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b6m-gg-bLZ">
-                                                            <rect key="frame" x="61" y="0.0" width="218" height="43"/>
+                                                            <rect key="frame" x="61" y="0.0" width="238" height="43"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Mot Tyresö centrum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiA-Wb-6Yu">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="218" height="43"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="238" height="43"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVj-cg-43Q">
-                                                                    <rect key="frame" x="0.0" y="43" width="218" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="43" width="238" height="0.0"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" id="rQj-Yr-ir0"/>
                                                                     </constraints>
@@ -1992,10 +1992,10 @@
                                                             </constraints>
                                                         </stackView>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwW-LA-Pdp">
-                                                            <rect key="frame" x="279" y="0.0" width="20" height="43"/>
+                                                            <rect key="frame" x="299" y="0.0" width="0.0" height="43"/>
                                                             <color key="backgroundColor" red="0.44392179319371727" green="0.44392179319371727" blue="0.44392179319371727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="20" id="NIw-if-hJD"/>
+                                                                <constraint firstAttribute="width" constant="20" id="NIw-if-hJD"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2031,7 +2031,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NotFoundRow" id="Wdh-LD-zra" userLabel="Not found row" customClass="RealTimeTripRow" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="179" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="178.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wdh-LD-zra" id="aj1-Jl-urO">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -2056,7 +2056,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShowMoreRow" id="LuF-e7-6sg" userLabel="Show more row" customClass="RealTimeShowMoreRow" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="223" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="222.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LuF-e7-6sg" id="cGC-UU-GdK">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -2129,7 +2129,7 @@
         <scene sceneID="am1-xS-RbO">
             <objects>
                 <collectionViewController id="TL9-Eb-L0b" customClass="RoutineTripsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Krw-YV-CWN">
+                    <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Krw-YV-CWN">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2378,74 +2378,36 @@
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="260"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXU-pJ-Ubo">
-                                            <rect key="frame" x="8" y="8" width="354" height="244"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lQ0-PD-kjF">
+                                            <rect key="frame" x="13" y="8" width="344" height="244"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gmF-6r-5Wd" userLabel="Space">
-                                                    <rect key="frame" x="0.0" y="0.0" width="5" height="244"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="5" id="5iJ-4z-02Q"/>
-                                                    </constraints>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Onu-FY-s8t">
-                                                    <rect key="frame" x="5" y="0.0" width="344" height="244"/>
-                                                    <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lQ0-PD-kjF">
-                                                            <rect key="frame" x="0.0" y="0.0" width="344" height="244"/>
-                                                            <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iLu-LU-qdT">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="344" height="10"/>
-                                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="10" id="qbg-yr-pu1"/>
-                                                                    </constraints>
-                                                                </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Smartare reseförslag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLm-xw-Eh5">
-                                                                    <rect key="frame" x="0.0" y="10" width="344" height="33.5"/>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-tn-fDB">
-                                                                    <rect key="frame" x="0.0" y="43.5" width="344" height="200.5"/>
-                                                                    <accessibility key="accessibilityConfiguration">
-                                                                        <string key="label">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att trycka på knappen "Mina rutiner" i övre högra hörnet.</string>
-                                                                    </accessibility>
-                                                                    <string key="text">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att trycka på "Mina rutiner".   Res Smart lär sig dina rutiner och föreslår automatiskt resan du vill göra.
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Smartare reseförslag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLm-xw-Eh5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="33.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-tn-fDB">
+                                                    <rect key="frame" x="0.0" y="33.5" width="354" height="210.5"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <string key="label">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att trycka på knappen "Mina rutiner" i övre högra hörnet.</string>
+                                                    </accessibility>
+                                                    <string key="text">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att trycka på "Mina rutiner".   Res Smart lär sig dina rutiner och föreslår automatiskt resan du vill göra.
 
 Välkommen till ett smartare sätt att pendla.</string>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstItem="lQ0-PD-kjF" firstAttribute="leading" secondItem="Onu-FY-s8t" secondAttribute="leading" id="6vM-VF-AsK"/>
-                                                        <constraint firstAttribute="trailing" secondItem="lQ0-PD-kjF" secondAttribute="trailing" id="agG-7G-Ape"/>
-                                                        <constraint firstItem="lQ0-PD-kjF" firstAttribute="top" secondItem="Onu-FY-s8t" secondAttribute="top" id="nBV-TE-LFp"/>
-                                                        <constraint firstAttribute="bottom" secondItem="lQ0-PD-kjF" secondAttribute="bottom" id="wRx-7t-7wd"/>
-                                                    </constraints>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSe-FJ-35A" userLabel="Space">
-                                                    <rect key="frame" x="349" y="0.0" width="5" height="244"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="5" id="90Y-cd-Ggm"/>
-                                                    </constraints>
-                                                </view>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </stackView>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottomMargin" secondItem="UXU-pJ-Ubo" secondAttribute="bottom" id="7nv-JS-YAI"/>
-                                    <constraint firstItem="UXU-pJ-Ubo" firstAttribute="top" secondItem="37S-3z-DMK" secondAttribute="topMargin" id="beh-He-dhr"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="UXU-pJ-Ubo" secondAttribute="trailing" id="vbb-uy-F3H"/>
-                                    <constraint firstItem="UXU-pJ-Ubo" firstAttribute="leading" secondItem="37S-3z-DMK" secondAttribute="leadingMargin" id="wOD-qF-s2b"/>
+                                    <constraint firstItem="lQ0-PD-kjF" firstAttribute="top" secondItem="37S-3z-DMK" secondAttribute="topMargin" id="GES-g5-9uv"/>
+                                    <constraint firstItem="lQ0-PD-kjF" firstAttribute="leading" secondItem="37S-3z-DMK" secondAttribute="leadingMargin" id="dtf-al-DMp"/>
+                                    <constraint firstItem="lQ0-PD-kjF" firstAttribute="bottom" secondItem="37S-3z-DMK" secondAttribute="bottomMargin" id="jjg-8h-VpN"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="lQ0-PD-kjF" secondAttribute="trailing" id="lt1-uV-Kvy"/>
                                 </constraints>
                                 <size key="customSize" width="370" height="260"/>
                             </collectionViewCell>
@@ -2483,46 +2445,33 @@ Välkommen till ett smartare sätt att pendla.</string>
                                 <size key="customSize" width="370" height="45"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SubscriptionInfoCell" id="Ovm-fK-jZf" userLabel="SubscriptionInfoCell">
-                                <rect key="frame" x="2.5" y="645" width="370" height="660"/>
+                                <rect key="frame" x="2.5" y="645" width="370" height="630"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="660"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="630"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SO4-Ka-NKH">
-                                            <rect key="frame" x="8" y="8" width="354" height="644"/>
+                                            <rect key="frame" x="8" y="8" width="354" height="604"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="X0Q-ct-S2g">
-                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="644"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="604"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZu-th-Qv1">
-                                                            <rect key="frame" x="0.0" y="0.0" width="354" height="10"/>
-                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="10" id="N0N-LO-TiK"/>
-                                                            </constraints>
-                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Res Smart Premium" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjN-eh-EaF">
-                                                            <rect key="frame" x="0.0" y="13" width="354" height="19"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="19" id="wuf-fY-Dpc"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="0.0" width="354" height="33.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ry2-Gh-Tpn">
-                                                            <rect key="frame" x="0.0" y="34.5" width="354" height="10"/>
-                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yrE-sX-vtJ" userLabel="Space">
+                                                            <rect key="frame" x="0.0" y="35" width="354" height="10"/>
+                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="10" id="6p1-so-FIa"/>
+                                                                <constraint firstAttribute="height" constant="10" id="sdB-QG-qUq"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YW8-Gc-pDf">
-                                                            <rect key="frame" x="0.0" y="47.5" width="354" height="165"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="165" id="Gsi-Rn-c03"/>
-                                                            </constraints>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YW8-Gc-pDf">
+                                                            <rect key="frame" x="0.0" y="46" width="354" height="218.5"/>
                                                             <string key="text">Din provperiod är nu över.
 
 För att fortsätta använda de fantastiska premium-funktionerna behöver du en prenumeration.  I prenumerationen ingår: Smarta Rutiner
@@ -2531,23 +2480,20 @@ Res Smart på din Apple Watch</string>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aqb-xB-Ouy">
-                                                            <rect key="frame" x="0.0" y="215" width="354" height="10"/>
-                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hM7-8v-Zp5" userLabel="Space">
+                                                            <rect key="frame" x="0.0" y="266" width="354" height="10"/>
+                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="10" id="yjC-02-dC0"/>
+                                                                <constraint firstAttribute="height" constant="10" id="GxY-8f-eG3"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjv-rA-0Gi">
-                                                            <rect key="frame" x="0.0" y="228" width="354" height="44"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjv-rA-0Gi" userLabel="Show offers">
+                                                            <rect key="frame" x="0.0" y="277" width="354" height="50"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wm-te-znF" userLabel="Prova gratis och börja prenumera">
+                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wm-te-znF" userLabel="Prova gratis och börja prenumera">
                                                                     <rect key="frame" x="37" y="0.0" width="280" height="44"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="280" id="Yj6-4v-FjX"/>
-                                                                        <constraint firstAttribute="height" constant="44" id="gBa-2D-BXc"/>
-                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                                     <state key="normal" title="Visa erbjudanden">
                                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2559,61 +2505,49 @@ Res Smart på din Apple Watch</string>
                                                             </subviews>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstItem="5Wm-te-znF" firstAttribute="centerY" secondItem="gjv-rA-0Gi" secondAttribute="centerY" id="9Ux-vb-5ot"/>
-                                                                <constraint firstAttribute="height" constant="44" id="JBE-g2-ayy"/>
-                                                                <constraint firstItem="5Wm-te-znF" firstAttribute="centerX" secondItem="gjv-rA-0Gi" secondAttribute="centerX" id="eDj-L3-IhT"/>
+                                                                <constraint firstAttribute="height" constant="50" id="swB-qM-ngy"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itx-ei-gqf">
-                                                            <rect key="frame" x="0.0" y="274.5" width="354" height="30"/>
-                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7mO-36-DcH" userLabel="Space">
+                                                            <rect key="frame" x="0.0" y="328.5" width="354" height="10"/>
+                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="30" id="ZGM-rP-cjT"/>
+                                                                <constraint firstAttribute="height" constant="10" id="EcR-br-OyS"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Är Premium inget för dig?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3l-mD-WVM">
-                                                            <rect key="frame" x="0.0" y="307.5" width="354" height="19"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="19" id="GAb-qI-ITx"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="339.5" width="354" height="26.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FN8-lq-XTj">
-                                                            <rect key="frame" x="0.0" y="329" width="354" height="10"/>
-                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7M-r6-fBo" userLabel="Space">
+                                                            <rect key="frame" x="0.0" y="367.5" width="354" height="10"/>
+                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="10" id="LzN-jb-Khe"/>
+                                                                <constraint firstAttribute="height" constant="10" id="fwG-Zi-60S"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYO-lk-4bk">
-                                                            <rect key="frame" x="0.0" y="342" width="354" height="210"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="210" id="8y6-44-q9x"/>
-                                                            </constraints>
-                                                            <string key="text">Ingen fara. Du kan använda Res Smart helt gratis!   Väljer du Res Smart gratis döljer jag allt tjat om premium och du får istället en super-app för sökning, realtid och trafik-info.  OBS! Jag har sänkt priset på premium-prenumeration. Prenumerar du och ser detta beror det på att jag avbrutit din prenumeration och du betalar inget ytterligare. Vill du fortsätta ta en titt på de nya priserna genom att trycka på "Visa erbjudanden" ovan.
-</string>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYO-lk-4bk">
+                                                            <rect key="frame" x="0.0" y="378.5" width="354" height="130.5"/>
+                                                            <string key="text">Ingen fara. Du kan använda Res Smart helt gratis!   Väljer du Res Smart gratis döljer jag allt tjat om premium och du får istället en super-app för sökning, realtid och trafik-info.</string>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XbX-ex-sgs">
-                                                            <rect key="frame" x="0.0" y="554.5" width="354" height="10"/>
-                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udY-0g-573" userLabel="Space">
+                                                            <rect key="frame" x="0.0" y="510.5" width="354" height="10"/>
+                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="10" id="BLz-hn-p9z"/>
+                                                                <constraint firstAttribute="height" constant="10" id="aZe-hV-Gyl"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfS-Vo-L4A">
-                                                            <rect key="frame" x="0.0" y="567.5" width="354" height="44"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfS-Vo-L4A" userLabel="Use for free">
+                                                            <rect key="frame" x="0.0" y="521.5" width="354" height="50"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvy-LS-fvC" userLabel="Prova gratis och börja prenumera">
+                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvy-LS-fvC" userLabel="Prova gratis och börja prenumera">
                                                                     <rect key="frame" x="37" y="0.0" width="280" height="44"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="280" id="lBs-I1-4cl"/>
-                                                                        <constraint firstAttribute="height" constant="44" id="x2V-qt-USE"/>
-                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                                     <state key="normal" title="Använd Gratis">
                                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2625,16 +2559,21 @@ Res Smart på din Apple Watch</string>
                                                             </subviews>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstItem="dvy-LS-fvC" firstAttribute="centerX" secondItem="lfS-Vo-L4A" secondAttribute="centerX" id="2vm-dV-hng"/>
-                                                                <constraint firstAttribute="height" constant="44" id="FHa-Td-kSR"/>
-                                                                <constraint firstItem="dvy-LS-fvC" firstAttribute="centerY" secondItem="lfS-Vo-L4A" secondAttribute="centerY" id="hzy-ke-mGy"/>
+                                                                <constraint firstAttribute="height" constant="50" id="GiG-gR-VRX"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eNf-3p-GyD">
-                                                            <rect key="frame" x="0.0" y="614" width="354" height="30"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ddd-jl-SfX" userLabel="Space">
+                                                            <rect key="frame" x="0.0" y="573" width="354" height="10"/>
+                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="10" id="uw3-6Z-LnJ"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eNf-3p-GyD" userLabel="Allready sub.">
+                                                            <rect key="frame" x="0.0" y="584" width="354" height="20"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="da8-ZX-eva" userLabel="Har redan prenumeration">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
+                                                                    <rect key="frame" x="86.5" y="-3" width="181" height="27"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                     <state key="normal" title="Jag har redan en prenumeration"/>
                                                                     <connections>
@@ -2645,11 +2584,9 @@ Res Smart på din Apple Watch</string>
                                                             </subviews>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstItem="da8-ZX-eva" firstAttribute="top" secondItem="eNf-3p-GyD" secondAttribute="top" id="DD6-EL-vuR"/>
-                                                                <constraint firstAttribute="height" constant="30" id="JwD-G8-Vre"/>
-                                                                <constraint firstAttribute="bottom" secondItem="da8-ZX-eva" secondAttribute="bottom" id="Ksj-uR-YJg"/>
-                                                                <constraint firstAttribute="trailing" secondItem="da8-ZX-eva" secondAttribute="trailing" id="l3A-sx-vaC"/>
-                                                                <constraint firstItem="da8-ZX-eva" firstAttribute="leading" secondItem="eNf-3p-GyD" secondAttribute="leading" id="yOb-XA-Xny"/>
+                                                                <constraint firstItem="da8-ZX-eva" firstAttribute="centerX" secondItem="eNf-3p-GyD" secondAttribute="centerX" id="3Sp-jc-IBs"/>
+                                                                <constraint firstItem="da8-ZX-eva" firstAttribute="centerY" secondItem="eNf-3p-GyD" secondAttribute="centerY" id="Kbq-pj-onI"/>
+                                                                <constraint firstAttribute="height" constant="20" id="OSN-wa-UPp"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -2672,10 +2609,10 @@ Res Smart på din Apple Watch</string>
                                     <constraint firstItem="SO4-Ka-NKH" firstAttribute="top" secondItem="Ovm-fK-jZf" secondAttribute="topMargin" id="lwR-vW-tjv"/>
                                     <constraint firstItem="SO4-Ka-NKH" firstAttribute="trailing" secondItem="Ovm-fK-jZf" secondAttribute="trailingMargin" id="nZ0-2J-bB2"/>
                                 </constraints>
-                                <size key="customSize" width="370" height="660"/>
+                                <size key="customSize" width="370" height="630"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HereToThereCell" id="esv-Pr-9mX" customClass="HereToThereCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="2.5" y="1315" width="370" height="60"/>
+                                <rect key="frame" x="2.5" y="1285" width="370" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="60"/>
