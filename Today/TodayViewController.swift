@@ -96,18 +96,22 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * Loads trip data and updates UI
    */
   func loadTripData() {
-    RoutineService.findRoutineTrip({ routineTrips in
-      self.bestRoutine = routineTrips.first
-      DispatchQueue.main.async {
-        if self.bestRoutine != nil {
-          self.updateUI()
+    if SubscriptionStore.sharedInstance.isSubscribed() {
+      RoutineService.findRoutineTrip({ routineTrips in
+        self.bestRoutine = routineTrips.first
+        DispatchQueue.main.async {
+          if self.bestRoutine != nil {
+            self.updateUI()
+          }
+          else {
+            self.titleLabel.text = "Hittade inga rutiner."
+          }
         }
-        else {
-          self.titleLabel.text = "Hittade inga rutiner."
-        }
-      }
-      return
-    })
+        return
+      })
+    } else {
+      self.titleLabel.text = "Rutiner kräver en prenumeration."
+    }
   }
   
   /**
@@ -130,7 +134,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         self.inAboutLabel.text = DateUtils.createAboutTimeText(
           trip.tripSegments.first!.departureDateTime,
           isWalk: (trip.tripSegments.first!.type == TripType.Walk))
-
+        
         var second: Trip? = nil
         if bestRoutineTrip.trips.count > 1 {
           second = bestRoutineTrip.trips[1]
