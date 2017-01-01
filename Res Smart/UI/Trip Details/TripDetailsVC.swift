@@ -10,8 +10,11 @@ import Foundation
 import UIKit
 import CoreLocation
 import ResStockholmApiKit
+import MessageUI
 
-class TripDetailsVC: UITableViewController {
+class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelegate {
+  
+  var composeVC: MFMessageComposeViewController? = nil
   
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var originLabel: UILabel!
@@ -66,13 +69,21 @@ class TripDetailsVC: UITableViewController {
   @IBAction func onSMSTicketTap(_ sender: UIBarButtonItem) {
     let ticketAlert = UIAlertController(
       title: "Vilken typ av biljett?",
-      message: "Den som är under 20 eller över 65 kan köpa biljett till reducerat pris.",
+      message: "Du som är under 20 eller över 65 kan köpa biljett till reducerat pris.",
       preferredStyle: .actionSheet)
     
     ticketAlert.addAction(
-      UIAlertAction(title: "Helt pris", style: .default, handler: nil))
+      UIAlertAction(title: "Helt pris", style: .default, handler: { _ in
+        DispatchQueue.main.async {
+          self.sendSMSTicket(type: "vux")
+        }
+      }))
     ticketAlert.addAction(
-      UIAlertAction(title: "Reducerat pris", style: .default, handler: nil))
+      UIAlertAction(title: "Reducerat pris", style: .default, handler: { _ in
+        DispatchQueue.main.async {
+          self.sendSMSTicket(type: "rab")
+        }
+      }))
     ticketAlert.addAction(
       UIAlertAction(title: "Avbryt", style: .cancel, handler: nil))
     
@@ -134,7 +145,25 @@ class TripDetailsVC: UITableViewController {
     }
   }
   
+  // MARK: MFMessageComposeViewControllerDelegate
+  
+  func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+      self.composeVC?.dismiss(animated: false, completion: nil)
+  }
+  
   // MARK: Private
+  
+  /**
+   * Send SMS ticket request
+   */
+  fileprivate func sendSMSTicket(type: String) {
+    self.composeVC = MFMessageComposeViewController()
+    self.composeVC!.messageComposeDelegate = self
+    self.composeVC!.disableUserAttachments()
+    self.composeVC!.recipients = ["0767201010"]
+    self.composeVC!.body = type
+    self.present(self.composeVC!, animated: true, completion: nil)
+  }
   
   /**
    * Create table cell for origin row.

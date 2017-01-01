@@ -4739,7 +4739,13 @@ Cg
                             <outlet property="delegate" destination="4Bd-C0-Zjd" id="3zs-2G-CBP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Detaljer" id="5Jh-jr-FrC"/>
+                    <navigationItem key="navigationItem" title="Detaljer" id="5Jh-jr-FrC">
+                        <barButtonItem key="rightBarButtonItem" title="SMS Biljett" id="EwB-zo-IzX">
+                            <connections>
+                                <action selector="onSMSTicketTap:" destination="4Bd-C0-Zjd" id="diK-n2-kRM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="destinationLabel" destination="gIj-6I-znV" id="LgR-Sc-yIa"/>
                         <outlet property="mapButton" destination="bTo-4z-Wx5" id="8Hr-zG-4Yi"/>
