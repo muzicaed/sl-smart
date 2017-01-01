@@ -52,7 +52,6 @@ open class SubscriptionStore {
    */
   func getLocalExpireDate() -> Date? {
     let endDate = defaults.object(forKey: SubscriptionEndDate) as? Date
-    print("\(endDate)")
     return endDate
   }
   
@@ -102,7 +101,6 @@ open class SubscriptionStore {
   fileprivate func loadSubscribedCache() {
     if isSubscribedCache == nil {
       isSubscribedCache = defaults.bool(forKey: SubscriptionState)
-      print("Is sub: \(isSubscribedCache)")
     }
   }
 }
