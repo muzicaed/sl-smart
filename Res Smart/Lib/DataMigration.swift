@@ -78,6 +78,7 @@ class DataMigration {
     criterions.unsharp = false
     SearchCriterionStore.sharedInstance.writeLastSearchCriterions(criterions)
     defaults.set(5, forKey: dataKey)
+    UserDefaults.standard.set(true, forKey: "res_smart_premium_preference")
     defaults.synchronize()
   }
 }
