@@ -15,7 +15,6 @@ class DataMigration {
   fileprivate static let defaults = UserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
   
   static func migrateData() {
-    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
     let step = defaults.integer(forKey: dataKey)
     if step <= 1 {
       migrateVersion_1_3()
