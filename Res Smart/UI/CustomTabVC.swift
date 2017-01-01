@@ -50,7 +50,6 @@ class CustomTabVC: UITabBarController {
    */
   func updateTabs() {
     isPremiumSettingOn = UserDefaults.standard.bool(forKey: "res_smart_premium_preference")
-    print("Updated tabs premium on: \(isPremiumSettingOn)")
     if !isPremiumSettingOn && self.tabBar.items!.count == 4 {
       let indexToRemove = 0
       if indexToRemove < viewControllers?.count {

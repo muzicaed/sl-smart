@@ -12,7 +12,6 @@ import StoreKit
 protocol SubscribeDelegate {
   func subscriptionSuccessful()
   func subscriptionError(_ error: SubscriptionError)
-  func recievedProducts(_ products: [SKProduct])
 }
 
 enum SubscriptionError {

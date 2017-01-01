@@ -25,7 +25,15 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
     super.viewDidLoad()
     setupCollectionView()
     SubscriptionManager.sharedInstance.delegate = self
-    SubscriptionManager.sharedInstance.requestProducts()
+    PremiumProducts.store.requestProducts{ success, products in
+      if success {
+        self.isProductsLoaded = true
+        for product in products! {
+          self.products[product.productIdentifier] = product
+        }
+      }
+      self.collectionView?.reloadData()
+    }
   }
   
   /**
@@ -66,19 +74,6 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
       self.showThanks()
     }
   }
-  /**
-   * Received product list
-   */
-  func recievedProducts(_ products: [SKProduct]) {
-    DispatchQueue.main.async {
-      self.isProductsLoaded = true
-      for product in products {
-        self.products[product.productIdentifier] = product
-      }
-      
-      self.collectionView?.reloadData()
-    }
-  }
   
   /**
    * On faild subscription
@@ -86,9 +81,6 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   func subscriptionError(_ error: SubscriptionError) {
     DispatchQueue.main.async {
       switch error {
-      case .canNotMakePayments:
-        self.showCanNotMakePayments()
-        break
       case .noProductsFound:
         self.showNoProductsFound()
         break
@@ -129,13 +121,13 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
         withReuseIdentifier: "SubscriptionYearRow", for: indexPath) as! SubscriptionCell
       cell.setData(products["12_MONTHS_NO_TRIAL"]!)
       return cell
-     
+      
     } else if indexPath.row == 2 {
       let cell = collectionView.dequeueReusableCell(
         withReuseIdentifier: "SubscriptionMonthRow", for: indexPath) as! SubscriptionCell
       cell.setData(products["1_MONTH_NO_TRIAL"]!)
       return cell
-
+      
     } else if indexPath.row == 3 {
       let cell = collectionView.dequeueReusableCell(
         withReuseIdentifier: "SubscriptionHalfYearRow", for: indexPath) as! SubscriptionCell
@@ -151,7 +143,7 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
    */
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
-                             sizeForItemAt indexPath: IndexPath) -> CGSize {
+                      sizeForItemAt indexPath: IndexPath) -> CGSize {
     
     let screenSize = UIScreen.main.bounds.size
     
@@ -171,11 +163,15 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
    * Purchase a specific product item.
    */
   fileprivate func buyProduct(_ productId: String) {
-    if !isBuying {
-      noThanksButton.isEnabled = false
-      isBuying = true
-      self.collectionView?.reloadData()
-      SubscriptionManager.sharedInstance.executePayment(products[productId]!)
+    if !IAPHelper.canMakePayments() {
+     self.showCanNotMakePayments()
+    } else if !isBuying {
+      if let product = products[productId] {
+        noThanksButton.isEnabled = false
+        isBuying = true
+        self.collectionView?.reloadData()
+        PremiumProducts.store.buyProduct(product)
+      }
     }
   }
   
@@ -231,7 +227,7 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
   fileprivate func showCanNotMakePayments() {
     let invalidAlert = UIAlertController(
       title: "Eheten kan inte betala",
-      message: "Denna enheten är inställd att inte tillåta betalningar. Kontrollera dina betalningsuppgifter, och oönskad föräldrakontroll. Är du ett barn måste du fråga dina föräldrar om lov.",
+      message: "Denna enheten är inställd att inte tillåta betalningar. Kontrollera dina betalningsuppgifter och oönskad föräldrakontroll. Är du ett barn måste du fråga dina föräldrar om lov.",
       preferredStyle: UIAlertControllerStyle.alert)
     invalidAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: { _ in

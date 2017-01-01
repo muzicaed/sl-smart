@@ -10,7 +10,7 @@ import Foundation
 import StoreKit
 import ResStockholmApiKit
 
-class SubscriptionManager: NSObject, SKProductsRequestDelegate,
+class SubscriptionManager: NSObject,
 SKPaymentTransactionObserver, SKRequestDelegate {
   
   // Singelton pattern
@@ -28,7 +28,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   override init() {
     productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
     super.init()
-    productsRequest.delegate = self
+    //productsRequest.delegate = self
     SKPaymentQueue.default().add(self)
   }
   
@@ -41,27 +41,14 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    * Validate subscription
    */
   func validateSubscription() {
+    print("Will validate sub")
     if shouldCheckForNewReciept() {
+      print("Will refresh...")
       let refresh = SKReceiptRefreshRequest()
       refresh.delegate = self
       refresh.start()
+      
     }
-  }
-  
-  /**
-   * Request products from App Store.
-   */
-  func requestProducts() {
-    if (SKPaymentQueue.canMakePayments()) {
-      if products.count > 0 {
-        delegate?.recievedProducts(products)
-        return
-      }
-      productsRequest.start()
-      return
-    }
-    
-    delegate?.subscriptionError(SubscriptionError.canNotMakePayments)
   }
   
   /**
@@ -81,22 +68,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   
   // MARK: SKProductsRequestDelegate
   
-  /**
-   * Response handler for Products request
-   */
-  func productsRequest(
-    _ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-    
-    if response.products.count != 0 {
-      for product in response.products {
-        products.append(product)
-      }
-      delegate?.recievedProducts(products)
-    }
-    else {
-      delegate?.subscriptionError(SubscriptionError.noProductsFound)
-    }
-  }
+
   
   // MARK: SKPaymentTransactionObserver
   
