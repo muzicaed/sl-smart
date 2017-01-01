@@ -152,7 +152,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
       }
       self.notificationCenter.post(name: Notification.Name(rawValue: "TrafficSituations"), object: count)
     }
-    
   }
   
   /**
