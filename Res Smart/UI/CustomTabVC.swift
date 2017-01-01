@@ -54,11 +54,13 @@ class CustomTabVC: UITabBarController {
     if !isPremiumSettingOn && self.tabBar.items!.count == 4 {
       let indexToRemove = 0
       if indexToRemove < viewControllers?.count {
+        print("Remove preminum tab.")
         premiumVC = viewControllers?[indexToRemove]
         viewControllers?.remove(at: indexToRemove)
       }
     } else if isPremiumSettingOn && self.tabBar.items!.count == 3 {
       if let vc = premiumVC {
+        print("Insert preminum tab.")
         viewControllers?.insert(vc, at: 0)
       }
     }

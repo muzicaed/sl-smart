@@ -101,7 +101,7 @@ class ReceiptManager {
           }
           
           do {
-            let json = JSON(data)
+            let json = JSON(data: data)
             let statusCode = json["status"].int
             if statusCode == nil {
               onCompletion(nil, errorDate)

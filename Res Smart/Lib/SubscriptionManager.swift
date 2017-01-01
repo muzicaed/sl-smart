@@ -146,7 +146,9 @@ SKPaymentTransactionObserver, SKRequestDelegate {
   func requestDidFinish(_ request: SKRequest) {
     ReceiptManager.validateReceipt { (foundReceipt, date) -> Void in
       if foundReceipt {
+        print("Found receipt date: \(DateUtils.dateAsDateAndTimeString(date))")
         if date.timeIntervalSinceNow < 0 {
+          print("Receipt date expired!")
           SubscriptionStore.sharedInstance.setSubscriptionHaveExpired()
           return
         }
@@ -163,6 +165,7 @@ SKPaymentTransactionObserver, SKRequestDelegate {
    */
   fileprivate func shouldCheckForNewReciept() -> Bool {
     if let localEndDate = SubscriptionStore.sharedInstance.getLocalExpireDate() {
+      print("Subscription end date: \(DateUtils.dateAsDateAndTimeString(localEndDate))")
       return (localEndDate.timeIntervalSinceNow < 0)
     }
     
