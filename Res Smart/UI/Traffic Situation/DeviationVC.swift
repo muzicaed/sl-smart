@@ -39,8 +39,8 @@ class DeviationVC: UITableViewController {
   /**
    * Height for row
    */
-  override func tableView(tableView: UITableView,
-    heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  override func tableView(_ tableView: UITableView,
+    heightForRowAt indexPath: IndexPath) -> CGFloat {
       
       return UITableViewAutomaticDimension
   }
@@ -50,10 +50,10 @@ class DeviationVC: UITableViewController {
   /**
    * Setup view properties
    */
-  private func setupView() {
+  fileprivate func setupView() {
     view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    tableView.separatorInset = UIEdgeInsetsZero
+    tableView.separatorInset = UIEdgeInsets.zero
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 50
   }

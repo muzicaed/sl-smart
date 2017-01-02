@@ -16,7 +16,7 @@ class SLDeviationsApi {
   /**
    * Search for deviations.
    */
-  func fetchInformation(callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
+  func fetchInformation(_ callback: @escaping ((data: Data?, error: SLNetworkError?)) -> Void) {
     HttpRequestHelper.makeGetRequest(createApiUrl()) { resTuple in
       callback(resTuple)
     }
@@ -25,7 +25,7 @@ class SLDeviationsApi {
   /**
    * Creates api url
    */
-  private func createApiUrl() -> String {
+  fileprivate func createApiUrl() -> String {
     return urlBase + "?Key=\(apiKey)"
   }
 }

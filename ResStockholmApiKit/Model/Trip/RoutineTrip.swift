@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class RoutineTrip: NSObject, NSCoding, NSCopying {
-  public let id: String
-  public var title: String?
-  public var criterions = TripSearchCriterion(origin: nil, dest: nil)
-  public var trips = [Trip]()
-  public var score = Float(0.0)
-  public var isSmartSuggestion = false
+open class RoutineTrip: NSObject, NSCoding, NSCopying {
+  open let id: String
+  open var title: String?
+  open var criterions = TripSearchCriterion(origin: nil, dest: nil)
+  open var trips = [Trip]()
+  open var score = Float(0.0)
+  open var isSmartSuggestion = false
   
   public init(id: String, title: String?,
     criterions: TripSearchCriterion, isSmartSuggestion: Bool) {
@@ -25,14 +25,14 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   }
   
   override public init() {
-    self.id = NSUUID().UUIDString
+    self.id = UUID().uuidString
     super.init()
   }
   
   /**
    * Converts into data dictionary for transfer to AppleWatch.
    */
-  public func watchTransferData(countLimit: Int) -> Dictionary<String, AnyObject> {
+  open func watchTransferData(_ countLimit: Int) -> Dictionary<String, AnyObject> {
     var departureString = ""
     if trips.count > 0 {
       let departure = trips.first!.tripSegments.first!.departureDateTime
@@ -41,7 +41,7 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
     
     var trasportTrips = [Dictionary<String, AnyObject>]()
     if trips.count > 0 {
-      for (index, trip) in trips.enumerate() {
+      for (index, trip) in trips.enumerated() {
         trasportTrips.append(trip.watchTransferData())
         if index >= countLimit {
           break
@@ -50,23 +50,23 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
     }
     
     return [
-      "id": id,
-      "ti": title!,
-      "ha": isSmartSuggestion,
-      "or": (criterions.origin?.name)!,
-      "ds": (criterions.dest?.name)!,
-      "dp": departureString,
-      "tr": trasportTrips
+      "id": id as AnyObject,
+      "ti": title! as AnyObject,
+      "ha": isSmartSuggestion as AnyObject,
+      "or": (criterions.origin?.name)! as AnyObject,
+      "ds": (criterions.dest?.name)! as AnyObject,
+      "dp": departureString as AnyObject,
+      "tr": trasportTrips as AnyObject
     ]
   }
   
   // MARK: NSCoding
   
   required convenience public init?(coder aDecoder: NSCoder) {
-    let id = aDecoder.decodeObjectForKey(PropertyKey.id) as! String
-    let title = aDecoder.decodeObjectForKey(PropertyKey.title) as? String
-    let criterions = aDecoder.decodeObjectForKey(PropertyKey.criterions) as! TripSearchCriterion
-    let isSmartSuggestion = aDecoder.decodeBoolForKey(PropertyKey.isSmartSuggestion)
+    let id = aDecoder.decodeObject(forKey: PropertyKey.id) as! String
+    let title = aDecoder.decodeObject(forKey: PropertyKey.title) as? String
+    let criterions = aDecoder.decodeObject(forKey: PropertyKey.criterions) as! TripSearchCriterion
+    let isSmartSuggestion = aDecoder.decodeBool(forKey: PropertyKey.isSmartSuggestion)
     
     self.init(id: id, title: title, criterions: criterions, isSmartSuggestion: isSmartSuggestion)
   }
@@ -74,11 +74,11 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   /**
    * Encode this object
    */
-  public func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodeObject(id, forKey: PropertyKey.id)
-    aCoder.encodeObject(title, forKey: PropertyKey.title)
-    aCoder.encodeObject(criterions, forKey: PropertyKey.criterions)
-    aCoder.encodeBool(isSmartSuggestion, forKey: PropertyKey.isSmartSuggestion)
+  open func encode(with aCoder: NSCoder) {
+    aCoder.encode(id, forKey: PropertyKey.id)
+    aCoder.encode(title, forKey: PropertyKey.title)
+    aCoder.encode(criterions, forKey: PropertyKey.criterions)
+    aCoder.encode(isSmartSuggestion, forKey: PropertyKey.isSmartSuggestion)
   }
   
   struct PropertyKey {
@@ -93,7 +93,7 @@ public class RoutineTrip: NSObject, NSCoding, NSCopying {
   /**
   * Copy self
   */
-  public func copyWithZone(zone: NSZone) -> AnyObject {
+  open func copy(with zone: NSZone?) -> Any {
     let copy =  RoutineTrip(
       id: id, title: title,
       criterions: criterions.copy() as! TripSearchCriterion,

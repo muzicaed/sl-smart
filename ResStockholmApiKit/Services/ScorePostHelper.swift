@@ -9,19 +9,19 @@
 import Foundation
 import CoreLocation
 
-public class ScorePostHelper {
+open class ScorePostHelper {
   
-  public static let BestTapCountScore = Float(0.6)
-  public static let OtherTapCountScore = Float(0.5)
-  public static let NotBestTripScore = Float(-0.5)
-  public static let WideScoreMod = Float(0.25)
-  private static let RequiredDistance = Double(400)
+  open static let BestTapCountScore = Float(0.6)
+  open static let OtherTapCountScore = Float(0.5)
+  open static let NotBestTripScore = Float(-0.5)
+  open static let WideScoreMod = Float(0.25)
+  fileprivate static let RequiredDistance = Double(400)
   
   /**
    * Adds score for selected routine trip.
    */
-  public static func changeScoreForRoutineTrip(
-    originId: String, destinationId: String, score: Float) {
+  open static func changeScoreForRoutineTrip(
+    _ originId: String, destinationId: String, score: Float) {
       
       var scorePosts = ScorePostStore.sharedInstance.retrieveScorePosts()
       let currentLocation = MyLocationHelper.sharedInstance.currentLocation
@@ -37,10 +37,10 @@ public class ScorePostHelper {
   /**
    * Change (or create) score for matching score post.
    */
-  private static func changeScore(
-    dayInWeek: Int, hourOfDay: Int,
+  fileprivate static func changeScore(
+    _ dayInWeek: Int, hourOfDay: Int,
     originId: String, destId: String, score: Float,
-    location: CLLocation?, inout scorePosts: [ScorePost]) {
+    location: CLLocation?, scorePosts: inout [ScorePost]) {
       
       applyScore(dayInWeek, hourOfDay: hourOfDay,
         originId: originId, destId: destId, score: score,
@@ -69,10 +69,10 @@ public class ScorePostHelper {
   * Will modify if existing post is found, else
   * create a new one.
   */
-  private static func applyScore(
-    dayInWeek: Int, hourOfDay: Int,
+  fileprivate static func applyScore(
+    _ dayInWeek: Int, hourOfDay: Int,
     originId: String, destId: String, score: Float,
-    location: CLLocation?, inout scorePosts: [ScorePost]) {
+    location: CLLocation?, scorePosts: inout [ScorePost]) {
       if !modifyScorePost(
         dayInWeek, hourOfDay: hourOfDay, originId: originId,
         destId: destId, location: location,
@@ -88,14 +88,14 @@ public class ScorePostHelper {
   /**
    * Finds existing score post
    */
-  private static func modifyScorePost(
-    dayInWeek: Int, hourOfDay: Int, originId: String, destId: String,
-    location: CLLocation?, inout allPosts: [ScorePost], score: Float) -> Bool {
+  fileprivate static func modifyScorePost(
+    _ dayInWeek: Int, hourOfDay: Int, originId: String, destId: String,
+    location: CLLocation?, allPosts: inout [ScorePost], score: Float) -> Bool {
       
       for post in allPosts {
         if isMatch(post, dayInWeek: dayInWeek, hourOfDay: hourOfDay, originId: originId, destId: destId) {
-          if let location = location, postLocation = post.location {
-            if location.distanceFromLocation(postLocation) < RequiredDistance {
+          if let location = location, let postLocation = post.location {
+            if location.distance(from: postLocation) < RequiredDistance {
               post.score += score
               post.score = min(post.score, 8)
               return true
@@ -109,7 +109,7 @@ public class ScorePostHelper {
   /**
    * Check if score post is a match.
    */
-  private static func isMatch(post: ScorePost, dayInWeek: Int,
+  fileprivate static func isMatch(_ post: ScorePost, dayInWeek: Int,
     hourOfDay: Int, originId: String, destId: String) -> Bool {
       return (post.dayInWeek == dayInWeek && post.hourOfDay == hourOfDay &&
         post.originId == originId && post.destId == destId)

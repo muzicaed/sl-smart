@@ -20,18 +20,18 @@ class ManageRoutineTripCell: UITableViewCell {
   /**
    * Sets data for cell
    */
-  func setData(routineTrip: RoutineTrip) {
+  func setData(_ routineTrip: RoutineTrip) {
     tripTitleLabel.text = routineTrip.title
     routeTextLabel.text = "\(routineTrip.criterions.origin!.cleanName) » \(routineTrip.criterions.dest!.cleanName)"
     
     let advancedText = AdvancedCriterionsHelper.createAdvCriterionText(routineTrip.criterions)
     if advancedText == "" {
-      advancedLabel.textColor = UIColor.lightGrayColor()
+      advancedLabel.textColor = UIColor.lightGray
       advancedLabel.text = "Inga avancerade inställningar"
       return
     }
     
-    advancedLabel.textColor = UIColor.darkGrayColor()
+    advancedLabel.textColor = UIColor.darkGray
     advancedLabel.text = advancedText
   }
 }

@@ -14,7 +14,7 @@ class TrafficSituationVC: UITableViewController {
   
   var situationGroups = [SituationGroup]()
   var selectedGroup: SituationGroup?
-  var lastUpdated = NSDate(timeIntervalSince1970: NSTimeInterval(0.0))
+  var lastUpdated = Date(timeIntervalSince1970: TimeInterval(0.0))
   let refreshController = UIRefreshControl()
   
   /**
@@ -24,8 +24,8 @@ class TrafficSituationVC: UITableViewController {
     super.viewDidLoad()
     setupView()
     refreshController.addTarget(
-      self, action: #selector(loadData), forControlEvents: UIControlEvents.ValueChanged)
-    refreshController.tintColor = UIColor.lightGrayColor()
+      self, action: #selector(loadData), for: UIControlEvents.valueChanged)
+    refreshController.tintColor = UIColor.lightGray
     tableView.addSubview(refreshController)
     tableView.alwaysBounceVertical = true
   }
@@ -33,7 +33,7 @@ class TrafficSituationVC: UITableViewController {
   /**
    * View did to appear
    */
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     loadData()
   }
@@ -41,16 +41,16 @@ class TrafficSituationVC: UITableViewController {
   /**
    * Prepares for segue
    */
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ShowReports" {
-      let vc = segue.destinationViewController as! ReportsVC
+      let vc = segue.destination as! ReportsVC
       if let group = selectedGroup {
         vc.title = group.name
         vc.situations = group.plannedSituations
         vc.deviations = group.deviations
       }
     } else if segue.identifier == "ShowBusFilter" {
-      let vc = segue.destinationViewController as! BusFilterVC
+      let vc = segue.destination as! BusFilterVC
       if let group = selectedGroup {
         vc.title = group.name
         vc.deviations = group.deviations
@@ -64,7 +64,7 @@ class TrafficSituationVC: UITableViewController {
   /**
    * Number of sections
    */
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     if situationGroups.count > 0 {
       return situationGroups.count
     }
@@ -74,7 +74,7 @@ class TrafficSituationVC: UITableViewController {
   /**
    * Number of rows in a section
    */
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     var count = 2
     let group = situationGroups[section]
     count += group.situations.count
@@ -85,8 +85,8 @@ class TrafficSituationVC: UITableViewController {
    * Cell for index.
    */
   override func tableView(
-    tableView: UITableView,
-    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    _ tableView: UITableView,
+    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     if indexPath.row == 0 {
       return createHeaderCell(indexPath)
@@ -102,8 +102,8 @@ class TrafficSituationVC: UITableViewController {
    * Before displaying cell
    */
   override func tableView(
-    tableView: UITableView, willDisplayCell cell: UITableViewCell,
-    forRowAtIndexPath indexPath: NSIndexPath) {
+    _ tableView: UITableView, willDisplay cell: UITableViewCell,
+    forRowAt indexPath: IndexPath) {
     
     let bgColorView = UIView()
     bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
@@ -114,22 +114,22 @@ class TrafficSituationVC: UITableViewController {
    * User selected row
    */
   override func tableView(
-    tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    _ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
     selectedGroup = situationGroups[indexPath.section]
     if selectedGroup?.tripType == TripType.Bus {
-      performSegueWithIdentifier("ShowBusFilter", sender: nil)
+      performSegue(withIdentifier: "ShowBusFilter", sender: nil)
       return
     }
-    performSegueWithIdentifier("ShowReports", sender: nil)
+    performSegue(withIdentifier: "ShowReports", sender: nil)
   }
   
   // MARK: Private
   
-  private func setupView() {
+  fileprivate func setupView() {
     view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    tableView.separatorInset = UIEdgeInsetsZero
+    tableView.separatorInset = UIEdgeInsets.zero
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 130
   }
@@ -142,12 +142,12 @@ class TrafficSituationVC: UITableViewController {
       NetworkActivity.displayActivityIndicator(true)
       TrafficSituationService.fetchInformation() {data, error in
         NetworkActivity.displayActivityIndicator(false)
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
           if error != nil {
             return
           }
           
-          self.lastUpdated = NSDate()
+          self.lastUpdated = Date()
           self.situationGroups = data
           self.refreshController.endRefreshing()
           self.tableView.reloadData()
@@ -162,16 +162,16 @@ class TrafficSituationVC: UITableViewController {
   /**
    * Checks if data should be reloaded.
    */
-  private func shouldReload() -> Bool {
-    return situationGroups.count == 0 || (NSDate().timeIntervalSinceDate(lastUpdated) > 60)
+  fileprivate func shouldReload() -> Bool {
+    return situationGroups.count == 0 || (Date().timeIntervalSince(lastUpdated) > 60)
   }
   
   /**
    * Creates a header row
    */
-  private func createHeaderCell(indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(
-      "SituationHeader", forIndexPath: indexPath) as! SituationHeader
+  fileprivate func createHeaderCell(_ indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: "SituationHeader", for: indexPath) as! SituationHeader
     cell.setupData(situationGroups[indexPath.section])
     return cell
   }
@@ -179,26 +179,27 @@ class TrafficSituationVC: UITableViewController {
   /**
    * Creates a unplanned situation row
    */
-  private func createSituationCell(indexPath: NSIndexPath) -> UITableViewCell {
+  fileprivate func createSituationCell(_ indexPath: IndexPath) -> UITableViewCell {
     let situation = situationGroups[indexPath.section].situations[indexPath.row - 1]
-    let cell = tableView.dequeueReusableCellWithIdentifier(
-      "SituationRow", forIndexPath: indexPath) as! SituationRow
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: "SituationRow", for: indexPath) as! SituationRow
     
     cell.messageLabel.text = situation.message
     cell.messageLabel.accessibilityLabel = "Trafikstörning: " + situation.message
     cell.messageLabel.textColor = StyleHelper.sharedInstance.warningColor
-    cell.accessoryType = .None
-    cell.userInteractionEnabled = false
+    cell.accessoryType = .none
+    cell.isUserInteractionEnabled = false
+    cell.setData(situation)
     return cell
   }
   
   /**
    * Creates a situation summary row
    */
-  private func createSummaryCell(indexPath: NSIndexPath) -> UITableViewCell {
+  fileprivate func createSummaryCell(_ indexPath: IndexPath) -> UITableViewCell {
     let group = situationGroups[indexPath.section]
-    let cell = tableView.dequeueReusableCellWithIdentifier(
-      "SituationRow", forIndexPath: indexPath) as! SituationRow
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: "SituationRow", for: indexPath) as! SituationRow
     
     if group.deviations.count == 0 && group.plannedSituations.count == 0 {
       cell.messageLabel.text = "Inga störningar."
@@ -206,9 +207,9 @@ class TrafficSituationVC: UITableViewController {
         cell.messageLabel.text = "Inga övriga störningar."
       }
       
-      cell.accessoryType = .None
-      cell.userInteractionEnabled = false
-      cell.messageLabel.textColor = UIColor.darkGrayColor()
+      cell.accessoryType = .none
+      cell.isUserInteractionEnabled = false
+      cell.messageLabel.textColor = UIColor.darkGray
       return cell
     }
     
@@ -230,9 +231,9 @@ class TrafficSituationVC: UITableViewController {
     }
     
     cell.messageLabel.text = message
-    cell.userInteractionEnabled = true
-    cell.accessoryType = .DisclosureIndicator
-    cell.messageLabel.textColor = UIColor.darkGrayColor()
+    cell.isUserInteractionEnabled = true
+    cell.accessoryType = .disclosureIndicator
+    cell.messageLabel.textColor = UIColor.darkGray
     return cell
   }
 }

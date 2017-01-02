@@ -8,16 +8,16 @@
 
 import Foundation
 
-public class SituationGroup {
+open class SituationGroup {
   
-  public let statusIcon: String // "EventMajor", "EventMinor", "EventGood"
-  public let hasPlannedEvent: Bool
-  public let name: String
-  public let tripType: TripType
-  public let iconName: String
-  public var situations = [Situation]()
-  public var plannedSituations = [Situation]()
-  public var deviations = [Deviation]()
+  open let statusIcon: String // "EventMajor", "EventMinor", "EventGood"
+  open let hasPlannedEvent: Bool
+  open let name: String
+  open let tripType: TripType
+  open let iconName: String
+  open var situations = [Situation]()
+  open var plannedSituations = [Situation]()
+  open var deviations = [Deviation]()
   
 
   /**
@@ -46,7 +46,7 @@ public class SituationGroup {
   /**
    * Counts no of situations excluding planned situations.
    */
-  public func countSituationsExclPlanned() -> Int {
+  open func countSituationsExclPlanned() -> Int {
     var count = 0
     for situation in situations {
       count = (situation.planned) ? count : count + 1
@@ -58,7 +58,7 @@ public class SituationGroup {
   /**
    * Converts the API's trip type string icon name
    */
-  private static func createTripType(typeString: String) -> (type: TripType, icon: String) {
+  fileprivate static func createTripType(_ typeString: String) -> (type: TripType, icon: String) {
     switch typeString {
     case "metro":
       return (TripType.Metro, "METRO-NEUTRAL")

@@ -18,9 +18,9 @@ class SituationHeader: UITableViewCell {
   /**
    * Setup data
    */
-  func setupData(group: SituationGroup) {
+  func setupData(_ group: SituationGroup) {
     title.text = group.name
-    userInteractionEnabled = false
+    isUserInteractionEnabled = false
     if group.hasPlannedEvent && group.statusIcon == "EventGood" {
       statusIcon.image = UIImage(named: "EventPlanned")
       title.accessibilityLabel = group.name + ". Har plannerade avvikelser"

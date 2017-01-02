@@ -11,22 +11,5 @@ import UIKit
 
 class RoutineTripHeader: UICollectionReusableView {
   
-  @IBOutlet weak var titleLabel: UILabel!
-  
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  /**
-   * Shared init code.
-   */
-  func setup() {
-    subviews[0].layer.cornerRadius = 6
-  }
+  @IBOutlet weak var titleLabel: UILabel!  
 }

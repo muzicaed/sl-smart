@@ -48,8 +48,6 @@
 		1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854E1981C065EB70070C545 /* StandardGradient.swift */; };
 		185D8DBE1C189D0200300890 /* WatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367611C16264200A8BE16 /* WatchService.swift */; };
 		18609B381CC3B55E002F6346 /* LocationMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18609B371CC3B55E002F6346 /* LocationMapVC.swift */; };
-		186235FD1C411C2B0056338E /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186235FC1C411C2B0056338E /* TripIcons.swift */; };
-		186236011C411CE40056338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186236001C411CE40056338E /* Assets.xcassets */; };
 		18630EE01CC2366A0085C0B8 /* ResStockholmApiKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18630EDF1CC2366A0085C0B8 /* ResStockholmApiKitTests.swift */; };
 		18630EE21CC2366A0085C0B8 /* ResStockholmApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; };
 		18630EED1CC236A80085C0B8 /* SearchCriterionStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18630EEC1CC236A80085C0B8 /* SearchCriterionStoreTests.swift */; };
@@ -80,10 +78,10 @@
 		187808DF1D3A9DB100D297FF /* TimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187808DE1D3A9DB100D297FF /* TimePickerVC.swift */; };
 		188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367681C16EEA000A8BE16 /* TripDetailsVC.swift */; };
 		1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */; };
-		1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */; };
 		1883676F1C170DE500A8BE16 /* TripDetailsOriginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883676E1C170DE500A8BE16 /* TripDetailsOriginCell.swift */; };
 		188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */; };
 		188367751C170E5500A8BE16 /* TripDetailsDestinationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */; };
+		188521741E19BBF300E5909D /* SubscriptionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188521731E19BBF300E5909D /* SubscriptionStore.swift */; };
 		1885A4131CDF95E300680F8E /* LinePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885A4121CDF95E300680F8E /* LinePickerVC.swift */; };
 		1885ED001C20BD7A000E803D /* UILabelExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885ECFF1C20BD7A000E803D /* UILabelExtention.swift */; };
 		188B80AE1C178DD900E7D90C /* TripSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B80AD1C178DD900E7D90C /* TripSearchVC.swift */; };
@@ -321,8 +319,6 @@
 		18530B431D80C05C005AB9EC /* StopEnhancer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopEnhancer.swift; sourceTree = "<group>"; };
 		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
 		18609B371CC3B55E002F6346 /* LocationMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMapVC.swift; sourceTree = "<group>"; };
-		186235FC1C411C2B0056338E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
-		186236001C411CE40056338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18630EDD1CC2366A0085C0B8 /* ResStockholmApiKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResStockholmApiKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18630EDF1CC2366A0085C0B8 /* ResStockholmApiKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResStockholmApiKitTests.swift; sourceTree = "<group>"; };
 		18630EE11CC2366A0085C0B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -357,10 +353,10 @@
 		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchService.swift; sourceTree = "<group>"; };
 		188367681C16EEA000A8BE16 /* TripDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsVC.swift; sourceTree = "<group>"; };
 		1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCellProtocol.swift; sourceTree = "<group>"; };
-		1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsHeaderCell.swift; sourceTree = "<group>"; };
 		1883676E1C170DE500A8BE16 /* TripDetailsOriginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsOriginCell.swift; sourceTree = "<group>"; };
 		188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsSegmentCell.swift; sourceTree = "<group>"; };
 		188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsDestinationCell.swift; sourceTree = "<group>"; };
+		188521731E19BBF300E5909D /* SubscriptionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionStore.swift; sourceTree = "<group>"; };
 		1885A4121CDF95E300680F8E /* LinePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinePickerVC.swift; sourceTree = "<group>"; };
 		1885ECFF1C20BD7A000E803D /* UILabelExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtention.swift; sourceTree = "<group>"; };
 		188B80441C175D9600E7D90C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -515,10 +511,9 @@
 			children = (
 				1818B2751C405ACF004E3CA3 /* Today.entitlements */,
 				1818B2691C404FE0004E3CA3 /* TodayViewController.swift */,
+				188521731E19BBF300E5909D /* SubscriptionStore.swift */,
 				1818B26B1C404FE0004E3CA3 /* MainInterface.storyboard */,
 				1818B26E1C404FE0004E3CA3 /* Info.plist */,
-				186235FC1C411C2B0056338E /* TripIcons.swift */,
-				186236001C411CE40056338E /* Assets.xcassets */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -639,7 +634,6 @@
 			children = (
 				188367681C16EEA000A8BE16 /* TripDetailsVC.swift */,
 				1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */,
-				1883676C1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift */,
 				1883676E1C170DE500A8BE16 /* TripDetailsOriginCell.swift */,
 				188367721C170E3B00A8BE16 /* TripDetailsSegmentCell.swift */,
 				188367741C170E5500A8BE16 /* TripDetailsDestinationCell.swift */,
@@ -1151,12 +1145,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Mikael Hellman";
 				TargetAttributes = {
 					1818B2651C404FE0004E3CA3 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 43E7S6Y435;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1165,10 +1161,13 @@
 					};
 					18630EDC1CC2366A0085C0B8 = {
 						CreatedOnToolsVersion = 7.3;
+						ProvisioningStyle = Manual;
 					};
 					18937E301BFF33FA00C523C9 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 43E7S6Y435;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1181,6 +1180,8 @@
 					18937E421BFF33FB00C523C9 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 43E7S6Y435;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1190,6 +1191,8 @@
 					18937E511BFF33FB00C523C9 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 43E7S6Y435;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1199,6 +1202,8 @@
 					18A9E8461C18993B008F97C8 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 43E7S6Y435;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1230,7 +1235,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				186236011C411CE40056338E /* Assets.xcassets in Resources */,
 				1818B26D1C404FE0004E3CA3 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1318,8 +1322,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188521741E19BBF300E5909D /* SubscriptionStore.swift in Sources */,
 				1818B26A1C404FE0004E3CA3 /* TodayViewController.swift in Sources */,
-				186235FD1C411C2B0056338E /* TripIcons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1393,7 +1397,6 @@
 				18698AAC1C4E913A0031D1AD /* RealTimeTripRow.swift in Sources */,
 				185D8DBE1C189D0200300890 /* WatchService.swift in Sources */,
 				188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */,
-				1883676D1C170D5A00A8BE16 /* TripDetailsHeaderCell.swift in Sources */,
 				18733C491C4E3D1000F66AEF /* RealTimeNavigationVC.swift in Sources */,
 				18FDA8C31CD92D94003665C6 /* GenericValuePickerVC.swift in Sources */,
 				1843AC541C4A78020065A462 /* TripDetailsSubSegmentCell.swift in Sources */,
@@ -1572,6 +1575,7 @@
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = Today/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1579,14 +1583,16 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		1818B2741C404FE1004E3CA3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = Today/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1594,6 +1600,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1601,6 +1608,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ResStockholmApiKitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1613,6 +1621,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ResStockholmApiKitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1634,8 +1643,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1679,8 +1690,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1699,6 +1712,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1711,6 +1725,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Res Smart/Res Smart.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp.watchkitextension";
@@ -1718,6 +1733,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -1727,8 +1743,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp.watchkitextension";
@@ -1736,6 +1753,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -1744,11 +1762,12 @@
 		18937E6D1BFF33FB00C523C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Res Smart/Res Smart.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = 43E7S6Y435;
 				IBSC_MODULE = SL_Smart_WatchKit_Extension;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp";
@@ -1756,6 +1775,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -1764,11 +1784,12 @@
 		18937E6E1BFF33FB00C523C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Res Smart/Res Smart.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 43E7S6Y435;
 				IBSC_MODULE = SL_Smart_WatchKit_Extension;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp";
@@ -1776,6 +1797,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -1784,17 +1806,19 @@
 		18937E711BFF33FB00C523C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Res Smart/Res Smart.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart";
 				PRODUCT_NAME = "Res Smart";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1802,17 +1826,19 @@
 		18937E721BFF33FB00C523C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Res Smart/Res Smart.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart";
 				PRODUCT_NAME = "Res Smart";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -1822,9 +1848,10 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 43E7S6Y435;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1834,6 +1861,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mikael-hellman.ResStockholmApiKit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1843,10 +1871,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 43E7S6Y435;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1856,6 +1885,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mikael-hellman.ResStockholmApiKit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class RTBoat: RTTransportBase {
+open class RTBoat: RTTransportBase {
   
-  public let groupOfLine: String?
+  open let groupOfLine: String?
   
   /**
    * Init

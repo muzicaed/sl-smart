@@ -9,13 +9,13 @@
 import Foundation
 import CoreLocation
 
-public class Stop {
-  public let id: String
-  public let name: String
-  public var depDate: NSDate?
-  public var location: CLLocation
-  public let type: TripType
-  public let exits: [StaticExit]
+open class Stop {
+  open let id: String
+  open let name: String
+  open var depDate: Date?
+  open var location: CLLocation
+  open let type: TripType
+  open let exits: [StaticExit]
   
   init(id: String, name: String, location: CLLocation, type: TripType,
        exits: [StaticExit], depDate: String?, depTime: String?) {
@@ -26,7 +26,7 @@ public class Stop {
     self.type = type
     self.exits = exits
     
-    if let date = depDate, time = depTime {
+    if let date = depDate, let time = depTime {
       self.depDate = DateUtils.convertDateString("\(date) \(time)")
     }
   }

@@ -9,13 +9,13 @@
 import Foundation
 import CoreLocation
 
-public class StopEnhancer {
+open class StopEnhancer {
   
   /**
    * Enhance stop data for a trip.
    */
-  public static func enhance(trip: Trip) {
-    for (index, segment) in trip.allTripSegments.enumerate() {
+  open static func enhance(_ trip: Trip) {
+    for (index, segment) in trip.allTripSegments.enumerated() {
       if segment.type == .Metro {
         let nextSegment = findNextSegment(index, trip: trip)
         if let stop = StopsStore.sharedInstance.getOnId(segment.destination.siteId!) {
@@ -30,7 +30,7 @@ public class StopEnhancer {
   /**
    * Enhance stop data for a segment.
    */
-  static private func findNextSegment(index: Int, trip: Trip) -> TripSegment? {
+  static fileprivate func findNextSegment(_ index: Int, trip: Trip) -> TripSegment? {
     var nextSegment: TripSegment? = nil
     if index + 1 < trip.allTripSegments.count {
       nextSegment = trip.allTripSegments[index + 1]
@@ -48,7 +48,7 @@ public class StopEnhancer {
   /**
    * Enhance stop data for a segment.
    */
-  static private func enhanceSegment(segment: TripSegment, next: TripSegment?, stop: StaticStop) {
+  static fileprivate func enhanceSegment(_ segment: TripSegment, next: TripSegment?, stop: StaticStop) {
     if let nextSegment = next {
       var exit: StaticExit? = nil
       if stop.exits.count > 0 {
@@ -67,24 +67,30 @@ public class StopEnhancer {
   /**
    * Enhance stop data for walk segment.
    */
-  static private func enhanceWalk(segment: TripSegment, nextSegment: TripSegment,
-                                  stop: StaticStop) -> StaticExit {
-    return findClosestExit(nextSegment.destination.location, exits: stop.exits)
+  static fileprivate func enhanceWalk(_ segment: TripSegment, nextSegment: TripSegment,
+                                      stop: StaticStop) -> StaticExit? {
+    if let location = nextSegment.destination.location {
+      return findClosestExit(location, exits: stop.exits)
+    }
+    return nil
   }
   
   /**
    * Enhance stop data for bus segment.
    */
-  static private func enhanceBus(segment: TripSegment, nextSegment: TripSegment,
-                                 stop: StaticStop) -> StaticExit {
-    return findClosestExit(nextSegment.origin.location, exits: stop.exits)
+  static fileprivate func enhanceBus(_ segment: TripSegment, nextSegment: TripSegment,
+                                     stop: StaticStop) -> StaticExit? {
+    if let location = nextSegment.origin.location {
+      return findClosestExit(location, exits: stop.exits)
+    }
+    return nil
   }
   
   /**
    * Enhance stop data for change.
    */
-  static private func enhanceChange(segment: TripSegment, nextSegment: TripSegment,
-                                    stop: StaticStop) -> StaticExit? {
+  static fileprivate func enhanceChange(_ segment: TripSegment, nextSegment: TripSegment,
+                                        stop: StaticStop) -> StaticExit? {
     let line = TripHelper.friendlyLineData(nextSegment).short
     for exit in stop.exits {
       if exit.changeToLines.contains(line) {
@@ -97,14 +103,14 @@ public class StopEnhancer {
   /**
    * Find closest exit
    */
-  static private func findClosestExit(dest: CLLocation, exits: [StaticExit]) -> StaticExit {
-    return exits.minElement { $0.location.distanceFromLocation(dest) < $1.location.distanceFromLocation(dest)}!
+  static fileprivate func findClosestExit(_ dest: CLLocation, exits: [StaticExit]) -> StaticExit {
+    return exits.min { $0.location.distance(from: dest) < $1.location.distance(from: dest)}!
   }
   
   /**
    * Set the exit and train direction text to segemnt
    */
-  static private func prepareExitText(exit: StaticExit?, segment: TripSegment) {
+  static fileprivate func prepareExitText(_ exit: StaticExit?, segment: TripSegment) {
     if let exit = exit {
       segment.exitText = exit.name
       segment.trainPositionText = createTrainPositionText(segment, exit: exit)
@@ -114,26 +120,26 @@ public class StopEnhancer {
   /**
    * Create train position text
    */
-  static private func createTrainPositionText(segment: TripSegment, exit: StaticExit) -> String? {
+  static fileprivate func createTrainPositionText(_ segment: TripSegment, exit: StaticExit) -> String? {
     if let trainDirection = segment.directionText {
-      var trainPos = StaticExit.TrainPosition.Middle
+      var trainPos = StaticExit.TrainPosition.middle
       
       switch trainDirection {
       case "Hjulsta", "Akalla", "Hässelby strand", "Åkeshov", "Alvik", "Ropsten", "Mörby Centrum":
         trainPos = exit.trainPosition
       default:
         // Invert
-        if exit.trainPosition != .Middle {
-          trainPos = (exit.trainPosition == .Front) ? .Back : .Front
+        if exit.trainPosition != .middle {
+          trainPos = (exit.trainPosition == .front) ? .back : .front
         }
       }
       
       switch trainPos {
-      case .Front:
+      case .front:
         return "långt fram i tåget"
-      case .Middle:
+      case .middle:
         return "mitten av tåget"
-      case .Back:
+      case .back:
         return "långt bak i tåget"
       }
     }

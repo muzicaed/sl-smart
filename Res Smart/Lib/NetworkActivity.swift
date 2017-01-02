@@ -11,18 +11,18 @@ import UIKit
 
 class NetworkActivity {
   
-  static private var numberOfNetworkCalls = 0
+  static fileprivate var numberOfNetworkCalls = 0
   
   /**
    * Track network activity and handle sysbar indicator.
    */
-  static func displayActivityIndicator(isDisplay: Bool) {
+  static func displayActivityIndicator(_ isDisplay: Bool) {
     if isDisplay {
       numberOfNetworkCalls += 1
     } else {
       numberOfNetworkCalls -= 1
     }
     numberOfNetworkCalls = (numberOfNetworkCalls < 0) ? 0 : numberOfNetworkCalls
-    UIApplication.sharedApplication().networkActivityIndicatorVisible = (numberOfNetworkCalls > 0)
+    UIApplication.shared.isNetworkActivityIndicatorVisible = (numberOfNetworkCalls > 0)
   }
 }

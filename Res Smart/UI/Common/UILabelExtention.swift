@@ -11,18 +11,18 @@ import UIKit
 
 extension UILabel {
   
-  func boldRange(range: Range<String.Index>) {
+  func boldRange(_ range: Range<String.Index>) {
     if let text = self.attributedText {
       let attr = NSMutableAttributedString(attributedString: text)
-      let start = text.string.startIndex.distanceTo(range.startIndex)
-      let length = range.startIndex.distanceTo(range.endIndex)
-      attr.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(self.font.pointSize)], range: NSMakeRange(start, length))
+      let start = text.string.characters.distance(from: text.string.startIndex, to: range.lowerBound)
+      let length = text.string.distance(from: range.lowerBound, to: range.upperBound)
+      attr.addAttributes([NSFontAttributeName: UIFont.boldSystemFont(ofSize: self.font.pointSize)], range: NSMakeRange(start, length))
       self.attributedText = attr
     }
   }
   
-  func boldSubstring(substr: String) {
-    let range = self.text?.rangeOfString(substr)
+  func boldSubstring(_ substr: String) {
+    let range = self.text?.range(of: substr)
     if let r = range {
       boldRange(r)
     }

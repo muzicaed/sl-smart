@@ -18,12 +18,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   @IBOutlet weak var departureStationLabel: UILabel!
   @IBOutlet weak var arrivalTimeLabel: UILabel!
   @IBOutlet weak var arrivalStationLabel: UILabel!
-  @IBOutlet weak var iconWrapperView: UIView?
   @IBOutlet weak var inAboutLabel: UILabel!
   @IBOutlet weak var nextLabel: UILabel!
   
   var bestRoutine: RoutineTrip?
-  var refreshTimmer: NSTimer?
+  var refreshTimmer: Timer?
   
   /**
    * View loaded for the first time.
@@ -31,7 +30,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   override func viewDidLoad() {
     super.viewDidLoad()
     MyLocationHelper.sharedInstance.requestLocationUpdate(nil)
-    self.preferredContentSize = CGSizeMake(320, 160)
+    if #available(iOSApplicationExtension 10.0, *) {
+      self.extensionContext?.widgetLargestAvailableDisplayMode = .compact
+    } else {
+      self.preferredContentSize = CGSize(width: 320, height: 160)
+    }
     let gesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
     view.addGestureRecognizer(gesture)
   }
@@ -39,7 +42,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   /**
    * View did disappear
    */
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     stopRefreshTimmer()
   }
@@ -47,7 +50,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   /**
    * View did appear
    */
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     loadTripData()
     startRefreshTimmer()
@@ -57,16 +60,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * Update data request.
    * OS Controlled.
    */
-  func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
+  func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
     updateUI()
-    completionHandler(NCUpdateResult.NoData)
+    completionHandler(NCUpdateResult.noData)
   }
   
   /**
    * User tap widget
    */
   func onTap() {
-    extensionContext?.openURL(NSURL(string: "ressmart://")!, completionHandler: nil)
+    extensionContext?.open(URL(string: "ressmart://")!, completionHandler: nil)
   }
   
   /**
@@ -74,9 +77,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    */
   func startRefreshTimmer() {
     stopRefreshTimmer()
-    refreshTimmer = NSTimer.scheduledTimerWithTimeInterval(
-      10.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
-    NSRunLoop.mainRunLoop().addTimer(refreshTimmer!, forMode: NSRunLoopCommonModes)
+    refreshTimmer = Timer.scheduledTimer(
+      timeInterval: 10.0, target: self, selector: #selector(updateUI), userInfo: nil, repeats: true)
+    RunLoop.main.add(refreshTimmer!, forMode: RunLoopMode.commonModes)
   }
   
   /**
@@ -93,74 +96,21 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * Loads trip data and updates UI
    */
   func loadTripData() {
-    RoutineService.findRoutineTrip({ routineTrips in
-      self.bestRoutine = routineTrips.first
-      dispatch_async(dispatch_get_main_queue()) {
-        if self.bestRoutine != nil {
-          self.updateUI()
-        }
-        else {
-          self.titleLabel.text = "Hittade inga rutiner."
-        }
-      }
-      return
-    })
-  }
-  
-  /**
-   * Creates trip type icon per segment.
-   */
-  private func createTripSegmentIcons(trip: Trip) {
-    if let iconWrapper = iconWrapperView {
-      iconWrapper.subviews.forEach({ $0.removeFromSuperview() })
-      var count = 0
-
-      for (_, segment) in trip.tripSegments.enumerate() {
-        if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
-          if count > 6 { return }
-          let data = TripHelper.friendlyLineData(segment)
-          
-          let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
-          iconView.frame.size = CGSizeMake(22, 22)
-          iconView.center = CGPointMake(22 / 2, 3)
-          
-          let label = UILabel()
-          label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
-          label.textAlignment = NSTextAlignment.Center
-          label.font = UIFont.boldSystemFontOfSize(9)
-          label.minimumScaleFactor = 0.5
-          label.adjustsFontSizeToFitWidth = true
-          label.textColor = UIColor.whiteColor()
-          label.backgroundColor = data.color
-          label.frame.size.width = 22
-          label.frame.size.height = 12
-          label.center = CGPointMake((22 / 2), 19)
-          
-          let wrapperView = UIView(
-            frame:CGRect(
-              origin: CGPointMake(0, 0),
-              size: CGSizeMake(22, 36)))
-          wrapperView.frame.origin = CGPointMake((28 * CGFloat(count)), 10)
-          wrapperView.clipsToBounds = false
-          
-          wrapperView.addSubview(iconView)
-          wrapperView.addSubview(label)
-          
-          if segment.rtuMessages != nil {
-            var warnIconView = UIImageView(image: TripIcons.icons["INFO-ICON"]!)
-            if segment.isWarning {
-              warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
-            }
-            warnIconView.frame.size = CGSizeMake(10, 10)
-            warnIconView.center = CGPointMake((22 / 2) + 10, -6)
-            warnIconView.alpha = 0.9
-            wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
+    if SubscriptionStore.sharedInstance.isSubscribed() {
+      RoutineService.findRoutineTrip({ routineTrips in
+        self.bestRoutine = routineTrips.first
+        DispatchQueue.main.async {
+          if self.bestRoutine != nil {
+            self.updateUI()
           }
-          
-          iconWrapper.addSubview(wrapperView)
-          count += 1
+          else {
+            self.titleLabel.text = "Hittade inga rutiner."
+          }
         }
-      }
+        return
+      })
+    } else {
+      self.titleLabel.text = "Rutiner kräver en prenumeration."
     }
   }
   
@@ -171,6 +121,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     if let bestRoutineTrip = self.bestRoutine {
       if let trip = bestRoutineTrip.trips.first {
         self.titleLabel.text = bestRoutineTrip.title
+        if self.titleLabel.text == "" {
+          self.titleLabel.text = "Vana"
+        }
         self.departureStationLabel.text = trip.tripSegments.first?.origin.name
         self.departureTimeLabel.text = DateUtils.dateAsTimeString(
           trip.tripSegments.first!.departureDateTime)
@@ -182,21 +135,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
           trip.tripSegments.first!.departureDateTime,
           isWalk: (trip.tripSegments.first!.type == TripType.Walk))
         
-        self.createTripSegmentIcons(trip)
-        
-        
         var second: Trip? = nil
         if bestRoutineTrip.trips.count > 1 {
           second = bestRoutineTrip.trips[1]
         }
         
-        if let second = second?.tripSegments.first, first = trip.tripSegments.first {
+        if let second = second?.tripSegments.first, let first = trip.tripSegments.first {
           let depTimeInterval = first.departureDateTime.timeIntervalSinceNow
           if depTimeInterval < (60 * 11) {
-            let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - NSDate().timeIntervalSince1970) / 60)) + 0.5)
+            let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
             if diffMin <= 60 {
               nextLabel.text = String(format: NSLocalizedString("Nästa: %d min", comment: ""), diffMin)
-              nextLabel.hidden = false
+              nextLabel.isHidden = false
             }
           }
         }
@@ -207,7 +157,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   /**
    * Set custom insets
    */
-  func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+  func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
     var newDefaultMarginInsets = defaultMarginInsets
     newDefaultMarginInsets.top = 10
     newDefaultMarginInsets.bottom = 10

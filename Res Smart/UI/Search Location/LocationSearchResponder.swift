@@ -11,5 +11,5 @@ import ResStockholmApiKit
 
 @objc protocol LocationSearchResponder {
 
-  func selectedLocationFromSearch(location: Location) -> Void
+  func selectedLocationFromSearch(_ location: Location) -> Void
 }

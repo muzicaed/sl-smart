@@ -18,13 +18,17 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   var routePolylineViews = [MKPolylineView]()
   var smallPins = [SmallPin]()
   var isSmallPinsVisible = true
+  var allCords = [CLLocationCoordinate2D]()
+  var noOfSegments = 0
+  var loadedSegmentsCount = 0
+  var routeTuples = [([CLLocationCoordinate2D], TripSegment)]()
   
   /**
    * View did load
    */
   override func viewDidLoad() {
     mapView.delegate = self
-    mapView.mapType = MKMapType.Standard
+    mapView.mapType = MKMapType.standard
     mapView.showsBuildings = true
     mapView.showsCompass = true
     mapView.showsPointsOfInterest = false
@@ -34,19 +38,19 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   /**
    * User tapped close
    */
-  @IBAction func onCloseTap(sender: AnyObject) {
-    presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+  @IBAction func onCloseTap(_ sender: AnyObject) {
+    presentingViewController?.dismiss(animated: true, completion: {})
   }
   
   /**
    * Map type segment changed
    */
-  @IBAction func onSegmentChanged(sender: UISegmentedControl) {
+  @IBAction func onSegmentChanged(_ sender: UISegmentedControl) {
     switch sender.selectedSegmentIndex {
     case 0:
-      mapView.mapType = MKMapType.Standard
+      mapView.mapType = MKMapType.standard
     case 1:
-      mapView.mapType = MKMapType.Hybrid
+      mapView.mapType = MKMapType.hybrid
     default: break
     }
   }
@@ -54,9 +58,9 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   /**
    * User tapped my position
    */
-  @IBAction func myPositionTap(sender: AnyObject) {
+  @IBAction func myPositionTap(_ sender: AnyObject) {
     if mapView.showsUserLocation {
-      mapView.setCenterCoordinate(mapView.userLocation.coordinate, animated: true)
+      mapView.setCenter(mapView.userLocation.coordinate, animated: true)
     } else {
       mapView.showsUserLocation = true
     }
@@ -67,12 +71,12 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Annotation views
    */
-  func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
     var reuseId: String? = nil
     var image: UIImage? = nil
     var zIndex = CGFloat(0)
     
-    if annotation.isKindOfClass(BigPin) {
+    if annotation.isKind(of: BigPin.self) {
       let bigPinIcon = annotation as! BigPin
       if let name = bigPinIcon.imageName {
         image = UIImage(named: name)!
@@ -80,12 +84,12 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       }
       zIndex = 2 + bigPinIcon.zIndexMod
       
-    } else if annotation.isKindOfClass(DestinationPin) {
+    } else if annotation.isKind(of: DestinationPin.self) {
       reuseId = "destination-dot"
       image = UIImage(named: "MapDestinationDot")!
       zIndex = 3
       
-    } else if annotation.isKindOfClass(SmallPin) {
+    } else if annotation.isKind(of: SmallPin.self) {
       let pinIcon = annotation as! SmallPin
       if let name = pinIcon.imageName {
         image = UIImage(named: name)!
@@ -100,13 +104,13 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     
     var pinView: MKAnnotationView? = nil
     if let id = reuseId {
-      pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(id)
+      pinView = mapView.dequeueReusableAnnotationView(withIdentifier: id)
     }
     if pinView == nil {
       pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
       pinView!.canShowCallout = true
-      pinView!.centerOffset = CGPointMake(0, 0)
-      pinView!.calloutOffset = CGPointMake(0, -3)
+      pinView!.centerOffset = CGPoint(x: 0, y: 0)
+      pinView!.calloutOffset = CGPoint(x: 0, y: -3)
       pinView!.layer.zPosition = zIndex
       if let img = image {
         pinView!.image = img
@@ -118,15 +122,15 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Render for map view
    */
-  func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-    if overlay.isKindOfClass(MKPolyline) {
+  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+    if overlay.isKind(of: MKPolyline.self) {
       let render = RouteRenderer(overlay: overlay)
       return render
     }
     return MKOverlayRenderer()
   }
   
-  func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+  func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
     if (mapView.region.span.latitudeDelta > 0.20) {
       if isSmallPinsVisible {
         mapView.removeAnnotations(smallPins)
@@ -145,19 +149,40 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Loads map route
    */
-  private func loadRoute() {
+  fileprivate func loadRoute() {
     if let trip = trip {
-      var allCoords = [CLLocationCoordinate2D]()
-      for (index, segment) in trip.allTripSegments.enumerate() {
+      noOfSegments = trip.allTripSegments.count
+      for (index, segment) in trip.allTripSegments.enumerated() {
         let next: TripSegment? = (trip.allTripSegments.count > index + 1) ? trip.allTripSegments[index + 1] : nil
         let before: TripSegment? = (index > 0) ? trip.allTripSegments[index - 1] : nil
         let isLast = (segment == trip.allTripSegments.last)
-        let coords = plotRoute(segment, before: before, next: next, isLast: isLast)
-        createOverlays(coords, segment: segment)
-        allCoords += coords
+        if let geoRef = segment.geometryRef {
+          GeometryService.fetchGeometry(geoRef, callback: { (locations, error) in
+            DispatchQueue.main.async {
+              self.loadedSegmentsCount += 1
+              let coords = self.plotRoute(segment, before: before, next: next, isLast: isLast, geoLocations: locations)
+              self.loadRouteDone(coords: coords, segment: segment)
+            }
+          })
+        }
       }
       
-      setMapViewport(allCoords)
+      
+    }
+  }
+  
+  /**
+   * Create overlay on rote plot done
+   */
+  fileprivate func loadRouteDone(coords: [CLLocationCoordinate2D], segment: TripSegment) {
+    allCords += coords
+    let routeTuple = (coords, segment)
+    routeTuples.append(routeTuple)
+    if loadedSegmentsCount == noOfSegments {
+      setMapViewport(allCords)
+      for tuple in routeTuples {
+        createOverlays(tuple.0, segment: tuple.1)
+      }
     }
   }
   
@@ -165,17 +190,36 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    * Plots the coordinates for the route.
    */
   
-  private func plotRoute(segment: TripSegment, before: TripSegment?, next: TripSegment?, isLast: Bool) -> [CLLocationCoordinate2D] {
+  fileprivate func plotRoute(_ segment: TripSegment,
+                             before: TripSegment?,
+                             next: TripSegment?,
+                             isLast: Bool, geoLocations: [CLLocation]) -> [CLLocationCoordinate2D] {
+    
     var coords = [CLLocationCoordinate2D]()
     if canPlotRoute(segment, before: before, next: next, isLast: isLast) {
       plotWalk(segment)
     } else {
       if segment.stops.count == 0 {
-        coords.append(segment.origin.location.coordinate)
-        coords.append(segment.destination.location.coordinate)
+        if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
+          coords.append(originLocation.coordinate)
+          coords.append(destLocation.coordinate)
+        }
       } else {
-        for stop in segment.stops {
-          coords.append(stop.location.coordinate)
+        var shouldPlot = false
+        if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
+          coords.append(originLocation.coordinate)
+          for location in geoLocations {
+            if location.distance(from: originLocation) < 1  {
+              shouldPlot = true
+            }
+            if shouldPlot == true && location.distance(from: destLocation) < 1 {
+              break
+            }
+            if shouldPlot {
+              coords.append(location.coordinate)
+            }
+          }
+          coords.append(destLocation.coordinate)
         }
       }
     }
@@ -186,12 +230,12 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Check if segment can be ploted as walk route.
    */
-  private func canPlotRoute(segment: TripSegment, before: TripSegment?, next: TripSegment?, isLast: Bool) -> Bool {
+  fileprivate func canPlotRoute(_ segment: TripSegment, before: TripSegment?, next: TripSegment?, isLast: Bool) -> Bool {
     return (
       segment.type == .Walk &&
-      (
-        (segment.origin.type == .Address || segment.destination.type == .Address) ||
-        ((before?.type == .Bus || before == nil) && (next?.type == .Bus || isLast))
+        (
+          (segment.origin.type == .Address || segment.destination.type == .Address) ||
+            ((before?.type == .Bus || before == nil) && (next?.type == .Bus || isLast))
       )
     )
   }
@@ -199,28 +243,30 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Plot a walk segment using directions
    */
-  private func plotWalk(segment: TripSegment) {
-    let source = MKMapItem(placemark: MKPlacemark(coordinate: segment.origin.location.coordinate, addressDictionary: nil))
-    let dest = MKMapItem(placemark: MKPlacemark(coordinate: segment.destination.location.coordinate, addressDictionary: nil))
-    
-    let directionRequest = MKDirectionsRequest()
-    directionRequest.source = source
-    directionRequest.destination = dest
-    directionRequest.transportType = .Walking
-    
-    MKDirections(request: directionRequest)
-      .calculateDirectionsWithCompletionHandler { (response, error) -> Void in
-        
-        guard let response = response else {
-          if let error = error {
-            fatalError("Error: \(error)")
+  fileprivate func plotWalk(_ segment: TripSegment) {
+    if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
+      let source = MKMapItem(placemark: MKPlacemark(coordinate: originLocation.coordinate, addressDictionary: nil))
+      let dest = MKMapItem(placemark: MKPlacemark(coordinate: destLocation.coordinate, addressDictionary: nil))
+      
+      let directionRequest = MKDirectionsRequest()
+      directionRequest.source = source
+      directionRequest.destination = dest
+      directionRequest.transportType = .walking
+      
+      MKDirections(request: directionRequest)
+        .calculate { (response, error) -> Void in
+          
+          guard let response = response else {
+            if let error = error {
+              fatalError("Error: \(error)")
+            }
+            return
           }
-          return
-        }
-        
-        if let route = response.routes.first {
-          self.mapView.addOverlay(route.polyline, level: .AboveRoads)
-        }
+          
+          if let route = response.routes.first {
+            self.mapView.add(route.polyline, level: .aboveRoads)
+          }
+      }
     }
   }
   
@@ -228,11 +274,11 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    * Plots a trip segment route on map and
    * creates overlay icons.
    */
-  private func createOverlays(coordinates: [CLLocationCoordinate2D], segment: TripSegment) {
+  fileprivate func createOverlays(_ coordinates: [CLLocationCoordinate2D], segment: TripSegment) {
     var newCoordinates = coordinates
     let polyline = RoutePolyline(coordinates: &newCoordinates, count: newCoordinates.count)
     polyline.segment = segment
-    mapView.addOverlay(polyline)
+    mapView.add(polyline)
     
     createStopPins(segment)
     createLocationPins(segment, coordinates: newCoordinates)
@@ -241,45 +287,48 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Create location pins for each segment
    */
-  private func createLocationPins(segment: TripSegment, coordinates: [CLLocationCoordinate2D]) {
-    let originCoord = (segment.stops.count == 0) ? segment.origin.location.coordinate : segment.stops.first!.location.coordinate
-    let destCoord = (segment.stops.count == 0) ? segment.destination.location.coordinate : segment.stops.last!.location.coordinate
-    let pin = BigPin()
-    pin.zIndexMod = (segment.type == .Walk) ? -1 : 0
-    if segment == trip?.tripSegments.first! {
-      pin.coordinate = originCoord
-      pin.title = "Start: " + segment.origin.name
-      pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
-      pin.imageName = segment.type.rawValue
-      mapView.addAnnotation(pin)
-      mapView.selectAnnotation(pin, animated: false)
-    }
-    if segment == trip?.tripSegments.last! {
-      pin.coordinate = originCoord
-      pin.title = segment.origin.name
-      pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
-      pin.imageName = segment.type.rawValue
-      mapView.addAnnotation(pin)
+  fileprivate func createLocationPins(_ segment: TripSegment, coordinates: [CLLocationCoordinate2D]) {
+    if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
+      let originCoord = (segment.stops.count == 0) ? originLocation.coordinate : segment.stops.first!.location.coordinate
+      let destCoord = (segment.stops.count == 0) ? destLocation.coordinate : segment.stops.last!.location.coordinate
       
-      let destPin = DestinationPin()
-      destPin.coordinate = destCoord
-      destPin.title = "Destination: " + segment.destination.name
-      destPin.subtitle = "Framme: " + DateUtils.dateAsTimeString(segment.arrivalDateTime)
-      mapView.addAnnotation(destPin)
-    }
-    if segment != trip?.tripSegments.first! && segment != trip?.tripSegments.last! {
-      pin.coordinate = originCoord
-      pin.title = segment.origin.name
-      pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
-      pin.imageName = segment.type.rawValue
-      mapView.addAnnotation(pin)
+      let pin = BigPin()
+      pin.zIndexMod = (segment.type == .Walk) ? -1 : 1
+      if segment == trip?.tripSegments.first! {
+        pin.coordinate = originCoord
+        pin.title = "Start: " + segment.origin.name
+        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+        pin.imageName = segment.type.rawValue
+        mapView.addAnnotation(pin)
+        mapView.selectAnnotation(pin, animated: false)
+      }
+      if segment == trip?.tripSegments.last! {
+        pin.coordinate = originCoord
+        pin.title = segment.origin.name
+        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+        pin.imageName = segment.type.rawValue
+        mapView.addAnnotation(pin)
+        
+        let destPin = DestinationPin()
+        destPin.coordinate = destCoord
+        destPin.title = "Destination: " + segment.destination.name
+        destPin.subtitle = "Framme: " + DateUtils.dateAsTimeString(segment.arrivalDateTime)
+        mapView.addAnnotation(destPin)
+      }
+      if segment != trip?.tripSegments.first! && segment != trip?.tripSegments.last! {
+        pin.coordinate = originCoord
+        pin.title = segment.origin.name
+        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+        pin.imageName = segment.type.rawValue
+        mapView.addAnnotation(pin)
+      }
     }
   }
   
   /**
    * Create location pins for each stop
    */
-  private func createStopPins(segment: TripSegment) {
+  fileprivate func createStopPins(_ segment: TripSegment) {
     for stop in segment.stops {
       if stop.id != segment.stops.first!.id && stop.id != segment.stops.last!.id {
         let pin = SmallPin()
@@ -297,7 +346,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Centers and zooms map
    */
-  private func setMapViewport(coordinates: [CLLocationCoordinate2D]) {
+  fileprivate func setMapViewport(_ coordinates: [CLLocationCoordinate2D]) {
     var newCoordinates = coordinates
     let allPolyline = MKPolyline(coordinates: &newCoordinates, count: newCoordinates.count)
     

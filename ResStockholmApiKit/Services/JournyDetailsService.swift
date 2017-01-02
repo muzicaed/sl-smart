@@ -9,33 +9,31 @@
 import Foundation
 import CoreLocation
 
-public class JournyDetailsService {
+open class JournyDetailsService {
   
-  private static let api = SLJourneyDetailsApi()
+  fileprivate static let api = SLJourneyDetailsApi()
   
   /**
    * Fetch journy details
    */
-  public static func fetchJournyDetails(urlEncRef: String,
-                                        callback: (data: [Stop], error: SLNetworkError?) -> Void) {
+  open static func fetchJournyDetails(_ urlEncRef: String,
+                                      callback: @escaping (_ data: [Stop], _ error: SLNetworkError?) -> Void) {
     var result = [Stop]()
     api.getDetails(urlEncRef) { (data, error) -> Void in
       if let d = data {
-        if d.length == 0 {
-          callback(data: result, error: SLNetworkError.NoDataFound)
+        if d.count == 0 {
+          callback(result, SLNetworkError.noDataFound)
           return
         }
         
         let jsonData = JSON(data: d)
-        if jsonData["JourneyDetail"].isExists() {
-          if let stopsJson = jsonData["JourneyDetail"]["Stops"]["Stop"].array {
-            for stopJson in stopsJson {
-              result.append(convertStopJson(stopJson))
-            }
+        if let stopsJson = jsonData["JourneyDetail"]["Stops"]["Stop"].array {
+          for stopJson in stopsJson {
+            result.append(convertStopJson(stopJson))
           }
         }
       }
-      callback(data: result, error: error)
+      callback(result, error)
     }
   }
   
@@ -43,7 +41,7 @@ public class JournyDetailsService {
    * Filter out to show only relevat
    * in between stops.
    */
-  public static func filterStops(stops: [Stop], segment: TripSegment) -> [Stop] {
+  open static func filterStops(_ stops: [Stop], segment: TripSegment) -> [Stop] {
     var filterStops = [Stop]()
     var foundFirst = false
     for stop in stops {
@@ -66,7 +64,7 @@ public class JournyDetailsService {
   /**
    * Converts the raw json string into array of Stops.
    */
-  private static func convertStopJson(stopJson: JSON) -> Stop {
+  fileprivate static func convertStopJson(_ stopJson: JSON) -> Stop {
     let timeDateTuple = extractTimeDate(stopJson)
     
     if let staticStop = StopsStore.sharedInstance.getOnId(stopJson["id"].string!) {
@@ -87,7 +85,7 @@ public class JournyDetailsService {
    * Extracts departure date/time and arriaval date/time.
    * Uses realtime data if available.
    */
-  private static func extractTimeDate(stopJson: JSON)
+  fileprivate static func extractTimeDate(_ stopJson: JSON)
     -> (depDate: String?, depTime: String?) {
       
       var depDate = stopJson["depDate"].string

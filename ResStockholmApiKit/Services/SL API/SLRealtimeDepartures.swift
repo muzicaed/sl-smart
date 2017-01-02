@@ -10,15 +10,17 @@ import Foundation
 
 class SLRealtimeDepartures {
   
-  let apiKey = "eabf4986caee4072a96fa6d5ec860e5c"
-  let urlBase = "http://api.sl.se/api2/realtimedepartures.json"
+  //TODO: Remove old
+  let oldApiKey = "eabf4986caee4072a96fa6d5ec860e5c"
+  let apiKey = "8350ec2932794e1daf81abf225022ab3"
+  let urlBase = "http://api.sl.se/api2/realtimedeparturesV4.json"
   
   /**
    * Search for real time.
    */
   func getRealTimeTable(
-    siteId: Int,
-    callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
+    _ siteId: Int,
+    callback: @escaping ((data: Data?, error: SLNetworkError?)) -> Void) {
       let url = createRealTimeSearchUrl(siteId)
       HttpRequestHelper.makeGetRequest(url) { resTuple in
         callback(resTuple)
@@ -30,7 +32,7 @@ class SLRealtimeDepartures {
   /**
   * Creates api url for real time search
   */
-  private func createRealTimeSearchUrl(siteId: Int) -> String {
+  fileprivate func createRealTimeSearchUrl(_ siteId: Int) -> String {
     return urlBase + "?key=\(apiKey)&SiteId=\(siteId)&TimeWindow=60"
   }
 }

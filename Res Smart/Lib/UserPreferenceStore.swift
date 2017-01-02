@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class UserPreferenceStore {
+open class UserPreferenceStore {
   
-  private let LastRealTimeTripType = "USER-LastRealTimeTripType"
-  private let ShouldShowNews = "USER-ShouldShowNews"
-  private let defaults = NSUserDefaults.standardUserDefaults()
-  private var lastRealTimeTripTypeCache: String?
-  private var shouldShowNewsCache: Bool?
+  fileprivate let LastRealTimeTripType = "USER-LastRealTimeTripType"
+  fileprivate let ShouldShowNews = "USER-ShouldShowNews"
+  fileprivate let defaults = UserDefaults.standard
+  fileprivate var lastRealTimeTripTypeCache: String?
+  fileprivate var shouldShowNewsCache: Bool?
   
   // Singelton pattern
   static let sharedInstance = UserPreferenceStore()
@@ -24,7 +24,7 @@ public class UserPreferenceStore {
    */
   func getLastRealTimeTripType() -> String? {
     if lastRealTimeTripTypeCache == nil {
-      lastRealTimeTripTypeCache = defaults.stringForKey(LastRealTimeTripType)
+      lastRealTimeTripTypeCache = defaults.string(forKey: LastRealTimeTripType)
     }
     
     return lastRealTimeTripTypeCache
@@ -33,9 +33,9 @@ public class UserPreferenceStore {
   /**
    * Set user's last real time trip type.
    */
-  func setLastRealTimeTripType(lastRealTimeTripType: String) {
+  func setLastRealTimeTripType(_ lastRealTimeTripType: String) {
     lastRealTimeTripTypeCache = lastRealTimeTripType
-    defaults.setObject(lastRealTimeTripTypeCache, forKey: LastRealTimeTripType)
+    defaults.set(lastRealTimeTripTypeCache, forKey: LastRealTimeTripType)
   }
   
   /**
@@ -43,7 +43,7 @@ public class UserPreferenceStore {
    */
   func shouldShowNews() -> Bool {
     if shouldShowNewsCache == nil {
-      shouldShowNewsCache = defaults.boolForKey(ShouldShowNews)
+      shouldShowNewsCache = defaults.bool(forKey: ShouldShowNews)
     }
     
     return shouldShowNewsCache!
@@ -52,8 +52,8 @@ public class UserPreferenceStore {
   /**
    * Set user's last real time trip type.
    */
-  func setShouldShowNews(shouldShowNews: Bool) {
+  func setShouldShowNews(_ shouldShowNews: Bool) {
     shouldShowNewsCache = shouldShowNews
-    defaults.setBool(shouldShowNewsCache!, forKey: ShouldShowNews)
+    defaults.set(shouldShowNewsCache!, forKey: ShouldShowNews)
   }
 }

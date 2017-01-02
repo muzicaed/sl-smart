@@ -51,14 +51,14 @@ class LocationPickerRow: UITableViewCell {
   /**
    * On origin touch
    */
-  func onOriginTouchStart(gesture: UILongPressGestureRecognizer) {
-    if gesture.state == .Began {
+  func onOriginTouchStart(_ gesture: UILongPressGestureRecognizer) {
+    if gesture.state == .began {
       originView.backgroundColor = StyleHelper.sharedInstance.highlight
-    } else if gesture.state == .Ended {
-      UIView.animateWithDuration(0.2, animations: {
-        self.originView.backgroundColor = UIColor.clearColor()
+    } else if gesture.state == .ended {
+      UIView.animate(withDuration: 0.2, animations: {
+        self.originView.backgroundColor = UIColor.clear
       })
-      originView.backgroundColor = UIColor.clearColor()
+      originView.backgroundColor = UIColor.clear
       if let del = delegate {
         del.pickLocation(true)
       }
@@ -68,12 +68,12 @@ class LocationPickerRow: UITableViewCell {
   /**
    * On destination touch
    */
-  func onDestinationTouchStart(gesture: UILongPressGestureRecognizer) {
-    if gesture.state == .Began {
+  func onDestinationTouchStart(_ gesture: UILongPressGestureRecognizer) {
+    if gesture.state == .began {
       destinationView.backgroundColor = StyleHelper.sharedInstance.highlight
-    } else if gesture.state == .Ended {
-      UIView.animateWithDuration(0.2, animations: {
-        self.destinationView.backgroundColor = UIColor.clearColor()
+    } else if gesture.state == .ended {
+      UIView.animate(withDuration: 0.2, animations: {
+        self.destinationView.backgroundColor = UIColor.clear
       })
       if let del = delegate {
         del.pickLocation(false)
@@ -86,13 +86,13 @@ class LocationPickerRow: UITableViewCell {
    */
   func onSwitchTap() {
     if let del = delegate {
-      UIView.animateWithDuration(0.15, animations: {
+      UIView.animate(withDuration: 0.15, animations: {
         self.originLabel.alpha = 0
         self.destinationLabel.alpha = 0
         }, completion: { _ in
           del.switchTapped()
           
-          UIView.animateWithDuration(0.25, animations: {
+          UIView.animate(withDuration: 0.25, animations: {
             self.originLabel.alpha = 1
             self.destinationLabel.alpha = 1
           })
@@ -103,7 +103,7 @@ class LocationPickerRow: UITableViewCell {
   /**
    * Sets the text for origin label.
    */
-  func setOriginLabelLocation(location: Location?) {
+  func setOriginLabelLocation(_ location: Location?) {
     if let loc = location {
       originLabel.text = loc.name
       originView.accessibilityLabel = "Från: \(loc.name)"
@@ -116,7 +116,7 @@ class LocationPickerRow: UITableViewCell {
   /**
    * Sets the text for origin label.
    */
-  func setDestinationLabelLocation(location: Location?) {
+  func setDestinationLabelLocation(_ location: Location?) {
     if let loc = location {
       destinationLabel.text = loc.name
       destinationView.accessibilityLabel = "Till: \(loc.name)"

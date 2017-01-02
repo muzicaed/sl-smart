@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class RTTrain: RTTransportBase {
+open class RTTrain: RTTransportBase {
   
-  public let secondaryDestinationName: String?
+  open let secondaryDestinationName: String?
   
   /**
    * Init

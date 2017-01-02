@@ -12,6 +12,6 @@ import ResStockholmApiKit
 protocol TravelTypesResponder {
   
   func selectedTravelType(
-    useMetro: Bool, useTrain: Bool, useTram: Bool,
+    _ useMetro: Bool, useTrain: Bool, useTram: Bool,
     useBus: Bool, useBoat: Bool) -> Void
 }

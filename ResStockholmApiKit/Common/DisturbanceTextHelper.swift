@@ -8,17 +8,17 @@
 
 import Foundation
 
-public class DisturbanceTextHelper {
+open class DisturbanceTextHelper {
   
-  public class func isDisturbance(text: String?) -> Bool {
+  open class func isDisturbance(_ text: String?) -> Bool {
     if let text = text {
-      return (text.lowercaseString.rangeOfString("försen") != nil ||
-        text.lowercaseString.rangeOfString("utebli") != nil ||
-        text.lowercaseString.rangeOfString("signalfel") != nil ||
-        text.lowercaseString.rangeOfString("inställd") != nil ||        
-        text.lowercaseString.rangeOfString("stannar inte") != nil ||
-        text.lowercaseString.rangeOfString("banarbete") != nil ||        
-        text.lowercaseString.rangeOfString("stannar ej") != nil)            
+      return (text.lowercased().range(of: "försen") != nil ||
+        text.lowercased().range(of: "utebli") != nil ||
+        text.lowercased().range(of: "signalfel") != nil ||
+        text.lowercased().range(of: "inställd") != nil ||        
+        text.lowercased().range(of: "stannar inte") != nil ||
+        text.lowercased().range(of: "banarbete") != nil ||        
+        text.lowercased().range(of: "stannar ej") != nil)            
     }
     
     return false

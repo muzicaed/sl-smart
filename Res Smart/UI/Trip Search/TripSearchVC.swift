@@ -14,9 +14,9 @@ class TripSearchVC: UITableViewController, LocationSearchResponder,
 DateTimePickResponder, PickLocationResponder, TravelTypesResponder,
 PickGenericValueResponder, LinePickerResponder {
   
-  let notificationCenter = NSNotificationCenter.defaultCenter()
+  let notificationCenter = NotificationCenter.default
   var searchLocationType: String?
-  var selectedDate = NSDate()
+  var selectedDate = Date()
   var criterions: TripSearchCriterion?
   var dimmer: UIView?
   var isViaSelected = false
@@ -40,7 +40,7 @@ PickGenericValueResponder, LinePickerResponder {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.editing = true
+    tableView.isEditing = true
     view.backgroundColor = StyleHelper.sharedInstance.background
     criterions = SearchCriterionStore.sharedInstance.retrieveSearchCriterions()
     restoreUIFromCriterions()
@@ -53,11 +53,11 @@ PickGenericValueResponder, LinePickerResponder {
   /**
    * Before seque is triggred.
    */
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     if let crit = criterions {
       if segue.identifier == "SearchOriginLocation" {
-        let vc = segue.destinationViewController as! SearchLocationVC
+        let vc = segue.destination as! SearchLocationVC
         vc.delegate = self
         vc.searchOnlyForStations = false
         vc.allowCurrentPosition = true
@@ -66,7 +66,7 @@ PickGenericValueResponder, LinePickerResponder {
         searchLocationType = "Origin"
         
       } else if segue.identifier == "SearchDestinationLocation" {
-        let vc = segue.destinationViewController as! SearchLocationVC
+        let vc = segue.destination as! SearchLocationVC
         vc.delegate = self
         vc.searchOnlyForStations = false
         vc.allowCurrentPosition = true
@@ -75,53 +75,53 @@ PickGenericValueResponder, LinePickerResponder {
         searchLocationType = "Destination"
         
       } else if segue.identifier == "SearchViaLocation" {
-        let vc = segue.destinationViewController as! SearchLocationVC
+        let vc = segue.destination as! SearchLocationVC
         vc.delegate = self
         vc.searchOnlyForStations = true
         vc.title = "Välj via station"
         searchLocationType = "Via"
         
       } else if segue.identifier == "ShowTripList" {
-        let vc = segue.destinationViewController as! TripListVC
+        let vc = segue.destination as! TripListVC
         vc.criterions = criterions?.copy() as? TripSearchCriterion
         SearchCriterionStore.sharedInstance.writeLastSearchCriterions(crit)
         RoutineService.addHabitRoutine(crit)
         
       } else if segue.identifier == "ShowDateTimePicker" {
-        let vc = segue.destinationViewController as! DateTimePickerVC
+        let vc = segue.destination as! DateTimePickerVC
         vc.selectedDate = selectedDate
         vc.delegate = self
-        UIView.animateWithDuration(0.45, animations: {
+        UIView.animate(withDuration: 0.45, animations: {
           self.dimmer?.alpha = 0.7
         })
         
       } else if segue.identifier == "ShowTravelTypesPicker" {
-        let vc = segue.destinationViewController as! TravelTypesVC
+        let vc = segue.destination as! TravelTypesVC
         vc.delegate = self
         if let crit = criterions {
           vc.setData(crit)
         }
         
       } else if segue.identifier == "MaxWalkDistance" {
-        let vc = segue.destinationViewController as! GenericValuePickerVC
+        let vc = segue.destination as! GenericValuePickerVC
         vc.delegate = self
         vc.title = "Max gångavstånd"
         vc.setValue(crit.maxWalkDist, valueType: .WalkDistance)
         
       } else if segue.identifier == "NumberOfChanges" {
-        let vc = segue.destinationViewController as! GenericValuePickerVC
+        let vc = segue.destination as! GenericValuePickerVC
         vc.delegate = self
         vc.title = "Antal byten"
         vc.setValue(crit.numChg, valueType: .NoOfChanges)
         
       } else if segue.identifier == "ChangeTime" {
-        let vc = segue.destinationViewController as! GenericValuePickerVC
+        let vc = segue.destination as! GenericValuePickerVC
         vc.delegate = self
         vc.title = "Extra tid vid byte"
         vc.setValue(crit.minChgTime, valueType: .TimeForChange)
         
       } else if segue.identifier == "PickLines" {
-        let vc = segue.destinationViewController as! LinePickerVC
+        let vc = segue.destination as! LinePickerVC
         vc.delegate = self
         vc.incText = crit.lineInc
         vc.excText = crit.lineExc
@@ -132,8 +132,8 @@ PickGenericValueResponder, LinePickerResponder {
   /**
    * Validate if segue should be performed.
    */
-  override func shouldPerformSegueWithIdentifier(
-    identifier: String, sender: AnyObject?)
+  override func shouldPerformSegue(
+    withIdentifier identifier: String, sender: Any?)
     -> Bool {
       if identifier == "ShowTripList" {
         if criterions?.dest == nil || criterions?.origin == nil ||
@@ -149,7 +149,7 @@ PickGenericValueResponder, LinePickerResponder {
       return true
   }
   
-  @IBAction func onAdvancedButtonTap(sender: UIBarButtonItem) {
+  @IBAction func onAdvancedButtonTap(_ sender: UIBarButtonItem) {
     isAdvancedMode = !isAdvancedMode
     sender.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
     criterions?.isAdvanced = isAdvancedMode
@@ -167,21 +167,21 @@ PickGenericValueResponder, LinePickerResponder {
   /**
    * Changed if departure time or arrival time
    */
-  @IBAction func onDepartureArrivalChanged(sender: UISegmentedControl) {
+  @IBAction func onDepartureArrivalChanged(_ sender: UISegmentedControl) {
     if let crit = criterions {
       crit.searchForArrival = (destinationArrivalSegmented.selectedSegmentIndex == 1)
     }
   }
   
-  @IBAction func unwindToStationSearchParent(segue: UIStoryboardSegue) {}
+  @IBAction func unwindToStationSearchParent(_ segue: UIStoryboardSegue) {}
   
   // MARK: LocationSearchResponder
   
   /**
    * Triggered when location is selected on location search VC.
    */
-  func selectedLocationFromSearch(location: Location) {
-    if let crit = criterions, locationType = searchLocationType {
+  func selectedLocationFromSearch(_ location: Location) {
+    if let crit = criterions, let locationType = searchLocationType {
       switch locationType {
       case "Origin":
         crit.origin = location
@@ -205,7 +205,7 @@ PickGenericValueResponder, LinePickerResponder {
   /**
    * Triggered whem date and time is picked
    */
-  func pickedDate(date: NSDate?) -> Void {
+  func pickedDate(_ date: Date?) -> Void {
     if let crit = criterions, let date = date {
       let dateTimeTuple = DateUtils.dateAsStringTuple(date)
       crit.date = dateTimeTuple.date
@@ -213,7 +213,7 @@ PickGenericValueResponder, LinePickerResponder {
       timeLabel.text = DateUtils.friendlyDateAndTime(date)
       selectedDate = date
     }
-    UIView.animateWithDuration(0.2, animations: {
+    UIView.animate(withDuration: 0.2, animations: {
       self.dimmer?.alpha = 0.0
     })
   }
@@ -223,11 +223,11 @@ PickGenericValueResponder, LinePickerResponder {
   /**
    * Called when user taped on orign or destination row.
    */
-  func pickLocation(isOrigin: Bool) {
+  func pickLocation(_ isOrigin: Bool) {
     if isOrigin {
-      performSegueWithIdentifier("SearchOriginLocation", sender: self)
+      performSegue(withIdentifier: "SearchOriginLocation", sender: self)
     } else {
-      performSegueWithIdentifier("SearchDestinationLocation", sender: self)
+      performSegue(withIdentifier: "SearchDestinationLocation", sender: self)
     }
   }
   
@@ -255,7 +255,7 @@ PickGenericValueResponder, LinePickerResponder {
   /**
    * User picked a value using the generic value picker.
    */
-  func pickedValue(type: GenericValuePickerVC.ValueType, value: Int) {
+  func pickedValue(_ type: GenericValuePickerVC.ValueType, value: Int) {
     if let crit = criterions {
       switch type {
       case .WalkDistance:
@@ -271,7 +271,7 @@ PickGenericValueResponder, LinePickerResponder {
   
   // MARK: LinePickerResponder
   
-  func pickedLines(included: String?, excluded: String?) {
+  func pickedLines(_ included: String?, excluded: String?) {
     if let crit = criterions {
       crit.lineInc = included
       crit.lineExc = excluded
@@ -282,7 +282,7 @@ PickGenericValueResponder, LinePickerResponder {
   // MARK: TravelTypesResponder
   
   func selectedTravelType(
-    useMetro: Bool, useTrain: Bool,
+    _ useMetro: Bool, useTrain: Bool,
     useTram: Bool, useBus: Bool,
     useBoat: Bool
     ) {
@@ -302,7 +302,7 @@ PickGenericValueResponder, LinePickerResponder {
   /**
    * Section count
    */
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return (isAdvancedMode) ? 6 : 3
   }
   
@@ -310,7 +310,7 @@ PickGenericValueResponder, LinePickerResponder {
    * Row count in section
    */
   override func tableView(
-    tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
     if section == 0 {
       return (isAdvancedMode) ? 2 : 1
@@ -324,15 +324,15 @@ PickGenericValueResponder, LinePickerResponder {
   /**
    * User selected row
    */
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.section == 4 && indexPath.row == 1 {
       if let crit = criterions {
         crit.unsharp = !crit.unsharp
         updateGenericValues()
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
       }
     } else if indexPath.section == 2 {
-      tableView.deselectRowAtIndexPath(indexPath, animated: true)
+      tableView.deselectRow(at: indexPath, animated: true)
     }
   }
   
@@ -340,8 +340,8 @@ PickGenericValueResponder, LinePickerResponder {
    * Height for rows.
    */
   override func tableView(
-    tableView: UITableView,
-    heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    _ tableView: UITableView,
+    heightForRowAt indexPath: IndexPath) -> CGFloat {
     
     if indexPath.section == 0 && indexPath.row == 0 {
       return 88
@@ -353,8 +353,8 @@ PickGenericValueResponder, LinePickerResponder {
    * Can row be edited?
    */
   override func tableView(
-    tableView: UITableView,
-    canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool{
+    _ tableView: UITableView,
+    canEditRowAt indexPath: IndexPath) -> Bool{
     return (indexPath.section == 0 && indexPath.row == 1 && isViaSelected && isAdvancedMode)
   }
   
@@ -362,17 +362,17 @@ PickGenericValueResponder, LinePickerResponder {
    * Editing style
    */
   override func tableView(
-    tableView: UITableView,
-    editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-    return (indexPath.section == 0 && indexPath.row == 1) ? .Delete : .None
+    _ tableView: UITableView,
+    editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    return (indexPath.section == 0 && indexPath.row == 1) ? .delete : .none
   }
   
   /**
    * Green highlight on selected row.
    */
   override func tableView(
-    tableView: UITableView, willDisplayCell cell: UITableViewCell,
-    forRowAtIndexPath indexPath: NSIndexPath) {
+    _ tableView: UITableView, willDisplay cell: UITableViewCell,
+    forRowAt indexPath: IndexPath) {
     
     let bgColorView = UIView()
     bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
@@ -383,11 +383,11 @@ PickGenericValueResponder, LinePickerResponder {
    * Edit actions. (Only used for clear Via station)
    */
   override func tableView(
-    tableView: UITableView,
-    editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    _ tableView: UITableView,
+    editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
     
     return [UITableViewRowAction(
-      style: UITableViewRowActionStyle.Normal,
+      style: UITableViewRowActionStyle.normal,
     title: "Rensa") { (_, _) -> Void in
       self.resetViaStation()
       tableView.reloadData()
@@ -413,7 +413,7 @@ PickGenericValueResponder, LinePickerResponder {
       updateGenericValues()
       crit.searchForArrival = false
       destinationArrivalSegmented.selectedSegmentIndex = (crit.searchForArrival) ? 1 : 0
-      pickedDate(NSDate())
+      pickedDate(Date())
     }
     tableView.reloadData()
   }
@@ -423,20 +423,20 @@ PickGenericValueResponder, LinePickerResponder {
   /**
    * Animates the table view on advanced toggle.
    */
-  private func animateAdvancedToggle() {
+  fileprivate func animateAdvancedToggle() {
     tableView.beginUpdates()
     if isAdvancedMode {
-      tableView.insertRowsAtIndexPaths(
-        [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
-      tableView.insertSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
-      tableView.insertSections(NSIndexSet(index: 4), withRowAnimation: .Automatic)
-      tableView.insertSections(NSIndexSet(index: 5), withRowAnimation: .Automatic)
+      tableView.insertRows(
+        at: [IndexPath(row: 1, section: 0)], with: .automatic)
+      tableView.insertSections(IndexSet(integer: 3), with: .automatic)
+      tableView.insertSections(IndexSet(integer: 4), with: .automatic)
+      tableView.insertSections(IndexSet(integer: 5), with: .automatic)
     } else {
-      tableView.deleteRowsAtIndexPaths(
-        [NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Automatic)
-      tableView.deleteSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
-      tableView.deleteSections(NSIndexSet(index: 4), withRowAnimation: .Automatic)
-      tableView.deleteSections(NSIndexSet(index: 5), withRowAnimation: .Automatic)
+      tableView.deleteRows(
+        at: [IndexPath(row: 1, section: 0)], with: .automatic)
+      tableView.deleteSections(IndexSet(integer: 3), with: .automatic)
+      tableView.deleteSections(IndexSet(integer: 4), with: .automatic)
+      tableView.deleteSections(IndexSet(integer: 5), with: .automatic)
     }
     tableView.endUpdates()
   }
@@ -444,38 +444,38 @@ PickGenericValueResponder, LinePickerResponder {
   /**
    * Show a invalid location alert
    */
-  private func showInvalidLocationAlert() {
+  fileprivate func showInvalidLocationAlert() {
     let invalidLocationAlert = UIAlertController(
       title: "Station saknas",
       message: "Du behöver ange två olika stationer för \"från\" och \"till\".",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     invalidLocationAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: nil))
     
-    presentViewController(invalidLocationAlert, animated: true, completion: nil)
+    present(invalidLocationAlert, animated: true, completion: nil)
   }
   
   /**
    * Show a invalid via location alert
    */
-  private func showInvalidViaAlert() {
+  fileprivate func showInvalidViaAlert() {
     let invalidLocationAlert = UIAlertController(
       title: "Felaktig \"Via station\"",
       message: "Via kan ej vara samma station som Från eller Till station.",
-      preferredStyle: UIAlertControllerStyle.Alert)
+      preferredStyle: UIAlertControllerStyle.alert)
     invalidLocationAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.Default, handler: nil))
+      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: nil))
     
-    presentViewController(invalidLocationAlert, animated: true, completion: nil)
+    present(invalidLocationAlert, animated: true, completion: nil)
   }
   
   /**
    * Creates a screen dimmer for date/time picker.
    */
-  private func createDimmer() {
+  fileprivate func createDimmer() {
     dimmer = UIView(frame: CGRect(origin: CGPoint.zero, size: view.bounds.size))
-    dimmer!.userInteractionEnabled = false
-    dimmer!.backgroundColor = UIColor.blackColor()
+    dimmer!.isUserInteractionEnabled = false
+    dimmer!.backgroundColor = UIColor.black
     dimmer!.alpha = 0.0
     view.addSubview(dimmer!)
   }
@@ -483,7 +483,7 @@ PickGenericValueResponder, LinePickerResponder {
   /**
    * Resets the via station selector.
    */
-  private func resetViaStation() {
+  fileprivate func resetViaStation() {
     self.isViaSelected = false
     self.criterions?.via = nil
     self.viaLabel.text = "(Välj station)"
@@ -492,7 +492,7 @@ PickGenericValueResponder, LinePickerResponder {
   /**
    * Updates generic value picker labels
    */
-  private func updateGenericValues() {
+  fileprivate func updateGenericValues() {
     if let crit = criterions {
       switch crit.maxWalkDist {
       case 1000, 2000:
@@ -519,9 +519,9 @@ PickGenericValueResponder, LinePickerResponder {
         changeTimeLabel.text = "\(crit.minChgTime) minuter extra vid byte"
       }
       
-      isAlternative.accessoryType = .None
+      isAlternative.accessoryType = .none
       if crit.unsharp {
-        isAlternative.accessoryType = .Checkmark
+        isAlternative.accessoryType = .checkmark
       }
       
       if crit.lineInc == nil && crit.lineExc == nil {
@@ -537,11 +537,11 @@ PickGenericValueResponder, LinePickerResponder {
   /**
    * Add listners for notfication events.
    */
-  private func createNotificationListners() {
+  fileprivate func createNotificationListners() {
     notificationCenter.addObserver(
       self,
       selector: #selector(restoreUIFromCriterions),
-      name: UIApplicationDidBecomeActiveNotification, object: nil)
+      name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
   }
   
   /**

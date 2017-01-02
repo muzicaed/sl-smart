@@ -15,7 +15,7 @@ class AdvancedCriterionsHelper {
    * Creates a human readable string to
    * describe the advanced search criterias.
    */
-  static func createAdvCriterionText(criterions: TripSearchCriterion) -> String {
+  static func createAdvCriterionText(_ criterions: TripSearchCriterion) -> String {
     let isViaString = (criterions.via != nil) ? "Via \(criterions.via!.name). " : ""
     let travelTypesString = createTravelTypeString(criterions)
     let numChangeString = createNoChangeString(criterions)
@@ -33,7 +33,7 @@ class AdvancedCriterionsHelper {
   /**
    * Creates human readable max number of changes string.
    */
-  static private func createNoChangeString(criterions: TripSearchCriterion) -> String {
+  static fileprivate func createNoChangeString(_ criterions: TripSearchCriterion) -> String {
     var text = ""
     if criterions.numChg > -1 {
       switch criterions.numChg {
@@ -51,7 +51,7 @@ class AdvancedCriterionsHelper {
   /**
    * Creates human readable max walk distance string.
    */
-  static private func createWalkDistanceString(criterions: TripSearchCriterion) -> String {
+  static fileprivate func createWalkDistanceString(_ criterions: TripSearchCriterion) -> String {
     var text = ""
     if criterions.maxWalkDist != 1000 {
       switch criterions.maxWalkDist {
@@ -67,7 +67,7 @@ class AdvancedCriterionsHelper {
   /**
    * Creates human readable extra time string.
    */
-  static private func createExtraTimeString(criterions: TripSearchCriterion) -> String {
+  static fileprivate func createExtraTimeString(_ criterions: TripSearchCriterion) -> String {
     var text = ""
     if criterions.minChgTime > 0 {
       text = "\(criterions.minChgTime) min extra. "
@@ -78,7 +78,7 @@ class AdvancedCriterionsHelper {
   /**
    * Creates human readable travel type string
    */
-  static private func createTravelTypeString(criterions: TripSearchCriterion) -> String {
+  static fileprivate func createTravelTypeString(_ criterions: TripSearchCriterion) -> String {
     var travelTypeString = ""
     
     if countNonIncluded(criterions) > 2 {
@@ -93,7 +93,7 @@ class AdvancedCriterionsHelper {
   /**
    * Counts travel types that are not included.
    */
-  static private func countNonIncluded(criterions: TripSearchCriterion) -> Int {
+  static fileprivate func countNonIncluded(_ criterions: TripSearchCriterion) -> Int {
     var count = 0
     if !criterions.useMetro {
       count += 1
@@ -117,8 +117,8 @@ class AdvancedCriterionsHelper {
    * Creates a human friendly travel string
    * explaining not included travel types.
    */
-  static private func createNotIncludedTravelTypeString(
-    criterions: TripSearchCriterion) -> String {
+  static fileprivate func createNotIncludedTravelTypeString(
+    _ criterions: TripSearchCriterion) -> String {
     
     var travelTypesString = ""
     if !criterions.useMetro {
@@ -138,12 +138,12 @@ class AdvancedCriterionsHelper {
     }
     
     if travelTypesString != "" {
-      travelTypesString = "Ej med " + travelTypesString.substringToIndex(
-        travelTypesString.endIndex.predecessor().predecessor()) + ". "
+      travelTypesString = "Ej med " + travelTypesString.substring(
+        to: travelTypesString.index(before: travelTypesString.characters.index(before: travelTypesString.endIndex))) + ". "
     }
-    if let lastRange = travelTypesString.rangeOfString(", ",
-                                                       options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil) {
-      travelTypesString.replaceRange(lastRange, with: " eller ")
+    if let lastRange = travelTypesString.range(of: ", ",
+                                                       options: NSString.CompareOptions.backwards, range: nil, locale: nil) {
+      travelTypesString.replaceSubrange(lastRange, with: " eller ")
     }
     return travelTypesString
   }
@@ -152,8 +152,8 @@ class AdvancedCriterionsHelper {
    * Creates a human friendly travel string
    * explaining included travel types.
    */
-  static private func createIncludedTravelTypeString(
-    criterions: TripSearchCriterion) -> String {
+  static fileprivate func createIncludedTravelTypeString(
+    _ criterions: TripSearchCriterion) -> String {
     
     var travelTypesString = ""
     if criterions.useMetro {
@@ -173,12 +173,12 @@ class AdvancedCriterionsHelper {
     }
     
     if travelTypesString != "" {
-      travelTypesString = "Endast med " + travelTypesString.substringToIndex(
-        travelTypesString.endIndex.predecessor().predecessor()) + ". "
+      travelTypesString = "Endast med " + travelTypesString.substring(
+        to: travelTypesString.index(before: travelTypesString.characters.index(before: travelTypesString.endIndex))) + ". "
     }
-    if let lastRange = travelTypesString.rangeOfString(", ",
-                                                       options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil) {
-      travelTypesString.replaceRange(lastRange, with: " och ")
+    if let lastRange = travelTypesString.range(of: ", ",
+                                                       options: NSString.CompareOptions.backwards, range: nil, locale: nil) {
+      travelTypesString.replaceSubrange(lastRange, with: " och ")
     }
     return travelTypesString
   }

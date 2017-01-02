@@ -9,12 +9,12 @@
 import Foundation
 import CoreLocation
 
-public class StaticExit: NSObject, NSCoding {
+open class StaticExit: NSObject, NSCoding {
   
-  public let name: String
-  public let location: CLLocation
-  public let trainPosition: TrainPosition
-  public let changeToLines: [String]
+  open let name: String
+  open let location: CLLocation
+  open let trainPosition: TrainPosition
+  open let changeToLines: [String]
   
   
   /**
@@ -28,9 +28,9 @@ public class StaticExit: NSObject, NSCoding {
   }
   
   public enum TrainPosition: Int {
-    case Front = 0
-    case Middle = 1
-    case Back = 2
+    case front = 0
+    case middle = 1
+    case back = 2
   }
   
   // MARK: NSCoding
@@ -39,10 +39,10 @@ public class StaticExit: NSObject, NSCoding {
    * Decoder init
    */
   required convenience public init?(coder aDecoder: NSCoder) {
-    let name = aDecoder.decodeObjectForKey(PropertyKey.name) as! String
-    let location = aDecoder.decodeObjectForKey(PropertyKey.location) as! CLLocation
-    let trainPosition = aDecoder.decodeIntegerForKey(PropertyKey.trainPosition)
-    let changeToLines = aDecoder.decodeObjectForKey(PropertyKey.changeToLines)  as! [String]
+    let name = aDecoder.decodeObject(forKey: PropertyKey.name) as! String
+    let location = aDecoder.decodeObject(forKey: PropertyKey.location) as! CLLocation
+    let trainPosition = aDecoder.decodeInteger(forKey: PropertyKey.trainPosition)
+    let changeToLines = aDecoder.decodeObject(forKey: PropertyKey.changeToLines)  as! [String]
     
     self.init(name: name, location: location, trainPosition: trainPosition, changeToLines: changeToLines)
   }
@@ -50,11 +50,11 @@ public class StaticExit: NSObject, NSCoding {
   /**
    * Encode this object
    */
-  public func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodeObject(name, forKey: PropertyKey.name)
-    aCoder.encodeObject(location, forKey: PropertyKey.location)
-    aCoder.encodeInteger(trainPosition.rawValue, forKey: PropertyKey.trainPosition)
-    aCoder.encodeObject(changeToLines, forKey: PropertyKey.changeToLines)
+  open func encode(with aCoder: NSCoder) {
+    aCoder.encode(name, forKey: PropertyKey.name)
+    aCoder.encode(location, forKey: PropertyKey.location)
+    aCoder.encode(trainPosition.rawValue, forKey: PropertyKey.trainPosition)
+    aCoder.encode(changeToLines, forKey: PropertyKey.changeToLines)
   }
   
   struct PropertyKey {

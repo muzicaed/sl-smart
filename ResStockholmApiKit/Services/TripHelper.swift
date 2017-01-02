@@ -8,10 +8,10 @@
 
 import Foundation
 
-public class TripHelper {
+open class TripHelper {
   
   static let walkColor = UIColor(white: 0.4, alpha: 1.0)
-  static let busColor = UIColor(red: 215/255, green: 29/255, blue: 36/255, alpha: 1.0)
+  static let busColor = UIColor(red: 180/255, green: 20/255, blue: 30/255, alpha: 1.0)
   static let blueBusColor = UIColor(red: 0/255, green: 137/255, blue: 202/255, alpha: 1.0)
   static let shipColor = UIColor(red: 0/255, green: 137/255, blue: 202/255, alpha: 1.0)
   
@@ -33,19 +33,19 @@ public class TripHelper {
   /**
    * Creates a human readable trip segment description.
    */
-  public static func friendlyTripSegmentDesc(segment: TripSegment) -> String {
+  open static func friendlyTripSegmentDesc(_ segment: TripSegment) -> String {
     if segment.type == .Walk {
       return "Gå \(segment.distance!) meter"
     }
     
-    return "Mot \(segment.directionText!.capitalizedString)"
+    return "Mot \(segment.directionText!.capitalized)"
   }
   
   /**
    * Creates human readable line name.
    */
-  public static func friendlyLineData(
-    segment: TripSegment) -> (short: String, long: String, icon: String, color: UIColor) {
+  open static func friendlyLineData(
+    _ segment: TripSegment) -> (short: String, long: String, icon: String, color: UIColor) {
     
     let type = segment.type
     let lineNumber = segment.lineNumber
@@ -74,9 +74,9 @@ public class TripHelper {
       } else if lineNumber == "29" {
         return ("L\(lineNumber!)", "Roslagsbanan, Näsbyparkslinjen", "TRAM", tram27_29)
       }
-      return ("S\(lineNumber!)", "Spårvagn linje S\(lineNumber!)", "TRAM", UIColor.darkGrayColor())
+      return ("S\(lineNumber!)", "Spårvagn linje S\(lineNumber!)", "TRAM", UIColor.darkGray)
     case .Bus:
-      if segment.name.lowercaseString.rangeOfString("blåbuss") != nil {
+      if segment.name.lowercased().range(of: "blåbuss") != nil {
         return ("\(lineNumber!)", "Blåbuss \(lineNumber!)", "BUS", blueBusColor)
       }
       return ("\(lineNumber!)", "Buss \(lineNumber!)", "BUS", busColor)
@@ -88,7 +88,7 @@ public class TripHelper {
       } else if lineNumber == "10" || lineNumber == "11" {
         return ("T\(lineNumber!)", "Blå linjen T\(lineNumber!)", "METRO", blueMetro)
       }
-      return ("T-bana", "Tunnelbanan", "METRO", UIColor.darkGrayColor())
+      return ("T-bana", "Tunnelbanan", "METRO", UIColor.darkGray)
     case .Train:
       if lineNumber == "35" {
         return ("J\(lineNumber!)", "Pendeltåg linje J\(lineNumber!)", "TRAIN", pinkTrain)
@@ -99,7 +99,7 @@ public class TripHelper {
     case .Walk:
       return ("→", "Gå", "WALK", walkColor)
     default:
-      return ("", "", "", UIColor.darkGrayColor())
+      return ("", "", "", UIColor.darkGray)
     }
   }
 }

@@ -47,7 +47,7 @@ open class SubscriptionStore {
     }
     return false
   }
- 
+  
   /**
    * Get local expire date.
    */
@@ -77,7 +77,7 @@ open class SubscriptionStore {
   }
   
   /**
-   * Setup trial on app start. 
+   * Setup trial on app start.
    * Will not set start date if trial is allready active.
    */
   func setupTrial() {

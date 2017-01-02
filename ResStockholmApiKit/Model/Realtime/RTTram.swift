@@ -8,10 +8,10 @@
 
 import Foundation
 
-public class RTTram: RTTransportBase {
+open class RTTram: RTTransportBase {
   
-  public let stopPointDesignation: String?
-  public let groupOfLine: String
+  open let stopPointDesignation: String?
+  open let groupOfLine: String
   
   /**
    * Init
@@ -24,7 +24,7 @@ public class RTTram: RTTransportBase {
       self.groupOfLine = groupOfLine
       
       super.init(stopAreaName: stopAreaName, lineNumber: lineNumber,
-        destination: destination.capitalizedString, displayTime: displayTime,
+        destination: destination.capitalized, displayTime: displayTime,
         deviations: deviations, journeyDirection: journeyDirection)
   }
 }

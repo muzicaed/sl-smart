@@ -15,21 +15,21 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   
   // MARK: - Timeline Configuration
   
-  func getSupportedTimeTravelDirectionsForComplication(complication: CLKComplication, withHandler handler: (CLKComplicationTimeTravelDirections) -> Void) {
+  func getSupportedTimeTravelDirections(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimeTravelDirections) -> Void) {
     //handler([.Forward])
     handler([])
   }
   
-  func getTimelineStartDateForComplication(complication: CLKComplication, withHandler handler: (NSDate?) -> Void) {
+  func getTimelineStartDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
     handler(nil)
   }
   
-  func getTimelineEndDateForComplication(complication: CLKComplication, withHandler handler: (NSDate?) -> Void) {
+  func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
     handler(nil)
   }
   
-  func getPrivacyBehaviorForComplication(complication: CLKComplication, withHandler handler: (CLKComplicationPrivacyBehavior) -> Void) {
-    handler(.ShowOnLockScreen)
+  func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
+    handler(.showOnLockScreen)
   }
   
   // MARK: - Timeline Population
@@ -37,35 +37,37 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   /**
    * Call the handler with the current timeline entry
    */
-  func getCurrentTimelineEntryForComplication(complication: CLKComplication, withHandler handler: ((CLKComplicationTimelineEntry?) -> Void)) {
+  func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: (@escaping (CLKComplicationTimelineEntry?) -> Void)) {
 
     var template: CLKComplicationTemplate? = nil
     switch complication.family {
-    case .ModularSmall:
+    case .modularSmall:
       template = createModularSmall()
-    case .ModularLarge:
+    case .modularLarge:
       template = nil
-    case .UtilitarianSmall:
+    case .utilitarianSmall:
       template = createUtilitarianSmall()
-    case .UtilitarianLarge:
+    case .utilitarianLarge:
       template = nil
-    case .CircularSmall:
+    case .circularSmall:
       template = createCircularSmall()
+    default:
+      template = nil
     }
     
     if let template = template {
-      handler(CLKComplicationTimelineEntry(date: NSDate(), complicationTemplate: template))
+      handler(CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template))
       return
     }
     handler(nil)
   }
   
-  func getTimelineEntriesForComplication(complication: CLKComplication, beforeDate date: NSDate, limit: Int, withHandler handler: (([CLKComplicationTimelineEntry]?) -> Void)) {
+  func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: (@escaping ([CLKComplicationTimelineEntry]?) -> Void)) {
     // Call the handler with the timeline entries prior to the given date
     handler(nil)
   }
   
-  func getTimelineEntriesForComplication(complication: CLKComplication, afterDate date: NSDate, limit: Int, withHandler handler: (([CLKComplicationTimelineEntry]?) -> Void)) {
+  func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: (@escaping ([CLKComplicationTimelineEntry]?) -> Void)) {
     // Call the handler with the timeline entries after to the given date
     handler(nil)
   }
@@ -75,7 +77,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   /**
   * Schedule next data update
   */
-  func getNextRequestedUpdateDateWithHandler(handler: (NSDate?) -> Void) {
+  func getNextRequestedUpdateDate(handler: @escaping (Date?) -> Void) {
     handler(nil)
   }
   
@@ -85,20 +87,22 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   * This method will be called once per supported complication,
   * and the results will be cached
   */
-  func getPlaceholderTemplateForComplication(
-    complication: CLKComplication, withHandler handler: (CLKComplicationTemplate?) -> Void) {
+  func getPlaceholderTemplate(
+    for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
       var template: CLKComplicationTemplate? = nil
       switch complication.family {
-      case .ModularSmall:
+      case .modularSmall:
         template = createModularSmall()
-      case .ModularLarge:
+      case .modularLarge:
         template = nil
-      case .UtilitarianSmall:
+      case .utilitarianSmall:
         template = createUtilitarianSmall()
-      case .UtilitarianLarge:
+      case .utilitarianLarge:
         template = nil
-      case .CircularSmall:
+      case .circularSmall:
         template = createCircularSmall()
+      default:
+        template = nil
       }
       handler(template)
   }
@@ -108,7 +112,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   /**
   * Create template for ModularSmall
   */
-  private func createModularSmall() -> CLKComplicationTemplate {
+  fileprivate func createModularSmall() -> CLKComplicationTemplate {
     let modTemplate = CLKComplicationTemplateModularSmallSimpleImage()
     modTemplate.imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "CompModSmallIcon")!)
     modTemplate.tintColor = tintColor
@@ -118,7 +122,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   /**
    * Create template for UtilitarianSmall
    */
-  private func createUtilitarianSmall() -> CLKComplicationTemplate {
+  fileprivate func createUtilitarianSmall() -> CLKComplicationTemplate {
     let modTemplate = CLKComplicationTemplateUtilitarianSmallSquare()
     modTemplate.imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "CompUtilIcon")!)
     modTemplate.tintColor = tintColor
@@ -128,7 +132,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   /**
    * Create template for CircularSmall
    */
-  private func createCircularSmall() -> CLKComplicationTemplate {
+  fileprivate func createCircularSmall() -> CLKComplicationTemplate {
     let modTemplate = CLKComplicationTemplateCircularSmallSimpleImage()
     modTemplate.imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "CompCircIcon")!)
     modTemplate.tintColor = tintColor

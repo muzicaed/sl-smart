@@ -29,11 +29,11 @@ class LinePickerVC: UITableViewController {
     if incText != nil {
       lineTextField.text = "\(incText!)"
       lineTypeSegmentedControl.selectedSegmentIndex = 1
-      lineTextField.enabled = true
+      lineTextField.isEnabled = true
     } else if excText != nil {
       lineTextField.text = "\(excText!)"
       lineTypeSegmentedControl.selectedSegmentIndex = 2
-      lineTextField.enabled = true
+      lineTextField.isEnabled = true
     }
     selectedSegment = lineTypeSegmentedControl.selectedSegmentIndex
   }
@@ -41,14 +41,14 @@ class LinePickerVC: UITableViewController {
   /**
    * User changed line type segmented control
    */
-  @IBAction func onLineTypeValueChanged(sender: UISegmentedControl) {
+  @IBAction func onLineTypeValueChanged(_ sender: UISegmentedControl) {
     if sender.selectedSegmentIndex == 0 {
-      lineTextField.enabled = false
+      lineTextField.isEnabled = false
       lineTextField.text = nil
       incText = nil
       excText = nil
     } else {
-      lineTextField.enabled = true
+      lineTextField.isEnabled = true
     }
     selectedSegment = sender.selectedSegmentIndex
     updateIncExcTexts()
@@ -57,13 +57,13 @@ class LinePickerVC: UITableViewController {
   /**
    * User stoped editing line text field.
    */
-  @IBAction func onLineTextFieldEditEnd(sender: UITextField) {
+  @IBAction func onLineTextFieldEditEnd(_ sender: UITextField) {
     updateIncExcTexts()
   }
   
   // MARK: UITableViewController
   
-  override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+  override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
     return false
   }
   
@@ -72,7 +72,7 @@ class LinePickerVC: UITableViewController {
   /**
    * Updates included / excluded parameters.
    */
-  private func updateIncExcTexts() {
+  fileprivate func updateIncExcTexts() {
     switch selectedSegment {
     case 1:
       incText = lineTextField.text

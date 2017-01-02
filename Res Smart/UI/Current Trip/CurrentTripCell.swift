@@ -40,9 +40,9 @@ class CurrentTripCell: UICollectionViewCell {
    */
   func setup() {
     layer.masksToBounds = false
-    layer.shadowOffset = CGSizeMake(1, 1)
+    layer.shadowOffset = CGSize(width: 1, height: 1)
     layer.shadowRadius = 1.5
-    layer.shadowColor = UIColor.blackColor().CGColor
+    layer.shadowColor = UIColor.black.cgColor
     layer.shadowOpacity = 0.10
     layer.cornerRadius = 4.0
     clipsToBounds = false
@@ -51,8 +51,8 @@ class CurrentTripCell: UICollectionViewCell {
   /**
    * Populate cell data based on passed RoutineTrip
    */
-  func setupData(trip: Trip) {
-    if let first = trip.tripSegments.first, last = trip.tripSegments.last  {
+  func setupData(_ trip: Trip) {
+    if let first = trip.tripSegments.first, let last = trip.tripSegments.last  {
       originLabel.text = first.origin.cleanName
       destinationLabel.text = last.destination.cleanName
       departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)
@@ -81,8 +81,8 @@ class CurrentTripCell: UICollectionViewCell {
   
   // MARK: Private methods
   
-  private func setupTripData(trip: Trip, secondTrip: Trip?) {
-    if let first = trip.tripSegments.first, last = trip.tripSegments.last  {
+  fileprivate func setupTripData(_ trip: Trip, secondTrip: Trip?) {
+    if let first = trip.tripSegments.first, let last = trip.tripSegments.last  {
       departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)
       departureTimeLabel.accessibilityLabel = "Avgår: " + departureTimeLabel.text!
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
@@ -96,36 +96,36 @@ class CurrentTripCell: UICollectionViewCell {
   /**
    * Creates trip type icon per segment.
    */
-  private func createTripSegmentIcons(trip: Trip) {
+  fileprivate func createTripSegmentIcons(_ trip: Trip) {
     iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
     var count = 0
-    for (_, segment) in trip.tripSegments.enumerate() {
+    for (_, segment) in trip.tripSegments.enumerated() {
       if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
         if count >= 6 { return }
         let data = TripHelper.friendlyLineData(segment)
         
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
-        iconView.frame.size = CGSizeMake(22, 22)
-        iconView.center = CGPointMake(22 / 2, 3)
+        iconView.frame.size = CGSize(width: 22, height: 22)
+        iconView.center = CGPoint(x: 22 / 2, y: 3)
         
         let label = UILabel()
         label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
         label.accessibilityLabel = "Steg \(count + 1): " + data.long
-        label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont.boldSystemFontOfSize(9)
+        label.textAlignment = NSTextAlignment.center
+        label.font = UIFont.boldSystemFont(ofSize: 9)
         label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = UIColor.whiteColor()
+        label.textColor = UIColor.white
         label.backgroundColor = data.color
         label.frame.size.width = 22
         label.frame.size.height = 12
-        label.center = CGPointMake((22 / 2), 20)
+        label.center = CGPoint(x: (22 / 2), y: 20)
         
         let wrapperView = UIView(
           frame:CGRect(
-            origin: CGPointMake(0, 0),
-            size: CGSizeMake(22, 36)))
-        wrapperView.frame.origin = CGPointMake((26 * CGFloat(count)), 3)
+            origin: CGPoint(x: 0, y: 0),
+            size: CGSize(width: 22, height: 36)))
+        wrapperView.frame.origin = CGPoint(x: (26 * CGFloat(count)), y: 3)
         wrapperView.clipsToBounds = false
         
         wrapperView.addSubview(iconView)
@@ -136,8 +136,8 @@ class CurrentTripCell: UICollectionViewCell {
           if segment.isWarning {
             warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
           }
-          warnIconView.frame.size = CGSizeMake(10, 10)
-          warnIconView.center = CGPointMake((22 / 2) + 10, -5)
+          warnIconView.frame.size = CGSize(width: 10, height: 10)
+          warnIconView.center = CGPoint(x: (22 / 2) + 10, y: -5)
           warnIconView.alpha = 0.9
           wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
         }
@@ -151,7 +151,7 @@ class CurrentTripCell: UICollectionViewCell {
   /**
    * Sets no trips found UI
    */
-  private func setNoTripsUI() {
+  fileprivate func setNoTripsUI() {
     iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
     departureTimeLabel.text = "--:--"
     arrivalTimeLabel.text = "--:--"

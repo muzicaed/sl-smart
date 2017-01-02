@@ -8,23 +8,23 @@
 
 import Foundation
 
-public class SearchCriterionStore {
+open class SearchCriterionStore {
   
-  private let LastSearchCriterions = "LastSearchCriterions"
-  private let defaults = NSUserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
-  private var cachedSearchCriterions = TripSearchCriterion(originId: "0", destId: "0")
+  fileprivate let LastSearchCriterions = "LastSearchCriterions"
+  fileprivate let defaults = UserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
+  fileprivate var cachedSearchCriterions = TripSearchCriterion(originId: "0", destId: "0")
   
   // Singelton pattern
-  public static let sharedInstance = SearchCriterionStore()
+  open static let sharedInstance = SearchCriterionStore()
   
   /**
    * Retrive "LastSearchCriterions" from data store
    */
-  public func retrieveSearchCriterions() -> TripSearchCriterion {
+  open func retrieveSearchCriterions() -> TripSearchCriterion {
     if cachedSearchCriterions.origin == nil && cachedSearchCriterions.dest == nil {
-      if let unarchivedObject = defaults.objectForKey(
-        LastSearchCriterions) as? NSData {
-          if let crit = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? TripSearchCriterion {
+      if let unarchivedObject = defaults.object(
+        forKey: LastSearchCriterions) as? Data {
+          if let crit = NSKeyedUnarchiver.unarchiveObject(with: unarchivedObject) as? TripSearchCriterion {
             cachedSearchCriterions = crit
             return cachedSearchCriterions
           }
@@ -36,9 +36,9 @@ public class SearchCriterionStore {
   /**
    * Store "LastSearchCriterions" in data store.
    */
-  public func writeLastSearchCriterions(criterions: TripSearchCriterion) {
-    let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(criterions)
-    defaults.setObject(archivedObject, forKey: LastSearchCriterions)
+  open func writeLastSearchCriterions(_ criterions: TripSearchCriterion) {
+    let archivedObject = NSKeyedArchiver.archivedData(withRootObject: criterions)
+    defaults.set(archivedObject, forKey: LastSearchCriterions)
     cachedSearchCriterions = criterions.copy() as! TripSearchCriterion
     defaults.synchronize()
   }

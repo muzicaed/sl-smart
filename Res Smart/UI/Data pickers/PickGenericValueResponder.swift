@@ -11,5 +11,5 @@ import Foundation
 
 protocol PickGenericValueResponder {
   
-  func pickedValue(type: GenericValuePickerVC.ValueType, value: Int)
+  func pickedValue(_ type: GenericValuePickerVC.ValueType, value: Int)
 }

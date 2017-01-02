@@ -8,17 +8,17 @@
 
 import Foundation
 
-public class RealTimeDepartures {
+open class RealTimeDepartures {
   
-  public let latestUpdated: NSDate?
-  public let dataAge: Int
-  public var busses = [String: [RTBus]]()
-  public var metros = [String: [RTMetro]]()
-  public var trains = [String: [RTTrain]]()
-  public var trams = [String: [RTTram]]()
-  public var localTrams = [String: [RTTram]]()
-  public var boats = [String: [RTBoat]]()
-  public var deviations = [String]()
+  open let latestUpdated: Date?
+  open let dataAge: Int
+  open var busses = [String: [RTBus]]()
+  open var metros = [String: [RTMetro]]()
+  open var trains = [String: [RTTrain]]()
+  open var trams = [String: [RTTram]]()
+  open var localTrams = [String: [RTTram]]()
+  open var boats = [String: [RTBoat]]()
+  open var deviations = [String]()
   
   /**
    * Init
@@ -35,9 +35,9 @@ public class RealTimeDepartures {
   /**
    * Converts string to date.
    */
-  private static func convertDate(dateStr: String) -> NSDate {
-    let dateFormatter = NSDateFormatter()
+  fileprivate static func convertDate(_ dateStr: String) -> Date {
+    let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-    return dateFormatter.dateFromString(dateStr)!
+    return dateFormatter.date(from: dateStr)!
   }
 }

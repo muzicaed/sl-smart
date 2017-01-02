@@ -23,7 +23,7 @@ class LocationMapVC: UIViewController, MKMapViewDelegate {
    */
   override func viewDidLoad() {
     mapView.delegate = self
-    mapView.mapType = MKMapType.Standard
+    mapView.mapType = MKMapType.standard
     mapView.showsBuildings = true
     mapView.showsCompass = true
     mapView.showsPointsOfInterest = false
@@ -36,19 +36,19 @@ class LocationMapVC: UIViewController, MKMapViewDelegate {
   /**
    * User tapped close
    */
-  @IBAction func onCloseTap(sender: AnyObject) {
-    presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+  @IBAction func onCloseTap(_ sender: AnyObject) {
+    presentingViewController?.dismiss(animated: true, completion: {})
   }
   
   /**
    * Map type segment changed
    */
-  @IBAction func onSegmentChanged(sender: UISegmentedControl) {
+  @IBAction func onSegmentChanged(_ sender: UISegmentedControl) {
     switch sender.selectedSegmentIndex {
     case 0:
-      mapView.mapType = MKMapType.Standard
+      mapView.mapType = MKMapType.standard
     case 1:
-      mapView.mapType = MKMapType.Hybrid
+      mapView.mapType = MKMapType.hybrid
     default: break
     }
   }
@@ -56,9 +56,9 @@ class LocationMapVC: UIViewController, MKMapViewDelegate {
   /**
    * User tapped my position
    */
-  @IBAction func myPositionTap(sender: AnyObject) {
+  @IBAction func myPositionTap(_ sender: AnyObject) {
     if mapView.showsUserLocation {
-      mapView.setCenterCoordinate(mapView.userLocation.coordinate, animated: true)
+      mapView.setCenter(mapView.userLocation.coordinate, animated: true)
     } else {
       mapView.showsUserLocation = true
     }
@@ -69,13 +69,13 @@ class LocationMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Annotation views
    */
-  func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-    if annotation.isKindOfClass(BigPin) {
+  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    if annotation.isKind(of: BigPin.self) {
       let pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: "dot")
       pinView.image = UIImage(named: "MapDestinationDot")!
       pinView.canShowCallout = true
-      pinView.centerOffset = CGPointMake(0, 0)
-      pinView.calloutOffset = CGPointMake(0, -3)
+      pinView.centerOffset = CGPoint(x: 0, y: 0)
+      pinView.calloutOffset = CGPoint(x: 0, y: -3)
       
       return pinView
     }
@@ -88,18 +88,20 @@ class LocationMapVC: UIViewController, MKMapViewDelegate {
   /**
    * Create location pin
    */
-  private func createStopPin(location: Location) {
-    let pin = BigPin()
-    pin.coordinate = location.location.coordinate
-    pin.title = location.name
-    mapView.addAnnotation(pin)
-    centerMap(pin)
+  fileprivate func createStopPin(_ location: Location) {
+    if let loc = location.location {
+      let pin = BigPin()
+      pin.coordinate = loc.coordinate
+      pin.title = location.name
+      mapView.addAnnotation(pin)
+      centerMap(pin)
+    }
   }
   
   /**
    * Centers & zooms map on pin
    */
-  private func centerMap(pin: BigPin) {
+  fileprivate func centerMap(_ pin: BigPin) {
     let region = MKCoordinateRegion(
       center: pin.coordinate,
       span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))

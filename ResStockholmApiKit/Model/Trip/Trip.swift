@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class Trip: NSObject, NSCopying {
+open class Trip: NSObject, NSCopying {
   
-  public var durationMin = 0
-  public var noOfChanges = 0
-  public var isValid = true
-  public var tripSegments = [TripSegment]()
-  public var allTripSegments = [TripSegment]()
+  open var durationMin = 0
+  open var noOfChanges = 0
+  open var isValid = true
+  open var tripSegments = [TripSegment]()
+  open var allTripSegments = [TripSegment]()
   
   /**
    * Standard init
@@ -36,7 +36,7 @@ public class Trip: NSObject, NSCopying {
   /**
    * Checks if any trip segments is realtime.
    */
-  public func hasAnyRealtime() -> Bool {
+  open func hasAnyRealtime() -> Bool {
     for segment in tripSegments {
       if segment.isRealtime {
        return true
@@ -48,7 +48,7 @@ public class Trip: NSObject, NSCopying {
   /**
    * Checks if any segments are cancelled or not reachable.
    */
-  public func checkInvalidSegments() -> (isCancelled: Bool, isReachable: Bool) {
+  open func checkInvalidSegments() -> (isCancelled: Bool, isReachable: Bool) {
     var returnTuple = (isCancelled: false, isReachable: true)
     
     if !isValid {
@@ -67,7 +67,7 @@ public class Trip: NSObject, NSCopying {
   /**
    * Converts into data dictionary for transfer to AppleWatch.
    */
-  public func watchTransferData() -> Dictionary<String, AnyObject> {
+  open func watchTransferData() -> Dictionary<String, AnyObject> {
     var icons = [String]()
     var lines = [String]()
     var warnings = [String]()
@@ -84,15 +84,15 @@ public class Trip: NSObject, NSCopying {
     }
     
     return [
-      "dur": durationMin,
-      "icn": icons,
-      "lns": lines,
-      "war": warnings,
-      "val": isValid,
-      "ori": tripSegments.first!.origin.name,
-      "des": tripSegments.last!.destination.name,
-      "ot": DateUtils.dateAsDateAndTimeString(tripSegments.first!.departureDateTime),
-      "dt": DateUtils.dateAsDateAndTimeString(tripSegments.last!.arrivalDateTime),
+      "dur": durationMin as AnyObject,
+      "icn": icons as AnyObject,
+      "lns": lines as AnyObject,
+      "war": warnings as AnyObject,
+      "val": isValid as AnyObject,
+      "ori": tripSegments.first!.origin.name as AnyObject,
+      "des": tripSegments.last!.destination.name as AnyObject,
+      "ot": DateUtils.dateAsDateAndTimeString(tripSegments.first!.departureDateTime) as AnyObject,
+      "dt": DateUtils.dateAsDateAndTimeString(tripSegments.last!.arrivalDateTime) as AnyObject,
     ]
   }
   
@@ -101,7 +101,7 @@ public class Trip: NSObject, NSCopying {
   /**
    * Copy self
    */
-  public func copyWithZone(zone: NSZone) -> AnyObject {
+  open func copy(with zone: NSZone?) -> Any {
     var tripSegmentCopy = [TripSegment]()
     for segment in tripSegments {
       tripSegmentCopy.append(segment.copy() as! TripSegment)

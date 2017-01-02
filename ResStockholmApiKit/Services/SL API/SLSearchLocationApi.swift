@@ -17,8 +17,8 @@ class SLSearchLocationApi {
    * Search for location.
    */
   func search(
-    query: String, stationsOnly: Bool,
-    callback: ((data: NSData?, error: SLNetworkError?)) -> Void) {
+    _ query: String, stationsOnly: Bool,
+    callback: @escaping ((data: Data?, error: SLNetworkError?)) -> Void) {
       let url = createApiUrl(query, stationsOnly: stationsOnly)
       HttpRequestHelper.makeGetRequest(url) { resTuple in
         callback(resTuple)
@@ -30,9 +30,9 @@ class SLSearchLocationApi {
   /**
   * Creates api url
   */
-  private func createApiUrl(query: String, stationsOnly: Bool) -> String {
-    if let escapedQuery = query.stringByAddingPercentEncodingWithAllowedCharacters(
-      .URLHostAllowedCharacterSet()) {
+  fileprivate func createApiUrl(_ query: String, stationsOnly: Bool) -> String {
+    if let escapedQuery = query.addingPercentEncoding(
+      withAllowedCharacters: .urlHostAllowed) {
         return urlBase + "?Key=\(apiKey)&MaxResults=50&StationsOnly=\(stationsOnly)&SearchString=\(escapedQuery)"
     }
     

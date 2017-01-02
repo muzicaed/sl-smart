@@ -19,7 +19,7 @@ class TripDetailsSubSegmentCell: UITableViewCell, TripCellProtocol {
   /**
    * Set cell data.
    */
-  func setData(indexPath: NSIndexPath, trip: Trip) {
+  func setData(_ indexPath: IndexPath, trip: Trip) {
     let stop = trip.tripSegments[indexPath.section].stops[indexPath.row - 1]
     locationLabel.text = stop.name
     if let date = stop.depDate {

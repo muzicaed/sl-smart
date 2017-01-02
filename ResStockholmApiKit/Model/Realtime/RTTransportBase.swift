@@ -8,14 +8,14 @@
 
 import Foundation
 
-public class RTTransportBase {
+open class RTTransportBase {
 
-  public let stopAreaName: String
-  public let lineNumber: String
-  public let destination: String
-  public let displayTime: String
-  public let deviations: [String]
-  public let journeyDirection: Int
+  open let stopAreaName: String
+  open let lineNumber: String
+  open let destination: String
+  open let displayTime: String
+  open let deviations: [String]
+  open let journeyDirection: Int
 
   
   /**

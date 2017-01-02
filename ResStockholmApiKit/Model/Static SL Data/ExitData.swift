@@ -11,14 +11,14 @@ import CoreLocation
 
 class ExitData {
   
-  static func getExits(stopId: String) -> [StaticExit] {
+  static func getExits(_ stopId: String) -> [StaticExit] {
     if let exitData = enhanceData[stopId] {
       return exitData
     }    
     return [StaticExit]()
   }
   
-  static func pos(lat: String, _ lon: String) -> CLLocation {
+  static func pos(_ lat: String, _ lon: String) -> CLLocation {
     return CLLocation(latitude: Double(lat)!, longitude: Double(lon)!)
   }
   

@@ -13,13 +13,13 @@ import ResStockholmApiKit
 class TravelTypesVC: UITableViewController {
   
   var delegate: TravelTypesResponder?
-  private var checkArr = [false, true, false, true, false]
-  private let titels = ["Tunnelbana", "Pendeltåg", "Lokalbana/Spårvagn", "Bussar", "Båtar"]
+  fileprivate var checkArr = [false, true, false, true, false]
+  fileprivate let titels = ["Tunnelbana", "Pendeltåg", "Lokalbana/Spårvagn", "Bussar", "Båtar"]
   
   /**
    * Set initial data.
    */
-  func setData(criterions: TripSearchCriterion) {
+  func setData(_ criterions: TripSearchCriterion) {
     checkArr = [
       criterions.useMetro,
       criterions.useTrain,
@@ -34,25 +34,25 @@ class TravelTypesVC: UITableViewController {
   /**
   * Number of rows for section
   */
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 5
   }
   
   /**
    * Cells for rows
    */
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    let cell = tableView.dequeueReusableCellWithIdentifier(
-      "TripTypeRow", forIndexPath: indexPath)
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: "TripTypeRow", for: indexPath)
     
     if checkArr[indexPath.row] {
-      cell.accessoryType = .Checkmark
+      cell.accessoryType = .checkmark
     } else {
-      cell.accessoryType = .None
+      cell.accessoryType = .none
     }
   
-    cell.selectionStyle = .None
+    cell.selectionStyle = .none
     cell.textLabel?.text = titels[indexPath.row]    
     return cell
   }
@@ -60,7 +60,7 @@ class TravelTypesVC: UITableViewController {
   /**
    * User selects a row
    */
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     checkArr[indexPath.row] = !checkArr[indexPath.row]
     delegate?.selectedTravelType(
       checkArr[0], useTrain: checkArr[1],
