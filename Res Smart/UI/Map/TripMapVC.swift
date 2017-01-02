@@ -182,7 +182,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       setMapViewport(allCords)
       for tuple in routeTuples {
         createOverlays(tuple.0, segment: tuple.1)
-      }      
+      }
     }
   }
   

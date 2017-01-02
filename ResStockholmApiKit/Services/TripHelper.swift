@@ -11,7 +11,7 @@ import Foundation
 open class TripHelper {
   
   static let walkColor = UIColor(white: 0.4, alpha: 1.0)
-  static let busColor = UIColor(red: 215/255, green: 29/255, blue: 36/255, alpha: 1.0)
+  static let busColor = UIColor(red: 180/255, green: 20/255, blue: 30/255, alpha: 1.0)
   static let blueBusColor = UIColor(red: 0/255, green: 137/255, blue: 202/255, alpha: 1.0)
   static let shipColor = UIColor(red: 0/255, green: 137/255, blue: 202/255, alpha: 1.0)
   
