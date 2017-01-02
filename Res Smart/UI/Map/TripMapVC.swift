@@ -18,6 +18,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   var routePolylineViews = [MKPolylineView]()
   var smallPins = [SmallPin]()
   var isSmallPinsVisible = true
+  var allCords = [CLLocationCoordinate2D]()
   
   /**
    * View did load
@@ -147,14 +148,43 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    */
   fileprivate func loadRoute() {
     if let trip = trip {
+      for (index, segment) in trip.allTripSegments.enumerated() {
+        let next: TripSegment? = (trip.allTripSegments.count > index + 1) ? trip.allTripSegments[index + 1] : nil
+        let before: TripSegment? = (index > 0) ? trip.allTripSegments[index - 1] : nil
+        let isLast = (segment == trip.allTripSegments.last)
+        if let geoRef = segment.geometryRef {
+          GeometryService.fetchGeometry(geoRef, callback: { (locations, error) in
+            DispatchQueue.main.async {
+              let coords = self.plotRoute(segment, before: before, next: next, isLast: isLast, geoLocations: locations)
+              self.loadRouteDone(coords: coords, segment: segment)
+            }
+          })
+        }
+      }
+      
+      
+    }
+  }
+  
+  fileprivate func loadRouteDone(coords: [CLLocationCoordinate2D], segment: TripSegment) {
+    createOverlays(coords, segment: segment)
+    allCords += coords
+    setMapViewport(allCords)
+  }
+  
+  /**
+   * Loads map route
+   */
+  fileprivate func loadRoute2() {
+    if let trip = trip {
       var allCoords = [CLLocationCoordinate2D]()
       for (index, segment) in trip.allTripSegments.enumerated() {
         let next: TripSegment? = (trip.allTripSegments.count > index + 1) ? trip.allTripSegments[index + 1] : nil
         let before: TripSegment? = (index > 0) ? trip.allTripSegments[index - 1] : nil
         let isLast = (segment == trip.allTripSegments.last)
-        let coords = plotRoute(segment, before: before, next: next, isLast: isLast)
-        createOverlays(coords, segment: segment)
-        allCoords += coords
+        ///let coords = plotRoute(segment, before: before, next: next, isLast: isLast, geoLocations: locations)
+        //createOverlays(coords, segment: segment)
+        //allCoords += coords
       }
       
       setMapViewport(allCoords)
@@ -165,7 +195,11 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    * Plots the coordinates for the route.
    */
   
-  fileprivate func plotRoute(_ segment: TripSegment, before: TripSegment?, next: TripSegment?, isLast: Bool) -> [CLLocationCoordinate2D] {
+  fileprivate func plotRoute(_ segment: TripSegment,
+                             before: TripSegment?,
+                             next: TripSegment?,
+                             isLast: Bool, geoLocations: [CLLocation]) -> [CLLocationCoordinate2D] {
+    
     var coords = [CLLocationCoordinate2D]()
     if canPlotRoute(segment, before: before, next: next, isLast: isLast) {
       plotWalk(segment)
@@ -176,9 +210,32 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
           coords.append(destLocation.coordinate)
         }
       } else {
-        for stop in segment.stops {
-          coords.append(stop.location.coordinate)
+        var shouldPlot = false
+        print("Geo points: \(geoLocations.count)")
+        if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
+          coords.append(originLocation.coordinate)
+          for location in geoLocations {
+            if location.distance(from: originLocation) < 1  {
+              shouldPlot = true
+            }
+            if shouldPlot == true && location.distance(from: destLocation) < 1 {
+              break
+            }
+            if shouldPlot {
+              coords.append(location.coordinate)
+            }
+          }
+          coords.append(destLocation.coordinate)
         }
+        
+        /*
+         for stop in segment.stops {
+         for location in geoLocations {
+         coords.append(location.coordinate)
+         }
+         //coords.append(stop.location.coordinate)
+         }
+         */
       }
     }
     
@@ -251,7 +308,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       let destCoord = (segment.stops.count == 0) ? destLocation.coordinate : segment.stops.last!.location.coordinate
       
       let pin = BigPin()
-      pin.zIndexMod = (segment.type == .Walk) ? -1 : 0
+      pin.zIndexMod = (segment.type == .Walk) ? -1 : 1
       if segment == trip?.tripSegments.first! {
         pin.coordinate = originCoord
         pin.title = "Start: " + segment.origin.name
