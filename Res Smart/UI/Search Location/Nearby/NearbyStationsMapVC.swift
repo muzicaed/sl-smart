@@ -78,6 +78,7 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
       pinView.canShowCallout = true
       pinView.centerOffset = CGPoint(x: 0, y: 0)
       pinView.calloutOffset = CGPoint(x: 0, y: -3)
+      pinView.stationIndex = pinAnnotation.stationIndex
       
       let imageView = UIImageView(image: UIImage(named: "station-icon"))
       imageView.frame = CGRect(x: 0, y: 0, width: 22, height: 22)
@@ -114,18 +115,19 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
    */
   fileprivate func loadMapData() {
     for (index, locationTuple) in nearbyLocations.enumerated() {
-      createStopPin(index, locationTuple: locationTuple)
+      createStopPin(index: index, locationTuple: locationTuple)
     }
   }
   
   /**
    * Create location pin
    */
-  fileprivate func createStopPin(_ index: Int, locationTuple: (location: Location, dist: Int)) {
+  fileprivate func createStopPin(index: Int, locationTuple: (location: Location, dist: Int)) {
     if let loc = locationTuple.location.location {
       let pin = DestinationPin()
       pin.coordinate = loc.coordinate
       pin.title = locationTuple.location.name
+      pin.stationIndex = index
       pin.subtitle = "Avstånd \(locationTuple.dist) meter"
       mapView.addAnnotation(pin)
     }

@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 
 class DestinationPin: MKPointAnnotation {
-  
+  var stationIndex = -1
 }
 
 class BigPin: MKPointAnnotation {
