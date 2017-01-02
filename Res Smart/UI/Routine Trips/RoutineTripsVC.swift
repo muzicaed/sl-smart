@@ -290,7 +290,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         return CGSize(width: screenSize.width, height: 250)
       } else if bestRoutineTrip != nil {
         if indexPath.row == 0 {
-          return CGSize(width: screenSize.width, height: 160)
+          return CGSize(width: screenSize.width, height: 175)
         } else if indexPath.row == 2 {
           return CGSize(width: screenSize.width, height: 25)
         }

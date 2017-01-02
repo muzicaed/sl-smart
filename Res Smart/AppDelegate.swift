@@ -47,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   }
   
   func applicationDidBecomeActive(_ application: UIApplication) {
-    print("applicationDidBecomeActive")
     SubscriptionStore.sharedInstance.setupTrial()
     SubscriptionManager.sharedInstance.validateSubscription()
     checkTrafficSituation()

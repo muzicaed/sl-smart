@@ -519,7 +519,7 @@
                                 <action selector="onAdvancedButtonTap:" destination="Hg1-8K-Ui9" id="Yse-Pp-DQH"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Starta sökning" style="done" id="cLP-J8-IqA">
+                        <barButtonItem key="rightBarButtonItem" title="Sök" style="done" id="cLP-J8-IqA">
                             <connections>
                                 <segue destination="sEV-FQ-PQe" kind="show" identifier="ShowTripList" id="4rE-Hc-22D"/>
                             </connections>
@@ -1991,7 +1991,7 @@
                                                                 <constraint firstItem="TiA-Wb-6Yu" firstAttribute="top" secondItem="b6m-gg-bLZ" secondAttribute="top" id="dtR-Vf-Ioc"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="749" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwW-LA-Pdp">
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="749" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwW-LA-Pdp">
                                                             <rect key="frame" x="279" y="0.0" width="20" height="43"/>
                                                             <color key="backgroundColor" red="0.44392179319371727" green="0.44392179319371727" blue="0.44392179319371727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -2202,9 +2202,8 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fBo-za-eEQ" userLabel="Spacer">
                                                             <rect key="frame" x="118" y="0.0" width="118" height="45"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="7ef-Be-lV5">
-                                                                    <rect key="frame" x="47" y="19" width="21.5" height="36"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="7ef-Be-lV5">
+                                                                    <rect key="frame" x="48.5" y="4.5" width="21.5" height="36"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <bool key="isElement" value="NO"/>
@@ -2216,7 +2215,9 @@
                                                             </subviews>
                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
+                                                                <constraint firstItem="7ef-Be-lV5" firstAttribute="centerY" secondItem="fBo-za-eEQ" secondAttribute="centerY" id="JHV-np-hxO"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="bA6-Ws-D8N"/>
+                                                                <constraint firstItem="7ef-Be-lV5" firstAttribute="centerX" secondItem="fBo-za-eEQ" secondAttribute="centerX" id="eHb-pu-n26"/>
                                                             </constraints>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="BZ8-I8-0RQ" userLabel="Destination">
@@ -4452,7 +4453,7 @@ Res Smart på din Apple Watch</string>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Origin" rowHeight="40" id="WaZ-2A-eHI" userLabel="Origin" customClass="TripDetailsOriginCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="121.5" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="122" width="375" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WaZ-2A-eHI" id="ap3-pH-rn1">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
@@ -4492,7 +4493,7 @@ Res Smart på din Apple Watch</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Segment" rowHeight="89" id="5bV-hp-Oh4" userLabel="Segment" customClass="TripDetailsSegmentCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="161.5" width="375" height="89"/>
+                                <rect key="frame" x="0.0" y="162" width="375" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5bV-hp-Oh4" id="rwZ-DX-ZGT">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
@@ -4519,52 +4520,35 @@ Res Smart på din Apple Watch</string>
                                                         <constraint firstAttribute="width" constant="60" id="tzx-To-BZ6"/>
                                                     </constraints>
                                                 </view>
-                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="v0u-Qt-tcm">
+                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="v0u-Qt-tcm">
                                                     <rect key="frame" x="60" y="0.0" width="255" height="89"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="Blå buss 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pz8-em-IcL" userLabel="Title">
-                                                            <rect key="frame" x="0.0" y="0.0" width="255" height="20"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="eCd-JB-ipB"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="0.0" width="255" height="18"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Mot T-Centralen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaz-Pu-tBq" userLabel="Destination">
-                                                            <rect key="frame" x="0.0" y="20" width="255" height="20"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="TO6-im-HX5"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="18" width="255" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hf-wq-a6t" userLabel="Summary">
-                                                            <rect key="frame" x="0.0" y="40" width="255" height="20"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="pf0-Nt-G76"/>
-                                                            </constraints>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hf-wq-a6t" userLabel="Summary">
+                                                            <rect key="frame" x="0.0" y="38.5" width="255" height="14.5"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="748" text="Problem problem problem stora störningar, inte bra just nu måste du vara försiktning. Bla bla bla massor av text." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPv-fd-xKI" userLabel="Warning">
-                                                            <rect key="frame" x="0.0" y="60" width="255" height="29"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="749" text="Problem problem problem stora störningar, inte bra just nu måste du vara försiktning. Bla bla bla massor av text." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPv-fd-xKI" userLabel="Warning">
+                                                            <rect key="frame" x="0.0" y="53" width="255" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" id="KQz-FK-nJ4"/>
-                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="55" id="oan-bL-Kmc"/>
-                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="20" id="svh-ib-VzW"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                             <color key="textColor" red="1" green="0.293852951761708" blue="0.0016707235726941549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
-                                                            <variation key="default">
-                                                                <mask key="constraints">
-                                                                    <exclude reference="oan-bL-Kmc"/>
-                                                                    <exclude reference="svh-ib-VzW"/>
-                                                                </mask>
-                                                            </variation>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
@@ -4612,7 +4596,7 @@ Res Smart på din Apple Watch</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubSegment" rowHeight="25" id="iUr-zi-k8u" userLabel="Sub segment" customClass="TripDetailsSubSegmentCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="250.5" width="375" height="25"/>
+                                <rect key="frame" x="0.0" y="251" width="375" height="25"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iUr-zi-k8u" id="ql2-Mt-GO2">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
@@ -4653,47 +4637,67 @@ Res Smart på din Apple Watch</string>
                                     <outlet property="timeLabel" destination="lQm-8R-6Z8" id="ign-c2-7n5"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="Destination" rowHeight="40" id="72z-46-yDK" userLabel="Destination" customClass="TripDetailsDestinationCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="275.5" width="375" height="40"/>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="Destination" rowHeight="80" id="72z-46-yDK" userLabel="Destination" customClass="TripDetailsDestinationCell" customModule="Res_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="276" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="72z-46-yDK" id="Rzj-Ms-fM2">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="m4f-mc-vKA">
-                                            <rect key="frame" x="0.0" y="0.0" width="363" height="40"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cEw-ad-Ljb">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVu-LK-ZWM" userLabel="Time">
-                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="m4f-mc-vKA" userLabel="Dest">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVu-LK-ZWM" userLabel="Time">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="60" id="lxo-3j-Im7"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Arlanda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="FXA-76-yac" userLabel="Location">
+                                                            <rect key="frame" x="60" y="0.0" width="315" height="30"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="2b4-C4-M2G" userLabel="Exit">
+                                                    <rect key="frame" x="0.0" y="30" width="375" height="30"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZYO-7g-IJR">
+                                                            <rect key="frame" x="0.0" y="0.0" width="62" height="30"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="62" id="8xB-nY-8qs"/>
+                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="HQf-PU-YNb"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="nOT-xQ-poO" userLabel="Exit">
+                                                            <rect key="frame" x="62" y="0.0" width="313" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="aJL-8w-Gf4"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="lxo-3j-Im7"/>
-                                                        <constraint firstAttribute="height" constant="40" id="zg5-Be-V1I"/>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="ZVX-4l-cgv"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Arlanda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="FXA-76-yac" userLabel="Location">
-                                                    <rect key="frame" x="60" y="0.0" width="179" height="40"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="nOT-xQ-poO" userLabel="Exit">
-                                                    <rect key="frame" x="239" y="0.0" width="124" height="40"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="124" id="931-Xa-ZXP"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
-                                                    <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                </stackView>
                                             </subviews>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="m4f-mc-vKA" firstAttribute="top" secondItem="Rzj-Ms-fM2" secondAttribute="top" id="Vt8-JE-h1e"/>
-                                        <constraint firstAttribute="bottom" secondItem="m4f-mc-vKA" secondAttribute="bottom" id="iXj-yK-QQr"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="m4f-mc-vKA" secondAttribute="trailing" constant="4" id="kfq-tN-2zG"/>
-                                        <constraint firstItem="m4f-mc-vKA" firstAttribute="leading" secondItem="Rzj-Ms-fM2" secondAttribute="leading" id="uS9-KG-sHt"/>
+                                        <constraint firstAttribute="bottom" secondItem="cEw-ad-Ljb" secondAttribute="bottom" id="Arl-zM-5DJ"/>
+                                        <constraint firstItem="cEw-ad-Ljb" firstAttribute="top" secondItem="Rzj-Ms-fM2" secondAttribute="top" id="eXG-Jy-2HG"/>
+                                        <constraint firstAttribute="trailing" secondItem="cEw-ad-Ljb" secondAttribute="trailing" id="qHm-aZ-DP6"/>
+                                        <constraint firstItem="cEw-ad-Ljb" firstAttribute="leading" secondItem="Rzj-Ms-fM2" secondAttribute="leading" id="sIO-vx-ZSO"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -5272,14 +5276,14 @@ Res Smart på din Apple Watch</string>
         <image name="station-icon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="alv-6I-0jl"/>
+        <segue reference="OZb-MD-G7j"/>
+        <segue reference="geV-cu-rvh"/>
         <segue reference="zVB-lv-c0r"/>
-        <segue reference="fPH-Xr-GVg"/>
         <segue reference="WoO-7G-VaU"/>
+        <segue reference="fPH-Xr-GVg"/>
+        <segue reference="Lg4-KG-mN0"/>
         <segue reference="bAI-Ol-u0J"/>
         <segue reference="kst-2L-81y"/>
-        <segue reference="Lg4-KG-mN0"/>
-        <segue reference="L0K-5H-KeJ"/>
-        <segue reference="eBt-27-ZxS"/>
-        <segue reference="GLI-h1-z4f"/>
     </inferredMetricsTieBreakers>
 </document>

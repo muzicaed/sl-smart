@@ -14,11 +14,10 @@ import MessageUI
 
 class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelegate {
   
-  var composeVC: MFMessageComposeViewController? = nil
-  
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var originLabel: UILabel!
   @IBOutlet weak var destinationLabel: UILabel!
+  @IBOutlet weak var exitIconLabel: UILabel!
   @IBOutlet weak var mapButton: UIButton!
   
   let originCellId = "Origin"
@@ -74,15 +73,11 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
     
     ticketAlert.addAction(
       UIAlertAction(title: "Helt pris", style: .default, handler: { _ in
-        DispatchQueue.main.async {
-          self.sendSMSTicket(type: "vux")
-        }
+        self.sendSMSTicket(type: "vux")
       }))
     ticketAlert.addAction(
       UIAlertAction(title: "Reducerat pris", style: .default, handler: { _ in
-        DispatchQueue.main.async {
-          self.sendSMSTicket(type: "rab")
-        }
+        self.sendSMSTicket(type: "rab")
       }))
     ticketAlert.addAction(
       UIAlertAction(title: "Avbryt", style: .cancel, handler: nil))
@@ -148,7 +143,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
   // MARK: MFMessageComposeViewControllerDelegate
   
   func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-      self.composeVC?.dismiss(animated: false, completion: nil)
+    controller.dismiss(animated: true, completion: nil)
   }
   
   // MARK: Private
@@ -157,12 +152,12 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    * Send SMS ticket request
    */
   fileprivate func sendSMSTicket(type: String) {
-    self.composeVC = MFMessageComposeViewController()
-    self.composeVC!.messageComposeDelegate = self
-    self.composeVC!.disableUserAttachments()
-    self.composeVC!.recipients = ["0767201010"]
-    self.composeVC!.body = type
-    self.present(self.composeVC!, animated: true, completion: nil)
+    let composeVC = MFMessageComposeViewController()
+    composeVC.messageComposeDelegate = self
+    composeVC.disableUserAttachments()
+    composeVC.recipients = ["0767201010"]
+    composeVC.body = type
+    present(composeVC, animated: true, completion: nil)
   }
   
   /**
@@ -314,7 +309,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    */
   fileprivate func prepareTableView() {
     tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 60
+    tableView.estimatedRowHeight = 40
     view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRect.zero)
   }
