@@ -19,6 +19,9 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
   var smallPins = [SmallPin]()
   var isSmallPinsVisible = true
   var allCords = [CLLocationCoordinate2D]()
+  var noOfSegments = 0
+  var loadedSegmentsCount = 0
+  var routeTuples = [([CLLocationCoordinate2D], TripSegment)]()
   
   /**
    * View did load
@@ -148,6 +151,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    */
   fileprivate func loadRoute() {
     if let trip = trip {
+      noOfSegments = trip.allTripSegments.count
       for (index, segment) in trip.allTripSegments.enumerated() {
         let next: TripSegment? = (trip.allTripSegments.count > index + 1) ? trip.allTripSegments[index + 1] : nil
         let before: TripSegment? = (index > 0) ? trip.allTripSegments[index - 1] : nil
@@ -155,6 +159,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
         if let geoRef = segment.geometryRef {
           GeometryService.fetchGeometry(geoRef, callback: { (locations, error) in
             DispatchQueue.main.async {
+              self.loadedSegmentsCount += 1
               let coords = self.plotRoute(segment, before: before, next: next, isLast: isLast, geoLocations: locations)
               self.loadRouteDone(coords: coords, segment: segment)
             }
@@ -166,28 +171,18 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     }
   }
   
-  fileprivate func loadRouteDone(coords: [CLLocationCoordinate2D], segment: TripSegment) {
-    createOverlays(coords, segment: segment)
-    allCords += coords
-    setMapViewport(allCords)
-  }
-  
   /**
-   * Loads map route
+   * Create overlay on rote plot done
    */
-  fileprivate func loadRoute2() {
-    if let trip = trip {
-      var allCoords = [CLLocationCoordinate2D]()
-      for (index, segment) in trip.allTripSegments.enumerated() {
-        let next: TripSegment? = (trip.allTripSegments.count > index + 1) ? trip.allTripSegments[index + 1] : nil
-        let before: TripSegment? = (index > 0) ? trip.allTripSegments[index - 1] : nil
-        let isLast = (segment == trip.allTripSegments.last)
-        ///let coords = plotRoute(segment, before: before, next: next, isLast: isLast, geoLocations: locations)
-        //createOverlays(coords, segment: segment)
-        //allCoords += coords
-      }
-      
-      setMapViewport(allCoords)
+  fileprivate func loadRouteDone(coords: [CLLocationCoordinate2D], segment: TripSegment) {
+    allCords += coords
+    let routeTuple = (coords, segment)
+    routeTuples.append(routeTuple)
+    if loadedSegmentsCount == noOfSegments {
+      setMapViewport(allCords)
+      for tuple in routeTuples {
+        createOverlays(tuple.0, segment: tuple.1)
+      }      
     }
   }
   
@@ -211,7 +206,6 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
         }
       } else {
         var shouldPlot = false
-        print("Geo points: \(geoLocations.count)")
         if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
           coords.append(originLocation.coordinate)
           for location in geoLocations {
@@ -227,15 +221,6 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
           }
           coords.append(destLocation.coordinate)
         }
-        
-        /*
-         for stop in segment.stops {
-         for location in geoLocations {
-         coords.append(location.coordinate)
-         }
-         //coords.append(stop.location.coordinate)
-         }
-         */
       }
     }
     
