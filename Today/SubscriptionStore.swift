@@ -24,9 +24,6 @@ open class SubscriptionStore {
    * Check if user have a active subscription.
    */
   func isSubscribed() -> Bool {
-    // TODO PAY: Remove this
-    return true
-    
     loadSubscribedCache()
     return (isSubscribedCache! || isTrial())
   }
@@ -34,10 +31,7 @@ open class SubscriptionStore {
   /**
    * Check if user have a active trial.
    */
-  func isTrial() -> Bool {
-    // TODO PAY: Remove this
-    return false
-    
+  func isTrial() -> Bool {    
     loadSubscribedCache()
     if !isSubscribedCache! {
       if let trialEndDate = defaults.object(forKey: TrialStartDate) as? Date {
