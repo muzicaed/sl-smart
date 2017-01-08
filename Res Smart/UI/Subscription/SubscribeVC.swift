@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import StoreKit
+import SafariServices
 
 class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, SubscribeDelegate {
   
@@ -26,6 +27,16 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
     setupCollectionView()
     SubscriptionManager.sharedInstance.delegate = self
     SubscriptionManager.sharedInstance.requestProducts()
+  }
+
+  /**
+   * User taps "More info"
+   */
+  @IBAction func onMoreInfoTap(_ sender: UIBarButtonItem) {
+    if let url = URL(string: "http://www.ressmartapp.se/subscription-info.php") {
+      let vc = SFSafariViewController(url: url, entersReaderIfAvailable: false)
+      present(vc, animated: true)
+    }
   }
   
   /**
@@ -160,7 +171,7 @@ class SubscribeVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
     }
     
     if indexPath.row == 0 {
-      return CGSize(width: screenSize.width - 20, height: 75)
+      return CGSize(width: screenSize.width - 20, height: 110)
     }
     return CGSize(width: screenSize.width - 20, height: 150)
   }

@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 import CoreLocation
-import SafariServices
 
 class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, LocationSearchResponder {
   
