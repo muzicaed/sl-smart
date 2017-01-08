@@ -76,7 +76,6 @@ class RoutineTripCell: UICollectionViewCell {
   // MARK: Private methods
   
   fileprivate func setupTripData(_ trip: Trip, secondTrip: Trip?) {
-    nextInAboutLabel.isHidden = true
     arrowLabel.isHidden = false
     if let first = trip.tripSegments.first, let last = trip.tripSegments.last  {
       departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)
@@ -105,12 +104,12 @@ class RoutineTripCell: UICollectionViewCell {
    * Creates text for next in about text label
    */
   fileprivate func createNextInAboutText(_ first : TripSegment, second: TripSegment) {
+    nextInAboutLabel.text = " "
     let depTimeInterval = first.departureDateTime.timeIntervalSinceNow
     if depTimeInterval < (60 * 11) {
       let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
       if diffMin <= 60 {
         nextInAboutLabel.text = String(format: NSLocalizedString("Nästa: %d min", comment: ""), diffMin)
-        nextInAboutLabel.isHidden = false
       }
     }
   }
