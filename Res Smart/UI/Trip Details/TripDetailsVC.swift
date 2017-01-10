@@ -61,8 +61,8 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
   /**
    * Selects this trip for current trip
    */
-  @IBAction func beginTrip(_ sender: UIBarButtonItem) {
-    NotificationCenter.default.post(name: Notification.Name(rawValue: "BeginTrip"), object: trip)
+  @IBAction func onBeginTripTap(_ sender: UIButton) { 
+      NotificationCenter.default.post(name: Notification.Name(rawValue: "BeginTrip"), object: trip)
   }
   
   @IBAction func onSMSTicketTap(_ sender: UIBarButtonItem) {
