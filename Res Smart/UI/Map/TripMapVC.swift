@@ -164,7 +164,8 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
           GeometryService.fetchGeometry(geoRef, callback: { (locations, error) in
             DispatchQueue.main.async {
               self.loadedSegmentsCount += 1
-              let coords = self.plotRoute(segment, before: before, next: next, isLast: isLast, geoLocations: locations)
+              let coords = RoutePlotter.plotRoute(segment, before: before, next: next,
+                                                  isLast: isLast, geoLocations: locations, mapView: self.mapView)
               self.loadRouteDone(coords: coords, segment: segment)
             }
           })
@@ -190,90 +191,6 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
         createOverlays(tuple.0, segment: tuple.1)
       }
       mapView.isHidden = false
-    }
-  }
-  
-  /**
-   * Plots the coordinates for the route.
-   */
-  
-  fileprivate func plotRoute(_ segment: TripSegment,
-                             before: TripSegment?,
-                             next: TripSegment?,
-                             isLast: Bool, geoLocations: [CLLocation]) -> [CLLocationCoordinate2D] {
-    
-    var coords = [CLLocationCoordinate2D]()
-    if canPlotRoute(segment, before: before, next: next, isLast: isLast) {
-      plotWalk(segment)
-    } else {
-      if segment.stops.count == 0 {
-        if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
-          coords.append(originLocation.coordinate)
-          coords.append(destLocation.coordinate)
-        }
-      } else {
-        var shouldPlot = false
-        if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
-          coords.append(originLocation.coordinate)
-          for location in geoLocations {
-            if location.distance(from: originLocation) < 1  {
-              shouldPlot = true
-            }
-            if shouldPlot == true && location.distance(from: destLocation) < 1 {
-              break
-            }
-            if shouldPlot {
-              coords.append(location.coordinate)
-            }
-          }
-          coords.append(destLocation.coordinate)
-        }
-      }
-    }
-    
-    return coords
-  }
-  
-  /**
-   * Check if segment can be ploted as walk route.
-   */
-  fileprivate func canPlotRoute(_ segment: TripSegment, before: TripSegment?, next: TripSegment?, isLast: Bool) -> Bool {
-    return (
-      segment.type == .Walk &&
-        (
-          (segment.origin.type == .Address || segment.destination.type == .Address) ||
-            ((before?.type == .Bus || before == nil) && (next?.type == .Bus || isLast))
-      )
-    )
-  }
-  
-  /**
-   * Plot a walk segment using directions
-   */
-  fileprivate func plotWalk(_ segment: TripSegment) {
-    if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
-      let source = MKMapItem(placemark: MKPlacemark(coordinate: originLocation.coordinate, addressDictionary: nil))
-      let dest = MKMapItem(placemark: MKPlacemark(coordinate: destLocation.coordinate, addressDictionary: nil))
-      
-      let directionRequest = MKDirectionsRequest()
-      directionRequest.source = source
-      directionRequest.destination = dest
-      directionRequest.transportType = .walking
-      
-      MKDirections(request: directionRequest)
-        .calculate { (response, error) -> Void in
-          
-          guard let response = response else {
-            if let error = error {
-              fatalError("Error: \(error)")
-            }
-            return
-          }
-          
-          if let route = response.routes.first {
-            self.mapView.add(route.polyline, level: .aboveRoads)
-          }
-      }
     }
   }
   
