@@ -16,10 +16,10 @@ class RoutePlotter {
    */
   
   static func plotRoute(_ segment: TripSegment,
-                             before: TripSegment?,
-                             next: TripSegment?,
-                             isLast: Bool, geoLocations: [CLLocation],
-                             mapView: MKMapView) -> [CLLocationCoordinate2D] {
+                        before: TripSegment?,
+                        next: TripSegment?,
+                        isLast: Bool, geoLocations: [CLLocation],
+                        mapView: MKMapView) -> [CLLocationCoordinate2D] {
     
     var coords = [CLLocationCoordinate2D]()
     if canPlotRoute(segment, before: before, next: next, isLast: isLast) {
@@ -51,6 +51,23 @@ class RoutePlotter {
     }
     
     return coords
+  }
+  
+  /**
+   * Plots a trip segment route on map and
+   * creates overlay icons.
+   */
+  static func createOverlays(_ coordinates: [CLLocationCoordinate2D],
+                             _ segment: TripSegment,
+                             _ trip: Trip?,
+                             _ mapView: MKMapView) {
+    var newCoordinates = coordinates
+    let polyline = RoutePolyline(coordinates: &newCoordinates, count: newCoordinates.count)
+    polyline.segment = segment
+    mapView.add(polyline)
+    
+    createStopPins(segment, mapView: mapView)
+    createLocationPins(segment, coordinates: newCoordinates, trip, mapView)
   }
   
   // MARK: Private
@@ -98,5 +115,66 @@ class RoutePlotter {
     }
   }
   
-
+  /**
+   * Create location pins for each segment
+   */
+  static fileprivate func createLocationPins(_ segment: TripSegment,
+                                             coordinates: [CLLocationCoordinate2D],
+                                             _ trip: Trip?,
+                                             _ mapView: MKMapView) {
+    
+    if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
+      let originCoord = (segment.stops.count == 0) ? originLocation.coordinate : segment.stops.first!.location.coordinate
+      let destCoord = (segment.stops.count == 0) ? destLocation.coordinate : segment.stops.last!.location.coordinate
+      
+      let pin = BigPin()
+      pin.zIndexMod = (segment.type == .Walk) ? -1 : 1
+      if segment == trip?.tripSegments.first! {
+        pin.coordinate = originCoord
+        pin.title = "Start: " + segment.origin.name
+        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+        pin.imageName = segment.type.rawValue
+        mapView.addAnnotation(pin)
+        mapView.selectAnnotation(pin, animated: false)
+      }
+      if segment == trip?.tripSegments.last! {
+        pin.coordinate = originCoord
+        pin.title = segment.origin.name
+        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+        pin.imageName = segment.type.rawValue
+        mapView.addAnnotation(pin)
+        
+        let destPin = DestinationPin()
+        destPin.coordinate = destCoord
+        destPin.title = "Destination: " + segment.destination.name
+        destPin.subtitle = "Framme: " + DateUtils.dateAsTimeString(segment.arrivalDateTime)
+        mapView.addAnnotation(destPin)
+      }
+      if segment != trip?.tripSegments.first! && segment != trip?.tripSegments.last! {
+        pin.coordinate = originCoord
+        pin.title = segment.origin.name
+        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+        pin.imageName = segment.type.rawValue
+        mapView.addAnnotation(pin)
+      }
+    }
+  }
+  
+  /**
+   * Create location pins for each stop
+   */
+  static fileprivate func createStopPins(_ segment: TripSegment, mapView: MKMapView) {
+    for stop in segment.stops {
+      if stop.id != segment.stops.first!.id && stop.id != segment.stops.last!.id {
+        let pin = SmallPin()
+        pin.coordinate = stop.location.coordinate
+        pin.title = stop.name
+        if let depDate = stop.depDate {
+          pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(depDate)
+        }
+        pin.imageName = segment.type.rawValue + "-SMALL"
+        mapView.addAnnotation(pin)
+      }
+    }
+  }
 }
