@@ -1991,16 +1991,21 @@
                                                                 <constraint firstItem="TiA-Wb-6Yu" firstAttribute="top" secondItem="b6m-gg-bLZ" secondAttribute="top" id="dtR-Vf-Ioc"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="749" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwW-LA-Pdp">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wxO-og-Hgo">
                                                             <rect key="frame" x="279" y="0.0" width="20" height="43"/>
-                                                            <color key="backgroundColor" red="0.44392179319371727" green="0.44392179319371727" blue="0.44392179319371727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="20" id="NIw-if-hJD"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </label>
+                                                            <subviews>
+                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="749" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwW-LA-Pdp">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="43"/>
+                                                                    <color key="backgroundColor" red="0.44392179319371727" green="0.44392179319371727" blue="0.44392179319371727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="20" id="NIw-if-hJD"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="15:43" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Og-si-maU">
                                                             <rect key="frame" x="299" y="0.0" width="60" height="43"/>
                                                             <constraints>
@@ -4216,7 +4221,7 @@ Res Smart på din Apple Watch</string>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Origin" rowHeight="40" id="WaZ-2A-eHI" userLabel="Origin" customClass="TripDetailsOriginCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="156" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="155.5" width="375" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WaZ-2A-eHI" id="ap3-pH-rn1">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
@@ -4256,7 +4261,7 @@ Res Smart på din Apple Watch</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Segment" rowHeight="89" id="5bV-hp-Oh4" userLabel="Segment" customClass="TripDetailsSegmentCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="196" width="375" height="89"/>
+                                <rect key="frame" x="0.0" y="195.5" width="375" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5bV-hp-Oh4" id="rwZ-DX-ZGT">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
@@ -4362,7 +4367,7 @@ Res Smart på din Apple Watch</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubSegment" rowHeight="25" id="iUr-zi-k8u" userLabel="Sub segment" customClass="TripDetailsSubSegmentCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="285" width="375" height="25"/>
+                                <rect key="frame" x="0.0" y="284.5" width="375" height="25"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iUr-zi-k8u" id="ql2-Mt-GO2">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
@@ -4404,7 +4409,7 @@ Res Smart på din Apple Watch</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="Destination" rowHeight="40" id="72z-46-yDK" userLabel="Destination" customClass="TripDetailsDestinationCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="310" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="309.5" width="375" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="72z-46-yDK" id="Rzj-Ms-fM2">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
@@ -4491,9 +4496,17 @@ Res Smart på din Apple Watch</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKn-06-MDE">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <color key="backgroundColor" red="0.90980392160000001" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s6b-t8-SQM">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </mapView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="X78-9m-YgF">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="0.33333334329999997" green="0.33333334329999997" blue="0.33333334329999997" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nrS-qg-13b">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
@@ -4534,18 +4547,25 @@ Res Smart på din Apple Watch</string>
                         <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="s6b-t8-SQM" firstAttribute="leading" secondItem="NUO-hH-rJy" secondAttribute="leading" id="1Ev-Cl-GYJ"/>
+                            <constraint firstAttribute="trailing" secondItem="GKn-06-MDE" secondAttribute="trailing" id="5fg-Bw-a7Y"/>
                             <constraint firstItem="8k5-dy-dsU" firstAttribute="leading" secondItem="NUO-hH-rJy" secondAttribute="leading" id="L9a-8a-nol"/>
+                            <constraint firstItem="8k5-dy-dsU" firstAttribute="top" secondItem="GKn-06-MDE" secondAttribute="bottom" id="Pz4-XZ-B79"/>
                             <constraint firstItem="nrS-qg-13b" firstAttribute="top" secondItem="XRh-xU-rrZ" secondAttribute="bottom" id="QOr-HF-5LG"/>
                             <constraint firstItem="nrS-qg-13b" firstAttribute="leading" secondItem="NUO-hH-rJy" secondAttribute="leading" id="RcA-iA-t5f"/>
                             <constraint firstItem="wNR-l0-fbp" firstAttribute="top" secondItem="8k5-dy-dsU" secondAttribute="bottom" id="T6S-Hg-E84"/>
                             <constraint firstAttribute="trailing" secondItem="8k5-dy-dsU" secondAttribute="trailing" id="Ted-Qn-9eu"/>
                             <constraint firstAttribute="trailing" secondItem="s6b-t8-SQM" secondAttribute="trailing" id="X0f-3Q-UBi"/>
+                            <constraint firstItem="X78-9m-YgF" firstAttribute="centerX" secondItem="NUO-hH-rJy" secondAttribute="centerX" id="dBt-38-ixZ"/>
                             <constraint firstItem="s6b-t8-SQM" firstAttribute="top" secondItem="XRh-xU-rrZ" secondAttribute="bottom" id="gaR-eE-FlP"/>
+                            <constraint firstItem="GKn-06-MDE" firstAttribute="top" secondItem="nrS-qg-13b" secondAttribute="bottom" id="qKk-33-My9"/>
                             <constraint firstItem="wNR-l0-fbp" firstAttribute="top" secondItem="s6b-t8-SQM" secondAttribute="bottom" id="sZL-06-8wA"/>
                             <constraint firstAttribute="trailing" secondItem="nrS-qg-13b" secondAttribute="trailing" id="szH-DB-g3B"/>
+                            <constraint firstItem="GKn-06-MDE" firstAttribute="leading" secondItem="NUO-hH-rJy" secondAttribute="leading" id="wNc-fw-a5E"/>
+                            <constraint firstItem="X78-9m-YgF" firstAttribute="centerY" secondItem="NUO-hH-rJy" secondAttribute="centerY" id="zC4-sJ-2VQ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="X78-9m-YgF" id="d4B-AP-laU"/>
                         <outlet property="mapView" destination="s6b-t8-SQM" id="fCd-QD-bt6"/>
                     </connections>
                 </viewController>

@@ -13,6 +13,7 @@ import ResStockholmApiKit
 
 class TripMapVC: UIViewController, MKMapViewDelegate {
   
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var mapView: MKMapView!
   var trip: Trip?
   var routePolylineViews = [MKPolylineView]()
@@ -27,11 +28,14 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    * View did load
    */
   override func viewDidLoad() {
+    super.viewDidLoad()
     mapView.delegate = self
     mapView.mapType = MKMapType.standard
     mapView.showsBuildings = true
     mapView.showsCompass = true
     mapView.showsPointsOfInterest = false
+    mapView.isHidden = true
+    activityIndicator.startAnimating()
     loadRoute()
   }
   
@@ -179,10 +183,13 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     let routeTuple = (coords, segment)
     routeTuples.append(routeTuple)
     if loadedSegmentsCount == noOfSegments {
+      activityIndicator.stopAnimating()
+      mapView.isHidden = false
       setMapViewport(allCords)
       for tuple in routeTuples {
         createOverlays(tuple.0, segment: tuple.1)
       }
+      mapView.isHidden = false
     }
   }
   
