@@ -13,7 +13,7 @@
 		1806037C1C02165000AC1841 /* LocationSearchResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037B1C02165000AC1841 /* LocationSearchResponder.swift */; };
 		180B657E1D8A985400D2A50F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 180B657D1D8A985400D2A50F /* Settings.bundle */; };
 		180F7D791C8CC987000C8207 /* UserPreferenceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F7D781C8CC987000C8207 /* UserPreferenceStore.swift */; };
-		181860A41C61613800413C18 /* RealTimeShowMoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181860A31C61613800413C18 /* RealTimeShowMoreRow.swift */; };
+		181860A41C61613800413C18 /* RealTimeStopPointDeviationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181860A31C61613800413C18 /* RealTimeStopPointDeviationRow.swift */; };
 		1818B2671C404FE0004E3CA3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188B80441C175D9600E7D90C /* NotificationCenter.framework */; };
 		1818B26A1C404FE0004E3CA3 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818B2691C404FE0004E3CA3 /* TodayViewController.swift */; };
 		1818B26D1C404FE0004E3CA3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1818B26B1C404FE0004E3CA3 /* MainInterface.storyboard */; };
@@ -276,7 +276,7 @@
 		180B657D1D8A985400D2A50F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "Res Smart/Settings.bundle"; sourceTree = "<group>"; };
 		180F7D781C8CC987000C8207 /* UserPreferenceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferenceStore.swift; sourceTree = "<group>"; };
 		180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePostHelper.swift; sourceTree = "<group>"; };
-		181860A31C61613800413C18 /* RealTimeShowMoreRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeShowMoreRow.swift; sourceTree = "<group>"; };
+		181860A31C61613800413C18 /* RealTimeStopPointDeviationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeStopPointDeviationRow.swift; sourceTree = "<group>"; };
 		1818B2661C404FE0004E3CA3 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1818B2691C404FE0004E3CA3 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		1818B26C1C404FE0004E3CA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -612,7 +612,7 @@
 				18733C4A1C4E411900F66AEF /* RealTimeVC.swift */,
 				18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */,
 				18698AAB1C4E913A0031D1AD /* RealTimeTripRow.swift */,
-				181860A31C61613800413C18 /* RealTimeShowMoreRow.swift */,
+				181860A31C61613800413C18 /* RealTimeStopPointDeviationRow.swift */,
 			);
 			path = "Real time";
 			sourceTree = "<group>";
@@ -1390,7 +1390,7 @@
 				1892BA3A1C1F188700BC191A /* TravelTypesVC.swift in Sources */,
 				18BC85241CA01A3D0061C0BA /* BusFilterVC.swift in Sources */,
 				18B7619A1E28CD47000F9258 /* RoutePlotter.swift in Sources */,
-				181860A41C61613800413C18 /* RealTimeShowMoreRow.swift in Sources */,
+				181860A41C61613800413C18 /* RealTimeStopPointDeviationRow.swift in Sources */,
 				1824A42E1C9F21ED000BEE9B /* ReportsVC.swift in Sources */,
 				18CB35B21C1E08BA0084CA27 /* LocationPickerRow.swift in Sources */,
 				1835A0691C675D58008355F9 /* NetworkActivity.swift in Sources */,

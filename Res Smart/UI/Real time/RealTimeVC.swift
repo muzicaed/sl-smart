@@ -177,8 +177,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     if isLoading {
       return 0
     }
-    
-    return calcRowCount(section)
+    if section == 0 {
+      return (hasStopPointDeviations()) ? 1 : 0
+    }
+    return calcRowCount(section - 1)
   }
   
   /**
@@ -186,13 +188,14 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   override func tableView(_ tableView: UITableView,
                           cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if indexPath.row == 0  {
-      if tabTypesKeys.count == 0 {
-        return createNotFoundCell(indexPath)
-      }
+    
+    if tabTypesKeys.count == 0 {
+      return createNotFoundCell(indexPath)
+    } else if indexPath.section == 0 {
+      return createStopPointDeviationCell(indexPath)
+    } else if indexPath.row == 0  {
       return createHeaderCell(indexPath)
     }
-    
     return createBussTripCell(indexPath)
   }
   
@@ -203,9 +206,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
                           heightForRowAt indexPath: IndexPath) -> CGFloat {
     if isLoading {
       return tableView.bounds.height - 49 - 64 - 20 + 39
-    } else if indexPath.row == 0 {
-      return 34
-    }
+    } 
     return -1
   }
   
@@ -345,6 +346,17 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   }
   
   /**
+   * Create stop point deviation cell
+   */
+  fileprivate func createStopPointDeviationCell(_ indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView!.dequeueReusableCell(
+      withIdentifier: "StopPointDeviationRow", for: indexPath) as! RealTimeStopPointDeviationRow
+    
+    cell.deviationLabel.text = realTimeDepartures?.deviations.joined(separator: "\n\n")
+    return cell
+  }
+  
+  /**
    * Setup key arrays
    */
   fileprivate func setupKeys() {
@@ -368,17 +380,17 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
       switch tabKeys {
       case "BUS":
-        return realTimeDepartures.busses.count
+        return realTimeDepartures.busses.count + 1
       case "METRO":
-        return realTimeDepartures.metros.count
+        return realTimeDepartures.metros.count + 1
       case "TRAIN":
-        return realTimeDepartures.trains.count
+        return realTimeDepartures.trains.count + 1
       case "TRAM":
-        return realTimeDepartures.trams.count
+        return realTimeDepartures.trams.count + 1
       case "LOCAL-TRAM":
-        return realTimeDepartures.localTrams.count
+        return realTimeDepartures.localTrams.count + 1
       case "BOAT":
-        return realTimeDepartures.boats.count
+        return realTimeDepartures.boats.count + 1
       default:
         return 0
       }
@@ -422,30 +434,31 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Set header cell data
    */
   fileprivate func setHeaderData(_ cell: RealTimeHeaderRow, indexPath: IndexPath) {
+    let index = indexPath.section - 1
     let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
     switch tabKeys {
     case "BUS":
-      let bus = realTimeDepartures!.busses[busKeys[indexPath.section]]!.first!
+      let bus = realTimeDepartures!.busses[busKeys[index]]!.first!
       cell.titleLabel.text = bus.stopAreaName
       cell.titleLabel.accessibilityLabel = "Bussar, \(bus.stopAreaName)"
     case "METRO":
-      let metro = realTimeDepartures!.metros[metroKeys[indexPath.section]]!.first!
+      let metro = realTimeDepartures!.metros[metroKeys[index]]!.first!
       cell.titleLabel.text = metro.groupOfLine.capitalized
     case "TRAIN":
-      let train = realTimeDepartures!.trains[trainKeys[indexPath.section]]!.first!
+      let train = realTimeDepartures!.trains[trainKeys[index]]!.first!
       if train.journeyDirection == 1 {
         cell.titleLabel.text = "Pendeltåg, södergående"
       } else if train.journeyDirection == 2 {
         cell.titleLabel.text = "Pendeltåg, norrgående"
       }
     case "TRAM":
-      let tram = realTimeDepartures!.trams[tramKeys[indexPath.section]]!.first!
+      let tram = realTimeDepartures!.trams[tramKeys[index]]!.first!
       cell.titleLabel.text = tram.groupOfLine
     case "LOCAL-TRAM":
-      let tram = realTimeDepartures!.localTrams[localTramKeys[indexPath.section]]!.first!
+      let tram = realTimeDepartures!.localTrams[localTramKeys[index]]!.first!
       cell.titleLabel.text = tram.groupOfLine
     case "BOAT":
-      let boat = realTimeDepartures!.boats[boatKeys[indexPath.section]]!.first!
+      let boat = realTimeDepartures!.boats[boatKeys[index]]!.first!
       cell.titleLabel.text = boat.stopAreaName
     default:
       break
@@ -456,6 +469,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * Set row cell data
    */
   fileprivate func setRowData(_ cell: RealTimeTripRow, indexPath: IndexPath) {
+    let index = indexPath.section - 1
     var data: RTTransportBase?
     var lineChar = ""
     let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
@@ -463,7 +477,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     
     switch tabKeys {
     case "BUS":
-      let bus = realTimeDepartures!.busses[busKeys[indexPath.section]]![indexPath.row - 1]
+      let bus = realTimeDepartures!.busses[busKeys[index]]![indexPath.row - 1]
       data = bus as RTTransportBase
       if let designation = bus.stopPointDesignation {
         cell.stopPointDesignation.text = designation
@@ -472,9 +486,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       }
     case "METRO":
       lineChar = "T"
-      data = realTimeDepartures!.metros[metroKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
+      data = realTimeDepartures!.metros[metroKeys[index]]![indexPath.row - 1] as RTTransportBase
     case "TRAIN":
-      let train = realTimeDepartures!.trains[trainKeys[indexPath.section]]![indexPath.row - 1]
+      let train = realTimeDepartures!.trains[trainKeys[index]]![indexPath.row - 1]
       cell.lineLabel.text = "J" + train.lineNumber
       let via = ((train.secondaryDestinationName != nil) ? " via \(train.secondaryDestinationName!)" : "")
       cell.infoLabel.text = "\(train.destination)" + via
@@ -495,12 +509,12 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       return
     case "TRAM":
       lineChar = "L"
-      data = realTimeDepartures!.trams[tramKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
+      data = realTimeDepartures!.trams[tramKeys[index]]![indexPath.row - 1] as RTTransportBase
     case "LOCAL-TRAM":
       lineChar = "S"
-      data = realTimeDepartures!.localTrams[localTramKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
+      data = realTimeDepartures!.localTrams[localTramKeys[index]]![indexPath.row - 1] as RTTransportBase
     case "BOAT":
-      data = realTimeDepartures!.boats[boatKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
+      data = realTimeDepartures!.boats[boatKeys[index]]![indexPath.row - 1] as RTTransportBase
     default:
       break
     }
@@ -550,6 +564,16 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     tableActivityIndicator.startAnimating()
     tableActivityIndicator.color = UIColor.lightGray
     tableView?.backgroundView = tableActivityIndicator
+  }
+  
+  /**
+   * Check if realtime data have deviations for selected stop pint.
+   */
+  fileprivate func hasStopPointDeviations() -> Bool {
+    if let dep = realTimeDepartures {
+      return (dep.deviations.count > 0)
+    }
+    return false
   }
   
   deinit {

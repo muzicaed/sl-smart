@@ -1,6 +1,6 @@
 
 //
-//  RealTimeShowMoreRow.swift
+//  RealTimeStopPointDeviationRow.swift
 //  Res Smart
 //
 //  Created by Mikael Hellman on 2016-02-02.
@@ -10,8 +10,9 @@
 import Foundation
 import UIKit
 
-class RealTimeShowMoreRow: UITableViewCell {
+class RealTimeStopPointDeviationRow: UITableViewCell {
   
-  @IBOutlet weak var showMoreButton: UIButton!
+  @IBOutlet weak var deviationLabel: UILabel!
+  
   
 }
