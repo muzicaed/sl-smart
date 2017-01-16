@@ -135,7 +135,7 @@ class RoutePlotter {
         pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
         pin.imageName = segment.type.rawValue
         mapView.addAnnotation(pin)
-        mapView.selectAnnotation(pin, animated: false)
+        //mapView.selectAnnotation(pin, animated: false)
       }
       if segment == trip?.tripSegments.last! {
         pin.coordinate = originCoord

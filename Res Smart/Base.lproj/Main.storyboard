@@ -2796,12 +2796,12 @@ Res Smart på din Apple Watch</string>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VNZ-eo-MVI">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cvn-RL-1oB">
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cvn-RL-1oB" userLabel="Second layer">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41J-L8-3En">
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41J-L8-3En" userLabel="Step by step view" customClass="StepByStepView" customModule="Res_Smart" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="16" width="375" height="59.5"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ErF-PU-w7E">
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ErF-PU-w7E" userLabel="Step by Step Content">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -2826,10 +2826,10 @@ Res Smart på din Apple Watch</string>
                                                     </subviews>
                                                 </stackView>
                                                 <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pjM-BK-68Z">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                                    <rect key="frame" x="-1" y="-0.5" width="376" height="59.5"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="qf8-TS-w7d">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="376" height="59.5"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </view>
                                                     <vibrancyEffect>
@@ -2848,6 +2848,10 @@ Res Smart på din Apple Watch</string>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="FER-Nw-r9B"/>
                                         </constraints>
                                         <blurEffect style="light"/>
+                                        <connections>
+                                            <outlet property="instructions" destination="Are-1T-0YQ" id="Wdc-0X-KPR"/>
+                                            <outlet property="nextStep" destination="dKX-RU-1uN" id="tYj-Pi-bQ0"/>
+                                        </connections>
                                     </visualEffectView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2879,6 +2883,7 @@ Res Smart på din Apple Watch</string>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="VNZ-eo-MVI" id="Bsz-qY-xtF"/>
+                        <outlet property="stepByStepView" destination="41J-L8-3En" id="x9K-fk-U9f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rId-bL-lwO" userLabel="First Responder" sceneMemberID="firstResponder"/>

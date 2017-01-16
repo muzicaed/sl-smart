@@ -185,7 +185,6 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     routeTuples.append(routeTuple)
     if loadedSegmentsCount == noOfSegments {
       activityIndicator.stopAnimating()
-      mapView.isHidden = false
       setMapViewport(allCords)
       for tuple in routeTuples {
         RoutePlotter.createOverlays(tuple.0, tuple.1, trip, mapView)

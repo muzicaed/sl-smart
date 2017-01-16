@@ -66,8 +66,8 @@ class CustomTabVC: UITabBarController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ShowCurrentTrip" {
       let nav = segue.destination as! UINavigationController
-      //let vc = nav.visibleViewController as! CurrentTripVC
-      //vc.currentTrip = currentTrip
+      let vc = nav.visibleViewController as! CurrentTripVC
+      vc.currentTrip = currentTrip
     }
   }
   
