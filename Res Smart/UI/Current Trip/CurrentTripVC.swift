@@ -32,6 +32,8 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     mapView.delegate = self
     mapView.mapType = MKMapType.standard
     mapView.showsBuildings = true
+    mapView.showsCompass = false
+    mapView.showsUserLocation = true
     mapView.showsPointsOfInterest = false
     loadRoute()
   }
@@ -174,7 +176,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     
     self.mapView.setVisibleMapRect(
       self.mapView.mapRectThatFits(allPolyline.boundingMapRect),
-      edgePadding: UIEdgeInsets(top: 50, left: 25, bottom: 50, right: 25),
+      edgePadding: UIEdgeInsets(top: 250, left: 25, bottom: 50, right: 25),
       animated: false)
   }
 }
