@@ -86,6 +86,16 @@ open class SubscriptionStore {
    */
   func resetTrial() {
     defaults.set(nil, forKey: TrialStartDate)
+    defaults.synchronize()
+  }
+  
+  /**
+   * Abort the trial
+   */
+  func abortTrial() {
+    let monthAgo = Calendar.current.date(byAdding: .day, value: -30, to: Date())
+    defaults.set(monthAgo, forKey: TrialStartDate)
+    defaults.synchronize()
   }
   
   // MARK: Private

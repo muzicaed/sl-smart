@@ -184,6 +184,13 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   /**
+   * On user taps abort trial button
+   */
+  @IBAction func onAbortTrial(_ sender: UIButton) {
+    showAbortTrialAlert()
+  }
+  
+  /**
    * Unwind (back) to this view.
    */
   @IBAction func unwindToRoutineTripsVC(_ segue: UIStoryboardSegue) {}
@@ -291,7 +298,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         if indexPath.row == 0 {
           return CGSize(width: screenSize.width, height: 175)
         } else if indexPath.row == 2 {
-          return CGSize(width: screenSize.width, height: 25)
+          return CGSize(width: screenSize.width, height: 35)
         }
         return CGSize(width: screenSize.width, height: 60)
       }
@@ -325,11 +332,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         return
       }
       
-      hereToThereCriterion = nil
-      selectedRoutineTrip = bestRoutineTrip
-      var scoreMod = ScorePostHelper.BestTapCountScore
-      
-      if indexPath.section != 0 {
+      var scoreMod: Float = 0.0
+      if indexPath.section == 0 && indexPath.row == 0 {
+        hereToThereCriterion = nil
+        selectedRoutineTrip = bestRoutineTrip
+        scoreMod = ScorePostHelper.BestTapCountScore
+      }else if indexPath.section != 0 {
         selectedRoutineTrip = otherRoutineTrips[indexPath.row]
         scoreMod = ScorePostHelper.OtherTapCountScore
         ScorePostHelper.changeScoreForRoutineTrip(
@@ -338,11 +346,13 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
           score: ScorePostHelper.NotBestTripScore)
       }
       
-      ScorePostHelper.changeScoreForRoutineTrip(
-        selectedRoutineTrip!.criterions.origin!.siteId!,
-        destinationId: selectedRoutineTrip!.criterions.dest!.siteId!,
-        score: scoreMod)
-      performSegue(withIdentifier: showTripListSegue, sender: self)
+      if selectedRoutineTrip != nil {
+        ScorePostHelper.changeScoreForRoutineTrip(
+          selectedRoutineTrip!.criterions.origin!.siteId!,
+          destinationId: selectedRoutineTrip!.criterions.dest!.siteId!,
+          score: scoreMod)
+        performSegue(withIdentifier: showTripListSegue, sender: self)
+      }
     }
   }
   
@@ -352,9 +362,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell,
                                forItemAt indexPath: IndexPath) {
     if isSubscribed && !isShowInfo && !isLoading {
-      let bgColorView = UIView()
-      bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
-      cell.selectedBackgroundView = bgColorView
+      if indexPath.section == 0 && indexPath.row != 2 {
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
+        cell.selectedBackgroundView = bgColorView
+      }
     }
   }
   
@@ -629,6 +641,30 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     present(restoreAlert, animated: true, completion: nil)
   }
+  
+  /**
+   * Show restore abort trial alert
+   */
+  fileprivate func showAbortTrialAlert() {
+    let abortTrialAlert = UIAlertController(
+      title: NSLocalizedString("Avsluta provperiod?", comment: ""),
+      message: NSLocalizedString("Du får prova alla premium-funktioner i 14 dagar, är du säker på att du vill avsluta prodverioden?", comment: ""),
+      preferredStyle: UIAlertControllerStyle.alert)
+    abortTrialAlert.addAction(
+      UIAlertAction(title: NSLocalizedString("Ja, avsluta", comment: ""), style: .default, handler: { _ in
+        DispatchQueue.main.async {
+          SubscriptionStore.sharedInstance.abortTrial()
+          self.collectionView?.reloadData()
+          self.viewWillAppear(true)
+        }        
+      }))
+    abortTrialAlert.addAction(
+      UIAlertAction(title: "Nej, avbryt", style: .cancel, handler: nil))
+    
+    present(abortTrialAlert, animated: true, completion: nil)
+  }
+  
+  
   
   /**
    * Create date & time tuple.

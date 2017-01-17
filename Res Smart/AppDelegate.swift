@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     UIApplication.shared.scheduledLocalNotifications = [notification]
   }
   
-  func applicationDidBecomeActive(_ application: UIApplication) {
+  func applicationDidBecomeActive(_ application: UIApplication) {    
     SubscriptionStore.sharedInstance.setupTrial()
     SubscriptionManager.sharedInstance.validateSubscription()
     checkTrafficSituation()
