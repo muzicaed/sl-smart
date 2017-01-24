@@ -24,6 +24,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
   var smallPins = [SmallPin]()
   var isSmallPinsVisible = true
   var isMapLoaded = false
+  var isOverviewLocked = true
   var refreshTimer: Timer?
   let analyzer = CurrentTripAnalyzer()
   
@@ -38,9 +39,19 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     mapView.showsCompass = false
     mapView.showsUserLocation = true
     mapView.showsPointsOfInterest = false
+    
+    // TODO: Fix touch
+    mapView.isZoomEnabled = false
+    mapView.isPitchEnabled = false
+    mapView.isRotateEnabled = false
+    mapView.isScrollEnabled = false
+    
     if !isMapLoaded{
       analyzer.currentTrip = currentTrip
       loadRoute()
+    }
+    if let last = currentTrip?.allTripSegments.last {
+      title = "Till \(last.destination.name)"
     }
   }
   
@@ -206,8 +217,8 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    * Update UI to show waiting instructions
    */
   fileprivate func updateWaitingData(segment: TripSegment) {
-    if let coord = segment.origin.location?.coordinate {
-      setMapViewport([coord])
+    if segment.origin.location != nil && isOverviewLocked {
+      setMapViewport([segment.origin.location!.coordinate])
     }
     let lineData = TripHelper.friendlyLineData(segment)
     let lineDesc = TripHelper.friendlyTripSegmentDesc(segment)
@@ -216,7 +227,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
       isWalk: false)
     
     stepByStepView.nextStep.text = "Vänta på \(segment.type.decisive)"
-    stepByStepView.instructions.text = "\(lineData.long) \(lineDesc.lowercased())"
+    stepByStepView.instructions.text = "\(lineData.long) \(lineDesc)"
     stepByStepView.inAbout.text = "Den går \(inAbout.lowercased())"
   }
   
@@ -224,7 +235,9 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    * Update UI to show riding instructions
    */
   fileprivate func updateRidingData(segment: TripSegment) {
-    setMapViewport(findCoordsForSegment(segment))
+    if isOverviewLocked {
+      setMapViewport(findCoordsForSegment(segment))
+    }
     let lineData = TripHelper.friendlyLineData(segment)
     let lineDesc = TripHelper.friendlyTripSegmentDesc(segment)
     let inAbout = DateUtils.createAboutTimeText(
@@ -232,7 +245,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
       isWalk: false)
     
     stepByStepView.nextStep.text = "Kliv av vid \(segment.destination.name)"
-    stepByStepView.instructions.text = "\(lineData.long) \(lineDesc.lowercased())"
+    stepByStepView.instructions.text = "\(lineData.long) \(lineDesc)"
     stepByStepView.inAbout.text = "Du är framme \(inAbout.lowercased())"
     
   }
@@ -241,12 +254,14 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    * Update UI to show walking instructions
    */
   fileprivate func updateWalkingData(segment: TripSegment, nextSegment: TripSegment) {
+    if isOverviewLocked {
+      setMapViewport([segment.origin.location!.coordinate, segment.destination.location!.coordinate])
+    }
     let lineData = TripHelper.friendlyLineData(nextSegment)
     let inAbout = DateUtils.createAboutTimeText(
       nextSegment.departureDateTime,
       isWalk: false)
     
-    setMapViewport([segment.origin.location!.coordinate, segment.destination.location!.coordinate])
     stepByStepView.nextStep.text = "Gå till \(nextSegment.origin.name)"
     stepByStepView.instructions.text = "Där ska du ta \(lineData.long)"
     stepByStepView.inAbout.text = "Den går \(inAbout.lowercased())"
@@ -256,7 +271,9 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    * Update UI to show walking instructions if walk segment is the last one
    */
   fileprivate func updateWalkingLastData(segment: TripSegment) {
-    setMapViewport(findCoordsForSegment(segment))
+    if isOverviewLocked {
+      setMapViewport(findCoordsForSegment(segment))
+    }
     stepByStepView.nextStep.text = "Gå till \(segment.destination.name)"
     stepByStepView.instructions.text = "Detta är din slutdestination"
     stepByStepView.inAbout.text = nil

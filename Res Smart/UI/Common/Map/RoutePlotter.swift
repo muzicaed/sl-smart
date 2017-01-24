@@ -80,7 +80,7 @@ class RoutePlotter {
     return (
       segment.type == .Walk && (
         (segment.origin.type == .Address || segment.destination.type == .Address) ||
-          ((before?.type == .Bus || before == nil) && (next?.type == .Bus || isLast))
+          ((before?.type == .Bus || before == nil) && (next?.type == .Bus || next?.type == .Metro || isLast))
       )
     )
   }
@@ -125,8 +125,11 @@ class RoutePlotter {
                                              _ showStart: Bool) {
     
     if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
-      let originCoord = (segment.stops.count == 0) ? originLocation.coordinate : segment.stops.first!.location.coordinate
-      let destCoord = (segment.stops.count == 0) ? destLocation.coordinate : segment.stops.last!.location.coordinate
+      //let originCoord = (segment.stops.count == 0) ? originLocation.coordinate : segment.stops.first!.location.coordinate
+      //let destCoord = (segment.stops.count == 0) ? destLocation.coordinate : segment.stops.last!.location.coordinate
+      
+      let originCoord = originLocation.coordinate
+      let destCoord = destLocation.coordinate
       
       let pin = BigPin()
       pin.zIndexMod = (segment.type == .Walk) ? -1 : 1
