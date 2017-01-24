@@ -12,4 +12,5 @@ import UIKit
 class StepByStepView: UIVisualEffectView {
   @IBOutlet weak var nextStep: UILabel!
   @IBOutlet weak var instructions: UILabel!
+  @IBOutlet weak var inAbout: UILabel!
 }

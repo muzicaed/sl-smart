@@ -25,16 +25,16 @@ class CurrentTripAnalyzer {
         return (segment, .Waiting)
       }
       
-      // Riding a segment
+      // Riding/Walking a segment
       if now > segment.departureDateTime && now < segment.arrivalDateTime {
-        return (segment, .Riding)
+        return (segment.type == .Walk) ? (segment, .Walking) : (segment, .Riding)
       }
       
       // In between two segments (Waiting)
       if (index + 1) < trip.allTripSegments.count {
         let nextSegment = trip.allTripSegments[index + 1]
         if now > segment.arrivalDateTime && now < nextSegment.departureDateTime {
-          return (segment, .Waiting)
+          return (nextSegment.type == .Walk) ? (segment, .Waiting) : (nextSegment, .Waiting)
         }
       }
     }
@@ -50,6 +50,7 @@ class CurrentTripAnalyzer {
 
 public enum InstructionType: String {
   case Riding = "RIDING"
+  case Walking = "WALKING"
   case Waiting = "WAITING"
   case Passed = "PASSED"
 }

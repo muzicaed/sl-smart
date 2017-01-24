@@ -121,4 +121,25 @@ public enum TripType: String {
   case Bike = "BIKE"
   case Car = "CAR"
   case Taxi = "TAXI"
+  
+  public var decisive: String {
+    switch self {
+    case .Ship:
+      return "båten"
+    case .Ferry:
+      return "färjan"
+    case .Tram:
+      return "spårvagnen"
+    case .Bus:
+      return "bussen"
+    case .Metro:
+      return "t-banan"
+    case .Train:
+      return "tåget"
+    case .Narbuss:
+      return "närbussen"
+    default:
+      return ""
+    }
+  }
 }

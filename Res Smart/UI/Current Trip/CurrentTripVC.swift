@@ -188,6 +188,9 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
       case .Riding:
         updateRidingData(segment: segmentsTuple.0)
         break
+      case .Walking:
+        updateWalkingData(segment: segmentsTuple.0)
+        break
       case .Passed:
         tripPassed(segment: segmentsTuple.0)
         break
@@ -207,20 +210,38 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     let lineDesc = TripHelper.friendlyTripSegmentDesc(segment)
     let inAbout = DateUtils.createAboutTimeText(
       segment.departureDateTime,
-      isWalk: segment.type == TripType.Walk)
-    stepByStepView.nextStep.text = "Vänta på \(lineData.long) \(lineDesc)"
-    stepByStepView.instructions.text = "Tåget går \(inAbout)"
+      isWalk: false)
+    
+    stepByStepView.nextStep.text = "Vänta på \(segment.type.decisive)"
+    stepByStepView.instructions.text = "Du ska ta \(lineData.long) mot \(lineDesc)"
+    stepByStepView.inAbout.text = "Den går \(inAbout.lowercased())"
   }
   
   /**
    * Update UI to show riding instructions
    */
   fileprivate func updateRidingData(segment: TripSegment) {
-    print(TripHelper.friendlyLineData(segment))
-    print(TripHelper.friendlyTripSegmentDesc(segment))
     setMapViewport(findCoordsForSegment(segment))
-    stepByStepView.nextStep.text = segment.destination.cleanName
-    stepByStepView.instructions.text = "Åker"
+    let lineData = TripHelper.friendlyLineData(segment)
+    let lineDesc = TripHelper.friendlyTripSegmentDesc(segment)
+    let inAbout = DateUtils.createAboutTimeText(
+      segment.arrivalDateTime,
+      isWalk: false)
+    
+    stepByStepView.nextStep.text = "Kliv av vid \(segment.destination.name)"
+    stepByStepView.instructions.text = "Åk med \(lineData.long) mot \(lineDesc)"
+    stepByStepView.inAbout.text = "Du är framme \(inAbout.lowercased())"
+    
+  }
+  
+  /**
+   * Update UI to show walking instructions
+   */
+  fileprivate func updateWalkingData(segment: TripSegment) {
+    setMapViewport(findCoordsForSegment(segment))
+    stepByStepView.nextStep.text = "Gå till \(segment.origin.name)"
+    stepByStepView.instructions.text = "Det är ca. xxx meter kvar att gå"
+    stepByStepView.inAbout.text = nil
   }
   
   /**
