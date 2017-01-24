@@ -20,7 +20,7 @@ class TripDetailsDestinationCell: UITableViewCell, TripCellProtocol {
    * Set cell data.
    */
   func setData(_ indexPath: IndexPath, trip: Trip) {
-    let segment = trip.tripSegments[indexPath.section]
+    let segment = trip.allTripSegments[indexPath.section]
     timeLabel.text = DateUtils.dateAsTimeString(segment.arrivalDateTime)
     timeLabel.accessibilityLabel = "Framme \(timeLabel.text!)"
     destinationLabel.text = segment.destination.cleanName

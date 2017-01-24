@@ -213,7 +213,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
       isWalk: false)
     
     stepByStepView.nextStep.text = "Vänta på \(segment.type.decisive)"
-    stepByStepView.instructions.text = "Du ska ta \(lineData.long) mot \(lineDesc)"
+    stepByStepView.instructions.text = "\(lineData.long) mot \(lineDesc)"
     stepByStepView.inAbout.text = "Den går \(inAbout.lowercased())"
   }
   
@@ -229,7 +229,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
       isWalk: false)
     
     stepByStepView.nextStep.text = "Kliv av vid \(segment.destination.name)"
-    stepByStepView.instructions.text = "Åk med \(lineData.long) mot \(lineDesc)"
+    stepByStepView.instructions.text = "\(lineData.long) mot \(lineDesc)"
     stepByStepView.inAbout.text = "Du är framme \(inAbout.lowercased())"
     
   }
@@ -303,6 +303,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
         RoutePlotter.createOverlays(tuple.0, tuple.1, currentTrip, mapView)
       }
       mapView.isHidden = false
+      isMapLoaded = true
       startRefreshTimmer()
       updateCurrentTripStatus()
     }

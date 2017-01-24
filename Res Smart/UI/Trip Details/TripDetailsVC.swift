@@ -91,7 +91,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    * Number of sections
    */
   override func numberOfSections(in tableView: UITableView) -> Int {
-    return trip.tripSegments.count
+    return trip.allTripSegments.count
   }
   
   /**
@@ -130,7 +130,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    */
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if (indexPath.section == 0 && indexPath.row == 1) ||
-      (indexPath.section != trip.tripSegments.count && indexPath.row == 1) {
+      (indexPath.section != trip.allTripSegments.count && indexPath.row == 1) {
       tableView.deselectRow(at: indexPath, animated: true)
       if stopsVisual[indexPath.section].hasStops {
         stopsVisual[indexPath.section].isVisible = !stopsVisual[indexPath.section].isVisible
@@ -198,10 +198,10 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    * Calculate number of rows for a segment section
    */
   fileprivate func calculateNumberOfRows(_ section: Int) -> Int {
-    if section < trip.tripSegments.count && stopsVisual.count > 0 {
+    if section < trip.allTripSegments.count && stopsVisual.count > 0 {
       let visual = stopsVisual[section]
       if visual.hasStops && visual.isVisible {
-        return 3 + max(trip.tripSegments[section].stops.count - 2, 0)
+        return 3 + max(trip.allTripSegments[section].stops.count - 2, 0)
       }
     }
     return 3
@@ -211,7 +211,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    * Prepares the visual stops data.
    */
   fileprivate func prepareVisualStops() {
-    for _ in trip.tripSegments {
+    for _ in trip.allTripSegments {
       stopsVisual.append((isVisible: false, hasStops: false))
     }
   }
@@ -222,8 +222,8 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
   fileprivate func loadStops() {
     var loadCount = 0
     var doneCount = 0
-    
-    for (index, segment) in trip.tripSegments.enumerated() {
+
+    for (index, segment) in trip.allTripSegments.enumerated() {
       if let ref = segment.journyRef {
         loadCount += 1
         NetworkActivity.displayActivityIndicator(true)
@@ -277,9 +277,9 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    * Prepares header
    */
   fileprivate func prepareHeader() {
-    timeLabel.text = DateUtils.friendlyDate(trip.tripSegments.last!.arrivalDateTime)
-    originLabel.text = "Från \(trip.tripSegments.first!.origin.cleanName)"
-    destinationLabel.text = "Till \(trip.tripSegments.last!.destination.cleanName)"
+    timeLabel.text = DateUtils.friendlyDate(trip.allTripSegments.last!.arrivalDateTime)
+    originLabel.text = "Från \(trip.allTripSegments.first!.origin.cleanName)"
+    destinationLabel.text = "Till \(trip.allTripSegments.last!.destination.cleanName)"
   }
   
   /**
@@ -287,8 +287,8 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    */
   fileprivate func updateStopsToggleAnimated(_ section: Int, isVisible: Bool) {
     var indexPaths = [IndexPath]()
-    for (index, _) in trip.tripSegments[section].stops.enumerated() {
-      if index < (trip.tripSegments[section].stops.count - 2) {
+    for (index, _) in trip.allTripSegments[section].stops.enumerated() {
+      if index < (trip.allTripSegments[section].stops.count - 2) {
         indexPaths.append(IndexPath(row: index + 2, section: section))
       }
     }
