@@ -60,14 +60,15 @@ class RoutePlotter {
   static func createOverlays(_ coordinates: [CLLocationCoordinate2D],
                              _ segment: TripSegment,
                              _ trip: Trip?,
-                             _ mapView: MKMapView) {
+                             _ mapView: MKMapView,
+                             showStart: Bool) {
     var newCoordinates = coordinates
     let polyline = RoutePolyline(coordinates: &newCoordinates, count: newCoordinates.count)
     polyline.segment = segment
     mapView.add(polyline)
     
     createStopPins(segment, mapView: mapView)
-    createLocationPins(segment, coordinates: newCoordinates, trip, mapView)
+    createLocationPins(segment, coordinates: newCoordinates, trip, mapView, showStart)
   }
   
   // MARK: Private
@@ -77,10 +78,9 @@ class RoutePlotter {
    */
   static fileprivate func canPlotRoute(_ segment: TripSegment, before: TripSegment?, next: TripSegment?, isLast: Bool) -> Bool {
     return (
-      segment.type == .Walk &&
-        (
-          (segment.origin.type == .Address || segment.destination.type == .Address) ||
-            ((before?.type == .Bus || before == nil) && (next?.type == .Bus || isLast))
+      segment.type == .Walk && (
+        (segment.origin.type == .Address || segment.destination.type == .Address) ||
+          ((before?.type == .Bus || before == nil) && (next?.type == .Bus || isLast))
       )
     )
   }
@@ -121,7 +121,8 @@ class RoutePlotter {
   static fileprivate func createLocationPins(_ segment: TripSegment,
                                              coordinates: [CLLocationCoordinate2D],
                                              _ trip: Trip?,
-                                             _ mapView: MKMapView) {
+                                             _ mapView: MKMapView,
+                                             _ showStart: Bool) {
     
     if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
       let originCoord = (segment.stops.count == 0) ? originLocation.coordinate : segment.stops.first!.location.coordinate
@@ -135,7 +136,9 @@ class RoutePlotter {
         pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
         pin.imageName = segment.type.rawValue
         mapView.addAnnotation(pin)
-        //mapView.selectAnnotation(pin, animated: false)
+        if showStart {
+          mapView.selectAnnotation(pin, animated: false)
+        }
       }
       if segment == trip?.tripSegments.last! {
         pin.coordinate = originCoord

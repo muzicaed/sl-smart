@@ -319,7 +319,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     if loadedSegmentsCount == noOfSegments {
       //activityIndicator.stopAnimating()
       for tuple in routeTuples {
-        RoutePlotter.createOverlays(tuple.0, tuple.1, currentTrip, mapView)
+        RoutePlotter.createOverlays(tuple.0, tuple.1, currentTrip, mapView, showStart: false)
       }
       mapView.isHidden = false
       isMapLoaded = true

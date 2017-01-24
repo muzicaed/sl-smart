@@ -24,7 +24,6 @@ open class Trip: NSObject, NSCopying {
     self.noOfChanges = noOfChanges
     self.isValid = isValid
     if let segments = tripSegments {
-      self.allTripSegments = segments
       var lastSegment: TripSegment? = nil
       for segment in segments {
         if let last = lastSegment {
@@ -36,14 +35,20 @@ open class Trip: NSObject, NSCopying {
               last.distance = lastDist + dist
             }
           } else {
-            self.tripSegments.append(last)
+            self.allTripSegments.append(last)
           }
         }
         
         if segment == segments.last {
-          self.tripSegments.append(segment)
+          self.allTripSegments.append(segment)
         }
         lastSegment = segment.copy() as? TripSegment
+      }
+      
+      for segment in self.allTripSegments {
+        if !(segment.type == .Walk && segment.distance! < 200) {
+          self.tripSegments.append(segment)
+        }
       }
     }
   }

@@ -187,7 +187,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
       activityIndicator.stopAnimating()
       setMapViewport(allCords)
       for tuple in routeTuples {
-        RoutePlotter.createOverlays(tuple.0, tuple.1, trip, mapView)
+        RoutePlotter.createOverlays(tuple.0, tuple.1, trip, mapView, showStart: true)
       }
       mapView.isHidden = false
     }

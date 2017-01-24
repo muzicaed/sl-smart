@@ -30,7 +30,7 @@ class RouteRenderer: MKPolylineRenderer {
     let data = TripHelper.friendlyLineData(segment)
     self.strokeColor = data.color
     self.lineJoin = CGLineJoin.bevel
-    self.lineWidth = 4.5
+    self.lineWidth = 3.5
     if segment.type == .Ferry || segment.type == .Walk {
       self.strokeColor = UIColor.black
       self.lineWidth = 2.5
@@ -43,7 +43,7 @@ class RouteRenderer: MKPolylineRenderer {
    */
   fileprivate func setupWalkRenderer() {
     self.strokeColor = UIColor.black
-    self.lineWidth = 3.5
+    self.lineWidth = 4.5
     //self.lineDashPattern = [6, 8]
   }
 }
