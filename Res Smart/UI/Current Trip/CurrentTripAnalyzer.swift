@@ -12,67 +12,59 @@ import MapKit
 
 class CurrentTripAnalyzer {
   
+  var currentTrip: Trip?
   
   /**
    * Returns route coordinates for the current trip segment.
    */
-  static func findActiveSegments(_ trip: Trip) -> (TripSegment, InstructionType) {
-    for (index, segment) in trip.allTripSegments.enumerated() {
-      if index == 0 {
-        return handleFirstSegment(trip, segment)
-      } else if (index + 1) < trip.allTripSegments.count {
-        return handleLastSegment(trip, segment)
+  func findActiveSegments() -> CurrentTripResult {
+
+    for (index, segment) in currentTrip!.allTripSegments.enumerated() {
+      if (index + 1) == currentTrip!.allTripSegments.count {
+        if segment.type == .Walk {
+          return CurrentTripResult(segment, nil, .WalkingLast)
+        }
+        return CurrentTripResult(segment, nil, .Riding)
       }
       
-      let nextSegment = trip.allTripSegments[index + 1]
-      if let returnTuple = handleSegment(trip, segment, nextSegment) {
+      if let returnTuple = handleSegment(index, segment) {
         return returnTuple
       }
     }
     print("Should not go here!")
+    return CurrentTripResult(currentTrip!.allTripSegments.last!, nil, .Arrived)
   }
   
   // MARK: Private
   
   /**
-   * Handles first segment
-   */
-  fileprivate static func handleFirstSegment(_ trip: Trip,
-                                             _ segment: TripSegment) -> (TripSegment, InstructionType) {
-    let now = Date()
-    // Waiting for first segment
-    if now < segment.departureDateTime {
-      return (segment, .Waiting)
-    }
-  }
-  
-  /**
-   * Handles last segment
-   */
-  fileprivate static func handleLastSegment(_ trip: Trip,
-                                            _ segment: TripSegment) -> (TripSegment, InstructionType) {
-    
-  }
-  
-  /**
    * Handles segment
    */
-  fileprivate static func handleSegment(_ trip: Trip,
-                                        _ segment: TripSegment,
-                                        _ nextSegment: TripSegment) -> (TripSegment, InstructionType)? {
+  fileprivate func handleSegment(_ index: Int, _ segment: TripSegment) -> CurrentTripResult? {
     let now = Date()
-    // Riding/Walking a segment
-    if now > segment.departureDateTime && now < segment.arrivalDateTime {
-      return (segment.type == .Walk) ? (segment, .Walking) : (segment, .Riding)
-    }
-    
-    // In between two segments (Waiting)
-    if (index + 1) < trip.allTripSegments.count {
-      let nextSegment = trip.allTripSegments[index + 1]
-      if now > segment.arrivalDateTime && now < nextSegment.departureDateTime {
-        return (nextSegment.type == .Walk) ? (segment, .Waiting) : (nextSegment, .Waiting)
+    let nextSegment = currentTrip!.allTripSegments[index + 1]
+    if index == 0 && now < segment.departureDateTime {
+      // First segment
+      if segment.type == .Walk {
+        return CurrentTripResult(segment, nextSegment, .Walking)
       }
+      return CurrentTripResult(segment, nil, .Waiting)
+    } else if now > segment.departureDateTime && now < segment.arrivalDateTime {
+      // Riding/Walking a segment
+      return (segment.type == .Walk) ? CurrentTripResult(segment, nextSegment, .Walking) : CurrentTripResult(segment, nil, .Riding)
+    } else if now > segment.arrivalDateTime && now < nextSegment.departureDateTime {
+      // In between two segments (Waiting)
+      if nextSegment.type == .Walk {
+        if (index + 2) < currentTrip!.allTripSegments.count {
+          // TODO: Not good... need to find next non walk segment...
+          let nextNextSegment = currentTrip!.allTripSegments[index + 2]
+          return CurrentTripResult(nextSegment, nextNextSegment, .Walking)
+        }
+        return CurrentTripResult(nextSegment, nextSegment, .Walking)
+      }
+      return CurrentTripResult(nextSegment, nil, .Waiting)
     }
+    return nil
   }
 }
 
@@ -80,6 +72,7 @@ class CurrentTripAnalyzer {
 public enum InstructionType: String {
   case Riding = "RIDING"
   case Walking = "WALKING"
+  case WalkingLast = "WALKING_LAST"
   case Waiting = "WAITING"
-  case Passed = "PASSED"
+  case Arrived = "ARRIVIED"
 }

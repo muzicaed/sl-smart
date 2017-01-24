@@ -25,6 +25,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
   var isSmallPinsVisible = true
   var isMapLoaded = false
   var refreshTimer: Timer?
+  let analyzer = CurrentTripAnalyzer()
   
   /**
    * View did load
@@ -38,6 +39,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     mapView.showsUserLocation = true
     mapView.showsPointsOfInterest = false
     if !isMapLoaded{
+      analyzer.currentTrip = currentTrip
       loadRoute()
     }
   }
@@ -178,24 +180,25 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
   /**
    * Loads map route
    */
-  @objc fileprivate func updateCurrentTripStatus() {
-    if let trip = currentTrip {
-      let segmentsTuple = CurrentTripAnalyzer.findActiveSegments(trip)
-      switch segmentsTuple.1 {
-      case .Waiting:
-        updateWaitingData(segment: segmentsTuple.0)
-        break
-      case .Riding:
-        updateRidingData(segment: segmentsTuple.0)
-        break
-      case .Walking:
-        updateWalkingData(segment: segmentsTuple.0)
-        break
-      case .Passed:
-        tripPassed(segment: segmentsTuple.0)
-        break
-        
-      }
+  @objc fileprivate func updateCurrentTripStatus() {    
+    let result = analyzer.findActiveSegments()
+    switch result.instruction {
+    case .Waiting:
+      updateWaitingData(segment: result.first)
+      break
+    case .Riding:
+      updateRidingData(segment: result.first)
+      break
+    case .Walking:
+      updateWalkingData(segment: result.first, nextSegment: result.next!)
+      break
+    case .WalkingLast:
+      updateWalkingLastData(segment: result.first)
+      break
+    case .Arrived:
+      tripPassed(segment: result.first)
+      break
+      
     }
   }
   
@@ -213,7 +216,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
       isWalk: false)
     
     stepByStepView.nextStep.text = "Vänta på \(segment.type.decisive)"
-    stepByStepView.instructions.text = "\(lineData.long) mot \(lineDesc)"
+    stepByStepView.instructions.text = "\(lineData.long) \(lineDesc.lowercased())"
     stepByStepView.inAbout.text = "Den går \(inAbout.lowercased())"
   }
   
@@ -229,7 +232,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
       isWalk: false)
     
     stepByStepView.nextStep.text = "Kliv av vid \(segment.destination.name)"
-    stepByStepView.instructions.text = "\(lineData.long) mot \(lineDesc)"
+    stepByStepView.instructions.text = "\(lineData.long) \(lineDesc.lowercased())"
     stepByStepView.inAbout.text = "Du är framme \(inAbout.lowercased())"
     
   }
@@ -237,10 +240,25 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
   /**
    * Update UI to show walking instructions
    */
-  fileprivate func updateWalkingData(segment: TripSegment) {
+  fileprivate func updateWalkingData(segment: TripSegment, nextSegment: TripSegment) {
+    let lineData = TripHelper.friendlyLineData(nextSegment)
+    let inAbout = DateUtils.createAboutTimeText(
+      nextSegment.departureDateTime,
+      isWalk: false)
+    
+    setMapViewport([segment.origin.location!.coordinate, segment.destination.location!.coordinate])
+    stepByStepView.nextStep.text = "Gå till \(nextSegment.origin.name)"
+    stepByStepView.instructions.text = "Där ska du ta \(lineData.long)"
+    stepByStepView.inAbout.text = "Den går \(inAbout.lowercased())"
+  }
+  
+  /**
+   * Update UI to show walking instructions if walk segment is the last one
+   */
+  fileprivate func updateWalkingLastData(segment: TripSegment) {
     setMapViewport(findCoordsForSegment(segment))
-    stepByStepView.nextStep.text = "Gå till \(segment.origin.name)"
-    stepByStepView.instructions.text = "Det är ca. xxx meter kvar att gå"
+    stepByStepView.nextStep.text = "Gå till \(segment.destination.name)"
+    stepByStepView.instructions.text = "Detta är din slutdestination"
     stepByStepView.inAbout.text = nil
   }
   
@@ -249,8 +267,9 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    */
   fileprivate func tripPassed(segment: TripSegment) {
     setMapViewport(findCoordsForSegment(segment))
-    stepByStepView.nextStep.text = "Resan är över nu"
-    stepByStepView.instructions.text = "Över nu"
+    stepByStepView.nextStep.text = "Du är framme"
+    stepByStepView.instructions.text = "Vid \(segment.destination.name)"
+    stepByStepView.inAbout.text = nil
   }
   
   /**
