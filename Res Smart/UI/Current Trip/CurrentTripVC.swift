@@ -12,7 +12,7 @@ import ResStockholmApiKit
 import MapKit
 
 class CurrentTripVC: UIViewController, MKMapViewDelegate {
-
+  
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var stepByStepView: StepByStepView!
   
@@ -23,6 +23,8 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
   var routeTuples = [([CLLocationCoordinate2D], TripSegment)]()
   var smallPins = [SmallPin]()
   var isSmallPinsVisible = true
+  var isMapLoaded = false
+  var refreshTimer: Timer?
   
   /**
    * View did load
@@ -35,7 +37,55 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     mapView.showsCompass = false
     mapView.showsUserLocation = true
     mapView.showsPointsOfInterest = false
-    loadRoute()
+    if !isMapLoaded{
+      loadRoute()
+    }
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    startRefreshTimmer()
+    updateCurrentTripStatus()
+  }
+  
+  /**
+   * View about to disappear
+   */
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    stopRefreshTimmer()
+  }
+  
+  /**
+   * Returned to the app.
+   */
+  func didBecomeActive() {
+    updateCurrentTripStatus()
+    startRefreshTimmer()
+  }
+  
+  /**
+   * Backgrounded.
+   */
+  func didBecomeInactive() {
+    stopRefreshTimmer()
+  }
+  
+  /**
+   * Start refresh timmer
+   */
+  func startRefreshTimmer() {
+    stopRefreshTimmer()
+    self.refreshTimer = Timer.scheduledTimer(
+      timeInterval: 15, target: self, selector: #selector(updateCurrentTripStatus), userInfo: nil, repeats: true)
+  }
+  
+  /**
+   * Stop refresh timmer
+   */
+  func stopRefreshTimmer() {
+    self.refreshTimer?.invalidate()
+    self.refreshTimer = nil
   }
   
   /**
@@ -123,8 +173,77 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     }
   }
   
-  
   // MARK: Private
+  
+  /**
+   * Loads map route
+   */
+  @objc fileprivate func updateCurrentTripStatus() {
+    if let trip = currentTrip {
+      let segmentsTuple = CurrentTripAnalyzer.findActiveSegments(trip)
+      switch segmentsTuple.1 {
+      case .Waiting:
+        updateWaitingData(segment: segmentsTuple.0)
+        break
+      case .Riding:
+        updateRidingData(segment: segmentsTuple.0)
+        break
+      case .Passed:
+        tripPassed(segment: segmentsTuple.0)
+        break
+        
+      }
+    }
+  }
+  
+  /**
+   * Update UI to show waiting instructions
+   */
+  fileprivate func updateWaitingData(segment: TripSegment) {
+    if let coord = segment.origin.location?.coordinate {
+      setMapViewport([coord])
+    }
+    let lineData = TripHelper.friendlyLineData(segment)
+    let lineDesc = TripHelper.friendlyTripSegmentDesc(segment)
+    let inAbout = DateUtils.createAboutTimeText(
+      segment.departureDateTime,
+      isWalk: segment.type == TripType.Walk)
+    stepByStepView.nextStep.text = "Vänta på \(lineData.long) \(lineDesc)"
+    stepByStepView.instructions.text = "Tåget går \(inAbout)"
+  }
+  
+  /**
+   * Update UI to show riding instructions
+   */
+  fileprivate func updateRidingData(segment: TripSegment) {
+    print(TripHelper.friendlyLineData(segment))
+    print(TripHelper.friendlyTripSegmentDesc(segment))
+    setMapViewport(findCoordsForSegment(segment))
+    stepByStepView.nextStep.text = segment.destination.cleanName
+    stepByStepView.instructions.text = "Åker"
+  }
+  
+  /**
+   * Update UI to show riding instructions
+   */
+  fileprivate func tripPassed(segment: TripSegment) {
+    setMapViewport(findCoordsForSegment(segment))
+    stepByStepView.nextStep.text = "Resan är över nu"
+    stepByStepView.instructions.text = "Över nu"
+  }
+  
+  /**
+   * Finds route coordinates for segment.
+   */
+  fileprivate func findCoordsForSegment(_ segment: TripSegment) -> [CLLocationCoordinate2D] {
+    for tuple in routeTuples {
+      if segment == tuple.1 {
+        return tuple.0
+      }
+    }
+    
+    return []
+  }
   
   /**
    * Loads map route
@@ -163,7 +282,8 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
         RoutePlotter.createOverlays(tuple.0, tuple.1, currentTrip, mapView)
       }
       mapView.isHidden = false
-      setMapViewport([currentTrip!.allTripSegments.first!.origin.location!.coordinate, currentTrip!.allTripSegments.first!.destination.location!.coordinate])
+      startRefreshTimmer()
+      updateCurrentTripStatus()
     }
   }
   
@@ -176,7 +296,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     
     self.mapView.setVisibleMapRect(
       self.mapView.mapRectThatFits(allPolyline.boundingMapRect),
-      edgePadding: UIEdgeInsets(top: 250, left: 25, bottom: 50, right: 25),
+      edgePadding: UIEdgeInsets(top: 125, left: 25, bottom: 50, right: 25),
       animated: false)
   }
 }

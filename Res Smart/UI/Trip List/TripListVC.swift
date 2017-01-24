@@ -14,7 +14,7 @@ class TripListVC: UITableViewController {
   
   let cellIdentifier = "TripCell"
   let pastCellIdentifier = "PassedTripCell"
-  let cancelledCellIdentifier = "CancelledTripCell"  
+  let cancelledCellIdentifier = "CancelledTripCell"
   let loadingCellIdentifier = "LoadingCell"
   let loadMoreEarlierIdentifier = "LoadMoreEarlierRow"
   let loadMoreLaterIdentifier = "LoadMoreLaterRow"
@@ -316,8 +316,8 @@ class TripListVC: UITableViewController {
                           willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     let bgColorView = UIView()
     bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
-    cell.selectedBackgroundView = bgColorView    
-  }  
+    cell.selectedBackgroundView = bgColorView
+  }
   
   // MARK: UIScrollViewDelegate
   
@@ -395,19 +395,21 @@ class TripListVC: UITableViewController {
       newTripsArr = newTripsArr.reversed()
     }
     for trip in newTripsArr {
-      let destDateString = DateUtils.dateAsDateString(trip.tripSegments.first!.departureDateTime)
-      if !keys.contains(destDateString) {
-        if shouldAppend {
-          keys.append(destDateString)
-        } else {
-          keys.insert(destDateString, at: 0)
+      if let segment = trip.tripSegments.first {
+        let destDateString = DateUtils.dateAsDateString(segment.departureDateTime)
+        if !keys.contains(destDateString) {
+          if shouldAppend {
+            keys.append(destDateString)
+          } else {
+            keys.insert(destDateString, at: 0)
+          }
+          trips[destDateString] = [Trip]()
         }
-        trips[destDateString] = [Trip]()
-      }
-      if shouldAppend {
-        trips[destDateString]!.append(trip)
-      } else {
-        trips[destDateString]!.insert(trip, at: 0)
+        if shouldAppend {
+          trips[destDateString]!.append(trip)
+        } else {
+          trips[destDateString]!.insert(trip, at: 0)
+        }
       }
     }
   }
