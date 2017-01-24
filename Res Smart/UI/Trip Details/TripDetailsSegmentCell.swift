@@ -26,7 +26,7 @@ class TripDetailsSegmentCell: UITableViewCell {
   func setData(
     _ indexPath: IndexPath, visual: (isVisible: Bool, hasStops: Bool), trip: Trip) {
     
-    let segment = trip.allTripSegments[indexPath.section]
+    let segment = trip.tripSegments[indexPath.section]
     let lineData = TripHelper.friendlyLineData(segment)
     tripTypeIcon.image = UIImage(named: lineData.icon)
     lineLabel.text = lineData.long

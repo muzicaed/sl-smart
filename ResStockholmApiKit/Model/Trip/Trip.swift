@@ -25,10 +25,25 @@ open class Trip: NSObject, NSCopying {
     self.isValid = isValid
     if let segments = tripSegments {
       self.allTripSegments = segments
+      var lastSegment: TripSegment? = nil
       for segment in segments {
-        if !(segment.type == .Walk && segment.distance! < 250) {
+        if let last = lastSegment {
+          if last.type == .Walk && segment.type == .Walk {
+            // Merge walk segments
+            last.destination = segment.destination
+            last.durationInMin = last.durationInMin + segment.durationInMin
+            if let lastDist = last.distance, let dist = segment.distance {
+              last.distance = lastDist + dist
+            }
+          } else {
+            self.tripSegments.append(last)
+          }
+        }
+        
+        if segment == segments.last {
           self.tripSegments.append(segment)
         }
+        lastSegment = segment.copy() as? TripSegment
       }
     }
   }

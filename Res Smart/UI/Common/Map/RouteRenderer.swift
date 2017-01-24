@@ -33,7 +33,7 @@ class RouteRenderer: MKPolylineRenderer {
     self.lineWidth = 4.5
     if segment.type == .Ferry || segment.type == .Walk {
       self.strokeColor = UIColor.black
-      self.lineWidth = 3.5
+      self.lineWidth = 2.5
       self.lineDashPattern = [6, 8]
     }
   }
@@ -44,6 +44,6 @@ class RouteRenderer: MKPolylineRenderer {
   fileprivate func setupWalkRenderer() {
     self.strokeColor = UIColor.black
     self.lineWidth = 3.5
-    self.lineDashPattern = [6, 8]
+    //self.lineDashPattern = [6, 8]
   }
 }

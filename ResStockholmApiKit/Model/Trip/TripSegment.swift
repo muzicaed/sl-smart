@@ -16,17 +16,17 @@ open class TripSegment: NSObject, NSCopying {
   open let directionText: String?
   open let lineNumber: String?
   open let origin: Location
-  open let destination: Location
+  open var destination: Location
   open let departureDateTime: Date
   open let arrivalDateTime: Date
-  open let distance: Int?
+  open var distance: Int?
   open let isRealtime: Bool
   open let journyRef: String?
   open let geometryRef: String?
   open let rtuMessages: String?
   open let notes: String?
   open let isWarning: Bool
-  open let durationInMin: Int
+  open var durationInMin: Int
   open let isReachable: Bool
   open let isCancelled: Bool
   open var trainPositionText: String? = nil
