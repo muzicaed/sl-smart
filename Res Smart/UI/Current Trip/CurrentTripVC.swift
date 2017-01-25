@@ -246,7 +246,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     
     stepByStepView.nextStep.text = "Kliv av vid \(segment.destination.name)"
     stepByStepView.instructions.text = "\(lineData.long) \(lineDesc)"
-    stepByStepView.inAbout.text = "Du är framme \(inAbout.lowercased())"
+    stepByStepView.inAbout.text = "Du är där \(inAbout.lowercased())"
     
   }
   
