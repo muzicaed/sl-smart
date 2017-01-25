@@ -166,8 +166,6 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
           })
         }
       }
-      
-      
     }
   }
   
