@@ -61,6 +61,7 @@
 		18698AAE1C4EB51B0031D1AD /* RTMetro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AAD1C4EB51B0031D1AD /* RTMetro.swift */; };
 		18698AB01C4EE72C0031D1AD /* RTTrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AAF1C4EE72C0031D1AD /* RTTrain.swift */; };
 		1869E2991C1E0E36001FE4B2 /* PickLocationResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */; };
+		186B677D1E38827F000A52DC /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B677C1E38827F000A52DC /* MapHelper.swift */; };
 		186CACD11C55265800B1B5F6 /* RTTram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CACD01C55265800B1B5F6 /* RTTram.swift */; };
 		186CACD71C55381100B1B5F6 /* RTBoat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CACD61C55381100B1B5F6 /* RTBoat.swift */; };
 		18733C491C4E3D1000F66AEF /* RealTimeNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */; };
@@ -335,6 +336,7 @@
 		18698AAD1C4EB51B0031D1AD /* RTMetro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMetro.swift; sourceTree = "<group>"; };
 		18698AAF1C4EE72C0031D1AD /* RTTrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTrain.swift; sourceTree = "<group>"; };
 		1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickLocationResponder.swift; sourceTree = "<group>"; };
+		186B677C1E38827F000A52DC /* MapHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
 		186CACD01C55265800B1B5F6 /* RTTram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTram.swift; sourceTree = "<group>"; };
 		186CACD61C55381100B1B5F6 /* RTBoat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBoat.swift; sourceTree = "<group>"; };
 		18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeNavigationVC.swift; sourceTree = "<group>"; };
@@ -942,6 +944,7 @@
 				1899F2681C4B9C9200534587 /* RoutePolyline.swift */,
 				1899F26A1C4BBE7800534587 /* Pins.swift */,
 				18B761991E28CD47000F9258 /* RoutePlotter.swift */,
+				186B677C1E38827F000A52DC /* MapHelper.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1384,6 +1387,7 @@
 				1851F2D71C35F56C0013CD6A /* SubscriptionCell.swift in Sources */,
 				18CDAD501E2CC57600D7FDCA /* StepByStepView.swift in Sources */,
 				185690141E37385F0075AE78 /* CurrentTripAnalyzer.swift in Sources */,
+				186B677D1E38827F000A52DC /* MapHelper.swift in Sources */,
 				1899F25C1C4AF05C00534587 /* TripMapVC.swift in Sources */,
 				1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */,
 				18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */,

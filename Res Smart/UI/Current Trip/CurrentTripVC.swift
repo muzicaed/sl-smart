@@ -218,7 +218,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    */
   fileprivate func updateWaitingData(segment: TripSegment) {
     if segment.origin.location != nil && isOverviewLocked {
-      setMapViewport([segment.origin.location!.coordinate])
+      MapHelper.setMapViewport(mapView, coordinates: [segment.origin.location!.coordinate], topPadding: 150)
     }
     let lineData = TripHelper.friendlyLineData(segment)
     let lineDesc = TripHelper.friendlyTripSegmentDesc(segment)
@@ -236,7 +236,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    */
   fileprivate func updateRidingData(segment: TripSegment) {
     if isOverviewLocked {
-      setMapViewport(findCoordsForSegment(segment))
+      MapHelper.setMapViewport(mapView, coordinates: findCoordsForSegment(segment), topPadding: 150)
     }
     let lineData = TripHelper.friendlyLineData(segment)
     let lineDesc = TripHelper.friendlyTripSegmentDesc(segment)
@@ -255,7 +255,9 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    */
   fileprivate func updateWalkingData(segment: TripSegment, nextSegment: TripSegment) {
     if isOverviewLocked {
-      setMapViewport([segment.origin.location!.coordinate, segment.destination.location!.coordinate])
+      MapHelper.setMapViewport(mapView,
+                               coordinates: [segment.origin.location!.coordinate,
+                                             segment.destination.location!.coordinate], topPadding: 150)
     }
     let lineData = TripHelper.friendlyLineData(nextSegment)
     let inAbout = DateUtils.createAboutTimeText(
@@ -272,7 +274,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    */
   fileprivate func updateWalkingLastData(segment: TripSegment) {
     if isOverviewLocked {
-      setMapViewport(findCoordsForSegment(segment))
+      MapHelper.setMapViewport(mapView, coordinates: findCoordsForSegment(segment), topPadding: 150)
     }
     stepByStepView.nextStep.text = "Gå till \(segment.destination.name)"
     stepByStepView.instructions.text = "Detta är din slutdestination"
@@ -283,7 +285,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    * Update UI to show riding instructions
    */
   fileprivate func tripPassed(segment: TripSegment) {
-    setMapViewport(findCoordsForSegment(segment))
+    MapHelper.setMapViewport(mapView, coordinates: findCoordsForSegment(segment), topPadding: 150)
     stepByStepView.nextStep.text = "Du är framme"
     stepByStepView.instructions.text = "Vid \(segment.destination.name)"
     stepByStepView.inAbout.text = nil
@@ -343,18 +345,5 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
       startRefreshTimmer()
       updateCurrentTripStatus()
     }
-  }
-  
-  /**
-   * Centers and zooms map
-   */
-  fileprivate func setMapViewport(_ coordinates: [CLLocationCoordinate2D]) {
-    var newCoordinates = coordinates
-    let allPolyline = MKPolyline(coordinates: &newCoordinates, count: newCoordinates.count)
-    
-    self.mapView.setVisibleMapRect(
-      self.mapView.mapRectThatFits(allPolyline.boundingMapRect),
-      edgePadding: UIEdgeInsets(top: 125, left: 25, bottom: 50, right: 25),
-      animated: false)
   }
 }

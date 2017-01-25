@@ -185,24 +185,11 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     routeTuples.append(routeTuple)
     if loadedSegmentsCount == noOfSegments {
       activityIndicator.stopAnimating()
-      setMapViewport(allCords)
+      MapHelper.setMapViewport(mapView, coordinates: allCords, topPadding: 100)
       for tuple in routeTuples {
         RoutePlotter.createOverlays(tuple.0, tuple.1, trip, mapView, showStart: true)
       }
       mapView.isHidden = false
     }
-  }
-  
-  /**
-   * Centers and zooms map
-   */
-  fileprivate func setMapViewport(_ coordinates: [CLLocationCoordinate2D]) {
-    var newCoordinates = coordinates
-    let allPolyline = MKPolyline(coordinates: &newCoordinates, count: newCoordinates.count)
-    
-    self.mapView.setVisibleMapRect(
-      self.mapView.mapRectThatFits(allPolyline.boundingMapRect),
-      edgePadding: UIEdgeInsets(top: 100, left: 50, bottom: 100, right: 50),
-      animated: false)
-  }
+  }  
 }
