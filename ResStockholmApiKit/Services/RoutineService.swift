@@ -171,7 +171,7 @@ open class RoutineService {
    * Calculates score multiplier based on distance to location.
    */
   static fileprivate func calcMultiplierBasedOnProximityToLocation(_ distance: Int) -> Float {
-    var tempMultiplier = Float(2000 - distance)
+    var tempMultiplier = Float(800 - distance)
     tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
     return tempMultiplier
   }
@@ -208,8 +208,7 @@ open class RoutineService {
         if checkMatch(post, trip: trip) {
           if let postLocation = post.location {
             let distance = postLocation.distance(from: currentLocation)
-            var tempMultiplier = Float(800 - distance)
-            tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
+            let tempMultiplier = calcMultiplierBasedOnProximityToLocation(distance)
             highestMulitplier = (tempMultiplier > highestMulitplier) ? tempMultiplier : highestMulitplier
           }
         }
