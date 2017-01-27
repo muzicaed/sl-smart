@@ -56,23 +56,23 @@ open class TripHelper {
       return ("Båt", "Sjövägen (Pendelbåt)", "SHIP", shipColor)
     case .Tram:
       if lineNumber == "7" {
-        return ("S\(lineNumber!)", "Spårväg City S7", "TRAM", tram7)
+        return ("\(lineNumber!)", "Spårväg City 7", "TRAM", tram7)
       } else if lineNumber == "12" {
-        return ("L\(lineNumber!)", "Nockebybanan L12", "TRAM", tram12)
+        return ("\(lineNumber!)", "Nockebybanan 12", "TRAM", tram12)
       } else if lineNumber == "21" {
-        return ("L\(lineNumber!)", "Lidingöbanan L21", "TRAM", tram21)
+        return ("\(lineNumber!)", "Lidingöbanan 21", "TRAM", tram21)
       } else if lineNumber == "22" {
-        return ("L\(lineNumber!)", "Tvärbana L22", "TRAM", tram22)
+        return ("\(lineNumber!)", "Tvärbana 22", "TRAM", tram22)
       } else if lineNumber == "25" {
-        return ("L\(lineNumber!)", "Saltsjöbanan L25", "TRAM", tram25_26)
+        return ("\(lineNumber!)", "Saltsjöbanan 25", "TRAM", tram25_26)
       } else if lineNumber == "26" {
-        return ("L\(lineNumber!)", "Saltsjöbanan L26", "TRAM", tram25_26)
+        return ("\(lineNumber!)", "Saltsjöbanan 26", "TRAM", tram25_26)
       } else if lineNumber == "27" {
-        return ("L\(lineNumber!)", "Roslagsbanan, Kårstalinjen", "TRAM", tram27_29)
+        return ("\(lineNumber!)", "Roslagsbanan, Kårstalinjen", "TRAM", tram27_29)
       } else if lineNumber == "28" {
-        return ("L\(lineNumber!)", "Roslagsbanan, Österskärslinjen", "TRAM", tram27_29)
+        return ("\(lineNumber!)", "Roslagsbanan, Österskärslinjen", "TRAM", tram27_29)
       } else if lineNumber == "29" {
-        return ("L\(lineNumber!)", "Roslagsbanan, Näsbyparkslinjen", "TRAM", tram27_29)
+        return ("\(lineNumber!)", "Roslagsbanan, Näsbyparkslinjen", "TRAM", tram27_29)
       }
       return ("S\(lineNumber!)", "Spårvagn linje S\(lineNumber!)", "TRAM", UIColor.darkGray)
     case .Bus:
@@ -82,20 +82,20 @@ open class TripHelper {
       return ("\(lineNumber!)", "Buss \(lineNumber!)", "BUS", busColor)
     case .Metro:
       if lineNumber == "13" || lineNumber == "14" {
-        return ("T\(lineNumber!)", "Röda linjen T\(lineNumber!)", "METRO", redMetro)
+        return ("\(lineNumber!)", "Röda linjen \(lineNumber!)", "METRO", redMetro)
       } else if lineNumber == "17" || lineNumber == "18" || lineNumber == "19" {
-        return ("T\(lineNumber!)", "Gröna linjen T\(lineNumber!)", "METRO", greenMetro)
+        return ("\(lineNumber!)", "Gröna linjen \(lineNumber!)", "METRO", greenMetro)
       } else if lineNumber == "10" || lineNumber == "11" {
-        return ("T\(lineNumber!)", "Blå linjen T\(lineNumber!)", "METRO", blueMetro)
+        return ("\(lineNumber!)", "Blå linjen \(lineNumber!)", "METRO", blueMetro)
       }
       return ("T-bana", "Tunnelbanan", "METRO", UIColor.darkGray)
     case .Train:
       if lineNumber == "35" {
-        return ("J\(lineNumber!)", "Pendeltåg linje J\(lineNumber!)", "TRAIN", pinkTrain)
+        return ("\(lineNumber!)", "Pendeltåg linje \(lineNumber!)", "TRAIN", pinkTrain)
       }
-      return ("J\(lineNumber!)", "Pendeltåg linje J\(lineNumber!)", "TRAIN", greenTrain)
+      return ("\(lineNumber!)", "Pendeltåg linje \(lineNumber!)", "TRAIN", greenTrain)
     case .Narbuss:
-      return ("\(lineNumber!)", "Närtrafikens buss J\(lineNumber!)", "BUS", busColor)
+      return ("\(lineNumber!)", "Närtrafikens buss \(lineNumber!)", "BUS", busColor)
     case .Walk:
       return ("→", "Gå", "WALK", walkColor)
     default:
