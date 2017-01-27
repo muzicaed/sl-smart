@@ -101,6 +101,7 @@ open class RoutineService {
     if let routineTrip = bestRoutineTrip {
       
       if let searchCrit = routineTrip.criterions.copy() as? TripSearchCriterion {
+        searchCrit.numTrips = 2
         if searchCrit.time != nil {
           searchCrit.searchForArrival = true
           searchCrit.numTrips = 1
