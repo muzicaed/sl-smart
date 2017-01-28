@@ -96,22 +96,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * Loads trip data and updates UI
    */
   func loadTripData() {
-    if SubscriptionStore.sharedInstance.isSubscribed() {
-      RoutineService.findRoutineTrip({ routineTrips in
-        self.bestRoutine = routineTrips.first
-        DispatchQueue.main.async {
-          if self.bestRoutine != nil {
-            self.updateUI()
-          }
-          else {
-            self.titleLabel.text = "Hittade inga rutiner."
-          }
+    RoutineService.findRoutineTrip({ routineTrips in
+      self.bestRoutine = routineTrips.first
+      DispatchQueue.main.async {
+        if self.bestRoutine != nil {
+          self.updateUI()
         }
-        return
-      })
-    } else {
-      self.titleLabel.text = "Rutiner kräver en prenumeration."
-    }
+        else {
+          self.titleLabel.text = "Hittade inga rutiner."
+        }
+      }
+      return
+    })
   }
   
   /**
