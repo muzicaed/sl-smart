@@ -207,7 +207,7 @@ open class RoutineService {
       for post in scorePosts {
         if checkMatch(post, trip: trip) {
           if let postLocation = post.location {
-            let distance = postLocation.distance(from: currentLocation)
+            let distance = Int(postLocation.distance(from: currentLocation))
             let tempMultiplier = calcMultiplierBasedOnProximityToLocation(distance)
             highestMulitplier = (tempMultiplier > highestMulitplier) ? tempMultiplier : highestMulitplier
           }

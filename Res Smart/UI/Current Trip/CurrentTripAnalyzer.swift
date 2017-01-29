@@ -18,53 +18,94 @@ class CurrentTripAnalyzer {
    * Returns route coordinates for the current trip segment.
    */
   func findActiveSegments() -> CurrentTripResult {
-
     for (index, segment) in currentTrip!.allTripSegments.enumerated() {
-      if (index + 1) == currentTrip!.allTripSegments.count {
-        if segment.type == .Walk {
-          return CurrentTripResult(segment, nil, .WalkingLast)
-        }
-        return CurrentTripResult(segment, nil, .Riding)
-      }
-      
-      if let returnTuple = handleSegment(index, segment) {
-        return returnTuple
+      if let result = handleSegment(index, segment) {
+        return result
       }
     }
     print("Should not go here!")
-    return CurrentTripResult(currentTrip!.allTripSegments.last!, nil, .Arrived)
+    return CurrentTripResult(currentTrip!.allTripSegments.count - 1, currentTrip!.allTripSegments.last!, .Arrived)
+  }
+  
+  /**
+   * Returns route coordinates for the current trip segment.
+   */
+  func findNextStep(_ currentIndex: Int) -> CurrentTripResult {
+    let segment = currentTrip!.allTripSegments[currentIndex]
+    //let nextSegment = currentTrip!.allTripSegments[currentIndex + 1]
+    return CurrentTripResult(currentIndex + 1, segment, .Walking)
   }
   
   // MARK: Private
   
   /**
-   * Handles segment
+   * Handle segment
    */
-  fileprivate func handleSegment(_ index: Int, _ segment: TripSegment) -> CurrentTripResult? {
-    let now = Date()
-    let nextSegment = currentTrip!.allTripSegments[index + 1]
-    if index == 0 && now < segment.departureDateTime {
-      // First segment
-      if segment.type == .Walk {
-        return CurrentTripResult(segment, nextSegment, .Walking)
-      }
-      return CurrentTripResult(segment, nil, .Waiting)
-    } else if now > segment.departureDateTime && now < segment.arrivalDateTime {
-      // Riding/Walking a segment
-      return (segment.type == .Walk) ? CurrentTripResult(segment, nextSegment, .Walking) : CurrentTripResult(segment, nil, .Riding)
-    } else if now > segment.arrivalDateTime && now < nextSegment.departureDateTime {
-      // In between two segments (Waiting)
-      if nextSegment.type == .Walk {
-        if (index + 2) < currentTrip!.allTripSegments.count {
-          // TODO: Not good... need to find next non walk segment...
-          let nextNextSegment = currentTrip!.allTripSegments[index + 2]
-          return CurrentTripResult(nextSegment, nextNextSegment, .Walking)
-        }
-        return CurrentTripResult(nextSegment, nextSegment, .Walking)
-      }
-      return CurrentTripResult(nextSegment, nil, .Waiting)
+  fileprivate func handleSegment(_ idx: Int, _ segment: TripSegment) -> CurrentTripResult? {
+    if isLast(idx, count: currentTrip!.allTripSegments.count) {
+      return handleActiveSegment(idx, segment)
+    }
+    
+    let nextSegment = currentTrip!.allTripSegments[idx + 1]
+    if isWaitingForFirst(idx, segment) {
+      return handleBetweenSegment(idx, segment)
+    } else if isActive(segment) {
+      return handleActiveSegment(idx, segment)
+    } else if isBetween(segment, nextSegment) {
+      return handleBetweenSegment(idx + 1, nextSegment)
     }
     return nil
+  }
+  
+  /**
+   * Handle actie segment
+   */
+  fileprivate func handleActiveSegment(_ idx: Int, _ segment: TripSegment) -> CurrentTripResult {
+    if segment.type == .Walk {
+      return CurrentTripResult(idx, segment, .Walking)
+    }
+    return CurrentTripResult(idx, segment, .Riding)
+  }
+  
+  /**
+   * Handle between segment
+   */
+  fileprivate func handleBetweenSegment(_ idx: Int, _ segment: TripSegment) -> CurrentTripResult {
+    if segment.type == .Walk {
+      return CurrentTripResult(idx, segment, .Walking)
+    }
+    return CurrentTripResult(idx, segment, .Waiting)
+  }
+  
+  /**
+   * Check if waiting for first active
+   */
+  fileprivate func isWaitingForFirst(_ idx: Int, _ segment: TripSegment) -> Bool {
+    let now = Date()
+    return (idx == 0 && now < segment.departureDateTime)
+  }
+  
+  /**
+   * Check if active segment
+   */
+  fileprivate func isActive(_ segment: TripSegment) -> Bool {
+    let now = Date()
+    return (now > segment.departureDateTime && now < segment.arrivalDateTime)
+  }
+  
+  /**
+   * Check if between segments
+   */
+  fileprivate func isBetween(_ segment: TripSegment, _ nextSegment: TripSegment) -> Bool {
+    let now = Date()
+    return (now > segment.arrivalDateTime && now < nextSegment.departureDateTime)
+  }
+  
+  /**
+   * Check if last segment
+   */
+  fileprivate func isLast(_ idx: Int, count: Int) -> Bool {
+    return (idx == count - 1)
   }
 }
 
@@ -72,7 +113,6 @@ class CurrentTripAnalyzer {
 public enum InstructionType: String {
   case Riding = "RIDING"
   case Walking = "WALKING"
-  case WalkingLast = "WALKING_LAST"
   case Waiting = "WAITING"
   case Arrived = "ARRIVIED"
 }

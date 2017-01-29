@@ -11,13 +11,13 @@ import ResStockholmApiKit
 
 class CurrentTripResult {
 
-  let first: TripSegment
-  let next: TripSegment?
+  let segment: TripSegment
   let instruction: InstructionType
+  let index: Int
   
-  init(_ first: TripSegment, _ next: TripSegment?, _ instruction: InstructionType) {
-    self.first = first
-    self.next = next
+  init(_ index: Int, _ segment: TripSegment, _ instruction: InstructionType) {
+    self.segment = segment
     self.instruction = instruction
+    self.index = index
   }
 }
