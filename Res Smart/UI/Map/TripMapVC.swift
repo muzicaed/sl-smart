@@ -186,7 +186,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     routeTuples.append(routeTuple)
     if loadedSegmentsCount == noOfSegments {
       activityIndicator.stopAnimating()
-      MapHelper.setMapViewport(mapView, coordinates: allCords, topPadding: 100)
+      MapHelper.setMapViewport(mapView, coordinates: allCords, topPadding: 150)
       for tuple in routeTuples {
         RoutePlotter.createOverlays(tuple.0, tuple.1, trip, mapView, showStart: true)
       }

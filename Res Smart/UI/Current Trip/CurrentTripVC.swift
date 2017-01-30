@@ -271,7 +271,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     
     view.nextStep.text = "Vänta på \(segment.type.decisive)"
     view.instructions.text = "\(lineData.long) \(lineDesc)"
-    view.inAbout.text = "Den går \(inAbout.lowercased())"
+    view.inAbout.text = "Avgår \(inAbout.lowercased())"
     if let loc = segment.origin.location {
       return [loc.coordinate]
     }
