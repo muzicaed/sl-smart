@@ -94,7 +94,7 @@ open class Location: NSObject, NSCoding, NSCopying {
    * Creates a current location instance.
    */
   open static func createCurrentLocation() -> Location {
-    return Location(id: nil, name: "Nuvarande plats", type: "Current", lat: "0.0", lon: "0.0")
+    return Location(id: nil, name: "Härifrån", type: "Current", lat: "0.0", lon: "0.0")
   }
   
   /**

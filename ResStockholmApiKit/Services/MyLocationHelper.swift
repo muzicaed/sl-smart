@@ -21,6 +21,7 @@ open class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   override public init() {
     super.init()
     locationManager.delegate = self
+    locationManager.activityType = .otherNavigation
     if CLLocationManager.locationServicesEnabled() {
       if isAllowed() {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
