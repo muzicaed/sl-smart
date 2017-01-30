@@ -60,7 +60,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     startRefreshTimmer()
-    updateCurrentTripStatus()
+    updateTripStatus()
   }
   
   /**
@@ -75,7 +75,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    * Returned to the app.
    */
   func didBecomeActive() {
-    updateCurrentTripStatus()
+    updateTripStatus()
     startRefreshTimmer()
   }
   
@@ -92,7 +92,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
   func startRefreshTimmer() {
     stopRefreshTimmer()
     self.refreshTimer = Timer.scheduledTimer(
-      timeInterval: 15, target: self, selector: #selector(updateCurrentTripStatus), userInfo: nil, repeats: true)
+      timeInterval: 15, target: self, selector: #selector(updateTripStatus), userInfo: nil, repeats: true)
   }
   
   /**
@@ -188,60 +188,69 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     }
   }
   
+  /**
+   * Update the trip views
+   */
+  @objc fileprivate func updateTripStatus() {
+    var coords = [CLLocationCoordinate2D]()
+    coords.append(contentsOf: updateCurrentTripStatus())
+    coords.append(contentsOf: updateNextStepTripStatus())
+    updateMapViewport(coords)
+  }
+  
   // MARK: Private
   
   /**
    * Update the current trip view
    */
-  @objc fileprivate func updateCurrentTripStatus() {    
+  fileprivate func updateCurrentTripStatus() -> [CLLocationCoordinate2D] {
     let result = analyzer.findActiveSegments()
     currentSegmentIndex = result.index
     switch result.instruction {
     case .Waiting:
-      updateWaitingData(view: stepByStepView, segment: result.segment)
-      break
+      print("Current step: Waiting")
+      return updateWaitingData(view: stepByStepView, segment: result.segment)
     case .Riding:
-      updateRidingData(view: stepByStepView, segment: result.segment)
-      break
+      print("Current step: Riding")
+      return updateRidingData(view: stepByStepView, segment: result.segment)
     case .Walking:
-      updateWalkingData(view: stepByStepView, segment: result.segment)
-      break
+      print("Current step: Walking")
+      return updateWalkingData(view: stepByStepView, segment: result.segment)
     case .Arrived:
-      tripPassed(view: stepByStepView, segment: result.segment)
-      break
-      
+      print("Current step: Arrivied")
+      return tripPassed(view: stepByStepView, segment: result.segment)
     }
   }
   
   /**
    * Update the next step trip view
    */
-  @objc fileprivate func updateNextStepTripStatus() {
-    let result = analyzer.findNextStep(currentSegmentIndex)
-    switch result.instruction {
-    case .Waiting:
-      updateWaitingData(view: nextStepView, segment: result.segment)
-      break
-    case .Riding:
-      updateRidingData(view: nextStepView, segment: result.segment)
-      break
-    case .Walking:
-      updateWalkingData(view: nextStepView, segment: result.segment)
-      break
-    case .Arrived:
-      tripPassed(view: nextStepView, segment: result.segment)
-      break
-      
+  @objc fileprivate func updateNextStepTripStatus() -> [CLLocationCoordinate2D] {
+    if let result = analyzer.findNextStep(currentSegmentIndex) {
+      nextStepView.isHidden = false
+      switch result.instruction {
+      case .Waiting:
+        print("Next step: Waiting")
+        return updateWaitingData(view: nextStepView, segment: result.segment)
+      case .Riding:
+        print("Next step: Riding")
+        return updateRidingData(view: nextStepView, segment: result.segment)
+      case .Walking:
+        print("Next step: Walking")
+        return updateWalkingData(view: nextStepView, segment: result.segment)
+      case .Arrived:
+        print("Next step: Arrived")
+        return tripPassed(view: nextStepView, segment: result.segment)
+      }
     }
+    nextStepView.isHidden = true
+    return []
   }
   
   /**
    * Update UI to show waiting instructions
    */
-  fileprivate func updateWaitingData(view: StepByStepView, segment: TripSegment) {
-    if let loc = segment.origin.location {
-      updateMapViewport([loc.coordinate])
-    }
+  fileprivate func updateWaitingData(view: StepByStepView, segment: TripSegment) -> [CLLocationCoordinate2D] {
     let lineData = TripHelper.friendlyLineData(segment)
     let lineDesc = TripHelper.friendlyTripSegmentDesc(segment)
     let inAbout = createInAbout(date: segment.departureDateTime)
@@ -249,43 +258,47 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     view.nextStep.text = "Vänta på \(segment.type.decisive)"
     view.instructions.text = "\(lineData.long) \(lineDesc)"
     view.inAbout.text = "Den går \(inAbout.lowercased())"
+    if let loc = segment.origin.location {
+      return [loc.coordinate]
+    }
+    return []
   }
   
   /**
    * Update UI to show riding instructions
    */
-  fileprivate func updateRidingData(view: StepByStepView, segment: TripSegment) {
-    updateMapViewport(findCoordsForSegment(segment))
+  fileprivate func updateRidingData(view: StepByStepView, segment: TripSegment) -> [CLLocationCoordinate2D] {
     let lineData = TripHelper.friendlyLineData(segment)
     let lineDesc = TripHelper.friendlyTripSegmentDesc(segment)
     let inAbout = createInAbout(date: segment.arrivalDateTime)
     
-    view.nextStep.text = "Kliv av vid \(segment.destination.name)"
+    view.nextStep.text = "Åk till \(segment.destination.name)"
     view.instructions.text = "\(lineData.long) \(lineDesc)"
-    view.inAbout.text = "Du är där \(inAbout.lowercased())"
+    view.inAbout.text = "Du är framme \(inAbout.lowercased())"
+    return findCoordsForSegment(segment)
     
   }
   
   /**
    * Update UI to show walking instructions
    */
-  fileprivate func updateWalkingData(view: StepByStepView, segment: TripSegment) {
-    updateMapViewport([segment.origin.location!.coordinate, segment.destination.location!.coordinate])    
+  fileprivate func updateWalkingData(view: StepByStepView, segment: TripSegment) -> [CLLocationCoordinate2D] {
     let inAbout = createInAbout(date: segment.arrivalDateTime)
     
     view.nextStep.text = "Gå till \(segment.destination.name)"
-    view.instructions.text = "Du är där \(inAbout.lowercased())"
+    view.instructions.text = "Du är framme \(inAbout.lowercased())"
     view.inAbout.text = nil
+    return [segment.origin.location!.coordinate, segment.destination.location!.coordinate]
   }
   
   /**
    * Update UI to show riding instructions
    */
-  fileprivate func tripPassed(view: StepByStepView, segment: TripSegment) {
-    updateMapViewport(findCoordsForSegment(segment))
-    view.nextStep.text = "Du är framme"
+  fileprivate func tripPassed(view: StepByStepView, segment: TripSegment) -> [CLLocationCoordinate2D] {
+    view.nextStep.text = "Du är framme!"
     view.instructions.text = "Vid \(segment.destination.name)"
     view.inAbout.text = nil
+    return findCoordsForSegment(segment)
   }
   
   /**
@@ -340,7 +353,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
       mapView.isHidden = false
       isMapLoaded = true
       startRefreshTimmer()
-      updateCurrentTripStatus()
+      updateTripStatus()
     }
   }
   
@@ -367,7 +380,8 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
       if let myCoord = MyLocationHelper.sharedInstance.getCurrentLocation(), let loc = myCoord.location {
         coords.append(loc.coordinate)
       }
-      MapHelper.setMapViewport(mapView, coordinates: coords, topPadding: 150)
+      let padding = (nextStepView.isHidden) ? CGFloat(150) : CGFloat(280)
+      MapHelper.setMapViewport(mapView, coordinates: coords, topPadding: padding)
     }
   }
 }
