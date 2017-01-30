@@ -32,6 +32,29 @@ open class SearchTripService {
     }
   }
   
+  /**
+   * Refresh trip data
+   */
+  open static func tripRefresh(
+    _ criterion: TripSearchCriterion,
+    tripsToRefresh: [Trip],
+    callback: @escaping () -> Void) {
+    
+    tripSearch(criterion) { (trips, error) in
+      var tripsDict = [String: Trip]()
+      for trip in trips {
+        tripsDict[trip.tripKey] = trip
+      }
+      
+      for refreshTrip in tripsToRefresh {
+        if let newTrip = tripsDict[refreshTrip.tripKey] {
+          refreshTrip.refresh(newTrip)
+        }
+      }
+      callback()
+    }
+  }
+  
   // MARK: Private methods
   
   /**

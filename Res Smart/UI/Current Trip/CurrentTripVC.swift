@@ -399,7 +399,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     var coords = coords
     if isOverviewLocked {
       if let myCoord = MyLocationHelper.sharedInstance.getCurrentLocation(), let loc = myCoord.location {
-        coords.append(loc.coordinate)
+        //coords.append(loc.coordinate) // TODO: Remove testing comment
       }
       let padding = (nextStepView.isHidden) ? CGFloat(125) : CGFloat(200)
       MapHelper.setMapViewport(mapView, coordinates: coords, topPadding: padding)
@@ -423,6 +423,8 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     mapView.showsUserLocation = true
     mapView.showsPointsOfInterest = false
     mapView.isHidden = true
+    mapView.showsTraffic = false
+    mapView.showsPointsOfInterest = false
     
     var coord = CLLocationCoordinate2D()
     if let location = MyLocationHelper.sharedInstance.getCurrentLocation(), let loc = location.location {

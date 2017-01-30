@@ -124,6 +124,15 @@ open class Trip: NSObject, NSCopying {
     ]
   }
   
+  /**
+   * Refresh the trip data
+   */
+  open func refresh(_ newTrip: Trip) {
+    print("REFRESH")
+    allTripSegments = newTrip.allTripSegments
+    tripSegments = newTrip.tripSegments
+  }
+  
   // MARK: Private
   
   fileprivate static func generateTripKey(segments: [TripSegment]) -> String {
@@ -131,8 +140,6 @@ open class Trip: NSObject, NSCopying {
     for segment in segments {
       key += "\(segment.name)-\(segment.origin.name)-\(segment.departureDateTime)-\(segment.destination.name)-\(segment.arrivalDateTime)"
     }
-    
-    print(key)
     return key
   }
   
