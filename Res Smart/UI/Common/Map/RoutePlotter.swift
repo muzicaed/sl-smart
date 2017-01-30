@@ -109,7 +109,9 @@ class RoutePlotter {
           }
           
           if let route = response.routes.first {
-            mapView.add(route.polyline, level: .aboveRoads)
+            DispatchQueue.main.async {
+              mapView.add(route.polyline, level: .aboveRoads)
+            }
           }
       }
     }

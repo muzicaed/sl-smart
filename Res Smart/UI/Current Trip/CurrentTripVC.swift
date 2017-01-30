@@ -111,6 +111,25 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     dismiss(animated: true, completion: nil)
   }
   
+  /**
+   * Map type segment changed
+   */
+  @IBAction func onSegmentChanged(_ sender: UISegmentedControl) {
+    switch sender.selectedSegmentIndex {
+    case 0:
+      mapView.mapType = MKMapType.standard
+    case 1:
+      mapView.mapType = MKMapType.hybrid
+    default: break
+    }
+  }
+  
+  /**
+   * User taps automatic onAutomaticOverviewTap
+   */
+  @IBAction func onAutomaticOverviewTap(_ sender: UIBarButtonItem) {
+  }
+  
   // MARK: MKMapViewDelegate <- TOTO Could this be an extention?
   
   /**
@@ -379,7 +398,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
       if let myCoord = MyLocationHelper.sharedInstance.getCurrentLocation(), let loc = myCoord.location {
         coords.append(loc.coordinate)
       }
-      let padding = (nextStepView.isHidden) ? CGFloat(150) : CGFloat(280)
+      let padding = (nextStepView.isHidden) ? CGFloat(125) : CGFloat(200)
       MapHelper.setMapViewport(mapView, coordinates: coords, topPadding: padding)
     }
   }

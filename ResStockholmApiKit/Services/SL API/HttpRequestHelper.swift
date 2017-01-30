@@ -11,6 +11,7 @@ import Foundation
 class HttpRequestHelper {
   
   fileprivate static var cache = [String: (data: Data, date: Date)]()
+  fileprivate static var lastKey: String? = nil
   
   /**
    * Makes a async get request to passed url.
@@ -19,16 +20,18 @@ class HttpRequestHelper {
   static func makeGetRequest(
     _ url: String, callback: @escaping ((data: Data?, error: SLNetworkError?)) -> Void) {
     
-    print(url)
-    print("")
     let urlconfig = URLSessionConfiguration.default
     urlconfig.timeoutIntervalForRequest = 10
     urlconfig.timeoutIntervalForResource = 10
     
     if let cacheData = handleCache(url) {
+      print("CACHE: \(url)")
+      print("")
       callback((cacheData, nil))
       return
     }
+    print(url)
+    print("")
     
     if let nsUrl = URL(string: url) {
       let request = URLRequest(url: nsUrl)
@@ -54,10 +57,12 @@ class HttpRequestHelper {
   }
   
   /**
-   * Clears the http response cache.
+   * Clears the last http response cache.
    */
   static func clearCache() {
-    cache = [String: (data: Data, date: Date)]()
+    if let key = lastKey {
+      cache[key] = nil
+    }    
   }
   
   // MARK: Private
@@ -78,6 +83,7 @@ class HttpRequestHelper {
    * Add data to cache
    */
   fileprivate static func addDataToCache(_ url: String, data: Data) {
+    lastKey = url
     cache[url] = (data, Date())
   }
   

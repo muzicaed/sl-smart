@@ -25,6 +25,7 @@ open class LocationSearchService {
         if let data = resTuple.0 {
           locations = LocationSearchService.convertJsonResponse(data)
           if locations.count == 0 {
+            HttpRequestHelper.clearCache()
             callback(locations, SLNetworkError.noDataFound)
             return
           }

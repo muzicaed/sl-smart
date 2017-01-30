@@ -19,6 +19,11 @@ open class GeometryService {
   open static func fetchGeometry(_ urlEncRef: String,
                                  callback: @escaping (_ data: [CLLocation], _ error: SLNetworkError?) -> Void) {
     var result = [CLLocation]()
+    if urlEncRef.range(of: "type%3DWALKLINK") != nil {
+      callback([CLLocation](), SLNetworkError.noDataFound)
+      return
+    }
+    
     api.fetchGeometry(urlEncRef) { (data, error) -> Void in
       if let d = data {
         if d.count == 0 {
@@ -29,6 +34,13 @@ open class GeometryService {
         
         let jsonData = JSON(data: d)
         result = convertJson(jsonData["Geometry"]["Points"]["Point"])
+        print("GEO Found: \(result.count) points!")
+        if result.count == 0 {
+          HttpRequestHelper.clearCache()
+          callback([CLLocation](), SLNetworkError.noDataFound)
+          return
+        }
+
       }
       callback(result, error)
     }
