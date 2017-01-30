@@ -39,6 +39,8 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     super.viewDidLoad()
     prepareMapView()
     if !isMapLoaded {
+      stepByStepView.isHidden = true
+      nextStepView.isHidden = true
       activityIndicator.startAnimating()
       analyzer.currentTrip = currentTrip
       loadRoute()
@@ -51,7 +53,9 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     startRefreshTimmer()
-    updateTripStatus()
+    if isMapLoaded {
+      updateTripStatus()
+    }
   }
   
   /**
@@ -362,11 +366,12 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     let routeTuple = (coords, segment)
     routeTuples.append(routeTuple)
     if loadedSegmentsCount == noOfSegments {
-      activityIndicator.stopAnimating()
       for tuple in routeTuples {
         RoutePlotter.createOverlays(tuple.0, tuple.1, currentTrip, mapView, showStart: false)
       }
+      activityIndicator.stopAnimating()
       mapView.isHidden = false
+      stepByStepView.isHidden = false
       isMapLoaded = true
       startRefreshTimmer()
       updateTripStatus()
@@ -418,6 +423,13 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     mapView.showsUserLocation = true
     mapView.showsPointsOfInterest = false
     mapView.isHidden = true
+    
+    var coord = CLLocationCoordinate2D()
+    if let location = MyLocationHelper.sharedInstance.getCurrentLocation(), let loc = location.location {
+      coord = loc.coordinate
+    }
+    let viewRegion = MKCoordinateRegionMakeWithDistance(coord, 1000, 1000)
+    mapView.setRegion(viewRegion, animated: false)
   }
   
   /*
