@@ -17,6 +17,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
   @IBOutlet weak var stepByStepView: StepByStepView!
   @IBOutlet weak var nextStepView: StepByStepView!
   @IBOutlet weak var autoManualSegmentControl: UISegmentedControl!
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   
   let analyzer = CurrentTripAnalyzer()
   var currentTrip: Trip?
@@ -38,6 +39,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     super.viewDidLoad()
     prepareMapView()
     if !isMapLoaded {
+      activityIndicator.startAnimating()
       analyzer.currentTrip = currentTrip
       loadRoute()
     }
@@ -126,7 +128,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     }
   }
   
-  // MARK: MKMapViewDelegate <- TOTO Could this be an extention?
+  // MARK: MKMapViewDelegate
   
   /**
    * Annotation views
@@ -360,7 +362,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     let routeTuple = (coords, segment)
     routeTuples.append(routeTuple)
     if loadedSegmentsCount == noOfSegments {
-      //activityIndicator.stopAnimating()
+      activityIndicator.stopAnimating()
       for tuple in routeTuples {
         RoutePlotter.createOverlays(tuple.0, tuple.1, currentTrip, mapView, showStart: false)
       }

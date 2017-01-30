@@ -2966,6 +2966,10 @@ Res Smart på din Apple Watch</string>
                                     <constraint firstItem="41J-L8-3En" firstAttribute="top" secondItem="Cvn-RL-1oB" secondAttribute="topMargin" constant="8" id="yfJ-KY-LFy"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="0qa-h1-1Cs">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="0.33333334329999997" green="0.33333334329999997" blue="0.33333334329999997" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7F-Nl-sxy">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
@@ -3010,7 +3014,9 @@ Res Smart på din Apple Watch</string>
                             <constraint firstItem="T6q-Ul-Cj7" firstAttribute="top" secondItem="VNZ-eo-MVI" secondAttribute="bottom" id="dBk-rT-BHc"/>
                             <constraint firstItem="T6q-Ul-Cj7" firstAttribute="top" secondItem="j7F-Nl-sxy" secondAttribute="bottom" id="gff-uI-ymk"/>
                             <constraint firstItem="Cvn-RL-1oB" firstAttribute="leading" secondItem="n3t-c3-Lwz" secondAttribute="leading" id="jpD-Al-B5B"/>
+                            <constraint firstItem="0qa-h1-1Cs" firstAttribute="centerX" secondItem="n3t-c3-Lwz" secondAttribute="centerX" id="kaD-Gb-LDR"/>
                             <constraint firstItem="VNZ-eo-MVI" firstAttribute="leading" secondItem="n3t-c3-Lwz" secondAttribute="leading" id="osG-Th-NZB"/>
+                            <constraint firstItem="0qa-h1-1Cs" firstAttribute="centerY" secondItem="n3t-c3-Lwz" secondAttribute="centerY" id="q7m-XM-n2P"/>
                             <constraint firstItem="VNZ-eo-MVI" firstAttribute="top" secondItem="vzq-8g-bwA" secondAttribute="bottom" id="qx6-p2-a59"/>
                             <constraint firstAttribute="trailing" secondItem="j7F-Nl-sxy" secondAttribute="trailing" id="xGW-Oj-mpa"/>
                         </constraints>
@@ -3023,6 +3029,7 @@ Res Smart på din Apple Watch</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="0qa-h1-1Cs" id="JTC-rG-ud3"/>
                         <outlet property="autoManualSegmentControl" destination="vnw-fi-D1p" id="U4h-7f-oUj"/>
                         <outlet property="mapView" destination="VNZ-eo-MVI" id="Bsz-qY-xtF"/>
                         <outlet property="nextStepView" destination="Eyk-Xd-QOs" id="8Hb-FM-YXa"/>
