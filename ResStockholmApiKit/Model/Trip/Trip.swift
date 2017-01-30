@@ -28,6 +28,7 @@ open class Trip: NSObject, NSCopying {
     self.durationMin = durationMin
     self.noOfChanges = noOfChanges
     self.isValid = isValid
+    self.criterion = criterion
     
     if let segments = tripSegments {
       self.tripKey = Trip.generateTripKey(segments: segments)
@@ -147,6 +148,6 @@ open class Trip: NSObject, NSCopying {
     }
     return Trip(durationMin: durationMin, noOfChanges: noOfChanges,
                 isValid: isValid, tripSegments: tripSegmentCopy,
-                criterion.copy() as! TripSearchCriterion)
+                criterion: criterion.copy() as! TripSearchCriterion)
   }
 }
