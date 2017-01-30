@@ -25,20 +25,24 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
   let subSegmentCellId = "SubSegment"
   let destinationCellId = "Destination"
   
-  var trip = Trip(durationMin: 0, noOfChanges: 0, isValid: true, tripSegments: [TripSegment]())
+  var trip: Trip?
   var stopsVisual = [(isVisible: Bool, hasStops: Bool)]()
   
   let loadedTime = Date()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    prepareTableView()
-    prepareHeader()
-    prepareVisualStops()
-    loadStops()
-    StopEnhancer.enhance(trip)
-    NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive),
-                                           name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    if let trip = trip {
+      prepareTableView()
+      prepareHeader()
+      prepareVisualStops()
+      loadStops()
+      StopEnhancer.enhance(trip)
+      NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive),
+                                             name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    } else {
+      fatalError("Trip not set.")
+    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -61,8 +65,8 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
   /**
    * Selects this trip for current trip
    */
-  @IBAction func onBeginTripTap(_ sender: UIButton) { 
-      NotificationCenter.default.post(name: Notification.Name(rawValue: "BeginTrip"), object: trip)
+  @IBAction func onBeginTripTap(_ sender: UIButton) {
+    NotificationCenter.default.post(name: Notification.Name(rawValue: "BeginTrip"), object: trip)
   }
   
   @IBAction func onSMSTicketTap(_ sender: UIBarButtonItem) {
@@ -91,7 +95,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    * Number of sections
    */
   override func numberOfSections(in tableView: UITableView) -> Int {
-    return trip.tripSegments.count
+    return trip!.tripSegments.count
   }
   
   /**
@@ -130,7 +134,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    */
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if (indexPath.section == 0 && indexPath.row == 1) ||
-      (indexPath.section != trip.tripSegments.count && indexPath.row == 1) {
+      (indexPath.section != trip!.tripSegments.count && indexPath.row == 1) {
       tableView.deselectRow(at: indexPath, animated: true)
       if stopsVisual[indexPath.section].hasStops {
         stopsVisual[indexPath.section].isVisible = !stopsVisual[indexPath.section].isVisible
@@ -165,7 +169,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    */
   fileprivate func createOriginCell(_ indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: originCellId) as! TripDetailsOriginCell
-    cell.setData(indexPath, trip: trip)
+    cell.setData(indexPath, trip: trip!)
     return cell
   }
   
@@ -176,12 +180,12 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
     if indexPath.row == 1 {
       let visual = stopsVisual[indexPath.section]
       let cell = tableView.dequeueReusableCell(withIdentifier: segmentCellId) as! TripDetailsSegmentCell
-      cell.setData(indexPath, visual: visual, trip: trip)
+      cell.setData(indexPath, visual: visual, trip: trip!)
       return cell
     }
     
     let cell = tableView.dequeueReusableCell(withIdentifier: subSegmentCellId) as! TripDetailsSubSegmentCell
-    cell.setData(indexPath, trip: trip)
+    cell.setData(indexPath, trip: trip!)
     return cell
   }
   
@@ -190,7 +194,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    */
   fileprivate func createDestinationCell(_ indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: destinationCellId) as! TripDetailsDestinationCell
-    cell.setData(indexPath, trip: trip)
+    cell.setData(indexPath, trip: trip!)
     return cell
   }
   
@@ -198,10 +202,10 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    * Calculate number of rows for a segment section
    */
   fileprivate func calculateNumberOfRows(_ section: Int) -> Int {
-    if section < trip.tripSegments.count && stopsVisual.count > 0 {
+    if section < trip!.tripSegments.count && stopsVisual.count > 0 {
       let visual = stopsVisual[section]
       if visual.hasStops && visual.isVisible {
-        return 3 + max(trip.tripSegments[section].stops.count - 2, 0)
+        return 3 + max(trip!.tripSegments[section].stops.count - 2, 0)
       }
     }
     return 3
@@ -211,7 +215,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    * Prepares the visual stops data.
    */
   fileprivate func prepareVisualStops() {
-    for _ in trip.tripSegments {
+    for _ in trip!.tripSegments {
       stopsVisual.append((isVisible: false, hasStops: false))
     }
   }
@@ -222,8 +226,8 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
   fileprivate func loadStops() {
     var loadCount = 0
     var doneCount = 0
-
-    for (index, segment) in trip.tripSegments.enumerated() {
+    
+    for (index, segment) in trip!.tripSegments.enumerated() {
       if let ref = segment.journyRef {
         loadCount += 1
         NetworkActivity.displayActivityIndicator(true)
@@ -245,7 +249,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
     }
     if doneCount >= loadCount {
       self.mapButton.isEnabled = true
-      StopEnhancer.enhance(trip)
+      StopEnhancer.enhance(trip!)
     }
   }
   
@@ -277,31 +281,36 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    * Prepares header
    */
   fileprivate func prepareHeader() {
-    timeLabel.text = DateUtils.friendlyDate(trip.allTripSegments.last!.arrivalDateTime)
-    originLabel.text = "Från \(trip.allTripSegments.first!.origin.cleanName)"
-    destinationLabel.text = "Till \(trip.allTripSegments.last!.destination.cleanName)"
+    if let trip = trip {
+      timeLabel.text = DateUtils.friendlyDate(trip.allTripSegments.last!.arrivalDateTime)
+      originLabel.text = "Från \(trip.allTripSegments.first!.origin.cleanName)"
+      destinationLabel.text = "Till \(trip.allTripSegments.last!.destination.cleanName)"
+    }
   }
   
   /**
    * Updates stops list on tap.
    */
   fileprivate func updateStopsToggleAnimated(_ section: Int, isVisible: Bool) {
-    var indexPaths = [IndexPath]()
-    for (index, _) in trip.tripSegments[section].stops.enumerated() {
-      if index < (trip.tripSegments[section].stops.count - 2) {
-        indexPaths.append(IndexPath(row: index + 2, section: section))
+    if let trip = trip {
+      var indexPaths = [IndexPath]()
+      for (index, _) in trip.tripSegments[section].stops.enumerated() {
+        if index < (trip.tripSegments[section].stops.count - 2) {
+          indexPaths.append(IndexPath(row: index + 2, section: section))
+        }
       }
+      
+      
+      if isVisible {
+        tableView.insertRows(at: indexPaths, with: .automatic)
+      } else {
+        tableView.deleteRows(at: indexPaths, with: .automatic)
+      }
+      
+      let cell = tableView.cellForRow(
+        at: IndexPath(row: 1, section: section)) as! TripDetailsSegmentCell
+      cell.updateStops((isVisible: isVisible, hasStops: true))
     }
-    
-    if isVisible {
-      tableView.insertRows(at: indexPaths, with: .automatic)
-    } else {
-      tableView.deleteRows(at: indexPaths, with: .automatic)
-    }
-    
-    let cell = tableView.cellForRow(
-      at: IndexPath(row: 1, section: section)) as! TripDetailsSegmentCell
-    cell.updateStops((isVisible: isVisible, hasStops: true))
   }
   
   /**
