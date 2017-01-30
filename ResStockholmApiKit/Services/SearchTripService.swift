@@ -26,7 +26,7 @@ open class SearchTripService {
           callback(trips, SLNetworkError.noDataFound)
           return
         }
-        trips = self.convertJsonResponse(data)
+        trips = self.convertJsonResponse(data, criterion.copy() as! TripSearchCriterion)
       }
       callback(trips, resTuple.1)
     }
@@ -37,7 +37,7 @@ open class SearchTripService {
   /**
    * Converts the raw json string into array of Trip.
    */
-  fileprivate static func convertJsonResponse(_ jsonDataString: Data) -> [Trip] {
+  fileprivate static func convertJsonResponse(_ jsonDataString: Data, _ criterion: TripSearchCriterion) -> [Trip] {
     var result = [Trip]()
     let data = JSON(data: jsonDataString)
     if checkErrors(data) {
@@ -46,10 +46,10 @@ open class SearchTripService {
     
     if let tripsJson = data["TripList"]["Trip"].array {
       for tripJson in tripsJson {
-        result.append(convertJsonToTrip(tripJson))
+        result.append(convertJsonToTrip(tripJson, criterion))
       }
     } else {
-      result.append(convertJsonToTrip(data["TripList"]["Trip"]))
+      result.append(convertJsonToTrip(data["TripList"]["Trip"], criterion))
     }
     
     return result
@@ -70,7 +70,7 @@ open class SearchTripService {
   /**
    * Converts json to trip object.
    */
-  fileprivate static func convertJsonToTrip(_ tripJson: JSON) -> Trip {
+  fileprivate static func convertJsonToTrip(_ tripJson: JSON, _ criterion: TripSearchCriterion) -> Trip {
     let tripSegments = convertJsonToSegments(tripJson["LegList"]["Leg"])
     var isValid = true
     if let val = tripJson["valid"].string {
@@ -80,7 +80,8 @@ open class SearchTripService {
       durationMin: (tripJson["dur"].string != nil) ? Int(tripJson["dur"].string!)! : 0,
       noOfChanges: (tripJson["chg"].string != nil) ? Int(tripJson["chg"].string!)! : 0,
       isValid: isValid,
-      tripSegments: tripSegments.sorted(by: { $0.index < $1.index }))
+      tripSegments: tripSegments.sorted(by: { $0.index < $1.index }),
+      criterion: criterion)
   }
   
   /**

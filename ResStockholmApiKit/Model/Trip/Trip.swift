@@ -15,15 +15,22 @@ open class Trip: NSObject, NSCopying {
   open var isValid = true
   open var tripSegments = [TripSegment]()
   open var allTripSegments = [TripSegment]()
+  open var tripKey = ""
+  open var criterion: TripSearchCriterion
   
   /**
    * Standard init
    */
-  public init(durationMin: Int, noOfChanges: Int, isValid: Bool, tripSegments: [TripSegment]?) {
+  public init(durationMin: Int, noOfChanges: Int,
+              isValid: Bool, tripSegments: [TripSegment]?,
+              criterion: TripSearchCriterion) {
+    
     self.durationMin = durationMin
     self.noOfChanges = noOfChanges
     self.isValid = isValid
+    
     if let segments = tripSegments {
+      self.tripKey = Trip.generateTripKey(segments: segments)
       var lastSegment: TripSegment? = nil
       for segment in segments {
         if let last = lastSegment {
@@ -116,6 +123,18 @@ open class Trip: NSObject, NSCopying {
     ]
   }
   
+  // MARK: Private
+  
+  fileprivate static func generateTripKey(segments: [TripSegment]) -> String {
+    var key = ""
+    for segment in segments {
+      key += "\(segment.name)-\(segment.origin.name)-\(segment.departureDateTime)-\(segment.destination.name)-\(segment.arrivalDateTime)"
+    }
+    
+    print(key)
+    return key
+  }
+  
   // MARK: NSCopying
   
   /**
@@ -126,6 +145,8 @@ open class Trip: NSObject, NSCopying {
     for segment in tripSegments {
       tripSegmentCopy.append(segment.copy() as! TripSegment)
     }
-    return Trip(durationMin: durationMin, noOfChanges: noOfChanges, isValid: isValid, tripSegments: tripSegmentCopy)
+    return Trip(durationMin: durationMin, noOfChanges: noOfChanges,
+                isValid: isValid, tripSegments: tripSegmentCopy,
+                criterion.copy() as! TripSearchCriterion)
   }
 }
