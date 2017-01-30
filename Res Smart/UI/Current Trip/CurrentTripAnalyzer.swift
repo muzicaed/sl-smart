@@ -39,7 +39,7 @@ class CurrentTripAnalyzer {
       } else if segment.type == .Walk {
         return (validNextSegment(segment)) ? CurrentTripResult(idx, segment, .Walking) : nil
       }
-      return (validNextSegment(segment)) ? CurrentTripResult(idx, segment, .Waiting) : nil
+      return CurrentTripResult(idx, segment, .Waiting)
     }
     return nil
   }

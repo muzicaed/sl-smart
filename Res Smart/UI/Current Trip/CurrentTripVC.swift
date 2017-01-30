@@ -41,6 +41,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     mapView.showsCompass = false
     mapView.showsUserLocation = true
     mapView.showsPointsOfInterest = false
+    mapView.isHidden = true
     
     // TODO: Fix touch
     mapView.isZoomEnabled = false
@@ -48,7 +49,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     mapView.isRotateEnabled = false
     mapView.isScrollEnabled = false
     
-    if !isMapLoaded{
+    if !isMapLoaded {
       analyzer.currentTrip = currentTrip
       loadRoute()
     }
@@ -193,8 +194,8 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    */
   @objc fileprivate func updateTripStatus() {
     var coords = [CLLocationCoordinate2D]()
-    coords.append(contentsOf: updateCurrentTripStatus())
     coords.append(contentsOf: updateNextStepTripStatus())
+    coords.append(contentsOf: updateCurrentTripStatus())
     updateMapViewport(coords)
   }
   
@@ -208,16 +209,12 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     currentSegmentIndex = result.index
     switch result.instruction {
     case .Waiting:
-      print("Current step: Waiting")
       return updateWaitingData(view: stepByStepView, segment: result.segment)
     case .Riding:
-      print("Current step: Riding")
       return updateRidingData(view: stepByStepView, segment: result.segment)
     case .Walking:
-      print("Current step: Walking")
-      return updateWalkingData(view: stepByStepView, segment: result.segment)
+      return updateWalkingData(view: stepByStepView, segment: result.segment, showDetails: nextStepView.isHidden)
     case .Arrived:
-      print("Current step: Arrivied")
       return tripPassed(view: stepByStepView, segment: result.segment)
     }
   }
@@ -230,16 +227,12 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
       nextStepView.isHidden = false
       switch result.instruction {
       case .Waiting:
-        print("Next step: Waiting")
         return updateWaitingData(view: nextStepView, segment: result.segment)
       case .Riding:
-        print("Next step: Riding")
         return updateRidingData(view: nextStepView, segment: result.segment)
       case .Walking:
-        print("Next step: Walking")
-        return updateWalkingData(view: nextStepView, segment: result.segment)
+        return updateWalkingData(view: nextStepView, segment: result.segment, showDetails: true)
       case .Arrived:
-        print("Next step: Arrived")
         return tripPassed(view: nextStepView, segment: result.segment)
       }
     }
@@ -282,12 +275,18 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
   /**
    * Update UI to show walking instructions
    */
-  fileprivate func updateWalkingData(view: StepByStepView, segment: TripSegment) -> [CLLocationCoordinate2D] {
-    let inAbout = createInAbout(date: segment.arrivalDateTime)
-    
+  fileprivate func updateWalkingData(view: StepByStepView,
+                                     segment: TripSegment,
+                                     showDetails: Bool) -> [CLLocationCoordinate2D] {
     view.nextStep.text = "Gå till \(segment.destination.name)"
-    view.instructions.text = "Du är framme \(inAbout.lowercased())"
+    view.instructions.text = nil
     view.inAbout.text = nil
+    if currentSegmentIndex < currentTrip!.allTripSegments.count - 1 && nextStepView.isHidden {
+      let nextSegement = currentTrip!.allTripSegments[currentSegmentIndex + 1]
+      let lineData = TripHelper.friendlyLineData(nextSegement)
+      let lineDesc = TripHelper.friendlyTripSegmentDesc(nextSegement)
+      view.instructions.text = "Där ska du ta \(lineData.long) \(lineDesc)"
+    }
     return [segment.origin.location!.coordinate, segment.destination.location!.coordinate]
   }
   
