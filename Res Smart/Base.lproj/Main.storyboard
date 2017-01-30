@@ -2822,7 +2822,6 @@ Res Smart på din Apple Watch</string>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="VFp-oo-nuY"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RKD-ec-WGy">
@@ -2835,6 +2834,7 @@ Res Smart på din Apple Watch</string>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vänta på tåget som kommer snart." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Are-1T-0YQ">
                                                             <rect key="frame" x="0.0" y="30.5" width="359" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="837-VS-ygW">
@@ -2896,7 +2896,6 @@ Res Smart på din Apple Watch</string>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="461-Hw-CTF"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97k-G7-EAU">
@@ -2909,6 +2908,7 @@ Res Smart på din Apple Watch</string>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vänta på tåget som kommer snart." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGs-yB-gVS">
                                                             <rect key="frame" x="0.0" y="30.5" width="359" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3EM-tb-lzT">
@@ -2969,10 +2969,18 @@ Res Smart på din Apple Watch</string>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7F-Nl-sxy">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem enabled="NO" title="Automatisk översikt" id="2V4-fz-M4K">
-                                        <connections>
-                                            <action selector="onAutomaticOverviewTap:" destination="7rg-OJ-WdA" id="E3M-Pb-cOO"/>
-                                        </connections>
+                                    <barButtonItem style="plain" id="V0u-eF-yqo">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="vnw-fi-D1p">
+                                            <rect key="frame" x="16" y="7" width="130" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Auto"/>
+                                                <segment title="Manuell"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="onAutoManualChanged:" destination="7rg-OJ-WdA" eventType="valueChanged" id="jQy-Yq-7Ya"/>
+                                            </connections>
+                                        </segmentedControl>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="VLc-0L-x6M"/>
                                     <barButtonItem style="plain" id="epQ-z3-Hhy">
@@ -3015,6 +3023,7 @@ Res Smart på din Apple Watch</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="autoManualSegmentControl" destination="vnw-fi-D1p" id="U4h-7f-oUj"/>
                         <outlet property="mapView" destination="VNZ-eo-MVI" id="Bsz-qY-xtF"/>
                         <outlet property="nextStepView" destination="Eyk-Xd-QOs" id="8Hb-FM-YXa"/>
                         <outlet property="stepByStepView" destination="41J-L8-3En" id="x9K-fk-U9f"/>

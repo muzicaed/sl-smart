@@ -19,7 +19,7 @@ open class GeometryService {
   open static func fetchGeometry(_ urlEncRef: String,
                                  callback: @escaping (_ data: [CLLocation], _ error: SLNetworkError?) -> Void) {
     var result = [CLLocation]()
-    if urlEncRef.range(of: "type%3DWALKLINK") != nil {
+    if urlEncRef.range(of: "type%3DWALK") != nil {
       callback([CLLocation](), SLNetworkError.noDataFound)
       return
     }

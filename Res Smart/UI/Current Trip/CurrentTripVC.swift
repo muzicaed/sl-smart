@@ -16,6 +16,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var stepByStepView: StepByStepView!
   @IBOutlet weak var nextStepView: StepByStepView!
+  @IBOutlet weak var autoManualSegmentControl: UISegmentedControl!
   
   let analyzer = CurrentTripAnalyzer()
   var currentTrip: Trip?
@@ -35,20 +36,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    mapView.delegate = self
-    mapView.mapType = MKMapType.standard
-    mapView.showsBuildings = true
-    mapView.showsCompass = false
-    mapView.showsUserLocation = true
-    mapView.showsPointsOfInterest = false
-    mapView.isHidden = true
-    
-    // TODO: Fix touch
-    mapView.isZoomEnabled = false
-    mapView.isPitchEnabled = false
-    mapView.isRotateEnabled = false
-    mapView.isScrollEnabled = false
-    
+    prepareMapView()
     if !isMapLoaded {
       analyzer.currentTrip = currentTrip
       loadRoute()
@@ -125,9 +113,17 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
   }
   
   /**
-   * User taps automatic onAutomaticOverviewTap
+   * Auto/Manual map update changed
    */
-  @IBAction func onAutomaticOverviewTap(_ sender: UIBarButtonItem) {
+  @IBAction func onAutoManualChanged(_ sender: UISegmentedControl) {
+    if autoManualSegmentControl.selectedSegmentIndex == 0 {
+      isOverviewLocked = true
+      disableMapScroll()
+      updateTripStatus()
+    } else {
+      isOverviewLocked = false
+      enableMapScroll()
+    }
   }
   
   // MARK: MKMapViewDelegate <- TOTO Could this be an extention?
@@ -401,5 +397,50 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
       let padding = (nextStepView.isHidden) ? CGFloat(125) : CGFloat(200)
       MapHelper.setMapViewport(mapView, coordinates: coords, topPadding: padding)
     }
+  }
+  
+  
+  /**
+   * Inits and prepares the map view
+   */
+  fileprivate func prepareMapView() {
+    disableMapScroll()
+    let mapPanGesture = UIPanGestureRecognizer(target: self, action: #selector(self.mapInteract(_:)))
+    mapView.addGestureRecognizer(mapPanGesture)
+    let mapTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.mapInteract(_:)))
+    mapView.addGestureRecognizer(mapTapGesture)
+    mapView.delegate = self
+    mapView.mapType = MKMapType.standard
+    mapView.showsBuildings = true
+    mapView.showsCompass = false
+    mapView.showsUserLocation = true
+    mapView.showsPointsOfInterest = false
+    mapView.isHidden = true
+  }
+  
+  /*
+   * Disable map scrolling
+   */
+  func disableMapScroll() {
+    mapView.isZoomEnabled = false
+    mapView.isPitchEnabled = false
+    mapView.isRotateEnabled = false
+    mapView.isScrollEnabled = false
+  }
+  
+  /*
+   * Enable map scrolling
+   */
+  func enableMapScroll() {
+    mapView.isZoomEnabled = true
+    mapView.isPitchEnabled = true
+    mapView.isRotateEnabled = true
+    mapView.isScrollEnabled = true
+  }
+  
+  func mapInteract(_ sender: UITapGestureRecognizer) {
+    enableMapScroll()
+    autoManualSegmentControl.selectedSegmentIndex = 1
+    isOverviewLocked = false
   }
 }
