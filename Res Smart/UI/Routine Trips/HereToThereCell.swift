@@ -18,6 +18,8 @@ class HereToThereCell: UICollectionViewCell {
    * Set the from location text.
    */
   func setFromLocationText(_ location: Location) {
+    layer.borderWidth = 0.5
+    layer.borderColor = UIColor.lightGray.cgColor
     hereToThereLabel.text = "Från \(location.name)"
   }
 }
