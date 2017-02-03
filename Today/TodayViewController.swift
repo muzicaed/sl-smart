@@ -37,6 +37,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     let gesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
     view.addGestureRecognizer(gesture)
+    loadTripData() {}
   }
   
   /**
@@ -52,8 +53,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    */
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    loadTripData()
     startRefreshTimmer()
+    updateUI()
   }
   
   /**
@@ -61,8 +62,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
    * OS Controlled.
    */
   func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-    updateUI()
-    completionHandler(NCUpdateResult.noData)
+    loadTripData(){
+      self.updateUI()
+      completionHandler(.newData)
+    }
   }
   
   /**
@@ -95,12 +98,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   /**
    * Loads trip data and updates UI
    */
-  func loadTripData() {    
+  func loadTripData(callback: @escaping () -> ()) {
     RoutineService.findRoutineTrip({ routineTrips in
       self.bestRoutine = routineTrips.first
       DispatchQueue.main.async {
         if self.bestRoutine != nil {
-          self.updateUI()
+          callback()
         }
         else {
           self.titleLabel.text = "Hittade inga rutiner."
