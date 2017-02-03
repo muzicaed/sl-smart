@@ -94,6 +94,6 @@ class HttpRequestHelper {
       return (60 * 10) // 10 minutes
     }
     
-    return 60 // 1 minute
+    return 5
   }
 }
