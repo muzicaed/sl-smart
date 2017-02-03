@@ -33,6 +33,8 @@ class RoutineTripCell: UICollectionViewCell {
    * Populate cell data based on passed RoutineTrip
    */
   func setupData(_ routineTrip: RoutineTrip, isBest: Bool) {
+    layer.borderWidth = 0.5
+    layer.borderColor = UIColor.lightGray.cgColor
     var title = routineTrip.title!
     if routineTrip.isSmartSuggestion {
       title = "Vana: \(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName)"
