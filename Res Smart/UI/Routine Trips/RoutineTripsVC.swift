@@ -158,7 +158,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * On user drags down to refresh
    */
   func onRefreshController() {
-    if isSubscribed {
+    if isSubscribed || !isLoading {
       loadTripData(true)
     } else {
       refreshController.endRefreshing()
@@ -516,7 +516,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     NetworkActivity.displayActivityIndicator(true)
     isShowInfo = false
     isLoading = true
-    otherRoutineTrips = [RoutineTrip]()
     bestRoutineTrip = nil
     selectedRoutineTrip = nil
     collectionView?.backgroundView = tableActivityIndicator
