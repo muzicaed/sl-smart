@@ -21,7 +21,7 @@ open class DisturbanceTextHelper {
         text.lowercased().range(of: "rökutveckling") != nil ||
         text.lowercased().range(of: "växelfel") != nil ||
         text.lowercased().range(of: "stannar ej") != nil)
-    
+    }
     return false
   }
 }
