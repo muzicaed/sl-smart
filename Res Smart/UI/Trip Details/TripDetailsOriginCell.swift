@@ -19,6 +19,9 @@ class TripDetailsOriginCell: UITableViewCell, TripCellProtocol {
    * Set cell data.
    */
   func setData(_ indexPath: IndexPath, trip: Trip) {
+    if indexPath.section != 0 {
+      layer.addBorder(edge: .top, color: UIColor.lightGray, thickness: 0.5)
+    }
     let segment = trip.tripSegments[indexPath.section]
     timeLabel.text = DateUtils.dateAsTimeString(segment.departureDateTime)
     timeLabel.accessibilityLabel = "Avgång \(timeLabel.text!)"
