@@ -362,7 +362,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell,
                                forItemAt indexPath: IndexPath) {
     if isSubscribed && !isShowInfo && !isLoading {
-      if indexPath.section == 0 && indexPath.row != 2 {
+      if (indexPath.section == 0 && indexPath.row != 2) || indexPath.section != 0 {
         let bgColorView = UIView()
         bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
         cell.selectedBackgroundView = bgColorView

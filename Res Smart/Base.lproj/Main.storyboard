@@ -597,7 +597,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="När" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Au-Cp-u1s">
-                                                <rect key="frame" x="157.66666666666669" y="0.0" width="100.00000000000006" height="44"/>
+                                                <rect key="frame" x="157" y="0.0" width="100" height="44"/>
                                                 <accessibility key="accessibilityConfiguration" label="Välj tid. Använd klockobjekt nedan och bekräfta ditt val med knappen till höger om denna."/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="ITr-Co-Z2G"/>
@@ -683,13 +683,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5F-4c-N0a">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="51.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wpw-7H-K3n" userLabel="Status Icon">
-                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="51.666666666666664"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="51"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EventGood" translatesAutoresizingMaskIntoConstraints="NO" id="ek0-9Y-Aph" userLabel="Status Icon">
-                                                            <rect key="frame" x="10" y="15.666666666666664" width="20" height="20"/>
+                                                            <rect key="frame" x="10" y="15" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="20" id="KrG-Ec-b8y"/>
                                                                 <constraint firstAttribute="height" constant="20" id="hSU-Dz-Clo"/>
@@ -704,7 +704,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1C-Mj-3GQ">
-                                                    <rect key="frame" x="40" y="0.0" width="374" height="51.666666666666664"/>
+                                                    <rect key="frame" x="40" y="0.0" width="374" height="51"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="b7X-zO-zU0"/>
                                                     </constraints>
@@ -960,18 +960,18 @@
                                 <rect key="frame" x="0.0" y="128" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9O8-0i-iu9" id="3eC-R0-CFo">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Line number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P9v-cx-eEt">
-                                            <rect key="frame" x="51.999999999999993" y="5" width="95.333333333333329" height="20.333333333333332"/>
+                                            <rect key="frame" x="52" y="4" width="96" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TEm-Ap-rOE">
-                                            <rect key="frame" x="52" y="25.333333333333332" width="34.333333333333336" height="14.333333333333334"/>
+                                            <rect key="frame" x="52" y="25" width="35" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1179,12 +1179,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Stockholm central » Karlberg station" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIZ-VO-n8V">
-                                                    <rect key="frame" x="0.0" y="21.666666666666671" width="357" height="20.333333333333329"/>
+                                                    <rect key="frame" x="0.0" y="21.333333333333336" width="357" height="20.333333333333336"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Inga avancerade inställningar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9y-4C-UNe">
-                                                    <rect key="frame" x="0.0" y="43.333333333333343" width="357" height="19.666666666666664"/>
+                                                    <rect key="frame" x="0.0" y="42.666666666666657" width="357" height="20.333333333333336"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1734,18 +1734,18 @@
                                 <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UKA-Wl-L3Q" id="Lhl-KO-hdt">
-                                    <rect key="frame" x="0.0" y="0.0" width="367" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="367" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7tf-V3-lvF">
-                                            <rect key="frame" x="55" y="5" width="33.333333333333336" height="20.333333333333332"/>
+                                            <rect key="frame" x="55" y="4" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bGr-Sp-Q9i">
-                                            <rect key="frame" x="55" y="25.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
+                                            <rect key="frame" x="55" y="25" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1791,11 +1791,11 @@
                                 <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="iZu-bA-nNW" id="bN1-1J-865">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" contentMode="left" text="Centralen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hma-gB-jL6">
-                                            <rect key="frame" x="54.999999999999993" y="5" width="74.333333333333329" height="20.333333333333332"/>
+                                            <rect key="frame" x="55" y="4" width="75" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1806,7 +1806,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                         <label opaque="NO" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="86g-mI-a0z">
-                                            <rect key="frame" x="55" y="25.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
+                                            <rect key="frame" x="55" y="25" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1968,16 +1968,16 @@
                                                             </constraints>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b6m-gg-bLZ">
-                                                            <rect key="frame" x="61" y="0.0" width="277" height="43"/>
+                                                            <rect key="frame" x="61" y="0.0" width="257" height="43"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Mot Tyresö centrum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiA-Wb-6Yu">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="277" height="43"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="257" height="43"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVj-cg-43Q">
-                                                                    <rect key="frame" x="0.0" y="43" width="277" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="43" width="257" height="0.0"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" id="rQj-Yr-ir0"/>
                                                                     </constraints>
@@ -1992,7 +1992,7 @@
                                                             </constraints>
                                                         </stackView>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="749" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwW-LA-Pdp">
-                                                            <rect key="frame" x="338" y="0.0" width="0.0" height="43"/>
+                                                            <rect key="frame" x="318" y="0.0" width="20" height="43"/>
                                                             <color key="backgroundColor" red="0.44392179319371727" green="0.44392179319371727" blue="0.44392179319371727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="20" id="NIw-if-hJD"/>
@@ -2206,7 +2206,7 @@
                                                                     <rect key="frame" x="116.66666666666666" y="0.0" width="116.66666666666666" height="44.333333333333329"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="7ef-Be-lV5">
-                                                                            <rect key="frame" x="47.999999999999986" y="4.3333333333333286" width="21.333333333333343" height="36"/>
+                                                                            <rect key="frame" x="47.666666666666671" y="4.6666666666666572" width="21.333333333333314" height="36"/>
                                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
@@ -2279,7 +2279,7 @@
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="x5d-j2-BFi" secondAttribute="bottom" id="JHA-ki-b7a"/>
                                                 <constraint firstItem="x5d-j2-BFi" firstAttribute="top" secondItem="ZnL-fE-gUq" secondAttribute="top" id="JQK-yn-Glk"/>
@@ -2372,7 +2372,7 @@
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </stackView>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="rGc-N7-r7Y" secondAttribute="trailing" id="Bcv-N2-ace"/>
                                                 <constraint firstItem="rGc-N7-r7Y" firstAttribute="leading" secondItem="o8s-v7-Ee6" secondAttribute="leading" id="RUp-Wz-gWy"/>
@@ -2688,7 +2688,7 @@ Res Smart på din Apple Watch</string>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="chj-Ff-Ru2" secondAttribute="trailing" id="5p7-oq-3Pq"/>
                                                 <constraint firstItem="chj-Ff-Ru2" firstAttribute="leading" secondItem="hZ8-st-n7g" secondAttribute="leading" id="PKv-1s-j3h"/>
@@ -3016,7 +3016,7 @@ Res Smart på din Apple Watch</string>
                                                                             <rect key="frame" x="152" y="0.0" width="50" height="74"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="ViK-2Q-BmJ">
-                                                                                    <rect key="frame" x="14.666666666666657" y="19" width="21.333333333333343" height="36"/>
+                                                                                    <rect key="frame" x="14.333333333333343" y="19" width="21.333333333333314" height="36"/>
                                                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <accessibility key="accessibilityConfiguration">
                                                                                         <bool key="isElement" value="NO"/>
@@ -3620,17 +3620,17 @@ Res Smart på din Apple Watch</string>
                                                                             <rect key="frame" x="0.0" y="0.0" width="370" height="74"/>
                                                                             <subviews>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="oDP-KS-Dxx" userLabel="Origin">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="158.66666666666666" height="74"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="159" height="74"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rNp-ON-15c" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="158.66666666666666" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="159" height="5"/>
                                                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="EAd-4r-SUi"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Adu-cO-5U2">
-                                                                                            <rect key="frame" x="0.0" y="12.666666666666664" width="158.66666666666666" height="30"/>
+                                                                                            <rect key="frame" x="0.0" y="12.666666666666664" width="159" height="30"/>
                                                                                             <subviews>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19:23" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0h-aJ-S6Y" userLabel="19:23 (om 3 min.)">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="51" height="30"/>
@@ -3647,7 +3647,7 @@ Res Smart på din Apple Watch</string>
                                                                                                     </constraints>
                                                                                                 </view>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="om 15 min" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fZw-eg-ua2">
-                                                                                                    <rect key="frame" x="56" y="0.0" width="102.66666666666666" height="30"/>
+                                                                                                    <rect key="frame" x="56" y="0.0" width="103" height="30"/>
                                                                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="height" constant="30" id="E6U-ey-JgI"/>
@@ -3660,14 +3660,14 @@ Res Smart på din Apple Watch</string>
                                                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         </stackView>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjS-Yf-fPy" userLabel="Karlberg">
-                                                                                            <rect key="frame" x="0.0" y="42.666666666666657" width="158.66666666666666" height="20.333333333333336"/>
+                                                                                            <rect key="frame" x="0.0" y="42.666666666666657" width="159" height="20.333333333333336"/>
                                                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeZ-l7-nJS" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="69" width="158.66666666666666" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="69" width="159" height="5"/>
                                                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="3Pc-Ec-MVM"/>
@@ -3677,10 +3677,10 @@ Res Smart på din Apple Watch</string>
                                                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 </stackView>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uoy-NZ-V3i" userLabel="Spacer">
-                                                                                    <rect key="frame" x="158.66666666666666" y="0.0" width="52.666666666666686" height="74"/>
+                                                                                    <rect key="frame" x="159" y="0.0" width="52" height="74"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="sFN-yu-WBF">
-                                                                                            <rect key="frame" x="16.333333333333343" y="19" width="21.333333333333343" height="36"/>
+                                                                                            <rect key="frame" x="15.333333333333343" y="19" width="21.333333333333314" height="36"/>
                                                                                             <accessibility key="accessibilityConfiguration">
                                                                                                 <bool key="isElement" value="NO"/>
                                                                                             </accessibility>
@@ -3696,31 +3696,31 @@ Res Smart på din Apple Watch</string>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="tww-pc-25E" userLabel="Destination">
-                                                                                    <rect key="frame" x="211.33333333333337" y="0.0" width="158.66666666666663" height="74"/>
+                                                                                    <rect key="frame" x="211" y="0.0" width="159" height="74"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x3G-Cc-rGN" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="158.66666666666666" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="159" height="5"/>
                                                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="boh-Rw-jwO"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:43" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYi-XU-Ybz" userLabel="20:43">
-                                                                                            <rect key="frame" x="0.0" y="12.666666666666664" width="158.66666666666666" height="30"/>
+                                                                                            <rect key="frame" x="0.0" y="12.666666666666664" width="159" height="30"/>
                                                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tic-hh-jhz" userLabel="Centralen">
-                                                                                            <rect key="frame" x="0.0" y="42.666666666666657" width="158.66666666666666" height="20.333333333333336"/>
+                                                                                            <rect key="frame" x="0.0" y="42.666666666666657" width="159" height="20.333333333333336"/>
                                                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpr-AJ-yg1" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="69" width="158.66666666666666" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="69" width="159" height="5"/>
                                                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="1gj-Do-FhW"/>
@@ -3741,17 +3741,17 @@ Res Smart på din Apple Watch</string>
                                                                             <rect key="frame" x="0.0" y="74" width="370" height="35"/>
                                                                             <subviews>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="We1-hO-xvg" userLabel="Icon">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="158.66666666666666" height="35"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="159" height="35"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="35" id="p3b-S9-AZU" userLabel="height = 30"/>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIe-uI-5io" userLabel="Space">
-                                                                                    <rect key="frame" x="158.66666666666666" y="0.0" width="52.666666666666686" height="35"/>
+                                                                                    <rect key="frame" x="159" y="0.0" width="52" height="35"/>
                                                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Restid: 1h 33m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1N-xr-607">
-                                                                                    <rect key="frame" x="211.33333333333337" y="0.0" width="158.66666666666663" height="35"/>
+                                                                                    <rect key="frame" x="211" y="0.0" width="159" height="35"/>
                                                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3869,16 +3869,16 @@ Res Smart på din Apple Watch</string>
                                                                             <rect key="frame" x="0.0" y="0.0" width="370" height="74"/>
                                                                             <subviews>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="1ee-Lf-YUw" userLabel="Origin">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="158.66666666666666" height="74"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="159" height="74"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gL6-QO-DH9" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="158.66666666666666" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="159" height="5"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="dxo-ly-sng"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2k6-Yc-lDy">
-                                                                                            <rect key="frame" x="0.0" y="12.666666666666664" width="158.66666666666666" height="30"/>
+                                                                                            <rect key="frame" x="0.0" y="12.666666666666664" width="159" height="30"/>
                                                                                             <subviews>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19:23" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asr-hr-nur" userLabel="19:23 (om 3 min.)">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="51" height="30"/>
@@ -3893,7 +3893,7 @@ Res Smart på din Apple Watch</string>
                                                                                                     </constraints>
                                                                                                 </view>
                                                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text=" ❨om 15 min❩" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njH-ni-u7N">
-                                                                                                    <rect key="frame" x="56" y="0.0" width="102.66666666666666" height="30"/>
+                                                                                                    <rect key="frame" x="56" y="0.0" width="103" height="30"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="height" constant="30" id="Z87-dK-alu"/>
                                                                                                     </constraints>
@@ -3904,13 +3904,13 @@ Res Smart på din Apple Watch</string>
                                                                                             </subviews>
                                                                                         </stackView>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bd3-Nt-dCP" userLabel="Karlberg">
-                                                                                            <rect key="frame" x="0.0" y="42.666666666666657" width="158.66666666666666" height="20.333333333333336"/>
+                                                                                            <rect key="frame" x="0.0" y="42.666666666666657" width="159" height="20.333333333333336"/>
                                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                             <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUr-u3-iRl" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="69" width="158.66666666666666" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="69" width="159" height="5"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="vlZ-uG-7fk"/>
                                                                                             </constraints>
@@ -3919,10 +3919,10 @@ Res Smart på din Apple Watch</string>
                                                                                     <color key="backgroundColor" red="0.52156862749999999" green="0.70980392160000005" blue="0.043137254899999998" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 </stackView>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ea2-Nn-763" userLabel="Spacer">
-                                                                                    <rect key="frame" x="158.66666666666666" y="0.0" width="52.666666666666686" height="74"/>
+                                                                                    <rect key="frame" x="159" y="0.0" width="52" height="74"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="PDm-is-PSY">
-                                                                                            <rect key="frame" x="16.333333333333343" y="19" width="21.333333333333343" height="36"/>
+                                                                                            <rect key="frame" x="15.333333333333343" y="19" width="21.333333333333314" height="36"/>
                                                                                             <accessibility key="accessibilityConfiguration">
                                                                                                 <bool key="isElement" value="NO"/>
                                                                                             </accessibility>
@@ -3938,28 +3938,28 @@ Res Smart på din Apple Watch</string>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="GWH-OT-l8d" userLabel="Destination">
-                                                                                    <rect key="frame" x="211.33333333333337" y="0.0" width="158.66666666666663" height="74"/>
+                                                                                    <rect key="frame" x="211" y="0.0" width="159" height="74"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nO-Kr-PSh" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="158.66666666666666" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="159" height="5"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="2kI-eJ-84f"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:43" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cxn-6F-eoy" userLabel="20:43">
-                                                                                            <rect key="frame" x="0.0" y="12.666666666666664" width="158.66666666666666" height="30"/>
+                                                                                            <rect key="frame" x="0.0" y="12.666666666666664" width="159" height="30"/>
                                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                                             <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arG-Uj-qP4" userLabel="Centralen">
-                                                                                            <rect key="frame" x="0.0" y="42.666666666666657" width="158.66666666666666" height="20.333333333333336"/>
+                                                                                            <rect key="frame" x="0.0" y="42.666666666666657" width="159" height="20.333333333333336"/>
                                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                             <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wls-dD-7hO" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="69" width="158.66666666666666" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="69" width="159" height="5"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="d1d-DD-A2g"/>
                                                                                             </constraints>
@@ -3978,18 +3978,18 @@ Res Smart på din Apple Watch</string>
                                                                             <rect key="frame" x="0.0" y="74" width="370" height="35"/>
                                                                             <subviews>
                                                                                 <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MsT-mQ-GQc" userLabel="Icon">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="158.66666666666666" height="35"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="159" height="35"/>
                                                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="35" id="i3H-Qf-1D4" userLabel="height = 30"/>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYN-fU-XeE" userLabel="Space">
-                                                                                    <rect key="frame" x="158.66666666666666" y="0.0" width="52.666666666666686" height="35"/>
+                                                                                    <rect key="frame" x="159" y="0.0" width="52" height="35"/>
                                                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Redan avgått" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfk-gN-9zL">
-                                                                                    <rect key="frame" x="211.33333333333337" y="0.0" width="158.66666666666663" height="35"/>
+                                                                                    <rect key="frame" x="211" y="0.0" width="159" height="35"/>
                                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -4103,16 +4103,16 @@ Res Smart på din Apple Watch</string>
                                                                             <rect key="frame" x="0.0" y="0.0" width="370" height="74"/>
                                                                             <subviews>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="754-VB-ZKR" userLabel="Origin">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="158.66666666666666" height="74"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="159" height="74"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOX-8h-Fla" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="158.66666666666666" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="159" height="5"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="TYy-Fp-yKV"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tUI-qB-qmN">
-                                                                                            <rect key="frame" x="0.0" y="12.666666666666664" width="158.66666666666666" height="30"/>
+                                                                                            <rect key="frame" x="0.0" y="12.666666666666664" width="159" height="30"/>
                                                                                             <subviews>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19:23" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRf-Qb-vzz" userLabel="19:23 (om 3 min.)">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="51" height="30"/>
@@ -4127,7 +4127,7 @@ Res Smart på din Apple Watch</string>
                                                                                                     </constraints>
                                                                                                 </view>
                                                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text=" ❨om 15 min❩" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIy-L2-pog">
-                                                                                                    <rect key="frame" x="56" y="0.0" width="102.66666666666666" height="30"/>
+                                                                                                    <rect key="frame" x="56" y="0.0" width="103" height="30"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="height" constant="30" id="V0C-3Y-ANm"/>
                                                                                                     </constraints>
@@ -4138,13 +4138,13 @@ Res Smart på din Apple Watch</string>
                                                                                             </subviews>
                                                                                         </stackView>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mc-bs-Rkx" userLabel="Karlberg">
-                                                                                            <rect key="frame" x="0.0" y="42.666666666666657" width="158.66666666666666" height="20.333333333333336"/>
+                                                                                            <rect key="frame" x="0.0" y="42.666666666666657" width="159" height="20.333333333333336"/>
                                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2e-ci-pot" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="69" width="158.66666666666666" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="69" width="159" height="5"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="jGo-Fr-TXn"/>
                                                                                             </constraints>
@@ -4153,10 +4153,10 @@ Res Smart på din Apple Watch</string>
                                                                                     <color key="backgroundColor" red="0.52156862749999999" green="0.70980392160000005" blue="0.043137254899999998" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 </stackView>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFM-7r-Nxt" userLabel="Spacer">
-                                                                                    <rect key="frame" x="158.66666666666666" y="0.0" width="52.666666666666686" height="74"/>
+                                                                                    <rect key="frame" x="159" y="0.0" width="52" height="74"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="naW-l2-iaW">
-                                                                                            <rect key="frame" x="16.333333333333343" y="19" width="21.333333333333343" height="36"/>
+                                                                                            <rect key="frame" x="15.333333333333343" y="19" width="21.333333333333314" height="36"/>
                                                                                             <accessibility key="accessibilityConfiguration">
                                                                                                 <bool key="isElement" value="NO"/>
                                                                                             </accessibility>
@@ -4172,28 +4172,28 @@ Res Smart på din Apple Watch</string>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="1vz-xa-4M5" userLabel="Destination">
-                                                                                    <rect key="frame" x="211.33333333333337" y="0.0" width="158.66666666666663" height="74"/>
+                                                                                    <rect key="frame" x="211" y="0.0" width="159" height="74"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arT-33-W3M" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="158.66666666666666" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="159" height="5"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="CET-7c-vKD"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:43" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tik-4H-82t" userLabel="20:43">
-                                                                                            <rect key="frame" x="0.0" y="12.666666666666664" width="158.66666666666666" height="30"/>
+                                                                                            <rect key="frame" x="0.0" y="12.666666666666664" width="159" height="30"/>
                                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Centralen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRK-uN-ANW" userLabel="Centralen">
-                                                                                            <rect key="frame" x="0.0" y="42.666666666666657" width="158.66666666666666" height="20.333333333333336"/>
+                                                                                            <rect key="frame" x="0.0" y="42.666666666666657" width="159" height="20.333333333333336"/>
                                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Imt-Z4-hnK" userLabel="Space">
-                                                                                            <rect key="frame" x="0.0" y="69" width="158.66666666666666" height="5"/>
+                                                                                            <rect key="frame" x="0.0" y="69" width="159" height="5"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="5" id="eB7-VG-NZa"/>
                                                                                             </constraints>
@@ -4212,18 +4212,18 @@ Res Smart på din Apple Watch</string>
                                                                             <rect key="frame" x="0.0" y="74" width="370" height="35"/>
                                                                             <subviews>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IrF-Cs-Ds9" userLabel="Icon">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="158.66666666666666" height="35"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="159" height="35"/>
                                                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="35" id="qhU-TO-9V3" userLabel="height = 30"/>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="moY-sx-fmA" userLabel="Space">
-                                                                                    <rect key="frame" x="158.66666666666666" y="0.0" width="52.666666666666686" height="35"/>
+                                                                                    <rect key="frame" x="159" y="0.0" width="52" height="35"/>
                                                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Inställd/Förseningar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLU-mt-Wiw">
-                                                                                    <rect key="frame" x="211.33333333333337" y="0.0" width="158.66666666666663" height="35"/>
+                                                                                    <rect key="frame" x="211" y="0.0" width="159" height="35"/>
                                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                                     <color key="textColor" red="1" green="0.29385295179999998" blue="0.0016707235729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -4712,12 +4712,12 @@ Res Smart på din Apple Watch</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Arlanda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="FXA-76-yac" userLabel="Location">
-                                                            <rect key="frame" x="60" y="0.0" width="66" height="40"/>
+                                                            <rect key="frame" x="59.999999999999993" y="0.0" width="64.333333333333314" height="40"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="nOT-xQ-poO" userLabel="Exit">
-                                                            <rect key="frame" x="126" y="0.0" width="268" height="40"/>
+                                                            <rect key="frame" x="124.33333333333334" y="0.0" width="269.66666666666663" height="40"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -4928,18 +4928,18 @@ Res Smart på din Apple Watch</string>
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E6O-bD-H3Z" id="foI-89-eOF">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j6a-uZ-ui0">
-                                            <rect key="frame" x="55" y="5" width="33.333333333333336" height="20.333333333333332"/>
+                                            <rect key="frame" x="55" y="4" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CUZ-2W-VoI">
-                                            <rect key="frame" x="55" y="25.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
+                                            <rect key="frame" x="55" y="25" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -5245,7 +5245,7 @@ Res Smart på din Apple Watch</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="När" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSg-b7-Aae">
-                                                <rect key="frame" x="157.66666666666669" y="0.0" width="100.00000000000006" height="44"/>
+                                                <rect key="frame" x="157" y="0.0" width="100" height="44"/>
                                                 <accessibility key="accessibilityConfiguration" label="Välj tid. Använd klockobjekt nedan och bekräfta ditt val med knappen till höger om denna."/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="90Y-Ka-3dB"/>
