@@ -25,7 +25,6 @@ open class SubscriptionStore {
    */
   func isSubscribed() -> Bool {
     loadSubscribedCache()
-    return true
     return (isSubscribedCache! || isTrial())
   }
   
