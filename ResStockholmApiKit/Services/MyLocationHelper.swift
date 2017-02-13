@@ -49,6 +49,7 @@ open class MyLocationHelper: NSObject, CLLocationManagerDelegate {
   
   open func getCurrentLocation() -> Location? {
     if let loc = currentLocation, let street = currentStreet {
+      print("Speed: \(loc.speed)")
       return Location(
         id: nil,
         name: street, type: "Address",

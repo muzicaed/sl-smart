@@ -151,6 +151,9 @@
 		18AC9D001C08B5B4007ECFA2 /* LoadMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFF1C08B5B4007ECFA2 /* LoadMoreCell.swift */; };
 		18B2902B1C46D8BC00DCE585 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2902A1C46D8BC00DCE585 /* StringUtils.swift */; };
 		18B7619A1E28CD47000F9258 /* RoutePlotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B761991E28CD47000F9258 /* RoutePlotter.swift */; };
+		18B7D41A1E51998B00E67112 /* SegmentWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7D4191E51998B00E67112 /* SegmentWrapper.swift */; };
+		18B7D41C1E51B08700E67112 /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7D41B1E51B08700E67112 /* Instruction.swift */; };
+		18B7D41E1E51B34500E67112 /* SegmentWrapperList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7D41D1E51B34500E67112 /* SegmentWrapperList.swift */; };
 		18BC459E1C5FA5A100248D07 /* NearbyStationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC459D1C5FA5A100248D07 /* NearbyStationsVC.swift */; };
 		18BC85241CA01A3D0061C0BA /* BusFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC85231CA01A3D0061C0BA /* BusFilterVC.swift */; };
 		18CB35B21C1E08BA0084CA27 /* LocationPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */; };
@@ -172,7 +175,6 @@
 		18FA99941C492BDC0075C4C2 /* SLJourneyDetailsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */; };
 		18FA999A1C492E3F0075C4C2 /* JournyDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */; };
 		18FA999C1C49321C0075C4C2 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA999B1C49321C0075C4C2 /* Stop.swift */; };
-		18FAF1471E37F8BF00B0C78C /* CurrentTripResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FAF1461E37F8BF00B0C78C /* CurrentTripResult.swift */; };
 		18FC74791C7B771100980B0D /* SLDeviationsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC74781C7B771100980B0D /* SLDeviationsApi.swift */; };
 		18FC747F1C7B778F00980B0D /* DeviationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC747E1C7B778F00980B0D /* DeviationsService.swift */; };
 		18FC74811C7B7D2E00980B0D /* Deviation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC74801C7B7D2E00980B0D /* Deviation.swift */; };
@@ -428,6 +430,9 @@
 		18B2902A1C46D8BC00DCE585 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		18B290301C46D9D900DCE585 /* Res Smart Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Res Smart Playground.playground"; sourceTree = "<group>"; };
 		18B761991E28CD47000F9258 /* RoutePlotter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutePlotter.swift; sourceTree = "<group>"; };
+		18B7D4191E51998B00E67112 /* SegmentWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentWrapper.swift; sourceTree = "<group>"; };
+		18B7D41B1E51B08700E67112 /* Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
+		18B7D41D1E51B34500E67112 /* SegmentWrapperList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentWrapperList.swift; sourceTree = "<group>"; };
 		18BC459D1C5FA5A100248D07 /* NearbyStationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearbyStationsVC.swift; path = "Res Smart/UI/Search Location/Nearby/NearbyStationsVC.swift"; sourceTree = SOURCE_ROOT; };
 		18BC85231CA01A3D0061C0BA /* BusFilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusFilterVC.swift; sourceTree = "<group>"; };
 		18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerRow.swift; sourceTree = "<group>"; };
@@ -447,7 +452,6 @@
 		18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLJourneyDetailsApi.swift; sourceTree = "<group>"; };
 		18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournyDetailsService.swift; sourceTree = "<group>"; };
 		18FA999B1C49321C0075C4C2 /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
-		18FAF1461E37F8BF00B0C78C /* CurrentTripResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentTripResult.swift; sourceTree = "<group>"; };
 		18FC74781C7B771100980B0D /* SLDeviationsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLDeviationsApi.swift; sourceTree = "<group>"; };
 		18FC747E1C7B778F00980B0D /* DeviationsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviationsService.swift; sourceTree = "<group>"; };
 		18FC74801C7B7D2E00980B0D /* Deviation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deviation.swift; sourceTree = "<group>"; };
@@ -719,7 +723,9 @@
 				188CA3F61D59E70A00074411 /* CurrentTripVC.swift */,
 				18CDAD4F1E2CC57600D7FDCA /* StepByStepView.swift */,
 				185690131E37385F0075AE78 /* CurrentTripAnalyzer.swift */,
-				18FAF1461E37F8BF00B0C78C /* CurrentTripResult.swift */,
+				18B7D4191E51998B00E67112 /* SegmentWrapper.swift */,
+				18B7D41B1E51B08700E67112 /* Instruction.swift */,
+				18B7D41D1E51B34500E67112 /* SegmentWrapperList.swift */,
 			);
 			name = "Current trip";
 			path = "Current Trip";
@@ -1363,6 +1369,7 @@
 				18DEB4FF1E28CFB70056147A /* Pins.swift in Sources */,
 				18DEB4FE1E28CFB50056147A /* RoutePolyline.swift in Sources */,
 				18DEB4FD1E28CFB20056147A /* RouteRenderer.swift in Sources */,
+				18B7D41E1E51B34500E67112 /* SegmentWrapperList.swift in Sources */,
 				186447631C5FF6B400020A17 /* DataMigration.swift in Sources */,
 				188367751C170E5500A8BE16 /* TripDetailsDestinationCell.swift in Sources */,
 				188B80AE1C178DD900E7D90C /* TripSearchVC.swift in Sources */,
@@ -1375,7 +1382,7 @@
 				1806037C1C02165000AC1841 /* LocationSearchResponder.swift in Sources */,
 				1801A3FE1C39317C0068E1FC /* SubscribeDelegate.swift in Sources */,
 				18232CAE1C01F1CA006334D1 /* ManageRoutineTripCell.swift in Sources */,
-				18FAF1471E37F8BF00B0C78C /* CurrentTripResult.swift in Sources */,
+				18B7D41A1E51998B00E67112 /* SegmentWrapper.swift in Sources */,
 				18AC9D001C08B5B4007ECFA2 /* LoadMoreCell.swift in Sources */,
 				1801A3FC1C392DE60068E1FC /* SubscriptionStore.swift in Sources */,
 				18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */,
@@ -1426,6 +1433,7 @@
 				18FDA8C31CD92D94003665C6 /* GenericValuePickerVC.swift in Sources */,
 				1843AC541C4A78020065A462 /* TripDetailsSubSegmentCell.swift in Sources */,
 				18FDA8C51CD9364E003665C6 /* PickGenericValueResponder.swift in Sources */,
+				18B7D41C1E51B08700E67112 /* Instruction.swift in Sources */,
 				18232CAC1C01EC2F006334D1 /* SearchLocationVC.swift in Sources */,
 				181ABB861CD89283003CA251 /* NearbyStationsMapVC.swift in Sources */,
 				1824A4321C9F3453000BEE9B /* ReportSituationRow.swift in Sources */,

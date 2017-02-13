@@ -30,7 +30,6 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
   var isMapLoaded = false
   var isOverviewLocked = true
   var refreshTimer: Timer?
-  var currentSegmentIndex = 0
   
   /**
    * View did load
@@ -42,7 +41,6 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
       stepByStepView.isHidden = true
       nextStepView.isHidden = true
       activityIndicator.startAnimating()
-      analyzer.currentTrip = currentTrip
       loadRoute()
     }
     if let last = currentTrip?.allTripSegments.last {
@@ -87,7 +85,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
   func startRefreshTimmer() {
     stopRefreshTimmer()
     self.refreshTimer = Timer.scheduledTimer(
-      timeInterval: 15, target: self, selector: #selector(updateTripStatus), userInfo: nil, repeats: true)
+      timeInterval: 3, target: self, selector: #selector(updateTripStatus), userInfo: nil, repeats: true)
   }
   
   /**
@@ -226,9 +224,8 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    * Update the current trip view
    */
   fileprivate func updateCurrentTripStatus() -> [CLLocationCoordinate2D] {
-    let result = analyzer.findActiveSegments()
-    currentSegmentIndex = result.index
-    switch result.instruction {
+    let result = analyzer.findActiveSegment()
+    switch result.type {
     case .Waiting:
       return updateWaitingData(view: stepByStepView, segment: result.segment)
     case .Riding:
@@ -244,9 +241,9 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
    * Update the next step trip view
    */
   @objc fileprivate func updateNextStepTripStatus() -> [CLLocationCoordinate2D] {
-    if let result = analyzer.findNextStep(currentSegmentIndex) {
+    if let result = analyzer.findNextStep() {
       nextStepView.isHidden = false
-      switch result.instruction {
+      switch result.type {
       case .Waiting:
         return updateWaitingData(view: nextStepView, segment: result.segment)
       case .Riding:
@@ -302,11 +299,13 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     view.nextStep.text = "Gå till \(segment.destination.name)"
     view.instructions.text = nil
     view.inAbout.text = nil
-    if currentSegmentIndex < currentTrip!.allTripSegments.count - 1 && nextStepView.isHidden {
+    if  nextStepView.isHidden {
+      /*
       let nextSegement = currentTrip!.allTripSegments[currentSegmentIndex + 1]
       let lineData = TripHelper.friendlyLineData(nextSegement)
       let lineDesc = TripHelper.friendlyTripSegmentDesc(nextSegement)
-      view.instructions.text = "Där ska du ta \(lineData.long) \(lineDesc)"
+      */
+      //view.instructions.text = "Där ska du ta \(lineData.long) \(lineDesc)"
     }
     return [segment.origin.location!.coordinate, segment.destination.location!.coordinate]
   }
@@ -365,6 +364,8 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     allCords += coords
     let routeTuple = (coords, segment)
     routeTuples.append(routeTuple)
+    analyzer.addSegment(segment)
+    
     if loadedSegmentsCount == noOfSegments {
       for tuple in routeTuples {
         RoutePlotter.createOverlays(tuple.0, tuple.1, currentTrip, mapView, showStart: false)
