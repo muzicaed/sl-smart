@@ -17,11 +17,11 @@ open class RoutineTrip: NSObject, NSCoding, NSCopying {
   open var isSmartSuggestion = false
   
   public init(id: String, title: String?,
-    criterions: TripSearchCriterion, isSmartSuggestion: Bool) {
-      self.id = id
-      self.title = title
-      self.criterions = criterions
-      self.isSmartSuggestion = isSmartSuggestion
+              criterions: TripSearchCriterion, isSmartSuggestion: Bool) {
+    self.id = id
+    self.title = title
+    self.criterions = criterions
+    self.isSmartSuggestion = isSmartSuggestion
   }
   
   override public init() {
@@ -34,13 +34,13 @@ open class RoutineTrip: NSObject, NSCoding, NSCopying {
    */
   open func watchTransferData(_ countLimit: Int) -> Dictionary<String, AnyObject> {
     var departureString = ""
-    if trips.count > 0 {
-      let departure = trips.first!.tripSegments.first!.departureDateTime
-      departureString = DateUtils.dateAsDateAndTimeString(departure)
-    }
-    
     var trasportTrips = [Dictionary<String, AnyObject>]()
     if trips.count > 0 {
+      if let segment = trips.first!.tripSegments.first {
+        let departure = segment.departureDateTime
+        departureString = DateUtils.dateAsDateAndTimeString(departure)
+      }
+      
       for (index, trip) in trips.enumerated() {
         trasportTrips.append(trip.watchTransferData())
         if index >= countLimit {
@@ -91,8 +91,8 @@ open class RoutineTrip: NSObject, NSCoding, NSCopying {
   // MARK: NSCopying
   
   /**
-  * Copy self
-  */
+   * Copy self
+   */
   open func copy(with zone: NSZone?) -> Any {
     let copy =  RoutineTrip(
       id: id, title: title,
