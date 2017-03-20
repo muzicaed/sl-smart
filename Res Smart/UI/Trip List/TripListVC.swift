@@ -123,6 +123,7 @@ class TripListVC: UITableViewController {
    * Refresh collection view.
    */
   func refreshUI() {
+    self.tableView?.reloadData()
     var flatTrips = [Trip]()
     for group in trips {
       for trip in group.value {
