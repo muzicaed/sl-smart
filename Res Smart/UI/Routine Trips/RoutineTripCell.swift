@@ -108,9 +108,9 @@ class RoutineTripCell: UICollectionViewCell {
   fileprivate func createNextInAboutText(_ first : TripSegment, second: TripSegment) {
     nextInAboutLabel.text = " "
     let depTimeInterval = first.departureDateTime.timeIntervalSinceNow
-    if depTimeInterval < (60 * 11) {
+    if depTimeInterval < (60 * 120) {
       let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
-      if diffMin <= 60 {
+      if diffMin <= 120 {
         nextInAboutLabel.text = String(format: NSLocalizedString("Nästa: %d min", comment: ""), diffMin)
       }
     }
