@@ -15,18 +15,46 @@ open class Trip: NSObject, NSCopying {
   open var isValid = true
   open var tripSegments = [TripSegment]()
   open var allTripSegments = [TripSegment]()
+  open var tripKey = ""
+  open var criterion: TripSearchCriterion
   
   /**
    * Standard init
    */
-  public init(durationMin: Int, noOfChanges: Int, isValid: Bool, tripSegments: [TripSegment]?) {
+  public init(durationMin: Int, noOfChanges: Int,
+              isValid: Bool, tripSegments: [TripSegment]?,
+              criterion: TripSearchCriterion) {
+    
     self.durationMin = durationMin
     self.noOfChanges = noOfChanges
     self.isValid = isValid
+    self.criterion = criterion
+    
     if let segments = tripSegments {
-      self.allTripSegments = segments
+      self.tripKey = Trip.generateTripKey(segments: segments)
+      var lastSegment: TripSegment? = nil
       for segment in segments {
-        if !(segment.type == .Walk && segment.distance! < 250) {
+        if let last = lastSegment {
+          if last.type == .Walk && segment.type == .Walk {
+            // Merge walk segments
+            last.destination = segment.destination
+            last.durationInMin = last.durationInMin + segment.durationInMin
+            if let lastDist = last.distance, let dist = segment.distance {
+              last.distance = lastDist + dist
+            }
+          } else {
+            self.allTripSegments.append(last)
+          }
+        }
+        
+        if segment == segments.last {
+          self.allTripSegments.append(segment)
+        }
+        lastSegment = segment.copy() as? TripSegment
+      }
+      
+      for segment in self.allTripSegments {
+        if !(segment.type == .Walk && segment.distance! < 200) {
           self.tripSegments.append(segment)
         }
       }
@@ -96,6 +124,25 @@ open class Trip: NSObject, NSCopying {
     ]
   }
   
+  /**
+   * Refresh the trip data
+   */
+  open func refresh(_ newTrip: Trip) {
+    print("REFRESH")
+    allTripSegments = newTrip.allTripSegments
+    tripSegments = newTrip.tripSegments
+  }
+  
+  // MARK: Private
+  
+  fileprivate static func generateTripKey(segments: [TripSegment]) -> String {
+    var key = ""
+    for segment in segments {
+      key += "\(segment.name)-\(segment.origin.name)-\(segment.departureDateTime)-\(segment.destination.name)-\(segment.arrivalDateTime)"
+    }
+    return key
+  }
+  
   // MARK: NSCopying
   
   /**
@@ -106,6 +153,8 @@ open class Trip: NSObject, NSCopying {
     for segment in tripSegments {
       tripSegmentCopy.append(segment.copy() as! TripSegment)
     }
-    return Trip(durationMin: durationMin, noOfChanges: noOfChanges, isValid: isValid, tripSegments: tripSegmentCopy)
+    return Trip(durationMin: durationMin, noOfChanges: noOfChanges,
+                isValid: isValid, tripSegments: tripSegmentCopy,
+                criterion: criterion.copy() as! TripSearchCriterion)
   }
 }

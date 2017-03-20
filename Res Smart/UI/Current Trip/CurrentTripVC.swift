@@ -9,18 +9,91 @@
 import Foundation
 import UIKit
 import ResStockholmApiKit
-import CoreLocation
+import MapKit
 
-class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class CurrentTripVC: UIViewController, MKMapViewDelegate {
   
+  @IBOutlet weak var mapView: MKMapView!
+  @IBOutlet weak var stepByStepView: StepByStepView!
+  @IBOutlet weak var nextStepView: StepByStepView!
+  @IBOutlet weak var autoManualSegmentControl: UISegmentedControl!
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+  
+  let analyzer = CurrentTripAnalyzer()
   var currentTrip: Trip?
-  var isStopsLoaded = false
-  var stopsLoadCount = 0
+  var allCords = [CLLocationCoordinate2D]()
+  var noOfSegments = 0
+  var loadedSegmentsCount = 0
+  var routeTuples = [([CLLocationCoordinate2D], TripSegment)]()
+  var smallPins = [SmallPin]()
+  var isSmallPinsVisible = true
+  var isMapLoaded = false
+  var isOverviewLocked = true
+  var refreshTimer: Timer?
   
+  /**
+   * View did load
+   */
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupCollectionView()
-    loadStops()
+    prepareMapView()
+    if !isMapLoaded {
+      stepByStepView.isHidden = true
+      nextStepView.isHidden = true
+      activityIndicator.startAnimating()
+      loadRoute()
+    }
+    if let last = currentTrip?.allTripSegments.last {
+      title = "Till \(last.destination.name)"
+    }
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    startRefreshTimmer()
+    if isMapLoaded {
+      updateTripStatus()
+    }
+  }
+  
+  /**
+   * View about to disappear
+   */
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    stopRefreshTimmer()
+  }
+  
+  /**
+   * Returned to the app.
+   */
+  func didBecomeActive() {
+    updateTripStatus()
+    startRefreshTimmer()
+  }
+  
+  /**
+   * Backgrounded.
+   */
+  func didBecomeInactive() {
+    stopRefreshTimmer()
+  }
+  
+  /**
+   * Start refresh timmer
+   */
+  func startRefreshTimmer() {
+    stopRefreshTimmer()
+    self.refreshTimer = Timer.scheduledTimer(
+      timeInterval: 3, target: self, selector: #selector(updateTripStatus), userInfo: nil, repeats: true)
+  }
+  
+  /**
+   * Stop refresh timmer
+   */
+  func stopRefreshTimmer() {
+    self.refreshTimer?.invalidate()
+    self.refreshTimer = nil
   }
   
   /**
@@ -30,123 +103,361 @@ class CurrentTripVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     dismiss(animated: true, completion: nil)
   }
   
-  // MARK: UICollectionViewController
+  /**
+   * Map type segment changed
+   */
+  @IBAction func onSegmentChanged(_ sender: UISegmentedControl) {
+    switch sender.selectedSegmentIndex {
+    case 0:
+      mapView.mapType = MKMapType.standard
+    case 1:
+      mapView.mapType = MKMapType.hybrid
+    default: break
+    }
+  }
   
   /**
-   * Create cells for each data post.
+   * Auto/Manual map update changed
    */
-  override func collectionView(_ collectionView: UICollectionView,
-                               cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+  @IBAction func onAutoManualChanged(_ sender: UISegmentedControl) {
+    if autoManualSegmentControl.selectedSegmentIndex == 0 {
+      isOverviewLocked = true
+      disableMapScroll()
+      updateTripStatus()
+    } else {
+      isOverviewLocked = false
+      enableMapScroll()
+    }
+  }
+  
+  // MARK: MKMapViewDelegate
+  
+  /**
+   * Annotation views
+   */
+  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    var reuseId: String? = nil
+    var image: UIImage? = nil
+    var zIndex = CGFloat(0)
     
-    if indexPath.row == 0 {
-      return createRoutineTripCell(indexPath)
-    } else if indexPath.row == 1 {
-      return createChangeCell(indexPath)
+    if annotation.isKind(of: BigPin.self) {
+      let bigPinIcon = annotation as! BigPin
+      if let name = bigPinIcon.imageName {
+        image = UIImage(named: name)!
+        reuseId = name
+      }
+      zIndex = 2 + bigPinIcon.zIndexMod
+      
+    } else if annotation.isKind(of: DestinationPin.self) {
+      reuseId = "destination-dot"
+      image = UIImage(named: "MapDestinationDot")!
+      zIndex = 3
+      
+    } else if annotation.isKind(of: SmallPin.self) {
+      let pinIcon = annotation as! SmallPin
+      if let name = pinIcon.imageName {
+        image = UIImage(named: name)!
+        reuseId = name
+      }
+      smallPins.append(pinIcon)
+      zIndex = 1
+      
+    } else {
+      return nil
     }
-    return UICollectionViewCell()
+    
+    var pinView: MKAnnotationView? = nil
+    if let id = reuseId {
+      pinView = mapView.dequeueReusableAnnotationView(withIdentifier: id)
+    }
+    if pinView == nil {
+      pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+      pinView!.canShowCallout = true
+      pinView!.centerOffset = CGPoint(x: 0, y: 0)
+      pinView!.calloutOffset = CGPoint(x: 0, y: -3)
+      pinView!.layer.zPosition = zIndex
+      if let img = image {
+        pinView!.image = img
+      }
+    }
+    return pinView
   }
   
   /**
-   * Item count for section
+   * Render for map view
    */
-  override func collectionView(_ collectionView: UICollectionView,
-                               numberOfItemsInSection section: Int) -> Int {
-    return 2
+  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+    if overlay.isKind(of: MKPolyline.self) {
+      let render = RouteRenderer(overlay: overlay)
+      return render
+    }
+    return MKOverlayRenderer()
+  }
+  
+  func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    if (mapView.region.span.latitudeDelta > 0.20) {
+      if isSmallPinsVisible {
+        mapView.removeAnnotations(smallPins)
+        isSmallPinsVisible = false
+      }
+    } else {
+      if !isSmallPinsVisible {
+        isSmallPinsVisible = true
+        mapView.addAnnotations(smallPins)
+      }
+    }
   }
   
   /**
-   * Size for items.
+   * Update the trip views
    */
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                      sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let screenSize = UIScreen.main.bounds.size
-    if indexPath.row == 0 {
-      return CGSize(width: screenSize.width - 20, height: 150)
-    } else if indexPath.row == 1 {
-      return CGSize(width: screenSize.width - 20, height: 120)
-    }
-    return CGSize(width: 0,height: 0)
+  @objc fileprivate func updateTripStatus() {
+    var coords = [CLLocationCoordinate2D]()
+    coords.append(contentsOf: updateNextStepTripStatus())
+    coords.append(contentsOf: updateCurrentTripStatus())
+    updateMapViewport(coords)
   }
   
   // MARK: Private
   
   /**
-   * Create trip cell
+   * Update the current trip view
    */
-  fileprivate func createRoutineTripCell(_ indexPath: IndexPath) -> CurrentTripCell {
-    let cell = collectionView!.dequeueReusableCell(
-      withReuseIdentifier: "CurrentTripCell", for: indexPath) as! CurrentTripCell
+  fileprivate func updateCurrentTripStatus() -> [CLLocationCoordinate2D] {
+    let result = analyzer.findActiveSegment()
+    switch result.type {
+    case .Waiting:
+      return updateWaitingData(view: stepByStepView, segment: result.segment)
+    case .Riding:
+      return updateRidingData(view: stepByStepView, segment: result.segment)
+    case .Walking:
+      return updateWalkingData(view: stepByStepView, segment: result.segment, showDetails: nextStepView.isHidden)
+    case .Arrived:
+      return tripPassed(view: stepByStepView, segment: result.segment)
+    }
+  }
+  
+  /**
+   * Update the next step trip view
+   */
+  @objc fileprivate func updateNextStepTripStatus() -> [CLLocationCoordinate2D] {
+    if let result = analyzer.findNextStep() {
+      nextStepView.isHidden = false
+      switch result.type {
+      case .Waiting:
+        return updateWaitingData(view: nextStepView, segment: result.segment)
+      case .Riding:
+        return updateRidingData(view: nextStepView, segment: result.segment)
+      case .Walking:
+        return updateWalkingData(view: nextStepView, segment: result.segment, showDetails: true)
+      case .Arrived:
+        return tripPassed(view: nextStepView, segment: result.segment)
+      }
+    }
+    nextStepView.isHidden = true
+    return []
+  }
+  
+  /**
+   * Update UI to show waiting instructions
+   */
+  fileprivate func updateWaitingData(view: StepByStepView, segment: TripSegment) -> [CLLocationCoordinate2D] {
+    let lineData = TripHelper.friendlyLineData(segment)
+    let lineDesc = TripHelper.friendlyTripSegmentDesc(segment)
+    let inAbout = createInAbout(date: segment.departureDateTime)
+    
+    view.nextStep.text = "Vänta på \(segment.type.decisive)"
+    view.instructions.text = "\(lineData.long) \(lineDesc)"
+    view.inAbout.text = "Avgår \(inAbout.lowercased())"
+    if let loc = segment.origin.location {
+      return [loc.coordinate]
+    }
+    return []
+  }
+  
+  /**
+   * Update UI to show riding instructions
+   */
+  fileprivate func updateRidingData(view: StepByStepView, segment: TripSegment) -> [CLLocationCoordinate2D] {
+    let lineData = TripHelper.friendlyLineData(segment)
+    let lineDesc = TripHelper.friendlyTripSegmentDesc(segment)
+    let inAbout = createInAbout(date: segment.arrivalDateTime)
+    
+    view.nextStep.text = "Åk till \(segment.destination.name)"
+    view.instructions.text = "\(lineData.long) \(lineDesc)"
+    view.inAbout.text = "Du är framme \(inAbout.lowercased())"
+    return findCoordsForSegment(segment)
+    
+  }
+  
+  /**
+   * Update UI to show walking instructions
+   */
+  fileprivate func updateWalkingData(view: StepByStepView,
+                                     segment: TripSegment,
+                                     showDetails: Bool) -> [CLLocationCoordinate2D] {
+    view.nextStep.text = "Gå till \(segment.destination.name)"
+    view.instructions.text = nil
+    view.inAbout.text = nil
+    if  nextStepView.isHidden {
+      /*
+      let nextSegement = currentTrip!.allTripSegments[currentSegmentIndex + 1]
+      let lineData = TripHelper.friendlyLineData(nextSegement)
+      let lineDesc = TripHelper.friendlyTripSegmentDesc(nextSegement)
+      */
+      //view.instructions.text = "Där ska du ta \(lineData.long) \(lineDesc)"
+    }
+    return [segment.origin.location!.coordinate, segment.destination.location!.coordinate]
+  }
+  
+  /**
+   * Update UI to show riding instructions
+   */
+  fileprivate func tripPassed(view: StepByStepView, segment: TripSegment) -> [CLLocationCoordinate2D] {
+    view.nextStep.text = "Du är framme!"
+    view.instructions.text = "Vid \(segment.destination.name)"
+    view.inAbout.text = nil
+    return findCoordsForSegment(segment)
+  }
+  
+  /**
+   * Finds route coordinates for segment.
+   */
+  fileprivate func findCoordsForSegment(_ segment: TripSegment) -> [CLLocationCoordinate2D] {
+    for tuple in routeTuples {
+      if segment == tuple.1 {
+        return tuple.0
+      }
+    }
+    
+    return []
+  }
+  
+  /**
+   * Loads map route
+   */
+  fileprivate func loadRoute() {
     if let trip = currentTrip {
-      cell.setupData(trip)
-    }
-    return cell
-  }
-  
-  /**
-   * Create change cell
-   */
-  fileprivate func createChangeCell(_ indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView!.dequeueReusableCell(
-      withReuseIdentifier: "ChangeCell", for: indexPath) as! ChangeCell
-    if isStopsLoaded && currentTrip != nil {
-      //cell.setupData(currentTrip!.tripSegments[2], isOrigin: false)
-    }
-    return cell
-  }
-  
-  /**
-   * Load stop data
-   */
-  fileprivate func loadStops() {
-    /*
-    for segment in currentTrip!.tripSegments {
-      if let ref = segment.journyRef {
-        NetworkActivity.displayActivityIndicator(true)
-        JournyDetailsService.fetchJournyDetails(ref) { stops, error in
-          NetworkActivity.displayActivityIndicator(false)
-          self.stopsLoadCount += 1
-          segment.stops = JournyDetailsService.filterStops(stops, segment: segment)
-          if self.stopsLoadCount == self.coundNonWalkSegments(self.currentTrip!.tripSegments) {
-            dispatch_async(dispatch_get_main_queue()) {
-              self.isStopsLoaded = true
-              self.collectionView?.reloadData()
+      noOfSegments = trip.allTripSegments.count
+      for (index, segment) in trip.allTripSegments.enumerated() {
+        let next: TripSegment? = (trip.allTripSegments.count > index + 1) ? trip.allTripSegments[index + 1] : nil
+        let before: TripSegment? = (index > 0) ? trip.allTripSegments[index - 1] : nil
+        let isLast = (segment == trip.allTripSegments.last)
+        if let geoRef = segment.geometryRef {
+          GeometryService.fetchGeometry(geoRef, callback: { (locations, error) in
+            DispatchQueue.main.async {
+              self.loadedSegmentsCount += 1
+              let coords = RoutePlotter.plotRoute(segment, before: before, next: next,
+                                                  isLast: isLast, geoLocations: locations, mapView: self.mapView)
+              self.loadRouteDone(coords: coords, segment: segment)
             }
-          }
+          })
         }
       }
     }
-     */
   }
   
   /**
-   * Counts segments that are not walk segments. 
+   * Create overlay on rote plot done
    */
-  fileprivate func coundNonWalkSegments(_ segments: [TripSegment]) -> Int {
-    return segments.filter{ $0.type != .Walk }.count
+  fileprivate func loadRouteDone(coords: [CLLocationCoordinate2D], segment: TripSegment) {
+    allCords += coords
+    let routeTuple = (coords, segment)
+    routeTuples.append(routeTuple)
+    analyzer.addSegment(segment)
+    
+    if loadedSegmentsCount == noOfSegments {
+      for tuple in routeTuples {
+        RoutePlotter.createOverlays(tuple.0, tuple.1, currentTrip, mapView, showStart: false)
+      }
+      activityIndicator.stopAnimating()
+      mapView.isHidden = false
+      stepByStepView.isHidden = false
+      isMapLoaded = true
+      startRefreshTimmer()
+      updateTripStatus()
+    }
   }
   
   /**
-   * Setup collection view properties and layout.
+   * Create an in about text.
    */
-  fileprivate func setupCollectionView() {
-    let flowLayout = UICollectionViewFlowLayout()
-    flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+  fileprivate func createInAbout(date: Date) -> String {
+    let inAbout = DateUtils.createAboutTimeText(
+      date,
+      isWalk: false)
     
-    collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-    collectionView?.collectionViewLayout = flowLayout
-    collectionView?.delegate = self
+    if inAbout == "" {
+      return DateUtils.dateAsTimeString(date)
+    }
+    return inAbout
+  }
+  
+  /**
+   * Updates the map viewport to displat the coordinates
+   */
+  fileprivate func updateMapViewport( _ coords: [CLLocationCoordinate2D]) {
+    var coords = coords
+    if isOverviewLocked {
+      if let myCoord = MyLocationHelper.sharedInstance.getCurrentLocation(), let loc = myCoord.location {
+        coords.append(loc.coordinate) // TODO: Remove testing comment
+      }
+      let padding = (nextStepView.isHidden) ? CGFloat(125) : CGFloat(200)
+      MapHelper.setMapViewport(mapView, coordinates: coords, topPadding: padding)
+    }
+  }
+  
+  
+  /**
+   * Inits and prepares the map view
+   */
+  fileprivate func prepareMapView() {
+    disableMapScroll()
+    let mapPanGesture = UIPanGestureRecognizer(target: self, action: #selector(self.mapInteract(_:)))
+    mapView.addGestureRecognizer(mapPanGesture)
+    let mapTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.mapInteract(_:)))
+    mapView.addGestureRecognizer(mapTapGesture)
+    mapView.delegate = self
+    mapView.mapType = MKMapType.standard
+    mapView.showsBuildings = true
+    mapView.showsCompass = false
+    mapView.showsUserLocation = true
+    mapView.showsPointsOfInterest = false
+    mapView.isHidden = true
+    mapView.showsTraffic = false
+    mapView.showsPointsOfInterest = false
     
-    view.backgroundColor = StyleHelper.sharedInstance.background
-    
-    let wrapper = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-    let imageView = UIImageView(
-      image: UIImage(named: "TrainSplash")?.withRenderingMode(.alwaysTemplate))
-    imageView.tintColor = UIColor.white
-    imageView.frame.size = CGSize(width: 30, height: 30)
-    imageView.frame.origin.y = 5
-    imageView.frame.origin.x = 6
-    
-    wrapper.addSubview(imageView)
-    self.navigationItem.titleView = wrapper
+    var coord = CLLocationCoordinate2D()
+    if let location = MyLocationHelper.sharedInstance.getCurrentLocation(), let loc = location.location {
+      coord = loc.coordinate
+    }
+    let viewRegion = MKCoordinateRegionMakeWithDistance(coord, 1000, 1000)
+    mapView.setRegion(viewRegion, animated: false)
+  }
+  
+  /*
+   * Disable map scrolling
+   */
+  func disableMapScroll() {
+    mapView.isZoomEnabled = false
+    mapView.isPitchEnabled = false
+    mapView.isRotateEnabled = false
+    mapView.isScrollEnabled = false
+  }
+  
+  /*
+   * Enable map scrolling
+   */
+  func enableMapScroll() {
+    mapView.isZoomEnabled = true
+    mapView.isPitchEnabled = true
+    mapView.isRotateEnabled = true
+    mapView.isScrollEnabled = true
+  }
+  
+  func mapInteract(_ sender: UITapGestureRecognizer) {
+    enableMapScroll()
+    autoManualSegmentControl.selectedSegmentIndex = 1
+    isOverviewLocked = false
   }
 }

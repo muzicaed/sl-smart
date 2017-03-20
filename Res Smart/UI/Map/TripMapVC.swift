@@ -13,6 +13,7 @@ import ResStockholmApiKit
 
 class TripMapVC: UIViewController, MKMapViewDelegate {
   
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var mapView: MKMapView!
   var trip: Trip?
   var routePolylineViews = [MKPolylineView]()
@@ -27,11 +28,15 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
    * View did load
    */
   override func viewDidLoad() {
+    super.viewDidLoad()
     mapView.delegate = self
     mapView.mapType = MKMapType.standard
     mapView.showsBuildings = true
     mapView.showsCompass = true
     mapView.showsPointsOfInterest = false
+    mapView.isHidden = true
+
+    activityIndicator.startAnimating()
     loadRoute()
   }
   
@@ -160,7 +165,8 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
           GeometryService.fetchGeometry(geoRef, callback: { (locations, error) in
             DispatchQueue.main.async {
               self.loadedSegmentsCount += 1
-              let coords = self.plotRoute(segment, before: before, next: next, isLast: isLast, geoLocations: locations)
+              let coords = RoutePlotter.plotRoute(segment, before: before, next: next,
+                                                  isLast: isLast, geoLocations: locations, mapView: self.mapView)
               self.loadRouteDone(coords: coords, segment: segment)
             }
           })
@@ -177,180 +183,12 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     let routeTuple = (coords, segment)
     routeTuples.append(routeTuple)
     if loadedSegmentsCount == noOfSegments {
-      setMapViewport(allCords)
+      activityIndicator.stopAnimating()
+      MapHelper.setMapViewport(mapView, coordinates: allCords, topPadding: 150)
       for tuple in routeTuples {
-        createOverlays(tuple.0, segment: tuple.1)
+        RoutePlotter.createOverlays(tuple.0, tuple.1, trip, mapView, showStart: true)
       }
+      mapView.isHidden = false
     }
-  }
-  
-  /**
-   * Plots the coordinates for the route.
-   */
-  
-  fileprivate func plotRoute(_ segment: TripSegment,
-                             before: TripSegment?,
-                             next: TripSegment?,
-                             isLast: Bool, geoLocations: [CLLocation]) -> [CLLocationCoordinate2D] {
-    
-    var coords = [CLLocationCoordinate2D]()
-    if canPlotRoute(segment, before: before, next: next, isLast: isLast) {
-      plotWalk(segment)
-    } else {
-      if segment.stops.count == 0 {
-        if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
-          coords.append(originLocation.coordinate)
-          coords.append(destLocation.coordinate)
-        }
-      } else {
-        var shouldPlot = false
-        if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
-          coords.append(originLocation.coordinate)
-          for location in geoLocations {
-            if location.distance(from: originLocation) < 1  {
-              shouldPlot = true
-            }
-            if shouldPlot == true && location.distance(from: destLocation) < 1 {
-              break
-            }
-            if shouldPlot {
-              coords.append(location.coordinate)
-            }
-          }
-          coords.append(destLocation.coordinate)
-        }
-      }
-    }
-    
-    return coords
-  }
-  
-  /**
-   * Check if segment can be ploted as walk route.
-   */
-  fileprivate func canPlotRoute(_ segment: TripSegment, before: TripSegment?, next: TripSegment?, isLast: Bool) -> Bool {
-    return (
-      segment.type == .Walk &&
-        (
-          (segment.origin.type == .Address || segment.destination.type == .Address) ||
-            ((before?.type == .Bus || before == nil) && (next?.type == .Bus || isLast))
-      )
-    )
-  }
-  
-  /**
-   * Plot a walk segment using directions
-   */
-  fileprivate func plotWalk(_ segment: TripSegment) {
-    if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
-      let source = MKMapItem(placemark: MKPlacemark(coordinate: originLocation.coordinate, addressDictionary: nil))
-      let dest = MKMapItem(placemark: MKPlacemark(coordinate: destLocation.coordinate, addressDictionary: nil))
-      
-      let directionRequest = MKDirectionsRequest()
-      directionRequest.source = source
-      directionRequest.destination = dest
-      directionRequest.transportType = .walking
-      
-      MKDirections(request: directionRequest)
-        .calculate { (response, error) -> Void in
-          
-          guard let response = response else {
-            if let error = error {
-              fatalError("Error: \(error)")
-            }
-            return
-          }
-          
-          if let route = response.routes.first {
-            self.mapView.add(route.polyline, level: .aboveRoads)
-          }
-      }
-    }
-  }
-  
-  /**
-   * Plots a trip segment route on map and
-   * creates overlay icons.
-   */
-  fileprivate func createOverlays(_ coordinates: [CLLocationCoordinate2D], segment: TripSegment) {
-    var newCoordinates = coordinates
-    let polyline = RoutePolyline(coordinates: &newCoordinates, count: newCoordinates.count)
-    polyline.segment = segment
-    mapView.add(polyline)
-    
-    createStopPins(segment)
-    createLocationPins(segment, coordinates: newCoordinates)
-  }
-  
-  /**
-   * Create location pins for each segment
-   */
-  fileprivate func createLocationPins(_ segment: TripSegment, coordinates: [CLLocationCoordinate2D]) {
-    if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
-      let originCoord = (segment.stops.count == 0) ? originLocation.coordinate : segment.stops.first!.location.coordinate
-      let destCoord = (segment.stops.count == 0) ? destLocation.coordinate : segment.stops.last!.location.coordinate
-      
-      let pin = BigPin()
-      pin.zIndexMod = (segment.type == .Walk) ? -1 : 1
-      if segment == trip?.tripSegments.first! {
-        pin.coordinate = originCoord
-        pin.title = "Start: " + segment.origin.name
-        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
-        pin.imageName = segment.type.rawValue
-        mapView.addAnnotation(pin)
-        mapView.selectAnnotation(pin, animated: false)
-      }
-      if segment == trip?.tripSegments.last! {
-        pin.coordinate = originCoord
-        pin.title = segment.origin.name
-        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
-        pin.imageName = segment.type.rawValue
-        mapView.addAnnotation(pin)
-        
-        let destPin = DestinationPin()
-        destPin.coordinate = destCoord
-        destPin.title = "Destination: " + segment.destination.name
-        destPin.subtitle = "Framme: " + DateUtils.dateAsTimeString(segment.arrivalDateTime)
-        mapView.addAnnotation(destPin)
-      }
-      if segment != trip?.tripSegments.first! && segment != trip?.tripSegments.last! {
-        pin.coordinate = originCoord
-        pin.title = segment.origin.name
-        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
-        pin.imageName = segment.type.rawValue
-        mapView.addAnnotation(pin)
-      }
-    }
-  }
-  
-  /**
-   * Create location pins for each stop
-   */
-  fileprivate func createStopPins(_ segment: TripSegment) {
-    for stop in segment.stops {
-      if stop.id != segment.stops.first!.id && stop.id != segment.stops.last!.id {
-        let pin = SmallPin()
-        pin.coordinate = stop.location.coordinate
-        pin.title = stop.name
-        if let depDate = stop.depDate {
-          pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(depDate)
-        }
-        pin.imageName = segment.type.rawValue + "-SMALL"
-        mapView.addAnnotation(pin)
-      }
-    }
-  }
-  
-  /**
-   * Centers and zooms map
-   */
-  fileprivate func setMapViewport(_ coordinates: [CLLocationCoordinate2D]) {
-    var newCoordinates = coordinates
-    let allPolyline = MKPolyline(coordinates: &newCoordinates, count: newCoordinates.count)
-    
-    self.mapView.setVisibleMapRect(
-      self.mapView.mapRectThatFits(allPolyline.boundingMapRect),
-      edgePadding: UIEdgeInsets(top: 100, left: 50, bottom: 100, right: 50),
-      animated: false)
-  }
+  }  
 }

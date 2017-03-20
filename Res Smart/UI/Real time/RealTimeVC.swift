@@ -177,8 +177,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     if isLoading {
       return 0
     }
-    
-    return calcRowCount(section)
+    if section == 0 {
+      return 1
+    }
+    return calcRowCount(section - 1)
   }
   
   /**
@@ -186,14 +188,15 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   override func tableView(_ tableView: UITableView,
                           cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if indexPath.row == 0  {
-      if tabTypesKeys.count == 0 {
-        return createNotFoundCell(indexPath)
-      }
+    
+    if tabTypesKeys.count == 0 {
+      return createNotFoundCell(indexPath)
+    } else if indexPath.section == 0 {
+      return createStopPointDeviationCell(indexPath)
+    } else if indexPath.row == 0  {
       return createHeaderCell(indexPath)
     }
-    
-    return createBussTripCell(indexPath)
+    return createTripCell(indexPath)
   }
   
   /**
@@ -203,8 +206,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
                           heightForRowAt indexPath: IndexPath) -> CGFloat {
     if isLoading {
       return tableView.bounds.height - 49 - 64 - 20 + 39
-    } else if indexPath.row == 0 {
-      return 34
     }
     return -1
   }
@@ -321,18 +322,24 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     let cell = tableView!.dequeueReusableCell(
       withIdentifier: "Header", for: indexPath) as! RealTimeHeaderRow
     
-    setHeaderData(cell, indexPath: indexPath)
+    cell.setData(realTimeDepartures: realTimeDepartures!, indexPath: indexPath,
+                 tabTypesKeys: tabTypesKeys, busKeys: busKeys, metroKeys: metroKeys,
+                 trainKeys: trainKeys, tramKeys: tramKeys, localTramKeys: localTramKeys,
+                 boatKeys: boatKeys, segmentView: segmentView)
     return cell
   }
   
   /**
-   * Create bus trip cell
+   * Create trip cell
    */
-  fileprivate func createBussTripCell(_ indexPath: IndexPath) -> RealTimeTripRow {
+  fileprivate func createTripCell(_ indexPath: IndexPath) -> RealTimeTripRow {
     let cell = tableView!.dequeueReusableCell(
       withIdentifier: "TripRow", for: indexPath) as! RealTimeTripRow
     
-    setRowData(cell, indexPath: indexPath)
+    cell.setData(realTimeDepartures: realTimeDepartures!, indexPath: indexPath,
+                 tabTypesKeys: tabTypesKeys, busKeys: busKeys, metroKeys: metroKeys,
+                 trainKeys: trainKeys, tramKeys: tramKeys, localTramKeys: localTramKeys,
+                 boatKeys: boatKeys, segmentView: segmentView)
     return cell
   }
   
@@ -342,6 +349,17 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   fileprivate func createNotFoundCell(_ indexPath: IndexPath) -> UITableViewCell {
     return tableView!.dequeueReusableCell(
       withIdentifier: "NotFoundRow", for: indexPath)
+  }
+  
+  /**
+   * Create stop point deviation cell
+   */
+  fileprivate func createStopPointDeviationCell(_ indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView!.dequeueReusableCell(
+      withIdentifier: "StopPointDeviationRow", for: indexPath) as! RealTimeStopPointDeviationRow
+    
+    cell.setData(realTimeDepartures: realTimeDepartures)
+    return cell
   }
   
   /**
@@ -368,17 +386,17 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
       switch tabKeys {
       case "BUS":
-        return realTimeDepartures.busses.count
+        return realTimeDepartures.busses.count + 1
       case "METRO":
-        return realTimeDepartures.metros.count
+        return realTimeDepartures.metros.count + 1
       case "TRAIN":
-        return realTimeDepartures.trains.count
+        return realTimeDepartures.trains.count + 1
       case "TRAM":
-        return realTimeDepartures.trams.count
+        return realTimeDepartures.trams.count + 1
       case "LOCAL-TRAM":
-        return realTimeDepartures.localTrams.count
+        return realTimeDepartures.localTrams.count + 1
       case "BOAT":
-        return realTimeDepartures.boats.count
+        return realTimeDepartures.boats.count + 1
       default:
         return 0
       }
@@ -415,114 +433,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       return min(realTimeDepartures!.boats[boatKeys[section]]!.count + 1, 5)
     default:
       return 0
-    }
-  }
-  
-  /**
-   * Set header cell data
-   */
-  fileprivate func setHeaderData(_ cell: RealTimeHeaderRow, indexPath: IndexPath) {
-    let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
-    switch tabKeys {
-    case "BUS":
-      let bus = realTimeDepartures!.busses[busKeys[indexPath.section]]!.first!
-      cell.titleLabel.text = bus.stopAreaName
-      cell.titleLabel.accessibilityLabel = "Bussar, \(bus.stopAreaName)"
-    case "METRO":
-      let metro = realTimeDepartures!.metros[metroKeys[indexPath.section]]!.first!
-      cell.titleLabel.text = metro.groupOfLine.capitalized
-    case "TRAIN":
-      let train = realTimeDepartures!.trains[trainKeys[indexPath.section]]!.first!
-      if train.journeyDirection == 1 {
-        cell.titleLabel.text = "Pendeltåg, södergående"
-      } else if train.journeyDirection == 2 {
-        cell.titleLabel.text = "Pendeltåg, norrgående"
-      }
-    case "TRAM":
-      let tram = realTimeDepartures!.trams[tramKeys[indexPath.section]]!.first!
-      cell.titleLabel.text = tram.groupOfLine
-    case "LOCAL-TRAM":
-      let tram = realTimeDepartures!.localTrams[localTramKeys[indexPath.section]]!.first!
-      cell.titleLabel.text = tram.groupOfLine
-    case "BOAT":
-      let boat = realTimeDepartures!.boats[boatKeys[indexPath.section]]!.first!
-      cell.titleLabel.text = boat.stopAreaName
-    default:
-      break
-    }
-  }
-  
-  /**
-   * Set row cell data
-   */
-  fileprivate func setRowData(_ cell: RealTimeTripRow, indexPath: IndexPath) {
-    var data: RTTransportBase?
-    var lineChar = ""
-    let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
-    cell.stopPointDesignation.isHidden = true
-    
-    switch tabKeys {
-    case "BUS":
-      let bus = realTimeDepartures!.busses[busKeys[indexPath.section]]![indexPath.row - 1]
-      data = bus as RTTransportBase
-      if let designation = bus.stopPointDesignation {
-        cell.stopPointDesignation.text = designation
-        cell.stopPointDesignation.accessibilityLabel = "Hållplatsläge: " + designation
-        cell.stopPointDesignation.isHidden = false
-      }
-    case "METRO":
-      lineChar = "T"
-      data = realTimeDepartures!.metros[metroKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
-    case "TRAIN":
-      let train = realTimeDepartures!.trains[trainKeys[indexPath.section]]![indexPath.row - 1]
-      cell.lineLabel.text = "J" + train.lineNumber
-      let via = ((train.secondaryDestinationName != nil) ? " via \(train.secondaryDestinationName!)" : "")
-      cell.infoLabel.text = "\(train.destination)" + via
-      if train.displayTime == "Nu" {
-        cell.departureTimeLabel.font = UIFont.systemFont(ofSize: 16)
-        cell.departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
-      } else {
-        cell.departureTimeLabel.font = UIFont.systemFont(ofSize: 16)
-        cell.departureTimeLabel.textColor = UIColor.black
-      }
-      cell.departureTimeLabel.text = train.displayTime
-      cell.deviationsLabel.text = train.deviations.joined(separator: " ")
-      if DisturbanceTextHelper.isDisturbance(cell.deviationsLabel.text) {
-        cell.deviationsLabel.textColor = StyleHelper.sharedInstance.warningColor
-      } else {
-        cell.deviationsLabel.textColor = UIColor.darkGray
-      }
-      return
-    case "TRAM":
-      lineChar = "L"
-      data = realTimeDepartures!.trams[tramKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
-    case "LOCAL-TRAM":
-      lineChar = "S"
-      data = realTimeDepartures!.localTrams[localTramKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
-    case "BOAT":
-      data = realTimeDepartures!.boats[boatKeys[indexPath.section]]![indexPath.row - 1] as RTTransportBase
-    default:
-      break
-    }
-    
-    if let data = data {
-      cell.lineLabel.text = lineChar + data.lineNumber
-      cell.infoLabel.text = "\(data.destination)"
-      cell.infoLabel.accessibilityLabel = "Mot \(data.destination)"
-      if data.displayTime == "Nu" {
-        cell.departureTimeLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        cell.departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
-      } else {
-        cell.departureTimeLabel.font = UIFont.systemFont(ofSize: 17)
-        cell.departureTimeLabel.textColor = UIColor.black
-      }
-      cell.departureTimeLabel.text = data.displayTime
-      cell.deviationsLabel.text = data.deviations.joined(separator: " ")
-      if DisturbanceTextHelper.isDisturbance(cell.deviationsLabel.text) {
-        cell.deviationsLabel.textColor = StyleHelper.sharedInstance.warningColor
-      } else {
-        cell.deviationsLabel.textColor = UIColor.darkGray
-      }
     }
   }
   

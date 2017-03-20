@@ -40,6 +40,8 @@ class TripListVC: UITableViewController {
   let loadedTime = Date()
   var firstTime = true
   
+  var usedCriterions = [TripSearchCriterion]()
+  
   /**
    * View is done loading
    */
@@ -122,6 +124,21 @@ class TripListVC: UITableViewController {
    */
   func refreshUI() {
     self.tableView?.reloadData()
+    var flatTrips = [Trip]()
+    for group in trips {
+      for trip in group.value {
+        flatTrips.append(trip)
+      }
+    }
+    
+    for crit in usedCriterions {
+      SearchTripService.tripRefresh(crit, tripsToRefresh: flatTrips, callback: {
+        DispatchQueue.main.async {
+          print("Refresh UI")
+          self.tableView?.reloadData()
+        }
+      })
+    }
   }
   
   /**
@@ -353,6 +370,7 @@ class TripListVC: UITableViewController {
    */
   fileprivate func loadTripData(_ shouldAppend: Bool) {
     if let criterions = self.criterions {
+      usedCriterions.append(criterions.copy() as! TripSearchCriterion)
       NetworkActivity.displayActivityIndicator(true)
       criterions.numTrips = (criterions.searchForArrival) ? 4 : criterions.numTrips
       SearchTripService.tripSearch(
@@ -566,10 +584,6 @@ class TripListVC: UITableViewController {
    * Checks if there should be a "Make routine" buttons.
    */
   fileprivate func handleMakeRoutineButton() {
-    if !SubscriptionStore.sharedInstance.isSubscribed() {
-      navigationItem.rightBarButtonItem = nil
-      return
-    }
     if routineTrip != nil && !routineTrip!.isSmartSuggestion {
       navigationItem.rightBarButtonItem = nil
       return

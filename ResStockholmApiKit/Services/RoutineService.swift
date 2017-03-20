@@ -16,19 +16,9 @@ open class RoutineService {
    * current position, time and week day.
    */
   open static func findRoutineTrip(_ callback: @escaping ([RoutineTrip]) -> Void) {
-    MyLocationHelper.sharedInstance.requestLocationUpdate { location in
-      LocationSearchService.searchNearby(location, distance: 2000) { resTuple in
-        if let error = resTuple.1 {
-          if error != SLNetworkError.noDataFound {
-            callback([RoutineTrip]())
-          }
-        }
-        
-        let allRoutineTrips = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
-        scoreRoutineTrips(allRoutineTrips, locations: resTuple.0)
-        createPrioList(allRoutineTrips, callback: callback)
-      }
-    }
+    let allRoutineTrips = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
+    scoreRoutineTrips(allRoutineTrips)
+    createPrioList(allRoutineTrips, callback: callback)
   }
   
   /**
@@ -60,11 +50,11 @@ open class RoutineService {
    * Calcualtes and assinges search score
    * for the found routine trips.
    */
-  fileprivate static func scoreRoutineTrips(_ routineTrips: [RoutineTrip], locations: [(location: Location, dist: Int)]) {
+  fileprivate static func scoreRoutineTrips(_ routineTrips: [RoutineTrip]) {
     let todayTimeTuple = createTimeTuple()
     
     for trip in routineTrips {
-      var multiplier = multiplierBasedOnProximityToLocation(trip, locations: locations)
+      var multiplier = multiplierBasedOnProximityToLocation(trip)
       multiplier += multiplierBasedOnProximityToScorePostLocation(trip)
       multiplier += multiplierBasedOnArrivalTime(trip)
       trip.score = scoreBasedOnRoutineSchedule(trip, today: todayTimeTuple)
@@ -101,6 +91,7 @@ open class RoutineService {
     if let routineTrip = bestRoutineTrip {
       
       if let searchCrit = routineTrip.criterions.copy() as? TripSearchCriterion {
+        searchCrit.numTrips = 2
         if searchCrit.time != nil {
           searchCrit.searchForArrival = true
           searchCrit.numTrips = 1
@@ -144,25 +135,13 @@ open class RoutineService {
   /**
    * Score multiplier based on proximity to location.
    */
-  static fileprivate func multiplierBasedOnProximityToLocation(_ trip: RoutineTrip,
-                                                               locations: [(location: Location, dist: Int)]) -> Float {
-    
-    if trip.criterions.origin?.type == LocationType.Station {
-      for location in locations {
-        if trip.criterions.origin!.siteId == location.location.siteId {
-          return calcMultiplierBasedOnProximityToLocation(location.dist)
-        }
+  static fileprivate func multiplierBasedOnProximityToLocation(_ trip: RoutineTrip) -> Float {
+    if let currentLocation = MyLocationHelper.sharedInstance.currentLocation {
+      if let originLocation = trip.criterions.origin!.location {
+        let distance = Int(currentLocation.distance(from: originLocation))
+        return calcMultiplierBasedOnProximityToLocation(distance)
       }
-    } else {
-      if let currentLocation = MyLocationHelper.sharedInstance.currentLocation {
-        if let originLocation = trip.criterions.origin!.location {
-          let distance = Int(currentLocation.distance(from: originLocation))
-          return calcMultiplierBasedOnProximityToLocation(distance)
-        }
-      }
-      
     }
-    
     return 0.0
   }
   
@@ -170,7 +149,7 @@ open class RoutineService {
    * Calculates score multiplier based on distance to location.
    */
   static fileprivate func calcMultiplierBasedOnProximityToLocation(_ distance: Int) -> Float {
-    var tempMultiplier = Float(2000 - distance)
+    var tempMultiplier = Float(800 - distance)
     tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
     return tempMultiplier
   }
@@ -206,9 +185,8 @@ open class RoutineService {
       for post in scorePosts {
         if checkMatch(post, trip: trip) {
           if let postLocation = post.location {
-            let distance = postLocation.distance(from: currentLocation)
-            var tempMultiplier = Float(800 - distance)
-            tempMultiplier = (tempMultiplier > 0) ? tempMultiplier / 250.0 : 0.0
+            let distance = Int(postLocation.distance(from: currentLocation))
+            let tempMultiplier = calcMultiplierBasedOnProximityToLocation(distance)
             highestMulitplier = (tempMultiplier > highestMulitplier) ? tempMultiplier : highestMulitplier
           }
         }

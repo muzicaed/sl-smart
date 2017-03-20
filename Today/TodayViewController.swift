@@ -123,16 +123,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         if self.titleLabel.text == "" {
           self.titleLabel.text = "Vana"
         }
-        self.departureStationLabel.text = trip.tripSegments.first?.origin.name
-        self.departureTimeLabel.text = DateUtils.dateAsTimeString(
-          trip.tripSegments.first!.departureDateTime)
-        self.arrivalStationLabel.text = trip.tripSegments.last?.destination.name
-        self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(
-          trip.tripSegments.last!.arrivalDateTime)
-        
-        self.inAboutLabel.text = DateUtils.createAboutTimeText(
-          trip.tripSegments.first!.departureDateTime,
-          isWalk: (trip.tripSegments.first!.type == TripType.Walk))
+        if let first = trip.tripSegments.first, let last = trip.tripSegments.last {
+          self.departureStationLabel.text = first.origin.name
+          self.departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)
+          self.arrivalStationLabel.text = trip.tripSegments.last?.destination.name
+          self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
+          
+          self.inAboutLabel.text = DateUtils.createAboutTimeText(
+            first.departureDateTime,
+            isWalk: (first.type == TripType.Walk))
+        }
         
         var second: Trip? = nil
         if bestRoutineTrip.trips.count > 1 {

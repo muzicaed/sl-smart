@@ -22,6 +22,7 @@ open class JournyDetailsService {
     api.getDetails(urlEncRef) { (data, error) -> Void in
       if let d = data {
         if d.count == 0 {
+          HttpRequestHelper.clearCache()
           callback(result, SLNetworkError.noDataFound)
           return
         }
