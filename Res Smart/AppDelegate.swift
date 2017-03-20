@@ -47,8 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   }
   
   func applicationDidBecomeActive(_ application: UIApplication) {    
-    SubscriptionStore.sharedInstance.setupTrial()
-    SubscriptionManager.sharedInstance.validateSubscription()
     checkTrafficSituation()
     
     let root = window?.rootViewController! as! CustomTabVC

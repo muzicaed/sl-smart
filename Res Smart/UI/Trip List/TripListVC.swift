@@ -583,10 +583,6 @@ class TripListVC: UITableViewController {
    * Checks if there should be a "Make routine" buttons.
    */
   fileprivate func handleMakeRoutineButton() {
-    if !SubscriptionStore.sharedInstance.isSubscribed() {
-      navigationItem.rightBarButtonItem = nil
-      return
-    }
     if routineTrip != nil && !routineTrip!.isSmartSuggestion {
       navigationItem.rightBarButtonItem = nil
       return

@@ -64,7 +64,7 @@ class DataMigration {
     print("Running migration v1.5")
     UserDefaults.standard.set(true, forKey: "res_smart_premium_preference")
     StopsStore.sharedInstance.loadJson()
-    SubscriptionStore.sharedInstance.resetTrial()
+    //SubscriptionStore.sharedInstance.resetTrial()
     UserPreferenceStore.sharedInstance.setShouldShowNews(true)
     defaults.set(4, forKey: dataKey)
     defaults.synchronize()
