@@ -69,7 +69,7 @@ DateTimePickResponder {
       let vc = segue.destination as! SearchLocationVC
       vc.searchOnlyForStations = false
       vc.allowNearbyStations = true
-      vc.allowCurrentPosition = true
+      vc.allowCurrentPosition = false
       vc.delegate = self
       
     } else if segue.identifier == "SearchDestinationLocation" {
