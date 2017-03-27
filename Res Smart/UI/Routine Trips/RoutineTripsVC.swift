@@ -172,6 +172,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Section count
    */
   override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    if isLoading {
+      return 1
+    }    
     return 2
   }
   
