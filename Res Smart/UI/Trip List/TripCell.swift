@@ -123,6 +123,11 @@ class TripCell: UITableViewCell {
           warnIconView.center = CGPoint(x: (22 / 2) + 10, y: -5)
           warnIconView.alpha = 0.9
           wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
+          if segment.isWarning {
+            UIView.animate(withDuration: 0.6, delay: 0, options: [.repeat, .autoreverse], animations: {
+              warnIconView.alpha = 0.3
+            }, completion: nil)
+          }
         }
         
         iconAreaView.addSubview(wrapperView)

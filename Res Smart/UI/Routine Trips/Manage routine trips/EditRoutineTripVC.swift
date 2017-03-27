@@ -494,7 +494,7 @@ DateTimePickResponder {
   fileprivate func showInvalidLocationAlert() {
     let invalidLocationAlert = UIAlertController(
       title: "Station saknas",
-      message: "Du behöver ange två olika stationerna som du brukar åka mellan.",
+      message: "Du behöver ange två olika stationer som du brukar åka mellan.",
       preferredStyle: UIAlertControllerStyle.alert)
     invalidLocationAlert.addAction(
       UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: nil))

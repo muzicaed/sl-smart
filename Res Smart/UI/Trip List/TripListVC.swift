@@ -123,21 +123,22 @@ class TripListVC: UITableViewController {
    * Refresh collection view.
    */
   func refreshUI() {
-    self.tableView?.reloadData()
-    var flatTrips = [Trip]()
-    for group in trips {
-      for trip in group.value {
-        flatTrips.append(trip)
-      }
-    }
-    
-    for crit in usedCriterions {
-      SearchTripService.tripRefresh(crit, tripsToRefresh: flatTrips, callback: {
-        DispatchQueue.main.async {
-          print("Refresh UI")
-          self.tableView?.reloadData()
+    if navigationController?.topViewController == self {
+      self.tableView?.reloadData()
+      var flatTrips = [Trip]()
+      for group in trips {
+        for trip in group.value {
+          flatTrips.append(trip)
         }
-      })
+      }
+      
+      for crit in usedCriterions {
+        SearchTripService.tripRefresh(crit, tripsToRefresh: flatTrips, callback: {
+          DispatchQueue.main.async {
+            self.tableView?.reloadData()
+          }
+        })
+      }
     }
   }
   

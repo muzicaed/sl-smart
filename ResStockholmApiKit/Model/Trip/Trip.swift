@@ -128,7 +128,6 @@ open class Trip: NSObject, NSCopying {
    * Refresh the trip data
    */
   open func refresh(_ newTrip: Trip) {
-    print("REFRESH")
     allTripSegments = newTrip.allTripSegments
     tripSegments = newTrip.tripSegments
   }
