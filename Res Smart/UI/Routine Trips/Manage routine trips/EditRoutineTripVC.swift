@@ -591,7 +591,7 @@ DateTimePickResponder {
     hasChanged = true
     isViaSelected = false
     routineTrip?.criterions.via = nil
-    self.viaLabel.text = "(Välj station) - Valfri".localized
+    self.viaLabel.text = "(Välj station)".localized
   }
   
   /**
