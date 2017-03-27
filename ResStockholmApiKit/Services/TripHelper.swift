@@ -35,10 +35,11 @@ open class TripHelper {
    */
   open static func friendlyTripSegmentDesc(_ segment: TripSegment) -> String {
     if segment.type == .Walk {
-      return "Gå \(segment.distance!) meter"
+      return String(format: "Gå: %d meter".localized, segment.distance!)
+      
     }
     
-    return "Mot \(segment.directionText!.capitalized)"
+    return "\("Mot".localized) \(segment.directionText!.capitalized)"
   }
   
   /**
@@ -74,30 +75,30 @@ open class TripHelper {
       } else if lineNumber == "29" {
         return ("\(lineNumber!)", "Roslagsbanan, Näsbyparkslinjen", "TRAM", tram27_29)
       }
-      return ("\(lineNumber!)", "Spårvagn linje \(lineNumber!)", "TRAM", UIColor.darkGray)
+      return ("\(lineNumber!)", "\("Spårvagn linje".localized) \(lineNumber!)", "TRAM", UIColor.darkGray)
     case .Bus:
       if segment.name.lowercased().range(of: "blåbuss") != nil {
-        return ("\(lineNumber!)", "Blåbuss \(lineNumber!)", "BUS", blueBusColor)
+        return ("\(lineNumber!)", "\("Blåbuss".localized) \(lineNumber!)", "BUS", blueBusColor)
       }
-      return ("\(lineNumber!)", "Buss \(lineNumber!)", "BUS", busColor)
+      return ("\(lineNumber!)", "\("Buss".localized) \(lineNumber!)", "BUS", busColor)
     case .Metro:
       if lineNumber == "13" || lineNumber == "14" {
-        return ("\(lineNumber!)", "Röda linjen \(lineNumber!)", "METRO", redMetro)
+        return ("\(lineNumber!)", "\("Röda linjen".localized) \(lineNumber!)", "METRO", redMetro)
       } else if lineNumber == "17" || lineNumber == "18" || lineNumber == "19" {
-        return ("\(lineNumber!)", "Gröna linjen \(lineNumber!)", "METRO", greenMetro)
+        return ("\(lineNumber!)", "\("Gröna linjen".localized) \(lineNumber!)", "METRO", greenMetro)
       } else if lineNumber == "10" || lineNumber == "11" {
-        return ("\(lineNumber!)", "Blå linjen \(lineNumber!)", "METRO", blueMetro)
+        return ("\(lineNumber!)", "\("Blå linjen".localized) \(lineNumber!)", "METRO", blueMetro)
       }
       return ("T-bana", "Tunnelbanan", "METRO", UIColor.darkGray)
     case .Train:
       if lineNumber == "35" {
-        return ("\(lineNumber!)", "Pendeltåg linje \(lineNumber!)", "TRAIN", pinkTrain)
+        return ("\(lineNumber!)", "\("Pendeltåg linje".localized) \(lineNumber!)", "TRAIN", pinkTrain)
       }
-      return ("\(lineNumber!)", "Pendeltåg linje \(lineNumber!)", "TRAIN", greenTrain)
+      return ("\(lineNumber!)", "\("Pendeltåg linje".localized) \(lineNumber!)", "TRAIN", greenTrain)
     case .Narbuss:
       return ("\(lineNumber!)", "Närtrafikens buss \(lineNumber!)", "BUS", busColor)
     case .Walk:
-      return ("→", "Gå", "WALK", walkColor)
+      return ("→", "Gå".localized, "WALK", walkColor)
     default:
       return ("", "", "", UIColor.darkGray)
     }
