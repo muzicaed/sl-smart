@@ -403,7 +403,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Refresh screen and reload data.
    */
   fileprivate func refreshScreen() {
-    print("View did appear")
     stopLoading()
     navigationItem.rightBarButtonItem?.isEnabled = true
     if CLLocationManager.authorizationStatus() == .denied || !CLLocationManager.locationServicesEnabled() {

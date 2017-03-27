@@ -115,11 +115,11 @@ open class DateUtils {
    * Creates an "(om xx min)" for depature time.
    */
   open static func createAboutTimeText(_ departure: Date, isWalk: Bool) -> String {    
-    var aboutStr = "Om"
-    var nowStr = "Avgår nu"
+    var aboutStr = "Om".localized
+    var nowStr = "Avgår nu".localized
     if isWalk {
-      aboutStr = "Gå om"
-      nowStr = "Gå nu"
+      aboutStr = "Gå om".localized
+      nowStr = "Gå nu".localized
     }
     
     let diffMin = Int(ceil(((departure.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
@@ -127,7 +127,7 @@ open class DateUtils {
       let diffMinStr = (diffMin < 1) ? "\(nowStr)" : "\(aboutStr) \(diffMin) min"
       return diffMinStr
     } else if (diffMin < 0) {
-      return "Redan avgått"
+      return "Redan avgått".localized
     }
     
     return ""

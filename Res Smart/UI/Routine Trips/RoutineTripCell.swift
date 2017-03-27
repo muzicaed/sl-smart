@@ -37,7 +37,7 @@ class RoutineTripCell: UICollectionViewCell {
     layer.borderColor = UIColor.lightGray.cgColor
     var title = routineTrip.title!
     if routineTrip.isSmartSuggestion {
-      title = "Vana: \(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName)"
+      title = "\("Vana".localized): \(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName)"
     }
     
     tripTitleLabel.text = title
@@ -54,10 +54,6 @@ class RoutineTripCell: UICollectionViewCell {
       setupTripData(trip, secondTrip: second)
     } else if isBest {
       setNoTripsUI()
-    }
-    
-    if let wrapper = wrapperView {
-      wrapper.accessibilityLabel = "\(routineTrip.title!), Från: \(originLabel.text!), Till: \(destinationLabel.text!). Tryck för tider och mer info."
     }
   }
   
@@ -81,12 +77,10 @@ class RoutineTripCell: UICollectionViewCell {
     arrowLabel.isHidden = false
     if let first = trip.tripSegments.first, let last = trip.tripSegments.last  {
       departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)
-      departureTimeLabel.accessibilityLabel = "Avgår: " + departureTimeLabel.text!
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
-      arrivalTimeLabel.accessibilityLabel = "Framme: " + arrivalTimeLabel.text!
       
       if DateUtils.dateAsDateString(first.departureDateTime) != DateUtils.dateAsDateString(Date()) {
-        inAboutLabel.text = "Imorgon"
+        inAboutLabel.text = "Imorgon".localized
       } else {
         inAboutLabel.text = DateUtils.createAboutTimeText(
           first.departureDateTime, isWalk: first.type == TripType.Walk)
@@ -111,7 +105,7 @@ class RoutineTripCell: UICollectionViewCell {
     if depTimeInterval < (60 * 120) {
       let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
       if diffMin <= 120 {
-        nextInAboutLabel.text = String(format: NSLocalizedString("Nästa: %d min", comment: ""), diffMin)
+        nextInAboutLabel.text = String(format: "Nästa: %d min".localized, diffMin)
       }
     }
   }
@@ -124,9 +118,9 @@ class RoutineTripCell: UICollectionViewCell {
     if !trip.isValid {
       let validTuple = trip.checkInvalidSegments()
       inAboutLabel.textColor = StyleHelper.sharedInstance.warningColor
-      inAboutLabel.text = (validTuple.isCancelled) ? "Inställd" : "Kort bytestid"
+      inAboutLabel.text = (validTuple.isCancelled) ? "Inställd".localized : "Kort bytestid".localized
       tripDurationLabel.text = ""
-    } else if inAboutLabel.text == "Redan avgått" {
+    } else if inAboutLabel.text == "Redan avgått".localized {
       inAboutLabel.textColor = StyleHelper.sharedInstance.warningColor
     }
   }
