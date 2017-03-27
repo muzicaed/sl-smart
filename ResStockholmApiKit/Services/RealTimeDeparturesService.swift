@@ -56,8 +56,8 @@ open class RealTimeDeparturesService {
     
     if json["StopPointDeviations"].array!.count > 0 {
       for messJson in json["StopPointDeviations"].array! {
-        if let mess = messJson["Deviation"]["Text"].string {
-          departures.deviations.append(mess)
+        if let mess = messJson["Deviation"]["Text"].string, let type = messJson["StopInfo"]["TransportMode"].string {
+          departures.deviations.append(type, mess)
         }
       }
     }

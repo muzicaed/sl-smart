@@ -18,7 +18,7 @@ open class RealTimeDepartures {
   open var trams = [String: [RTTram]]()
   open var localTrams = [String: [RTTram]]()
   open var boats = [String: [RTBoat]]()
-  open var deviations = [String]()
+  open var deviations = [(String, String)]()
   
   /**
    * Init

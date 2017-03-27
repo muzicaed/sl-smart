@@ -45,7 +45,7 @@ class RealTimeHeaderRow: UITableViewCell {
     case "LOCAL-TRAM":
       let tram = realTimeDepartures.localTrams[localTramKeys[index]]!.first!
       titleLabel.text = tram.groupOfLine
-    case "BOAT":
+    case "SHIP":
       let boat = realTimeDepartures.boats[boatKeys[index]]!.first!
       titleLabel.text = boat.stopAreaName
     default:

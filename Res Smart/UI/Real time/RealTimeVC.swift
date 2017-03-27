@@ -296,9 +296,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     
     let boatCount = (realTimeDepartures != nil) ? realTimeDepartures!.boats.count : 0
     if boatCount > 0 {
-      lastSelected = (lastStoredSelected == "BOAT") ? tabCount : lastSelected
+      lastSelected = (lastStoredSelected == "SHIP") ? tabCount : lastSelected
       tabCount += 1
-      tabTypesKeys.append("BOAT")
+      tabTypesKeys.append("SHIP")
       let _ = segmentView.addSegmentWithTitle(
         "Färja",
         onSelectionImage: UIImage(named: "SHIP"),
@@ -358,7 +358,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     let cell = tableView!.dequeueReusableCell(
       withIdentifier: "StopPointDeviationRow", for: indexPath) as! RealTimeStopPointDeviationRow
     
-    cell.setData(realTimeDepartures: realTimeDepartures)
+    cell.setData(realTimeDepartures: realTimeDepartures, selectedType: tabTypesKeys[segmentView.indexOfSelectedSegment])
     return cell
   }
   
@@ -395,7 +395,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         return realTimeDepartures.trams.count + 1
       case "LOCAL-TRAM":
         return realTimeDepartures.localTrams.count + 1
-      case "BOAT":
+      case "SHIP":
         return realTimeDepartures.boats.count + 1
       default:
         return 0
@@ -429,7 +429,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       return min(realTimeDepartures!.trams[tramKeys[section]]!.count + 1, 5)
     case "LOCAL-TRAM":
       return min(realTimeDepartures!.localTrams[localTramKeys[section]]!.count + 1, 5)
-    case "BOAT":
+    case "SHIP":
       return min(realTimeDepartures!.boats[boatKeys[section]]!.count + 1, 5)
     default:
       return 0

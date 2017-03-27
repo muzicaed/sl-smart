@@ -78,7 +78,7 @@ class RealTimeTripRow: UITableViewCell {
       lineChar = "S"
       data = realTimeDepartures.localTrams[localTramKeys[index]]![indexPath.row - 1] as RTTransportBase
       
-    case "BOAT":
+    case "SHIP":
       data = realTimeDepartures.boats[boatKeys[index]]![indexPath.row - 1] as RTTransportBase
       
     default:
