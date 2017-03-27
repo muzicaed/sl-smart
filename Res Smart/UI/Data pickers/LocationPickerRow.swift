@@ -42,7 +42,7 @@ class LocationPickerRow: UITableViewCell {
     switchImage.gestureRecognizers = [switchGesture]
     switchImage.isAccessibilityElement = true
     switchImage.accessibilityTraits |= UIAccessibilityTraitButton
-    switchImage.accessibilityLabel = "Byt plats på från och till"
+    switchImage.accessibilityLabel = "Byt plats på från och till".localized
     
     originView.accessibilityTraits |= UIAccessibilityTraitButton
     destinationView.accessibilityTraits |= UIAccessibilityTraitButton
@@ -106,10 +106,10 @@ class LocationPickerRow: UITableViewCell {
   func setOriginLabelLocation(_ location: Location?) {
     if let loc = location {
       originLabel.text = loc.name
-      originView.accessibilityLabel = "Från: \(loc.name)"
+      originView.accessibilityLabel = "\("Från".localized): \(loc.name)"
     } else {
-      originLabel.text = "(Välj station eller adress)"
-      originView.accessibilityLabel = "Från: (Välj station eller adress)"
+      originLabel.text = "(Välj station eller adress)".localized
+      originView.accessibilityLabel = "\("Från".localized): \("(Välj station eller adress)".localized)"
     }
   }
   
@@ -119,10 +119,10 @@ class LocationPickerRow: UITableViewCell {
   func setDestinationLabelLocation(_ location: Location?) {
     if let loc = location {
       destinationLabel.text = loc.name
-      destinationView.accessibilityLabel = "Till: \(loc.name)"
+      destinationView.accessibilityLabel = "\("Till".localized): \(loc.name)"
     } else {
-      destinationLabel.text = "(Välj station eller adress)"
-      destinationView.accessibilityLabel = "Till: (Välj station eller adress)"
+      destinationLabel.text = "(Välj station eller adress)".localized
+      destinationView.accessibilityLabel = "\("Till".localized): \("(Välj station eller adress)".localized)"
     }
   }
 }

@@ -142,7 +142,7 @@ class RoutineTripCell: UICollectionViewCell {
         
         let label = UILabel()
         label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
-        label.accessibilityLabel = "Steg \(count + 1): " + data.long
+        label.accessibilityLabel = "\("Steg".localized) \(count + 1): " + data.long
         label.textAlignment = NSTextAlignment.center
         label.font = UIFont.boldSystemFont(ofSize: 9)
         label.minimumScaleFactor = 0.5
@@ -189,6 +189,6 @@ class RoutineTripCell: UICollectionViewCell {
     arrivalTimeLabel.text = "--:--"
     inAboutLabel.text = ""
     
-    tripDurationLabel.text = NSLocalizedString("Hittade ingen resa...", comment: "")
+    tripDurationLabel.text = "Hittade ingen resa...".localized
   }
 }

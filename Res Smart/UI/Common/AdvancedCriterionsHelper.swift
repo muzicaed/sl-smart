@@ -16,15 +16,15 @@ class AdvancedCriterionsHelper {
    * describe the advanced search criterias.
    */
   static func createAdvCriterionText(_ criterions: TripSearchCriterion) -> String {
-    let isViaString = (criterions.via != nil) ? "Via \(criterions.via!.name). " : ""
+    let isViaString = (criterions.via != nil) ? "\("Via".localized) \(criterions.via!.name). " : ""
     let travelTypesString = createTravelTypeString(criterions)
     let numChangeString = createNoChangeString(criterions)
     let walkDistanceString = createWalkDistanceString(criterions)
     let extraTimeString = createExtraTimeString(criterions)
-    let isUnsharpString = (criterions.unsharp) ? "Alternativa. " : ""
-    let incLinesString = (criterions.lineInc != nil) ? "Endast \(criterions.lineInc!). " : ""
-    let excLinesString = (criterions.lineExc != nil) ? "Inte \(criterions.lineExc!). " : ""
-    let arrivalTimeString = (criterions.time != nil) ? "Framme \(criterions.time!). " : ""
+    let isUnsharpString = (criterions.unsharp) ? "\("Alternativa".localized). " : ""
+    let incLinesString = (criterions.lineInc != nil) ? "\("Endast".localized) \(criterions.lineInc!). " : ""
+    let excLinesString = (criterions.lineExc != nil) ? "\("Inte".localized) \(criterions.lineExc!). " : ""
+    let arrivalTimeString = (criterions.time != nil) ? "\("Framme".localized) \(criterions.time!). " : ""
     
     return (isViaString + arrivalTimeString + travelTypesString + numChangeString +
       walkDistanceString + extraTimeString + isUnsharpString + incLinesString + excLinesString)

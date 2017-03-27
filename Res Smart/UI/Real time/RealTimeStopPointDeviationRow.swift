@@ -29,7 +29,7 @@ class RealTimeStopPointDeviationRow: UITableViewCell {
     }
     if deviationLabel.text == "" {
       deviationLabel.textColor = UIColor.black
-      deviationLabel.text = "Inga trafikstörningar för denna plats."
+      deviationLabel.text = "Inga trafikstörningar.".localized
     }
   }
 }

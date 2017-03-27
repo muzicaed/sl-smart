@@ -62,7 +62,7 @@ PickGenericValueResponder, LinePickerResponder {
         vc.searchOnlyForStations = false
         vc.allowCurrentPosition = true
         vc.allowNearbyStations = true
-        vc.title = "Välj från"
+        vc.title = "Välj från".localized
         searchLocationType = "Origin"
         
       } else if segue.identifier == "SearchDestinationLocation" {
@@ -71,14 +71,14 @@ PickGenericValueResponder, LinePickerResponder {
         vc.searchOnlyForStations = false
         vc.allowCurrentPosition = true
         vc.allowNearbyStations = true
-        vc.title = "Välj till"
+        vc.title = "Välj till".localized
         searchLocationType = "Destination"
         
       } else if segue.identifier == "SearchViaLocation" {
         let vc = segue.destination as! SearchLocationVC
         vc.delegate = self
         vc.searchOnlyForStations = true
-        vc.title = "Välj via station"
+        vc.title = "Välj via station".localized
         searchLocationType = "Via"
         
       } else if segue.identifier == "ShowTripList" {
@@ -105,19 +105,19 @@ PickGenericValueResponder, LinePickerResponder {
       } else if segue.identifier == "MaxWalkDistance" {
         let vc = segue.destination as! GenericValuePickerVC
         vc.delegate = self
-        vc.title = "Max gångavstånd"
+        vc.title = "Max gångavstånd".localized
         vc.setValue(crit.maxWalkDist, valueType: .WalkDistance)
         
       } else if segue.identifier == "NumberOfChanges" {
         let vc = segue.destination as! GenericValuePickerVC
         vc.delegate = self
-        vc.title = "Antal byten"
+        vc.title = "Antal byten".localized
         vc.setValue(crit.numChg, valueType: .NoOfChanges)
         
       } else if segue.identifier == "ChangeTime" {
         let vc = segue.destination as! GenericValuePickerVC
         vc.delegate = self
-        vc.title = "Extra tid vid byte"
+        vc.title = "Extra tid vid byte".localized
         vc.setValue(crit.minChgTime, valueType: .TimeForChange)
         
       } else if segue.identifier == "PickLines" {
@@ -151,11 +151,11 @@ PickGenericValueResponder, LinePickerResponder {
   
   @IBAction func onAdvancedButtonTap(_ sender: UIBarButtonItem) {
     isAdvancedMode = !isAdvancedMode
-    sender.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
+    sender.title = (isAdvancedMode) ? "Enkel".localized : "Avancerad".localized
     criterions?.isAdvanced = isAdvancedMode
     travelTypePicker.updateLabel(criterions!)
     if isAdvancedMode {
-      viaLabel.text = "(Välj station)"
+      viaLabel.text = "(Välj station)".localized
     } else {
       resetViaStation()
       criterions?.resetAdvancedTripTypes()
@@ -388,7 +388,7 @@ PickGenericValueResponder, LinePickerResponder {
     
     return [UITableViewRowAction(
       style: UITableViewRowActionStyle.normal,
-    title: "Rensa") { (_, _) -> Void in
+    title: "Rensa".localized) { (_, _) -> Void in
       self.resetViaStation()
       tableView.reloadData()
       }]
@@ -400,7 +400,7 @@ PickGenericValueResponder, LinePickerResponder {
   func restoreUIFromCriterions() {
     if let crit = criterions {
       isAdvancedMode = crit.isAdvanced
-      advancedToggleButton.title = (isAdvancedMode) ? "Enkel" : "Avancerad"
+      advancedToggleButton.title = (isAdvancedMode) ? "Enkel".localized : "Avancerad".localized
       locationPickerRow.setOriginLabelLocation(crit.origin)
       locationPickerRow.setDestinationLabelLocation(crit.dest)
       
@@ -446,11 +446,11 @@ PickGenericValueResponder, LinePickerResponder {
    */
   fileprivate func showInvalidLocationAlert() {
     let invalidLocationAlert = UIAlertController(
-      title: "Station saknas",
-      message: "Du behöver ange två olika stationer för \"från\" och \"till\".",
+      title: "Station saknas".localized,
+      message: "Du behöver ange två olika stationer för \"från\" och \"till\".".localized,
       preferredStyle: UIAlertControllerStyle.alert)
     invalidLocationAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: nil))
+      UIAlertAction(title: "Okej".localized, style: UIAlertActionStyle.default, handler: nil))
     
     present(invalidLocationAlert, animated: true, completion: nil)
   }
@@ -460,11 +460,11 @@ PickGenericValueResponder, LinePickerResponder {
    */
   fileprivate func showInvalidViaAlert() {
     let invalidLocationAlert = UIAlertController(
-      title: "Felaktig \"Via station\"",
-      message: "Via kan ej vara samma station som Från eller Till station.",
+      title: "Felaktig \"Via station\"".localized,
+      message: "Via kan ej vara samma station som Från eller Till station.".localized,
       preferredStyle: UIAlertControllerStyle.alert)
     invalidLocationAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: nil))
+      UIAlertAction(title: "Okej".localized, style: UIAlertActionStyle.default, handler: nil))
     
     present(invalidLocationAlert, animated: true, completion: nil)
   }
@@ -486,7 +486,7 @@ PickGenericValueResponder, LinePickerResponder {
   fileprivate func resetViaStation() {
     self.isViaSelected = false
     self.criterions?.via = nil
-    self.viaLabel.text = "(Välj station)"
+    self.viaLabel.text = "(Välj station)".localized
   }
   
   /**
@@ -496,27 +496,27 @@ PickGenericValueResponder, LinePickerResponder {
     if let crit = criterions {
       switch crit.maxWalkDist {
       case 1000, 2000:
-        maxWalkLabel.text = "Högst \(crit.maxWalkDist / 1000) km"
+        maxWalkLabel.text = String(format: "Högst %d km".localized, crit.maxWalkDist / 1000)
       default:
-        maxWalkLabel.text = "Högst \(crit.maxWalkDist) m"
+        maxWalkLabel.text = String(format: "Högst %d m".localized, crit.maxWalkDist)
       }
       
       switch crit.numChg {
       case -1:
-        numberOfChangesLabel.text = "Inga begränsningar för antal byten"
+        numberOfChangesLabel.text = "Inga begränsningar för antal byten".localized
       case 0:
-        numberOfChangesLabel.text = "Inga byten"
+        numberOfChangesLabel.text = "Inga byten".localized
       case 1:
-        numberOfChangesLabel.text = "Högst 1 byte"
+        numberOfChangesLabel.text = "Högst 1 byte".localized
       default:
-        numberOfChangesLabel.text = "Högst \(crit.numChg) byten"
+        numberOfChangesLabel.text = String(format: "Högst %d byten".localized, crit.numChg)
       }
       
       switch crit.minChgTime {
       case 0:
-        changeTimeLabel.text = "Ingen extra tid vid byte"
+        changeTimeLabel.text = "Ingen extra tid vid byte".localized
       default:
-        changeTimeLabel.text = "\(crit.minChgTime) minuter extra vid byte"
+        changeTimeLabel.text = String(format: "%d minuter extra vid byte".localized, crit.minChgTime)
       }
       
       isAlternative.accessoryType = .none
@@ -525,11 +525,11 @@ PickGenericValueResponder, LinePickerResponder {
       }
       
       if crit.lineInc == nil && crit.lineExc == nil {
-        linesLabel.text = "Alla linjer"
+        linesLabel.text = "Alla linjer".localized
       } else if crit.lineInc != nil {
-        linesLabel.text = "Använd endast: \(crit.lineInc!)"
+        linesLabel.text = "\("Använd endast:".localized) \(crit.lineInc!)"
       } else if crit.lineExc != nil {
-        linesLabel.text = "Använd inte: \(crit.lineExc!)"
+        linesLabel.text = "\("Använd inte:".localized) \(crit.lineExc!)"
       }
     }
   }

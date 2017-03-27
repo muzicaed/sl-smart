@@ -20,29 +20,29 @@ class TravelTypesPickerRow: UITableViewCell {
   func updateLabel(_ criterions: TripSearchCriterion) {
     tripTypeLabel.textColor = UIColor.darkGray
     if isAllSelected(criterions) {
-      tripTypeLabel.text = "Alla färdmedel"
+      tripTypeLabel.text = "Alla färdmedel".localized
       return
     }
     
     var text = ""
     if criterions.useMetro {
-      text += "Tunnelbana, "
+      text += "\("Tunnelbana".localized), "
     }
     if criterions.useTrain {
-      text += "Pendeltåg, "
+      text += "\("Pendeltåg".localized), "
     }
     if criterions.useTram {
-      text += "Spårvagn, "
+      text += "\("Spårvagn".localized), "
     }
     if criterions.useBus {
-      text += "Buss, "
+      text += "\("Buss".localized), "
     }
     if criterions.useFerry {
-      text += "Båt, "
+      text += "\("Båt".localized), "
     }
     
     if text == "" {
-      tripTypeLabel.text = "Inga färdmedel"
+      tripTypeLabel.text = "Inga färdmedel".localized
       tripTypeLabel.textColor = UIColor.red
       return
     }

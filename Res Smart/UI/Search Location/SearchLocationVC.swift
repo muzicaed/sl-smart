@@ -45,7 +45,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     
     if isLocationForRealTimeSearch {
       let newBackButton = UIBarButtonItem(
-        title: "Realtid", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        title: "Realtid".localized, style: UIBarButtonItemStyle.plain, target: nil, action: nil)
       self.navigationItem.backBarButtonItem = newBackButton
     }
     NotificationCenter.default.addObserver(
@@ -153,18 +153,18 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
     
     if section == favSection {
-      label.text = "Favoritplatser"
+      label.text = "Favoritplatser".localized
       view.addSubview(editFavouritebutton)
       return view
     }
     
-    label.text = "Senast använda platser"
+    label.text = "Senast använda platser".localized
     return view
   }
   
   func toggleEditFavourites() {
     tableView.isEditing = !tableView.isEditing
-    let title = (tableView.isEditing) ? "Klar" : "Ändra ordning"
+    let title = (tableView.isEditing) ? "Klar".localized : "Ändra ordning".localized
     editFavouritebutton.setTitle(title, for: UIControlState())
     editFavouritebutton.frame = CGRect(x: tableView.frame.size.width - 118, y: 0, width: 100, height: 25)
     editFavouritebutton.contentHorizontalAlignment = .right
@@ -274,17 +274,17 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
       message: selectedLocation!.cleanName,
       preferredStyle: .actionSheet)
     
-    var favouriteTitle = "Gör till favorit"
+    var favouriteTitle = "Gör till favorit".localized
     if FavouriteLocationsStore.sharedInstance.isLocationFavourite(selectedLocation!) {
-      favouriteTitle = "Ta bort från favoriter"
+      favouriteTitle = "Ta bort från favoriter".localized
     }
     
     stationOptionsAlert.addAction(
       UIAlertAction(title: favouriteTitle, style: .default, handler: toggleFavouriteStation))
     stationOptionsAlert.addAction(
-      UIAlertAction(title: "Visa på karta", style: .default, handler: showLocationOnMap))
+      UIAlertAction(title: "Visa på karta".localized, style: .default, handler: showLocationOnMap))
     stationOptionsAlert.addAction(
-      UIAlertAction(title: "Avbryt", style: .cancel, handler: { _ in
+      UIAlertAction(title: "Avbryt".localized, style: .cancel, handler: { _ in
         self.selectedLocation = nil
       }))
     
@@ -454,10 +454,10 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellReusableId,
                                                            for: indexPath)
     if let loc = currentLocation {
-      cell.textLabel?.text = "Nuvarande plats"
+      cell.textLabel?.text = "Nuvarande plats".localized
       cell.detailTextLabel?.text = "\(loc.cleanName), \(loc.area)"
     } else {
-      cell.textLabel?.text = "Hittar inte nuvarande plats"
+      cell.textLabel?.text = "Hittar inte nuvarande plats".localized
       cell.detailTextLabel?.text = nil
     }
     cell.imageView?.image = UIImage(named: "current-location-icon")
@@ -472,7 +472,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   fileprivate func createNearbyStationsCell(_ indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(
       withIdentifier: cellReusableId, for: indexPath)
-    cell.textLabel?.text = "Hållplatser nära mig"
+    cell.textLabel?.text = "Hållplatser nära mig".localized
     cell.detailTextLabel?.text = nil
     cell.imageView?.image = UIImage(named: "near-me-icon")
     cell.imageView?.alpha = 0.4
@@ -485,11 +485,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    */
   fileprivate func showNetworkErrorAlert() {
     let networkErrorAlert = UIAlertController(
-      title: "Tjänsten är otillgänglig",
-      message: "Det gick inte att kontakta söktjänsten.",
+      title: "Tjänsten är otillgänglig".localized,
+      message: "Det gick inte att kontakta söktjänsten.".localized,
       preferredStyle: UIAlertControllerStyle.alert)
     networkErrorAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: nil))
+      UIAlertAction(title: "Okej".localized, style: UIAlertActionStyle.default, handler: nil))
     
     present(networkErrorAlert, animated: true, completion: nil)
   }
@@ -522,9 +522,9 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     searchController!.delegate = self
     searchController!.dimsBackgroundDuringPresentation = true
     if searchOnlyForStations {
-      searchController!.searchBar.placeholder = "Skriv namnet på en station"
+      searchController!.searchBar.placeholder = "Skriv namnet på en station".localized
     } else {
-      searchController!.searchBar.placeholder = "Skriv stationsnamn eller en adress"
+      searchController!.searchBar.placeholder = "Skriv stationsnamn eller en adress".localized
     }
     tableView.tableHeaderView = searchController!.searchBar
   }
@@ -532,7 +532,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   fileprivate func prepareEditFavouriteButton() {
     editFavouritebutton = UIButton(
       frame: CGRect(x: tableView.frame.size.width - 118, y: 0, width: 100, height: 25))
-    editFavouritebutton.setTitle("Ändra ordning", for: UIControlState())
+    editFavouritebutton.setTitle("Ändra ordning".localized, for: UIControlState())
     editFavouritebutton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
     editFavouritebutton.contentHorizontalAlignment = .right
     editFavouritebutton.addTarget(self,

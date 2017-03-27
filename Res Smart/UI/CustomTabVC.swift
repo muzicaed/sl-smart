@@ -31,19 +31,16 @@ class CustomTabVC: UITabBarController {
    */
   func updateTabs() {
     isPremiumSettingOn = UserDefaults.standard.bool(forKey: "res_smart_premium_preference")
-    print("Updated tabs premium on: \(isPremiumSettingOn)")
     if !isPremiumSettingOn && self.tabBar.items!.count == 4 {
       if let count = viewControllers?.count {
         let indexToRemove = 0
         if indexToRemove < count {
-          print("Remove preminum tab.")
           premiumVC = viewControllers?[indexToRemove]
           viewControllers?.remove(at: indexToRemove)
         }
       }
     } else if isPremiumSettingOn && self.tabBar.items!.count == 3 {
       if let vc = premiumVC {
-        print("Insert preminum tab.")
         viewControllers?.insert(vc, at: 0)
       }
     }

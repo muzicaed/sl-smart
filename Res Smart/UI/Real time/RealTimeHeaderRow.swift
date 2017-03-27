@@ -28,16 +28,15 @@ class RealTimeHeaderRow: UITableViewCell {
     case "BUS":
       let bus = realTimeDepartures.busses[busKeys[index]]!.first!
       titleLabel.text = bus.stopAreaName
-      titleLabel.accessibilityLabel = "Bussar, \(bus.stopAreaName)"
     case "METRO":
       let metro = realTimeDepartures.metros[metroKeys[index]]!.first!
-      titleLabel.text = metro.groupOfLine.capitalized
+      titleLabel.text = metro.groupOfLine.uppercaseFirst.localized
     case "TRAIN":
       let train = realTimeDepartures.trains[trainKeys[index]]!.first!
       if train.journeyDirection == 1 {
-        titleLabel.text = "Pendeltåg, södergående"
+        titleLabel.text = "Pendeltåg, södergående".localized
       } else if train.journeyDirection == 2 {
-        titleLabel.text = "Pendeltåg, norrgående"
+        titleLabel.text = "Pendeltåg, norrgående".localized
       }
     case "TRAM":
       let tram = realTimeDepartures.trams[tramKeys[index]]!.first!
