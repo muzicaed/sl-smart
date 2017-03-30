@@ -69,7 +69,7 @@ class TripRow: NSObject {
     }
     
     if date.timeIntervalSinceNow < (60*1) * -1 {
-      travelTimeLabel.setText("Redan avgått")
+      travelTimeLabel.setText("Redan avgått".localized)
       scheduleLabel.setTextColor(UIColor.lightGray)
     }
   }
@@ -142,7 +142,7 @@ class TripRow: NSObject {
    */
   fileprivate func createHumanTripDuration(_ duration: Int) -> String {
     if duration < 60 {
-      return "\(duration) minuter"
+      return "\(duration) min"
     }
     
     var remainder = String(duration % 60)

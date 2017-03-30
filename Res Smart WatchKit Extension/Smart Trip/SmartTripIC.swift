@@ -120,8 +120,8 @@ class SmartTripIC: WKInterfaceController {
           retryCount = 0
           stopRefreshTimer()
           displayError(
-            "Kan inte nå din iPhone",
-            message: "Kontrollera att din iPhone är i närheten och påslagen.")
+            "Kan inte nå din iPhone".localized,
+            message: "Kontrollera att din iPhone är i närheten och påslagen.".localized)
           return
         }
         stopRefreshTimer()
@@ -152,8 +152,8 @@ class SmartTripIC: WKInterfaceController {
       }
     } else {
       displayError(
-        "Hittade inga Smarta Resor",
-        message: "Du behöver en prenumeration och minst en rutin. Du hanterar dina rutiner på din iPhone.")
+        "Hittade inga Smarta Rutiner".localized,
+        message: "Du hanterar dina rutiner på din iPhone.".localized)
     }
   }
   
@@ -175,14 +175,14 @@ class SmartTripIC: WKInterfaceController {
       return
     } else if error.code == WCError.notReachable {
       displayError(
-        "Kan inte nå din iPhone",
-        message: "Kontrollera att din iPhone är i närheten och påslagen.")
+        "Kan inte nå din iPhone".localized,
+        message: "Kontrollera att din iPhone är i närheten och påslagen.".localized)
       return
     }
     
      displayError(
-     "Något gick fel",
-     message: "Ett fel inträffade. Kontrollera att din iPhone kan nå internet.")
+     "Något gick fel".localized,
+     message: "Ett fel inträffade. Kontrollera att din iPhone kan nå internet.".localized)
   }
   
   /**
@@ -211,11 +211,11 @@ class SmartTripIC: WKInterfaceController {
    */
   func updateUINoTripsFound(_ bestRoutine: Dictionary<String, AnyObject>) {
     if bestRoutine["ha"] as! Bool {
-      titleLabel.setText("Smart vana")
+      titleLabel.setText("Smart vana".localized)
     } else {
       titleLabel.setText(bestRoutine["ti"] as? String)
     }
-    departureTimeLabel.setText("Ingen resa")
+    departureTimeLabel.setText("Ingen resa".localized)
     originLabel.setText("")
     destinationLabel.setText("")
     containerGroup.setHidden(false)
@@ -237,7 +237,7 @@ class SmartTripIC: WKInterfaceController {
       
       updateDepatureUI()
       if bestRoutine["ha"] as! Bool {
-        titleLabel.setText("Smart vana")
+        titleLabel.setText("Smart vana".localized)
       } else {
         titleLabel.setText(bestRoutine["ti"] as? String)
       }
@@ -336,7 +336,7 @@ class SmartTripIC: WKInterfaceController {
   func displayError(_ title: String, message: String?) {
     isLoading = false
     let okAction = WKAlertAction(
-      title: "Försök igen", style: .default, handler: {})
+      title: "Försök igen".localized, style: .default, handler: {})
     presentAlert(
       withTitle: title, message: message, preferredStyle: .alert, actions: [okAction])
   }
@@ -465,8 +465,8 @@ class SmartTripIC: WKInterfaceController {
   func hideLiveData() {
     isLoading = false
     if let text = currentDepartureText {
-      if text.range(of: "Om") != nil {
-        departureTimeLabel.setText("Uppdaterar")
+      if text.range(of: "Om".localized) != nil {
+        departureTimeLabel.setText("Uppdaterar".localized)
       }
     }
   }
