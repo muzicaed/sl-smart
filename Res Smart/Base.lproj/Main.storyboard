@@ -260,7 +260,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Tid och datum" id="Iin-ag-WRW" userLabel="Avresetid eller ankomsttid">
+                            <tableViewSection headerTitle="Time and date" id="Iin-ag-WRW" userLabel="Avresetid eller ankomsttid">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimeSearchTypeRow" id="QfG-cZ-sfK" userLabel="Time Search Type Row">
                                         <rect key="frame" x="0.0" y="232" width="375" height="44"/>
@@ -272,7 +272,7 @@
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="068-l7-XTW">
                                                     <rect key="frame" x="-2" y="-1" width="379" height="45.5"/>
                                                     <segments>
-                                                        <segment title="Tidigast åka"/>
+                                                        <segment title="Earliest departure"/>
                                                         <segment title="Latest arrival"/>
                                                     </segments>
                                                     <connections>
@@ -604,7 +604,7 @@
                                                     <action selector="onCloseButtonTap:" destination="TZ1-ux-qDf" eventType="touchUpInside" id="5ea-v0-1Ay"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="När" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Au-Cp-u1s">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Au-Cp-u1s">
                                                 <rect key="frame" x="138" y="0.0" width="100" height="44"/>
                                                 <accessibility key="accessibilityConfiguration" label="Välj tid. Använd klockobjekt nedan och bekräfta ditt val med knappen till höger om denna."/>
                                                 <constraints>
@@ -674,10 +674,10 @@
             </objects>
             <point key="canvasLocation" x="2219" y="3647"/>
         </scene>
-        <!--Trafikläget-->
+        <!--Traffic situation-->
         <scene sceneID="flZ-ox-ThE">
             <objects>
-                <tableViewController title="Trafikläget" id="542-NY-ThD" customClass="TrafficSituationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Traffic situation" id="542-NY-ThD" customClass="TrafficSituationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="10" id="Nss-D7-0Qn">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2018,10 +2018,10 @@ Tap "+" to create one.</string>
             </objects>
             <point key="canvasLocation" x="2216" y="296"/>
         </scene>
-        <!--Choose station-->
+        <!--Choose stop-->
         <scene sceneID="2N2-G6-FGu">
             <objects>
-                <tableViewController title="Choose station" extendedLayoutIncludesOpaqueBars="YES" id="WJw-HK-J3L" customClass="SearchLocationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Choose stop" extendedLayoutIncludesOpaqueBars="YES" id="WJw-HK-J3L" customClass="SearchLocationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="NZT-P9-guF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3407,7 +3407,7 @@ Welcom to a smarter way of traveling.</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Pågående resa" id="rzM-RA-Kmi">
-                        <barButtonItem key="rightBarButtonItem" title="Avsluta" id="XK6-BH-FDs">
+                        <barButtonItem key="rightBarButtonItem" title="Close" id="XK6-BH-FDs">
                             <connections>
                                 <action selector="closeCurrentTrip:" destination="7rg-OJ-WdA" id="mr7-Dp-pFO"/>
                             </connections>
@@ -4508,10 +4508,10 @@ Welcom to a smarter way of traveling.</string>
             </objects>
             <point key="canvasLocation" x="3959" y="-18"/>
         </scene>
-        <!--Resedetaljer-->
+        <!--Trip details-->
         <scene sceneID="bsR-j7-Flu">
             <objects>
-                <tableViewController title="Resedetaljer" id="4Bd-C0-Zjd" customClass="TripDetailsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Trip details" id="4Bd-C0-Zjd" customClass="TripDetailsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="8" id="Q2W-7V-Yq6">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5466,9 +5466,9 @@ Welcom to a smarter way of traveling.</string>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7e4-qs-die">
                                                     <rect key="frame" x="-2" y="-1" width="379" height="45.5"/>
                                                     <segments>
-                                                        <segment title="Alla linjer"/>
+                                                        <segment title="All lines"/>
                                                         <segment title="Only use"/>
-                                                        <segment title="Använd inte"/>
+                                                        <segment title="Do not use"/>
                                                     </segments>
                                                     <connections>
                                                         <action selector="onDepartureArrivalChanged:" destination="Hg1-8K-Ui9" eventType="valueChanged" id="Gzi-At-KQv"/>
@@ -5649,12 +5649,12 @@ Welcom to a smarter way of traveling.</string>
     <inferredMetricsTieBreakers>
         <segue reference="Lg4-KG-mN0"/>
         <segue reference="4rE-Hc-22D"/>
-        <segue reference="gZB-Im-USu"/>
-        <segue reference="L0K-5H-KeJ"/>
-        <segue reference="yy0-ry-irx"/>
-        <segue reference="eBt-27-ZxS"/>
-        <segue reference="GLI-h1-z4f"/>
+        <segue reference="zVB-lv-c0r"/>
+        <segue reference="alv-6I-0jl"/>
+        <segue reference="geV-cu-rvh"/>
+        <segue reference="OZb-MD-G7j"/>
+        <segue reference="ypq-Up-6Af"/>
+        <segue reference="ivB-Ve-lrb"/>
         <segue reference="rzj-uS-OIZ"/>
-        <segue reference="bAI-Ol-u0J"/>
     </inferredMetricsTieBreakers>
 </document>
