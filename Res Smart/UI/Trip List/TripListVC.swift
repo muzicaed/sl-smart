@@ -471,7 +471,7 @@ class TripListVC: UITableViewController {
       let cell = tableView!.dequeueReusableCell(
         withIdentifier: cancelledCellIdentifier, for: indexPath) as! TripCell
       cell.setupData(trip)
-      cell.tripDurationLabel.text = (validTuple.isCancelled) ? "Inställd".localized : "Kort bytestid".localized
+      cell.tripDurationLabel.text = (validTuple.isCancelled) ? "Cancelled".localized : "Short transfer".localized
       return cell
     }
     
@@ -539,7 +539,7 @@ class TripListVC: UITableViewController {
       loadMoreLater = tableView!.dequeueReusableCell(
         withIdentifier: loadMoreLaterIdentifier, for: indexPath) as? LoadMoreCell
       
-      loadMoreLater!.loadButton.accessibilityLabel = "Visa fler resor".localized
+      loadMoreLater!.loadButton.accessibilityLabel = "Show more trips".localized
       loadMoreLater!.loadButton.addTarget(
         self, action: #selector(loadMoreTrips), for: UIControlEvents.touchUpInside)
     }
@@ -552,11 +552,11 @@ class TripListVC: UITableViewController {
    */
   fileprivate func showNetworkErrorAlert() {
     let networkErrorAlert = UIAlertController(
-      title: "Tjänsten är otillgänglig".localized,
-      message: "Det gick inte att kontakta söktjänsten.".localized,
+      title: "Service unavailable".localized,
+      message: "Could not reach the search service.".localized,
       preferredStyle: UIAlertControllerStyle.alert)
     networkErrorAlert.addAction(
-      UIAlertAction(title: "Okej".localized, style: UIAlertActionStyle.default, handler: nil))
+      UIAlertAction(title: "OK".localized, style: UIAlertActionStyle.default, handler: nil))
     
     present(networkErrorAlert, animated: true, completion: nil)
   }

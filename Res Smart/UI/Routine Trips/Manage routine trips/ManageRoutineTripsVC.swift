@@ -203,6 +203,6 @@ class ManageRoutineTripsVC: UITableViewController {
    */
   override func tableView(_ tableView: UITableView,
     titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-      return "Ta bort".localized
+      return "Remove".localized
   }
 }

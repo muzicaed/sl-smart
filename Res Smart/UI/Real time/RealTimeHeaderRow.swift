@@ -34,9 +34,9 @@ class RealTimeHeaderRow: UITableViewCell {
     case "TRAIN":
       let train = realTimeDepartures.trains[trainKeys[index]]!.first!
       if train.journeyDirection == 1 {
-        titleLabel.text = "Pendeltåg, södergående".localized
+        titleLabel.text = "Trains, south".localized
       } else if train.journeyDirection == 2 {
-        titleLabel.text = "Pendeltåg, norrgående".localized
+        titleLabel.text = "Trains, north".localized
       }
     case "TRAM":
       let tram = realTimeDepartures.trams[tramKeys[index]]!.first!

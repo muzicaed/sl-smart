@@ -245,7 +245,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("BUS")
       let _ = segmentView.addSegmentWithTitle(
-        "Bussar".localized,
+        "Buses".localized,
         onSelectionImage: UIImage(named: "BUS"),
         offSelectionImage: UIImage(named: "BUS"))
     }
@@ -256,7 +256,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("METRO")
       let _ = segmentView.addSegmentWithTitle(
-        "T-bana".localized,
+        "Metro".localized,
         onSelectionImage: UIImage(named: "METRO"),
         offSelectionImage: UIImage(named: "METRO"))
     }
@@ -267,7 +267,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("TRAIN")
       let _ = segmentView.addSegmentWithTitle(
-        "Pendel".localized,
+        "Train".localized,
         onSelectionImage: UIImage(named: "TRAIN"),
         offSelectionImage: UIImage(named: "TRAIN"))
     }
@@ -278,7 +278,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("TRAM")
       let _ = segmentView.addSegmentWithTitle(
-        "Spår".localized,
+        "Tram".localized,
         onSelectionImage: UIImage(named: "TRAM"),
         offSelectionImage: UIImage(named: "TRAM"))
     }
@@ -289,7 +289,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("LOCAL-TRAM")
       let _ = segmentView.addSegmentWithTitle(
-        "Spår".localized,
+        "Tram".localized,
         onSelectionImage: UIImage(named: "TRAM"),
         offSelectionImage: UIImage(named: "TRAM"))
     }
@@ -300,7 +300,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("SHIP")
       let _ = segmentView.addSegmentWithTitle(
-        "Färja".localized,
+        "Ferry".localized,
         onSelectionImage: UIImage(named: "SHIP"),
         offSelectionImage: UIImage(named: "SHIP"))
     }
@@ -438,15 +438,16 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   
   /**
    * Hadle load data (network) error
+   * TODO: Refactoring, the service unavailable is used in many places.
    */
   fileprivate func handleLoadDataError() {
     stopRefreshTimmer()
     let invalidLoadingAlert = UIAlertController(
-      title: "Tjänsten är otillgänglig".localized,
-      message: "Det gick inte att kontakta söktjänsten.".localized,
+      title: "Service unavailable".localized,
+      message: "Could not reach the search service.".localized,
       preferredStyle: UIAlertControllerStyle.alert)
     invalidLoadingAlert.addAction(
-      UIAlertAction(title: "Okej".localized, style: UIAlertActionStyle.default, handler: { _ in
+      UIAlertAction(title: "OK".localized, style: UIAlertActionStyle.default, handler: { _ in
         let _ = self.navigationController?.popToRootViewController(animated: false)
       }))
     

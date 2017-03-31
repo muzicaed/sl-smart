@@ -21,10 +21,10 @@ class AdvancedCriterionsHelper {
     let numChangeString = createNoChangeString(criterions)
     let walkDistanceString = createWalkDistanceString(criterions)
     let extraTimeString = createExtraTimeString(criterions)
-    let isUnsharpString = (criterions.unsharp) ? "\("Alternativa".localized). " : ""
-    let incLinesString = (criterions.lineInc != nil) ? "\("Endast".localized) \(criterions.lineInc!). " : ""
-    let excLinesString = (criterions.lineExc != nil) ? "\("Inte".localized) \(criterions.lineExc!). " : ""
-    let arrivalTimeString = (criterions.time != nil) ? "\("Framme".localized) \(criterions.time!). " : ""
+    let isUnsharpString = (criterions.unsharp) ? "\("Alternative".localized). " : ""
+    let incLinesString = (criterions.lineInc != nil) ? "\("Only".localized) \(criterions.lineInc!). " : ""
+    let excLinesString = (criterions.lineExc != nil) ? "\("Not".localized) \(criterions.lineExc!). " : ""
+    let arrivalTimeString = (criterions.time != nil) ? "\("Arrive".localized) \(criterions.time!). " : ""
     
     return (isViaString + arrivalTimeString + travelTypesString + numChangeString +
       walkDistanceString + extraTimeString + isUnsharpString + incLinesString + excLinesString)
@@ -38,11 +38,11 @@ class AdvancedCriterionsHelper {
     if criterions.numChg > -1 {
       switch criterions.numChg {
       case 0:
-        text = "Inga byten. "
+        text = "No transfers. ".localized
       case 1:
-        text = "Högst 1 byte. "
+        text = "Max 1 transfer. ".localized
       default:
-        text = "Högst \(criterions.numChg) byten. "
+        text = String(format: "Max %d transfers.".localized, criterions.numChg)
       }
     }
     return text
@@ -56,9 +56,9 @@ class AdvancedCriterionsHelper {
     if criterions.maxWalkDist != 1000 {
       switch criterions.maxWalkDist {
       case 2000:
-        text = "Högst \(criterions.maxWalkDist / 1000) km. "
+        text = String(format: "Max %d km.".localized, criterions.maxWalkDist / 1000)
       default:
-        text = "Högst \(criterions.maxWalkDist) m. "
+        text = String(format: "Max %d m.".localized, criterions.maxWalkDist)
       }
     }
     return text
@@ -70,7 +70,7 @@ class AdvancedCriterionsHelper {
   static fileprivate func createExtraTimeString(_ criterions: TripSearchCriterion) -> String {
     var text = ""
     if criterions.minChgTime > 0 {
-      text = "\(criterions.minChgTime) min extra. "
+      text = String(format: "%d min extra. ".localized, criterions.minChgTime)
     }
     return text
   }
@@ -122,28 +122,28 @@ class AdvancedCriterionsHelper {
     
     var travelTypesString = ""
     if !criterions.useMetro {
-      travelTypesString += "tunnelbana, "
+      travelTypesString += "metro, ".localized
     }
     if !criterions.useTrain {
-      travelTypesString += "pendeltåg, "
+      travelTypesString += "train, ".localized
     }
     if !criterions.useTram {
-      travelTypesString += "spårvagn, "
+      travelTypesString += "tram, ".localized
     }
     if !criterions.useBus {
-      travelTypesString += "buss, "
+      travelTypesString += "bus, ".localized
     }
     if !criterions.useFerry {
-      travelTypesString += "båt, "
+      travelTypesString += "boat, ".localized
     }
     
     if travelTypesString != "" {
-      travelTypesString = "Ej med " + travelTypesString.substring(
+      travelTypesString = "Not with ".localized + travelTypesString.substring(
         to: travelTypesString.index(before: travelTypesString.characters.index(before: travelTypesString.endIndex))) + ". "
     }
     if let lastRange = travelTypesString.range(of: ", ",
                                                        options: NSString.CompareOptions.backwards, range: nil, locale: nil) {
-      travelTypesString.replaceSubrange(lastRange, with: " eller ")
+      travelTypesString.replaceSubrange(lastRange, with: " or ".localized)
     }
     return travelTypesString
   }
@@ -157,28 +157,28 @@ class AdvancedCriterionsHelper {
     
     var travelTypesString = ""
     if criterions.useMetro {
-      travelTypesString += "tunnelbana, "
+      travelTypesString += "metro, ".localized
     }
     if criterions.useTrain {
-      travelTypesString += "pendeltåg, "
+      travelTypesString += "train, ".localized
     }
     if criterions.useTram {
-      travelTypesString += "spårvagn, "
+      travelTypesString += "metro, ".localized
     }
     if criterions.useBus {
-      travelTypesString += "buss, "
+      travelTypesString += "bus, ".localized
     }
     if criterions.useFerry {
-      travelTypesString += "båt, "
+      travelTypesString += "boat, ".localized
     }
     
     if travelTypesString != "" {
-      travelTypesString = "Endast med " + travelTypesString.substring(
+      travelTypesString = "Only with ".localized + travelTypesString.substring(
         to: travelTypesString.index(before: travelTypesString.characters.index(before: travelTypesString.endIndex))) + ". "
     }
     if let lastRange = travelTypesString.range(of: ", ",
                                                        options: NSString.CompareOptions.backwards, range: nil, locale: nil) {
-      travelTypesString.replaceSubrange(lastRange, with: " och ")
+      travelTypesString.replaceSubrange(lastRange, with: " and ".localized)
     }
     return travelTypesString
   }

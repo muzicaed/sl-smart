@@ -37,7 +37,7 @@ class RoutineTripCell: UICollectionViewCell {
     layer.borderColor = UIColor.lightGray.cgColor
     var title = routineTrip.title!
     if routineTrip.isSmartSuggestion {
-      title = "\("Vana".localized): \(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName)"
+      title = "\("Habit".localized): \(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName)"
     }
     
     tripTitleLabel.text = title
@@ -80,7 +80,7 @@ class RoutineTripCell: UICollectionViewCell {
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
       
       if DateUtils.dateAsDateString(first.departureDateTime) != DateUtils.dateAsDateString(Date()) {
-        inAboutLabel.text = "Imorgon".localized
+        inAboutLabel.text = "Tomorrow".localized
       } else {
         inAboutLabel.text = DateUtils.createAboutTimeText(
           first.departureDateTime, isWalk: first.type == TripType.Walk)
@@ -105,7 +105,7 @@ class RoutineTripCell: UICollectionViewCell {
     if depTimeInterval < (60 * 120) {
       let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
       if diffMin <= 120 {
-        nextInAboutLabel.text = String(format: "Nästa: %d min".localized, diffMin)
+        nextInAboutLabel.text = String(format: "Next: %d min".localized, diffMin)
       }
     }
   }
@@ -118,9 +118,9 @@ class RoutineTripCell: UICollectionViewCell {
     if !trip.isValid {
       let validTuple = trip.checkInvalidSegments()
       inAboutLabel.textColor = StyleHelper.sharedInstance.warningColor
-      inAboutLabel.text = (validTuple.isCancelled) ? "Inställd".localized : "Kort bytestid".localized
+      inAboutLabel.text = (validTuple.isCancelled) ? "Cancelled".localized : "Short transfer".localized
       tripDurationLabel.text = ""
-    } else if inAboutLabel.text == "Redan avgått".localized {
+    } else if inAboutLabel.text == "Already departed".localized {
       inAboutLabel.textColor = StyleHelper.sharedInstance.warningColor
     }
   }
@@ -142,7 +142,7 @@ class RoutineTripCell: UICollectionViewCell {
         
         let label = UILabel()
         label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
-        label.accessibilityLabel = "\("Steg".localized) \(count + 1): " + data.long
+        label.accessibilityLabel = "\("Step".localized) \(count + 1): " + data.long
         label.textAlignment = NSTextAlignment.center
         label.font = UIFont.boldSystemFont(ofSize: 9)
         label.minimumScaleFactor = 0.5
@@ -189,6 +189,6 @@ class RoutineTripCell: UICollectionViewCell {
     arrivalTimeLabel.text = "--:--"
     inAboutLabel.text = ""
     
-    tripDurationLabel.text = "Hittade ingen resa...".localized
+    tripDurationLabel.text = "Found no trip...".localized
   }
 }

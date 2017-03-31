@@ -93,19 +93,19 @@ DateTimePickResponder {
     } else if segue.identifier == "MaxWalkDistance" {
       let vc = segue.destination as! GenericValuePickerVC
       vc.delegate = self
-      vc.title = "Max gångavstånd".localized
+      vc.title = "Max walk distance".localized
       vc.setValue(routineTrip!.criterions.maxWalkDist, valueType: .WalkDistance)
       
     } else if segue.identifier == "NumberOfChanges" {
       let vc = segue.destination as! GenericValuePickerVC
       vc.delegate = self
-      vc.title = "Antal byten".localized
+      vc.title = "No of transfers".localized
       vc.setValue(routineTrip!.criterions.numChg, valueType: .NoOfChanges)
       
     } else if segue.identifier == "ChangeTime" {
       let vc = segue.destination as! GenericValuePickerVC
       vc.delegate = self
-      vc.title = "Extra tid vid byte".localized
+      vc.title = "Extra transfer time".localized
       vc.setValue(routineTrip!.criterions.minChgTime, valueType: .TimeForChange)
       
     } else if segue.identifier == "PickLines" {
@@ -279,7 +279,7 @@ DateTimePickResponder {
       let dateTimeTuple = DateUtils.dateAsStringTuple(date)
       routine.criterions.date = nil
       routine.criterions.time = dateTimeTuple.time
-      arrivalTimeLabel.text = "\("Klockan".localized) \(dateTimeTuple.time)"
+      arrivalTimeLabel.text = "\("At".localized) \(dateTimeTuple.time)"
       selectedDate = date
       tableView.reloadData()
     }
@@ -336,13 +336,13 @@ DateTimePickResponder {
     if indexPath.section == 1 && indexPath.row == 1 {
       hasChanged = true
       return [
-        UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Rensa".localized) { (_, _) -> Void in
+        UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Clear".localized) { (_, _) -> Void in
           self.resetViaStation()
           tableView.reloadData()
         }]
     } else if indexPath.section == 2 {
       return [
-        UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Rensa".localized) { (_, _) -> Void in
+        UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Clear".localized) { (_, _) -> Void in
           self.resetArrivalTime()
           tableView.reloadData()
         }]
@@ -407,7 +407,7 @@ DateTimePickResponder {
    */
   fileprivate func prepareFields() {
     if routineTrip == nil && !isMakeRoutine {
-      title = "Ny rutin".localized
+      title = "New routine".localized
       isNewTrip = true
       routineTrip = RoutineTrip()
       routineTrip?.criterions.unsharp = false
@@ -418,7 +418,7 @@ DateTimePickResponder {
       routineTrip?.criterions.unsharp = false
       routineTripCopy = routineTrip!.copy() as? RoutineTrip
       setupEditData()
-      title = "Ny rutin".localized
+      title = "New routine".localized
       isNewTrip = true
       
     } else {
@@ -450,7 +450,7 @@ DateTimePickResponder {
       if let time = trip.criterions.time {
         let today = Date()
         selectedDate = DateUtils.convertDateString("\(DateUtils.dateAsDateString(today)) \(time)")
-        arrivalTimeLabel.text = "\("Klockan".localized) \(time)"
+        arrivalTimeLabel.text = "\("At".localized) \(time)"
       }
       
       if trip.criterions.via != nil {
@@ -465,11 +465,11 @@ DateTimePickResponder {
    */
   fileprivate func showInvalidTitleAlert() {
     let invalidTitleAlert = UIAlertController(
-      title: "Titel saknas".localized,
-      message: "Du behöver ange en titel för din resa.".localized,
+      title: "Title missing".localized,
+      message: "You need to give you routine a title".localized,
       preferredStyle: UIAlertControllerStyle.alert)
     invalidTitleAlert.addAction(
-      UIAlertAction(title: "Okej".localized, style: UIAlertActionStyle.default, handler: nil))
+      UIAlertAction(title: "OK".localized, style: UIAlertActionStyle.default, handler: nil))
     
     present(invalidTitleAlert, animated: true, completion: nil)
   }
@@ -479,11 +479,11 @@ DateTimePickResponder {
    */
   fileprivate func showArrivalTimeAlert() {
     let arrivalTimeAlert = UIAlertController(
-      title: "Senast framme".localized,
-      message: "Du kan ange en tid när du senast behöver vara framme.\n\nDetta kan fungera bra med rutiner där du vill vara framme samma vid tid varje gång. T.ex. \"Åka till jobbet\" eller \"Fotbollsträning\"".localized,
+      title: "Latest arrival".localized,
+      message: "You can enter when at the latests you need to arrive.\n\nThis works perfect with routines like \"Go to work\" or \"Soccer practise\"".localized,
       preferredStyle: UIAlertControllerStyle.alert)
     arrivalTimeAlert.addAction(
-      UIAlertAction(title: "Okej".localized, style: UIAlertActionStyle.default, handler: nil))
+      UIAlertAction(title: "OK".localized, style: UIAlertActionStyle.default, handler: nil))
     
     present(arrivalTimeAlert, animated: true, completion: nil)
   }
@@ -493,11 +493,11 @@ DateTimePickResponder {
    */
   fileprivate func showInvalidLocationAlert() {
     let invalidLocationAlert = UIAlertController(
-      title: "Station saknas".localized,
-      message: "Du behöver ange två olika stationer som du brukar åka mellan.".localized,
+      title: "Stop missing".localized,
+      message: "\"from\" and \"to\" needs to be two different stations.".localized,
       preferredStyle: UIAlertControllerStyle.alert)
     invalidLocationAlert.addAction(
-      UIAlertAction(title: "Okej".localized, style: UIAlertActionStyle.default, handler: nil))
+      UIAlertAction(title: "OK".localized, style: UIAlertActionStyle.default, handler: nil))
     
     present(invalidLocationAlert, animated: true, completion: nil)
   }
@@ -507,11 +507,11 @@ DateTimePickResponder {
    */
   fileprivate func showInvalidViaAlert() {
     let invalidLocationAlert = UIAlertController(
-      title: "Felaktig \"Via station\"".localized,
-      message: "Via kan ej vara samma station som Från eller Till station.".localized,
+      title: "Incorrect \"Via stop\"".localized,
+      message: "Via can not be the same station as \"from\" or \"to\".".localized,
       preferredStyle: UIAlertControllerStyle.alert)
     invalidLocationAlert.addAction(
-      UIAlertAction(title: "Okej".localized, style: UIAlertActionStyle.default, handler: nil))
+      UIAlertAction(title: "OK".localized, style: UIAlertActionStyle.default, handler: nil))
     
     present(invalidLocationAlert, animated: true, completion: nil)
   }
@@ -591,7 +591,7 @@ DateTimePickResponder {
     hasChanged = true
     isViaSelected = false
     routineTrip?.criterions.via = nil
-    self.viaLabel.text = "(Välj station)".localized
+    self.viaLabel.text = "(Choose stop)".localized
   }
   
   /**
@@ -601,7 +601,7 @@ DateTimePickResponder {
     hasChanged = true
     self.selectedDate = nil
     routineTrip?.criterions.time = nil
-    self.arrivalTimeLabel.text = "När som helst".localized
+    self.arrivalTimeLabel.text = "Any time".localized
   }
   
   /**
@@ -637,27 +637,27 @@ DateTimePickResponder {
     if let routine = routineTrip {
       switch routine.criterions.maxWalkDist {
       case 1000, 2000:
-        maxWalkLabel.text = String(format: "Högst %d km".localized, routine.criterions.maxWalkDist / 1000)
+        maxWalkLabel.text = String(format: "Max %d km".localized, routine.criterions.maxWalkDist / 1000)
       default:
-        maxWalkLabel.text = String(format: "Högst %d m".localized, routine.criterions.maxWalkDist)
+        maxWalkLabel.text = String(format: "Max %d m".localized, routine.criterions.maxWalkDist)
       }
       
       switch routine.criterions.numChg {
       case -1:
-        numberOfChangesLabel.text = "Inga begränsningar för antal byten".localized
+        numberOfChangesLabel.text = "No limitations for no. of transfers".localized
       case 0:
-        numberOfChangesLabel.text = "Inga byten".localized
+        numberOfChangesLabel.text = "No transfers".localized
       case 1:
-        numberOfChangesLabel.text = "Högst 1 byte".localized
+        numberOfChangesLabel.text = "Max 1 transfer".localized
       default:
-        numberOfChangesLabel.text = String(format: "Högst %d byten".localized, routine.criterions.numChg)
+        numberOfChangesLabel.text = String(format: "Max %d transfers".localized, routine.criterions.numChg)
       }
       
       switch routine.criterions.minChgTime {
       case 0:
-        changeTimeLabel.text = "Ingen extra tid vid byte".localized
+        changeTimeLabel.text = "No extra time for trasfer".localized
       default:
-        changeTimeLabel.text = String(format: "%d minuter extra vid byte".localized, routine.criterions.minChgTime)
+        changeTimeLabel.text = String(format: "%d minutes extra for transfer".localized, routine.criterions.minChgTime)
       }
       
       isAlternative.accessoryType = .none
@@ -666,11 +666,11 @@ DateTimePickResponder {
       }
       
       if routine.criterions.lineInc == nil && routine.criterions.lineExc == nil {
-        linesLabel.text = "Alla linjer".localized
+        linesLabel.text = "All lines".localized
       } else if routine.criterions.lineInc != nil {
-        linesLabel.text = "\("Använd endast:".localized) \(routine.criterions.lineInc!)"
+        linesLabel.text = "\("Only use:".localized) \(routine.criterions.lineInc!)"
       } else if routine.criterions.lineExc != nil {
-        linesLabel.text = "\("Använd inte:".localized) \(routine.criterions.lineExc!)"
+        linesLabel.text = "\("Don't use:".localized) \(routine.criterions.lineExc!)"
       }
     }
   }

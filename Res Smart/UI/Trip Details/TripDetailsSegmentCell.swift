@@ -73,14 +73,14 @@ class TripDetailsSegmentCell: UITableViewCell {
    */
   fileprivate func createSummary(_ segment: TripSegment) -> String {
     if segment.type == .Walk {
-      return "\("ca.".localized) \(segment.durationInMin) min"
+      return "\("about".localized) \(segment.durationInMin) min"
     } else if segment.stops.count == 0 {
       return ""
     } else if segment.stops.count <= 2 {
-      return "1 \("hållplats".localized) (\(segment.durationInMin) min)"
+      return "1 \("stop".localized) (\(segment.durationInMin) min)"
     }
     
-    return "\(segment.stops.count - 1) \("hållplatser".localized) (\(segment.durationInMin) min)"
+    return "\(segment.stops.count - 1) \("stops".localized) (\(segment.durationInMin) min)"
   }
   
   /**

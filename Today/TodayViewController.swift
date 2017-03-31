@@ -106,7 +106,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
           callback()
         }
         else {
-          self.titleLabel.text = "Hittade inga rutiner.".localized
+          self.titleLabel.text = "Could not find any routines.".localized
         }
       }
       return
@@ -121,7 +121,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
       if let trip = bestRoutineTrip.trips.first {
         self.titleLabel.text = bestRoutineTrip.title
         if self.titleLabel.text == "" {
-          self.titleLabel.text = "Vana".localized
+          self.titleLabel.text = "Habit".localized
         }
         if let first = trip.tripSegments.first, let last = trip.tripSegments.last {
           self.departureStationLabel.text = first.origin.name

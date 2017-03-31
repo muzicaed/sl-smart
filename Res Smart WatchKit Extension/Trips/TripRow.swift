@@ -69,7 +69,7 @@ class TripRow: NSObject {
     }
     
     if date.timeIntervalSinceNow < (60*1) * -1 {
-      travelTimeLabel.setText("Redan avgått".localized)
+      travelTimeLabel.setText("Already departed".localized)
       scheduleLabel.setTextColor(UIColor.lightGray)
     }
   }

@@ -14,9 +14,9 @@ class TravelTypesVC: UITableViewController {
   
   var delegate: TravelTypesResponder?
   fileprivate var checkArr = [false, true, false, true, false]
-  fileprivate let titels = ["Tunnelbana".localized, "Pendeltåg".localized,
-                            "Lokalbana/Spårvagn".localized, "Bussar".localized,
-                            "Båtar".localized]
+  fileprivate let titels = ["Metro".localized, "Trains".localized,
+                            "Trams".localized, "Buses".localized,
+                            "Boats".localized]
   
   /**
    * Set initial data.
