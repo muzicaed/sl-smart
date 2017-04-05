@@ -353,7 +353,6 @@
 		187484771D89743A00F1F7BA /* NewsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		18763F211D80A29500666718 /* StaticExit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticExit.swift; sourceTree = "<group>"; };
 		187808DE1D3A9DB100D297FF /* TimePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerVC.swift; sourceTree = "<group>"; };
-		18801B831E8D0610002E390E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchService.swift; sourceTree = "<group>"; };
 		188367681C16EEA000A8BE16 /* TripDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsVC.swift; sourceTree = "<group>"; };
 		1883676A1C170CC100A8BE16 /* TripCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCellProtocol.swift; sourceTree = "<group>"; };
@@ -445,17 +444,11 @@
 		18F447DC1D7EC02C00B48D39 /* ScorePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePost.swift; sourceTree = "<group>"; };
 		18F447E11D7EC57200B48D39 /* StaticStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticStop.swift; sourceTree = "<group>"; };
 		18F447E71D7ED47A00B48D39 /* StopsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopsStore.swift; sourceTree = "<group>"; };
-		18F64E3A1E8CEE3300709B02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Interface.strings; sourceTree = "<group>"; };
-		18F64E3B1E8CEE3300709B02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		18F64E411E8CEEC500709B02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18F64E431E8CEEC500709B02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		18F64E471E8CEECA00709B02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		18F64E491E8CEEDC00709B02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLJourneyDetailsApi.swift; sourceTree = "<group>"; };
 		18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournyDetailsService.swift; sourceTree = "<group>"; };
 		18FA999B1C49321C0075C4C2 /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
-		18FC53EA1E8E3DA900576B99 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		18FC53EF1E8E3FAF00576B99 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		18FC53F11E8E58DB00576B99 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		18FC53F21E8E58DB00576B99 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
 		18FC53F31E8E58DB00576B99 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Interface.strings; sourceTree = "<group>"; };
@@ -1251,7 +1244,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
-				en,
 				sv,
 			);
 			mainGroup = 18937E281BFF33FA00C523C9;
@@ -1582,7 +1574,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				1818B26C1C404FE0004E3CA3 /* Base */,
-				18F64E3B1E8CEE3300709B02 /* en */,
 				18FC53F41E8E58DB00576B99 /* sv */,
 			);
 			name = MainInterface.storyboard;
@@ -1591,7 +1582,6 @@
 		18801B841E8D0610002E390E /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				18801B831E8D0610002E390E /* en */,
 				18FC53F51E8E58DB00576B99 /* sv */,
 			);
 			name = Localizable.strings;
@@ -1601,7 +1591,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				18937E491BFF33FB00C523C9 /* Base */,
-				18F64E3A1E8CEE3300709B02 /* en */,
 				18FC53F31E8E58DB00576B99 /* sv */,
 			);
 			name = Interface.storyboard;
@@ -1611,7 +1600,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				18F64E411E8CEEC500709B02 /* Base */,
-				18F64E471E8CEECA00709B02 /* en */,
 				18FC53F11E8E58DB00576B99 /* sv */,
 			);
 			name = LaunchScreen.storyboard;
@@ -1621,7 +1609,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				18F64E431E8CEEC500709B02 /* Base */,
-				18F64E491E8CEEDC00709B02 /* en */,
 				18FC53F21E8E58DB00576B99 /* sv */,
 			);
 			name = Main.storyboard;
@@ -1630,7 +1617,6 @@
 		18FC53EB1E8E3DA900576B99 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				18FC53EA1E8E3DA900576B99 /* en */,
 				18FC53F61E8E58DB00576B99 /* sv */,
 			);
 			name = Localizable.strings;
@@ -1639,7 +1625,6 @@
 		18FC53F01E8E3FAF00576B99 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				18FC53EF1E8E3FAF00576B99 /* en */,
 				18FC53F71E8E58DB00576B99 /* sv */,
 			);
 			name = Localizable.strings;
