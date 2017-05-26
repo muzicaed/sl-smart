@@ -74,6 +74,9 @@
 		187484781D89743A00F1F7BA /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187484771D89743A00F1F7BA /* NewsVC.swift */; };
 		18763F221D80A29500666718 /* StaticExit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18763F211D80A29500666718 /* StaticExit.swift */; };
 		187733C91ED819C700B5B1B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733C81ED819C700B5B1B9 /* Localizable.strings */; };
+		187733CC1ED82A4900B5B1B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733CE1ED82A4900B5B1B9 /* InfoPlist.strings */; };
+		187733D11ED82B1100B5B1B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733D31ED82B1100B5B1B9 /* InfoPlist.strings */; };
+		187733D61ED82B6A00B5B1B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733D81ED82B6A00B5B1B9 /* InfoPlist.strings */; };
 		187808DF1D3A9DB100D297FF /* TimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187808DE1D3A9DB100D297FF /* TimePickerVC.swift */; };
 		18801B821E8D0610002E390E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18801B841E8D0610002E390E /* Localizable.strings */; };
 		188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367681C16EEA000A8BE16 /* TripDetailsVC.swift */; };
@@ -354,6 +357,9 @@
 		187484771D89743A00F1F7BA /* NewsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		18763F211D80A29500666718 /* StaticExit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticExit.swift; sourceTree = "<group>"; };
 		187733C81ED819C700B5B1B9 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		187733CD1ED82A4900B5B1B9 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		187733D21ED82B1100B5B1B9 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		187733D71ED82B6A00B5B1B9 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		187808DE1D3A9DB100D297FF /* TimePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerVC.swift; sourceTree = "<group>"; };
 		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchService.swift; sourceTree = "<group>"; };
 		188367681C16EEA000A8BE16 /* TripDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsVC.swift; sourceTree = "<group>"; };
@@ -529,6 +535,7 @@
 				1818B2691C404FE0004E3CA3 /* TodayViewController.swift */,
 				1818B26B1C404FE0004E3CA3 /* MainInterface.storyboard */,
 				1818B26E1C404FE0004E3CA3 /* Info.plist */,
+				187733D81ED82B6A00B5B1B9 /* InfoPlist.strings */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -793,6 +800,7 @@
 				188367611C16264200A8BE16 /* WatchService.swift */,
 				18937E3B1BFF33FA00C523C9 /* Assets.xcassets */,
 				18937E401BFF33FA00C523C9 /* Info.plist */,
+				187733CE1ED82A4900B5B1B9 /* InfoPlist.strings */,
 				188B80971C177E9E00E7D90C /* Res Smart.entitlements */,
 				188A317E1E89394B00D44C97 /* LocalizedString.swift */,
 				18F64E401E8CEEC500709B02 /* LaunchScreen.storyboard */,
@@ -809,6 +817,7 @@
 				18937E481BFF33FB00C523C9 /* Interface.storyboard */,
 				18937E4B1BFF33FB00C523C9 /* Assets.xcassets */,
 				18937E4D1BFF33FB00C523C9 /* Info.plist */,
+				187733D31ED82B1100B5B1B9 /* InfoPlist.strings */,
 			);
 			path = "Res Smart WatchKit App";
 			sourceTree = "<group>";
@@ -1270,6 +1279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1818B26D1C404FE0004E3CA3 /* MainInterface.storyboard in Resources */,
+				187733D61ED82B6A00B5B1B9 /* InfoPlist.strings in Resources */,
 				18FC53EE1E8E3FAF00576B99 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1294,6 +1304,7 @@
 				18F447E51D7ECF0C00B48D39 /* site.json in Resources */,
 				18F64E451E8CEEC500709B02 /* Main.storyboard in Resources */,
 				180B657E1D8A985400D2A50F /* Settings.bundle in Resources */,
+				187733CC1ED82A4900B5B1B9 /* InfoPlist.strings in Resources */,
 				18F447E61D7ECF0F00B48D39 /* stop.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1303,6 +1314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18937E4C1BFF33FB00C523C9 /* Assets.xcassets in Resources */,
+				187733D11ED82B1100B5B1B9 /* InfoPlist.strings in Resources */,
 				18FC53E91E8E3DA900576B99 /* Localizable.strings in Resources */,
 				18937E4A1BFF33FB00C523C9 /* Interface.storyboard in Resources */,
 			);
@@ -1581,6 +1593,30 @@
 				18FC53F41E8E58DB00576B99 /* sv */,
 			);
 			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		187733CE1ED82A4900B5B1B9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				187733CD1ED82A4900B5B1B9 /* sv */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		187733D31ED82B1100B5B1B9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				187733D21ED82B1100B5B1B9 /* sv */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		187733D81ED82B6A00B5B1B9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				187733D71ED82B6A00B5B1B9 /* sv */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		18801B841E8D0610002E390E /* Localizable.strings */ = {
