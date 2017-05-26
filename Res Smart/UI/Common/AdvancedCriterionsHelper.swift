@@ -163,7 +163,7 @@ class AdvancedCriterionsHelper {
       travelTypesString += "train, ".localized
     }
     if criterions.useTram {
-      travelTypesString += "metro, ".localized
+      travelTypesString += "tram, ".localized
     }
     if criterions.useBus {
       travelTypesString += "bus, ".localized

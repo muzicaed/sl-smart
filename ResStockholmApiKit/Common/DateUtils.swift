@@ -165,7 +165,7 @@ open class DateUtils {
    */
   open static func createTripDurationString(_ min: Int) -> String {
     if min < 60 {
-      return "\("Trip time".localized): \(min) min"
+      return "\("Trip time:".localized): \(min) min"
     }
     
     var remainder = String(min % 60)
