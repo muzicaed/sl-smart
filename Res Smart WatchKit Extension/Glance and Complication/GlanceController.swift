@@ -22,12 +22,12 @@ class GlanceController: SmartTripIC {
    */
   override func updateUINoTripsFound(_ bestRoutine: Dictionary<String, AnyObject>) {
     if bestRoutine["ha"] as! Bool {
-      subTitleLabel.setText("Smart vana")
+      subTitleLabel.setText("Smart habit")
     } else {
       subTitleLabel.setText(bestRoutine["ti"] as? String)
     }
     
-    departureLabel.setText("Ingen resa")
+    departureLabel.setText("No trips")
     originLabel.setText("")
     destinationLabel.setText("")
     contentGroup.setHidden(false)
@@ -48,7 +48,7 @@ class GlanceController: SmartTripIC {
       
       updateDepatureUI()
       if bestRoutine["ha"] as! Bool {
-        subTitleLabel.setText("Smart vana")
+        subTitleLabel.setText("Smart habit")
       } else {
         subTitleLabel.setText(bestRoutine["ti"] as? String)
       }
@@ -90,7 +90,7 @@ class GlanceController: SmartTripIC {
    */
   override func setLoadingUIState() {
     contentGroup.setHidden(true)
-    subTitleLabel.setText("Söker resa...")
+    subTitleLabel.setText("Searching...")
     subTitleLabel.setTextColor(UIColor.lightGray)
   }
   
@@ -104,7 +104,7 @@ class GlanceController: SmartTripIC {
         let bestRoutine = data["b"] as! Dictionary<String, AnyObject>
         contentGroup.setHidden(false)
         if bestRoutine["ha"] as! Bool {
-          subTitleLabel.setText("Smart vana")
+          subTitleLabel.setText("Smart habit")
         } else {
           subTitleLabel.setText(bestRoutine["ti"] as? String)
         }
@@ -125,7 +125,7 @@ class GlanceController: SmartTripIC {
     isLoading = false
     if let text = currentDepartureText {
       if text.range(of: "Om") != nil {
-        departureLabel.setText("Uppdaterar")
+        departureLabel.setText("Updating")
       }
     }
   }

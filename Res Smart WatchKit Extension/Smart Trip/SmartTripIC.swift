@@ -120,7 +120,7 @@ class SmartTripIC: WKInterfaceController {
           retryCount = 0
           stopRefreshTimer()
           displayError(
-            "Can not reach your iPhone".localized,
+            "Could not reach your iPhone".localized,
             message: "Check that your iPhone is nearby and turned on.".localized)
           return
         }
@@ -175,8 +175,8 @@ class SmartTripIC: WKInterfaceController {
       return
     } else if error.code == WCError.notReachable {
       displayError(
-        "Kan inte nå din iPhone".localized,
-        message: "Kontrollera att din iPhone är i närheten och påslagen.".localized)
+        "Could not reach your iPhone".localized,
+        message: "Check that your iPhone is nearby and turned on.".localized)
       return
     }
     
@@ -215,7 +215,7 @@ class SmartTripIC: WKInterfaceController {
     } else {
       titleLabel.setText(bestRoutine["ti"] as? String)
     }
-    departureTimeLabel.setText("No trip".localized)
+    departureTimeLabel.setText("No trips".localized)
     originLabel.setText("")
     destinationLabel.setText("")
     containerGroup.setHidden(false)

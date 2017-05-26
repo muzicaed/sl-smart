@@ -77,9 +77,9 @@ class DateUtils {
     formatter.dateFormat = "EEEE"
     var weekDay = formatter.string(from: date)
     if formatter.string(from: Date()) == weekDay {
-      weekDay = "Idag"
+      weekDay = "Today"
     } else if formatter.string(from: Date(timeIntervalSinceNow: 86400)) == weekDay {
-      weekDay = "imorgon"
+      weekDay = "Tomorrow"
     } else {
       weekDay = "\(day) \(month)"
     }
@@ -118,11 +118,11 @@ class DateUtils {
    * Creates a human friendly deparure time.
    */
   static func createDepartureTimeString(_ departureTime: String, isWalk: Bool) -> String {
-    var aboutStr = "Om"
-    var nowStr = "Avgår nu"
+    var aboutStr = "In"
+    var nowStr = "Departs now"
     if isWalk {
-      aboutStr = "Gå om"
-      nowStr = "Gå nu"
+      aboutStr = "Walk in"
+      nowStr = "Walk now"
     }
     
     let departureDate = DateUtils.convertDateString(departureTime)

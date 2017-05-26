@@ -73,6 +73,7 @@
 		18733C661C4E56C500F66AEF /* RTBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C651C4E56C500F66AEF /* RTBus.swift */; };
 		187484781D89743A00F1F7BA /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187484771D89743A00F1F7BA /* NewsVC.swift */; };
 		18763F221D80A29500666718 /* StaticExit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18763F211D80A29500666718 /* StaticExit.swift */; };
+		187733C91ED819C700B5B1B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733C81ED819C700B5B1B9 /* Localizable.strings */; };
 		187808DF1D3A9DB100D297FF /* TimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187808DE1D3A9DB100D297FF /* TimePickerVC.swift */; };
 		18801B821E8D0610002E390E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18801B841E8D0610002E390E /* Localizable.strings */; };
 		188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367681C16EEA000A8BE16 /* TripDetailsVC.swift */; };
@@ -352,6 +353,7 @@
 		18733C651C4E56C500F66AEF /* RTBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBus.swift; sourceTree = "<group>"; };
 		187484771D89743A00F1F7BA /* NewsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		18763F211D80A29500666718 /* StaticExit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticExit.swift; sourceTree = "<group>"; };
+		187733C81ED819C700B5B1B9 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		187808DE1D3A9DB100D297FF /* TimePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerVC.swift; sourceTree = "<group>"; };
 		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchService.swift; sourceTree = "<group>"; };
 		188367681C16EEA000A8BE16 /* TripDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsVC.swift; sourceTree = "<group>"; };
@@ -822,6 +824,7 @@
 				18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */,
 				18937E631BFF33FB00C523C9 /* Assets.xcassets */,
 				18937E651BFF33FB00C523C9 /* Info.plist */,
+				187733C81ED819C700B5B1B9 /* Localizable.strings */,
 			);
 			path = "Res Smart WatchKit Extension";
 			sourceTree = "<group>";
@@ -1310,6 +1313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18937E641BFF33FB00C523C9 /* Assets.xcassets in Resources */,
+				187733C91ED819C700B5B1B9 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

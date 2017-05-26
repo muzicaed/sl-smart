@@ -46,7 +46,7 @@ class TripRow: NSObject {
     let humanTripDuration = createHumanTripDuration(data["dur"] as! Int)
     
     scheduleLabel.setText("\(depDateString) → \(DateUtils.dateAsTimeString(arrivalDate))")
-    travelTimeLabel.setText("Restid: \(humanTripDuration)")
+    travelTimeLabel.setText("Trip time".localized  + ": \(humanTripDuration)")
     handleTravelDateLabel(data["ot"] as! String)
     createTripIcons(
       data["icn"] as! [String],
