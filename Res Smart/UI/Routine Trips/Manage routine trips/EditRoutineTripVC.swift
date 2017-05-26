@@ -655,7 +655,7 @@ DateTimePickResponder {
       
       switch routine.criterions.minChgTime {
       case 0:
-        changeTimeLabel.text = "No extra time for trasfer".localized
+        changeTimeLabel.text = "No extra time for transfer".localized
       default:
         changeTimeLabel.text = String(format: "%d minutes extra for transfer".localized, routine.criterions.minChgTime)
       }

@@ -514,7 +514,7 @@ PickGenericValueResponder, LinePickerResponder {
       
       switch crit.minChgTime {
       case 0:
-        changeTimeLabel.text = "No extra time for trasfer".localized
+        changeTimeLabel.text = "No extra time for transfer".localized
       default:
         changeTimeLabel.text = String(format: "%d minutes extra for transfer".localized, crit.minChgTime)
       }

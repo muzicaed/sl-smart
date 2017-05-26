@@ -101,7 +101,7 @@ class GenericValuePickerVC: UITableViewController {
         ]
       case .TimeForChange:
         return [
-          (0, "No extra time for trasfer".localized),
+          (0, "No extra time for transfer".localized),
           (2, "2 minutes extra".localized),
           (5, "5 minutes extra".localized),
           (10, "10 minutes extra".localized),

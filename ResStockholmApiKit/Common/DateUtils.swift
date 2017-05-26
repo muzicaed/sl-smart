@@ -63,9 +63,9 @@ open class DateUtils {
     formatter.timeStyle = .none
 
     if Calendar.current.isDateInToday(date) {
-      return "Today"
+      return "Today".localized
     } else if Calendar.current.isDateInTomorrow(date) {
-      return "Tomorrow"
+      return "Tomorrow".localized
     }
     
     return formatter.string(from: date)
@@ -83,10 +83,10 @@ open class DateUtils {
     var todayStr = ""
     if Calendar.current.isDateInToday(date) {
       formatter.dateStyle = .none
-      todayStr = "Today, "
+      todayStr = "Today, ".localized
     } else if Calendar.current.isDateInTomorrow(date) {
       formatter.dateStyle = .none
-      todayStr = "Tomorrow, "      
+      todayStr = "Tomorrow, ".localized
     }
     
     return todayStr + formatter.string(from: date)
