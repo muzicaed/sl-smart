@@ -73,10 +73,10 @@
 		18733C661C4E56C500F66AEF /* RTBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C651C4E56C500F66AEF /* RTBus.swift */; };
 		187484781D89743A00F1F7BA /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187484771D89743A00F1F7BA /* NewsVC.swift */; };
 		18763F221D80A29500666718 /* StaticExit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18763F211D80A29500666718 /* StaticExit.swift */; };
-		187733C91ED819C700B5B1B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733C81ED819C700B5B1B9 /* Localizable.strings */; };
 		187733CC1ED82A4900B5B1B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733CE1ED82A4900B5B1B9 /* InfoPlist.strings */; };
 		187733D11ED82B1100B5B1B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733D31ED82B1100B5B1B9 /* InfoPlist.strings */; };
 		187733D61ED82B6A00B5B1B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733D81ED82B6A00B5B1B9 /* InfoPlist.strings */; };
+		187733D91ED83FC500B5B1B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733DB1ED83FC500B5B1B9 /* Localizable.strings */; };
 		187808DF1D3A9DB100D297FF /* TimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187808DE1D3A9DB100D297FF /* TimePickerVC.swift */; };
 		18801B821E8D0610002E390E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18801B841E8D0610002E390E /* Localizable.strings */; };
 		188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367681C16EEA000A8BE16 /* TripDetailsVC.swift */; };
@@ -356,10 +356,10 @@
 		18733C651C4E56C500F66AEF /* RTBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBus.swift; sourceTree = "<group>"; };
 		187484771D89743A00F1F7BA /* NewsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		18763F211D80A29500666718 /* StaticExit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticExit.swift; sourceTree = "<group>"; };
-		187733C81ED819C700B5B1B9 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		187733CD1ED82A4900B5B1B9 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		187733D21ED82B1100B5B1B9 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		187733D71ED82B6A00B5B1B9 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		187733DA1ED83FC500B5B1B9 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		187808DE1D3A9DB100D297FF /* TimePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerVC.swift; sourceTree = "<group>"; };
 		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchService.swift; sourceTree = "<group>"; };
 		188367681C16EEA000A8BE16 /* TripDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsVC.swift; sourceTree = "<group>"; };
@@ -833,7 +833,7 @@
 				18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */,
 				18937E631BFF33FB00C523C9 /* Assets.xcassets */,
 				18937E651BFF33FB00C523C9 /* Info.plist */,
-				187733C81ED819C700B5B1B9 /* Localizable.strings */,
+				187733DB1ED83FC500B5B1B9 /* Localizable.strings */,
 			);
 			path = "Res Smart WatchKit Extension";
 			sourceTree = "<group>";
@@ -1325,7 +1325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18937E641BFF33FB00C523C9 /* Assets.xcassets in Resources */,
-				187733C91ED819C700B5B1B9 /* Localizable.strings in Resources */,
+				187733D91ED83FC500B5B1B9 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1617,6 +1617,14 @@
 				187733D71ED82B6A00B5B1B9 /* sv */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		187733DB1ED83FC500B5B1B9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				187733DA1ED83FC500B5B1B9 /* sv */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		18801B841E8D0610002E390E /* Localizable.strings */ = {
