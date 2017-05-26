@@ -115,7 +115,7 @@ open class DateUtils {
    * Creates an "(om xx min)" for depature time.
    */
   open static func createAboutTimeText(_ departure: Date, isWalk: Bool) -> String {    
-    var aboutStr = "About".localized
+    var aboutStr = "In".localized
     var nowStr = "Departs now".localized
     if isWalk {
       aboutStr = "Walk in about".localized
