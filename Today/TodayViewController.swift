@@ -144,7 +144,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
           if depTimeInterval < (60 * 11) {
             let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
             if diffMin <= 60 {
-              nextLabel.text = String(format: NSLocalizedString("Nästa: %d min", comment: ""), diffMin)
+              nextLabel.text = String(format: NSLocalizedString("Next: %d min", comment: ""), diffMin)
               nextLabel.isHidden = false
             }
           }
