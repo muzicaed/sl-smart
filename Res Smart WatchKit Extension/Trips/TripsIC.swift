@@ -71,8 +71,8 @@ class TripsIC: WKInterfaceController {
     let dictionary = NSKeyedUnarchiver.unarchiveObject(with: reply)! as! Dictionary<String, AnyObject>
     if dictionary["error"] as! Bool {
       displayError(
-        "Något gick fel",
-        message: "Söktjänsten är inte tillgänglig.\nKontrollera att din iPhone har tillgång till internet och försök igen.")
+        "Something went wrong".localized,
+        message: "An error occurred. Check your internet connection.".localized)
       return
     }
     
@@ -86,7 +86,7 @@ class TripsIC: WKInterfaceController {
         destinationLabel.setText(tripData[0]["des"] as? String)
       }
     } else {
-      loadingLabel.setText("Inga resor")
+      loadingLabel.setText("No trips".localized)
     }
   }
   
@@ -111,13 +111,13 @@ class TripsIC: WKInterfaceController {
         replyHandler: searchTripsHandler,
         errorHandler: { error in
           self.displayError(
-            "Något gick fel",
-            message: "Söktjänsten är inte tillgänglig.\nKontrollera att din iPhone har tillgång till internet och försök igen.")
+            "Something went wrong".localized,
+            message: "An error occurred. Check your internet connection.")
       })
     } else {
       displayError(
-        "Hittar inte din iPhone",
-        message: "Det går inte att kommunicera med din iPhone. Kontrollera att den är laddad och finns i närheten.")
+        "Can not reach your iPhone".localized,
+        message: "Check that your iPhone is nearby and turned on.".localized)
     }
   }
   
@@ -130,7 +130,7 @@ class TripsIC: WKInterfaceController {
       originLabel.setText(data["ori"] as? String)
       destinationLabel.setText(data["des"] as? String)
     } else {
-      titleLabel.setText("Senaste sökning")
+      titleLabel.setText("Latest search".localized)
       originLabel.setText("")
       destinationLabel.setText("")
     }
@@ -155,7 +155,7 @@ class TripsIC: WKInterfaceController {
    */
   fileprivate func displayError(_ title: String, message: String?) {
     WKInterfaceDevice.current().play(WKHapticType.failure)
-    let okAction = WKAlertAction(title: "Försök igen", style: .default, handler: {
+    let okAction = WKAlertAction(title: "Try again".localized, style: .default, handler: {
       self.popToRootController()
     })
     presentAlert(withTitle: title,

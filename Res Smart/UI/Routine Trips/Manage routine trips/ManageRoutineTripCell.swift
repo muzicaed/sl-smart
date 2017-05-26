@@ -27,7 +27,7 @@ class ManageRoutineTripCell: UITableViewCell {
     let advancedText = AdvancedCriterionsHelper.createAdvCriterionText(routineTrip.criterions)
     if advancedText == "" {
       advancedLabel.textColor = UIColor.lightGray
-      advancedLabel.text = "Inga avancerade inställningar"
+      advancedLabel.text = "No advanced settings".localized
       return
     }
     

@@ -137,8 +137,8 @@ class RoutePlotter {
       pin.zIndexMod = (segment.type == .Walk) ? -1 : 1
       if segment == trip?.tripSegments.first! {
         pin.coordinate = originCoord
-        pin.title = "Start: " + segment.origin.name
-        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+        pin.title = "\("Start:".localized) " + segment.origin.name
+        pin.subtitle = "\("Departure:".localized) " + DateUtils.dateAsTimeString(segment.departureDateTime)
         pin.imageName = segment.type.rawValue
         mapView.addAnnotation(pin)
         if showStart {
@@ -148,20 +148,20 @@ class RoutePlotter {
       if segment == trip?.tripSegments.last! {
         pin.coordinate = originCoord
         pin.title = segment.origin.name
-        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+        pin.subtitle = "\("Departure:".localized) " + DateUtils.dateAsTimeString(segment.departureDateTime)
         pin.imageName = segment.type.rawValue
         mapView.addAnnotation(pin)
         
         let destPin = DestinationPin()
         destPin.coordinate = destCoord
-        destPin.title = "Destination: " + segment.destination.name
-        destPin.subtitle = "Framme: " + DateUtils.dateAsTimeString(segment.arrivalDateTime)
+        destPin.title = "\("Destination:".localized) " + segment.destination.name
+        destPin.subtitle = "\("Arrival:".localized) " + DateUtils.dateAsTimeString(segment.arrivalDateTime)
         mapView.addAnnotation(destPin)
       }
       if segment != trip?.tripSegments.first! && segment != trip?.tripSegments.last! {
         pin.coordinate = originCoord
         pin.title = segment.origin.name
-        pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(segment.departureDateTime)
+        pin.subtitle = "\("Departure:".localized) " + DateUtils.dateAsTimeString(segment.departureDateTime)
         pin.imageName = segment.type.rawValue
         mapView.addAnnotation(pin)
       }
@@ -178,7 +178,7 @@ class RoutePlotter {
         pin.coordinate = stop.location.coordinate
         pin.title = stop.name
         if let depDate = stop.depDate {
-          pin.subtitle = "Avgång: " + DateUtils.dateAsTimeString(depDate)
+          pin.subtitle = "\("Departure:".localized) " + DateUtils.dateAsTimeString(depDate)
         }
         pin.imageName = segment.type.rawValue + "-SMALL"
         mapView.addAnnotation(pin)

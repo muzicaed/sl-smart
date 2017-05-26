@@ -106,7 +106,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
           callback()
         }
         else {
-          self.titleLabel.text = "Hittade inga rutiner."
+          self.titleLabel.text = "Could not find any routines.".localized
         }
       }
       return
@@ -121,7 +121,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
       if let trip = bestRoutineTrip.trips.first {
         self.titleLabel.text = bestRoutineTrip.title
         if self.titleLabel.text == "" {
-          self.titleLabel.text = "Vana"
+          self.titleLabel.text = "Habit".localized
         }
         if let first = trip.tripSegments.first, let last = trip.tripSegments.last {
           self.departureStationLabel.text = first.origin.name
@@ -144,7 +144,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
           if depTimeInterval < (60 * 11) {
             let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
             if diffMin <= 60 {
-              nextLabel.text = String(format: NSLocalizedString("Nästa: %d min", comment: ""), diffMin)
+              nextLabel.text = String(format: NSLocalizedString("Next: %d min", comment: ""), diffMin)
               nextLabel.isHidden = false
             }
           }

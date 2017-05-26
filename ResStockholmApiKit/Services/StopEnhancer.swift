@@ -136,11 +136,11 @@ open class StopEnhancer {
       
       switch trainPos {
       case .front:
-        return "långt fram i tåget"
+        return "start of train".localized
       case .middle:
-        return "mitten av tåget"
+        return "middle of train".localized
       case .back:
-        return "långt bak i tåget"
+        return "end of train".localized
       }
     }
     return nil

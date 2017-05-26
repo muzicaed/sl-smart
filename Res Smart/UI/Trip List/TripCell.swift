@@ -46,20 +46,16 @@ class TripCell: UITableViewCell {
    */
   func setupData(_ trip: Trip) {
     originLabel.text = trip.tripSegments.first?.origin.cleanName
-    originLabel.accessibilityLabel = "Från \(originLabel.text!)"
     destinationLabel.text = trip.tripSegments.last?.destination.cleanName
-    destinationLabel.accessibilityLabel = "vid \(destinationLabel.text!)"
     if trip.tripSegments.count > 0 {
       let trip = trip
       departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
       departureTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.first!.departureDateTime)
-      departureTimeLabel.accessibilityLabel = "Avgår \(departureTimeLabel.text!)"
       
       arrivalTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.last!.arrivalDateTime)
-      arrivalTimeLabel.accessibilityLabel = "Framme \(arrivalTimeLabel.text!)"
       
       inAboutLabel.text = DateUtils.createAboutTimeText(
         trip.tripSegments.first!.departureDateTime,

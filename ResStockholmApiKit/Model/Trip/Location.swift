@@ -94,7 +94,7 @@ open class Location: NSObject, NSCoding, NSCopying {
    * Creates a current location instance.
    */
   open static func createCurrentLocation() -> Location {
-    return Location(id: nil, name: "Härifrån", type: "Current", lat: "0.0", lon: "0.0")
+    return Location(id: nil, name: "From here".localized, type: "Current", lat: "0.0", lon: "0.0")
   }
   
   /**
@@ -116,7 +116,7 @@ open class Location: NSObject, NSCoding, NSCopying {
           .replacingOccurrences(of: ")", with: "",
                                 options: NSString.CompareOptions.literal, range: nil)
         
-        return (name, "\(area) (Hållplats)")
+        return (name, "\(area) (\("Stop".localized))")
       }
       
     }
@@ -124,7 +124,7 @@ open class Location: NSObject, NSCoding, NSCopying {
     if nameSegments.count > 1 {
       return (
         nameSegments[0].trimmingCharacters(in: CharacterSet.whitespaces),
-        nameSegments[1].trimmingCharacters(in: CharacterSet.whitespaces) + " (Adress)"
+        nameSegments[1].trimmingCharacters(in: CharacterSet.whitespaces) + " (\("Address".localized))"
       )
     }
     return (nameString, "")

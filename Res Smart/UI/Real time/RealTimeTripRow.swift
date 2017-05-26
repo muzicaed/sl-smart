@@ -41,7 +41,7 @@ class RealTimeTripRow: UITableViewCell {
       data = bus as RTTransportBase
       if let designation = bus.stopPointDesignation {
         stopPointDesignation.text = designation
-        stopPointDesignation.accessibilityLabel = "Hållplatsläge: " + designation
+        stopPointDesignation.accessibilityLabel = "\("Section:".localized) " + designation
         stopPointDesignation.isHidden = false
       }
       

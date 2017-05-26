@@ -128,7 +128,7 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
       pin.coordinate = loc.coordinate
       pin.title = locationTuple.location.name
       pin.stationIndex = index
-      pin.subtitle = "Avstånd \(locationTuple.dist) meter"
+      pin.subtitle = String(format: "Distance %d meters".localized, locationTuple.dist)      
       mapView.addAnnotation(pin)
     }
   }

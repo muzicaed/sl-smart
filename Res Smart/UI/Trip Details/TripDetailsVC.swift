@@ -71,20 +71,20 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
   
   @IBAction func onSMSTicketTap(_ sender: UIBarButtonItem) {
     let ticketAlert = UIAlertController(
-      title: "Vilken typ av biljett?",
-      message: "Du som är under 20 eller över 65 kan köpa biljett till reducerat pris.",
+      title: "What kind of ticket?".localized,
+      message: "Ages under 20 and over 65 can purchase tickets to a reduced price.".localized,
       preferredStyle: .actionSheet)
     
     ticketAlert.addAction(
-      UIAlertAction(title: "Helt pris", style: .default, handler: { _ in
+      UIAlertAction(title: "Full price".localized, style: .default, handler: { _ in
         self.sendSMSTicket(type: "vux")
       }))
     ticketAlert.addAction(
-      UIAlertAction(title: "Reducerat pris", style: .default, handler: { _ in
+      UIAlertAction(title: "Reduced price".localized, style: .default, handler: { _ in
         self.sendSMSTicket(type: "rab")
       }))
     ticketAlert.addAction(
-      UIAlertAction(title: "Avbryt", style: .cancel, handler: nil))
+      UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
     
     present(ticketAlert, animated: true, completion: nil)
   }
@@ -283,8 +283,8 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
   fileprivate func prepareHeader() {
     if let trip = trip {
       timeLabel.text = DateUtils.friendlyDate(trip.allTripSegments.last!.arrivalDateTime)
-      originLabel.text = "Från \(trip.allTripSegments.first!.origin.cleanName)"
-      destinationLabel.text = "Till \(trip.allTripSegments.last!.destination.cleanName)"
+      originLabel.text = "\("From".localized) \(trip.allTripSegments.first!.origin.cleanName)"
+      destinationLabel.text = "\("To".localized) \(trip.allTripSegments.last!.destination.cleanName)"
     }
   }
   

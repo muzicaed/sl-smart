@@ -85,27 +85,27 @@ class GenericValuePickerVC: UITableViewController {
       switch type {
       case .WalkDistance:
         return [
-          (100, "Högst 100 m"),
-          (250, "Högst 250 m"),
-          (500, "Högst 500 m"),
-          (1000, "Högst 1 km"),
-          (2000, "Högst 2 km")
+          (100, "Max 100 m".localized),
+          (250, "Max 250 m".localized),
+          (500, "Max 500 m".localized),
+          (1000, "Max 1 km".localized),
+          (2000, "Max 2 m".localized)
         ]
       case .NoOfChanges:
         return [
-          (-1, "Inga begränsningar"),
-          (0, "Inga byten"),
-          (1, "Högst 1 byte"),
-          (2, "Högst 2 byten"),
-          (3, "Högst 3 byten")
+          (-1, "No limitation".localized),
+          (0, "No transfers".localized),
+          (1, "Max 1 transfer".localized),
+          (2, "Max 2 transfers".localized),
+          (3, "Max 3 transfers".localized)
         ]
       case .TimeForChange:
         return [
-          (0, "Ingen extra tid vid byte"),
-          (2, "2 minuter extra"),
-          (5, "5 minuter extra"),
-          (10, "10 minuter extra"),
-          (15, "15 minuter extra")
+          (0, "No extra time for transfer".localized),
+          (2, "2 minutes extra".localized),
+          (5, "5 minutes extra".localized),
+          (10, "10 minutes extra".localized),
+          (15, "15 minutes extra".localized)
         ]
       }
     }

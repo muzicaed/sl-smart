@@ -1,19 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pz1-TM-aL5">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pz1-TM-aL5">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11508"/>
     </dependencies>
     <scenes>
-        <!--Res Smart-->
+        <!--Travel Smart-->
         <scene sceneID="z0c-D7-TRq">
             <objects>
-                <controller title="Res Smart" id="pz1-TM-aL5" customClass="SmartTripIC" customModule="Res_Smart">
+                <controller title="Travel Smart" id="pz1-TM-aL5" customClass="SmartTripIC" customModule="Res_Smart">
                     <items>
                         <group width="1" alignment="left" verticalAlignment="center" animationDuration="0.29999999999999999" layout="vertical" id="naW-Us-NIZ">
                             <items>
-                                <label alignment="center" verticalAlignment="center" text="Söker resa..." id="8YZ-WO-QNP">
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <label alignment="center" verticalAlignment="center" text="Searching..." id="8YZ-WO-QNP">
+                                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" type="system" pointSize="16"/>
                                 </label>
                                 <group width="1" alignment="left" verticalAlignment="center" layout="vertical" id="2eR-Jh-VnR">
@@ -22,22 +26,54 @@
                                             <group key="contentGroup" width="1" alignment="left" initiallyAnimated="NO" animationDuration="0.29999999999999999" layout="vertical" spacing="4" id="Bie-IP-jFC">
                                                 <items>
                                                     <label width="1" alignment="left" text="Placeholder" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="cFt-Gb-vyb">
-                                                        <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="font" type="system" weight="light" pointSize="16"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="No translation needed">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
                                                     </label>
                                                     <label width="1" alignment="left" text="Om x min" textAlignment="center" id="9m3-ui-Mak" userLabel="Om 6 min">
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="font" type="system" weight="light" pointSize="20"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="No translation needed">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
                                                     </label>
                                                     <group width="1" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="7Xa-W2-V96" userLabel="Stations">
                                                         <items>
                                                             <label width="1" alignment="left" text="Testvägen" textAlignment="center" id="QqC-Jn-KFB" userLabel="Karlberg">
-                                                                <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="No translation needed">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
                                                             </label>
                                                             <label width="1" alignment="left" text="Låtsasvägen" textAlignment="center" id="Tmi-wm-EQ3" userLabel="Karlberg">
-                                                                <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="No translation needed">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
                                                             </label>
                                                         </items>
                                                         <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
@@ -49,6 +85,14 @@
                                                                     <imageView width="15" height="15" alignment="center" id="eJH-uF-1Mr" userLabel="Image 1"/>
                                                                     <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="cfI-jP-RPq" userLabel="Label 1">
                                                                         <fontDescription key="font" type="system" pointSize="8"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="No translation needed">
+                                                                                <attributes>
+                                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
                                                                     </label>
                                                                 </items>
                                                             </group>
@@ -57,6 +101,14 @@
                                                                     <imageView width="15" height="15" alignment="center" id="C92-6p-Bse" userLabel="Image 2"/>
                                                                     <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="rpS-f1-i9Q" userLabel="Label 2">
                                                                         <fontDescription key="font" type="system" pointSize="8"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="No translation needed">
+                                                                                <attributes>
+                                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
                                                                     </label>
                                                                 </items>
                                                             </group>
@@ -65,6 +117,14 @@
                                                                     <imageView width="15" height="15" alignment="center" id="bZX-fa-NWD" userLabel="Image 3"/>
                                                                     <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="pB7-aI-uQS" userLabel="Label 3">
                                                                         <fontDescription key="font" type="system" pointSize="8"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="No translation needed">
+                                                                                <attributes>
+                                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
                                                                     </label>
                                                                 </items>
                                                             </group>
@@ -73,6 +133,14 @@
                                                                     <imageView width="15" height="15" alignment="center" id="9pI-2V-KkU" userLabel="Image 4"/>
                                                                     <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="MB9-VO-AV7" userLabel="Label 4">
                                                                         <fontDescription key="font" type="system" pointSize="8"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="No translation needed">
+                                                                                <attributes>
+                                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
                                                                     </label>
                                                                 </items>
                                                             </group>
@@ -81,30 +149,38 @@
                                                                     <imageView width="15" height="15" alignment="center" id="S7W-ow-jnI" userLabel="Image 5"/>
                                                                     <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="Csq-sp-p0X" userLabel="Label 5">
                                                                         <fontDescription key="font" type="system" pointSize="8"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="No translation needed">
+                                                                                <attributes>
+                                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
                                                                     </label>
                                                                 </items>
                                                             </group>
                                                         </items>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <edgeInsets key="margins" left="1" right="1" top="4" bottom="2"/>
                                                     </group>
                                                 </items>
-                                                <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="0.34999999999999998" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <edgeInsets key="margins" left="0.0" right="0.0" top="5" bottom="5"/>
                                             </group>
                                             <connections>
                                                 <segue destination="KjQ-iU-gEp" kind="push" identifier="ShowTrips" id="0tW-Xe-cdF"/>
                                             </connections>
                                         </button>
-                                        <button width="1" alignment="left" title="Senaste sökningen gjord på din iPhone" id="3yO-um-ygW">
-                                            <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="0.34999999999999998" colorSpace="calibratedRGB"/>
+                                        <button width="1" alignment="left" title="Latest search on your iPhone" id="3yO-um-ygW">
+                                            <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="font" type="system" pointSize="13"/>
                                             <connections>
                                                 <segue destination="KjQ-iU-gEp" kind="push" identifier="ShowLastSearch" id="QyD-HE-uvv"/>
                                             </connections>
                                         </button>
-                                        <label alignment="left" text="Fler rutiner" id="QX7-yk-ayb">
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <label alignment="left" text="More routines" id="QX7-yk-ayb">
+                                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="font" type="system" pointSize="16"/>
                                         </label>
                                         <table alignment="left" spacing="6" id="fRr-Pe-7eK">
@@ -113,19 +189,43 @@
                                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="1" id="P5p-Mh-lmm">
                                                         <items>
                                                             <label width="1" alignment="left" text="Hem från jobbet" textAlignment="left" id="BWu-h1-71D">
-                                                                <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="font" type="system" pointSize="14"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="No translation needed">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
                                                             </label>
                                                             <label width="1" alignment="left" text="Kälvestavägen" textAlignment="left" id="GEm-9g-MGo" userLabel="Karlberg">
-                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="No translation needed">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
                                                             </label>
                                                             <label width="1" alignment="left" text="Karlberg" textAlignment="left" id="y87-G0-DR9" userLabel="Karlberg">
-                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="No translation needed">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
                                                             </label>
                                                         </items>
-                                                        <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </group>
                                                     <connections>
                                                         <outlet property="destinationLabel" destination="y87-G0-DR9" id="1w8-6b-y1m"/>
@@ -178,39 +278,63 @@
             </objects>
             <point key="canvasLocation" x="235" y="393.75"/>
         </scene>
-        <!--Resor-->
+        <!--Trips-->
         <scene sceneID="3Lq-WI-dKH">
             <objects>
-                <controller identifier="Trips" title="Resor" id="KjQ-iU-gEp" customClass="TripsIC" customModule="Res_Smart">
+                <controller identifier="Trips" title="Trips" id="KjQ-iU-gEp" customClass="TripsIC" customModule="Res_Smart">
                     <items>
                         <separator alignment="left" id="FhQ-0L-sZt">
-                            <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="color" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         </separator>
                         <group width="1" height="0.0" alignment="left" layout="vertical" spacing="2" id="Ha4-Tt-f0c">
                             <items>
                                 <label width="1" alignment="left" text="Placeholder" textAlignment="left" minimumScaleFactor="0.90000000000000002" id="2CW-tm-7mt">
-                                    <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                    <attributedString key="userComments">
+                                        <fragment content="No translation needed">
+                                            <attributes>
+                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
                                 </label>
                                 <group width="1" alignment="left" layout="vertical" spacing="0.0" id="BXG-nZ-jcb" userLabel="Origin &lt;-&gt; Destination">
                                     <items>
                                         <label width="1" alignment="left" text="Testvägen" textAlignment="left" id="fS8-Zo-4gH" userLabel="Origin">
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                            <attributedString key="userComments">
+                                                <fragment content="No translation needed">
+                                                    <attributes>
+                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
                                         </label>
                                         <label width="1" alignment="left" text="Låtsasvägen" textAlignment="left" id="Wo9-B8-JBH" userLabel="Destination">
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                            <attributedString key="userComments">
+                                                <fragment content="No translation needed">
+                                                    <attributes>
+                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
                                         </label>
                                     </items>
                                 </group>
                             </items>
                         </group>
                         <separator alignment="left" id="ONC-nl-P8h">
-                            <color key="color" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="color" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         </separator>
-                        <label width="1" alignment="left" text="Söker resor..." textAlignment="center" id="p41-mJ-ZVz">
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <label width="1" alignment="left" text="Searching trips..." textAlignment="center" id="p41-mJ-ZVz">
+                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="font" type="system" pointSize="16"/>
                         </label>
                         <table alignment="left" spacing="6" id="127-3q-0Gz">
@@ -219,16 +343,32 @@
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" radius="0.0" spacing="1" id="OJI-g6-70X">
                                         <items>
                                             <label width="1" alignment="left" text="00:00 → 23:59" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="wna-Ru-M1o" userLabel="Om 6 min">
-                                                <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="font" type="system" pointSize="14"/>
+                                                <attributedString key="userComments">
+                                                    <fragment content="No translation needed">
+                                                        <attributes>
+                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
                                             </label>
-                                            <label width="1" alignment="left" text="Imorgon" textAlignment="center" id="wee-4e-Rtu" userLabel="Day">
-                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <label width="1" alignment="left" text="Tomorrow" textAlignment="center" id="wee-4e-Rtu" userLabel="Day">
+                                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="font" type="system" weight="light" pointSize="13"/>
                                             </label>
                                             <label width="1" alignment="left" text="Restid: xx min" textAlignment="center" id="uBR-S0-BU4" userLabel="Travel time">
-                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                                <attributedString key="userComments">
+                                                    <fragment content="No translation needed">
+                                                        <attributes>
+                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
                                             </label>
                                             <group alignment="center" verticalAlignment="center" radius="3" spacing="0.0" id="8N0-G7-wcP" userLabel="Travel type icons">
                                                 <items>
@@ -237,6 +377,14 @@
                                                             <imageView width="15" height="15" alignment="center" id="eQ0-LR-Vaz" userLabel="Image 1"/>
                                                             <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="51S-Gz-m8Z" userLabel="Label 1">
                                                                 <fontDescription key="font" type="system" pointSize="8"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="No translation needed">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
                                                             </label>
                                                         </items>
                                                     </group>
@@ -245,6 +393,14 @@
                                                             <imageView width="15" height="15" alignment="center" id="Uyy-S3-N4q" userLabel="Image 2"/>
                                                             <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="sgd-S8-igA" userLabel="Label 2">
                                                                 <fontDescription key="font" type="system" pointSize="8"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="No translation needed">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
                                                             </label>
                                                         </items>
                                                     </group>
@@ -253,6 +409,14 @@
                                                             <imageView width="15" height="15" alignment="center" id="VLE-QP-Xjn" userLabel="Image 3"/>
                                                             <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="csX-eE-p94" userLabel="Label 3">
                                                                 <fontDescription key="font" type="system" pointSize="8"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="No translation needed">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
                                                             </label>
                                                         </items>
                                                     </group>
@@ -261,6 +425,14 @@
                                                             <imageView width="15" height="15" alignment="center" id="7g6-jP-NdE" userLabel="Image 4"/>
                                                             <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="wtG-Kg-Ur7" userLabel="Label 4">
                                                                 <fontDescription key="font" type="system" pointSize="8"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="No translation needed">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
                                                             </label>
                                                         </items>
                                                     </group>
@@ -269,15 +441,23 @@
                                                             <imageView width="15" height="15" alignment="center" id="Iwn-jN-xUH" userLabel="Image 5"/>
                                                             <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="uKN-B4-Faa" userLabel="Label 5">
                                                                 <fontDescription key="font" type="system" pointSize="8"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="No translation needed">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
                                                             </label>
                                                         </items>
                                                     </group>
                                                 </items>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <edgeInsets key="margins" left="1" right="1" top="4" bottom="2"/>
                                             </group>
                                         </items>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.12" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
                                     </group>
                                     <connections>
                                         <outlet property="icnGrp1" destination="Ehp-Yn-pzv" id="b1M-ST-UHy"/>
@@ -319,29 +499,53 @@
             <objects>
                 <glanceController spacing="0.0" hidesWhenLoading="NO" topTemplateType="mediumBody1" id="0uZ-2p-rRc" customClass="GlanceController" customModule="Res_Smart">
                     <items>
-                        <label alignment="left" text="Res Smart" id="brv-oZ-oj4" userLabel="I">
-                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <label alignment="left" text="Travel Smart" id="brv-oZ-oj4" userLabel="I">
+                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </label>
                         <label alignment="left" text="Åka till jobbet" minimumScaleFactor="0.5" id="JgG-Sl-WR9">
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <attributedString key="userComments">
+                                <fragment content="No translation needed">
+                                    <attributes>
+                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
                         </label>
                         <group alignment="left" animationDuration="0.5" layout="vertical" id="uCw-4Q-Ouw" userLabel="Content">
                             <items>
                                 <group width="1" alignment="center" verticalAlignment="center" animationDuration="0.5" layout="vertical" radius="6" spacing="4" id="Es7-bG-KgD">
                                     <items>
-                                        <label width="1" alignment="left" text="Uppdaterar" textAlignment="center" id="NHT-8y-f1e" userLabel="Om 6 min">
-                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label width="1" alignment="left" text="Updating" textAlignment="center" id="NHT-8y-f1e" userLabel="Om 6 min">
+                                            <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="font" type="system" weight="light" pointSize="22"/>
                                         </label>
                                         <group width="1" height="32" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="6E4-OE-RCg" userLabel="Stations">
                                             <items>
                                                 <label width="1" alignment="left" text=" Karlberg" textAlignment="center" id="LoS-cI-Lw2" userLabel="Karlberg">
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                                    <attributedString key="userComments">
+                                                        <fragment content="No translation needed">
+                                                            <attributes>
+                                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                 </label>
                                                 <label width="1" alignment="left" text=" Sture jjjyyyggg" textAlignment="center" id="uUk-p3-VO4" userLabel="Karlberg">
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="font" type="system" weight="light" pointSize="13"/>
+                                                    <attributedString key="userComments">
+                                                        <fragment content="No translation needed">
+                                                            <attributes>
+                                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                 </label>
                                             </items>
                                             <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
@@ -353,9 +557,17 @@
                                                         <imageView width="15" height="15" alignment="center" id="rE4-6S-gD0" userLabel="Image 1"/>
                                                         <label width="1" alignment="center" text="Spår" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="A0g-vs-I2R" userLabel="Label 1">
                                                             <fontDescription key="font" type="system" pointSize="8"/>
+                                                            <attributedString key="userComments">
+                                                                <fragment content="No translation needed">
+                                                                    <attributes>
+                                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
                                                         </label>
                                                     </items>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </group>
                                                 <group width="25" alignment="left" hidden="YES" layout="vertical" spacing="0.0" id="Pi5-kS-S9h" userLabel="Icon2">
                                                     <items>
@@ -390,7 +602,7 @@
                                                     </items>
                                                 </group>
                                             </items>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <edgeInsets key="margins" left="1" right="1" top="4" bottom="2"/>
                                         </group>
                                     </items>

@@ -44,47 +44,38 @@ class DateUtils {
    * Converts a NSDate to a swedish local friendly
    * date string.
    */
-  static func friendlyDate(_ date: Date) -> String {
-    let formatter = getSwedishFormatter()
+  open static func friendlyDate(_ date: Date) -> String {
+    let formatter = getFormatter()
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .none
     
-    formatter.dateFormat = "EEEE"
-    let weekDay = (formatter.string(from: date) + "en").capitalized
+    if Calendar.current.isDateInToday(date) {
+      return "Today".localized
+    } else if Calendar.current.isDateInTomorrow(date) {
+      return "Tomorrow".localized
+    }
     
-    formatter.dateFormat = "d"
-    var day = formatter.string(from: date)
-    day = (day == "1" || day == "2") ? day + ":a" : day + ":e"
-    
-    formatter.dateFormat = "MMMM"
-    let month = formatter.string(from: date)
-    
-    return ("\(weekDay) den \(day) \(month)")
+    return formatter.string(from: date)
   }
   
   /**
    * Converts a NSDate to a swedish local friendly
    * date string.
    */
-  static func friendlyDateAndTime(_ date: Date) -> String {
-    let formatter = getSwedishFormatter()
-    
-    formatter.dateFormat = "d"
-    var day = formatter.string(from: date)
-    day = (day == "1" || day == "2") ? day + ":a" : day + ":e"
-    
-    formatter.dateFormat = "MMMM"
-    let month = formatter.string(from: date)
+  open static func friendlyDateAndTime(_ date: Date) -> String {
+    let formatter = getFormatter()
     
     formatter.dateFormat = "EEEE"
-    var weekDay = formatter.string(from: date)
-    if formatter.string(from: Date()) == weekDay {
-      weekDay = "Idag"
-    } else if formatter.string(from: Date(timeIntervalSinceNow: 86400)) == weekDay {
-      weekDay = "imorgon"
-    } else {
-      weekDay = "\(day) \(month)"
+    var dayStr = formatter.string(from: date)
+    if Calendar.current.isDateInToday(date) {
+      formatter.dateStyle = .none
+      dayStr = "Today".localized
+    } else if Calendar.current.isDateInTomorrow(date) {
+      formatter.dateStyle = .none
+      dayStr = "Tomorrow".localized
     }
     
-    return ("\(weekDay)")
+    return dayStr
   }
   
   /**
@@ -118,11 +109,11 @@ class DateUtils {
    * Creates a human friendly deparure time.
    */
   static func createDepartureTimeString(_ departureTime: String, isWalk: Bool) -> String {
-    var aboutStr = "Om"
-    var nowStr = "Avgår nu"
+    var aboutStr = "In"
+    var nowStr = "Departs now"
     if isWalk {
-      aboutStr = "Gå om"
-      nowStr = "Gå nu"
+      aboutStr = "Walk in"
+      nowStr = "Walk now"
     }
     
     let departureDate = DateUtils.convertDateString(departureTime)
@@ -139,6 +130,11 @@ class DateUtils {
   static func getSwedishFormatter() -> DateFormatter {
     let formatter = DateFormatter()
     formatter.locale = Locale(identifier: "sv_SE")
+    return formatter
+  }
+  
+  fileprivate static func getFormatter() -> DateFormatter {
+    let formatter = DateFormatter()
     return formatter
   }
 }

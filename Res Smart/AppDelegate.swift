@@ -160,4 +160,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   }
 }
 
-

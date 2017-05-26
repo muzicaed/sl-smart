@@ -117,17 +117,17 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
       message: selectedLocation!.cleanName,
       preferredStyle: .actionSheet)
     
-    var favouriteTitle = "Gör till favorit"
+    var favouriteTitle = "Add to favourites".localized
     if FavouriteLocationsStore.sharedInstance.isLocationFavourite(selectedLocation!) {
-      favouriteTitle = "Ta bort från favoriter"
+      favouriteTitle = "Remove from favourites".localized
     }
     
     stationOptionsAlert.addAction(
       UIAlertAction(title: favouriteTitle, style: .default, handler: toggleFavouriteStation))
     stationOptionsAlert.addAction(
-      UIAlertAction(title: "Visa på karta", style: .default, handler: showLocationOnMap))
+      UIAlertAction(title: "Show on map".localized, style: .default, handler: showLocationOnMap))
     stationOptionsAlert.addAction(
-      UIAlertAction(title: "Avbryt", style: .cancel, handler: { _ in
+      UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { _ in
         self.selectedLocation = nil
       }))
     
@@ -219,11 +219,11 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
    */
   fileprivate func showNetworkErrorAlert() {
     let networkErrorAlert = UIAlertController(
-      title: "Tjänsten är otillgänglig",
-      message: "Det gick inte att kontakta söktjänsten.",
+      title: "Service unavailable".localized,
+      message: "Could not reach the search service.".localized,
       preferredStyle: UIAlertControllerStyle.alert)
     networkErrorAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: nil))
+      UIAlertAction(title: "OK".localized, style: UIAlertActionStyle.default, handler: nil))
     
     present(networkErrorAlert, animated: true, completion: nil)
   }

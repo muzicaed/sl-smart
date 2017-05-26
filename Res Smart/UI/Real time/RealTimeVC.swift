@@ -53,7 +53,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       self, selector: #selector(didBecomeInactive),
       name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
     tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 44
+    tableView.estimatedRowHeight = 30
     
     refreshController.addTarget(
       self, action: #selector(loadData), for: UIControlEvents.valueChanged)
@@ -245,7 +245,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("BUS")
       let _ = segmentView.addSegmentWithTitle(
-        "Bussar",
+        "Buses".localized,
         onSelectionImage: UIImage(named: "BUS"),
         offSelectionImage: UIImage(named: "BUS"))
     }
@@ -256,7 +256,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("METRO")
       let _ = segmentView.addSegmentWithTitle(
-        "T-bana",
+        "Metro".localized,
         onSelectionImage: UIImage(named: "METRO"),
         offSelectionImage: UIImage(named: "METRO"))
     }
@@ -267,7 +267,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("TRAIN")
       let _ = segmentView.addSegmentWithTitle(
-        "Pendel",
+        "Train".localized,
         onSelectionImage: UIImage(named: "TRAIN"),
         offSelectionImage: UIImage(named: "TRAIN"))
     }
@@ -278,7 +278,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("TRAM")
       let _ = segmentView.addSegmentWithTitle(
-        "Spår",
+        "Tram".localized,
         onSelectionImage: UIImage(named: "TRAM"),
         offSelectionImage: UIImage(named: "TRAM"))
     }
@@ -289,7 +289,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("LOCAL-TRAM")
       let _ = segmentView.addSegmentWithTitle(
-        "Spår",
+        "Tram".localized,
         onSelectionImage: UIImage(named: "TRAM"),
         offSelectionImage: UIImage(named: "TRAM"))
     }
@@ -300,7 +300,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("SHIP")
       let _ = segmentView.addSegmentWithTitle(
-        "Färja",
+        "Ferry".localized,
         onSelectionImage: UIImage(named: "SHIP"),
         offSelectionImage: UIImage(named: "SHIP"))
     }
@@ -438,15 +438,16 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   
   /**
    * Hadle load data (network) error
+   * TODO: Refactoring, the service unavailable is used in many places.
    */
   fileprivate func handleLoadDataError() {
     stopRefreshTimmer()
     let invalidLoadingAlert = UIAlertController(
-      title: "Kan inte nå söktjänsten",
-      message: "Söktjänsten kan inte nås just nu. Prova igen om en liten stund.",
+      title: "Service unavailable".localized,
+      message: "Could not reach the search service.".localized,
       preferredStyle: UIAlertControllerStyle.alert)
     invalidLoadingAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: { _ in
+      UIAlertAction(title: "OK".localized, style: UIAlertActionStyle.default, handler: { _ in
         let _ = self.navigationController?.popToRootViewController(animated: false)
       }))
     

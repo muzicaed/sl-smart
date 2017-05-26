@@ -79,7 +79,7 @@ class NearbyStationsVC: UITableViewController {
     let cell = tableView.dequeueReusableCell(withIdentifier: "NearbyStationRow",
                                                            for: indexPath)
     cell.textLabel?.text = "\(locationTuple.location.name)"
-    cell.detailTextLabel?.text = "ca. \(locationTuple.dist) meter bort."
+    cell.detailTextLabel?.text = String(format: "About %d meters away.".localized, locationTuple.dist)
     cell.imageView?.alpha = 0.4
     return cell
   }
@@ -173,11 +173,11 @@ class NearbyStationsVC: UITableViewController {
    */
   fileprivate func handleLoadDataError() {
     let invalidLoadingAlert = UIAlertController(
-      title: "Kan inte nå söktjänsten",
-      message: "Söktjänsten kan inte nås just nu. Prova igen om en liten stund.",
+      title: "Service unavailable".localized,
+      message: "Could not reach the search service.".localized,
       preferredStyle: UIAlertControllerStyle.alert)
     invalidLoadingAlert.addAction(
-      UIAlertAction(title: "Okej", style: UIAlertActionStyle.default, handler: { _ in
+      UIAlertAction(title: "OK".localized, style: UIAlertActionStyle.default, handler: { _ in
         let _ = self.navigationController?.popToRootViewController(animated: false)
       }))
     

@@ -46,7 +46,7 @@ class TripRow: NSObject {
     let humanTripDuration = createHumanTripDuration(data["dur"] as! Int)
     
     scheduleLabel.setText("\(depDateString) → \(DateUtils.dateAsTimeString(arrivalDate))")
-    travelTimeLabel.setText("Restid: \(humanTripDuration)")
+    travelTimeLabel.setText("Trip time".localized  + ": \(humanTripDuration)")
     handleTravelDateLabel(data["ot"] as! String)
     createTripIcons(
       data["icn"] as! [String],
@@ -69,7 +69,7 @@ class TripRow: NSObject {
     }
     
     if date.timeIntervalSinceNow < (60*1) * -1 {
-      travelTimeLabel.setText("Redan avgått")
+      travelTimeLabel.setText("Already departed".localized)
       scheduleLabel.setTextColor(UIColor.lightGray)
     }
   }
@@ -142,7 +142,7 @@ class TripRow: NSObject {
    */
   fileprivate func createHumanTripDuration(_ duration: Int) -> String {
     if duration < 60 {
-      return "\(duration) minuter"
+      return "\(duration) min"
     }
     
     var remainder = String(duration % 60)

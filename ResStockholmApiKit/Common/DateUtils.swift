@@ -58,26 +58,17 @@ open class DateUtils {
    * date string.
    */
   open static func friendlyDate(_ date: Date) -> String {
-    let formatter = getSwedishFormatter()
-    
-    formatter.dateFormat = "EEEE"
-    var weekDay = formatter.string(from: date)
-    if formatter.string(from: Date()) == weekDay {
-      weekDay = "Idag, \(weekDay)en"
-    } else if formatter.string(from: Date(timeIntervalSinceNow: 86400)) == weekDay {
-      weekDay = "Imorgon, \(weekDay)en"
-    } else {
-      weekDay = (weekDay + "en").capitalized
+    let formatter = getFormatter()
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .none
+
+    if Calendar.current.isDateInToday(date) {
+      return "Today".localized
+    } else if Calendar.current.isDateInTomorrow(date) {
+      return "Tomorrow".localized
     }
     
-    formatter.dateFormat = "d"
-    var day = formatter.string(from: date)
-    day = (day == "1" || day == "2") ? day + ":a" : day + ":e"
-    
-    formatter.dateFormat = "MMMM"
-    let month = formatter.string(from: date)
-    
-    return ("\(weekDay) den \(day) \(month)")
+    return formatter.string(from: date)
   }
   
   /**
@@ -85,41 +76,31 @@ open class DateUtils {
    * date string.
    */
   open static func friendlyDateAndTime(_ date: Date) -> String {
-    let formatter = getSwedishFormatter()
+    let formatter = getFormatter()
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .short
     
-    formatter.dateFormat = "d"
-    var day = formatter.string(from: date)
-    day = (day == "1" || day == "2") ? day + ":a" : day + ":e"
-    
-    formatter.dateFormat = "MMMM"
-    let month = formatter.string(from: date)
-    
-    formatter.dateFormat = "EEEE"
-    var weekDay = formatter.string(from: date)
-    
-    if formatter.string(from: Date()) == weekDay {
-      weekDay = "Idag"
-    } else if formatter.string(from: Date(timeIntervalSinceNow: 86400)) == weekDay {
-      weekDay = "imorgon"
-    } else {
-      weekDay = weekDay.capitalized + " den \(day) \(month)"
+    var todayStr = ""
+    if Calendar.current.isDateInToday(date) {
+      formatter.dateStyle = .none
+      todayStr = "Today, ".localized
+    } else if Calendar.current.isDateInTomorrow(date) {
+      formatter.dateStyle = .none
+      todayStr = "Tomorrow, ".localized
     }
     
-    formatter.dateFormat = "HH:mm"
-    let time = formatter.string(from: date)
-    
-    return ("\(weekDay), kl. \(time)")
+    return todayStr + formatter.string(from: date)
   }
   
   /**
    * Creates an "(om xx min)" for depature time.
    */
   open static func createAboutTimeText(_ departure: Date, isWalk: Bool) -> String {    
-    var aboutStr = "Om"
-    var nowStr = "Avgår nu"
+    var aboutStr = "In".localized
+    var nowStr = "Departs now".localized
     if isWalk {
-      aboutStr = "Gå om"
-      nowStr = "Gå nu"
+      aboutStr = "Walk in about".localized
+      nowStr = "Walk now".localized
     }
     
     let diffMin = Int(ceil(((departure.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
@@ -127,7 +108,7 @@ open class DateUtils {
       let diffMinStr = (diffMin < 1) ? "\(nowStr)" : "\(aboutStr) \(diffMin) min"
       return diffMinStr
     } else if (diffMin < 0) {
-      return "Redan avgått"
+      return "Already departed".localized
     }
     
     return ""
@@ -165,14 +146,14 @@ open class DateUtils {
    */
   open static func createTripDurationString(_ min: Int) -> String {
     if min < 60 {
-      return "Restid: \(min) min"
+      return "\("Trip time".localized): \(min) min"
     }
     
     var remainder = String(min % 60)
     if remainder.characters.count <= 1 {
       remainder = "0" + remainder
     }
-    return "Restid: \(min / 60):\(remainder) tim"
+    return "\("Trip time".localized): \(min / 60):\(remainder) \("h".localized)"
   }
   
   // MARK: Private
@@ -180,6 +161,11 @@ open class DateUtils {
   fileprivate static func getSwedishFormatter() -> DateFormatter {
     let formatter = DateFormatter()
     formatter.locale = Locale(identifier: "sv_SE")
+    return formatter
+  }
+  
+  fileprivate static func getFormatter() -> DateFormatter {
+    let formatter = DateFormatter()
     return formatter
   }
 }
