@@ -58,26 +58,17 @@ open class DateUtils {
    * date string.
    */
   open static func friendlyDate(_ date: Date) -> String {
-    let formatter = getSwedishFormatter()
-    
-    formatter.dateFormat = "EEEE"
-    var weekDay = formatter.string(from: date)
-    if formatter.string(from: Date()) == weekDay {
-      weekDay = "Idag, \(weekDay)en"
-    } else if formatter.string(from: Date(timeIntervalSinceNow: 86400)) == weekDay {
-      weekDay = "Imorgon, \(weekDay)en"
-    } else {
-      weekDay = (weekDay + "en").capitalized
+    let formatter = getFormatter()
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .none
+
+    if Calendar.current.isDateInToday(date) {
+      return "Today"
+    } else if Calendar.current.isDateInTomorrow(date) {
+      return "Tomorrow"
     }
     
-    formatter.dateFormat = "d"
-    var day = formatter.string(from: date)
-    day = (day == "1" || day == "2") ? day + ":a" : day + ":e"
-    
-    formatter.dateFormat = "MMMM"
-    let month = formatter.string(from: date)
-    
-    return ("\(weekDay) den \(day) \(month)")
+    return formatter.string(from: date)
   }
   
   /**
@@ -85,30 +76,20 @@ open class DateUtils {
    * date string.
    */
   open static func friendlyDateAndTime(_ date: Date) -> String {
-    let formatter = getSwedishFormatter()
+    let formatter = getFormatter()
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .short
     
-    formatter.dateFormat = "d"
-    var day = formatter.string(from: date)
-    day = (day == "1" || day == "2") ? day + ":a" : day + ":e"
-    
-    formatter.dateFormat = "MMMM"
-    let month = formatter.string(from: date)
-    
-    formatter.dateFormat = "EEEE"
-    var weekDay = formatter.string(from: date)
-    
-    if formatter.string(from: Date()) == weekDay {
-      weekDay = "Idag"
-    } else if formatter.string(from: Date(timeIntervalSinceNow: 86400)) == weekDay {
-      weekDay = "imorgon"
-    } else {
-      weekDay = weekDay.capitalized + " den \(day) \(month)"
+    var todayStr = ""
+    if Calendar.current.isDateInToday(date) {
+      formatter.dateStyle = .none
+      todayStr = "Today, "
+    } else if Calendar.current.isDateInTomorrow(date) {
+      formatter.dateStyle = .none
+      todayStr = "Tomorrow, "      
     }
     
-    formatter.dateFormat = "HH:mm"
-    let time = formatter.string(from: date)
-    
-    return ("\(weekDay), kl. \(time)")
+    return todayStr + formatter.string(from: date)
   }
   
   /**
@@ -180,6 +161,11 @@ open class DateUtils {
   fileprivate static func getSwedishFormatter() -> DateFormatter {
     let formatter = DateFormatter()
     formatter.locale = Locale(identifier: "sv_SE")
+    return formatter
+  }
+  
+  fileprivate static func getFormatter() -> DateFormatter {
+    let formatter = DateFormatter()
     return formatter
   }
 }
