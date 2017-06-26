@@ -47,7 +47,6 @@ class TripListVC: UITableViewController {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = StyleHelper.sharedInstance.background
     NotificationCenter.default.addObserver(
       self, selector: #selector(didBecomeActive),
       name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)

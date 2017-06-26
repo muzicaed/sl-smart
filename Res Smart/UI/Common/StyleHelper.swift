@@ -16,25 +16,24 @@ class StyleHelper {
   let mainGreen = UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 1.0)
   
   let highlight = UIColor(red: 229/255, green: 255/255, blue: 255/255, alpha: 0.95)
-  let background = UIColor(red: 226/255, green: 232/255, blue: 233/255, alpha: 1.0)
-  let cardBackground = UIColor(red: 63/255, green: 73/255, blue: 62/255, alpha: 0.8)
   let warningColor = UIColor(red: 255/255, green: 75/255, blue: 0/255, alpha: 1.0)
   let realtimeColor = UIColor(red: 0/255, green: 113/255, blue: 218/255, alpha: 1.0)
   
   func setupCustomStyle() {
     let navAppearance = UINavigationBar.appearance()
     navAppearance.isTranslucent = false
-    navAppearance.tintColor = UIColor.white
-    navAppearance.barTintColor = mainGreen
-    navAppearance.titleTextAttributes = [
-      NSAttributedStringKey.foregroundColor.rawValue: UIColor.white]
+    if #available(iOS 11.0, *) {
+      navAppearance.prefersLargeTitles = true
+    }
+    navAppearance.tintColor = mainGreen
+    navAppearance.barTintColor = UIColor(white: 0.95, alpha: 1.0)
     
     let tabBarAppearance = UITabBar.appearance()
     tabBarAppearance.tintColor = mainGreen
     
     let searchBarAppearance = UISearchBar.appearance()
     searchBarAppearance.tintColor = tintColor
-    searchBarAppearance.barTintColor = mainGreen
+    searchBarAppearance.barTintColor = UIColor(white: 0.95, alpha: 1.0)
     
     UITabBarItem.appearance().setTitleTextAttributes(
       [
@@ -46,8 +45,8 @@ class StyleHelper {
         NSAttributedStringKey.foregroundColor: mainGreen
       ], for: .selected)
     
-    UIApplication.shared.statusBarStyle = .lightContent
-    (UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])).tintColor = UIColor.white
+    UIApplication.shared.statusBarStyle = .default
+    //(UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])).tintColor = UIColor.white
   }
   
   func tintImage(_ image: UIImage, color: UIColor) -> UIImage {

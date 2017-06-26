@@ -51,7 +51,6 @@ class DeviationVC: UITableViewController {
    * Setup view properties
    */
   fileprivate func setupView() {
-    view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     tableView.separatorInset = UIEdgeInsets.zero
     tableView.rowHeight = UITableViewAutomaticDimension

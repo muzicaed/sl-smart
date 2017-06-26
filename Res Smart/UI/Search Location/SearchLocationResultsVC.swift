@@ -30,7 +30,6 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView()
     edgesForExtendedLayout = UIRectEdge()
   }

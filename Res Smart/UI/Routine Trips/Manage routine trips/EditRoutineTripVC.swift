@@ -42,7 +42,6 @@ DateTimePickResponder {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.isEditing = true
-    view.backgroundColor = StyleHelper.sharedInstance.background
     createFakeBackButton()
     updateGenericValues()
     createDimmer()

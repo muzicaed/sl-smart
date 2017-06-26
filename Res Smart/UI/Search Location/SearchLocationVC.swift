@@ -36,7 +36,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     MyLocationHelper.sharedInstance.requestLocationUpdate { (_) -> () in
       self.tableView.reloadData()
     }
-    view.backgroundColor = StyleHelper.sharedInstance.background
     
     loadListedLocations()
     prepareSearchController()

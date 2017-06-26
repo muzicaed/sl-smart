@@ -362,8 +362,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
     collectionView?.collectionViewLayout = flowLayout
     collectionView?.delegate = self
-    
-    view.backgroundColor = StyleHelper.sharedInstance.background
   }
   
   /**

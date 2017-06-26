@@ -25,7 +25,6 @@ class LinePickerVC: UITableViewController {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = StyleHelper.sharedInstance.background
     if incText != nil {
       lineTextField.text = "\(incText!)"
       lineTypeSegmentedControl.selectedSegmentIndex = 1

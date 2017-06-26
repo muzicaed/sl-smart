@@ -127,7 +127,6 @@ class TrafficSituationVC: UITableViewController {
   // MARK: Private
   
   fileprivate func setupView() {
-    view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     tableView.separatorInset = UIEdgeInsets.zero
     tableView.rowHeight = UITableViewAutomaticDimension

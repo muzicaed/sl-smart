@@ -41,7 +41,6 @@ PickGenericValueResponder, LinePickerResponder {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.isEditing = true
-    view.backgroundColor = StyleHelper.sharedInstance.background
     criterions = SearchCriterionStore.sharedInstance.retrieveSearchCriterions()
     restoreUIFromCriterions()
     createDimmer()
