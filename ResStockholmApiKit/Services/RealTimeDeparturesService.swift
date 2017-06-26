@@ -18,7 +18,9 @@ open class RealTimeDeparturesService {
    */
   open static func fetch(_ siteId: Int,
                          callback: @escaping (_ data: RealTimeDepartures?, _ error: SLNetworkError?) -> Void) {
-    api.getRealTimeTable(siteId) { (data, error) -> Void in
+    api.getRealTimeTable(siteId) { (arg) -> Void in
+      
+      let (data, error) = arg
       if let d = data {
         if d.count == 0 {
           HttpRequestHelper.clearCache()
@@ -57,7 +59,7 @@ open class RealTimeDeparturesService {
     if json["StopPointDeviations"].array!.count > 0 {
       for messJson in json["StopPointDeviations"].array! {
         if let mess = messJson["Deviation"]["Text"].string, let type = messJson["StopInfo"]["TransportMode"].string {
-          departures.deviations.append(type, mess)
+          departures.deviations.append((type, mess))
         }
       }
     }
@@ -192,10 +194,10 @@ open class RealTimeDeparturesService {
         journeyDirection: boatJson["JourneyDirection"].int!,
         groupOfLine: boatJson["GroupOfLine"].string)
       
-      if result["\(rtBoat.groupOfLine)-\(rtBoat.journeyDirection)"] == nil {
-        result["\(rtBoat.groupOfLine)-\(rtBoat.journeyDirection)"] = [RTBoat]()
+      if result["\(String(describing: rtBoat.groupOfLine))-\(rtBoat.journeyDirection)"] == nil {
+        result["\(String(describing: rtBoat.groupOfLine))-\(rtBoat.journeyDirection)"] = [RTBoat]()
       }
-      result["\(rtBoat.groupOfLine)-\(rtBoat.journeyDirection)"]?.append(rtBoat)
+      result["\(String(describing: rtBoat.groupOfLine))-\(rtBoat.journeyDirection)"]?.append(rtBoat)
     }
     
     return result

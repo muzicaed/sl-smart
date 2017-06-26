@@ -455,7 +455,7 @@ class CurrentTripVC: UIViewController, MKMapViewDelegate {
     mapView.isScrollEnabled = true
   }
   
-  func mapInteract(_ sender: UITapGestureRecognizer) {
+  @objc func mapInteract(_ sender: UITapGestureRecognizer) {
     enableMapScroll()
     autoManualSegmentControl.selectedSegmentIndex = 1
     isOverviewLocked = false

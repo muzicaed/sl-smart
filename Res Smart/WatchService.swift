@@ -67,13 +67,13 @@ class WatchService {
         crit.time = DateUtils.dateAsTimeString(Date())
         
         SearchTripService.tripSearch(crit,
-          callback: { resTuple in
-            if resTuple.1 != nil {
+          callback: { (trips, slNetworkError) in
+            if slNetworkError != nil {
               response["error"] = true as AnyObject?
             }
             
             var foundTrips = [Dictionary<String, AnyObject>]()
-            for trip in resTuple.0 {
+            for trip in trips {
               foundTrips.append(trip.watchTransferData())
             }
             response["trips"] = foundTrips as AnyObject?
@@ -103,13 +103,13 @@ class WatchService {
     }
     
     SearchTripService.tripSearch(crit,
-      callback: { resTuple in
-        if resTuple.1 != nil {
+      callback: { (trips, slNetworkError) in
+        if slNetworkError != nil {
           response["error"] = true as AnyObject?
         }
         
         var foundTrips = [Dictionary<String, AnyObject>]()
-        for trip in resTuple.0 {
+        for trip in trips {
           foundTrips.append(trip.watchTransferData())
         }
         response["trips"] = foundTrips as AnyObject?

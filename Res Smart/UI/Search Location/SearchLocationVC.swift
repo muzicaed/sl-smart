@@ -64,7 +64,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   /**
    * Returned to the app.
    */
-  func didBecomeActive() {
+  @objc func didBecomeActive() {
     let now = Date()
     if now.timeIntervalSince(loadedTime) > (60 * 30) { // 0.5 hour
       let _ = navigationController?.popToRootViewController(animated: false)
@@ -162,7 +162,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     return view
   }
   
-  func toggleEditFavourites() {
+  @objc func toggleEditFavourites() {
     tableView.isEditing = !tableView.isEditing
     let title = (tableView.isEditing) ? "Done".localized : "Change order".localized
     editFavouritebutton.setTitle(title, for: UIControlState())

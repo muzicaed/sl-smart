@@ -108,7 +108,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   /**
    * Triggered when returning from background.
    */
-  func didBecomeActive() {
+  @objc func didBecomeActive() {
     if CLLocationManager.authorizationStatus() == .denied || !CLLocationManager.locationServicesEnabled() {
       showLocationServicesNotAllowed()
       MyLocationHelper.sharedInstance.isStarted = false
@@ -123,7 +123,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   /**
    * Backgrounded.
    */
-  func didBecomeInactive() {
+  @objc func didBecomeInactive() {
     collectionView?.backgroundView?.isHidden = true
     stopRefreshTimmer()
   }
@@ -137,7 +137,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       timeInterval: 5.0, target: self, selector: #selector(refreshUI), userInfo: nil, repeats: true)
   }
   
-  func refreshUI() {
+  @objc func refreshUI() {
     loadTripData(false)
   }
   
@@ -152,7 +152,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   /**
    * On user drags down to refresh
    */
-  func onRefreshController() {
+  @objc func onRefreshController() {
     if !isLoading {
       loadTripData(true)
     } else {

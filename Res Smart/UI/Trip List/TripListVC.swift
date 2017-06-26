@@ -85,7 +85,7 @@ class TripListVC: UITableViewController {
   /**
    * Returned to the app.
    */
-  func didBecomeActive() {
+  @objc func didBecomeActive() {
     let now = Date()
     if now.timeIntervalSince(loadedTime) > (60 * 60) { // 1 hour
       let _ = navigationController?.popToRootViewController(animated: false)
@@ -98,7 +98,7 @@ class TripListVC: UITableViewController {
   /**
    * Backgrounded.
    */
-  func didBecomeInactive() {
+  @objc func didBecomeInactive() {
     stopRefreshTimmer()
   }
   
@@ -122,7 +122,7 @@ class TripListVC: UITableViewController {
   /**
    * Refresh collection view.
    */
-  func refreshUI() {
+  @objc func refreshUI() {
     if navigationController?.topViewController == self {
       self.tableView?.reloadData()
       var flatTrips = [Trip]()
@@ -174,7 +174,7 @@ class TripListVC: UITableViewController {
    * Load more trips when user scrolls
    * to the bottom of the list.
    */
-  func loadMoreTrips() {
+  @objc func loadMoreTrips() {
     isLoadingMore = true
     loadMoreLater?.displaySpinner(1.0)
     
@@ -191,7 +191,7 @@ class TripListVC: UITableViewController {
    * Load earlier trips when user scrolls
    * to the top of the list.
    */
-  func loadEarlierTrips() {
+  @objc func loadEarlierTrips() {
     isLoadingMore = true
     loadMoreEarlier?.displaySpinner(1.0)
     
@@ -375,17 +375,17 @@ class TripListVC: UITableViewController {
       NetworkActivity.displayActivityIndicator(true)
       criterions.numTrips = (criterions.searchForArrival) ? 4 : criterions.numTrips
       SearchTripService.tripSearch(
-        criterions, callback: { resTuple in
+        criterions, callback: { (trips, slNetworkError) in
           NetworkActivity.displayActivityIndicator(false)
           DispatchQueue.main.async {
-            if resTuple.1 != nil {
+            if slNetworkError != nil {
               self.showNetworkErrorAlert()
               self.isLoading = false
               self.tableView?.reloadData()
               return
             }
-            self.appendToDictionary(resTuple.0, shouldAppend: shouldAppend)
-            if resTuple.0.count == 0 {
+            self.appendToDictionary(trips, shouldAppend: shouldAppend)
+            if trips.count == 0 {
               self.navigationItem.rightBarButtonItem = nil
             }
             self.isLoading = false

@@ -397,7 +397,7 @@ PickGenericValueResponder, LinePickerResponder {
   /**
    * Restores UI from criterions.
    */
-  func restoreUIFromCriterions() {
+  @objc func restoreUIFromCriterions() {
     if let crit = criterions {
       isAdvancedMode = crit.isAdvanced
       advancedToggleButton.title = (isAdvancedMode) ? "Simple".localized : "Advanced".localized

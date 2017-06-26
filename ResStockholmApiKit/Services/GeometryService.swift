@@ -24,7 +24,9 @@ open class GeometryService {
       return
     }
     
-    api.fetchGeometry(urlEncRef) { (data, error) -> Void in
+    api.fetchGeometry(urlEncRef) { (arg) -> Void in
+      
+      let (data, error) = arg
       if let d = data {
         if d.count == 0 {
           HttpRequestHelper.clearCache()

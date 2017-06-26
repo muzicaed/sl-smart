@@ -127,7 +127,7 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     }
     var viaStr = ""
     if let via = self.via {
-      viaStr = "\(via.siteId)"
+      viaStr = "\(via.siteId!)"
     }    
     return "smart-\(createOriginQuery())-\(viaStr)-\(createDestinationQuery())"
   }

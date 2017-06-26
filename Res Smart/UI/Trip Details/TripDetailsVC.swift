@@ -55,7 +55,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
   /**
    * Returned to the app.
    */
-  func didBecomeActive() {
+  @objc func didBecomeActive() {
     let now = Date()
     if now.timeIntervalSince(loadedTime) > (60 * 90) { // 1.5 hour
       let _ = navigationController?.popToRootViewController(animated: false)

@@ -19,7 +19,9 @@ open class JournyDetailsService {
   open static func fetchJournyDetails(_ urlEncRef: String,
                                       callback: @escaping (_ data: [Stop], _ error: SLNetworkError?) -> Void) {
     var result = [Stop]()
-    api.getDetails(urlEncRef) { (data, error) -> Void in
+    api.getDetails(urlEncRef) { (arg) -> Void in
+      
+      let (data, error) = arg
       if let d = data {
         if d.count == 0 {
           HttpRequestHelper.clearCache()

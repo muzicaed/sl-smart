@@ -158,21 +158,21 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
   /**
    * Executes a search
    */
-  func searchLocation() {
+  @objc func searchLocation() {
     if let query = searchQueryText {
       if query.characters.count > 0 {
         self.noResults = false
         NetworkActivity.displayActivityIndicator(true)
-        LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
+        LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { (locations, slNetworkError) in
           NetworkActivity.displayActivityIndicator(false)
           DispatchQueue.main.async {
-            if resTuple.1 != nil {
+            if slNetworkError != nil {
               self.noResults = true
               self.tableView.reloadData()
               return
             }
-            self.searchResult = resTuple.0
-            if resTuple.0.count > 0 {
+            self.searchResult = locations
+            if locations.count > 0 {
               self.tableView.reloadData()
             }
           }

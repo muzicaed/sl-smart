@@ -71,7 +71,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   /**
    * User tap widget
    */
-  func onTap() {
+  @objc func onTap() {
     extensionContext?.open(URL(string: "ressmart://")!, completionHandler: nil)
   }
   
@@ -116,7 +116,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   /**
    * Update widget UI
    */
-  func updateUI() {
+  @objc func updateUI() {
     if let bestRoutineTrip = self.bestRoutine {
       if let trip = bestRoutineTrip.trips.first {
         self.titleLabel.text = bestRoutineTrip.title

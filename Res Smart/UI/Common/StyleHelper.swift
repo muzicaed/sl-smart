@@ -27,7 +27,7 @@ class StyleHelper {
     navAppearance.tintColor = UIColor.white
     navAppearance.barTintColor = mainGreen
     navAppearance.titleTextAttributes = [
-      NSForegroundColorAttributeName: UIColor.white]
+      NSAttributedStringKey.foregroundColor.rawValue: UIColor.white]
     
     let tabBarAppearance = UITabBar.appearance()
     tabBarAppearance.tintColor = mainGreen
@@ -38,12 +38,12 @@ class StyleHelper {
     
     UITabBarItem.appearance().setTitleTextAttributes(
       [
-        NSForegroundColorAttributeName: UIColor(white: 0.0, alpha: 0.75)
+        NSAttributedStringKey.foregroundColor: UIColor(white: 0.0, alpha: 0.75)
       ], for: UIControlState())
     
     UITabBarItem.appearance().setTitleTextAttributes(
       [
-        NSForegroundColorAttributeName: mainGreen
+        NSAttributedStringKey.foregroundColor: mainGreen
       ], for: .selected)
     
     UIApplication.shared.statusBarStyle = .lightContent

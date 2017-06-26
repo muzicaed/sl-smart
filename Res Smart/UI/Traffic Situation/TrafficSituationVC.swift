@@ -137,7 +137,7 @@ class TrafficSituationVC: UITableViewController {
   /**
    * Loads traffic situation data.
    */
-  func loadData() {
+  @objc func loadData() {
     if shouldReload() {
       NetworkActivity.displayActivityIndicator(true)
       TrafficSituationService.fetchInformation() {data, error in

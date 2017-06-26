@@ -83,7 +83,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Returned to the app.
    */
-  func didBecomeActive() {
+  @objc func didBecomeActive() {
     let now = Date()
     if now.timeIntervalSince(loadedTime) > (60 * 30) { // 30 minutes
       let _ = navigationController?.popToRootViewController(animated: false)
@@ -97,7 +97,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Backgrounded.
    */
-  func didBecomeInactive() {
+  @objc func didBecomeInactive() {
     stopRefreshTimmer()
   }
   
@@ -122,7 +122,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Load real time data
    */
-  func loadData() {
+  @objc func loadData() {
     NetworkActivity.displayActivityIndicator(true)
     RealTimeDeparturesService.fetch(siteId) { (rtDepartures, error) -> Void in
       DispatchQueue.main.async {

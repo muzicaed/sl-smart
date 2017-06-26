@@ -122,7 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
    */
   fileprivate func setupAppleWatchConnection() {
     if (WCSession.isSupported()) {
-      let defaultSession = WCSession.default()
+      let defaultSession = WCSession.default
       defaultSession.delegate = self
       defaultSession.activate()
     }
