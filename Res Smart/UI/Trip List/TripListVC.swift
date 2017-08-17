@@ -399,8 +399,8 @@ class TripListVC: UITableViewController {
               self.tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentSize.height - 480.0)
             }
             self.firstTime = false
-            IJProgressView.shared.hideProgressView()
             self.tableView?.reloadData()
+            IJProgressView.shared.hideProgressView()
           }
       })
       return

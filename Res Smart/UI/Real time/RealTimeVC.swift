@@ -128,16 +128,15 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       DispatchQueue.main.asyncAfter(deadline: when) {
         NetworkActivity.displayActivityIndicator(false)
         if error == nil {
-          if let departures = rtDepartures {
-            IJProgressView.shared.hideProgressView()
-            self.refreshController.endRefreshing()
+          if let departures = rtDepartures {                        
             self.isLoading = false
             self.firstTimeLoad = false
             self.realTimeDepartures = departures
             self.setupKeys()
             self.prepareSegmentView()
-            self.tableView.backgroundView = nil
             self.tableView.reloadData()
+            IJProgressView.shared.hideProgressView()
+            self.refreshController.endRefreshing()
           }
         } else {
           self.handleLoadDataError()

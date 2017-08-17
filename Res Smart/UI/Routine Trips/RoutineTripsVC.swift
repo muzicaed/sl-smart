@@ -465,9 +465,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   fileprivate func stopLoading() {
     isLoading = false
-    IJProgressView.shared.hideProgressView()
-    refreshController.endRefreshing()    
     collectionView?.reloadData()
+    IJProgressView.shared.hideProgressView()
+    refreshController.endRefreshing()        
   }
   
   /**
