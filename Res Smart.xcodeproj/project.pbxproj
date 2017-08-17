@@ -11,6 +11,7 @@
 		1806037C1C02165000AC1841 /* LocationSearchResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037B1C02165000AC1841 /* LocationSearchResponder.swift */; };
 		180B657E1D8A985400D2A50F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 180B657D1D8A985400D2A50F /* Settings.bundle */; };
 		180F7D791C8CC987000C8207 /* UserPreferenceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F7D781C8CC987000C8207 /* UserPreferenceStore.swift */; };
+		181724651F459A63006E8EFA /* IJProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181724641F459A63006E8EFA /* IJProgressView.swift */; };
 		181860A41C61613800413C18 /* RealTimeStopPointDeviationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181860A31C61613800413C18 /* RealTimeStopPointDeviationRow.swift */; };
 		1818B2671C404FE0004E3CA3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188B80441C175D9600E7D90C /* NotificationCenter.framework */; };
 		1818B26A1C404FE0004E3CA3 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818B2691C404FE0004E3CA3 /* TodayViewController.swift */; };
@@ -286,6 +287,7 @@
 		180B657D1D8A985400D2A50F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "Res Smart/Settings.bundle"; sourceTree = "<group>"; };
 		180F7D781C8CC987000C8207 /* UserPreferenceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferenceStore.swift; sourceTree = "<group>"; };
 		180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePostHelper.swift; sourceTree = "<group>"; };
+		181724641F459A63006E8EFA /* IJProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJProgressView.swift; sourceTree = "<group>"; };
 		181860A31C61613800413C18 /* RealTimeStopPointDeviationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeStopPointDeviationRow.swift; sourceTree = "<group>"; };
 		1818B2661C404FE0004E3CA3 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1818B2691C404FE0004E3CA3 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -526,6 +528,14 @@
 			path = Lib;
 			sourceTree = "<group>";
 		};
+		181724631F459A2E006E8EFA /* IJProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				181724641F459A63006E8EFA /* IJProgressView.swift */,
+			);
+			path = IJProgressView;
+			sourceTree = "<group>";
+		};
 		1818B2681C404FE0004E3CA3 /* Today */ = {
 			isa = PBXGroup;
 			children = (
@@ -593,6 +603,7 @@
 		1827692E1C01163B00655B4B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				181724631F459A2E006E8EFA /* IJProgressView */,
 				18309FD71E460CB900A43309 /* CALayerExtention.swift */,
 				18B761981E28CC6F000F9258 /* Map */,
 				18733C5C1C4E562B00F66AEF /* SMSegmentView */,
@@ -1441,6 +1452,7 @@
 				1835A0691C675D58008355F9 /* NetworkActivity.swift in Sources */,
 				18353DE01C1F70590011CDEA /* AdvancedCriterionsHelper.swift in Sources */,
 				18309FD81E460CB900A43309 /* CALayerExtention.swift in Sources */,
+				181724651F459A63006E8EFA /* IJProgressView.swift in Sources */,
 				1892BA3E1C1F26E100BC191A /* TravelTypesPickerRow.swift in Sources */,
 				188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */,
 				18698AA61C4E91000031D1AD /* RealTimeHeaderRow.swift in Sources */,
@@ -1689,7 +1701,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = Today/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.Today";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1708,7 +1720,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = Today/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.Today";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1962,7 +1974,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart";
 				PRODUCT_NAME = "Res Smart";
@@ -1985,7 +1997,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart";
 				PRODUCT_NAME = "Res Smart";
@@ -2011,7 +2023,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ResStockholmApiKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mikael-hellman.ResStockholmApiKit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2037,7 +2049,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ResStockholmApiKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mikael-hellman.ResStockholmApiKit";
 				PRODUCT_NAME = "$(TARGET_NAME)";

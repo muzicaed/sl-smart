@@ -1384,7 +1384,7 @@
         <scene sceneID="oBD-r9-4g8">
             <objects>
                 <tableViewController id="06E-RP-qJs" userLabel="My Routine Trips" customClass="ManageRoutineTripsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bNx-rF-zNd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bNx-rF-zNd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1393,20 +1393,20 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="130"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5eW-1F-79F" id="6BF-GG-lFv">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="129.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pPm-cO-gx0">
-                                            <rect key="frame" x="8" y="8" width="359" height="113"/>
+                                            <rect key="frame" x="8" y="8" width="359" height="114"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="I don't know your routines" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Y6-H6-jFO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="56.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="57"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWJ-Ip-1PH">
-                                                    <rect key="frame" x="0.0" y="56.5" width="359" height="56.5"/>
+                                                    <rect key="frame" x="0.0" y="57" width="359" height="57"/>
                                                     <accessibility key="accessibilityConfiguration" label="You have not created any routines. Tap &quot;+&quot; to create one."/>
                                                     <string key="text">You have not created any routines. 
 Tap "+" to create one.</string>
@@ -1429,11 +1429,11 @@ Tap "+" to create one.</string>
                                 <rect key="frame" x="0.0" y="158" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bbh-2h-gbO" id="k6z-qC-mfr">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="79.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Ioa-h7-glF">
-                                            <rect key="frame" x="16" y="8" width="318" height="63"/>
+                                            <rect key="frame" x="16" y="8" width="318" height="64"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Trip Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJU-sG-500">
                                                     <rect key="frame" x="0.0" y="0.0" width="318" height="20.5"/>
@@ -1457,7 +1457,7 @@ Tap "+" to create one.</string>
                                                     </attributedString>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Stockholm central » Karlberg station" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIZ-VO-n8V">
-                                                    <rect key="frame" x="0.0" y="21.5" width="318" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="22" width="318" height="20.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="highlightedColor"/>
                                                     <attributedString key="userComments">
@@ -1478,7 +1478,7 @@ Tap "+" to create one.</string>
                                                     </attributedString>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Inga avancerade inställningar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9y-4C-UNe">
-                                                    <rect key="frame" x="0.0" y="43" width="318" height="20"/>
+                                                    <rect key="frame" x="0.0" y="44" width="318" height="20"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2033,17 +2033,17 @@ Tap "+" to create one.</string>
         <scene sceneID="2N2-G6-FGu">
             <objects>
                 <tableViewController title="Choose stop" extendedLayoutIncludesOpaqueBars="YES" id="WJw-HK-J3L" customClass="SearchLocationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="NZT-P9-guF">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="NZT-P9-guF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="StationSearchResultCell" textLabel="7tf-V3-lvF" detailTextLabel="bGr-Sp-Q9i" imageView="5LW-NO-v49" style="IBUITableViewCellStyleSubtitle" id="UKA-Wl-L3Q">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UKA-Wl-L3Q" id="Lhl-KO-hdt">
-                                    <rect key="frame" x="0.0" y="0.0" width="328" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="328" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7tf-V3-lvF">
@@ -2107,7 +2107,7 @@ Tap "+" to create one.</string>
         <scene sceneID="NKx-Ik-I2t">
             <objects>
                 <tableViewController title="Närliggande hållplatser" id="Se4-Xu-rNz" userLabel="Nearby stations" customClass="NearbyStationsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="YJ5-dV-3UG">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="YJ5-dV-3UG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2116,7 +2116,7 @@ Tap "+" to create one.</string>
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="iZu-bA-nNW" id="bN1-1J-865">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" contentMode="left" text="Centralen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hma-gB-jL6">
@@ -2204,7 +2204,7 @@ Tap "+" to create one.</string>
         <scene sceneID="6nv-mG-FjN">
             <objects>
                 <tableViewController id="Tm1-9I-jjs" userLabel="Travel Types" customClass="TravelTypesVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nNJ-ce-w8T">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nNJ-ce-w8T">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2213,11 +2213,11 @@ Tap "+" to create one.</string>
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aes-71-aFG" id="22D-IN-Hjx">
-                                    <rect key="frame" x="0.0" y="0.0" width="336" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="336" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Färdmedel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lyl-wI-8aW">
-                                            <rect key="frame" x="16" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2548,25 +2548,9 @@ Tap "+" to create one.</string>
                     </tableView>
                     <navigationItem key="navigationItem" title="Next departure" id="e06-cF-GAT"/>
                     <connections>
-                        <outlet property="spinnerView" destination="tRg-Z1-gW5" id="eAg-92-fmE"/>
                         <outlet property="topView" destination="PP4-K6-3gD" id="1iD-4U-2qR"/>
                     </connections>
                 </tableViewController>
-                <view contentMode="scaleToFill" id="tRg-Z1-gW5">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xsk-Lk-MbT">
-                            <rect key="frame" x="189" y="4" width="37" height="37"/>
-                            <color key="color" red="0.3333333432674408" green="0.3333333432674408" blue="0.3333333432674408" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
-                        </activityIndicatorView>
-                    </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstItem="xsk-Lk-MbT" firstAttribute="centerY" secondItem="tRg-Z1-gW5" secondAttribute="centerY" id="Pyt-4S-Sax"/>
-                        <constraint firstItem="xsk-Lk-MbT" firstAttribute="centerX" secondItem="tRg-Z1-gW5" secondAttribute="centerX" id="f4Z-Xk-NF9"/>
-                    </constraints>
-                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0X-4s-aCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3259" y="3647"/>
@@ -3069,10 +3053,10 @@ Welcome to a smarter way of traveling.</string>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="chj-Ff-Ru2" firstAttribute="leading" secondItem="rci-u1-8SR" secondAttribute="leading" id="9ka-Fj-vtr"/>
-                                                <constraint firstAttribute="trailing" secondItem="chj-Ff-Ru2" secondAttribute="trailing" id="lur-3x-GKJ"/>
-                                                <constraint firstItem="chj-Ff-Ru2" firstAttribute="top" secondItem="rci-u1-8SR" secondAttribute="top" id="wRt-il-NjW"/>
-                                                <constraint firstAttribute="bottom" secondItem="chj-Ff-Ru2" secondAttribute="bottom" id="yr8-bU-gP8"/>
+                                                <constraint firstAttribute="bottom" secondItem="chj-Ff-Ru2" secondAttribute="bottom" id="2d2-2b-fG7"/>
+                                                <constraint firstAttribute="trailing" secondItem="chj-Ff-Ru2" secondAttribute="trailing" id="ABH-iS-mMQ"/>
+                                                <constraint firstItem="chj-Ff-Ru2" firstAttribute="leading" secondItem="rci-u1-8SR" secondAttribute="leading" id="Hci-e3-Hni"/>
+                                                <constraint firstItem="chj-Ff-Ru2" firstAttribute="top" secondItem="rci-u1-8SR" secondAttribute="top" id="zmJ-HF-IaU"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -4436,16 +4420,6 @@ Welcome to a smarter way of traveling.</string>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fP0-7u-TBk" id="ISh-6H-CPN">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ap7-FA-FDI">
-                                            <rect key="frame" x="169" y="42" width="37" height="37"/>
-                                            <color key="color" red="0.3333333432674408" green="0.3333333432674408" blue="0.3333333432674408" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </activityIndicatorView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Ap7-FA-FDI" firstAttribute="centerY" secondItem="ISh-6H-CPN" secondAttribute="centerY" id="be6-SO-PoW"/>
-                                        <constraint firstItem="Ap7-FA-FDI" firstAttribute="centerX" secondItem="ISh-6H-CPN" secondAttribute="centerX" id="xwm-z7-Vaq"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
@@ -5248,7 +5222,7 @@ Welcome to a smarter way of traveling.</string>
         <scene sceneID="frf-hP-nIf">
             <objects>
                 <tableViewController storyboardIdentifier="LocationSearchResult" title="Search results" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rN5-I7-qjR" customClass="SearchLocationResultsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="pdc-F9-5tu">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="pdc-F9-5tu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -5258,7 +5232,7 @@ Welcome to a smarter way of traveling.</string>
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E6O-bD-H3Z" id="foI-89-eOF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j6a-uZ-ui0">
@@ -5305,11 +5279,11 @@ Welcome to a smarter way of traveling.</string>
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P0N-e3-UN4" id="Hf0-9o-01U">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="No results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8M3-wT-2Ap">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -5420,7 +5394,7 @@ Welcome to a smarter way of traveling.</string>
         <scene sceneID="MKF-2E-CU0">
             <objects>
                 <tableViewController id="pHa-YA-52O" userLabel="Generic Advance Picker" customClass="GenericValuePickerVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sjs-3q-UZE">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sjs-3q-UZE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -5429,11 +5403,11 @@ Welcome to a smarter way of traveling.</string>
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bqB-zq-5vk" id="dQE-G3-vXp">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Value 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x2g-Ms-Wb9">
-                                            <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="344" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -5668,12 +5642,12 @@ Welcome to a smarter way of traveling.</string>
     <inferredMetricsTieBreakers>
         <segue reference="GLI-h1-z4f"/>
         <segue reference="7QZ-YL-rBC"/>
-        <segue reference="bAI-Ol-u0J"/>
+        <segue reference="ivB-Ve-lrb"/>
         <segue reference="WoO-7G-VaU"/>
-        <segue reference="rzj-uS-OIZ"/>
+        <segue reference="kst-2L-81y"/>
         <segue reference="L0K-5H-KeJ"/>
         <segue reference="fPH-Xr-GVg"/>
-        <segue reference="Q81-bK-EK6"/>
+        <segue reference="Lg4-KG-mN0"/>
         <segue reference="zVB-lv-c0r"/>
     </inferredMetricsTieBreakers>
 </document>

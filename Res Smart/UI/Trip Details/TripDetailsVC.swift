@@ -32,6 +32,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = StyleHelper.sharedInstance.background
     if let trip = trip {
       prepareTableView()
       prepareHeader()

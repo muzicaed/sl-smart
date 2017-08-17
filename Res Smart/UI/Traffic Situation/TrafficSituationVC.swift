@@ -22,6 +22,7 @@ class TrafficSituationVC: UITableViewController {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = StyleHelper.sharedInstance.background
     setupView()
     refreshController.addTarget(
       self, action: #selector(loadData), for: UIControlEvents.valueChanged)

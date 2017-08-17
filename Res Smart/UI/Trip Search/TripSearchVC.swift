@@ -40,6 +40,7 @@ PickGenericValueResponder, LinePickerResponder {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.isEditing = true
     criterions = SearchCriterionStore.sharedInstance.retrieveSearchCriterions()
     restoreUIFromCriterions()

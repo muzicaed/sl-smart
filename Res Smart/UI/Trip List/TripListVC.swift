@@ -47,6 +47,7 @@ class TripListVC: UITableViewController {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = StyleHelper.sharedInstance.background
     NotificationCenter.default.addObserver(
       self, selector: #selector(didBecomeActive),
       name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
@@ -54,6 +55,7 @@ class TripListVC: UITableViewController {
       self, selector: #selector(didBecomeInactive),
       name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
     
+    IJProgressView.shared.showProgressView(navigationController!.view)
     handleMakeRoutineButton()
   }
   
@@ -69,6 +71,7 @@ class TripListVC: UITableViewController {
       loadTripData(true)
     } else {
       isLoading = false
+      IJProgressView.shared.hideProgressView()
       self.tableView?.reloadData()
     }
   }
@@ -396,6 +399,7 @@ class TripListVC: UITableViewController {
               self.tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentSize.height - 480.0)
             }
             self.firstTime = false
+            IJProgressView.shared.hideProgressView()
             self.tableView?.reloadData()
           }
       })

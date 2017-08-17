@@ -16,7 +16,6 @@ import ResStockholmApiKit
 class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   
   @IBOutlet weak var topView: UIView!
-  @IBOutlet var spinnerView: UIView!
   
   var realTimeDepartures: RealTimeDepartures?
   var isLoading = true
@@ -35,16 +34,15 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   var refreshTimmer: Timer?
   var loadedTime = Date()
   let refreshController = UIRefreshControl()
-  var tableActivityIndicator = UIActivityIndicatorView(
-    activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
   
   /**
    * On load
    */
   override func viewDidLoad() {
+    super.viewDidLoad()
+    view.backgroundColor = StyleHelper.sharedInstance.background
     topView.alpha = 0.0
     tableView.tableFooterView = UIView()
-    setupTableActivityIndicator()
     
     NotificationCenter.default.addObserver(
       self, selector: #selector(didBecomeActive),
@@ -57,8 +55,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     
     refreshController.addTarget(
       self, action: #selector(loadData), for: UIControlEvents.valueChanged)
-    refreshController.tintColor = UIColor.lightGray
-    tableView.addSubview(refreshController)
+    refreshController.attributedTitle = NSAttributedString(string: "Pull to refresh".localized)
+    tableView.refreshControl = refreshController
     tableView.alwaysBounceVertical = true
   }
   
@@ -124,12 +122,14 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   @objc func loadData() {
     NetworkActivity.displayActivityIndicator(true)
+    IJProgressView.shared.showProgressView(navigationController!.view)
     RealTimeDeparturesService.fetch(siteId) { (rtDepartures, error) -> Void in
-      DispatchQueue.main.async {
+      let when = DispatchTime.now() + 0.5
+      DispatchQueue.main.asyncAfter(deadline: when) {
         NetworkActivity.displayActivityIndicator(false)
         if error == nil {
           if let departures = rtDepartures {
-            self.spinnerView.removeFromSuperview()
+            IJProgressView.shared.hideProgressView()
             self.refreshController.endRefreshing()
             self.isLoading = false
             self.firstTimeLoad = false
@@ -150,7 +150,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    * On user drags down
    */
   func onRefreshController() {
-    setupTableActivityIndicator()
     isLoading = true
     tableView.reloadData()
     Timer.scheduledTimer(
@@ -452,15 +451,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       }))
     
     present(invalidLoadingAlert, animated: true, completion: nil)
-  }
-  
-  /**
-   * Setup table's background spinner.
-   */
-  fileprivate func setupTableActivityIndicator() {
-    tableActivityIndicator.startAnimating()
-    tableActivityIndicator.color = UIColor.lightGray
-    tableView?.backgroundView = tableActivityIndicator
   }
   
   deinit {

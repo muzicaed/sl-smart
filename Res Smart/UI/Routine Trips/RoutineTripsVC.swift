@@ -36,8 +36,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   
   var hereToThereCriterion: TripSearchCriterion?
   var refreshTimmer: Timer?
-  var tableActivityIndicator = UIActivityIndicatorView(
-    activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
   
   /**
    * View is done loading
@@ -47,7 +45,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     setupCollectionView()
     setupNotificationListeners()
     setupRefreshController()
-    setupTableActivityIndicator()
+    IJProgressView.shared.showProgressView(navigationController!.view)
   }
   
   /**
@@ -61,6 +59,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
     stopRefreshTimmer()
+    IJProgressView.shared.hideProgressView()
   }
   
   /**
@@ -368,21 +367,10 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Setup the "pull down to reload" controller.
    */
   fileprivate func setupRefreshController() {
-    refreshController.addTarget(
-      self, action: #selector(onRefreshController),
-      for: UIControlEvents.valueChanged)
-    refreshController.tintColor = UIColor.lightGray
-    collectionView?.addSubview(refreshController)
+    refreshController.attributedTitle = NSAttributedString(string: "Pull to refresh".localized)
+    refreshController.addTarget(self, action: #selector(onRefreshController), for: UIControlEvents.valueChanged)
+    collectionView?.refreshControl = refreshController
     collectionView?.alwaysBounceVertical = true
-  }
-  
-  /**
-   * Setup table's background spinner.
-   */
-  fileprivate func setupTableActivityIndicator() {
-    tableActivityIndicator.startAnimating()
-    tableActivityIndicator.color = UIColor.lightGray
-    collectionView?.backgroundView = tableActivityIndicator
   }
   
   /**
@@ -420,7 +408,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Will show big spinner when loading.
    */
   fileprivate func loadTripData(_ force: Bool) {
-    if RoutineTripsStore.sharedInstance.isRoutineTripsEmpty(){
+    if RoutineTripsStore.sharedInstance.isRoutineTripsEmpty() {
       isShowInfo = true
       otherRoutineTrips = [RoutineTrip]()
       bestRoutineTrip = nil
@@ -429,12 +417,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     } else if shouldReload() || force {
       startLoading()
       RoutineService.findRoutineTrip({ routineTrips in
-        DispatchQueue.main.async {
+        let when = DispatchTime.now() + 0.5
+        DispatchQueue.main.asyncAfter(deadline: when) {
           if routineTrips.count > 0 {
             self.bestRoutineTrip = routineTrips.first!
             self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
             self.lastUpdated = Date()
           }
+          
           NetworkActivity.displayActivityIndicator(false)
           self.stopLoading()
         }
@@ -463,12 +453,11 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   fileprivate func startLoading() {
     NetworkActivity.displayActivityIndicator(true)
+    IJProgressView.shared.showProgressView(navigationController!.view)
     isShowInfo = false
     isLoading = true
     bestRoutineTrip = nil
     selectedRoutineTrip = nil
-    collectionView?.backgroundView = tableActivityIndicator
-    tableActivityIndicator.startAnimating()
   }
   
   /**
@@ -476,8 +465,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   fileprivate func stopLoading() {
     isLoading = false
-    refreshController.endRefreshing()
-    collectionView?.backgroundView = nil
+    IJProgressView.shared.hideProgressView()
+    refreshController.endRefreshing()    
     collectionView?.reloadData()
   }
   
