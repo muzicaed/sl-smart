@@ -25,8 +25,8 @@ class StyleHelper {
     if #available(iOS 11.0, *) {
       navAppearance.prefersLargeTitles = true
     }
-    navAppearance.tintColor = mainGreen
-    navAppearance.barTintColor = UIColor(white: 0.95, alpha: 1.0)
+    navAppearance.tintColor = UIColor.white
+    navAppearance.barTintColor = mainGreen
     
     let tabBarAppearance = UITabBar.appearance()
     tabBarAppearance.tintColor = mainGreen
@@ -39,6 +39,16 @@ class StyleHelper {
       [
         NSAttributedStringKey.foregroundColor: UIColor(white: 0.0, alpha: 0.75)
       ], for: UIControlState())
+
+    if #available(iOS 11.0, *) {
+      UINavigationBar.appearance().largeTitleTextAttributes = [
+        NSAttributedStringKey.foregroundColor: UIColor.white
+      ]
+    }
+    
+    UINavigationBar.appearance().titleTextAttributes = [
+      NSAttributedStringKey.foregroundColor: UIColor.white
+    ]
     
     UITabBarItem.appearance().setTitleTextAttributes(
       [

@@ -464,10 +464,12 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * On trip search done.
    */
   fileprivate func stopLoading() {
-    isLoading = false
-    collectionView?.reloadData()
-    IJProgressView.shared.hideProgressView()
-    refreshController.endRefreshing()        
+    DispatchQueue.main.async() {
+      self.isLoading = false
+      self.refreshController.endRefreshing()
+      IJProgressView.shared.hideProgressView()
+      self.collectionView?.reloadData()
+    }
   }
   
   /**

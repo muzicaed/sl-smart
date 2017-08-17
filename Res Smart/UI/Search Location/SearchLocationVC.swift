@@ -526,7 +526,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
       searchController!.searchBar.placeholder = "Type stop name or address".localized
     }
     searchController!.searchBar.backgroundColor = UIColor(white: 0.6, alpha: 1.0)
-    tableView.tableHeaderView = searchController!.searchBar
+    if #available(iOS 11.0, *) {
+      navigationItem.searchController = searchController
+    } else {
+      tableView.tableHeaderView = searchController!.searchBar
+    }
   }
   
   fileprivate func prepareEditFavouriteButton() {

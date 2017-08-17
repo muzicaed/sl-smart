@@ -134,9 +134,10 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
             self.realTimeDepartures = departures
             self.setupKeys()
             self.prepareSegmentView()
-            self.tableView.reloadData()
+            
             IJProgressView.shared.hideProgressView()
             self.refreshController.endRefreshing()
+            self.tableView.reloadData()
           }
         } else {
           self.handleLoadDataError()

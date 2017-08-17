@@ -398,9 +398,9 @@ class TripListVC: UITableViewController {
             if criterions.searchForArrival && self.firstTime {
               self.tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentSize.height - 480.0)
             }
-            self.firstTime = false
-            self.tableView?.reloadData()
+            self.firstTime = false            
             IJProgressView.shared.hideProgressView()
+            self.tableView?.reloadData()
           }
       })
       return
