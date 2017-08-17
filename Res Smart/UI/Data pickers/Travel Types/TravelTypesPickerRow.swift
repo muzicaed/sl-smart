@@ -46,8 +46,9 @@ class TravelTypesPickerRow: UITableViewCell {
       tripTypeLabel.textColor = UIColor.red
       return
     }
-    text = text.substring(to: text.index(before: text.characters.index(before: text.endIndex)))
-    tripTypeLabel.text = text
+
+    let index = text.index(text.endIndex, offsetBy: -2)
+    tripTypeLabel.text = String(text[..<index])
   }
   
   

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z2r-oZ-gqC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z2r-oZ-gqC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -30,7 +30,7 @@
                 <navigationController id="8Uj-Rb-gfM" userLabel="Navigation Planned Trip" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search trip" image="SearchTripIcon" id="5s0-EQ-3vW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="vnL-TT-XGt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -45,11 +45,10 @@
         <scene sceneID="Jvl-1s-m4F">
             <objects>
                 <tableViewController id="Hg1-8K-Ui9" customClass="TripSearchVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="5" id="rFV-AS-BO5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="5" id="rFV-AS-BO5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.55447716349999998" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Trip" id="le3-KJ-PGv" userLabel="Locations">
                                 <cells>
@@ -85,7 +84,7 @@
                                                                                         <bool key="isElement" value="NO"/>
                                                                                     </accessibility>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="50" id="p2G-MX-RBK"/>
+                                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="p2G-MX-RBK"/>
                                                                                     </constraints>
                                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -155,7 +154,7 @@
                                                                                         <bool key="isElement" value="NO"/>
                                                                                     </accessibility>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="50" id="VGM-XO-MyH"/>
+                                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="VGM-XO-MyH"/>
                                                                                     </constraints>
                                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -244,7 +243,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="Via" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTh-lr-zHI">
                                                             <rect key="frame" x="15" y="0.0" width="50" height="51"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" priority="999" constant="50" id="agX-Id-GvN"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="999" constant="50" id="agX-Id-GvN"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -327,7 +326,7 @@
                                                                 <bool key="isElement" value="NO"/>
                                                             </accessibility>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="70" id="g9b-Ew-dot"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="g9b-Ew-dot"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -619,7 +618,7 @@
                                                 <rect key="frame" x="138" y="0.0" width="100" height="44"/>
                                                 <accessibility key="accessibilityConfiguration" label="Välj tid. Använd klockobjekt nedan och bekräfta ditt val med knappen till höger om denna."/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="ITr-Co-Z2G"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="ITr-Co-Z2G"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -632,12 +631,14 @@
                                             <constraint firstItem="QZb-ha-dRH" firstAttribute="top" secondItem="w5b-CR-XoA" secondAttribute="top" id="7Zu-uf-HRp"/>
                                             <constraint firstAttribute="bottom" secondItem="1Au-Cp-u1s" secondAttribute="bottom" id="9ih-MY-QkE"/>
                                             <constraint firstItem="I86-V7-yIE" firstAttribute="bottom" secondItem="w5b-CR-XoA" secondAttribute="bottom" id="AXo-4g-b5r"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QZb-ha-dRH" secondAttribute="trailingMargin" id="HHg-m6-tsl"/>
                                             <constraint firstAttribute="bottom" secondItem="QZb-ha-dRH" secondAttribute="bottom" id="Mwt-tD-Rd5"/>
                                             <constraint firstItem="I86-V7-yIE" firstAttribute="top" secondItem="w5b-CR-XoA" secondAttribute="top" id="NRh-pw-fKy"/>
                                             <constraint firstItem="1Au-Cp-u1s" firstAttribute="centerX" secondItem="w5b-CR-XoA" secondAttribute="centerX" id="O4L-FT-WAO"/>
                                             <constraint firstItem="QZb-ha-dRH" firstAttribute="leading" secondItem="w5b-CR-XoA" secondAttribute="leadingMargin" id="UDT-eb-5dh"/>
+                                            <constraint firstItem="I86-V7-yIE" firstAttribute="leading" secondItem="w5b-CR-XoA" secondAttribute="leadingMargin" constant="311" id="bxa-Gn-UsU"/>
                                             <constraint firstAttribute="height" constant="44" id="eMy-sD-wfU"/>
-                                            <constraint firstItem="I86-V7-yIE" firstAttribute="trailing" secondItem="w5b-CR-XoA" secondAttribute="trailingMargin" id="mn6-jU-x5b"/>
+                                            <constraint firstItem="I86-V7-yIE" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w5b-CR-XoA" secondAttribute="trailingMargin" id="mn6-jU-x5b"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -674,7 +675,7 @@
                 <navigationController id="hVd-so-0b5" customClass="RealTimeNavigationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Next departure" image="ClockIcon" id="WuH-ef-JJ5"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="b6K-jS-3ta">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -689,8 +690,8 @@
         <scene sceneID="flZ-ox-ThE">
             <objects>
                 <tableViewController title="Traffic situation" id="542-NY-ThD" customClass="TrafficSituationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="10" id="Nss-D7-0Qn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="10" id="Nss-D7-0Qn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -702,13 +703,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5F-4c-N0a">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wpw-7H-K3n" userLabel="Status Icon">
-                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="51.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="43.5"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EventGood" translatesAutoresizingMaskIntoConstraints="NO" id="ek0-9Y-Aph" userLabel="Status Icon">
-                                                            <rect key="frame" x="10" y="15.5" width="20" height="20"/>
+                                                            <rect key="frame" x="10" y="11.5" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="20" id="KrG-Ec-b8y"/>
                                                                 <constraint firstAttribute="height" constant="20" id="hSU-Dz-Clo"/>
@@ -723,7 +724,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1C-Mj-3GQ">
-                                                    <rect key="frame" x="40" y="0.0" width="335" height="51.5"/>
+                                                    <rect key="frame" x="40" y="0.0" width="335" height="43.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="b7X-zO-zU0"/>
                                                     </constraints>
@@ -774,7 +775,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="2 planerade störningar." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeR-n2-xLr" userLabel="Text">
-                                            <rect key="frame" x="41" y="8" width="293" height="93"/>
+                                            <rect key="frame" x="41" y="8" width="176.5" height="93"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="hZH-Fh-bnR"/>
                                             </constraints>
@@ -802,7 +803,7 @@
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="DeR-n2-xLr" firstAttribute="top" secondItem="Lu7-6b-Tzz" secondAttribute="topMargin" id="4zi-bI-tbG"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="DeR-n2-xLr" secondAttribute="trailing" id="XHO-49-5eJ"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="DeR-n2-xLr" secondAttribute="trailing" id="XHO-49-5eJ"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="DeR-n2-xLr" secondAttribute="bottom" id="c2E-dq-BO9"/>
                                         <constraint firstItem="DeR-n2-xLr" firstAttribute="leading" secondItem="Lu7-6b-Tzz" secondAttribute="leadingMargin" constant="33" id="hfd-0g-ZDk"/>
                                     </constraints>
@@ -832,8 +833,8 @@
         <scene sceneID="IqQ-eV-8MA">
             <objects>
                 <tableViewController title="Rapporter" id="fzm-Vq-VFQ" customClass="ReportsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="adn-By-tGo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="adn-By-tGo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -845,10 +846,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eZv-rx-478">
-                                            <rect key="frame" x="0.0" y="8" width="0.0" height="83"/>
+                                            <rect key="frame" x="12" y="8" width="351" height="83"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAs-h8-2RK" userLabel="Title">
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="13.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -870,14 +871,14 @@
                                                     </attributedString>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNR-qM-EbX">
-                                                    <rect key="frame" x="0.0" y="20.5" width="0.0" height="5"/>
+                                                    <rect key="frame" x="0.0" y="13.5" width="351" height="5"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="5" id="ICH-8m-jXH"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text text tet text text asdf adsfasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asd f" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXG-Bt-aVK" userLabel="Text">
-                                                    <rect key="frame" x="0.0" y="25.5" width="0.0" height="57.5"/>
+                                                    <rect key="frame" x="0.0" y="18.5" width="351" height="64.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1038,8 +1039,8 @@
         <scene sceneID="Nhj-Fs-NIZ">
             <objects>
                 <tableViewController title="Bus deviations" id="kZ4-sb-vLC" customClass="BusFilterVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="MnO-Lv-fXn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="MnO-Lv-fXn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -1051,10 +1052,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kEk-g2-A9b">
-                                            <rect key="frame" x="0.0" y="8" width="0.0" height="83"/>
+                                            <rect key="frame" x="12" y="8" width="351" height="83"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ks7-W9-LFj" userLabel="Title">
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="13.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1076,14 +1077,14 @@
                                                     </attributedString>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9th-1C-56b">
-                                                    <rect key="frame" x="0.0" y="20.5" width="0.0" height="5"/>
+                                                    <rect key="frame" x="0.0" y="13.5" width="351" height="5"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="5" id="3Oi-jK-I0M"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text text tet text text asdf adsfasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asd f" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyM-oI-p7C" userLabel="Text">
-                                                    <rect key="frame" x="0.0" y="25.5" width="0.0" height="57.5"/>
+                                                    <rect key="frame" x="0.0" y="18.5" width="351" height="64.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1197,8 +1198,8 @@
         <scene sceneID="xpY-60-3Rz">
             <objects>
                 <tableViewController title="Deviation" id="wU6-uG-41P" customClass="DeviationVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="lxK-yP-UlE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="lxK-yP-UlE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -1247,7 +1248,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knb-9a-Xf8" userLabel="Title">
-                                                            <rect key="frame" x="0.0" y="29" width="351" height="0.0"/>
+                                                            <rect key="frame" x="0.0" y="29" width="351" height="18"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1269,14 +1270,14 @@
                                                             </attributedString>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9k4-qS-Gri">
-                                                            <rect key="frame" x="0.0" y="29" width="351" height="10"/>
+                                                            <rect key="frame" x="0.0" y="47" width="351" height="10"/>
                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="5Le-xn-n3s"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="Date text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PS3-C7-FF7" userLabel="Date line">
-                                                            <rect key="frame" x="0.0" y="39" width="351" height="15"/>
+                                                            <rect key="frame" x="0.0" y="57" width="351" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="15" id="LXZ-yH-yZ9"/>
                                                             </constraints>
@@ -1301,14 +1302,14 @@
                                                             </attributedString>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aav-cr-L5A">
-                                                            <rect key="frame" x="0.0" y="54" width="351" height="10"/>
+                                                            <rect key="frame" x="0.0" y="72" width="351" height="10"/>
                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="akF-xH-vGH"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="246" verticalCompressionResistancePriority="751" text="Text text tet text text asdf adsfasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asd f" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYF-Vi-Ge9" userLabel="Message">
-                                                            <rect key="frame" x="0.0" y="64" width="351" height="99"/>
+                                                            <rect key="frame" x="0.0" y="82" width="351" height="81"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="2000" id="nLK-jH-d4p"/>
                                                             </constraints>
@@ -1368,7 +1369,7 @@
                 <navigationController id="cgm-qe-xun" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Traffic situation" image="WarningIcon" id="h03-w4-daJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="lyw-sX-FVR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1383,10 +1384,10 @@
         <scene sceneID="oBD-r9-4g8">
             <objects>
                 <tableViewController id="06E-RP-qJs" userLabel="My Routine Trips" customClass="ManageRoutineTripsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bNx-rF-zNd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bNx-rF-zNd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoRoutineCell" rowHeight="130" id="5eW-1F-79F" userLabel="No routine cell">
                                 <rect key="frame" x="0.0" y="28" width="375" height="130"/>
@@ -1558,11 +1559,10 @@ Tap "+" to create one.</string>
         <scene sceneID="QHK-jN-CNd">
             <objects>
                 <tableViewController title="Ny resa" id="h2d-Hi-2Zo" customClass="EditRoutineTripVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="UAG-r3-izO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="UAG-r3-izO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.76311598557692306" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.55447716346153841" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="Title for this routine" id="5x3-Rl-oaV">
                                 <cells>
@@ -1620,7 +1620,7 @@ Tap "+" to create one.</string>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0m-dE-Nl2">
                                                                                     <rect key="frame" x="15" y="0.0" width="50" height="43"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="50" id="Djc-tg-wdf"/>
+                                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Djc-tg-wdf"/>
                                                                                     </constraints>
                                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1685,7 +1685,7 @@ Tap "+" to create one.</string>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzc-1z-AIp">
                                                                                     <rect key="frame" x="15" y="0.0" width="50" height="43"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="50" id="IPW-Va-mqs"/>
+                                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="IPW-Va-mqs"/>
                                                                                     </constraints>
                                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                                     <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1779,7 +1779,7 @@ Tap "+" to create one.</string>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="Via" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Jj-6P-Q6m">
                                                             <rect key="frame" x="15" y="0.0" width="50" height="51"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" priority="999" constant="50" id="yFB-Rs-3Wf"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="999" constant="50" id="yFB-Rs-3Wf"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <color key="textColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2107,8 +2107,8 @@ Tap "+" to create one.</string>
         <scene sceneID="NKx-Ik-I2t">
             <objects>
                 <tableViewController title="Närliggande hållplatser" id="Se4-Xu-rNz" userLabel="Nearby stations" customClass="NearbyStationsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="YJ5-dV-3UG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="YJ5-dV-3UG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -2204,8 +2204,8 @@ Tap "+" to create one.</string>
         <scene sceneID="6nv-mG-FjN">
             <objects>
                 <tableViewController id="Tm1-9I-jjs" userLabel="Travel Types" customClass="TravelTypesVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nNJ-ce-w8T">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nNJ-ce-w8T">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -2250,8 +2250,8 @@ Tap "+" to create one.</string>
         <scene sceneID="eO9-bS-Yw4">
             <objects>
                 <tableViewController title="Realtid" id="Tmy-8K-Wz5" customClass="RealTimeVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="10" id="hAL-uQ-u2O">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="10" id="hAL-uQ-u2O">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -2360,15 +2360,15 @@ Tap "+" to create one.</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4Wb-SW-Y5l">
-                                            <rect key="frame" x="0.0" y="8" width="0.0" height="43"/>
+                                            <rect key="frame" x="8" y="8" width="359" height="43"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dm8-vo-hoZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="43"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="873C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4th-Df-XzP">
                                                             <rect key="frame" x="0.0" y="0.0" width="55" height="43"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="55" id="fk9-Wa-PaU"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="55" id="fk9-Wa-PaU"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2391,17 +2391,17 @@ Tap "+" to create one.</string>
                                                             </attributedString>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y6x-T4-hRl">
-                                                            <rect key="frame" x="0.0" y="0.0" width="6" height="43"/>
+                                                            <rect key="frame" x="55" y="0.0" width="6" height="43"/>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="6" id="Woh-I4-8OB"/>
                                                             </constraints>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b6m-gg-bLZ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="43"/>
+                                                            <rect key="frame" x="61" y="0.0" width="218" height="43"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Mot Tyresö centrum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiA-Wb-6Yu">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="43"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="218" height="43"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -2423,7 +2423,7 @@ Tap "+" to create one.</string>
                                                                     </attributedString>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVj-cg-43Q">
-                                                                    <rect key="frame" x="0.0" y="43" width="0.0" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="43" width="218" height="0.0"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" id="rQj-Yr-ir0"/>
                                                                     </constraints>
@@ -2438,10 +2438,10 @@ Tap "+" to create one.</string>
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wxO-og-Hgo">
-                                                            <rect key="frame" x="0.0" y="0.0" width="20" height="43"/>
+                                                            <rect key="frame" x="279" y="0.0" width="20" height="43"/>
                                                             <subviews>
                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="749" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwW-LA-Pdp">
-                                                                    <rect key="frame" x="0.0" y="21.5" width="9" height="0.0"/>
+                                                                    <rect key="frame" x="5.5" y="21.5" width="9" height="0.0"/>
                                                                     <color key="backgroundColor" red="0.44392179319371727" green="0.44392179319371727" blue="0.44392179319371727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2471,9 +2471,9 @@ Tap "+" to create one.</string>
                                                             </constraints>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="15:43" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Og-si-maU">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="43"/>
+                                                            <rect key="frame" x="299" y="0.0" width="60" height="43"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="60" id="f6M-Mj-VG4"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="f6M-Mj-VG4"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2577,7 +2577,7 @@ Tap "+" to create one.</string>
                 <navigationController id="ogZ-ni-TCn" userLabel="Navigation Routine Trips" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Smart Routines" image="SmartTripIcon" id="g1N-Jd-Vgq"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="iNo-3S-NPq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -2593,9 +2593,9 @@ Tap "+" to create one.</string>
             <objects>
                 <collectionViewController id="TL9-Eb-L0b" customClass="RoutineTripsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Krw-YV-CWN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="buw-4c-nAR">
                             <size key="itemSize" width="370" height="90"/>
                             <size key="headerReferenceSize" width="50" height="40"/>
@@ -2881,12 +2881,12 @@ Tap "+" to create one.</string>
                                                                     </attributedString>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="247" horizontalCompressionResistancePriority="751" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZn-2K-7NK">
-                                                                    <rect key="frame" x="113" y="0.0" width="30" height="24"/>
+                                                                    <rect key="frame" x="113" y="0.0" width="95.5" height="24"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <bool key="isElement" value="NO"/>
                                                                     </accessibility>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="30" id="0cP-tF-Mnb"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="0cP-tF-Mnb"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
                                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2901,7 +2901,7 @@ Tap "+" to create one.</string>
                                                                     </attributedString>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" text="Stockholm Central" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQQ-aw-w7p">
-                                                                    <rect key="frame" x="143" y="0.0" width="207" height="24"/>
+                                                                    <rect key="frame" x="208.5" y="0.0" width="141.5" height="24"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <attributedString key="userComments">
@@ -2972,13 +2972,13 @@ Tap "+" to create one.</string>
                                             <rect key="frame" x="13" y="8" width="344" height="244"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Smarter trip suggestions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLm-xw-Eh5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="33.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="31.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-tn-fDB">
-                                                    <rect key="frame" x="0.0" y="33.5" width="0.0" height="210.5"/>
+                                                    <rect key="frame" x="0.0" y="31.5" width="0.0" height="208.5"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <string key="label">För att kunna använda Smarta Rutiner behöver du beskriva dina resvanor genom att trycka på knappen "Mina rutiner" i övre högra hörnet.</string>
                                                     </accessibility>
@@ -3179,7 +3179,7 @@ Welcome to a smarter way of traveling.</string>
             <objects>
                 <navigationController id="oQ5-GK-ChJ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dh7-B1-p2E">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -3209,16 +3209,16 @@ Welcome to a smarter way of traveling.</string>
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41J-L8-3En" userLabel="Step by step view" customClass="StepByStepView" customModule="Res_Smart" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="16" width="375" height="91.5"/>
+                                        <rect key="frame" x="0.0" y="16" width="375" height="89"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ErF-PU-w7E" userLabel="Step by Step Content">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="91.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wgI-rw-xle">
-                                                    <rect key="frame" x="0.0" y="8" width="0.0" height="75.5"/>
+                                                    <rect key="frame" x="0.0" y="8" width="0.0" height="73"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nästa steg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKX-RU-1uN">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="26.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="VFp-oo-nuY"/>
                                                             </constraints>
@@ -3226,27 +3226,27 @@ Welcome to a smarter way of traveling.</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RKD-ec-WGy">
-                                                            <rect key="frame" x="0.0" y="26.5" width="0.0" height="4"/>
+                                                            <rect key="frame" x="0.0" y="24" width="0.0" height="4"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="4" id="h1v-dK-7Cy"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vänta på tåget som kommer snart." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Are-1T-0YQ">
-                                                            <rect key="frame" x="0.0" y="30.5" width="0.0" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="28" width="0.0" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="837-VS-ygW">
-                                                            <rect key="frame" x="0.0" y="51" width="0.0" height="4"/>
+                                                            <rect key="frame" x="0.0" y="48.5" width="0.0" height="4"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="4" id="QvP-oO-O3C"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Den går om x min" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKX-Ug-oUl">
-                                                            <rect key="frame" x="0.0" y="55" width="0.0" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="52.5" width="0.0" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -3254,10 +3254,10 @@ Welcome to a smarter way of traveling.</string>
                                                     </subviews>
                                                 </stackView>
                                                 <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pjM-BK-68Z">
-                                                    <rect key="frame" x="-1" y="-1" width="376" height="91.5"/>
+                                                    <rect key="frame" x="-1" y="-1" width="376" height="89"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="qf8-TS-w7d">
-                                                        <rect key="frame" x="0.0" y="0.0" width="376" height="91.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="376" height="89"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </view>
                                                     <vibrancyEffect>
@@ -3283,16 +3283,16 @@ Welcome to a smarter way of traveling.</string>
                                         </connections>
                                     </visualEffectView>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eyk-Xd-QOs" userLabel="Next step view" customClass="StepByStepView" customModule="Res_Smart" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="115.5" width="375" height="91.5"/>
+                                        <rect key="frame" x="0.0" y="113" width="375" height="89"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xXO-YF-EGY" userLabel="Step by Step Content">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="91.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mVv-Ez-YlS">
-                                                    <rect key="frame" x="0.0" y="8" width="0.0" height="75.5"/>
+                                                    <rect key="frame" x="0.0" y="8" width="0.0" height="73"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nästa steg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8h-gJ-tIb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="26.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="461-Hw-CTF"/>
                                                             </constraints>
@@ -3300,27 +3300,27 @@ Welcome to a smarter way of traveling.</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97k-G7-EAU">
-                                                            <rect key="frame" x="0.0" y="26.5" width="0.0" height="4"/>
+                                                            <rect key="frame" x="0.0" y="24" width="0.0" height="4"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="4" id="Dkm-qZ-fSX"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vänta på tåget som kommer snart." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGs-yB-gVS">
-                                                            <rect key="frame" x="0.0" y="30.5" width="0.0" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="28" width="0.0" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3EM-tb-lzT">
-                                                            <rect key="frame" x="0.0" y="51" width="0.0" height="4"/>
+                                                            <rect key="frame" x="0.0" y="48.5" width="0.0" height="4"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="4" id="Ynb-tS-pOK"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Den går om x min" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0d1-pR-O92">
-                                                            <rect key="frame" x="0.0" y="55" width="0.0" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="52.5" width="0.0" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -3328,10 +3328,10 @@ Welcome to a smarter way of traveling.</string>
                                                     </subviews>
                                                 </stackView>
                                                 <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="slV-OM-03r">
-                                                    <rect key="frame" x="-1" y="-1" width="376" height="91.5"/>
+                                                    <rect key="frame" x="-1" y="-1" width="376" height="89"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="0hS-C9-9Z8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="376" height="91.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="376" height="89"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </view>
                                                     <vibrancyEffect>
@@ -3376,6 +3376,7 @@ Welcome to a smarter way of traveling.</string>
                                 <items>
                                     <barButtonItem style="plain" id="V0u-eF-yqo">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="vnw-fi-D1p">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Auto"/>
@@ -3388,7 +3389,8 @@ Welcome to a smarter way of traveling.</string>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="VLc-0L-x6M"/>
                                     <barButtonItem style="plain" id="epQ-z3-Hhy">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Itb-RB-QPa">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Itb-RB-QPa">
+                                            <rect key="frame" x="359" y="0.0" width="0.0" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Karta"/>
@@ -3486,7 +3488,7 @@ Welcome to a smarter way of traveling.</string>
                                 <color key="backgroundColor" red="0.076037369669999993" green="0.60744816059999995" blue="0.44358068699999997" alpha="0.84872909330985913" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="GlJ-Ig-arW"/>
-                                    <constraint firstAttribute="width" constant="280" id="hkb-b9-zz5"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="hkb-b9-zz5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="Close">
@@ -3524,6 +3526,7 @@ Welcome to a smarter way of traveling.</string>
                             <constraint firstItem="r4v-yU-tIW" firstAttribute="trailing" secondItem="QvQ-qX-7be" secondAttribute="trailingMargin" id="qNU-Sc-7lv"/>
                             <constraint firstItem="r4v-yU-tIW" firstAttribute="top" secondItem="1vw-dC-ZR4" secondAttribute="bottom" constant="20" id="sDT-7I-w3c"/>
                             <constraint firstItem="qx0-Ca-TJC" firstAttribute="top" secondItem="gPw-hy-0Nb" secondAttribute="bottom" id="sPn-lQ-li1"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gPw-hy-0Nb" secondAttribute="trailingMargin" id="uyj-m1-kXz"/>
                             <constraint firstItem="qx0-Ca-TJC" firstAttribute="leading" secondItem="QvQ-qX-7be" secondAttribute="leadingMargin" id="yPx-jP-2ua"/>
                             <constraint firstItem="qDe-Mc-Zc9" firstAttribute="top" secondItem="vg0-wo-WZh" secondAttribute="bottom" id="z3E-ng-pad"/>
                         </constraints>
@@ -3538,8 +3541,8 @@ Welcome to a smarter way of traveling.</string>
         <scene sceneID="LFU-N2-nnr">
             <objects>
                 <tableViewController id="sEV-FQ-PQe" customClass="TripListVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xjG-5A-nBu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xjG-5A-nBu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -4526,8 +4529,8 @@ Welcome to a smarter way of traveling.</string>
         <scene sceneID="bsR-j7-Flu">
             <objects>
                 <tableViewController title="Trip details" id="4Bd-C0-Zjd" customClass="TripDetailsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="8" id="Q2W-7V-Yq6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="8" id="Q2W-7V-Yq6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -4682,7 +4685,7 @@ Welcome to a smarter way of traveling.</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiG-yH-VqD" userLabel="Time">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="9C8-XD-Twp"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="9C8-XD-Twp"/>
                                                         <constraint firstAttribute="height" constant="40" id="H4t-KC-e7R"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -4908,7 +4911,7 @@ Welcome to a smarter way of traveling.</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQm-8R-6Z8" userLabel="Time">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="2c4-AI-7UY"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="2c4-AI-7UY"/>
                                                         <constraint firstAttribute="height" constant="25" id="TKY-4G-e8F"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
@@ -4986,7 +4989,7 @@ Welcome to a smarter way of traveling.</string>
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="iCB-JG-RKe"/>
-                                                                <constraint firstAttribute="width" constant="60" id="lxo-3j-Im7"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="lxo-3j-Im7"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="highlightedColor"/>
@@ -5123,6 +5126,7 @@ Welcome to a smarter way of traveling.</string>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="bTD-tW-EgI"/>
                                     <barButtonItem style="plain" id="KFF-vP-fkr">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="SJX-uT-jMa">
+                                            <rect key="frame" x="24" y="0.0" width="335" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Map"/>
@@ -5191,6 +5195,7 @@ Welcome to a smarter way of traveling.</string>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="j8m-4u-zPz"/>
                                     <barButtonItem style="plain" id="zLx-ST-LBa">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="IAq-18-jGq">
+                                            <rect key="frame" x="24" y="0.0" width="335" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Map"/>
@@ -5363,6 +5368,7 @@ Welcome to a smarter way of traveling.</string>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Dfi-qk-6gc"/>
                                     <barButtonItem style="plain" id="Ytd-tL-Cu2">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="EME-xd-vAh">
+                                            <rect key="frame" x="24" y="0.0" width="335" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Map"/>
@@ -5414,8 +5420,8 @@ Welcome to a smarter way of traveling.</string>
         <scene sceneID="MKF-2E-CU0">
             <objects>
                 <tableViewController id="pHa-YA-52O" userLabel="Generic Advance Picker" customClass="GenericValuePickerVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sjs-3q-UZE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sjs-3q-UZE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -5460,8 +5466,8 @@ Welcome to a smarter way of traveling.</string>
         <scene sceneID="R43-pV-9l1">
             <objects>
                 <tableViewController title="Välj linjer" id="gY1-Ay-9fo" customClass="LinePickerVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="DqX-EI-mQi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="DqX-EI-mQi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -5596,7 +5602,7 @@ Welcome to a smarter way of traveling.</string>
                                                 <rect key="frame" x="138" y="0.0" width="100" height="44"/>
                                                 <accessibility key="accessibilityConfiguration" label="Välj tid. Använd klockobjekt nedan och bekräfta ditt val med knappen till höger om denna."/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="90Y-Ka-3dB"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="90Y-Ka-3dB"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -5607,13 +5613,15 @@ Welcome to a smarter way of traveling.</string>
                                         <constraints>
                                             <constraint firstItem="JSg-b7-Aae" firstAttribute="centerX" secondItem="XOB-b4-MAx" secondAttribute="centerX" id="2ey-zD-MQo"/>
                                             <constraint firstAttribute="height" constant="44" id="6Q3-cy-lj1"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Yff-Xq-SSK" secondAttribute="trailingMargin" id="99G-dP-sVT"/>
                                             <constraint firstItem="EQG-fv-PPQ" firstAttribute="bottom" secondItem="XOB-b4-MAx" secondAttribute="bottom" id="J7c-pO-rWn"/>
                                             <constraint firstAttribute="bottom" secondItem="Yff-Xq-SSK" secondAttribute="bottom" id="Kqv-ij-eXs"/>
+                                            <constraint firstItem="EQG-fv-PPQ" firstAttribute="leading" secondItem="XOB-b4-MAx" secondAttribute="leadingMargin" constant="292" id="fID-F9-fLy"/>
                                             <constraint firstItem="Yff-Xq-SSK" firstAttribute="top" secondItem="XOB-b4-MAx" secondAttribute="top" id="luw-gN-tmK"/>
                                             <constraint firstItem="JSg-b7-Aae" firstAttribute="top" secondItem="XOB-b4-MAx" secondAttribute="top" id="nrb-Ib-0u0"/>
                                             <constraint firstItem="EQG-fv-PPQ" firstAttribute="top" secondItem="XOB-b4-MAx" secondAttribute="top" id="pfR-hj-3qm"/>
                                             <constraint firstItem="Yff-Xq-SSK" firstAttribute="leading" secondItem="XOB-b4-MAx" secondAttribute="leadingMargin" id="uXZ-om-luP"/>
-                                            <constraint firstItem="EQG-fv-PPQ" firstAttribute="trailing" secondItem="XOB-b4-MAx" secondAttribute="trailingMargin" id="w5o-c1-AJe"/>
+                                            <constraint firstItem="EQG-fv-PPQ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XOB-b4-MAx" secondAttribute="trailingMargin" id="w5o-c1-AJe"/>
                                             <constraint firstAttribute="bottom" secondItem="JSg-b7-Aae" secondAttribute="bottom" id="xxP-Vs-Dfl"/>
                                         </constraints>
                                     </view>
@@ -5658,14 +5666,14 @@ Welcome to a smarter way of traveling.</string>
         <image name="station-icon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zVB-lv-c0r"/>
-        <segue reference="fPH-Xr-GVg"/>
+        <segue reference="GLI-h1-z4f"/>
+        <segue reference="7QZ-YL-rBC"/>
+        <segue reference="bAI-Ol-u0J"/>
         <segue reference="WoO-7G-VaU"/>
-        <segue reference="ivB-Ve-lrb"/>
-        <segue reference="kst-2L-81y"/>
-        <segue reference="Lg4-KG-mN0"/>
-        <segue reference="alv-6I-0jl"/>
-        <segue reference="OZb-MD-G7j"/>
-        <segue reference="geV-cu-rvh"/>
+        <segue reference="rzj-uS-OIZ"/>
+        <segue reference="L0K-5H-KeJ"/>
+        <segue reference="fPH-Xr-GVg"/>
+        <segue reference="Q81-bK-EK6"/>
+        <segue reference="zVB-lv-c0r"/>
     </inferredMetricsTieBreakers>
 </document>

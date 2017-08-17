@@ -525,6 +525,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     } else {
       searchController!.searchBar.placeholder = "Type stop name or address".localized
     }
+    searchController!.searchBar.backgroundColor = UIColor(white: 0.6, alpha: 1.0)
     tableView.tableHeaderView = searchController!.searchBar
   }
   

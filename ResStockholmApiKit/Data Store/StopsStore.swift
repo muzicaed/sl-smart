@@ -68,7 +68,8 @@ open class StopsStore {
    */
   fileprivate func convertId(_ id: String) -> String {
     if id.characters.count > 5 {
-      let sub = id.substring(from: id.characters.index(id.startIndex, offsetBy: 4))
+      let index = id.index(id.startIndex, offsetBy: 4)
+      let sub = id[index..<id.endIndex]
       let newId = String(Int(sub)!) // Remove leading zeros
       return newId
     }

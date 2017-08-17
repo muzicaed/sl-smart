@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    self.window?.backgroundColor = UIColor(red: 244/255, green: 255/255, blue: 249/255, alpha: 1.0)
     DataMigration.migrateData()
     setupAppleWatchConnection()
     setupApp()
