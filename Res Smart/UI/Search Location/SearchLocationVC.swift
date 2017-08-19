@@ -520,13 +520,18 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     searchController!.searchResultsUpdater = searchResultsVC
     searchController!.delegate = self
     searchController!.dimsBackgroundDuringPresentation = true
+    
+    searchController!.searchBar.barStyle = .black
+    let textFieldInsideSearchBar = searchController!.searchBar.value(forKey: "searchField") as? UITextField
+    textFieldInsideSearchBar?.textColor = UIColor.white
+    
     if searchOnlyForStations {
       searchController!.searchBar.placeholder = "Type stop name".localized
     } else {
       searchController!.searchBar.placeholder = "Type stop name or address".localized
     }
-    searchController!.searchBar.backgroundColor = UIColor(white: 0.6, alpha: 1.0)
     if #available(iOS 11.0, *) {
+      navigationItem.hidesSearchBarWhenScrolling = false
       navigationItem.searchController = searchController
     } else {
       tableView.tableHeaderView = searchController!.searchBar

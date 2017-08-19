@@ -24,13 +24,13 @@ open class IJProgressView {
   open func showProgressView(_ view: UIView) {
     containerView.frame = view.frame
     containerView.center = view.center
-    containerView.backgroundColor = UIColor(hex: 0xffffff, alpha: 0.3)
     
     progressView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
     progressView.center = view.center
     progressView.backgroundColor = UIColor(hex: 0x444444, alpha: 0.7)
     progressView.clipsToBounds = true
     progressView.layer.cornerRadius = 10
+    progressView.alpha = 0.0
     
     activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
     activityIndicator.activityIndicatorViewStyle = .whiteLarge
@@ -41,11 +41,18 @@ open class IJProgressView {
     view.addSubview(containerView)
     
     activityIndicator.startAnimating()
+    UIView.animate(withDuration: 0.4, animations: {
+      self.progressView.alpha = 1.0
+    })
   }
   
   open func hideProgressView() {
-    activityIndicator.stopAnimating()
-    containerView.removeFromSuperview()
+    UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseOut, animations: {
+      self.progressView.alpha = 0.0
+    }, completion: { (finished: Bool) -> Void in
+      self.activityIndicator.stopAnimating()
+      self.containerView.removeFromSuperview()
+    })
   }
 }
 

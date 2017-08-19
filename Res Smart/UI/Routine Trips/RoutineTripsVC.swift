@@ -46,6 +46,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     setupNotificationListeners()
     setupRefreshController()
     IJProgressView.shared.showProgressView(navigationController!.view)
+    self.collectionView?.alpha = 0.0
   }
   
   /**
@@ -458,6 +459,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     isLoading = true
     bestRoutineTrip = nil
     selectedRoutineTrip = nil
+    UIView.animate(withDuration: 0.15, animations: {
+      self.collectionView?.alpha = 0.0
+    })
   }
   
   /**
@@ -469,6 +473,9 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
       self.refreshController.endRefreshing()
       IJProgressView.shared.hideProgressView()
       self.collectionView?.reloadData()
+      UIView.animate(withDuration: 0.3, animations: {
+        self.collectionView?.alpha = 1.0
+      })
     }
   }
   

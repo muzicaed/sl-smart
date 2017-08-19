@@ -55,8 +55,10 @@ class StyleHelper {
         NSAttributedStringKey.foregroundColor: mainGreen
       ], for: .selected)
     
+    UISearchBar.appearance().searchBarStyle = .minimal
+    
     UIApplication.shared.statusBarStyle = .default
-    //(UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])).tintColor = UIColor.white
+    (UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])).tintColor = UIColor.white
   }
   
   func tintImage(_ image: UIImage, color: UIColor) -> UIImage {
