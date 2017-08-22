@@ -285,7 +285,7 @@ class TripListVC: UITableViewController {
     } else if isLoadMoreEarlierRow(indexPath) || isLoadMoreLaterRow(indexPath) {
       return 40
     }
-    return 85
+    return 95
   }
   
   /**

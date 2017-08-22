@@ -57,7 +57,7 @@ class StyleHelper {
     
     UISearchBar.appearance().searchBarStyle = .minimal
     
-    UIApplication.shared.statusBarStyle = .default
+    UIApplication.shared.statusBarStyle = .lightContent
     (UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])).tintColor = UIColor.white
   }
   
