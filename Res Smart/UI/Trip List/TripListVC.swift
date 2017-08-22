@@ -32,7 +32,7 @@ class TripListVC: UITableViewController {
   var isLoadingMoreBlocked = false
   var isLoadingMore = false
   var refreshTimer: Timer?
-  var headerHight = CGFloat(25)
+  var headerHight = CGFloat(40)
   
   var loadMoreEarlier: LoadMoreCell?
   var loadMoreLater: LoadMoreCell?
@@ -72,7 +72,7 @@ class TripListVC: UITableViewController {
     } else {
       isLoading = false
       IJProgressView.shared.hideProgressView()
-      self.tableView?.reloadData()
+      reloadTableData()
     }
   }
   
@@ -182,7 +182,7 @@ class TripListVC: UITableViewController {
     
     let trip = trips[keys.last!]!.last!
     criterions!.searchForArrival = false
-    criterions?.numTrips = 8
+    criterions?.numTrips = 15
     
     criterions?.time = DateUtils.dateAsTimeString(
       trip.tripSegments.first!.departureDateTime.addingTimeInterval(60))
@@ -287,7 +287,7 @@ class TripListVC: UITableViewController {
     } else if isLoadMoreEarlierRow(indexPath) || isLoadMoreLaterRow(indexPath) {
       return 40
     }
-    return 105
+    return 85
   }
   
   /**
@@ -313,18 +313,18 @@ class TripListVC: UITableViewController {
    */
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: headerHight))
-    let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: headerHight))
-    label.font = UIFont.systemFont(ofSize: 12)
+    let label = UILabel(frame: CGRect(x: 16, y: 0, width: tableView.frame.size.width, height: headerHight))
+    label.font = UIFont.systemFont(ofSize: 16)
     label.textColor = UIColor.white
-    label.textAlignment = NSTextAlignment.center
+    label.textAlignment = NSTextAlignment.left
     
     if trips.count > 0 {
       let date = DateUtils.convertDateString("\(keys[section]) 00:00")
-      label.text = DateUtils.friendlyDate(date)
+      label.text = DateUtils.friendlyDate(date) + ": " + criterions!.origin!.cleanName + " - " + criterions!.dest!.cleanName
     }
     
     view.addSubview(label)
-    let color = StyleHelper.sharedInstance.mainGreen
+    let color = UIColor.darkGray
     view.backgroundColor = color.withAlphaComponent(0.95)
     return view
   }
@@ -383,7 +383,7 @@ class TripListVC: UITableViewController {
             if slNetworkError != nil {
               self.showNetworkErrorAlert()
               self.isLoading = false
-              self.tableView?.reloadData()
+              self.reloadTableData()
               return
             }
             self.appendToDictionary(trips, shouldAppend: shouldAppend)
@@ -400,7 +400,11 @@ class TripListVC: UITableViewController {
             }
             
             IJProgressView.shared.hideProgressView()
-            self.tableView?.reloadData()
+            if shouldAppend && !self.firstTime {
+              self.tableView.reloadData()
+            } else {
+              self.reloadTableData()
+            }
             self.firstTime = false
           }
       })
@@ -603,6 +607,13 @@ class TripListVC: UITableViewController {
         return
       }
     }
+  }
+  
+  fileprivate func reloadTableData() {
+    UIView.transition(with: self.tableView,
+                      duration: 0.2,
+                      options: .transitionCrossDissolve,
+                      animations: { self.tableView?.reloadData() })
   }
   
   deinit {

@@ -55,7 +55,7 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
       FavouriteLocationsStore.sharedInstance.addFavouriteLocation(selectedLocation!)
     }
     self.selectedLocation = nil
-    tableView.reloadData()
+    reloadTableData()
   }
   
   /**
@@ -167,18 +167,18 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
           DispatchQueue.main.async {
             if slNetworkError != nil {
               self.noResults = true
-              self.tableView.reloadData()
+              self.reloadTableData()
               return
             }
-            self.searchResult = locations
+            self.searchResult = locations            
             if locations.count > 0 {
-              self.tableView.reloadData()
+              self.reloadTableData()
             }
           }
         }
       } else if query.characters.count == 0 {
         self.noResults = false
-        self.tableView.reloadData()
+        reloadTableData()
       }
     }
   }
@@ -225,5 +225,12 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
       UIAlertAction(title: "OK".localized, style: UIAlertActionStyle.default, handler: nil))
     
     present(networkErrorAlert, animated: true, completion: nil)
+  }
+  
+  fileprivate func reloadTableData() {
+    UIView.transition(with: self.tableView,
+                      duration: 0.2,
+                      options: .transitionCrossDissolve,
+                      animations: { self.tableView?.reloadData() })
   }
 }

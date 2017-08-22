@@ -34,6 +34,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   var refreshTimmer: Timer?
   var loadedTime = Date()
   let refreshController = UIRefreshControl()
+  var firstTime = true
   
   /**
    * On load
@@ -76,6 +77,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     stopRefreshTimmer()
+    IJProgressView.shared.hideProgressView()
   }
   
   /**
@@ -137,7 +139,15 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
             
             IJProgressView.shared.hideProgressView()
             self.refreshController.endRefreshing()
-            self.tableView.reloadData()
+            if self.firstTime {
+              UIView.transition(with: self.tableView,
+                                duration: 0.3,
+                                options: .transitionCrossDissolve,
+                                animations: { self.tableView?.reloadData() })
+            } else {
+              self.tableView.reloadData()
+            }
+            self.firstTime = false
           }
         } else {
           self.handleLoadDataError()

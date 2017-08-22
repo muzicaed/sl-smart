@@ -12,8 +12,6 @@ import ResStockholmApiKit
 
 class TripCell: UITableViewCell {
   
-  @IBOutlet weak var originLabel: UILabel!
-  @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var departureTimeLabel: UILabel!
   @IBOutlet weak var arrivalTimeLabel: UILabel!
   @IBOutlet weak var iconAreaView: UIView!
@@ -45,21 +43,28 @@ class TripCell: UITableViewCell {
    * Populate cell data based on passed RoutineTrip
    */
   func setupData(_ trip: Trip) {
-    originLabel.text = trip.tripSegments.first?.origin.cleanName
-    destinationLabel.text = trip.tripSegments.last?.destination.cleanName
     if trip.tripSegments.count > 0 {
       let trip = trip
-      departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
+      departureTimeLabel.textColor = UIColor.black
       departureTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.first!.departureDateTime)
       
-      arrivalTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
+      arrivalTimeLabel.textColor = UIColor.black
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.last!.arrivalDateTime)
       
-      inAboutLabel.text = DateUtils.createAboutTimeText(
+      let aboutTime = DateUtils.createAboutTimeText(
         trip.tripSegments.first!.departureDateTime,
         isWalk: trip.tripSegments.first!.type == TripType.Walk)
+      if aboutTime != "" {
+        inAboutLabel.text = " \(aboutTime) \u{200C}"
+        inAboutLabel.layer.backgroundColor = UIColor.darkGray.cgColor
+        inAboutLabel.layer.cornerRadius = 4.0
+        inAboutLabel.textColor = UIColor.white
+        inAboutLabel.isHidden = false
+      } else {
+        inAboutLabel.isHidden = true
+      }
       
       if trip.isValid {
         tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
@@ -85,7 +90,6 @@ class TripCell: UITableViewCell {
         
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
         iconView.frame.size = CGSize(width: 22, height: 23)
-        iconView.center = CGPoint(x: 22 / 2, y: 5)
         
         let label = UILabel()
         label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
@@ -97,14 +101,14 @@ class TripCell: UITableViewCell {
         label.layer.backgroundColor = data.color.cgColor
         label.frame.size.width = 22
         label.frame.size.height = 12
-        label.center = CGPoint(x: (22 / 2), y: 22)
+        label.frame.origin.y = 22
         label.isAccessibilityElement = false
         
         let wrapperView = UIView(
           frame:CGRect(
             origin: CGPoint(x: 0, y: 0),
-            size: CGSize(width: 22, height: 39)))
-        wrapperView.frame.origin = CGPoint(x: (26 * CGFloat(count)), y: 7)
+            size: CGSize(width: 22, height: 35)))
+        wrapperView.frame.origin = CGPoint(x: (26 * CGFloat(count)), y: 0)
         wrapperView.clipsToBounds = false
         
         wrapperView.addSubview(iconView)
@@ -116,7 +120,7 @@ class TripCell: UITableViewCell {
             warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
           }
           warnIconView.frame.size = CGSize(width: 10, height: 10)
-          warnIconView.center = CGPoint(x: (22 / 2) + 10, y: -5)
+          warnIconView.center = CGPoint(x: (22 / 2) + 10, y: 3)
           warnIconView.alpha = 0.9
           wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
           if segment.isWarning {
