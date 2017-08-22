@@ -32,7 +32,7 @@ class TripListVC: UITableViewController {
   var isLoadingMoreBlocked = false
   var isLoadingMore = false
   var refreshTimer: Timer?
-  var headerHight = CGFloat(25)
+  var headerHight = CGFloat(40)
   
   var loadMoreEarlier: LoadMoreCell?
   var loadMoreLater: LoadMoreCell?
@@ -287,7 +287,7 @@ class TripListVC: UITableViewController {
     } else if isLoadMoreEarlierRow(indexPath) || isLoadMoreLaterRow(indexPath) {
       return 40
     }
-    return 105
+    return 84
   }
   
   /**
@@ -313,14 +313,14 @@ class TripListVC: UITableViewController {
    */
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: headerHight))
-    let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: headerHight))
-    label.font = UIFont.systemFont(ofSize: 12)
+    let label = UILabel(frame: CGRect(x: 16, y: 0, width: tableView.frame.size.width, height: headerHight))
+    label.font = UIFont.systemFont(ofSize: 16)
     label.textColor = UIColor.white
-    label.textAlignment = NSTextAlignment.center
+    label.textAlignment = NSTextAlignment.left
     
     if trips.count > 0 {
       let date = DateUtils.convertDateString("\(keys[section]) 00:00")
-      label.text = DateUtils.friendlyDate(date)
+      label.text = DateUtils.friendlyDate(date) + ": " + criterions!.origin!.cleanName + " - " + criterions!.dest!.cleanName
     }
     
     view.addSubview(label)

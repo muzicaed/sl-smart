@@ -54,12 +54,12 @@ open class DateUtils {
   }
   
   /**
-   * Converts a NSDate to a swedish local friendly
+   * Converts a NSDate to a local friendly
    * date string.
    */
   open static func friendlyDate(_ date: Date) -> String {
     let formatter = getFormatter()
-    formatter.dateStyle = .medium
+    formatter.dateStyle = .short
     formatter.timeStyle = .none
 
     if Calendar.current.isDateInToday(date) {
@@ -72,7 +72,7 @@ open class DateUtils {
   }
   
   /**
-   * Converts a NSDate to a swedish local friendly
+   * Converts a NSDate to a local friendly
    * date string.
    */
   open static func friendlyDateAndTime(_ date: Date) -> String {
@@ -99,7 +99,7 @@ open class DateUtils {
     var aboutStr = "In".localized
     var nowStr = "Departs now".localized
     if isWalk {
-      aboutStr = "Walk in about".localized
+      aboutStr = "Walk in".localized
       nowStr = "Walk now".localized
     }
     

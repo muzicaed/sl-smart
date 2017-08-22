@@ -12,8 +12,6 @@ import ResStockholmApiKit
 
 class TripCell: UITableViewCell {
   
-  @IBOutlet weak var originLabel: UILabel!
-  @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var departureTimeLabel: UILabel!
   @IBOutlet weak var arrivalTimeLabel: UILabel!
   @IBOutlet weak var iconAreaView: UIView!
@@ -45,8 +43,6 @@ class TripCell: UITableViewCell {
    * Populate cell data based on passed RoutineTrip
    */
   func setupData(_ trip: Trip) {
-    originLabel.text = trip.tripSegments.first?.origin.cleanName
-    destinationLabel.text = trip.tripSegments.last?.destination.cleanName
     if trip.tripSegments.count > 0 {
       let trip = trip
       departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
@@ -57,9 +53,18 @@ class TripCell: UITableViewCell {
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.last!.arrivalDateTime)
       
-      inAboutLabel.text = DateUtils.createAboutTimeText(
+      let aboutTime = DateUtils.createAboutTimeText(
         trip.tripSegments.first!.departureDateTime,
         isWalk: trip.tripSegments.first!.type == TripType.Walk)
+      if aboutTime != "" {
+        inAboutLabel.text = " \(aboutTime) \u{200C}"
+        inAboutLabel.layer.backgroundColor = UIColor.darkGray.cgColor
+        inAboutLabel.layer.cornerRadius = 4.0
+        inAboutLabel.textColor = UIColor.white
+        inAboutLabel.isHidden = false
+      } else {
+        inAboutLabel.isHidden = true
+      }
       
       if trip.isValid {
         tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
@@ -104,7 +109,7 @@ class TripCell: UITableViewCell {
           frame:CGRect(
             origin: CGPoint(x: 0, y: 0),
             size: CGSize(width: 22, height: 39)))
-        wrapperView.frame.origin = CGPoint(x: (26 * CGFloat(count)), y: 7)
+        wrapperView.frame.origin = CGPoint(x: (26 * CGFloat(count)), y: 0)
         wrapperView.clipsToBounds = false
         
         wrapperView.addSubview(iconView)
