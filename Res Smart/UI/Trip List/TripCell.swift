@@ -45,11 +45,11 @@ class TripCell: UITableViewCell {
   func setupData(_ trip: Trip) {
     if trip.tripSegments.count > 0 {
       let trip = trip
-      departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
+      departureTimeLabel.textColor = UIColor.black
       departureTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.first!.departureDateTime)
       
-      arrivalTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
+      arrivalTimeLabel.textColor = UIColor.black
       arrivalTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.last!.arrivalDateTime)
       

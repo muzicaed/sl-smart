@@ -72,7 +72,7 @@ class TripListVC: UITableViewController {
     } else {
       isLoading = false
       IJProgressView.shared.hideProgressView()
-      self.tableView?.reloadData()
+      reloadTableData()
     }
   }
   
@@ -324,7 +324,7 @@ class TripListVC: UITableViewController {
     }
     
     view.addSubview(label)
-    let color = StyleHelper.sharedInstance.mainGreen
+    let color = UIColor.darkGray
     view.backgroundColor = color.withAlphaComponent(0.95)
     return view
   }
@@ -383,7 +383,7 @@ class TripListVC: UITableViewController {
             if slNetworkError != nil {
               self.showNetworkErrorAlert()
               self.isLoading = false
-              self.tableView?.reloadData()
+              self.reloadTableData()
               return
             }
             self.appendToDictionary(trips, shouldAppend: shouldAppend)
@@ -400,7 +400,11 @@ class TripListVC: UITableViewController {
             }
             
             IJProgressView.shared.hideProgressView()
-            self.tableView?.reloadData()
+            if shouldAppend && !self.firstTime {
+              self.tableView.reloadData()
+            } else {
+              self.reloadTableData()
+            }
             self.firstTime = false
           }
       })
@@ -603,6 +607,13 @@ class TripListVC: UITableViewController {
         return
       }
     }
+  }
+  
+  fileprivate func reloadTableData() {
+    UIView.transition(with: self.tableView,
+                      duration: 0.2,
+                      options: .transitionCrossDissolve,
+                      animations: { self.tableView?.reloadData() })
   }
   
   deinit {
