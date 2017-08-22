@@ -15,6 +15,7 @@
         <array key="HelveticaNeue.ttc">
             <string>HelveticaNeue</string>
             <string>HelveticaNeue-Bold</string>
+            <string>HelveticaNeue-Medium</string>
         </array>
         <array key="HelveticaNeueLights.ttc">
             <string>HelveticaNeue-Light</string>
@@ -3530,46 +3531,46 @@ Welcome to a smarter way of traveling.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripCell" rowHeight="95" id="qKz-FP-LvO" customClass="TripCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="95"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripCell" rowHeight="80" id="qKz-FP-LvO" customClass="TripCell" customModule="Res_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qKz-FP-LvO" id="OB7-a3-cTa">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qqP-Iw-oof">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNk-dZ-mU1" userLabel="Content">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0g2-Ts-ida" userLabel="Color">
-                                                            <rect key="frame" x="0.0" y="0.0" width="4" height="94"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="4" height="79"/>
                                                             <color key="backgroundColor" red="0.12880975010000001" green="0.79210162159999997" blue="0.27912634609999998" alpha="0.39015403370000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="4" id="c4i-3k-DVA"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XV7-gc-l0t" userLabel="Space">
-                                                            <rect key="frame" x="4" y="0.0" width="10" height="94"/>
+                                                            <rect key="frame" x="4" y="0.0" width="10" height="79"/>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="10" id="U64-rz-3yV"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YOk-3N-Ghk" userLabel="Time table">
-                                                            <rect key="frame" x="14" y="0.0" width="331" height="94"/>
+                                                            <rect key="frame" x="14" y="0.0" width="331" height="79"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="d3D-xH-lnN" userLabel="Table rows">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="331" height="94"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="d3D-xH-lnN" userLabel="Table rows">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="331" height="79"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1Bs-CZ-Ser">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="331" height="40"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="331" height="39.5"/>
                                                                             <subviews>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ai-9Q-hsX">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="165.5" height="40"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="165.5" height="39.5"/>
                                                                                     <subviews>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="19:23" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGR-Fw-jIM">
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="19:23" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGR-Fw-jIM">
                                                                                             <rect key="frame" x="0.0" y="7" width="57.5" height="26.5"/>
                                                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
@@ -3584,8 +3585,8 @@ Welcome to a smarter way of traveling.</string>
                                                                                                 </fragment>
                                                                                             </attributedString>
                                                                                         </label>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="»" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="d3C-MV-SGN">
-                                                                                            <rect key="frame" x="61.5" y="2.5" width="19" height="36"/>
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="»" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="d3C-MV-SGN">
+                                                                                            <rect key="frame" x="61.5" y="2" width="19" height="36"/>
                                                                                             <accessibility key="accessibilityConfiguration">
                                                                                                 <bool key="isElement" value="NO"/>
                                                                                             </accessibility>
@@ -3593,7 +3594,7 @@ Welcome to a smarter way of traveling.</string>
                                                                                             <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="20:43" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZh-Lh-Le2" userLabel="20:43">
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="20:43" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZh-Lh-Le2" userLabel="20:43">
                                                                                             <rect key="frame" x="84.5" y="7" width="61" height="26.5"/>
                                                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
@@ -3612,48 +3613,24 @@ Welcome to a smarter way of traveling.</string>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                     <constraints>
                                                                                         <constraint firstItem="bZh-Lh-Le2" firstAttribute="leading" secondItem="d3C-MV-SGN" secondAttribute="trailing" constant="4" id="3Id-R3-Kmd"/>
-                                                                                        <constraint firstAttribute="height" constant="40" id="4vy-hA-HWv"/>
                                                                                         <constraint firstItem="JGR-Fw-jIM" firstAttribute="centerY" secondItem="9Ai-9Q-hsX" secondAttribute="centerY" id="ASt-j9-HW5"/>
                                                                                         <constraint firstItem="bZh-Lh-Le2" firstAttribute="centerY" secondItem="9Ai-9Q-hsX" secondAttribute="centerY" id="YRv-NO-EZB"/>
+                                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="ZJa-dw-f1n"/>
                                                                                         <constraint firstItem="d3C-MV-SGN" firstAttribute="centerY" secondItem="9Ai-9Q-hsX" secondAttribute="centerY" id="mU3-M0-xC4"/>
                                                                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bZh-Lh-Le2" secondAttribute="trailing" constant="20" symbolic="YES" id="nJH-wO-y8F"/>
                                                                                         <constraint firstItem="d3C-MV-SGN" firstAttribute="leading" secondItem="JGR-Fw-jIM" secondAttribute="trailing" constant="4" id="tE7-PB-Uwc"/>
                                                                                         <constraint firstItem="JGR-Fw-jIM" firstAttribute="leading" secondItem="9Ai-9Q-hsX" secondAttribute="leading" id="ycU-6t-tWe"/>
                                                                                     </constraints>
                                                                                 </view>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Restid: 1h 33m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oZ-oZ-Cn5">
-                                                                                    <rect key="frame" x="165.5" y="0.0" width="165.5" height="40"/>
-                                                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                    <nil key="highlightedColor"/>
-                                                                                    <attributedString key="userComments">
-                                                                                        <fragment content="No translation">
-                                                                                            <attributes>
-                                                                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                                            </attributes>
-                                                                                        </fragment>
-                                                                                    </attributedString>
-                                                                                </label>
-                                                                            </subviews>
-                                                                            <color key="backgroundColor" red="0.086274512110000007" green="0.6784313917" blue="0.49411764740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        </stackView>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="D41-Pk-SS7">
-                                                                            <rect key="frame" x="0.0" y="59" width="331" height="35"/>
-                                                                            <subviews>
-                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8i-CJ-33C" userLabel="Icon">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="165.5" height="35"/>
-                                                                                    <constraints>
-                                                                                        <constraint firstAttribute="height" constant="35" id="gnd-WB-rev" userLabel="height = 30"/>
-                                                                                    </constraints>
-                                                                                </view>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvX-Qg-3Cd">
-                                                                                    <rect key="frame" x="165.5" y="0.0" width="165.5" height="35"/>
+                                                                                    <rect key="frame" x="165.5" y="0.0" width="165.5" height="39.5"/>
                                                                                     <subviews>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="om 15 min" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vFu-Yw-rfv">
-                                                                                            <rect key="frame" x="87" y="0.0" width="78.5" height="20.5"/>
-                                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="om 15 min" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFu-Yw-rfv">
+                                                                                            <rect key="frame" x="83.5" y="10" width="82" height="20.5"/>
+                                                                                            <constraints>
+                                                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Kz3-qi-9X6"/>
+                                                                                            </constraints>
+                                                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                             <attributedString key="userComments">
                                                                                                 <fragment content="No translation">
@@ -3667,13 +3644,38 @@ Welcome to a smarter way of traveling.</string>
                                                                                     </subviews>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                     <constraints>
-                                                                                        <constraint firstItem="vFu-Yw-rfv" firstAttribute="top" secondItem="tvX-Qg-3Cd" secondAttribute="top" id="YLn-Lc-VjY"/>
-                                                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vFu-Yw-rfv" secondAttribute="trailing" id="jQO-JE-H0E"/>
-                                                                                        <constraint firstItem="vFu-Yw-rfv" firstAttribute="leading" secondItem="tvX-Qg-3Cd" secondAttribute="leading" constant="87" id="wMG-DX-Urk"/>
+                                                                                        <constraint firstItem="vFu-Yw-rfv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tvX-Qg-3Cd" secondAttribute="leading" constant="20" symbolic="YES" id="U2a-jx-EV5"/>
+                                                                                        <constraint firstAttribute="trailing" secondItem="vFu-Yw-rfv" secondAttribute="trailing" id="V62-Tm-ff0"/>
+                                                                                        <constraint firstItem="vFu-Yw-rfv" firstAttribute="centerY" secondItem="tvX-Qg-3Cd" secondAttribute="centerY" id="xjO-mE-i5N"/>
                                                                                     </constraints>
                                                                                 </view>
                                                                             </subviews>
-                                                                            <color key="backgroundColor" red="1" green="0.89533105306316818" blue="0.45377903645370132" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </stackView>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="D41-Pk-SS7">
+                                                                            <rect key="frame" x="0.0" y="39.5" width="331" height="39.5"/>
+                                                                            <subviews>
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8i-CJ-33C" userLabel="Icon">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="165.5" height="39.5"/>
+                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="gnd-WB-rev"/>
+                                                                                    </constraints>
+                                                                                </view>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Restid: 1h 33m" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oZ-oZ-Cn5">
+                                                                                    <rect key="frame" x="165.5" y="0.0" width="165.5" height="39.5"/>
+                                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                    <attributedString key="userComments">
+                                                                                        <fragment content="No translation">
+                                                                                            <attributes>
+                                                                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                                            </attributes>
+                                                                                        </fragment>
+                                                                                    </attributedString>
+                                                                                </label>
+                                                                            </subviews>
                                                                         </stackView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3688,10 +3690,10 @@ Welcome to a smarter way of traveling.</string>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFr-Vw-cx1" userLabel="Space">
-                                                            <rect key="frame" x="345" y="0.0" width="25" height="94"/>
+                                                            <rect key="frame" x="345" y="0.0" width="25" height="79"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="›" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8XP-0B-C7t">
-                                                                    <rect key="frame" x="0.0" y="23.5" width="25" height="48"/>
+                                                                    <rect key="frame" x="0.0" y="16" width="25" height="48"/>
                                                                     <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="41"/>
                                                                     <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -3705,7 +3707,7 @@ Welcome to a smarter way of traveling.</string>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Er7-1k-Eks" userLabel="Space">
-                                                            <rect key="frame" x="370" y="0.0" width="5" height="94"/>
+                                                            <rect key="frame" x="370" y="0.0" width="5" height="79"/>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="5" id="rd6-5V-V1D"/>
@@ -3735,7 +3737,7 @@ Welcome to a smarter way of traveling.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PassedTripCell" rowHeight="120" id="IKz-zE-uix" customClass="TripCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="123" width="375" height="120"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IKz-zE-uix" id="vip-oj-iiv">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
@@ -4015,7 +4017,7 @@ Welcome to a smarter way of traveling.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CancelledTripCell" rowHeight="120" id="db3-84-j8b" userLabel="CancelledTripCell" customClass="TripCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="243" width="375" height="120"/>
+                                <rect key="frame" x="0.0" y="228" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="db3-84-j8b" id="3BV-1I-UK4">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
@@ -4287,7 +4289,7 @@ Welcome to a smarter way of traveling.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCell" rowHeight="120" id="fP0-7u-TBk">
-                                <rect key="frame" x="0.0" y="363" width="375" height="120"/>
+                                <rect key="frame" x="0.0" y="348" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fP0-7u-TBk" id="ISh-6H-CPN">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
@@ -4296,7 +4298,7 @@ Welcome to a smarter way of traveling.</string>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FoundNoTripsCell" id="oXT-sA-ytl">
-                                <rect key="frame" x="0.0" y="483" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="468" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oXT-sA-ytl" id="G9x-2b-fJR">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -4317,7 +4319,7 @@ Welcome to a smarter way of traveling.</string>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadMoreLaterRow" id="yTS-3g-5WV" customClass="LoadMoreCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="527" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="512" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yTS-3g-5WV" id="Xhy-8t-uDi">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -4346,7 +4348,7 @@ Welcome to a smarter way of traveling.</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LoadMoreEarlierRow" id="n2L-rG-56W" customClass="LoadMoreCell" customModule="Res_Smart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="571" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="556" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n2L-rG-56W" id="DrD-Jb-E7r">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

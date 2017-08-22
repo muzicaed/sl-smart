@@ -182,7 +182,7 @@ class TripListVC: UITableViewController {
     
     let trip = trips[keys.last!]!.last!
     criterions!.searchForArrival = false
-    criterions?.numTrips = 8
+    criterions?.numTrips = 15
     
     criterions?.time = DateUtils.dateAsTimeString(
       trip.tripSegments.first!.departureDateTime.addingTimeInterval(60))
@@ -287,7 +287,7 @@ class TripListVC: UITableViewController {
     } else if isLoadMoreEarlierRow(indexPath) || isLoadMoreLaterRow(indexPath) {
       return 40
     }
-    return 84
+    return 85
   }
   
   /**

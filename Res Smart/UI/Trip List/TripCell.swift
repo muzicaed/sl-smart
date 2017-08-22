@@ -90,7 +90,6 @@ class TripCell: UITableViewCell {
         
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
         iconView.frame.size = CGSize(width: 22, height: 23)
-        iconView.center = CGPoint(x: 22 / 2, y: 5)
         
         let label = UILabel()
         label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
@@ -102,13 +101,13 @@ class TripCell: UITableViewCell {
         label.layer.backgroundColor = data.color.cgColor
         label.frame.size.width = 22
         label.frame.size.height = 12
-        label.center = CGPoint(x: (22 / 2), y: 22)
+        label.frame.origin.y = 22
         label.isAccessibilityElement = false
         
         let wrapperView = UIView(
           frame:CGRect(
             origin: CGPoint(x: 0, y: 0),
-            size: CGSize(width: 22, height: 39)))
+            size: CGSize(width: 22, height: 35)))
         wrapperView.frame.origin = CGPoint(x: (26 * CGFloat(count)), y: 0)
         wrapperView.clipsToBounds = false
         
@@ -121,7 +120,7 @@ class TripCell: UITableViewCell {
             warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
           }
           warnIconView.frame.size = CGSize(width: 10, height: 10)
-          warnIconView.center = CGPoint(x: (22 / 2) + 10, y: -5)
+          warnIconView.center = CGPoint(x: (22 / 2) + 10, y: 3)
           warnIconView.alpha = 0.9
           wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
           if segment.isWarning {
