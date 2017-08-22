@@ -3885,7 +3885,7 @@ Welcome to a smarter way of traveling.</string>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="cDt-8g-Sm5"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <attributedString key="userComments">
@@ -3910,7 +3910,7 @@ Welcome to a smarter way of traveling.</string>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="tuP-sc-gUC"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <attributedString key="userComments">
@@ -3935,7 +3935,7 @@ Welcome to a smarter way of traveling.</string>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="ddx-a3-8h1"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <attributedString key="userComments">
@@ -3964,7 +3964,7 @@ Welcome to a smarter way of traveling.</string>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="1Vl-kT-PvR"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="1Vl-kT-PvR"/>
                                             </constraints>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AbU-Aa-ggf">
@@ -4105,8 +4105,8 @@ Welcome to a smarter way of traveling.</string>
                                                     <rect key="frame" x="60" y="0.0" width="255" height="89"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="Blå buss 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pz8-em-IcL" userLabel="Title">
-                                                            <rect key="frame" x="0.0" y="0.0" width="255" height="18"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="255" height="20.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                             <attributedString key="userComments">
@@ -4127,7 +4127,7 @@ Welcome to a smarter way of traveling.</string>
                                                             </attributedString>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Mot T-Centralen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="aaz-Pu-tBq" userLabel="Destination">
-                                                            <rect key="frame" x="0.0" y="18" width="255" height="30"/>
+                                                            <rect key="frame" x="0.0" y="20.5" width="255" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="2lf-9w-V8O"/>
                                                             </constraints>
@@ -4152,13 +4152,13 @@ Welcome to a smarter way of traveling.</string>
                                                             </attributedString>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hf-wq-a6t" userLabel="Summary">
-                                                            <rect key="frame" x="0.0" y="48" width="255" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="50.5" width="255" height="14.5"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="749" text="Problem problem problem stora störningar, inte bra just nu måste du vara försiktning. Bla bla bla massor av text." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPv-fd-xKI" userLabel="Warning">
-                                                            <rect key="frame" x="0.0" y="62.5" width="255" height="26.5"/>
+                                                            <rect key="frame" x="0.0" y="65" width="255" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" id="KQz-FK-nJ4"/>
                                                             </constraints>
@@ -4243,7 +4243,7 @@ Welcome to a smarter way of traveling.</string>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="2c4-AI-7UY"/>
                                                         <constraint firstAttribute="height" constant="25" id="TKY-4G-e8F"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <attributedString key="userComments">
@@ -4265,7 +4265,7 @@ Welcome to a smarter way of traveling.</string>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Stockholm södra" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hZ-e8-Nd6" userLabel="Location">
                                                     <rect key="frame" x="60" y="0.0" width="315" height="25"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <attributedString key="userComments">
@@ -4997,7 +4997,7 @@ Welcome to a smarter way of traveling.</string>
     <inferredMetricsTieBreakers>
         <segue reference="GLI-h1-z4f"/>
         <segue reference="7QZ-YL-rBC"/>
-        <segue reference="ivB-Ve-lrb"/>
+        <segue reference="bAI-Ol-u0J"/>
         <segue reference="WoO-7G-VaU"/>
         <segue reference="kst-2L-81y"/>
         <segue reference="L0K-5H-KeJ"/>

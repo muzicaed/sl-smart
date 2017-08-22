@@ -151,6 +151,12 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
     let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
     
+    if section == topSection {
+      //label.text = "Use your position".localized
+      //return view
+      return nil
+    }
+    
     if section == favSection {
       label.text = "Favourites".localized
       view.addSubview(editFavouritebutton)
@@ -175,7 +181,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   override func tableView(
     _ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     if (allowCurrentPosition || allowNearbyStations) && section == 0 {
-      return 0
+      return 1
     }
     return 25
   }
@@ -551,8 +557,5 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   
   deinit {
     NotificationCenter.default.removeObserver(self)
-    if let superView = searchController!.view.superview {
-      superView.removeFromSuperview()
-    }
   }
 }

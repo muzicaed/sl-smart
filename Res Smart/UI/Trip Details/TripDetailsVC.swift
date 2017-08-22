@@ -319,7 +319,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    */
   fileprivate func prepareTableView() {
     tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 40
+    tableView.estimatedRowHeight = 50
     tableView.tableFooterView = UIView(frame: CGRect.zero)
   }
   
