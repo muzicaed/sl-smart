@@ -19,6 +19,13 @@ class TravelTypesVC: UITableViewController {
                             "Boats".localized]
   
   /**
+   * View did load
+   */
+  override func viewDidLoad() {
+    view.backgroundColor = StyleHelper.sharedInstance.background
+  }
+  
+  /**
    * Set initial data.
    */
   func setData(_ criterions: TripSearchCriterion) {

@@ -22,6 +22,7 @@ class GenericValuePickerVC: UITableViewController {
    */
   override func viewDidLoad() {
     tableView.tableFooterView = UIView(frame: CGRect.zero)
+    view.backgroundColor = StyleHelper.sharedInstance.background
     values = generateValues()
   }
   

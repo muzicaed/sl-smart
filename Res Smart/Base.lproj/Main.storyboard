@@ -2166,7 +2166,7 @@ Tap "+" to create one.</string>
                             <outlet property="delegate" destination="Se4-Xu-rNz" id="eLY-UT-EGf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Nearby" id="Qq2-MD-87J">
+                    <navigationItem key="navigationItem" title="Nearby" largeTitleDisplayMode="never" id="Qq2-MD-87J">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Visa karta" id="Pls-cq-agb">
                             <connections>
                                 <segue destination="NyV-HL-bFU" kind="presentation" identifier="ShowMap" id="DAf-9H-ETJ"/>
@@ -4385,7 +4385,7 @@ Welcome to a smarter way of traveling.</string>
                             <outlet property="delegate" destination="4Bd-C0-Zjd" id="3zs-2G-CBP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Details" id="5Jh-jr-FrC">
+                    <navigationItem key="navigationItem" title="Details" largeTitleDisplayMode="never" id="5Jh-jr-FrC">
                         <barButtonItem key="rightBarButtonItem" title="SMS Ticket" id="EwB-zo-IzX">
                             <connections>
                                 <action selector="onSMSTicketTap:" destination="4Bd-C0-Zjd" id="diK-n2-kRM"/>
