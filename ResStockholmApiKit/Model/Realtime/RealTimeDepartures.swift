@@ -23,13 +23,17 @@ open class RealTimeDepartures {
   /**
    * Init
    */
-  init(lastUpdated: String?, dataAge: Int) {
+  init(lastUpdated: String?, dataAge: Int?) {
     if let dateString = lastUpdated {
       self.latestUpdated = RealTimeDepartures.convertDate(dateString)
     } else {
       self.latestUpdated = nil
     }
-    self.dataAge = dataAge
+    if let age = dataAge {
+      self.dataAge = age
+    } else {
+      self.dataAge = 0
+    }
   }
   
   /**

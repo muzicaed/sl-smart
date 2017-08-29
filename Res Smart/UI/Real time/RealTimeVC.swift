@@ -392,22 +392,24 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     }
     
     if let realTimeDepartures = realTimeDepartures {
-      let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
-      switch tabKeys {
-      case "BUS":
-        return realTimeDepartures.busses.count + 1
-      case "METRO":
-        return realTimeDepartures.metros.count + 1
-      case "TRAIN":
-        return realTimeDepartures.trains.count + 1
-      case "TRAM":
-        return realTimeDepartures.trams.count + 1
-      case "LOCAL-TRAM":
-        return realTimeDepartures.localTrams.count + 1
-      case "SHIP":
-        return realTimeDepartures.boats.count + 1
-      default:
-        return 0
+      if tabTypesKeys.count > segmentView.indexOfSelectedSegment {
+        let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
+        switch tabKeys {
+        case "BUS":
+          return realTimeDepartures.busses.count + 1
+        case "METRO":
+          return realTimeDepartures.metros.count + 1
+        case "TRAIN":
+          return realTimeDepartures.trains.count + 1
+        case "TRAM":
+          return realTimeDepartures.trams.count + 1
+        case "LOCAL-TRAM":
+          return realTimeDepartures.localTrams.count + 1
+        case "SHIP":
+          return realTimeDepartures.boats.count + 1
+        default:
+          return 0
+        }
       }
     }
     return 0
