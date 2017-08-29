@@ -33,7 +33,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   var segmentView = SMSegmentView()
   var refreshTimmer: Timer?
   var loadedTime = Date()
-  let refreshController = UIRefreshControl()
   var firstTime = true
   
   /**
@@ -53,11 +52,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 30
-    
-    refreshController.addTarget(
-      self, action: #selector(loadData), for: UIControlEvents.valueChanged)
-    refreshController.tintColor = UIColor.white
-    tableView.refreshControl = refreshController
     tableView.alwaysBounceVertical = true
   }
   
@@ -126,7 +120,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     NetworkActivity.displayActivityIndicator(true)
     IJProgressView.shared.showProgressView(navigationController!.view)
     RealTimeDeparturesService.fetch(siteId) { (rtDepartures, error) -> Void in
-      let when = DispatchTime.now() + 0.5
+      let when = DispatchTime.now() + 0.2
       DispatchQueue.main.asyncAfter(deadline: when) {
         NetworkActivity.displayActivityIndicator(false)
         if error == nil {
@@ -138,7 +132,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
             self.prepareSegmentView()
             
             IJProgressView.shared.hideProgressView()
-            self.refreshController.endRefreshing()
             if self.firstTime {
               UIView.transition(with: self.tableView,
                                 duration: 0.3,
@@ -154,16 +147,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
         }
       }
     }
-  }
-  
-  /**
-   * On user drags down
-   */
-  func onRefreshController() {
-    isLoading = true
-    tableView.reloadData()
-    Timer.scheduledTimer(
-      timeInterval: 0.7, target: self, selector: #selector(loadData), userInfo: nil, repeats: false)
   }
   
   // MARK: UITableViewController
