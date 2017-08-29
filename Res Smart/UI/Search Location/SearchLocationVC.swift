@@ -528,8 +528,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     searchController!.dimsBackgroundDuringPresentation = true
     
     searchController!.searchBar.barStyle = .black
-    let textFieldInsideSearchBar = searchController!.searchBar.value(forKey: "searchField") as? UITextField
-    textFieldInsideSearchBar?.textColor = UIColor.white
+    searchController!.searchBar.barTintColor = UIColor.white
     
     if searchOnlyForStations {
       searchController!.searchBar.placeholder = "Type stop name".localized
