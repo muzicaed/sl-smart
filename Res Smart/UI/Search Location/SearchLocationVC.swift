@@ -477,8 +477,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   fileprivate func createNearbyStationsCell(_ indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(
       withIdentifier: cellReusableId, for: indexPath)
-    cell.textLabel?.text = "Nearby locations".localized
-    cell.detailTextLabel?.text = nil
+    cell.textLabel?.text = "Nearby stops".localized
+    cell.detailTextLabel?.text = "Based on your current location".localized
     cell.imageView?.image = UIImage(named: "near-me-icon")
     cell.imageView?.alpha = 0.4
     cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator

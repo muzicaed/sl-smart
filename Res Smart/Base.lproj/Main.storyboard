@@ -2107,20 +2107,20 @@ Tap "+" to create one.</string>
         <scene sceneID="NKx-Ik-I2t">
             <objects>
                 <tableViewController title="Närliggande hållplatser" id="Se4-Xu-rNz" userLabel="Nearby stations" customClass="NearbyStationsVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="53" sectionHeaderHeight="18" sectionFooterHeight="18" id="YJ5-dV-3UG">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="57" sectionHeaderHeight="18" sectionFooterHeight="18" id="YJ5-dV-3UG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NearbyStationRow" textLabel="hma-gB-jL6" detailTextLabel="86g-mI-a0z" imageView="3fN-CT-qL9" style="IBUITableViewCellStyleSubtitle" id="iZu-bA-nNW">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="53"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="57"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="iZu-bA-nNW" id="bN1-1J-865">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" contentMode="left" text="Centralen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hma-gB-jL6">
-                                            <rect key="frame" x="56" y="8" width="78" height="20.5"/>
+                                            <rect key="frame" x="56" y="7" width="78" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2135,11 +2135,11 @@ Tap "+" to create one.</string>
                                             </attributedString>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" image="station-icon" id="3fN-CT-qL9">
-                                            <rect key="frame" x="16" y="14" width="25" height="25"/>
+                                            <rect key="frame" x="16" y="16" width="25" height="25"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                         <label opaque="NO" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="86g-mI-a0z">
-                                            <rect key="frame" x="56" y="28.5" width="53" height="18"/>
+                                            <rect key="frame" x="56" y="30.5" width="53" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2204,7 +2204,7 @@ Tap "+" to create one.</string>
         <scene sceneID="6nv-mG-FjN">
             <objects>
                 <tableViewController id="Tm1-9I-jjs" userLabel="Travel Types" customClass="TravelTypesVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nNJ-ce-w8T">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nNJ-ce-w8T">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2213,11 +2213,11 @@ Tap "+" to create one.</string>
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aes-71-aFG" id="22D-IN-Hjx">
-                                    <rect key="frame" x="0.0" y="0.0" width="336" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="336" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Färdmedel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lyl-wI-8aW">
-                                            <rect key="frame" x="16" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="16" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3199,10 +3199,10 @@ Welcome to a smarter way of traveling.</string>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wgI-rw-xle">
-                                                    <rect key="frame" x="0.0" y="8" width="0.0" height="73"/>
+                                                    <rect key="frame" x="8" y="8" width="359" height="73"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nästa steg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKX-RU-1uN">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="24"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="VFp-oo-nuY"/>
                                                             </constraints>
@@ -3210,27 +3210,27 @@ Welcome to a smarter way of traveling.</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RKD-ec-WGy">
-                                                            <rect key="frame" x="0.0" y="24" width="0.0" height="4"/>
+                                                            <rect key="frame" x="0.0" y="24" width="359" height="4"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="4" id="h1v-dK-7Cy"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vänta på tåget som kommer snart." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Are-1T-0YQ">
-                                                            <rect key="frame" x="0.0" y="28" width="0.0" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="28" width="359" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="837-VS-ygW">
-                                                            <rect key="frame" x="0.0" y="48.5" width="0.0" height="4"/>
+                                                            <rect key="frame" x="0.0" y="48.5" width="359" height="4"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="4" id="QvP-oO-O3C"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Den går om x min" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKX-Ug-oUl">
-                                                            <rect key="frame" x="0.0" y="52.5" width="0.0" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="52.5" width="359" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -3273,10 +3273,10 @@ Welcome to a smarter way of traveling.</string>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mVv-Ez-YlS">
-                                                    <rect key="frame" x="0.0" y="8" width="0.0" height="73"/>
+                                                    <rect key="frame" x="8" y="8" width="359" height="73"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nästa steg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8h-gJ-tIb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="24"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="461-Hw-CTF"/>
                                                             </constraints>
@@ -3284,27 +3284,27 @@ Welcome to a smarter way of traveling.</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97k-G7-EAU">
-                                                            <rect key="frame" x="0.0" y="24" width="0.0" height="4"/>
+                                                            <rect key="frame" x="0.0" y="24" width="359" height="4"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="4" id="Dkm-qZ-fSX"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vänta på tåget som kommer snart." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGs-yB-gVS">
-                                                            <rect key="frame" x="0.0" y="28" width="0.0" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="28" width="359" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3EM-tb-lzT">
-                                                            <rect key="frame" x="0.0" y="48.5" width="0.0" height="4"/>
+                                                            <rect key="frame" x="0.0" y="48.5" width="359" height="4"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="4" id="Ynb-tS-pOK"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Den går om x min" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0d1-pR-O92">
-                                                            <rect key="frame" x="0.0" y="52.5" width="0.0" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="52.5" width="359" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -4305,10 +4305,10 @@ Welcome to a smarter way of traveling.</string>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cEw-ad-Ljb">
                                             <rect key="frame" x="0.0" y="0.0" width="355" height="40"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="m4f-mc-vKA" userLabel="Dest">
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4f-mc-vKA" userLabel="Dest">
                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="40"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVu-LK-ZWM" userLabel="Time">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="10:32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVu-LK-ZWM" userLabel="Time">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="iCB-JG-RKe"/>
@@ -4333,8 +4333,8 @@ Welcome to a smarter way of traveling.</string>
                                                                 </fragment>
                                                             </attributedString>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Arlanda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="FXA-76-yac" userLabel="Location">
-                                                            <rect key="frame" x="60" y="0.0" width="65" height="40"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Arlanda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="FXA-76-yac" userLabel="Location">
+                                                            <rect key="frame" x="60" y="0.0" width="62" height="40"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="highlightedColor"/>
                                                             <attributedString key="userComments">
@@ -4354,8 +4354,8 @@ Welcome to a smarter way of traveling.</string>
                                                                 </fragment>
                                                             </attributedString>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="nOT-xQ-poO" userLabel="Exit">
-                                                            <rect key="frame" x="125" y="0.0" width="230" height="40"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="nOT-xQ-poO" userLabel="Exit">
+                                                            <rect key="frame" x="122" y="0.0" width="233" height="40"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -4429,7 +4429,7 @@ Welcome to a smarter way of traveling.</string>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nrS-qg-13b">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Map" id="Gkq-th-Vhg">
+                                    <navigationItem title="Map" largeTitleDisplayMode="never" id="Gkq-th-Vhg">
                                         <barButtonItem key="rightBarButtonItem" title="Close" style="done" id="xxJ-JW-X3b">
                                             <connections>
                                                 <action selector="onCloseTap:" destination="ZFd-7N-DcT" id="79J-9I-iBU"/>
@@ -4518,7 +4518,7 @@ Welcome to a smarter way of traveling.</string>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="j8m-4u-zPz"/>
                                     <barButtonItem style="plain" id="zLx-ST-LBa">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="IAq-18-jGq">
-                                            <rect key="frame" x="24" y="0.0" width="335" height="44"/>
+                                            <rect key="frame" x="248" y="7.5" width="111" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Map"/>
@@ -4534,7 +4534,7 @@ Welcome to a smarter way of traveling.</string>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T2C-UO-m0a">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Map" id="rbC-nb-nt8">
+                                    <navigationItem title="Map" largeTitleDisplayMode="never" id="rbC-nb-nt8">
                                         <barButtonItem key="rightBarButtonItem" title="Close" style="done" id="UAS-I5-O2f">
                                             <connections>
                                                 <action selector="onCloseTap:" destination="7Vv-Mr-zyV" id="QSl-Em-nVC"/>
@@ -4691,7 +4691,7 @@ Welcome to a smarter way of traveling.</string>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Dfi-qk-6gc"/>
                                     <barButtonItem style="plain" id="Ytd-tL-Cu2">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="EME-xd-vAh">
-                                            <rect key="frame" x="24" y="0.0" width="335" height="44"/>
+                                            <rect key="frame" x="248" y="7.5" width="111" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Map"/>
@@ -4707,7 +4707,7 @@ Welcome to a smarter way of traveling.</string>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="46T-xh-Gm8">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Map" id="RO9-tI-tSu">
+                                    <navigationItem title="Map" largeTitleDisplayMode="never" id="RO9-tI-tSu">
                                         <barButtonItem key="rightBarButtonItem" title="Close" style="done" id="Q3z-Hh-fpn">
                                             <connections>
                                                 <action selector="onCloseTap:" destination="NyV-HL-bFU" id="Qo7-XY-ryL"/>
@@ -4743,7 +4743,7 @@ Welcome to a smarter way of traveling.</string>
         <scene sceneID="MKF-2E-CU0">
             <objects>
                 <tableViewController id="pHa-YA-52O" userLabel="Generic Advance Picker" customClass="GenericValuePickerVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sjs-3q-UZE">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sjs-3q-UZE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4752,11 +4752,11 @@ Welcome to a smarter way of traveling.</string>
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bqB-zq-5vk" id="dQE-G3-vXp">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Value 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x2g-Ms-Wb9">
-                                            <rect key="frame" x="16" y="0.0" width="344" height="44"/>
+                                            <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4991,9 +4991,9 @@ Welcome to a smarter way of traveling.</string>
     <inferredMetricsTieBreakers>
         <segue reference="GLI-h1-z4f"/>
         <segue reference="7QZ-YL-rBC"/>
-        <segue reference="bAI-Ol-u0J"/>
+        <segue reference="ivB-Ve-lrb"/>
         <segue reference="4rE-Hc-22D"/>
-        <segue reference="kst-2L-81y"/>
+        <segue reference="rzj-uS-OIZ"/>
         <segue reference="L0K-5H-KeJ"/>
         <segue reference="yy0-ry-irx"/>
         <segue reference="Q81-bK-EK6"/>

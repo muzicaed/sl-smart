@@ -45,8 +45,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     setupCollectionView()
     setupNotificationListeners()
     setupRefreshController()
-    IJProgressView.shared.showProgressView(navigationController!.view)
-    self.collectionView?.alpha = 0.0
+    //IJProgressView.shared.showProgressView(navigationController!.view)
+    //self.collectionView?.alpha = 0.0
   }
   
   /**
@@ -60,7 +60,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
     stopRefreshTimmer()
-    IJProgressView.shared.hideProgressView()
+    //IJProgressView.shared.hideProgressView()
   }
   
   /**
@@ -368,7 +368,7 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    * Setup the "pull down to reload" controller.
    */
   fileprivate func setupRefreshController() {
-    refreshController.attributedTitle = NSAttributedString(string: "Pull to refresh".localized)
+    refreshController.tintColor = UIColor.white
     refreshController.addTarget(self, action: #selector(onRefreshController), for: UIControlEvents.valueChanged)
     collectionView?.refreshControl = refreshController
     collectionView?.alwaysBounceVertical = true
@@ -454,14 +454,14 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   fileprivate func startLoading() {
     NetworkActivity.displayActivityIndicator(true)
-    IJProgressView.shared.showProgressView(navigationController!.view)
+    //IJProgressView.shared.showProgressView(navigationController!.view)
     isShowInfo = false
     isLoading = true
     bestRoutineTrip = nil
     selectedRoutineTrip = nil
-    UIView.animate(withDuration: 0.15, animations: {
-      self.collectionView?.alpha = 0.0
-    })
+    //UIView.animate(withDuration: 0.15, animations: {
+      //self.collectionView?.alpha = 0.0
+    //})
   }
   
   /**
@@ -470,12 +470,13 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   fileprivate func stopLoading() {
     DispatchQueue.main.async() {
       self.isLoading = false
-      self.refreshController.endRefreshing()
-      IJProgressView.shared.hideProgressView()
+      
+      //IJProgressView.shared.hideProgressView()
       self.collectionView?.reloadData()
-      UIView.animate(withDuration: 0.3, animations: {
-        self.collectionView?.alpha = 1.0
-      })
+      self.refreshController.endRefreshing()
+      //UIView.animate(withDuration: 0.3, animations: {
+        //self.collectionView?.alpha = 1.0
+      //})
     }
   }
   

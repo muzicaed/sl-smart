@@ -56,7 +56,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     
     refreshController.addTarget(
       self, action: #selector(loadData), for: UIControlEvents.valueChanged)
-    refreshController.attributedTitle = NSAttributedString(string: "Pull to refresh".localized)
+    refreshController.tintColor = UIColor.white
     tableView.refreshControl = refreshController
     tableView.alwaysBounceVertical = true
   }

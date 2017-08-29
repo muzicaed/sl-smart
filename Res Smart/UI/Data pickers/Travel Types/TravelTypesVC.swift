@@ -23,6 +23,7 @@ class TravelTypesVC: UITableViewController {
    */
   override func viewDidLoad() {
     view.backgroundColor = StyleHelper.sharedInstance.background
+    tableView.tableFooterView = UIView(frame: CGRect.zero)
   }
   
   /**
