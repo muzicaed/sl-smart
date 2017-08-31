@@ -22,6 +22,8 @@ PickGenericValueResponder, LinePickerResponder {
   var isViaSelected = false
   var isAdvancedMode = false
   
+  var searchButton = UIButton(type: .custom)
+  
   @IBOutlet weak var viaLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var destinationArrivalSegmented: UISegmentedControl!
@@ -48,6 +50,17 @@ PickGenericValueResponder, LinePickerResponder {
     createNotificationListners()
     locationPickerRow.delegate = self
     locationPickerRow.prepareGestures()
+    prepareSearchButton()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.view.addSubview(searchButton)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    searchButton.removeFromSuperview()
   }
   
   /**
@@ -91,7 +104,7 @@ PickGenericValueResponder, LinePickerResponder {
         let vc = segue.destination as! DateTimePickerVC
         vc.selectedDate = selectedDate
         vc.delegate = self
-        UIView.animate(withDuration: 0.45, animations: {
+        UIView.animate(withDuration: 0.35, animations: {
           self.dimmer?.alpha = 0.7
         })
         
@@ -164,6 +177,7 @@ PickGenericValueResponder, LinePickerResponder {
     
     animateAdvancedToggle()
   }
+  
   /**
    * Changed if departure time or arrival time
    */
@@ -542,6 +556,27 @@ PickGenericValueResponder, LinePickerResponder {
       self,
       selector: #selector(restoreUIFromCriterions),
       name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+  }
+
+  fileprivate func prepareSearchButton() {
+    searchButton.setTitle("🔍 Search".localized, for: .normal)
+    searchButton.frame = CGRect(x: 0, y: 0, width: 140, height: 50)
+    searchButton.frame.origin.x = 10
+    searchButton.frame.origin.y = tableView.frame.size.height - searchButton.frame.size.height - 60
+    searchButton.backgroundColor = StyleHelper.sharedInstance.mainGreen
+    searchButton.clipsToBounds = false
+    searchButton.layer.shadowColor = UIColor.black.cgColor
+    searchButton.layer.shadowOffset = CGSize(width: 1, height: 1)
+    searchButton.layer.shadowOpacity = 0.35
+    searchButton.layer.cornerRadius = 6
+    searchButton.addTarget(self, action: #selector(onSearchTap), for: .touchUpInside)
+    tableView.tableFooterView = UIView(
+      frame: CGRect(origin: CGPoint.zero, size: CGSize(width: tableView.frame.size.width, height: 65))
+    )
+  }
+  
+  @objc func onSearchTap() {
+    performSegue(withIdentifier: "ShowTripList", sender: self)
   }
   
   /**

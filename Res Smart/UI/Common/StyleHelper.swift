@@ -15,7 +15,7 @@ class StyleHelper {
   let tintColor = UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 1.0)
   let mainGreen = UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 1.0)
   let background = UIColor.groupTableViewBackground
-  let highlight = UIColor(red: 229/255, green: 255/255, blue: 255/255, alpha: 0.95)
+  let highlight = UIColor(red: 33/255, green: 202/255, blue: 71/255, alpha: 0.13)
   let warningColor = UIColor(red: 255/255, green: 75/255, blue: 0/255, alpha: 1.0)
   let realtimeColor = UIColor(red: 0/255, green: 113/255, blue: 218/255, alpha: 1.0)
   
@@ -57,7 +57,7 @@ class StyleHelper {
     
     UISearchBar.appearance().searchBarStyle = .minimal
     
-    UIApplication.shared.statusBarStyle = .default
+    UIApplication.shared.statusBarStyle = .lightContent
     (UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])).tintColor = UIColor.white
   }
   

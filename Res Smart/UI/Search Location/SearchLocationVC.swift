@@ -24,7 +24,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   var allowNearbyStations = false
   var lastCount = 0
   var isLocationForRealTimeSearch = false
-  var editFavouritebutton = UIButton()
+  var editFavouritebutton = UIButton()  
   
   let loadedTime = Date()
   
@@ -151,6 +151,12 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
     let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
     
+    if section == topSection {
+      //label.text = "Use your position".localized
+      //return view
+      return nil
+    }
+    
     if section == favSection {
       label.text = "Favourites".localized
       view.addSubview(editFavouritebutton)
@@ -175,7 +181,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   override func tableView(
     _ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     if (allowCurrentPosition || allowNearbyStations) && section == 0 {
-      return 0
+      return 1
     }
     return 25
   }
@@ -471,8 +477,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   fileprivate func createNearbyStationsCell(_ indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(
       withIdentifier: cellReusableId, for: indexPath)
-    cell.textLabel?.text = "Nearby locations".localized
-    cell.detailTextLabel?.text = nil
+    cell.textLabel?.text = "Nearby stops".localized
+    cell.detailTextLabel?.text = "Based on your current location".localized
     cell.imageView?.image = UIImage(named: "near-me-icon")
     cell.imageView?.alpha = 0.4
     cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
@@ -522,8 +528,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     searchController!.dimsBackgroundDuringPresentation = true
     
     searchController!.searchBar.barStyle = .black
-    let textFieldInsideSearchBar = searchController!.searchBar.value(forKey: "searchField") as? UITextField
-    textFieldInsideSearchBar?.textColor = UIColor.white
+    searchController!.searchBar.barTintColor = UIColor.white
     
     if searchOnlyForStations {
       searchController!.searchBar.placeholder = "Type stop name".localized
@@ -551,8 +556,5 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   
   deinit {
     NotificationCenter.default.removeObserver(self)
-    if let superView = searchController!.view.superview {
-      superView.removeFromSuperview()
-    }
   }
 }

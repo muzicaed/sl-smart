@@ -17,6 +17,7 @@ class TripCell: UITableViewCell {
   @IBOutlet weak var iconAreaView: UIView!
   @IBOutlet weak var tripDurationLabel: UILabel!
   @IBOutlet weak var inAboutLabel: UILabel!
+  @IBOutlet weak var sideColorLine: UIView!
   
   /**
    * Init
@@ -45,6 +46,7 @@ class TripCell: UITableViewCell {
   func setupData(_ trip: Trip) {
     if trip.tripSegments.count > 0 {
       let trip = trip
+      sideColorLine.layer.backgroundColor = StyleHelper.sharedInstance.mainGreen.cgColor
       departureTimeLabel.textColor = UIColor.black
       departureTimeLabel.text = DateUtils.dateAsTimeString(
         trip.tripSegments.first!.departureDateTime)
@@ -68,10 +70,32 @@ class TripCell: UITableViewCell {
       
       if trip.isValid {
         tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
+        tripDurationLabel.textColor = UIColor.darkGray
       }
       
       createTripSegmentIcons(trip)
     }
+  }
+
+  /**
+   * Sets cell style to cancelled trip
+   */
+  func setCancelled(_ warningText: String) {
+    inAboutLabel.text = warningText
+    inAboutLabel.layer.backgroundColor = StyleHelper.sharedInstance.warningColor.cgColor
+    sideColorLine.layer.backgroundColor = StyleHelper.sharedInstance.warningColor.cgColor
+  }
+  
+  /**
+   * Sets cell style to past trip
+   */
+  func setInPast() {
+    inAboutLabel.layer.backgroundColor = UIColor.lightGray.cgColor
+    arrivalTimeLabel.textColor = UIColor.lightGray
+    departureTimeLabel.textColor = UIColor.lightGray
+    tripDurationLabel.textColor = UIColor.lightGray
+    sideColorLine.layer.backgroundColor = UIColor.lightGray.cgColor
+    iconAreaView.alpha = 0.5
   }
   
   // MARK: Private methods
@@ -85,7 +109,7 @@ class TripCell: UITableViewCell {
     var count = 0
     for (_, segment) in trip.tripSegments.enumerated() {
       if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
-        if count >= 6 { return }
+        if count >= 7 { return }
         let data = TripHelper.friendlyLineData(segment)
         
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)

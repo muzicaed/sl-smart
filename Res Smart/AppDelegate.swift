@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     
     let notification = UILocalNotification()
     notification.fireDate = Date(timeIntervalSinceNow: (60*60*24*7))
-    notification.alertBody = "Du har väll inte glömt mig? 😄"
+    notification.alertBody = "Du har väl inte glömt mig? 😄"
     UIApplication.shared.scheduledLocalNotifications = [notification]
   }
   

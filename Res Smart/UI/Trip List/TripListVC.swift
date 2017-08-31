@@ -13,8 +13,6 @@ import ResStockholmApiKit
 class TripListVC: UITableViewController {
   
   let cellIdentifier = "TripCell"
-  let pastCellIdentifier = "PassedTripCell"
-  let cancelledCellIdentifier = "CancelledTripCell"
   let loadingCellIdentifier = "LoadingCell"
   let loadMoreEarlierIdentifier = "LoadMoreEarlierRow"
   let loadMoreLaterIdentifier = "LoadMoreLaterRow"
@@ -287,7 +285,7 @@ class TripListVC: UITableViewController {
     } else if isLoadMoreEarlierRow(indexPath) || isLoadMoreLaterRow(indexPath) {
       return 40
     }
-    return 85
+    return 95
   }
   
   /**
@@ -477,16 +475,18 @@ class TripListVC: UITableViewController {
     if !trip.isValid {
       let validTuple = trip.checkInvalidSegments()
       let cell = tableView!.dequeueReusableCell(
-        withIdentifier: cancelledCellIdentifier, for: indexPath) as! TripCell
+        withIdentifier: cellIdentifier, for: indexPath) as! TripCell
       cell.setupData(trip)
-      cell.tripDurationLabel.text = (validTuple.isCancelled) ? "Cancelled".localized : "Short transfer".localized
+      let warningText = (validTuple.isCancelled) ? "Cancelled".localized : "Short transfer".localized
+      cell.setCancelled(warningText)
       return cell
     }
     
     if checkInPast(trip) {
       let cell = tableView!.dequeueReusableCell(
-        withIdentifier: pastCellIdentifier, for: indexPath) as! TripCell
+        withIdentifier: cellIdentifier, for: indexPath) as! TripCell
       cell.setupData(trip)
+      cell.setInPast()
       return cell
     }
     
@@ -494,14 +494,6 @@ class TripListVC: UITableViewController {
       withIdentifier: cellIdentifier, for: indexPath) as! TripCell
     cell.setupData(trip)
     return cell
-  }
-  
-  /**
-   * Check if trip is in past.
-   */
-  fileprivate func checkInPast(_ trip: Trip) -> Bool{
-    let date = trip.tripSegments.first!.departureDateTime
-    return (Date().timeIntervalSince1970 > date.timeIntervalSince1970)
   }
   
   /**
@@ -559,6 +551,7 @@ class TripListVC: UITableViewController {
    * Show a network error alert
    */
   fileprivate func showNetworkErrorAlert() {
+    IJProgressView.shared.hideProgressView()
     let networkErrorAlert = UIAlertController(
       title: "Service unavailable".localized,
       message: "Could not reach the search service.".localized,
@@ -567,6 +560,14 @@ class TripListVC: UITableViewController {
       UIAlertAction(title: "OK".localized, style: UIAlertActionStyle.default, handler: nil))
     
     present(networkErrorAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Check if trip is in past.
+   */
+  fileprivate func checkInPast(_ trip: Trip) -> Bool{
+    let date = trip.tripSegments.first!.departureDateTime
+    return (Date().timeIntervalSince1970 > date.timeIntervalSince1970)
   }
   
   /**
