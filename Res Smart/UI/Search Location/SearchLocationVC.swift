@@ -24,7 +24,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   var allowNearbyStations = false
   var lastCount = 0
   var isLocationForRealTimeSearch = false
-  var editFavouritebutton = UIButton()
+  var editFavouritebutton = UIButton()  
   
   let loadedTime = Date()
   

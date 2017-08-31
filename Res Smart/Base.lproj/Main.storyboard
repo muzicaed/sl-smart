@@ -538,11 +538,6 @@
                                 <action selector="onAdvancedButtonTap:" destination="Hg1-8K-Ui9" id="Yse-Pp-DQH"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Search" style="done" id="cLP-J8-IqA">
-                            <connections>
-                                <segue destination="sEV-FQ-PQe" kind="show" identifier="ShowTripList" id="4rE-Hc-22D"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="advancedToggleButton" destination="ddt-6P-8PN" id="But-vT-Yls"/>
@@ -558,6 +553,7 @@
                         <outlet property="viaLabel" destination="zXM-ao-ulO" id="vZr-gc-hHg"/>
                         <segue destination="WJw-HK-J3L" kind="show" identifier="SearchOriginLocation" id="wql-iI-rP3"/>
                         <segue destination="WJw-HK-J3L" kind="show" identifier="SearchDestinationLocation" id="ssG-K5-unq"/>
+                        <segue destination="sEV-FQ-PQe" kind="show" identifier="ShowTripList" id="SoV-ny-kIR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Xm-jb-YxA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4989,14 +4985,14 @@ Welcome to a smarter way of traveling.</string>
         <image name="station-icon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GLI-h1-z4f"/>
-        <segue reference="7QZ-YL-rBC"/>
+        <segue reference="alv-6I-0jl"/>
+        <segue reference="Fdd-gY-eKk"/>
         <segue reference="ivB-Ve-lrb"/>
-        <segue reference="4rE-Hc-22D"/>
+        <segue reference="SoV-ny-kIR"/>
         <segue reference="rzj-uS-OIZ"/>
-        <segue reference="L0K-5H-KeJ"/>
-        <segue reference="yy0-ry-irx"/>
-        <segue reference="Q81-bK-EK6"/>
+        <segue reference="OZb-MD-G7j"/>
+        <segue reference="ypq-Up-6Af"/>
+        <segue reference="Lg4-KG-mN0"/>
         <segue reference="gZB-Im-USu"/>
     </inferredMetricsTieBreakers>
 </document>
