@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import ResStockholmApiKit
-
+/*
 class RoutineTripCell: UICollectionViewCell {
   
   
@@ -192,3 +192,4 @@ class RoutineTripCell: UICollectionViewCell {
     tripDurationLabel.text = "Found no trip...".localized
   }
 }
+ */

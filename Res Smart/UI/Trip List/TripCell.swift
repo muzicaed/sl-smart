@@ -81,7 +81,7 @@ class TripCell: UITableViewCell {
    * Sets cell style to cancelled trip
    */
   func setCancelled(_ warningText: String) {
-    inAboutLabel.text = warningText
+    inAboutLabel.text = " \(warningText) \u{200C}"
     inAboutLabel.layer.backgroundColor = StyleHelper.sharedInstance.warningColor.cgColor
     sideColorLine.layer.backgroundColor = StyleHelper.sharedInstance.warningColor.cgColor
   }

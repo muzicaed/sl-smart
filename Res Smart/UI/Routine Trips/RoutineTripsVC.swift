@@ -11,16 +11,7 @@ import UIKit
 import ResStockholmApiKit
 import CoreLocation
 
-class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, LocationSearchResponder {
-  
-  let routineCellIdentifier = "RoutineTripCell"
-  let simpleCellIdentifier = "SimpleRoutineTripCell"
-  let loadingCellIdentifier = "LoadingCell"
-  let headerCellIdentifier = "HeaderView"
-  let infoCellIdentifier = "InfoCell"
-  let trialCellIdentifier = "TrialCell"
-  let subscriptionInfoCellIdentifier = "SubscriptionInfoCell"
-  let hereToThereCellIdentifier = "HereToThereCell"
+class RoutineTripsVC: UITableViewController, LocationSearchResponder {
   
   let showTripListSegue = "ShowTripList"
   let fromHereToThereSegue = "FromHereToThere"
@@ -32,7 +23,6 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   var isLoading = true
   var isShowInfo = false
   var lastUpdated = Date(timeIntervalSince1970: TimeInterval(0.0))
-  let refreshController = UIRefreshControl()
   
   var hereToThereCriterion: TripSearchCriterion?
   var refreshTimmer: Timer?
@@ -42,11 +32,8 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupCollectionView()
+    prepareTableView()
     setupNotificationListeners()
-    setupRefreshController()
-    //IJProgressView.shared.showProgressView(navigationController!.view)
-    //self.collectionView?.alpha = 0.0
   }
   
   /**
@@ -61,6 +48,67 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     super.viewDidDisappear(animated)
     stopRefreshTimmer()
     //IJProgressView.shared.hideProgressView()
+  }
+  
+  /**
+   * Triggered when returning from background.
+   */
+  @objc func didBecomeActive() {
+    if CLLocationManager.authorizationStatus() == .denied || !CLLocationManager.locationServicesEnabled() {
+      showLocationServicesNotAllowed()
+      MyLocationHelper.sharedInstance.isStarted = false
+      return
+    }
+    
+    loadTripData(true)
+    startRefreshTimmer()
+    tableView?.reloadData()
+  }
+  
+  /**
+   * Backgrounded.
+   */
+  @objc func didBecomeInactive() {
+    tableView?.backgroundView?.isHidden = true
+    stopRefreshTimmer()
+  }
+  
+  /**
+   * Starts the refresh timmer
+   */
+  func startRefreshTimmer() {
+    stopRefreshTimmer()
+    refreshTimmer = Timer.scheduledTimer(
+      timeInterval: 5.0, target: self, selector: #selector(refreshUI), userInfo: nil, repeats: true)
+  }
+  
+  @objc func refreshUI() {
+    loadTripData(false)
+  }
+  
+  /**
+   * Stop the refresh timmer
+   */
+  func stopRefreshTimmer() {
+    refreshTimmer?.invalidate()
+    refreshTimmer = nil
+  }
+  
+  /**
+   * Refresh screen and reload data.
+   */
+  fileprivate func refreshScreen() {
+    stopLoading()
+    navigationItem.rightBarButtonItem?.isEnabled = true
+    if CLLocationManager.authorizationStatus() == .denied || !CLLocationManager.locationServicesEnabled() {
+      showLocationServicesNotAllowed()
+      MyLocationHelper.sharedInstance.isStarted = false
+      tableView?.reloadData()
+      return
+    }
+    
+    startRefreshTimmer()
+    loadTripData(false)
   }
   
   /**
@@ -105,84 +153,24 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
   }
   
-  /**
-   * Triggered when returning from background.
-   */
-  @objc func didBecomeActive() {
-    if CLLocationManager.authorizationStatus() == .denied || !CLLocationManager.locationServicesEnabled() {
-      showLocationServicesNotAllowed()
-      MyLocationHelper.sharedInstance.isStarted = false
-      return
-    }
-    
-    loadTripData(true)
-    startRefreshTimmer()
-    collectionView?.reloadData()
-  }
+  // MARK: UITableViewController
   
   /**
-   * Backgrounded.
+   * Number of section
    */
-  @objc func didBecomeInactive() {
-    collectionView?.backgroundView?.isHidden = true
-    stopRefreshTimmer()
-  }
-  
-  /**
-   * Starts the refresh timmer
-   */
-  func startRefreshTimmer() {
-    stopRefreshTimmer()
-    refreshTimmer = Timer.scheduledTimer(
-      timeInterval: 5.0, target: self, selector: #selector(refreshUI), userInfo: nil, repeats: true)
-  }
-  
-  @objc func refreshUI() {
-    loadTripData(false)
-  }
-  
-  /**
-   * Stop the refresh timmer
-   */
-  func stopRefreshTimmer() {
-    refreshTimmer?.invalidate()
-    refreshTimmer = nil
-  }
-  
-  /**
-   * On user drags down to refresh
-   */
-  @objc func onRefreshController() {
-    if !isLoading {
-      loadTripData(true)
-    } else {
-      refreshController.endRefreshing()
-    }
-  }
-  
-  /**
-   * Unwind (back) to this view.
-   */
-  @IBAction func unwindToRoutineTripsVC(_ segue: UIStoryboardSegue) {}
-  
-  
-  // MARK: UICollectionViewController
-  
-  /**
-   * Section count
-   */
-  override func numberOfSections(in collectionView: UICollectionView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     if isLoading {
       return 1
-    }    
+    }
     return 2
   }
   
   /**
-   * Item count for section
+   * Number of rows
    */
-  override func collectionView(_ collectionView: UICollectionView,
-                               numberOfItemsInSection section: Int) -> Int {
+  override func tableView(
+    _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
     if isLoading {
       return 0
     }
@@ -202,132 +190,33 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   }
   
   /**
-   * Create cells for each data post.
+   * Cell for index
    */
-  override func collectionView(_ collectionView: UICollectionView,
-                               cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
+  override func tableView(
+    _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.section == 0 {
       if isShowInfo {
-        if indexPath.row == 1 {
-          return createTrialCell(indexPath)
-        }
-        return createInfoTripCell(indexPath)
+        //return createInfoTripCell(indexPath)
       }
       
       if indexPath.row == 0 {
         if let routineTrip = bestRoutineTrip {
-          return createRoutineTripCell(routineTrip, type: routineCellIdentifier, indexPath: indexPath)
+          return createRoutineTripCell(routineTrip, indexPath: indexPath)
         } else {
-          return createHereToThereCell(indexPath)
+          //return createHereToThereCell(indexPath)
+          return UITableViewCell()
         }
       } else if indexPath.row == 1 {
-        return createHereToThereCell(indexPath)
+        //return createHereToThereCell(indexPath)
+        return UITableViewCell()
       } else if indexPath.row == 2 {
-        return createTrialCell(indexPath)
+        //return createTrialCell(indexPath)
+        return UITableViewCell()
       }
       fatalError("Could not create cell.")
     }
-    return createRoutineTripCell(otherRoutineTrips[indexPath.row], type: simpleCellIdentifier, indexPath: indexPath)
-  }
-  
-  /**
-   * View for supplementary (header/footer)
-   */
-  override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    
-    let reusableView = collectionView.dequeueReusableSupplementaryView(
-      ofKind: UICollectionElementKindSectionHeader,
-      withReuseIdentifier: headerCellIdentifier,
-      for: indexPath) as! RoutineTripHeader
-    
-    return reusableView
-  }
-  
-  /**
-   * Size for items.
-   */
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let screenSize = UIScreen.main.bounds.size
-    if indexPath.section == 0 {
-      if isShowInfo {
-        return CGSize(width: screenSize.width, height: 250)
-      } else if bestRoutineTrip != nil {
-        if indexPath.row == 0 {
-          return CGSize(width: screenSize.width, height: 175)
-        } else if indexPath.row == 2 {
-          return CGSize(width: screenSize.width, height: 35)
-        }
-        return CGSize(width: screenSize.width, height: 60)
-      }
-    }
-    
-    return CGSize(width: screenSize.width, height: 90)
-  }
-  
-  /**
-   * Size for headers.
-   */
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                      referenceSizeForHeaderInSection section: Int) -> CGSize {
-    if section == 0  {
-      return CGSize(width: 0, height: 0)
-    } else if section == 1 && otherRoutineTrips.count == 0 {
-      return CGSize(width: 0, height: 0)
-    }
-    
-    return CGSize(width: self.collectionView!.frame.size.width, height: 40)
-  }
-  
-  /**
-   * User taps an item.
-   */
-  override func collectionView(_ collectionView: UICollectionView,
-                               didSelectItemAt indexPath: IndexPath) {
-    if !isShowInfo && !isLoading {
-      if indexPath.section == 0 && (indexPath.row == 1 || bestRoutineTrip == nil) {
-        performSegue(withIdentifier: fromHereToThereSegue, sender: self)
-        return
-      }
-      
-      var scoreMod: Float = 0.0
-      if indexPath.section == 0 && indexPath.row == 0 {
-        hereToThereCriterion = nil
-        selectedRoutineTrip = bestRoutineTrip
-        scoreMod = ScorePostHelper.BestTapCountScore
-      }else if indexPath.section != 0 {
-        selectedRoutineTrip = otherRoutineTrips[indexPath.row]
-        scoreMod = ScorePostHelper.OtherTapCountScore
-        ScorePostHelper.changeScoreForRoutineTrip(
-          bestRoutineTrip!.criterions.origin!.siteId!,
-          destinationId: bestRoutineTrip!.criterions.dest!.siteId!,
-          score: ScorePostHelper.NotBestTripScore)
-      }
-      
-      if selectedRoutineTrip != nil {
-        ScorePostHelper.changeScoreForRoutineTrip(
-          selectedRoutineTrip!.criterions.origin!.siteId!,
-          destinationId: selectedRoutineTrip!.criterions.dest!.siteId!,
-          score: scoreMod)
-        performSegue(withIdentifier: showTripListSegue, sender: self)
-      }
-    }
-  }
-  
-  /**
-   * Green highlight on selected row.
-   */
-  override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell,
-                               forItemAt indexPath: IndexPath) {
-    if !isShowInfo && !isLoading {
-      if (indexPath.section == 0 && indexPath.row != 2) || indexPath.section != 0 {
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
-        cell.selectedBackgroundView = bgColorView
-      }
-    }
+    return UITableViewCell()
+    //return createRoutineTripCell(otherRoutineTrips[indexPath.row], type: simpleCellIdentifier, indexPath: indexPath)
   }
   
   // MARK: LocationSearchResponder
@@ -353,54 +242,55 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
   // MARK: Private methods
   
   /**
-   * Setup collection view properties and layout.
+   * On trip search done.
    */
-  fileprivate func setupCollectionView() {
-    let flowLayout = UICollectionViewFlowLayout()
-    flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-    
-    collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-    collectionView?.collectionViewLayout = flowLayout
-    collectionView?.delegate = self
+  fileprivate func startLoading() {
+    NetworkActivity.displayActivityIndicator(true)
+    IJProgressView.shared.showProgressView(navigationController!.view)
+    isShowInfo = false
+    isLoading = true
+    bestRoutineTrip = nil
+    selectedRoutineTrip = nil
   }
   
   /**
-   * Setup the "pull down to reload" controller.
+   * On trip search done.
    */
-  fileprivate func setupRefreshController() {
-    refreshController.tintColor = UIColor.white
-    refreshController.addTarget(self, action: #selector(onRefreshController), for: UIControlEvents.valueChanged)
-    collectionView?.refreshControl = refreshController
-    collectionView?.alwaysBounceVertical = true
-  }
-  
-  /**
-   * Setup notification listeners.
-   */
-  fileprivate func setupNotificationListeners() {
-    NotificationCenter.default.addObserver(
-      self, selector: #selector(didBecomeActive),
-      name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
-    NotificationCenter.default.addObserver(
-      self, selector: #selector(didBecomeInactive),
-      name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
-  }
-  
-  /**
-   * Refresh screen and reload data.
-   */
-  fileprivate func refreshScreen() {
-    stopLoading()
-    navigationItem.rightBarButtonItem?.isEnabled = true
-    if CLLocationManager.authorizationStatus() == .denied || !CLLocationManager.locationServicesEnabled() {
-      showLocationServicesNotAllowed()
-      MyLocationHelper.sharedInstance.isStarted = false
-      collectionView?.reloadData()
-      return
+  fileprivate func stopLoading() {
+    DispatchQueue.main.async() {
+      self.isLoading = false
+      self.tableView?.reloadData()
     }
-    
-    startRefreshTimmer()
-    loadTripData(false)
+  }
+  
+  /**
+   * Checks if data should be reloaded.
+   */
+  fileprivate func shouldReload() -> Bool {
+    if let routine = bestRoutineTrip, let trip = routine.trips.first {
+      if let segment = trip.tripSegments.first {
+        if Date().timeIntervalSince(segment.departureDateTime) > 30 {
+          return true
+        }
+      }
+    }
+    return (Date().timeIntervalSince(lastUpdated) > 120)
+  }
+  
+  /**
+   * Setup table view properties and layout.
+   */
+  fileprivate func prepareTableView() {
+    view.backgroundColor = StyleHelper.sharedInstance.background
+  }
+  
+  /**
+   * Create best trip cell
+   */
+  fileprivate func createRoutineTripCell(_ trip: RoutineTrip, indexPath: IndexPath) -> RoutineTripCell {
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: "RoutineTripCell", for: indexPath) as! RoutineTripCell
+    return cell
   }
   
   /**
@@ -431,118 +321,20 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
       })
     } else {
-      collectionView?.reloadData()
+      tableView?.reloadData()
     }
   }
   
   /**
-   * Checks if data should be reloaded.
+   * Setup notification listeners.
    */
-  fileprivate func shouldReload() -> Bool {
-    if let routine = bestRoutineTrip, let trip = routine.trips.first {
-      if let segment = trip.tripSegments.first {
-        if Date().timeIntervalSince(segment.departureDateTime) > 30 {
-          return true
-        }
-      }
-    }
-    return (Date().timeIntervalSince(lastUpdated) > 120)
-  }
-  
-  /**
-   * On trip search done.
-   */
-  fileprivate func startLoading() {
-    NetworkActivity.displayActivityIndicator(true)
-    //IJProgressView.shared.showProgressView(navigationController!.view)
-    isShowInfo = false
-    isLoading = true
-    bestRoutineTrip = nil
-    selectedRoutineTrip = nil
-    //UIView.animate(withDuration: 0.15, animations: {
-      //self.collectionView?.alpha = 0.0
-    //})
-  }
-  
-  /**
-   * On trip search done.
-   */
-  fileprivate func stopLoading() {
-    DispatchQueue.main.async() {
-      self.isLoading = false
-      
-      //IJProgressView.shared.hideProgressView()
-      self.collectionView?.reloadData()
-      self.refreshController.endRefreshing()
-      //UIView.animate(withDuration: 0.3, animations: {
-        //self.collectionView?.alpha = 1.0
-      //})
-    }
-  }
-  
-  /**
-   * Create best trip cell
-   */
-  fileprivate func createRoutineTripCell(_ trip: RoutineTrip, type: String, indexPath: IndexPath) -> RoutineTripCell {
-    let cell = collectionView!.dequeueReusableCell(
-      withReuseIdentifier: type, for: indexPath) as! RoutineTripCell
-    
-    let isBest = (type == routineCellIdentifier) ? true : false
-    cell.setupData(trip, isBest: isBest)
-    return cell
-  }
-  
-  /**
-   * Create info trip cell
-   */
-  fileprivate func createInfoTripCell(_ indexPath: IndexPath) -> UICollectionViewCell {
-    return collectionView!.dequeueReusableCell(
-      withReuseIdentifier: infoCellIdentifier, for: indexPath)
-  }
-  
-  /**
-   * Create subscription info trip cell
-   */
-  fileprivate func createSubscriptionInfoCell(_ indexPath: IndexPath) -> UICollectionViewCell {
-    return collectionView!.dequeueReusableCell(
-      withReuseIdentifier: subscriptionInfoCellIdentifier, for: indexPath)
-  }
-  
-  /**
-   * Create "From here to there" cell
-   */
-  fileprivate func createHereToThereCell(_ indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView!.dequeueReusableCell(
-      withReuseIdentifier: hereToThereCellIdentifier, for: indexPath) as! HereToThereCell
-    
-    if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
-      cell.setFromLocationText(currentLocation)
-    }
-    
-    return cell
-  }
-  
-  /**
-   * Create trial cell
-   */
-  fileprivate func createTrialCell(_ indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView!.dequeueReusableCell(
-      withReuseIdentifier: trialCellIdentifier, for: indexPath)
-    return cell
-  }
-  
-  /**
-   * Show no location servie popup
-   */
-  fileprivate func showLocationServicesNotAllowed() {
-    let invalidLocationAlert = UIAlertController(
-      title: "Platstjänster ej aktiverad",
-      message: "Kontrollera att platstjänster är aktiverade och att de tillåts för Res Smart.\n\n(Inställningar -> Integritetsskydd -> Platstjänster)",
-      preferredStyle: UIAlertControllerStyle.alert)
-    invalidLocationAlert.addAction(
-      UIAlertAction(title: "Okej", style: .default, handler: nil))
-    
-    present(invalidLocationAlert, animated: true, completion: nil)
+  fileprivate func setupNotificationListeners() {
+    NotificationCenter.default.addObserver(
+      self, selector: #selector(didBecomeActive),
+      name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    NotificationCenter.default.addObserver(
+      self, selector: #selector(didBecomeInactive),
+      name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
   }
   
   /**
@@ -562,6 +354,20 @@ class RoutineTripsVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     return (DateUtils.dateAsDateString(Date()), DateUtils.dateAsTimeString(Date()))
+  }
+  
+  /**
+   * Show no location servie popup
+   */
+  fileprivate func showLocationServicesNotAllowed() {
+    let invalidLocationAlert = UIAlertController(
+      title: "Platstjänster ej aktiverad",
+      message: "Kontrollera att platstjänster är aktiverade och att de tillåts för Res Smart.\n\n(Inställningar -> Integritetsskydd -> Platstjänster)",
+      preferredStyle: UIAlertControllerStyle.alert)
+    invalidLocationAlert.addAction(
+      UIAlertAction(title: "Okej", style: .default, handler: nil))
+    
+    present(invalidLocationAlert, animated: true, completion: nil)
   }
   
   deinit {

@@ -159,12 +159,12 @@
 		18BC459E1C5FA5A100248D07 /* NearbyStationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC459D1C5FA5A100248D07 /* NearbyStationsVC.swift */; };
 		18BC85241CA01A3D0061C0BA /* BusFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC85231CA01A3D0061C0BA /* BusFilterVC.swift */; };
 		18CA276B1F4858D50095C231 /* RoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CA276A1F4858D50095C231 /* RoutineTripsVC.swift */; };
-		18CA276D1F485A030095C231 /* RoutineTripsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CA276C1F485A030095C231 /* RoutineTripsHelper.swift */; };
 		18CB35B21C1E08BA0084CA27 /* LocationPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */; };
 		18CDAD501E2CC57600D7FDCA /* StepByStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CDAD4F1E2CC57600D7FDCA /* StepByStepView.swift */; };
 		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
 		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
 		18D6521E1C3D9C510067FC60 /* _HereToThereCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6521D1C3D9C510067FC60 /* _HereToThereCell.swift */; };
+		18D7472D1F5895DF0053E30D /* RoutineTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D7472C1F5895DF0053E30D /* RoutineTripCell.swift */; };
 		18DEAD981D8024C6009EF6BC /* ExitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEAD971D8024C6009EF6BC /* ExitData.swift */; };
 		18DEB4FD1E28CFB20056147A /* RouteRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2661C4B9C6200534587 /* RouteRenderer.swift */; };
 		18DEB4FE1E28CFB50056147A /* RoutePolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2681C4B9C9200534587 /* RoutePolyline.swift */; };
@@ -443,13 +443,13 @@
 		18BC459D1C5FA5A100248D07 /* NearbyStationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearbyStationsVC.swift; path = "Res Smart/UI/Search Location/Nearby/NearbyStationsVC.swift"; sourceTree = SOURCE_ROOT; };
 		18BC85231CA01A3D0061C0BA /* BusFilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusFilterVC.swift; sourceTree = "<group>"; };
 		18CA276A1F4858D50095C231 /* RoutineTripsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTripsVC.swift; sourceTree = "<group>"; };
-		18CA276C1F485A030095C231 /* RoutineTripsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTripsHelper.swift; sourceTree = "<group>"; };
 		18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerRow.swift; sourceTree = "<group>"; };
 		18CDAD4F1E2CC57600D7FDCA /* StepByStepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepByStepView.swift; sourceTree = "<group>"; };
 		18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleHelper.swift; sourceTree = "<group>"; };
 		18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabVC.swift; sourceTree = "<group>"; };
 		18D1953E1C07964900FB1A93 /* TripSeachCriterion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripSeachCriterion.swift; path = ResStockholmApiKit/Model/Trip/TripSeachCriterion.swift; sourceTree = SOURCE_ROOT; };
 		18D6521D1C3D9C510067FC60 /* _HereToThereCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _HereToThereCell.swift; sourceTree = "<group>"; };
+		18D7472C1F5895DF0053E30D /* RoutineTripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTripCell.swift; sourceTree = "<group>"; };
 		18DEAD971D8024C6009EF6BC /* ExitData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExitData.swift; sourceTree = "<group>"; };
 		18F447CF1D7EBC7600B48D39 /* jour.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jour.json; sourceTree = "<group>"; };
 		18F447D01D7EBC7600B48D39 /* line.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = line.json; sourceTree = "<group>"; };
@@ -870,7 +870,7 @@
 				181BD4151C047AA900651D0F /* _RoutineTripHeader.swift */,
 				18D6521D1C3D9C510067FC60 /* _HereToThereCell.swift */,
 				18CA276A1F4858D50095C231 /* RoutineTripsVC.swift */,
-				18CA276C1F485A030095C231 /* RoutineTripsHelper.swift */,
+				18D7472C1F5895DF0053E30D /* RoutineTripCell.swift */,
 			);
 			path = "Routine Trips";
 			sourceTree = "<group>";
@@ -1425,7 +1425,6 @@
 				18B7D41A1E51998B00E67112 /* SegmentWrapper.swift in Sources */,
 				18AC9D001C08B5B4007ECFA2 /* LoadMoreCell.swift in Sources */,
 				18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */,
-				18CA276D1F485A030095C231 /* RoutineTripsHelper.swift in Sources */,
 				18232CA61C01DB81006334D1 /* StyleButton.swift in Sources */,
 				18733C4B1C4E411900F66AEF /* RealTimeVC.swift in Sources */,
 				18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */,
@@ -1473,6 +1472,7 @@
 				18FDA8C51CD9364E003665C6 /* PickGenericValueResponder.swift in Sources */,
 				18B7D41C1E51B08700E67112 /* Instruction.swift in Sources */,
 				18232CAC1C01EC2F006334D1 /* SearchLocationVC.swift in Sources */,
+				18D7472D1F5895DF0053E30D /* RoutineTripCell.swift in Sources */,
 				181ABB861CD89283003CA251 /* NearbyStationsMapVC.swift in Sources */,
 				1824A4321C9F3453000BEE9B /* ReportSituationRow.swift in Sources */,
 				18937E7E1BFF6AB700C523C9 /* _RoutineTripCell_.swift in Sources */,

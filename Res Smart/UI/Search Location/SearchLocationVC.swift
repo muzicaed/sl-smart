@@ -145,15 +145,13 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     label.textColor = UIColor.white
     label.textAlignment = .left
     view.addSubview(label)
-    let color = StyleHelper.sharedInstance.mainGreen
+    let color = UIColor.darkGray
     view.backgroundColor = color.withAlphaComponent(0.95)
     
     let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
     let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
     
     if section == topSection {
-      //label.text = "Use your position".localized
-      //return view
       return nil
     }
     
@@ -243,8 +241,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     }
     
     let location = latestLocations[indexPath.row]
-    return createLocationCell(indexPath, location: location, isFavourite: false)
-    
+    return createLocationCell(indexPath, location: location, isFavourite: false)    
   }
   
   /**

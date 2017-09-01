@@ -132,6 +132,7 @@ class ReportsVC: UITableViewController {
     tableView.separatorInset = UIEdgeInsets.zero
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 130
+    view.backgroundColor = StyleHelper.sharedInstance.background
   }
   
   /**
