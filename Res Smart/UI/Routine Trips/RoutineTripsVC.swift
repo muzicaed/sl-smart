@@ -188,7 +188,9 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
     _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.section == 0 {
       if isShowInfo {
+        // TODO: FIX THIS
         //return createInfoTripCell(indexPath)
+        return UITableViewCell()
       } else {
         if let routineTrip = bestRoutineTrip {
           return createRoutineTripCell(routineTrip, indexPath: indexPath)
@@ -198,8 +200,7 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
         return UITableViewCell()
       }
     } else if indexPath.section == 1 {
-      //return createHereToThereCell(indexPath)
-      return UITableViewCell()
+      return createHereToThereCell(indexPath)
     }
 
     return createOtherRoutineTripCell(otherRoutineTrips[indexPath.row], indexPath: indexPath)
@@ -331,6 +332,20 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
     let cell = tableView.dequeueReusableCell(
       withIdentifier: "OtherRoutineCell", for: indexPath) as! OtherRoutineTripCell
     cell.setupData(trip, indexPath.row)
+    return cell
+  }
+  
+  /**
+   * Create "From here to there" cell
+   */
+  fileprivate func createHereToThereCell(_ indexPath: IndexPath) -> HereToThereCell {
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: "HereToThereCell", for: indexPath) as! HereToThereCell
+    
+    if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
+      cell.setFromLocationText(currentLocation)
+    }
+    
     return cell
   }
   

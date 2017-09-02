@@ -5,14 +5,16 @@
 //  Created by Mikael Hellman on 2016-01-06.
 //  Copyright © 2016 Mikael Hellman. All rights reserved.
 //
-
+/*
 import Foundation
 import UIKit
 import ResStockholmApiKit
 
 class HereToThereCell: UICollectionViewCell {
   
-  @IBOutlet weak var hereToThereLabel: UILabel!
+ @IBOutlet weak var currentLocationLabel: UILabel!
+ @IBOutlet weak var currentLocationLabel: UILabel!
+ @IBOutlet weak var hereToThereLabel: UILabel!
   
   /**
    * Set the from location text.
@@ -23,3 +25,4 @@ class HereToThereCell: UICollectionViewCell {
     hereToThereLabel.text = "\("From".localized) \(location.name)"
   }
 }
+ */
