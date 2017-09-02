@@ -47,7 +47,7 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
     stopRefreshTimmer()
-    //IJProgressView.shared.hideProgressView()
+    IJProgressView.shared.hideProgressView()
   }
   
   /**
@@ -162,7 +162,7 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
     if isLoading {
       return 1
     }
-    return 2
+    return 3
   }
   
   /**
@@ -175,15 +175,8 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
       return 0
     }
     
-    if section == 0 {
-      if isShowInfo {
-        return 1
-      }
-      var bestCount = (bestRoutineTrip == nil ? 0 : 1)
-      if MyLocationHelper.sharedInstance.getCurrentLocation() != nil {
-        bestCount += 1
-      }
-      return bestCount
+    if section == 0 || section == 1 {
+      return 1
     }
     
     return otherRoutineTrips.count
@@ -259,6 +252,7 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
   fileprivate func stopLoading() {
     DispatchQueue.main.async() {
       self.isLoading = false
+      IJProgressView.shared.hideProgressView()
       self.tableView?.reloadData()
     }
   }
@@ -290,6 +284,7 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
   fileprivate func createRoutineTripCell(_ trip: RoutineTrip, indexPath: IndexPath) -> RoutineTripCell {
     let cell = tableView.dequeueReusableCell(
       withIdentifier: "RoutineTripCell", for: indexPath) as! RoutineTripCell
+    cell.setupData(trip)
     return cell
   }
   
@@ -315,7 +310,6 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
             self.otherRoutineTrips = Array(routineTrips[1..<routineTrips.count])
             self.lastUpdated = Date()
           }
-          
           NetworkActivity.displayActivityIndicator(false)
           self.stopLoading()
         }

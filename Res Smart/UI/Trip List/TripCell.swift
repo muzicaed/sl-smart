@@ -45,7 +45,6 @@ class TripCell: UITableViewCell {
    */
   func setupData(_ trip: Trip) {
     if trip.tripSegments.count > 0 {
-      let trip = trip
       sideColorLine.layer.backgroundColor = StyleHelper.sharedInstance.mainGreen.cgColor
       departureTimeLabel.textColor = UIColor.black
       departureTimeLabel.text = DateUtils.dateAsTimeString(
