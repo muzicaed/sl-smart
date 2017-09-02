@@ -13,6 +13,7 @@ import ResStockholmApiKit
 class RoutineTripCell: UITableViewCell {
   
   @IBOutlet weak var routineTitleLabel: UILabel!
+  @IBOutlet weak var tripPath: UILabel!
   @IBOutlet weak var departureTimeLabel: UILabel!
   @IBOutlet weak var arrivalTimeLabel: UILabel!
   @IBOutlet weak var inAboutLabel: UILabel!
@@ -38,8 +39,9 @@ class RoutineTripCell: UITableViewCell {
   func setup() {
     clipsToBounds = false
     layer.shadowColor = UIColor.black.cgColor
-    layer.shadowOffset = CGSize(width: 1, height: 2)
-    layer.shadowOpacity = 0.15
+    layer.shadowOffset = CGSize(width: 1, height: 1)
+    layer.shadowOpacity = 0.12
+    layer.shadowRadius = 1
   }
   
   /**
@@ -49,6 +51,7 @@ class RoutineTripCell: UITableViewCell {
     routineTitleLabel.text = routineTrip.title
     if let trip = routineTrip.trips.first {
       if trip.tripSegments.count > 0 {
+        tripPath.text = "\(trip.allTripSegments.first!.origin.cleanName) - \(trip.allTripSegments.last!.destination.cleanName)"
         departureTimeLabel.textColor = UIColor.black
         departureTimeLabel.text = DateUtils.dateAsTimeString(
           trip.tripSegments.first!.departureDateTime)
