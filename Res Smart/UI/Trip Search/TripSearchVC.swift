@@ -559,7 +559,7 @@ PickGenericValueResponder, LinePickerResponder {
   }
 
   fileprivate func prepareSearchButton() {
-    searchButton.setTitle("🔍 Search".localized, for: .normal)
+    searchButton.setTitle("Search".localized, for: .normal)
     searchButton.frame = CGRect(x: 0, y: 0, width: 140, height: 50)
     searchButton.frame.origin.x = 10
     searchButton.frame.origin.y = tableView.frame.size.height - searchButton.frame.size.height - 60
