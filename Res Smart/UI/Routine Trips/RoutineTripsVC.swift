@@ -115,7 +115,6 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
    * Prepares for segue
    */
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    print("SEGUE" + segue.identifier!)
     if segue.identifier == showTripListSegue {
       if let crit = hereToThereCriterion {
         let vc = segue.destination as! TripListVC
@@ -123,7 +122,6 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
         SearchCriterionStore.sharedInstance.writeLastSearchCriterions(crit)
         
       } else if let routineTrip = selectedRoutineTrip {
-        print("SEGUE")
         if let crit = routineTrip.criterions.copy() as? TripSearchCriterion {
           crit.searchForArrival = (crit.time != nil) ? true : false
           let timeDateTuple = createDateTimeTuple(routineTrip.criterions)
@@ -191,26 +189,20 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
     if indexPath.section == 0 {
       if isShowInfo {
         //return createInfoTripCell(indexPath)
-      }
-      
-      if indexPath.row == 0 {
+      } else {
         if let routineTrip = bestRoutineTrip {
           return createRoutineTripCell(routineTrip, indexPath: indexPath)
-        } else {
-          //return createHereToThereCell(indexPath)
-          return UITableViewCell()
         }
-      } else if indexPath.row == 1 {
-        //return createHereToThereCell(indexPath)
-        return UITableViewCell()
-      } else if indexPath.row == 2 {
-        //return createTrialCell(indexPath)
+        // TODO: FIX THIS
+        print("NO BEST ROUTINE!!")
         return UITableViewCell()
       }
-      fatalError("Could not create cell.")
+    } else if indexPath.section == 1 {
+      //return createHereToThereCell(indexPath)
+      return UITableViewCell()
     }
-    return UITableViewCell()
-    //return createRoutineTripCell(otherRoutineTrips[indexPath.row], type: simpleCellIdentifier, indexPath: indexPath)
+
+    return createOtherRoutineTripCell(otherRoutineTrips[indexPath.row], indexPath: indexPath)
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -219,14 +211,13 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
         performSegue(withIdentifier: fromHereToThereSegue, sender: self)
         return
       }
-      print("did select")
+
       var scoreMod: Float = 0.0
       if indexPath.section == 0 {
-        print("selected")
         hereToThereCriterion = nil
         selectedRoutineTrip = bestRoutineTrip
         scoreMod = ScorePostHelper.BestTapCountScore
-      } else if indexPath.section == 3 {
+      } else if indexPath.section == 2 {
         selectedRoutineTrip = otherRoutineTrips[indexPath.row]
         scoreMod = ScorePostHelper.OtherTapCountScore
         ScorePostHelper.changeScoreForRoutineTrip(
@@ -330,6 +321,16 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
     let cell = tableView.dequeueReusableCell(
       withIdentifier: "RoutineTripCell", for: indexPath) as! RoutineTripCell
     cell.setupData(trip)
+    return cell
+  }
+  
+  /**
+   * Create other trip cell
+   */
+  fileprivate func createOtherRoutineTripCell(_ trip: RoutineTrip, indexPath: IndexPath) -> OtherRoutineTripCell {
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: "OtherRoutineCell", for: indexPath) as! OtherRoutineTripCell
+    cell.setupData(trip, indexPath.row)
     return cell
   }
   

@@ -21,37 +21,18 @@ class RoutineTripCell: UITableViewCell {
   @IBOutlet weak var iconAreaView: UIView!
   
   /**
-   * Init
-   */
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  /**
-   * Shared init code.
-   */
-  func setup() {
-    clipsToBounds = false
-    layer.shadowColor = UIColor.black.cgColor
-    layer.shadowOffset = CGSize(width: 1, height: 1)
-    layer.shadowOpacity = 0.12
-    layer.shadowRadius = 1
-  }
-  
-  /**
    * Populate cell data based on passed RoutineTrip
    */
   func setupData(_ routineTrip: RoutineTrip) {
-    routineTitleLabel.text = routineTrip.title
+    var title = routineTrip.title!
+    if routineTrip.isSmartSuggestion {
+      title = "\("Habit".localized): \(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName)"
+    }
+    routineTitleLabel.text = title
+    
     if let trip = routineTrip.trips.first {
       if trip.tripSegments.count > 0 {
-        tripPath.text = "\(trip.allTripSegments.first!.origin.cleanName) - \(trip.allTripSegments.last!.destination.cleanName)"
+        tripPath.text = routineTrip.criterions.origin!.cleanName + " - " + routineTrip.criterions.dest!.cleanName
         departureTimeLabel.textColor = UIColor.black
         departureTimeLabel.text = DateUtils.dateAsTimeString(
           trip.tripSegments.first!.departureDateTime)
