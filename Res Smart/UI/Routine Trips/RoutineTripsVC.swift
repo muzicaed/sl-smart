@@ -115,7 +115,7 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
    * Prepares for segue
    */
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
+    print("SEGUE" + segue.identifier!)
     if segue.identifier == showTripListSegue {
       if let crit = hereToThereCriterion {
         let vc = segue.destination as! TripListVC
@@ -123,6 +123,7 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
         SearchCriterionStore.sharedInstance.writeLastSearchCriterions(crit)
         
       } else if let routineTrip = selectedRoutineTrip {
+        print("SEGUE")
         if let crit = routineTrip.criterions.copy() as? TripSearchCriterion {
           crit.searchForArrival = (crit.time != nil) ? true : false
           let timeDateTuple = createDateTimeTuple(routineTrip.criterions)
@@ -210,6 +211,50 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
     }
     return UITableViewCell()
     //return createRoutineTripCell(otherRoutineTrips[indexPath.row], type: simpleCellIdentifier, indexPath: indexPath)
+  }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if !isShowInfo && !isLoading {
+      if indexPath.section == 1 {
+        performSegue(withIdentifier: fromHereToThereSegue, sender: self)
+        return
+      }
+      print("did select")
+      var scoreMod: Float = 0.0
+      if indexPath.section == 0 {
+        print("selected")
+        hereToThereCriterion = nil
+        selectedRoutineTrip = bestRoutineTrip
+        scoreMod = ScorePostHelper.BestTapCountScore
+      } else if indexPath.section == 3 {
+        selectedRoutineTrip = otherRoutineTrips[indexPath.row]
+        scoreMod = ScorePostHelper.OtherTapCountScore
+        ScorePostHelper.changeScoreForRoutineTrip(
+          bestRoutineTrip!.criterions.origin!.siteId!,
+          destinationId: bestRoutineTrip!.criterions.dest!.siteId!,
+          score: ScorePostHelper.NotBestTripScore)
+      }
+      
+      if selectedRoutineTrip != nil {
+        ScorePostHelper.changeScoreForRoutineTrip(
+          selectedRoutineTrip!.criterions.origin!.siteId!,
+          destinationId: selectedRoutineTrip!.criterions.dest!.siteId!,
+          score: scoreMod)
+        performSegue(withIdentifier: showTripListSegue, sender: self)
+      }
+    }
+  }
+  
+  /**
+   * Green highlight on selected row.
+   */
+  override func tableView(
+    _ tableView: UITableView, willDisplay cell: UITableViewCell,
+    forRowAt indexPath: IndexPath) {
+    
+    let bgColorView = UIView()
+    bgColorView.backgroundColor = StyleHelper.sharedInstance.highlight
+    cell.selectedBackgroundView = bgColorView
   }
   
   // MARK: LocationSearchResponder
