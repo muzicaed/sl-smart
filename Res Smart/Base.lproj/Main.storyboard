@@ -2594,10 +2594,10 @@ Tap "+" to create one.</string>
                                                         <constraint firstAttribute="height" constant="1" id="3Eg-6k-213"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RZi-h9-izZ">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZi-h9-izZ">
                                                     <rect key="frame" x="0.0" y="1" width="375" height="39"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Åka hem två" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNZ-ab-d3R">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Åka hem två" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNZ-ab-d3R">
                                                             <rect key="frame" x="12" y="8" width="351" height="31.5"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
@@ -2621,10 +2621,10 @@ Tap "+" to create one.</string>
                                                         <constraint firstAttribute="bottom" secondItem="hNZ-ab-d3R" secondAttribute="bottom" id="xMp-wb-byI"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZzT-eU-3Vw">
-                                                    <rect key="frame" x="0.0" y="40" width="375" height="41"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZzT-eU-3Vw">
+                                                    <rect key="frame" x="0.0" y="40" width="375" height="20.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Plats A - Plats B" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7b-17-brC">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Plats A - Plats B" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7b-17-brC">
                                                             <rect key="frame" x="12" y="0.0" width="355" height="20.5"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -2649,25 +2649,25 @@ Tap "+" to create one.</string>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5Y-K0-4Un">
-                                                    <rect key="frame" x="0.0" y="81" width="375" height="98"/>
+                                                    <rect key="frame" x="0.0" y="60.5" width="375" height="118.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3SU-jc-Bj0" userLabel="Content">
-                                                            <rect key="frame" x="12" y="0.0" width="351" height="90"/>
+                                                            <rect key="frame" x="12" y="0.0" width="351" height="110.5"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P7I-Qu-sh7" userLabel="Time table">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="90"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="110.5"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="sy4-Cd-e4Q" userLabel="Table rows">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="351" height="90"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="351" height="110.5"/>
                                                                             <subviews>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1JU-cA-tOU">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="45"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="55.5"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hI-fO-urA">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="175.5" height="45"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="175.5" height="55.5"/>
                                                                                             <subviews>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="19:23" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfb-4P-fQl">
-                                                                                                    <rect key="frame" x="0.0" y="9.5" width="57.5" height="26.5"/>
+                                                                                                    <rect key="frame" x="0.0" y="14.5" width="57.5" height="26.5"/>
                                                                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                                                                                     <nil key="textColor"/>
@@ -2682,7 +2682,7 @@ Tap "+" to create one.</string>
                                                                                                     </attributedString>
                                                                                                 </label>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="»" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Bmf-Eb-5um">
-                                                                                                    <rect key="frame" x="61.5" y="4.5" width="20" height="36"/>
+                                                                                                    <rect key="frame" x="61.5" y="9.5" width="20" height="36"/>
                                                                                                     <accessibility key="accessibilityConfiguration">
                                                                                                         <bool key="isElement" value="NO"/>
                                                                                                     </accessibility>
@@ -2691,7 +2691,7 @@ Tap "+" to create one.</string>
                                                                                                     <nil key="highlightedColor"/>
                                                                                                 </label>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="20:43" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXv-T3-WxK" userLabel="20:43">
-                                                                                                    <rect key="frame" x="85.5" y="9.5" width="61" height="26.5"/>
+                                                                                                    <rect key="frame" x="85.5" y="14.5" width="61" height="26.5"/>
                                                                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                                                                                     <nil key="textColor"/>
@@ -2719,10 +2719,10 @@ Tap "+" to create one.</string>
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qtk-Yk-xG1">
-                                                                                            <rect key="frame" x="175.5" y="0.0" width="175.5" height="45"/>
+                                                                                            <rect key="frame" x="175.5" y="0.0" width="175.5" height="55.5"/>
                                                                                             <subviews>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="om 15 min" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMx-bp-RTv">
-                                                                                                    <rect key="frame" x="93.5" y="11" width="82" height="22"/>
+                                                                                                    <rect key="frame" x="93.5" y="16" width="82" height="22"/>
                                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="height" constant="22" id="9NL-Ox-3hg"/>
@@ -2750,17 +2750,17 @@ Tap "+" to create one.</string>
                                                                                     </subviews>
                                                                                 </stackView>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9Ks-AV-LgW">
-                                                                                    <rect key="frame" x="0.0" y="45" width="351" height="45"/>
+                                                                                    <rect key="frame" x="0.0" y="55.5" width="351" height="55"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xhY-aR-UzI" userLabel="Icon">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="175.5" height="45"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="175.5" height="55"/>
                                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="tjd-zE-Eio"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Restid: 1h 33m" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SGv-Yk-pst">
-                                                                                            <rect key="frame" x="175.5" y="0.0" width="175.5" height="45"/>
+                                                                                            <rect key="frame" x="175.5" y="0.0" width="175.5" height="55"/>
                                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <nil key="highlightedColor"/>
@@ -2785,7 +2785,7 @@ Tap "+" to create one.</string>
                                                                         <constraint firstItem="sy4-Cd-e4Q" firstAttribute="top" secondItem="P7I-Qu-sh7" secondAttribute="top" id="d4L-7d-QgX"/>
                                                                         <constraint firstItem="sy4-Cd-e4Q" firstAttribute="leading" secondItem="P7I-Qu-sh7" secondAttribute="leading" id="iEv-kp-Nuf"/>
                                                                         <constraint firstAttribute="trailing" secondItem="sy4-Cd-e4Q" secondAttribute="trailingMargin" id="mp5-gG-vQ2"/>
-                                                                        <constraint firstAttribute="height" constant="90" id="xXU-Zl-DyQ"/>
+                                                                        <constraint firstAttribute="height" constant="110" id="xXU-Zl-DyQ"/>
                                                                     </constraints>
                                                                 </view>
                                                             </subviews>

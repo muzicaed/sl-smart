@@ -14,7 +14,7 @@ class StyleHelper {
   static let sharedInstance = StyleHelper()
   let tintColor = UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 1.0)
   let mainGreen = UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 1.0)
-  let background = UIColor.groupTableViewBackground
+  let background = UIColor(white: 0.955, alpha: 1.0)
   let highlight = UIColor(red: 33/255, green: 202/255, blue: 71/255, alpha: 0.13)
   let warningColor = UIColor(red: 255/255, green: 75/255, blue: 0/255, alpha: 1.0)
   let realtimeColor = UIColor(red: 0/255, green: 113/255, blue: 218/255, alpha: 1.0)
