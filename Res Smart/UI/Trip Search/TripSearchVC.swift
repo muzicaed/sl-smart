@@ -558,6 +558,9 @@ PickGenericValueResponder, LinePickerResponder {
       name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
   }
 
+  /**
+   * Prepare floating search button
+   */
   fileprivate func prepareSearchButton() {
     searchButton.setTitle("Search".localized, for: .normal)
     searchButton.frame = CGRect(x: 0, y: 0, width: 140, height: 50)
