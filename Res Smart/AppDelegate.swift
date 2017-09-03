@@ -9,7 +9,7 @@
 import UIKit
 import WatchConnectivity
 import ResStockholmApiKit
-
+import UserNotifications
 
 //TODO: Move WCSessionDelegate out to a helper object
 @UIApplicationMain
@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     DataMigration.migrateData()
     setupAppleWatchConnection()
     setupApp()
-    setupLocalNotifications()
     
     return true
   }
@@ -40,11 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   func applicationDidEnterBackground(_ application: UIApplication) {
     let defaults = UserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
     defaults.synchronize()
-    
-    let notification = UILocalNotification()
-    notification.fireDate = Date(timeIntervalSinceNow: (60*60*24*7))
-    notification.alertBody = "Du har väl inte glömt mig? 😄"
-    UIApplication.shared.scheduledLocalNotifications = [notification]
   }
   
   func applicationDidBecomeActive(_ application: UIApplication) {    
@@ -150,14 +144,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
       }
       self.notificationCenter.post(name: Notification.Name(rawValue: "TrafficSituations"), object: count)
     }
-  }
-  
-  /**
-   * Register for local notifications.
-   */
-  fileprivate func setupLocalNotifications() {
-    let notificationSettings = UIUserNotificationSettings(types: [.alert], categories: nil)
-    UIApplication.shared.registerUserNotificationSettings(notificationSettings)
   }
 }
 
