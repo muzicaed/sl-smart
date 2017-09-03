@@ -207,7 +207,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   fileprivate func prepareSegmentView() {
     segmentView.removeFromSuperview()
     segmentView = SMSegmentView(
-      frame: CGRect(x: 0, y: 0, width: 100.0, height: 37),
+      frame: CGRect(x: 0, y: 0, width: 100.0, height: 50),
       separatorColour: UIColor.lightGray,
       separatorWidth: 0.0,
       segmentProperties: [
@@ -226,7 +226,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("BUS")
       let _ = segmentView.addSegmentWithTitle(
-        "Buses".localized,
+        nil,
         onSelectionImage: UIImage(named: "BUS"),
         offSelectionImage: UIImage(named: "BUS"))
     }
@@ -237,7 +237,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("METRO")
       let _ = segmentView.addSegmentWithTitle(
-        "Metro".localized,
+        nil,
         onSelectionImage: UIImage(named: "METRO"),
         offSelectionImage: UIImage(named: "METRO"))
     }
@@ -248,7 +248,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("TRAIN")
       let _ = segmentView.addSegmentWithTitle(
-        "Train".localized,
+        nil,
         onSelectionImage: UIImage(named: "TRAIN"),
         offSelectionImage: UIImage(named: "TRAIN"))
     }
@@ -259,7 +259,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("TRAM")
       let _ = segmentView.addSegmentWithTitle(
-        "Tram".localized,
+        nil,
         onSelectionImage: UIImage(named: "TRAM"),
         offSelectionImage: UIImage(named: "TRAM"))
     }
@@ -270,7 +270,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("LOCAL-TRAM")
       let _ = segmentView.addSegmentWithTitle(
-        "Tram".localized,
+        nil,
         onSelectionImage: UIImage(named: "TRAM"),
         offSelectionImage: UIImage(named: "TRAM"))
     }
@@ -281,7 +281,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("SHIP")
       let _ = segmentView.addSegmentWithTitle(
-        "Ferry".localized,
+        nil,
         onSelectionImage: UIImage(named: "SHIP"),
         offSelectionImage: UIImage(named: "SHIP"))
     }
@@ -293,6 +293,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       segmentView.frame.size.width = CGFloat((screenWidth / 4) * CGFloat(tabCount))
       topView.addSubview(segmentView)
       topView.alpha = 1.0
+      let frame = CGRect(x: 0, y: 0, width: topView.frame.width, height: 50)
+      topView.frame = frame
     }
   }
   

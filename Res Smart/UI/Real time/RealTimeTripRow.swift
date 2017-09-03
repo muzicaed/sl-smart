@@ -49,7 +49,7 @@ class RealTimeTripRow: UITableViewCell {
     case "TRAIN":
       let train = realTimeDepartures.trains[trainKeys[index]]![indexPath.row - 1]
       stopPointDesignation.text = "Spår \(train.stopPointDesignation)"
-      lineLabel.text = "Line".localized + " " + data!.lineNumber
+      lineLabel.text = "Line".localized + " " + train.lineNumber
       let via = ((train.secondaryDestinationName != nil) ? " via \(train.secondaryDestinationName!)" : "")      
       infoLabel.text = "Toward".localized + " " + train.destination + via
       if train.displayTime == "Nu" {
