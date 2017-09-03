@@ -45,6 +45,7 @@ class TripCell: UITableViewCell {
    */
   func setupData(_ trip: Trip) {
     if trip.tripSegments.count > 0 {
+      iconAreaView.alpha = 1.0
       sideColorLine.layer.backgroundColor = StyleHelper.sharedInstance.mainGreen.cgColor
       departureTimeLabel.textColor = UIColor.black
       departureTimeLabel.text = DateUtils.dateAsTimeString(
@@ -83,6 +84,7 @@ class TripCell: UITableViewCell {
     inAboutLabel.text = " \(warningText) \u{200C}"
     inAboutLabel.layer.backgroundColor = StyleHelper.sharedInstance.warningColor.cgColor
     sideColorLine.layer.backgroundColor = StyleHelper.sharedInstance.warningColor.cgColor
+    iconAreaView.alpha = 1.0
   }
   
   /**
