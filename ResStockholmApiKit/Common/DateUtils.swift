@@ -104,7 +104,6 @@ open class DateUtils {
     }
     
     let diffMin = Int(ceil(((departure.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
-    print("MIN: \(diffMin)")
     if diffMin < 60 && diffMin >= 0 {      
       let diffMinStr = (diffMin < 1) ? "\(nowStr)" : "\(aboutStr) \(diffMin) min"
       return diffMinStr

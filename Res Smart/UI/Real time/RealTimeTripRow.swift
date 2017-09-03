@@ -30,15 +30,14 @@ class RealTimeTripRow: UITableViewCell {
                boatKeys: [String], segmentView: SMSegmentView) {
     
     let index = indexPath.section - 1
-    var data: RTTransportBase?
-    var lineChar = ""
+    var data: RTTransport?
     let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
     stopPointDesignation.isHidden = true
     
     switch tabKeys {
     case "BUS":
       let bus = realTimeDepartures.busses[busKeys[index]]![indexPath.row - 1]
-      data = bus as RTTransportBase
+      data = bus as RTTransport
       if let designation = bus.stopPointDesignation {
         stopPointDesignation.text = designation
         stopPointDesignation.accessibilityLabel = "\("Section:".localized) " + designation
@@ -46,8 +45,7 @@ class RealTimeTripRow: UITableViewCell {
       }
       
     case "METRO":
-      lineChar = "T"
-      data = realTimeDepartures.metros[metroKeys[index]]![indexPath.row - 1] as RTTransportBase
+      data = realTimeDepartures.metros[metroKeys[index]]![indexPath.row - 1] as RTTransport
       
     case "TRAIN":
       let train = realTimeDepartures.trains[trainKeys[index]]![indexPath.row - 1]
@@ -71,29 +69,27 @@ class RealTimeTripRow: UITableViewCell {
       return
       
     case "TRAM":
-      lineChar = "L"
-      data = realTimeDepartures.trams[tramKeys[index]]![indexPath.row - 1] as RTTransportBase
+      data = realTimeDepartures.trams[tramKeys[index]]![indexPath.row - 1] as RTTransport
       
     case "LOCAL-TRAM":
-      lineChar = "S"
-      data = realTimeDepartures.localTrams[localTramKeys[index]]![indexPath.row - 1] as RTTransportBase
+      data = realTimeDepartures.localTrams[localTramKeys[index]]![indexPath.row - 1] as RTTransport
       
     case "SHIP":
-      data = realTimeDepartures.boats[boatKeys[index]]![indexPath.row - 1] as RTTransportBase
+      data = realTimeDepartures.boats[boatKeys[index]]![indexPath.row - 1] as RTTransport
       
     default:
       break
     }
     
-    updateFields(data: data, lineChar: lineChar)
+    updateFields(data: data)
   }
   
   /**
    * Populates all fields
    */
-  fileprivate func updateFields(data: RTTransportBase?, lineChar: String) {
+  fileprivate func updateFields(data: RTTransport?) {
     if let data = data {
-      lineLabel.text = lineChar + data.lineNumber
+      lineLabel.text = data.lineNumber
       infoLabel.text = "\(data.destination)"
       infoLabel.accessibilityLabel = "Mot \(data.destination)"
       if data.displayTime == "Nu" {

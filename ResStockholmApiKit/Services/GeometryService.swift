@@ -36,7 +36,6 @@ open class GeometryService {
         
         let jsonData = JSON(data: d)
         result = convertJson(jsonData["Geometry"]["Points"]["Point"])
-        print("GEO Found: \(result.count) points!")
         if result.count == 0 {
           HttpRequestHelper.clearCache()
           callback([CLLocation](), SLNetworkError.noDataFound)

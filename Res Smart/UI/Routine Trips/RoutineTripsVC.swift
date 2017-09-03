@@ -209,8 +209,6 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
       return tableView.dequeueReusableCell(
         withIdentifier: "DisableRoutinesCell", for: indexPath)
     }
-    
-    print("Found no row: \(indexPath.section) - \(indexPath.row)")
     return UITableViewCell()
   }
   

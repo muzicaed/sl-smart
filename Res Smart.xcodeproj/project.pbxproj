@@ -57,23 +57,18 @@
 		186447631C5FF6B400020A17 /* DataMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186447621C5FF6B400020A17 /* DataMigration.swift */; };
 		18698AA61C4E91000031D1AD /* RealTimeHeaderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */; };
 		18698AAC1C4E913A0031D1AD /* RealTimeTripRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AAB1C4E913A0031D1AD /* RealTimeTripRow.swift */; };
-		18698AAE1C4EB51B0031D1AD /* RTMetro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AAD1C4EB51B0031D1AD /* RTMetro.swift */; };
-		18698AB01C4EE72C0031D1AD /* RTTrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AAF1C4EE72C0031D1AD /* RTTrain.swift */; };
 		1869E2991C1E0E36001FE4B2 /* PickLocationResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */; };
 		186B677D1E38827F000A52DC /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B677C1E38827F000A52DC /* MapHelper.swift */; };
-		186CACD11C55265800B1B5F6 /* RTTram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CACD01C55265800B1B5F6 /* RTTram.swift */; };
-		186CACD71C55381100B1B5F6 /* RTBoat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CACD61C55381100B1B5F6 /* RTBoat.swift */; };
 		18733C491C4E3D1000F66AEF /* RealTimeNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */; };
 		18733C4B1C4E411900F66AEF /* RealTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C4A1C4E411900F66AEF /* RealTimeVC.swift */; };
 		18733C4D1C4E472F00F66AEF /* SLRealtimeDepartures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C4C1C4E472F00F66AEF /* SLRealtimeDepartures.swift */; };
 		18733C4F1C4E482F00F66AEF /* RealTimeDeparturesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C4E1C4E482F00F66AEF /* RealTimeDeparturesService.swift */; };
 		18733C511C4E4B0C00F66AEF /* RealTimeDepartures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C501C4E4B0C00F66AEF /* RealTimeDepartures.swift */; };
-		18733C531C4E4DB800F66AEF /* RTTransportBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C521C4E4DB800F66AEF /* RTTransportBase.swift */; };
+		18733C531C4E4DB800F66AEF /* RTTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C521C4E4DB800F66AEF /* RTTransport.swift */; };
 		18733C611C4E568500F66AEF /* SMBasicSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C5D1C4E568500F66AEF /* SMBasicSegment.swift */; };
 		18733C621C4E568500F66AEF /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C5E1C4E568500F66AEF /* SMBasicSegmentView.swift */; };
 		18733C631C4E568500F66AEF /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C5F1C4E568500F66AEF /* SMSegment.swift */; };
 		18733C641C4E568500F66AEF /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C601C4E568500F66AEF /* SMSegmentView.swift */; };
-		18733C661C4E56C500F66AEF /* RTBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C651C4E56C500F66AEF /* RTBus.swift */; };
 		187484781D89743A00F1F7BA /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187484771D89743A00F1F7BA /* NewsVC.swift */; };
 		18763F221D80A29500666718 /* StaticExit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18763F211D80A29500666718 /* StaticExit.swift */; };
 		187733CC1ED82A4900B5B1B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733CE1ED82A4900B5B1B9 /* InfoPlist.strings */; };
@@ -342,23 +337,18 @@
 		186447621C5FF6B400020A17 /* DataMigration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMigration.swift; sourceTree = "<group>"; };
 		18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeHeaderRow.swift; sourceTree = "<group>"; };
 		18698AAB1C4E913A0031D1AD /* RealTimeTripRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeTripRow.swift; sourceTree = "<group>"; };
-		18698AAD1C4EB51B0031D1AD /* RTMetro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMetro.swift; sourceTree = "<group>"; };
-		18698AAF1C4EE72C0031D1AD /* RTTrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTrain.swift; sourceTree = "<group>"; };
 		1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickLocationResponder.swift; sourceTree = "<group>"; };
 		186B677C1E38827F000A52DC /* MapHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
-		186CACD01C55265800B1B5F6 /* RTTram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTram.swift; sourceTree = "<group>"; };
-		186CACD61C55381100B1B5F6 /* RTBoat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBoat.swift; sourceTree = "<group>"; };
 		18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeNavigationVC.swift; sourceTree = "<group>"; };
 		18733C4A1C4E411900F66AEF /* RealTimeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeVC.swift; sourceTree = "<group>"; };
 		18733C4C1C4E472F00F66AEF /* SLRealtimeDepartures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLRealtimeDepartures.swift; sourceTree = "<group>"; };
 		18733C4E1C4E482F00F66AEF /* RealTimeDeparturesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeDeparturesService.swift; sourceTree = "<group>"; };
 		18733C501C4E4B0C00F66AEF /* RealTimeDepartures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeDepartures.swift; sourceTree = "<group>"; };
-		18733C521C4E4DB800F66AEF /* RTTransportBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTransportBase.swift; sourceTree = "<group>"; };
+		18733C521C4E4DB800F66AEF /* RTTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTransport.swift; sourceTree = "<group>"; };
 		18733C5D1C4E568500F66AEF /* SMBasicSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBasicSegment.swift; sourceTree = "<group>"; };
 		18733C5E1C4E568500F66AEF /* SMBasicSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBasicSegmentView.swift; sourceTree = "<group>"; };
 		18733C5F1C4E568500F66AEF /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
 		18733C601C4E568500F66AEF /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
-		18733C651C4E56C500F66AEF /* RTBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBus.swift; sourceTree = "<group>"; };
 		187484771D89743A00F1F7BA /* NewsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		18763F211D80A29500666718 /* StaticExit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticExit.swift; sourceTree = "<group>"; };
 		187733CD1ED82A4900B5B1B9 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1024,12 +1014,7 @@
 			isa = PBXGroup;
 			children = (
 				18733C501C4E4B0C00F66AEF /* RealTimeDepartures.swift */,
-				18733C521C4E4DB800F66AEF /* RTTransportBase.swift */,
-				18733C651C4E56C500F66AEF /* RTBus.swift */,
-				18698AAD1C4EB51B0031D1AD /* RTMetro.swift */,
-				18698AAF1C4EE72C0031D1AD /* RTTrain.swift */,
-				186CACD01C55265800B1B5F6 /* RTTram.swift */,
-				186CACD61C55381100B1B5F6 /* RTBoat.swift */,
+				18733C521C4E4DB800F66AEF /* RTTransport.swift */,
 			);
 			path = Realtime;
 			sourceTree = "<group>";
@@ -1525,21 +1510,18 @@
 				188A317B1E892F9D00D44C97 /* LanguageHelper.swift in Sources */,
 				18FC747F1C7B778F00980B0D /* DeviationsService.swift in Sources */,
 				18FA99941C492BDC0075C4C2 /* SLJourneyDetailsApi.swift in Sources */,
-				186CACD71C55381100B1B5F6 /* RTBoat.swift in Sources */,
 				18530B441D80C05C005AB9EC /* StopEnhancer.swift in Sources */,
 				18630EEF1CC26C9E0085C0B8 /* FavouriteLocationsStore.swift in Sources */,
-				186CACD11C55265800B1B5F6 /* RTTram.swift in Sources */,
 				183D6EB41C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift in Sources */,
 				1835A06E1C676180008355F9 /* DisturbanceTextHelper.swift in Sources */,
 				18DEAD981D8024C6009EF6BC /* ExitData.swift in Sources */,
 				18FA999A1C492E3F0075C4C2 /* JournyDetailsService.swift in Sources */,
-				18698AAE1C4EB51B0031D1AD /* RTMetro.swift in Sources */,
 				18733C4D1C4E472F00F66AEF /* SLRealtimeDepartures.swift in Sources */,
 				18AAC9321C2EE61000022C54 /* ScorePostStore.swift in Sources */,
 				18A9E8621C189998008F97C8 /* ScorePostHelper.swift in Sources */,
 				18FA999C1C49321C0075C4C2 /* Stop.swift in Sources */,
 				18763F221D80A29500666718 /* StaticExit.swift in Sources */,
-				18733C531C4E4DB800F66AEF /* RTTransportBase.swift in Sources */,
+				18733C531C4E4DB800F66AEF /* RTTransport.swift in Sources */,
 				18A9E8651C1899E7008F97C8 /* SLSearchLocationApi.swift in Sources */,
 				18A9E8681C1899E7008F97C8 /* SLSearchNearbyStationsApi.swift in Sources */,
 				18AAC92F1C2EE3DF00022C54 /* SearchCriterionStore.swift in Sources */,
@@ -1548,7 +1530,6 @@
 				18A9E8691C1899E7008F97C8 /* SLNetworkError.swift in Sources */,
 				18A9E86A1C1899ED008F97C8 /* Trip.swift in Sources */,
 				18733C511C4E4B0C00F66AEF /* RealTimeDepartures.swift in Sources */,
-				18698AB01C4EE72C0031D1AD /* RTTrain.swift in Sources */,
 				18A9E8671C1899E7008F97C8 /* HttpRequestHelper.swift in Sources */,
 				18733C4F1C4E482F00F66AEF /* RealTimeDeparturesService.swift in Sources */,
 				18B2902B1C46D8BC00DCE585 /* StringUtils.swift in Sources */,
@@ -1561,7 +1542,6 @@
 				18FC74811C7B7D2E00980B0D /* Deviation.swift in Sources */,
 				18A9E85E1C189998008F97C8 /* RoutineService.swift in Sources */,
 				18A9E8601C189998008F97C8 /* SearchTripService.swift in Sources */,
-				18733C661C4E56C500F66AEF /* RTBus.swift in Sources */,
 				18A9E86E1C1899ED008F97C8 /* TripSegment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
