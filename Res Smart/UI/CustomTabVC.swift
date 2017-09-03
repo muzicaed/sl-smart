@@ -29,7 +29,7 @@ class CustomTabVC: UITabBarController {
   /**
    * Updates the tabs based on premium.
    */
-  func updateTabs() {
+  @objc func updateTabs() {
     isPremiumSettingOn = UserDefaults.standard.bool(forKey: "res_smart_premium_preference")
     if !isPremiumSettingOn && self.tabBar.items!.count == 4 {
       if let count = viewControllers?.count {
@@ -93,15 +93,6 @@ class CustomTabVC: UITabBarController {
     }
   }
   
-  /**
-   * onPremiumDisabled notification handler
-   */
-  @objc func onPremiumDisabled(_ notification: Notification) {
-    isPremiumSettingOn = false
-    UserDefaults.standard.set(isPremiumSettingOn, forKey: "res_smart_premium_preference")
-    updateTabs()
-  }
-  
   // MARK: Private
   
   fileprivate func addObservers() {
@@ -109,8 +100,8 @@ class CustomTabVC: UITabBarController {
                                    name: NSNotification.Name(rawValue: "TrafficSituations"), object: nil)
     notificationCenter.addObserver(self, selector: #selector(onStartTrip(_:)),
                                    name: NSNotification.Name(rawValue: "BeginTrip"), object: nil)
-    notificationCenter.addObserver(self, selector: #selector(onPremiumDisabled(_:)),
-                                   name: NSNotification.Name(rawValue: "PremiumDisabled"), object: nil)
+    notificationCenter.addObserver(self, selector: #selector(updateTabs),
+                                   name: NSNotification.Name(rawValue: "UpdateTabs"), object: nil)
   }
   
   deinit{

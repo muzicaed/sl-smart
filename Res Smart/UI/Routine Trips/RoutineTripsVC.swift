@@ -159,9 +159,11 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
    */
   override func numberOfSections(in tableView: UITableView) -> Int {
     if isLoading {
-      return 1
+      return 0
+    } else if isShowInfo {
+      return 2
     }
-    return 3
+    return 4
   }
   
   /**
@@ -169,15 +171,11 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
    */
   override func tableView(
     _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
     if isLoading {
       return 0
-    }
-    
-    if section == 0 || section == 1 {
+    } else if section == 0 || section == 1 || section == 3 {
       return 1
     }
-    
     return otherRoutineTrips.count
   }
   
@@ -186,28 +184,41 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
    */
   override func tableView(
     _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    if isShowInfo {
+      if indexPath.section == 0 {
+        return tableView.dequeueReusableCell(
+          withIdentifier: "RoutinesInfoCell", for: indexPath)
+      }
+      return tableView.dequeueReusableCell(
+        withIdentifier: "DisableRoutinesCell", for: indexPath)
+    }
+    
     if indexPath.section == 0 {
-      if isShowInfo {
-        // TODO: FIX THIS
-        //return createInfoTripCell(indexPath)
-        
-      } else {
-        if let routineTrip = bestRoutineTrip {
-          if routineTrip.trips.count > 0 {
-            return createRoutineTripCell(routineTrip, indexPath: indexPath)
-          } else {
-            return createNoTripsCell(routineTrip, indexPath: indexPath)
-          }
+      if let routineTrip = bestRoutineTrip {
+        if routineTrip.trips.count > 0 {
+          return createRoutineTripCell(routineTrip, indexPath: indexPath)
+        } else {
+          return createNoTripsCell(routineTrip, indexPath: indexPath)
         }
       }
     } else if indexPath.section == 1 {
       return createHereToThereCell(indexPath)
+    } else if indexPath.section == 3 {
+      return tableView.dequeueReusableCell(
+        withIdentifier: "DisableRoutinesCell", for: indexPath)
     }
 
     return createOtherRoutineTripCell(otherRoutineTrips[indexPath.row], indexPath: indexPath)
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    if isShowInfo && indexPath.section == 1 {
+      showDisableRoutinesAlert()
+      return
+    }
+    
     if !isShowInfo && !isLoading {
       if indexPath.section == 1 {
         performSegue(withIdentifier: fromHereToThereSegue, sender: self)
@@ -226,6 +237,8 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
           bestRoutineTrip!.criterions.origin!.siteId!,
           destinationId: bestRoutineTrip!.criterions.dest!.siteId!,
           score: ScorePostHelper.NotBestTripScore)
+      } else if indexPath.section == 3 {
+        showDisableRoutinesAlert()
       }
       
       if selectedRoutineTrip != nil {
@@ -434,6 +447,29 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
       UIAlertAction(title: "Okej", style: .default, handler: nil))
     
     present(invalidLocationAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Show alert on disable routines button
+   */
+  fileprivate func showDisableRoutinesAlert() {
+    let disableRoutinesAlert = UIAlertController(
+      title: "Disable routines?".localized,
+      message: "You can enable routines again from the app settings.\nAre you sure you want to disable routines?".localized,
+      preferredStyle: UIAlertControllerStyle.alert)
+    disableRoutinesAlert.addAction(UIAlertAction(title: "Yes".localized, style: .default, handler: { (_) in
+      UserDefaults.standard.set(false, forKey: "res_smart_premium_preference")
+      UserDefaults.standard.synchronize()
+      self.tableView.reloadData()
+      NotificationCenter.default.post(name: Notification.Name(rawValue: "UpdateTabs"), object: nil)
+      
+    }))
+    disableRoutinesAlert.addAction(
+      UIAlertAction(title: "No".localized, style: .cancel, handler: { (_) in
+        self.tableView.reloadData()
+      }))
+    
+    present(disableRoutinesAlert, animated: true, completion: nil)
   }
   
   deinit {
