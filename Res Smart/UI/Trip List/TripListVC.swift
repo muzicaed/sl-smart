@@ -108,7 +108,7 @@ class TripListVC: UITableViewController {
   func startRefreshTimmer() {
     stopRefreshTimmer()
     self.refreshTimer = Timer.scheduledTimer(
-      timeInterval: 15, target: self, selector: #selector(refreshUI), userInfo: nil, repeats: true)
+      timeInterval: 10, target: self, selector: #selector(refreshUI), userInfo: nil, repeats: true)
   }
   
   /**
