@@ -49,7 +49,10 @@ open class TripHelper {
     _ segment: TripSegment) -> (short: String, long: String, icon: String, color: UIColor) {
     
     let type = segment.type
-    let lineNumber = segment.lineNumber
+    var lineNumber = ""
+    if let number = segment.lineNumber {
+      lineNumber = number
+    }
     switch type {
     case .Ship:
       return ("Båt", "Djurgårdsfärjan", "SHIP", shipColor)
@@ -57,46 +60,46 @@ open class TripHelper {
       return ("Båt", "Sjövägen (Pendelbåt)", "SHIP", shipColor)
     case .Tram:
       if lineNumber == "7" {
-        return ("\(lineNumber!)", "Spårväg City 7", "TRAM", tram7)
+        return ("\(lineNumber)", "Spårväg City 7", "TRAM", tram7)
       } else if lineNumber == "12" {
-        return ("\(lineNumber!)", "Nockebybanan 12", "TRAM", tram12)
+        return ("\(lineNumber)", "Nockebybanan 12", "TRAM", tram12)
       } else if lineNumber == "21" {
-        return ("\(lineNumber!)", "Lidingöbanan 21", "TRAM", tram21)
+        return ("\(lineNumber)", "Lidingöbanan 21", "TRAM", tram21)
       } else if lineNumber == "22" {
-        return ("\(lineNumber!)", "Tvärbana 22", "TRAM", tram22)
+        return ("\(lineNumber)", "Tvärbana 22", "TRAM", tram22)
       } else if lineNumber == "25" {
-        return ("\(lineNumber!)", "Saltsjöbanan 25", "TRAM", tram25_26)
+        return ("\(lineNumber)", "Saltsjöbanan 25", "TRAM", tram25_26)
       } else if lineNumber == "26" {
-        return ("\(lineNumber!)", "Saltsjöbanan 26", "TRAM", tram25_26)
+        return ("\(lineNumber)", "Saltsjöbanan 26", "TRAM", tram25_26)
       } else if lineNumber == "27" {
-        return ("\(lineNumber!)", "Roslagsbanan, Kårstalinjen", "TRAM", tram27_29)
+        return ("\(lineNumber)", "Roslagsbanan, Kårstalinjen", "TRAM", tram27_29)
       } else if lineNumber == "28" {
-        return ("\(lineNumber!)", "Roslagsbanan, Österskärslinjen", "TRAM", tram27_29)
+        return ("\(lineNumber)", "Roslagsbanan, Österskärslinjen", "TRAM", tram27_29)
       } else if lineNumber == "29" {
-        return ("\(lineNumber!)", "Roslagsbanan, Näsbyparkslinjen", "TRAM", tram27_29)
+        return ("\(lineNumber)", "Roslagsbanan, Näsbyparkslinjen", "TRAM", tram27_29)
       }
-      return ("\(lineNumber!)", "\("Tram line".localized) \(lineNumber!)", "TRAM", UIColor.darkGray)
+      return ("\(lineNumber)", "\("Tram line".localized) \(lineNumber)", "TRAM", UIColor.darkGray)
     case .Bus:
       if segment.name.lowercased().range(of: "blåbuss") != nil {
-        return ("\(lineNumber!)", "\("Blue bus".localized) \(lineNumber!)", "BUS", blueBusColor)
+        return ("\(lineNumber)", "\("Blue bus".localized) \(lineNumber)", "BUS", blueBusColor)
       }
-      return ("\(lineNumber!)", "\("Bus".localized) \(lineNumber!)", "BUS", busColor)
+      return ("\(lineNumber)", "\("Bus".localized) \(lineNumber)", "BUS", busColor)
     case .Metro:
       if lineNumber == "13" || lineNumber == "14" {
-        return ("\(lineNumber!)", "\("Metro red line".localized) \(lineNumber!)", "METRO", redMetro)
+        return ("\(lineNumber)", "\("Metro red line".localized) \(lineNumber)", "METRO", redMetro)
       } else if lineNumber == "17" || lineNumber == "18" || lineNumber == "19" {
-        return ("\(lineNumber!)", "\("Metro green line".localized) \(lineNumber!)", "METRO", greenMetro)
+        return ("\(lineNumber)", "\("Metro green line".localized) \(lineNumber)", "METRO", greenMetro)
       } else if lineNumber == "10" || lineNumber == "11" {
-        return ("\(lineNumber!)", "\("Metro blue line".localized) \(lineNumber!)", "METRO", blueMetro)
+        return ("\(lineNumber)", "\("Metro blue line".localized) \(lineNumber)", "METRO", blueMetro)
       }
       return ("T-bana", "Tunnelbanan", "METRO", UIColor.darkGray)
     case .Train:
       if lineNumber == "35" {
-        return ("\(lineNumber!)", "\("Train line".localized) \(lineNumber!)", "TRAIN", pinkTrain)
+        return ("\(lineNumber)", "\("Train line".localized) \(lineNumber)", "TRAIN", pinkTrain)
       }
-      return ("\(lineNumber!)", "\("Train line".localized) \(lineNumber!)", "TRAIN", greenTrain)
+      return ("\(lineNumber)", "\("Train line".localized) \(lineNumber)", "TRAIN", greenTrain)
     case .Narbuss:
-      return ("\(lineNumber!)", "Närtrafikens buss \(lineNumber!)", "BUS", busColor)
+      return ("\(lineNumber)", "Närtrafikens buss \(lineNumber)", "BUS", busColor)
     case .Walk:
       return ("→", "Walk".localized, "WALK", walkColor)
     default:
