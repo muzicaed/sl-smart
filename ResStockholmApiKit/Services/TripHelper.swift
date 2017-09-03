@@ -99,7 +99,7 @@ open class TripHelper {
       }
       return ("\(lineNumber)", "\("Train line".localized) \(lineNumber)", "TRAIN", greenTrain)
     case .Narbuss:
-      return ("\(lineNumber)", "Närtrafikens buss \(lineNumber)", "BUS", busColor)
+      return ("\(lineNumber)", "Närtrafikens buss \(lineNumber )", "BUS", busColor)
     case .Walk:
       return ("→", "Walk".localized, "WALK", walkColor)
     default:
