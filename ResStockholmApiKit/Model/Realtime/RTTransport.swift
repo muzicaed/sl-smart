@@ -16,7 +16,7 @@ open class RTTransport {
   open let displayTime: String
   open let deviations: [String]
   open let journeyDirection: Int
-  open let stopPointDesignation: String?
+  open let stopPointDesignation: String
   open let groupOfLine: String?
   open let secondaryDestinationName: String?
 
@@ -35,8 +35,12 @@ open class RTTransport {
     self.displayTime = displayTime
     self.deviations = deviations
     self.journeyDirection = journeyDirection
-    self.stopPointDesignation = stopPointDesignation
     self.groupOfLine = groupOfLine
     self.secondaryDestinationName = secondaryDestinationName
+    if let stopPoint = stopPointDesignation {
+      self.stopPointDesignation = stopPoint
+    } else {
+      self.stopPointDesignation = ""
+    }
   }
 }

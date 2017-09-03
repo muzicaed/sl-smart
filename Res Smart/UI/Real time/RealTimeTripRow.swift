@@ -32,34 +32,32 @@ class RealTimeTripRow: UITableViewCell {
     let index = indexPath.section - 1
     var data: RTTransport?
     let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
-    stopPointDesignation.isHidden = true
+    stopPointDesignation.isHidden = false
     
     switch tabKeys {
     case "BUS":
-      let bus = realTimeDepartures.busses[busKeys[index]]![indexPath.row - 1]
-      data = bus as RTTransport
-      if let designation = bus.stopPointDesignation {
-        stopPointDesignation.text = designation
-        stopPointDesignation.accessibilityLabel = "\("Section:".localized) " + designation
-        stopPointDesignation.isHidden = false
-      }
+      data = realTimeDepartures.busses[busKeys[index]]![indexPath.row - 1]
+      stopPointDesignation.text = "Läge \(data!.stopPointDesignation)"
       
     case "METRO":
-      data = realTimeDepartures.metros[metroKeys[index]]![indexPath.row - 1] as RTTransport
+      data = realTimeDepartures.metros[metroKeys[index]]![indexPath.row - 1]
+      stopPointDesignation.text = "Spår \(data!.stopPointDesignation)"
       
     case "TRAIN":
       let train = realTimeDepartures.trains[trainKeys[index]]![indexPath.row - 1]
-      lineLabel.text = "J" + train.lineNumber
-      let via = ((train.secondaryDestinationName != nil) ? " via \(train.secondaryDestinationName!)" : "")
-      infoLabel.text = "\(train.destination)" + via
+      stopPointDesignation.text = "Spår \(train.stopPointDesignation)"
+      lineLabel.text = train.lineNumber
+      let via = ((train.secondaryDestinationName != nil) ? " via \(train.secondaryDestinationName!)" : "")      
+      infoLabel.text = "Toward".localized + " " + train.destination + via
       if train.displayTime == "Nu" {
-        departureTimeLabel.font = UIFont.systemFont(ofSize: 16)
+        departureTimeLabel.font = UIFont.systemFont(ofSize: 20)
         departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
+        departureTimeLabel.text = "Now".localized
       } else {
-        departureTimeLabel.font = UIFont.systemFont(ofSize: 16)
+        departureTimeLabel.font = UIFont.systemFont(ofSize: 20)
         departureTimeLabel.textColor = UIColor.black
+        departureTimeLabel.text = train.displayTime
       }
-      departureTimeLabel.text = train.displayTime
       deviationsLabel.text = train.deviations.joined(separator: " ")
       if DisturbanceTextHelper.isDisturbance(deviationsLabel.text) {
         deviationsLabel.textColor = StyleHelper.sharedInstance.warningColor
@@ -70,12 +68,16 @@ class RealTimeTripRow: UITableViewCell {
       
     case "TRAM":
       data = realTimeDepartures.trams[tramKeys[index]]![indexPath.row - 1] as RTTransport
+      stopPointDesignation.text = "Spår \(data!.stopPointDesignation)"
       
     case "LOCAL-TRAM":
       data = realTimeDepartures.localTrams[localTramKeys[index]]![indexPath.row - 1] as RTTransport
+      stopPointDesignation.text = "Spår \(data!.stopPointDesignation)"
       
     case "SHIP":
       data = realTimeDepartures.boats[boatKeys[index]]![indexPath.row - 1] as RTTransport
+      stopPointDesignation.text = data!.stopPointDesignation
+      stopPointDesignation.text = "Läge \(data!.stopPointDesignation)"
       
     default:
       break
@@ -90,14 +92,15 @@ class RealTimeTripRow: UITableViewCell {
   fileprivate func updateFields(data: RTTransport?) {
     if let data = data {
       lineLabel.text = data.lineNumber
-      infoLabel.text = "\(data.destination)"
-      infoLabel.accessibilityLabel = "Mot \(data.destination)"
+      infoLabel.text = "Toward".localized + " " + data.destination
       if data.displayTime == "Nu" {
-        departureTimeLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        departureTimeLabel.font = UIFont.boldSystemFont(ofSize: 20)
         departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
+        departureTimeLabel.text = "Now".localized
       } else {
-        departureTimeLabel.font = UIFont.systemFont(ofSize: 17)
+        departureTimeLabel.font = UIFont.systemFont(ofSize: 20)
         departureTimeLabel.textColor = UIColor.black
+        departureTimeLabel.text = data.displayTime
       }
       departureTimeLabel.text = data.displayTime
       deviationsLabel.text = data.deviations.joined(separator: " ")

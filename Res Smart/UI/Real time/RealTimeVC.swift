@@ -51,7 +51,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       self, selector: #selector(didBecomeInactive),
       name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
     tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 30
+    tableView.estimatedRowHeight = 50
     tableView.alwaysBounceVertical = true
   }
   
@@ -189,17 +189,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       return createHeaderCell(indexPath)
     }
     return createTripCell(indexPath)
-  }
-  
-  /**
-   * Size for rows.
-   */
-  override func tableView(_ tableView: UITableView,
-                          heightForRowAt indexPath: IndexPath) -> CGFloat {
-    if isLoading {
-      return tableView.bounds.height - 49 - 64 - 20 + 39
-    }
-    return -1
   }
   
   // MARK: SMSegmentViewDelegate
