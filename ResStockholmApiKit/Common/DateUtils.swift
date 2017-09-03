@@ -104,11 +104,12 @@ open class DateUtils {
     }
     
     let diffMin = Int(ceil(((departure.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
-    if diffMin < 60 && diffMin > 0 {
+    print("MIN: \(diffMin)")
+    if diffMin < 60 && diffMin >= 0 {      
       let diffMinStr = (diffMin < 1) ? "\(nowStr)" : "\(aboutStr) \(diffMin) min"
       return diffMinStr
     } else if (diffMin < 0) {
-      return "Already departed".localized
+      return "Departed".localized
     }
     
     return ""

@@ -567,7 +567,7 @@ class TripListVC: UITableViewController {
    */
   fileprivate func checkInPast(_ trip: Trip) -> Bool{
     let date = trip.tripSegments.first!.departureDateTime
-    return (Date().timeIntervalSince1970 > date.timeIntervalSince1970)
+    return (Date().timeIntervalSince1970 >= date.timeIntervalSince1970 + 60)
   }
   
   /**
