@@ -98,7 +98,6 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
    * Refresh screen and reload data.
    */
   fileprivate func refreshScreen() {
-    stopLoading()
     navigationItem.rightBarButtonItem?.isEnabled = true
     if CLLocationManager.authorizationStatus() == .denied || !CLLocationManager.locationServicesEnabled() {
       showLocationServicesNotAllowed()
@@ -204,12 +203,15 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
       }
     } else if indexPath.section == 1 {
       return createHereToThereCell(indexPath)
+    } else if indexPath.section == 2 {
+      return createOtherRoutineTripCell(otherRoutineTrips[indexPath.row], indexPath: indexPath)
     } else if indexPath.section == 3 {
       return tableView.dequeueReusableCell(
         withIdentifier: "DisableRoutinesCell", for: indexPath)
     }
-
-    return createOtherRoutineTripCell(otherRoutineTrips[indexPath.row], indexPath: indexPath)
+    
+    print("Found no row: \(indexPath.section) - \(indexPath.row)")
+    return UITableViewCell()
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
