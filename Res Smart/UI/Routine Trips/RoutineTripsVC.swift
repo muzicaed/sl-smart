@@ -190,14 +190,15 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
       if isShowInfo {
         // TODO: FIX THIS
         //return createInfoTripCell(indexPath)
-        return UITableViewCell()
+        
       } else {
         if let routineTrip = bestRoutineTrip {
-          return createRoutineTripCell(routineTrip, indexPath: indexPath)
+          if routineTrip.trips.count > 0 {
+            return createRoutineTripCell(routineTrip, indexPath: indexPath)
+          } else {
+            return createNoTripsCell(routineTrip, indexPath: indexPath)
+          }
         }
-        // TODO: FIX THIS
-        print("NO BEST ROUTINE!!")
-        return UITableViewCell()
       }
     } else if indexPath.section == 1 {
       return createHereToThereCell(indexPath)
@@ -346,6 +347,16 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
       cell.setFromLocationText(currentLocation)
     }
     
+    return cell
+  }
+  
+  /**
+   * Create other trip cell
+   */
+  fileprivate func createNoTripsCell(_ trip: RoutineTrip, indexPath: IndexPath) -> NoTripsCell {
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: "NoTripsCell", for: indexPath) as! NoTripsCell
+    cell.setupData(trip)
     return cell
   }
   

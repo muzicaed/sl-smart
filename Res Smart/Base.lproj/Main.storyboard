@@ -2858,7 +2858,7 @@ Tap "+" to create one.</string>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ZQ-Xq-ucd">
                                                     <rect key="frame" x="0.0" y="1" width="375" height="37.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Take me to..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzC-kt-wu0" userLabel="Title">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Get me to..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzC-kt-wu0" userLabel="Title">
                                                             <rect key="frame" x="12" y="0.0" width="355" height="37.5"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -3040,6 +3040,107 @@ Tap "+" to create one.</string>
                                     <outlet property="routineTitleLabel" destination="pMj-VG-Uww" id="MOa-3a-16A"/>
                                     <outlet property="topBorderView" destination="q6k-q6-SQW" id="pGB-uI-MtY"/>
                                     <outlet property="tripPathLabel" destination="Yvc-zx-Jw7" id="Z42-hj-iJA"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoTripsCell" rowHeight="60" id="eJT-4i-KPj" customClass="NoTripsCell" customModule="Res_Smart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="355.5" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eJT-4i-KPj" id="I0c-EI-yAP">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="h7j-B7-qdF">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y7i-VE-af7" userLabel="Top Border">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="M9O-zE-pkl"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y8w-kG-Bhy">
+                                                    <rect key="frame" x="0.0" y="1" width="375" height="37.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Other routine" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAX-Kz-3z5">
+                                                            <rect key="frame" x="12" y="0.0" width="355" height="37.5"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                            <color key="textColor" red="0.072032891210000005" green="0.5443541408" blue="0.39687556029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <attributedString key="userComments">
+                                                                <fragment content="No translation">
+                                                                    <attributes>
+                                                                        <font key="NSFont" metaFont="smallSystem"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="RAX-Kz-3z5" secondAttribute="trailing" id="I5g-Nx-iJU"/>
+                                                        <constraint firstAttribute="bottom" secondItem="RAX-Kz-3z5" secondAttribute="bottom" id="lcB-Mn-whk"/>
+                                                        <constraint firstItem="RAX-Kz-3z5" firstAttribute="top" secondItem="Y8w-kG-Bhy" secondAttribute="top" id="t8f-fV-exz"/>
+                                                        <constraint firstItem="RAX-Kz-3z5" firstAttribute="leading" secondItem="Y8w-kG-Bhy" secondAttribute="leadingMargin" constant="4" id="yBn-if-Fbq"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ZB-mB-INu">
+                                                    <rect key="frame" x="0.0" y="38.5" width="375" height="20.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Found no trips..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eh-62-tjb" userLabel="No trip label">
+                                                            <rect key="frame" x="12" y="0.0" width="355" height="20.5"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <attributedString key="userComments">
+                                                                <fragment content="No translation">
+                                                                    <attributes>
+                                                                        <font key="NSFont" metaFont="smallSystem"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="0eh-62-tjb" firstAttribute="top" secondItem="0ZB-mB-INu" secondAttribute="top" id="0Pi-mH-6T6"/>
+                                                        <constraint firstItem="0eh-62-tjb" firstAttribute="leading" secondItem="0ZB-mB-INu" secondAttribute="leadingMargin" constant="4" id="Dq5-6Y-YOd"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="0eh-62-tjb" secondAttribute="trailing" id="X5b-3i-wnp"/>
+                                                        <constraint firstAttribute="bottom" secondItem="0eh-62-tjb" secondAttribute="bottom" id="gdF-pB-Mrs"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qXh-uk-FQv" userLabel="Bottom Border">
+                                                    <rect key="frame" x="0.0" y="59" width="375" height="1"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="sJX-UO-FJU"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="y7i-VE-af7" firstAttribute="leading" secondItem="h7j-B7-qdF" secondAttribute="leading" id="0Ku-RK-zbb"/>
+                                                <constraint firstAttribute="trailing" secondItem="0ZB-mB-INu" secondAttribute="trailing" id="5Mc-Nx-nMr"/>
+                                                <constraint firstItem="0ZB-mB-INu" firstAttribute="leading" secondItem="h7j-B7-qdF" secondAttribute="leading" id="AJT-UH-cW8"/>
+                                                <constraint firstAttribute="trailing" secondItem="y7i-VE-af7" secondAttribute="trailing" id="MxE-wg-RLI"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="h7j-B7-qdF" secondAttribute="bottom" id="LLf-MC-SD1"/>
+                                        <constraint firstItem="h7j-B7-qdF" firstAttribute="leading" secondItem="I0c-EI-yAP" secondAttribute="leading" id="LzS-UQ-LOT"/>
+                                        <constraint firstAttribute="trailing" secondItem="h7j-B7-qdF" secondAttribute="trailing" id="jSm-pt-jsS"/>
+                                        <constraint firstItem="h7j-B7-qdF" firstAttribute="top" secondItem="I0c-EI-yAP" secondAttribute="top" id="vOz-cA-TA9"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <connections>
+                                    <outlet property="routineTitleLabel" destination="RAX-Kz-3z5" id="Uo5-ax-aDX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -3300,20 +3401,6 @@ Tap "+" to create one.</string>
                                         </segmentedControl>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="VLc-0L-x6M"/>
-                                    <barButtonItem style="plain" id="epQ-z3-Hhy">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Itb-RB-QPa">
-                                            <rect key="frame" x="359" y="0.0" width="0.0" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <segments>
-                                                <segment title="Karta"/>
-                                                <segment title="Hybrid"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="onSegmentChanged:" destination="NyV-HL-bFU" eventType="valueChanged" id="1n7-fa-scd"/>
-                                                <action selector="onSegmentChanged:" destination="7rg-OJ-WdA" eventType="valueChanged" id="7b8-ef-Kqv"/>
-                                            </connections>
-                                        </segmentedControl>
-                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>

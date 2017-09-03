@@ -138,8 +138,8 @@ class AdvancedCriterionsHelper {
     }
     
     if travelTypesString != "" {
-      travelTypesString = "Not with ".localized + travelTypesString.substring(
-        to: travelTypesString.index(before: travelTypesString.characters.index(before: travelTypesString.endIndex))) + ". "
+      let index = travelTypesString.index(before: travelTypesString.characters.index(before: travelTypesString.endIndex))
+      travelTypesString = "Not with ".localized + travelTypesString[..<index] + ". "
     }
     if let lastRange = travelTypesString.range(of: ", ",
                                                        options: NSString.CompareOptions.backwards, range: nil, locale: nil) {
@@ -173,8 +173,8 @@ class AdvancedCriterionsHelper {
     }
     
     if travelTypesString != "" {
-      travelTypesString = "Only with ".localized + travelTypesString.substring(
-        to: travelTypesString.index(before: travelTypesString.characters.index(before: travelTypesString.endIndex))) + ". "
+      let index = travelTypesString.index(before: travelTypesString.characters.index(before: travelTypesString.endIndex))
+      travelTypesString = "Only with ".localized + travelTypesString[..<index] + ". "
     }
     if let lastRange = travelTypesString.range(of: ", ",
                                                        options: NSString.CompareOptions.backwards, range: nil, locale: nil) {
