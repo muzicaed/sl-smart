@@ -24,6 +24,7 @@ open class IJProgressView {
   open func showProgressView(_ view: UIView) {
     containerView.frame = view.frame
     containerView.center = view.center
+    containerView.isUserInteractionEnabled = false
     
     progressView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
     progressView.center = view.center
@@ -31,6 +32,7 @@ open class IJProgressView {
     progressView.clipsToBounds = true
     progressView.layer.cornerRadius = 10
     progressView.alpha = 0.0
+    progressView.isUserInteractionEnabled = false
     
     activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
     activityIndicator.activityIndicatorViewStyle = .whiteLarge

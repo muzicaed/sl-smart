@@ -68,9 +68,8 @@ class TripListVC: UITableViewController {
     if trips.count == 0 {
       loadTripData(true)
     } else {
-      isLoading = false
-      IJProgressView.shared.hideProgressView()
       reloadTableData()
+      isLoading = false
     }
   }
   
@@ -397,8 +396,8 @@ class TripListVC: UITableViewController {
               self.tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentSize.height - 480.0)
             }
             
-            IJProgressView.shared.hideProgressView()
             if shouldAppend && !self.firstTime {
+              IJProgressView.shared.hideProgressView()
               self.tableView.reloadData()
             } else {
               self.reloadTableData()
@@ -611,10 +610,15 @@ class TripListVC: UITableViewController {
   }
   
   fileprivate func reloadTableData() {
-    UIView.transition(with: self.tableView,
-                      duration: 0.2,
-                      options: .transitionCrossDissolve,
-                      animations: { self.tableView?.reloadData() })
+    UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {
+      DispatchQueue.main.async {
+        self.tableView?.reloadData()
+      }
+    }) { (_) in
+      DispatchQueue.main.async {
+        IJProgressView.shared.hideProgressView()
+      }
+    }
   }
   
   deinit {
