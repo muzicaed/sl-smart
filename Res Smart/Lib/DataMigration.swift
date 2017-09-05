@@ -28,6 +28,9 @@ class DataMigration {
     if step <= 4 {
       migrateVersion_1_6()
     }
+    if step <= 5 {
+      migrateVersion_2_0()
+    }
   }
   
   // Version 1.3
@@ -78,6 +81,14 @@ class DataMigration {
     SearchCriterionStore.sharedInstance.writeLastSearchCriterions(criterions)
     defaults.set(5, forKey: dataKey)
     UserDefaults.standard.set(true, forKey: "res_smart_premium_preference")
+    defaults.synchronize()
+  }
+  
+  // Version 2.0
+  fileprivate static func migrateVersion_2_0() {
+    print("Running migration v2.0")
+    UserDefaults.standard.set(true, forKey: "res_smart_premium_preference")
+    defaults.set(6, forKey: dataKey)
     defaults.synchronize()
   }
 }
