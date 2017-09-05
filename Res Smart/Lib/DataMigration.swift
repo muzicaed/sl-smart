@@ -41,7 +41,6 @@ class DataMigration {
       routine.criterions.numChg = -1
       RoutineTripsStore.sharedInstance.updateRoutineTrip(routine)
     }
-    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
     defaults.set(2, forKey: dataKey)
     defaults.synchronize()    
   }
@@ -57,7 +56,6 @@ class DataMigration {
         RoutineTripsStore.sharedInstance.updateRoutineTrip(routine)
       }
     }
-    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
     defaults.set(3, forKey: dataKey)
     defaults.synchronize()
   }
@@ -68,7 +66,6 @@ class DataMigration {
     UserDefaults.standard.set(true, forKey: "res_smart_premium_preference")
     StopsStore.sharedInstance.loadJson()
     //SubscriptionStore.sharedInstance.resetTrial()
-    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
     defaults.set(4, forKey: dataKey)
     defaults.synchronize()
   }
