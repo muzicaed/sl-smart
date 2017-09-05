@@ -144,7 +144,7 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
       
     } else if segue.identifier == fromHereToThereSegue {
       let vc = segue.destination as! SearchLocationVC
-      vc.title = "Välj destination"
+      vc.title = "Choose destination".localized
       vc.delegate = self
       vc.searchOnlyForStations = false
       vc.allowCurrentPosition = false
