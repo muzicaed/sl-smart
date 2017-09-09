@@ -39,7 +39,7 @@ open class TripHelper {
       
     }
     
-    return "\("towards".localized) \(segment.directionText!.capitalized)"
+    return "\("toward".localized) \(segment.directionText!.capitalized)"
   }
   
   /**
