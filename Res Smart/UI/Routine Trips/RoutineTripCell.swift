@@ -26,7 +26,7 @@ class RoutineTripCell: UITableViewCell {
   func setupData(_ routineTrip: RoutineTrip) {
     var title = routineTrip.title!
     if routineTrip.isSmartSuggestion {
-      title = "\("Habit".localized): \(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName)"
+      title = "Habit".localized
     }
     routineTitleLabel.text = title
     

@@ -159,29 +159,37 @@ open class DateUtils {
   fileprivate static func createAbout(departureDate: Date) -> String {
     let diffMin = Int(ceil(((departureDate.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
     if diffMin < 60 && diffMin >= 0 {
-      let diffMinStr = (diffMin < 1) ? "Departs now".localized : "\("Walk in".localized) \(diffMin) min"
-      return diffMinStr
+      if diffMin >= 0 {
+        let diffMinStr = (diffMin < 1) ? "Departs now".localized : "\("In".localized) \(diffMin) min"
+        return diffMinStr
+      }
+      return "Departed".localized
     }
     
-    return "Departed".localized
+    return ""
   }
   
   /**
    * Creates an "(walk in xx min)" for depature time.
    */
   fileprivate static func createAboutWalk(departureDate: Date, secondDepartureDate: Date) -> String {
-    let diffMin = Int(ceil(((departureDate.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 1)
+    let diffMin = Int(ceil(((departureDate.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)))
     let secondDiffMin = Int(ceil(((secondDepartureDate.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
     let betweenMin = Int(ceil(((secondDepartureDate.timeIntervalSince1970 - departureDate.timeIntervalSince1970) / 60)))
     
-    if diffMin < 0 && secondDiffMin > (betweenMin / 2) {
-      return "Hurry".localized
-    } else if diffMin < 60 && diffMin >= 0 {
-      let diffMinStr = (diffMin < 1) ? "Walk now".localized : "\("Walk in".localized) \(diffMin) min"
-      return diffMinStr
+    if diffMin < 60 {
+      if diffMin > 0 {
+        return "\("Walk in".localized) \(diffMin) min"
+      } else if Double(secondDiffMin) > Double(betweenMin) * 0.65 {
+        return "\("Hurry".localized), \(secondDiffMin) min \("left!".localized)"
+      } else if secondDiffMin >= 0 {
+        let diffMinStr = (secondDiffMin < 1) ? "Departs now".localized : "\(secondDiffMin) min \("to dep.".localized)"
+        return diffMinStr
+      }
+      return "Departed".localized
     }
     
-    return "Departed".localized
+    return ""
   }
   
   fileprivate static func getSwedishFormatter() -> DateFormatter {

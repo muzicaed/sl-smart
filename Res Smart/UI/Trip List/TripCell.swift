@@ -49,7 +49,8 @@ class TripCell: UITableViewCell {
       sideColorLine.layer.backgroundColor = StyleHelper.sharedInstance.mainGreen.cgColor
       departureTimeLabel.textColor = UIColor.black
       
-      if trip.tripSegments.first?.type == .Walk {
+      let isWalk = (trip.tripSegments.first?.type == .Walk)
+      if isWalk {
         departureTimeLabel.text = DateUtils.dateAsTimeString(
           trip.tripSegments[1].departureDateTime)
       } else {
@@ -77,7 +78,7 @@ class TripCell: UITableViewCell {
       }
       
       createTripSegmentIcons(trip)
-      if aboutTime == "Departed".localized {
+      if aboutTime == "Departed".localized || (aboutTime == "Departs now".localized && isWalk) || (aboutTime.range(of: "to dep.".localized) != nil){
         setInPast()
       }
     }
