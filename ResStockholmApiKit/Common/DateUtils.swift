@@ -103,8 +103,8 @@ open class DateUtils {
           departureDate: firstSegment.departureDateTime,
           secondDepartureDate: segments[1].departureDateTime)
         }
-        return createAbout(departureDate: firstSegment.departureDateTime)
       }
+      return createAbout(departureDate: firstSegment.departureDateTime)
     }
     return ""
   }
@@ -158,7 +158,7 @@ open class DateUtils {
    */
   fileprivate static func createAbout(departureDate: Date) -> String {
     let diffMin = Int(ceil(((departureDate.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
-    if diffMin < 60 && diffMin >= 0 {
+    if diffMin < 60 {
       if diffMin >= 0 {
         let diffMinStr = (diffMin < 1) ? "Departs now".localized : "\("In".localized) \(diffMin) min"
         return diffMinStr
