@@ -41,13 +41,13 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
    */
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    IJProgressView.shared.hideProgressView()
     refreshScreen()
   }
   
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
     stopRefreshTimmer()
-    IJProgressView.shared.hideProgressView()
   }
   
   /**
@@ -59,10 +59,10 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
       MyLocationHelper.sharedInstance.isStarted = false
       return
     }
-    
-    loadTripData(true)
-    startRefreshTimmer()
-    tableView?.reloadData()
+    if !isLoading {
+      loadTripData(true)
+      startRefreshTimmer()
+    }
   }
   
   /**

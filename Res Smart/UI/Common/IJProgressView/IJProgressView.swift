@@ -13,6 +13,7 @@ open class IJProgressView {
   var containerView = UIView()
   var progressView = UIView()
   var activityIndicator = UIActivityIndicatorView()
+  var isDisplayed  = false
   
   open class var shared: IJProgressView {
     struct Static {
@@ -22,40 +23,46 @@ open class IJProgressView {
   }
   
   open func showProgressView(_ view: UIView) {
-    containerView.frame = view.frame
-    containerView.center = view.center
-    containerView.isUserInteractionEnabled = true
-    containerView.backgroundColor = UIColor(hex: 0x000000, alpha: 0.1)
-    containerView.alpha = 0.0
-    
-    progressView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-    progressView.center = view.center
-    progressView.backgroundColor = UIColor(hex: 0x444444, alpha: 0.7)
-    progressView.clipsToBounds = true
-    progressView.layer.cornerRadius = 10
-    progressView.isUserInteractionEnabled = false
-    
-    activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-    activityIndicator.activityIndicatorViewStyle = .whiteLarge
-    activityIndicator.center = CGPoint(x: progressView.bounds.width / 2, y: progressView.bounds.height / 2)
-    
-    progressView.addSubview(activityIndicator)
-    containerView.addSubview(progressView)
-    view.addSubview(containerView)
-    
-    activityIndicator.startAnimating()
-    UIView.animate(withDuration: 0.3, animations: {
-      self.containerView.alpha = 1.0
-    })
+    if (!isDisplayed) {
+      isDisplayed = true
+      containerView.frame = view.frame
+      containerView.center = view.center
+      containerView.isUserInteractionEnabled = true
+      containerView.backgroundColor = UIColor(hex: 0x000000, alpha: 0.1)
+      containerView.alpha = 0.0
+      
+      progressView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+      progressView.center = view.center
+      progressView.backgroundColor = UIColor(hex: 0x444444, alpha: 0.7)
+      progressView.clipsToBounds = true
+      progressView.layer.cornerRadius = 10
+      progressView.isUserInteractionEnabled = false
+      
+      activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+      activityIndicator.activityIndicatorViewStyle = .whiteLarge
+      activityIndicator.center = CGPoint(x: progressView.bounds.width / 2, y: progressView.bounds.height / 2)
+      
+      progressView.addSubview(activityIndicator)
+      containerView.addSubview(progressView)
+      view.addSubview(containerView)
+      
+      activityIndicator.startAnimating()
+      UIView.animate(withDuration: 0.3, animations: {
+        self.containerView.alpha = 1.0
+      })
+    }
   }
   
   open func hideProgressView() {
-    UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseIn, animations: {
-      self.containerView.alpha = 0.0
-    }, completion: { (finished: Bool) -> Void in
-      self.activityIndicator.stopAnimating()
-      self.containerView.removeFromSuperview()
-    })
+    if (isDisplayed) {
+      isDisplayed = false
+      UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseIn, animations: {
+        self.containerView.alpha = 0.0
+      }, completion: { (finished: Bool) -> Void in
+        self.activityIndicator.stopAnimating()
+        self.containerView.removeFromSuperview()
+      })
+    }
   }
 }
 
