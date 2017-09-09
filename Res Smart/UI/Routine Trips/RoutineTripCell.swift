@@ -33,17 +33,21 @@ class RoutineTripCell: UITableViewCell {
     if let trip = routineTrip.trips.first {
       if trip.tripSegments.count > 0 {
         tripPath.text = routineTrip.criterions.origin!.cleanName + " - " + routineTrip.criterions.dest!.cleanName
+        
         departureTimeLabel.textColor = UIColor.black
-        departureTimeLabel.text = DateUtils.dateAsTimeString(
-          trip.tripSegments.first!.departureDateTime)
+        if trip.tripSegments.first?.type == .Walk {
+          departureTimeLabel.text = DateUtils.dateAsTimeString(
+            trip.tripSegments[1].departureDateTime)
+        } else {
+          departureTimeLabel.text = DateUtils.dateAsTimeString(
+            trip.tripSegments.first!.departureDateTime)
+        }
         
         arrivalTimeLabel.textColor = UIColor.black
         arrivalTimeLabel.text = DateUtils.dateAsTimeString(
           trip.tripSegments.last!.arrivalDateTime)
         
-        let aboutTime = DateUtils.createAboutTimeText(
-          trip.tripSegments.first!.departureDateTime,
-          isWalk: trip.tripSegments.first!.type == TripType.Walk)
+        let aboutTime = DateUtils.createAboutTimeText(segments: trip.tripSegments)
         if aboutTime != "" {
           inAboutLabel.text = " \(aboutTime) \u{200C}"
           inAboutLabel.layer.backgroundColor = UIColor.darkGray.cgColor

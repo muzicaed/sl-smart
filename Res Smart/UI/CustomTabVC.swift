@@ -44,26 +44,6 @@ class CustomTabVC: UITabBarController {
         viewControllers?.insert(vc, at: 0)
       }
     }
-  }  
-  
-  /**
-   * Prepare for segue
-   */
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "ShowCurrentTrip" {
-      let nav = segue.destination as! UINavigationController
-      let vc = nav.visibleViewController as! CurrentTripVC
-      vc.currentTrip = currentTrip
-    }
-  }
-  
-  /**
-   * onStartTrip notification handler
-   * Initiates a current trip.
-   */
-  @objc func onStartTrip(_ notification: Notification) {
-    currentTrip = notification.object as? Trip
-    performSegue(withIdentifier: "ShowCurrentTrip", sender: self)
   }
   
   /**
@@ -87,8 +67,6 @@ class CustomTabVC: UITabBarController {
   fileprivate func addObservers() {
     notificationCenter.addObserver(self, selector: #selector(onTrafficSituations(_:)),
                                    name: NSNotification.Name(rawValue: "TrafficSituations"), object: nil)
-    notificationCenter.addObserver(self, selector: #selector(onStartTrip(_:)),
-                                   name: NSNotification.Name(rawValue: "BeginTrip"), object: nil)
     notificationCenter.addObserver(self, selector: #selector(updateTabs),
                                    name: NSNotification.Name(rawValue: "UpdateTabs"), object: nil)
   }

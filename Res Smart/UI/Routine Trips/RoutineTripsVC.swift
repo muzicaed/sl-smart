@@ -336,6 +336,11 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
     let cell = tableView.dequeueReusableCell(
       withIdentifier: "RoutineTripCell", for: indexPath) as! RoutineTripCell
     cell.setupData(trip)
+    if trip.trips.first != nil && !trip.trips.first!.isValid {
+      let validTuple = trip.trips.first!.checkInvalidSegments()
+      let warningText = (validTuple.isCancelled) ? "Cancelled".localized : "Short transfer".localized
+      cell.setCancelled(warningText)
+    }
     return cell
   }
   

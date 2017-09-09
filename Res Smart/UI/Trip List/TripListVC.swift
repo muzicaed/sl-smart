@@ -481,14 +481,6 @@ class TripListVC: UITableViewController {
       return cell
     }
     
-    if checkInPast(trip) {
-      let cell = tableView!.dequeueReusableCell(
-        withIdentifier: cellIdentifier, for: indexPath) as! TripCell
-      cell.setupData(trip)
-      cell.setInPast()
-      return cell
-    }
-    
     let cell = tableView!.dequeueReusableCell(
       withIdentifier: cellIdentifier, for: indexPath) as! TripCell
     cell.setupData(trip)
@@ -566,7 +558,7 @@ class TripListVC: UITableViewController {
    */
   fileprivate func checkInPast(_ trip: Trip) -> Bool{
     let date = trip.tripSegments.first!.departureDateTime
-    return (Date().timeIntervalSince1970 >= date.timeIntervalSince1970 + 60)
+    return (Date().timeIntervalSince1970 >= date.timeIntervalSince1970)
   }
   
   /**

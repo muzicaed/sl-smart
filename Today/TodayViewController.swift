@@ -127,11 +127,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
           self.departureStationLabel.text = first.origin.name
           self.arrivalStationLabel.text = last.destination.name
           self.departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)        
-          self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
-          
-          self.inAboutLabel.text = DateUtils.createAboutTimeText(
-            first.departureDateTime,
-            isWalk: (first.type == TripType.Walk))
+          self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)          
+          self.inAboutLabel.text = DateUtils.createAboutTimeText(segments: trip.tripSegments)
         }
         
         var second: Trip? = nil

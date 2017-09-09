@@ -62,14 +62,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
       let _ = navigationController?.popToRootViewController(animated: false)
     }
   }
-  
-  /**
-   * Selects this trip for current trip
-   */
-  @IBAction func onBeginTripTap(_ sender: UIButton) {
-    NotificationCenter.default.post(name: Notification.Name(rawValue: "BeginTrip"), object: trip)
-  }
-  
+    
   @IBAction func onSMSTicketTap(_ sender: UIBarButtonItem) {
     let ticketAlert = UIAlertController(
       title: "What kind of ticket?".localized,
