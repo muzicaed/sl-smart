@@ -319,7 +319,7 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
         }
       }
     }
-    return (Date().timeIntervalSince(lastUpdated) > 120)
+    return (Date().timeIntervalSince(lastUpdated) > 30)
   }
   
   /**

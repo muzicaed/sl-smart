@@ -78,7 +78,7 @@ class TripCell: UITableViewCell {
       }
       
       createTripSegmentIcons(trip)
-      if aboutTime == "Departed".localized || (aboutTime == "Departs now".localized && isWalk) || (aboutTime.range(of: "to dep.".localized) != nil){
+      if aboutTime == "Departed".localized {
         setInPast()
       }
     }

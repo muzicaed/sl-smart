@@ -76,17 +76,6 @@ class RoutineTripCell: UITableViewCell {
     inAboutLabel.layer.backgroundColor = StyleHelper.sharedInstance.warningColor.cgColor
   }
   
-  /**
-   * Sets cell style to past trip
-   */
-  func setInPast() {
-    inAboutLabel.layer.backgroundColor = UIColor.lightGray.cgColor
-    arrivalTimeLabel.textColor = UIColor.lightGray
-    departureTimeLabel.textColor = UIColor.lightGray
-    tripTimeLabel.textColor = UIColor.lightGray
-    iconAreaView.alpha = 0.5
-  }
-  
   // MARK: Private methods
   
   /**

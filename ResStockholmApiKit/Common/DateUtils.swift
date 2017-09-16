@@ -175,13 +175,10 @@ open class DateUtils {
   fileprivate static func createAboutWalk(departureDate: Date, secondDepartureDate: Date) -> String {
     let diffMin = Int(ceil(((departureDate.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)))
     let secondDiffMin = Int(ceil(((secondDepartureDate.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
-    let betweenMin = Int(ceil(((secondDepartureDate.timeIntervalSince1970 - departureDate.timeIntervalSince1970) / 60)))
     
     if diffMin < 60 {
       if diffMin > 0 {
         return "\("Walk in".localized) \(diffMin) min"
-      } else if Double(secondDiffMin) > Double(betweenMin) * 0.65 {
-        return "\("Hurry".localized), \(secondDiffMin) min \("left!".localized)"
       } else if secondDiffMin >= 0 {
         let diffMinStr = (secondDiffMin < 1) ? "Departs now".localized : "\(secondDiffMin) min \("to dep.".localized)"
         return diffMinStr
