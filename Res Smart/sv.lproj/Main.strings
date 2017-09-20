@@ -95,8 +95,8 @@
 /* Class = "UILabel"; text = "Vänta på tåget som kommer snart."; ObjectID = "Are-1T-0YQ"; */
 "Are-1T-0YQ.text" = "Vänta på tåget som kommer snart.";
 
-/* Class = "UILabel"; text = "To be able to use Smart Routines you need to describe your habits by tapping the \"My routines\".\n\nTravel Smart will automatically learn your routines.\n\nWelcom to a smarter way of traveling."; ObjectID = "DDT-tn-fDB"; */
-"DDT-tn-fDB.text" = "För att kunna använda smarta rutiner behöver du först beskriva dessa genom att trycka på \"Mina rutiner\"\n\nRes Smart kommer automatiskt att lära sig dina rutiner.\n\nVälkommen till ett smartare sätt att pendla!";
+/* Class = "UILabel"; text = "To be able to use Smart Routines you need to describe your habits by tapping the \"My routines\".\n\nTravel Smart will automatically learn your routines.\n\nWelcome to a smarter way of traveling."; ObjectID = "0RY-E8-a2v"; */
+"0RY-E8-a2v.text" = "För att kunna använda smarta rutiner behöver du först beskriva dessa genom att trycka på \"Mina rutiner\"\n\nRes Smart kommer automatiskt att lära sig dina rutiner.\n\nVälkommen till ett smartare sätt att pendla!";
 
 /* Class = "UILabel"; text = "Vänta på tåget som kommer snart."; ObjectID = "DGs-yB-gVS"; */
 "DGs-yB-gVS.text" = "Vänta på tåget som kommer snart.";
@@ -106,6 +106,9 @@
 
 /* Class = "UILabel"; text = "To"; ObjectID = "EGk-Hf-Axa"; */
 "EGk-Hf-Axa.text" = "Till";
+
+/* Class = "UILabel"; text = "I don't want to use routines"; ObjectID = "e6y-Eh-DuI"; */
+"e6y-Eh-DuI.text" = "Jag vill inte använda rutiner";
 
 /* Class = "UISegmentedControl"; EME-xd-vAh.segmentTitles[0] = "Map"; ObjectID = "EME-xd-vAh"; */
 "EME-xd-vAh.segmentTitles[0]" = "Karta";
@@ -176,8 +179,8 @@
 /* Class = "UIBarButtonItem"; title = "Show my location"; ObjectID = "Jr3-kF-D90"; */
 "Jr3-kF-D90.title" = "Visa min plats";
 
-/* Class = "UIBarButtonItem"; title = "My routines"; ObjectID = "KgG-WF-SzF"; */
-"KgG-WF-SzF.title" = "Mina rutiner";
+/* Class = "UIBarButtonItem"; title = "My routines"; ObjectID = "J7Z-5h-RxY"; */
+"J7Z-5h-RxY.title" = "Mina rutiner";
 
 /* Class = "UINavigationItem"; title = "Choose lines"; ObjectID = "Kto-vm-3TS"; */
 "Kto-vm-3TS.title" = "Välj linjer";
@@ -257,9 +260,6 @@
 /* Class = "UIBarButtonItem"; title = "Avsluta"; ObjectID = "XK6-BH-FDs"; */
 "XK6-BH-FDs.title" = "Avsluta";
 
-/* Class = "UIViewController"; title = "Nyheter"; ObjectID = "YNB-MR-UvS"; */
-"YNB-MR-UvS.title" = "News";
-
 /* Class = "UIButton"; accessibilityLabel = "Stäng tidväljare"; ObjectID = "Yff-Xq-SSK"; */
 "Yff-Xq-SSK.accessibilityLabel" = "Stäng tidväljare";
 
@@ -279,7 +279,7 @@
 "bi4-M4-aA1.title" = "Rutiner";
 
 /* Class = "UIBarButtonItem"; title = "Search"; ObjectID = "cLP-J8-IqA"; */
-"cLP-J8-IqA.title" = "Search";
+"cLP-J8-IqA.title" = "Sök";
 
 /* Class = "UILabel"; text = "All transport modes"; ObjectID = "cMF-wf-OcH"; */
 "cMF-wf-OcH.text" = "Alla Färdmedel";
@@ -320,8 +320,11 @@
 /* Class = "UILabel"; text = "▼"; ObjectID = "fTs-py-aMk"; */
 "fTs-py-aMk.text" = "▼";
 
-/* Class = "UILabel"; text = "Get me to..."; ObjectID = "fVP-oh-zq9"; */
-"fVP-oh-zq9.text" = "Ta mig till...";
+/* Class = "UILabel"; text = "Get me to..."; ObjectID = "bzC-kt-wu0"; */
+"bzC-kt-wu0.text" = "Ta mig till...";
+
+/* Class = "UILabel"; text = "Found no trips..."; ObjectID = "0eh-62-tjb"; */
+"0eh-62-tjb.text" = "Hittade inga resor...";
 
 /* Class = "UITableViewController"; title = "Rapporter"; ObjectID = "fzm-Vq-VFQ"; */
 "fzm-Vq-VFQ.title" = "Rapporter";
@@ -331,9 +334,6 @@
 
 /* Class = "UILabel"; text = "Max 1 km"; ObjectID = "gFI-Od-8cs"; */
 "gFI-Od-8cs.text" = "Högst 1 km";
-
-/* Class = "UILabel"; text = "News 1"; ObjectID = "gPw-hy-0Nb"; */
-"gPw-hy-0Nb.text" = "News 1";
 
 /* Class = "UITableViewController"; title = "Välj linjer"; ObjectID = "gY1-Ay-9fo"; */
 "gY1-Ay-9fo.title" = "Välj linjer";
@@ -353,8 +353,8 @@
 /* Class = "UITableViewController"; title = "Ny resa"; ObjectID = "h2d-Hi-2Zo"; */
 "h2d-Hi-2Zo.title" = "Ny resa";
 
-/* Class = "UILabel"; text = "Smarter trip suggestions"; ObjectID = "hLm-xw-Eh5"; */
-"hLm-xw-Eh5.text" = "Smartare reseförslag";
+/* Class = "UILabel"; text = "Travel Smart"; ObjectID = "wvw-1e-4Ro"; */
+"wvw-1e-4Ro.text" = "Res Smart";
 
 /* Class = "UITableViewSection"; headerTitle = "Transfer"; ObjectID = "j9k-cS-Otr"; */
 "j9k-cS-Otr.headerTitle" = "Byten";
@@ -408,16 +408,13 @@
 "q0m-dE-Nl2.text" = "Från";
 
 /* Class = "UILabel"; text = "Lorem ipsum etc."; ObjectID = "qDe-Mc-Zc9"; */
-"qDe-Mc-Zc9.text" = "Lorem ipsum etc.";
-
+"qDe-Mc-Zc9.text" = "Mindre UI förbättringar.";
+  
 /* Class = "UILabel"; text = "›"; ObjectID = "qI1-iy-UMw"; */
 "qI1-iy-UMw.text" = "›";
 
 /* Class = "UILabel"; text = "Lorem ipsum etc."; ObjectID = "qx0-Ca-TJC"; */
-"qx0-Ca-TJC.text" = "Lorem ipsum etc.";
-
-/* Class = "UILabel"; text = "News version 1.7"; ObjectID = "r4v-yU-tIW"; */
-"r4v-yU-tIW.text" = "News version 1.7";
+"qx0-Ca-TJC.text" = "Res Smart finns nu även på engelska.";
 
 /* Class = "UITableViewController"; title = "Search results"; ObjectID = "rN5-I7-qjR"; */
 "rN5-I7-qjR.title" = "Sökresultat";
@@ -442,9 +439,6 @@
 
 /* Class = "UINavigationItem"; title = "Value Picker"; ObjectID = "t2K-jl-71N"; */
 "t2K-jl-71N.title" = "Value Picker";
-
-/* Class = "UILabel"; text = "News 2"; ObjectID = "vg0-wo-WZh"; */
-"vg0-wo-WZh.text" = "News 2";
 
 /* Class = "UISegmentedControl"; vnw-fi-D1p.segmentTitles[0] = "Auto"; ObjectID = "vnw-fi-D1p"; */
 "vnw-fi-D1p.segmentTitles[0]" = "Auto";

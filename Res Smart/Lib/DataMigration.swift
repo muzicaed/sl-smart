@@ -28,6 +28,9 @@ class DataMigration {
     if step <= 4 {
       migrateVersion_1_6()
     }
+    if step <= 5 {
+      migrateVersion_2_0()
+    }
   }
   
   // Version 1.3
@@ -38,7 +41,6 @@ class DataMigration {
       routine.criterions.numChg = -1
       RoutineTripsStore.sharedInstance.updateRoutineTrip(routine)
     }
-    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
     defaults.set(2, forKey: dataKey)
     defaults.synchronize()    
   }
@@ -54,7 +56,6 @@ class DataMigration {
         RoutineTripsStore.sharedInstance.updateRoutineTrip(routine)
       }
     }
-    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
     defaults.set(3, forKey: dataKey)
     defaults.synchronize()
   }
@@ -65,7 +66,6 @@ class DataMigration {
     UserDefaults.standard.set(true, forKey: "res_smart_premium_preference")
     StopsStore.sharedInstance.loadJson()
     //SubscriptionStore.sharedInstance.resetTrial()
-    UserPreferenceStore.sharedInstance.setShouldShowNews(true)
     defaults.set(4, forKey: dataKey)
     defaults.synchronize()
   }
@@ -78,6 +78,14 @@ class DataMigration {
     SearchCriterionStore.sharedInstance.writeLastSearchCriterions(criterions)
     defaults.set(5, forKey: dataKey)
     UserDefaults.standard.set(true, forKey: "res_smart_premium_preference")
+    defaults.synchronize()
+  }
+  
+  // Version 2.0
+  fileprivate static func migrateVersion_2_0() {
+    print("Running migration v2.0")
+    UserDefaults.standard.set(true, forKey: "res_smart_premium_preference")
+    defaults.set(6, forKey: dataKey)
     defaults.synchronize()
   }
 }

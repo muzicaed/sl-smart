@@ -101,11 +101,11 @@ open class RoutineService {
         searchCrit.time = timeDateTuple.time
         
         
-        SearchTripService.tripSearch(searchCrit, callback: { resTuple in
-          if let _ = resTuple.1 {
+        SearchTripService.tripSearch(searchCrit, callback: { (trips, slNetworkError) in
+          if let _ = slNetworkError {
             callback([Trip]())
           }
-          callback(resTuple.0)
+          callback(trips)
         })
         return
       }

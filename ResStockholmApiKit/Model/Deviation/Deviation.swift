@@ -32,13 +32,13 @@ open class Deviation {
    */
   fileprivate static func convertDate(_ dateStr: String) -> Date {
     let end = dateStr.characters.index(dateStr.startIndex, offsetBy: 16)
-    var croppedStr = dateStr[dateStr.startIndex ..< end]
+    var croppedStr = String(dateStr[dateStr.startIndex ..< end])
     croppedStr = croppedStr.replacingOccurrences(
       of: "T",
       with: " ",
       options: NSString.CompareOptions.literal,
       range: nil)
-    return DateUtils.convertDateString(croppedStr)
+    return DateUtils.convertDateString(String(croppedStr))
   }
   
   /**

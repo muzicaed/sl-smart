@@ -35,6 +35,9 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     mapView.showsCompass = true
     mapView.showsPointsOfInterest = false
     mapView.isHidden = true
+    if #available(iOS 11.0, *) {
+      self.navigationItem.largeTitleDisplayMode = .never
+    }
 
     activityIndicator.startAnimating()
     loadRoute()

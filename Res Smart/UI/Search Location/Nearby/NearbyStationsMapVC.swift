@@ -99,7 +99,7 @@ class NearbyStationsMapVC: UIViewController, MKMapViewDelegate {
   }
   
   
-  func onCalloutTap() {
+  @objc func onCalloutTap() {
     if let index = selectedPin?.stationIndex {
       let locationTuple = nearbyLocations[index]
       self.nearbyStationsVC?.selectedOnMap(locationTuple.location)

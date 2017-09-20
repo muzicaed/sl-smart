@@ -16,7 +16,6 @@ import ResStockholmApiKit
 class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   
   @IBOutlet weak var topView: UIView!
-  @IBOutlet var spinnerView: UIView!
   
   var realTimeDepartures: RealTimeDepartures?
   var isLoading = true
@@ -34,17 +33,16 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   var segmentView = SMSegmentView()
   var refreshTimmer: Timer?
   var loadedTime = Date()
-  let refreshController = UIRefreshControl()
-  var tableActivityIndicator = UIActivityIndicatorView(
-    activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+  var firstTime = true
   
   /**
    * On load
    */
   override func viewDidLoad() {
+    super.viewDidLoad()
+    view.backgroundColor = StyleHelper.sharedInstance.background
     topView.alpha = 0.0
     tableView.tableFooterView = UIView()
-    setupTableActivityIndicator()
     
     NotificationCenter.default.addObserver(
       self, selector: #selector(didBecomeActive),
@@ -53,12 +51,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       self, selector: #selector(didBecomeInactive),
       name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
     tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 30
-    
-    refreshController.addTarget(
-      self, action: #selector(loadData), for: UIControlEvents.valueChanged)
-    refreshController.tintColor = UIColor.lightGray
-    tableView.addSubview(refreshController)
+    tableView.estimatedRowHeight = 50
     tableView.alwaysBounceVertical = true
   }
   
@@ -78,12 +71,13 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     stopRefreshTimmer()
+    IJProgressView.shared.hideProgressView()
   }
   
   /**
    * Returned to the app.
    */
-  func didBecomeActive() {
+  @objc func didBecomeActive() {
     let now = Date()
     if now.timeIntervalSince(loadedTime) > (60 * 30) { // 30 minutes
       let _ = navigationController?.popToRootViewController(animated: false)
@@ -97,7 +91,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Backgrounded.
    */
-  func didBecomeInactive() {
+  @objc func didBecomeInactive() {
     stopRefreshTimmer()
   }
   
@@ -122,39 +116,37 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   /**
    * Load real time data
    */
-  func loadData() {
+  @objc func loadData() {
     NetworkActivity.displayActivityIndicator(true)
+    IJProgressView.shared.showProgressView(navigationController!.view)
     RealTimeDeparturesService.fetch(siteId) { (rtDepartures, error) -> Void in
-      DispatchQueue.main.async {
+      let when = DispatchTime.now() + 0.2
+      DispatchQueue.main.asyncAfter(deadline: when) {
         NetworkActivity.displayActivityIndicator(false)
         if error == nil {
-          if let departures = rtDepartures {
-            self.spinnerView.removeFromSuperview()
-            self.refreshController.endRefreshing()
+          if let departures = rtDepartures {                        
             self.isLoading = false
             self.firstTimeLoad = false
             self.realTimeDepartures = departures
             self.setupKeys()
             self.prepareSegmentView()
-            self.tableView.backgroundView = nil
-            self.tableView.reloadData()
+            
+            IJProgressView.shared.hideProgressView()
+            if self.firstTime {
+              UIView.transition(with: self.tableView,
+                                duration: 0.3,
+                                options: .transitionCrossDissolve,
+                                animations: { self.tableView?.reloadData() })
+            } else {
+              self.tableView.reloadData()
+            }
+            self.firstTime = false
           }
         } else {
           self.handleLoadDataError()
         }
       }
     }
-  }
-  
-  /**
-   * On user drags down
-   */
-  func onRefreshController() {
-    setupTableActivityIndicator()
-    isLoading = true
-    tableView.reloadData()
-    Timer.scheduledTimer(
-      timeInterval: 0.7, target: self, selector: #selector(loadData), userInfo: nil, repeats: false)
   }
   
   // MARK: UITableViewController
@@ -199,17 +191,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     return createTripCell(indexPath)
   }
   
-  /**
-   * Size for rows.
-   */
-  override func tableView(_ tableView: UITableView,
-                          heightForRowAt indexPath: IndexPath) -> CGFloat {
-    if isLoading {
-      return tableView.bounds.height - 49 - 64 - 20 + 39
-    }
-    return -1
-  }
-  
   // MARK: SMSegmentViewDelegate
   
   func segmentView(_ segmentView: SMBasicSegmentView, didSelectSegmentAtIndex index: Int) {
@@ -226,7 +207,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
   fileprivate func prepareSegmentView() {
     segmentView.removeFromSuperview()
     segmentView = SMSegmentView(
-      frame: CGRect(x: 0, y: 0, width: 100.0, height: 37),
+      frame: CGRect(x: 0, y: 0, width: 100.0, height: 50),
       separatorColour: UIColor.lightGray,
       separatorWidth: 0.0,
       segmentProperties: [
@@ -245,7 +226,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("BUS")
       let _ = segmentView.addSegmentWithTitle(
-        "Buses".localized,
+        nil,
         onSelectionImage: UIImage(named: "BUS"),
         offSelectionImage: UIImage(named: "BUS"))
     }
@@ -256,7 +237,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("METRO")
       let _ = segmentView.addSegmentWithTitle(
-        "Metro".localized,
+        nil,
         onSelectionImage: UIImage(named: "METRO"),
         offSelectionImage: UIImage(named: "METRO"))
     }
@@ -267,7 +248,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("TRAIN")
       let _ = segmentView.addSegmentWithTitle(
-        "Train".localized,
+        nil,
         onSelectionImage: UIImage(named: "TRAIN"),
         offSelectionImage: UIImage(named: "TRAIN"))
     }
@@ -278,7 +259,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("TRAM")
       let _ = segmentView.addSegmentWithTitle(
-        "Tram".localized,
+        nil,
         onSelectionImage: UIImage(named: "TRAM"),
         offSelectionImage: UIImage(named: "TRAM"))
     }
@@ -289,7 +270,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("LOCAL-TRAM")
       let _ = segmentView.addSegmentWithTitle(
-        "Tram".localized,
+        nil,
         onSelectionImage: UIImage(named: "TRAM"),
         offSelectionImage: UIImage(named: "TRAM"))
     }
@@ -300,7 +281,7 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       tabCount += 1
       tabTypesKeys.append("SHIP")
       let _ = segmentView.addSegmentWithTitle(
-        "Ferry".localized,
+        nil,
         onSelectionImage: UIImage(named: "SHIP"),
         offSelectionImage: UIImage(named: "SHIP"))
     }
@@ -312,6 +293,8 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       segmentView.frame.size.width = CGFloat((screenWidth / 4) * CGFloat(tabCount))
       topView.addSubview(segmentView)
       topView.alpha = 1.0
+      let frame = CGRect(x: 0, y: 0, width: topView.frame.width, height: 50)
+      topView.frame = frame
     }
   }
   
@@ -383,22 +366,24 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
     }
     
     if let realTimeDepartures = realTimeDepartures {
-      let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
-      switch tabKeys {
-      case "BUS":
-        return realTimeDepartures.busses.count + 1
-      case "METRO":
-        return realTimeDepartures.metros.count + 1
-      case "TRAIN":
-        return realTimeDepartures.trains.count + 1
-      case "TRAM":
-        return realTimeDepartures.trams.count + 1
-      case "LOCAL-TRAM":
-        return realTimeDepartures.localTrams.count + 1
-      case "SHIP":
-        return realTimeDepartures.boats.count + 1
-      default:
-        return 0
+      if tabTypesKeys.count > segmentView.indexOfSelectedSegment {
+        let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
+        switch tabKeys {
+        case "BUS":
+          return realTimeDepartures.busses.count + 1
+        case "METRO":
+          return realTimeDepartures.metros.count + 1
+        case "TRAIN":
+          return realTimeDepartures.trains.count + 1
+        case "TRAM":
+          return realTimeDepartures.trams.count + 1
+        case "LOCAL-TRAM":
+          return realTimeDepartures.localTrams.count + 1
+        case "SHIP":
+          return realTimeDepartures.boats.count + 1
+        default:
+          return 0
+        }
       }
     }
     return 0
@@ -452,15 +437,6 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
       }))
     
     present(invalidLoadingAlert, animated: true, completion: nil)
-  }
-  
-  /**
-   * Setup table's background spinner.
-   */
-  fileprivate func setupTableActivityIndicator() {
-    tableActivityIndicator.startAnimating()
-    tableActivityIndicator.color = UIColor.lightGray
-    tableView?.backgroundView = tableActivityIndicator
   }
   
   deinit {

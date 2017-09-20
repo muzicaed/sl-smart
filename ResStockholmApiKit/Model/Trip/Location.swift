@@ -107,10 +107,10 @@ open class Location: NSObject, NSCoding, NSCopying {
     if type == .Station {
       let res = nameString.range(of: "(", options: NSString.CompareOptions.backwards)
       if let res = res {
-        let name = nameString.substring(to: res.lowerBound)
+        let name = nameString[..<res.lowerBound]
           .trimmingCharacters(in: CharacterSet.whitespaces)
         
-        let area = nameString.substring(from: res.lowerBound)
+        let area = nameString[..<res.lowerBound]
           .replacingOccurrences(of: "(", with: "",
                                 options: NSString.CompareOptions.literal, range: nil)
           .replacingOccurrences(of: ")", with: "",
@@ -137,8 +137,7 @@ open class Location: NSObject, NSCoding, NSCopying {
   fileprivate static func createCleanName(_ nameString: String) -> String {
     let res = nameString.range(of: "(", options: NSString.CompareOptions.backwards)
     if let res = res {
-      return nameString.substring(to: res.lowerBound)
-        .trimmingCharacters(in: CharacterSet.whitespaces)
+      return nameString[..<res.lowerBound].trimmingCharacters(in: CharacterSet.whitespaces)
     }
     return nameString
   }

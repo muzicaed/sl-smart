@@ -54,12 +54,12 @@ open class DateUtils {
   }
   
   /**
-   * Converts a NSDate to a swedish local friendly
+   * Converts a NSDate to a local friendly
    * date string.
    */
   open static func friendlyDate(_ date: Date) -> String {
     let formatter = getFormatter()
-    formatter.dateStyle = .medium
+    formatter.dateStyle = .short
     formatter.timeStyle = .none
 
     if Calendar.current.isDateInToday(date) {
@@ -72,7 +72,7 @@ open class DateUtils {
   }
   
   /**
-   * Converts a NSDate to a swedish local friendly
+   * Converts a NSDate to a local friendly
    * date string.
    */
   open static func friendlyDateAndTime(_ date: Date) -> String {
@@ -95,22 +95,17 @@ open class DateUtils {
   /**
    * Creates an "(om xx min)" for depature time.
    */
-  open static func createAboutTimeText(_ departure: Date, isWalk: Bool) -> String {    
-    var aboutStr = "In".localized
-    var nowStr = "Departs now".localized
-    if isWalk {
-      aboutStr = "Walk in about".localized
-      nowStr = "Walk now".localized
+  open static func createAboutTimeText(segments: [TripSegment]) -> String {
+    if let firstSegment = segments.first {
+      if firstSegment.type == TripType.Walk {
+        if segments.count > 1 {
+        return createAboutWalk(
+          departureDate: firstSegment.departureDateTime,
+          secondDepartureDate: segments[1].departureDateTime)
+        }
+      }
+      return createAbout(departureDate: firstSegment.departureDateTime)
     }
-    
-    let diffMin = Int(ceil(((departure.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
-    if diffMin < 60 && diffMin > 0 {
-      let diffMinStr = (diffMin < 1) ? "\(nowStr)" : "\(aboutStr) \(diffMin) min"
-      return diffMinStr
-    } else if (diffMin < 0) {
-      return "Already departed".localized
-    }
-    
     return ""
   }
   
@@ -157,6 +152,42 @@ open class DateUtils {
   }
   
   // MARK: Private
+  
+  /**
+   * Creates an "(in xx min)" for depature time.
+   */
+  fileprivate static func createAbout(departureDate: Date) -> String {
+    let diffMin = Int(ceil(((departureDate.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
+    if diffMin < 60 {
+      if diffMin >= 0 {
+        let diffMinStr = (diffMin < 1) ? "Departs now".localized : "\("In".localized) \(diffMin) min"
+        return diffMinStr
+      }
+      return "Departed".localized
+    }
+    
+    return ""
+  }
+  
+  /**
+   * Creates an "(walk in xx min)" for depature time.
+   */
+  fileprivate static func createAboutWalk(departureDate: Date, secondDepartureDate: Date) -> String {
+    let diffMin = Int(ceil(((departureDate.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)))
+    let secondDiffMin = Int(ceil(((secondDepartureDate.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
+    
+    if diffMin < 60 {
+      if diffMin > 0 {
+        return "\("Walk in".localized) \(diffMin) min"
+      } else if secondDiffMin >= 0 {
+        let diffMinStr = (secondDiffMin < 1) ? "Departs now".localized : "\(secondDiffMin) min \("to dep.".localized)"
+        return diffMinStr
+      }
+      return "Departed".localized
+    }
+    
+    return ""
+  }
   
   fileprivate static func getSwedishFormatter() -> DateFormatter {
     let formatter = DateFormatter()

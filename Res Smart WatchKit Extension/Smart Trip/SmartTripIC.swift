@@ -38,7 +38,7 @@ class SmartTripIC: WKInterfaceController {
   @IBOutlet var icnGrp4: WKInterfaceGroup!
   @IBOutlet var icnGrp5: WKInterfaceGroup!
   
-  let session = WCSession.default()
+  let session = WCSession.default
   let notificationCenter = NotificationCenter.default
   let ReloadRateMinutes = 3
   
@@ -93,7 +93,7 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Force a data refresh.
    */
-  func forceRefreshData() {
+  @objc func forceRefreshData() {
     perfromRefreshData(true)
   }
   
@@ -253,7 +253,7 @@ class SmartTripIC: WKInterfaceController {
   /**
    * Updates UI for departure time.
    */
-  func updateDepatureUI() {
+  @objc func updateDepatureUI() {
     if let data = routineData {
       let bestRoutine = data["b"] as! Dictionary<String, AnyObject>
       currentDepartureText = DateUtils.createDepartureTimeString(

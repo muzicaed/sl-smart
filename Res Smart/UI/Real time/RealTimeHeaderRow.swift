@@ -30,7 +30,7 @@ class RealTimeHeaderRow: UITableViewCell {
       titleLabel.text = bus.stopAreaName
     case "METRO":
       let metro = realTimeDepartures.metros[metroKeys[index]]!.first!
-      titleLabel.text = metro.groupOfLine.uppercaseFirst.localized
+      titleLabel.text = metro.groupOfLine!.uppercaseFirst.localized
     case "TRAIN":
       let train = realTimeDepartures.trains[trainKeys[index]]!.first!
       if train.journeyDirection == 1 {

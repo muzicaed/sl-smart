@@ -1,163 +1,116 @@
 //
 //  RoutineTripCell.swift
-//  SL Smart
+//  Res Smart
 //
-//  Created by Mikael Hellman on 2015-11-20.
-//  Copyright © 2015 Mikael Hellman. All rights reserved.
+//  Created by Mikael Hellman on 2017-08-31.
+//  Copyright © 2017 Mikael Hellman. All rights reserved.
 //
 
 import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class RoutineTripCell: UICollectionViewCell {
+class RoutineTripCell: UITableViewCell {
   
-  
-  @IBOutlet weak var arrowLabel: UILabel!
-  
-  @IBOutlet weak var tripTitleLabel: UILabel!
-  @IBOutlet weak var originLabel: UILabel!
-  @IBOutlet weak var destinationLabel: UILabel!
+  @IBOutlet weak var routineTitleLabel: UILabel!
+  @IBOutlet weak var tripPath: UILabel!
   @IBOutlet weak var departureTimeLabel: UILabel!
   @IBOutlet weak var arrivalTimeLabel: UILabel!
-  @IBOutlet weak var iconAreaView: UIView!
-  @IBOutlet weak var tripDurationLabel: UILabel!
   @IBOutlet weak var inAboutLabel: UILabel!
-  @IBOutlet weak var nextInAboutLabel: UILabel!
-  
-  @IBOutlet weak var wrapperView: UIView?
-  
-  let normalColor = UIColor(red: 63/255, green: 73/255, blue: 62/255, alpha: 0.6)
+  @IBOutlet weak var tripTimeLabel: UILabel!
+  @IBOutlet weak var iconAreaView: UIView!
   
   /**
    * Populate cell data based on passed RoutineTrip
    */
-  func setupData(_ routineTrip: RoutineTrip, isBest: Bool) {
-    layer.borderWidth = 0.5
-    layer.borderColor = UIColor.lightGray.cgColor
+  func setupData(_ routineTrip: RoutineTrip) {
     var title = routineTrip.title!
     if routineTrip.isSmartSuggestion {
-      title = "\("Habit".localized): \(routineTrip.criterions.origin!.cleanName) - \(routineTrip.criterions.dest!.cleanName)"
+      title = "Habit".localized
     }
-    
-    tripTitleLabel.text = title
-    tripTitleLabel.accessibilityTraits |= UIAccessibilityTraitButton
-    tripTitleLabel.accessibilityLabel = title
-    originLabel.text = routineTrip.criterions.origin?.cleanName
-    destinationLabel.text = routineTrip.criterions.dest?.cleanName
+    routineTitleLabel.text = title
     
     if let trip = routineTrip.trips.first {
-      var second: Trip? = nil
-      if routineTrip.trips.count > 1 && isBest {
-        second = routineTrip.trips[1]
+      if trip.tripSegments.count > 0 {
+        tripPath.text = routineTrip.criterions.origin!.cleanName + " - " + routineTrip.criterions.dest!.cleanName
+        
+        departureTimeLabel.textColor = UIColor.black
+        if trip.tripSegments.first?.type == .Walk {
+          departureTimeLabel.text = DateUtils.dateAsTimeString(
+            trip.tripSegments[1].departureDateTime)
+        } else {
+          departureTimeLabel.text = DateUtils.dateAsTimeString(
+            trip.tripSegments.first!.departureDateTime)
+        }
+        
+        arrivalTimeLabel.textColor = UIColor.black
+        arrivalTimeLabel.text = DateUtils.dateAsTimeString(
+          trip.tripSegments.last!.arrivalDateTime)
+        
+        let aboutTime = DateUtils.createAboutTimeText(segments: trip.tripSegments)
+        if aboutTime != "" {
+          inAboutLabel.text = " \(aboutTime) \u{200C}"
+          inAboutLabel.layer.backgroundColor = UIColor.darkGray.cgColor
+          inAboutLabel.layer.cornerRadius = 4.0
+          inAboutLabel.textColor = UIColor.white
+          inAboutLabel.isHidden = false
+        } else {
+          inAboutLabel.isHidden = true
+        }
+        
+        if trip.isValid {
+          tripTimeLabel.text = DateUtils.createTripDurationString(trip.durationMin)
+          tripTimeLabel.textColor = UIColor.darkGray
+        }
+        
+        createTripSegmentIcons(trip)
       }
-      setupTripData(trip, secondTrip: second)
-    } else if isBest {
-      setNoTripsUI()
     }
   }
   
   /**
-   * Highlight this cell
+   * Sets cell style to cancelled trip
    */
-  func highlight() {
-    self.backgroundColor = StyleHelper.sharedInstance.mainGreen
-  }
-  
-  /**
-   * Unhighlight this cell
-   */
-  func unhighlight() {
-    self.backgroundColor = normalColor
+  func setCancelled(_ warningText: String) {
+    inAboutLabel.text = " \(warningText) \u{200C}"
+    inAboutLabel.layer.backgroundColor = StyleHelper.sharedInstance.warningColor.cgColor
   }
   
   // MARK: Private methods
   
-  fileprivate func setupTripData(_ trip: Trip, secondTrip: Trip?) {
-    arrowLabel.isHidden = false
-    if let first = trip.tripSegments.first, let last = trip.tripSegments.last  {
-      departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)
-      arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
-      
-      if DateUtils.dateAsDateString(first.departureDateTime) != DateUtils.dateAsDateString(Date()) {
-        inAboutLabel.text = "Tomorrow".localized
-      } else {
-        inAboutLabel.text = DateUtils.createAboutTimeText(
-          first.departureDateTime, isWalk: first.type == TripType.Walk)
-      }
-      
-      tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
-      handleInvalidTrips(trip)
-      createTripSegmentIcons(trip)
-    }
-    
-    if let first = trip.tripSegments.first, let second = secondTrip?.tripSegments.first {
-      createNextInAboutText(first, second: second)
-    }
-  }
-  
-  /**
-   * Creates text for next in about text label
-   */
-  fileprivate func createNextInAboutText(_ first : TripSegment, second: TripSegment) {
-    nextInAboutLabel.text = " "
-    let depTimeInterval = first.departureDateTime.timeIntervalSinceNow
-    if depTimeInterval < (60 * 120) {
-      let diffMin = Int(ceil(((second.departureDateTime.timeIntervalSince1970 - Date().timeIntervalSince1970) / 60)) + 0.5)
-      if diffMin <= 120 {
-        nextInAboutLabel.text = String(format: "Next: %d min".localized, diffMin)
-      }
-    }
-  }
-  
-  /**
-   * Handles invalid trips (Canccelled or not reachable)
-   */
-  fileprivate func handleInvalidTrips(_ trip: Trip) {
-    inAboutLabel.textColor = UIColor.black
-    if !trip.isValid {
-      let validTuple = trip.checkInvalidSegments()
-      inAboutLabel.textColor = StyleHelper.sharedInstance.warningColor
-      inAboutLabel.text = (validTuple.isCancelled) ? "Cancelled".localized : "Short transfer".localized
-      tripDurationLabel.text = ""
-    } else if inAboutLabel.text == "Already departed".localized {
-      inAboutLabel.textColor = StyleHelper.sharedInstance.warningColor
-    }
-  }
-  
   /**
    * Creates trip type icon per segment.
+   * TODO: Refactoring merge with RoutineTripCell.createTripSegmentIcons()
    */
   fileprivate func createTripSegmentIcons(_ trip: Trip) {
     iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
     var count = 0
-    for (idx, segment) in trip.tripSegments.enumerated() {
-      if segment.type != .Walk || (segment.type == .Walk && (segment.distance! > 30 || idx == 0) ) {
-        if count >= 6 { return }
+    for (_, segment) in trip.tripSegments.enumerated() {
+      if segment.type != .Walk || (segment.type == .Walk && segment.distance! > 30) {
+        if count >= 7 { return }
         let data = TripHelper.friendlyLineData(segment)
         
         let iconView = UIImageView(image: TripIcons.icons[data.icon]!)
-        iconView.frame.size = CGSize(width: 22, height: 22)
-        iconView.center = CGPoint(x: 22 / 2, y: 3)
+        iconView.frame.size = CGSize(width: 22, height: 23)
         
         let label = UILabel()
         label.text = "\u{200A}\(data.short)\u{200A}\u{200C}"
-        label.accessibilityLabel = "\("Step".localized) \(count + 1): " + data.long
         label.textAlignment = NSTextAlignment.center
         label.font = UIFont.boldSystemFont(ofSize: 9)
         label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true
         label.textColor = UIColor.white
-        label.backgroundColor = data.color
+        label.layer.backgroundColor = data.color.cgColor
         label.frame.size.width = 22
         label.frame.size.height = 12
-        label.center = CGPoint(x: (22 / 2), y: 20)
+        label.frame.origin.y = 22
+        label.isAccessibilityElement = false
         
         let wrapperView = UIView(
           frame:CGRect(
             origin: CGPoint(x: 0, y: 0),
-            size: CGSize(width: 22, height: 34)))
-        wrapperView.frame.origin = CGPoint(x: (26 * CGFloat(count)), y: 9)
+            size: CGSize(width: 22, height: 35)))
+        wrapperView.frame.origin = CGPoint(x: (26 * CGFloat(count)), y: 0)
         wrapperView.clipsToBounds = false
         
         wrapperView.addSubview(iconView)
@@ -169,26 +122,19 @@ class RoutineTripCell: UICollectionViewCell {
             warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)
           }
           warnIconView.frame.size = CGSize(width: 10, height: 10)
-          warnIconView.center = CGPoint(x: (22 / 2) + 10, y: -5)
+          warnIconView.center = CGPoint(x: (22 / 2) + 10, y: 3)
           warnIconView.alpha = 0.9
           wrapperView.insertSubview(warnIconView, aboveSubview: iconView)
+          if segment.isWarning {
+            UIView.animate(withDuration: 0.6, delay: 0, options: [.repeat, .autoreverse], animations: {
+              warnIconView.alpha = 0.3
+            }, completion: nil)
+          }
         }
         
         iconAreaView.addSubview(wrapperView)
         count += 1
       }
     }
-  }
-  
-  /**
-   * Sets no trips found UI
-   */
-  fileprivate func setNoTripsUI() {
-    iconAreaView.subviews.forEach({ $0.removeFromSuperview() })
-    departureTimeLabel.text = "--:--"
-    arrivalTimeLabel.text = "--:--"
-    inAboutLabel.text = ""
-    
-    tripDurationLabel.text = "Found no trip...".localized
   }
 }

@@ -13,8 +13,6 @@ import ResStockholmApiKit
 class TripListVC: UITableViewController {
   
   let cellIdentifier = "TripCell"
-  let pastCellIdentifier = "PassedTripCell"
-  let cancelledCellIdentifier = "CancelledTripCell"
   let loadingCellIdentifier = "LoadingCell"
   let loadMoreEarlierIdentifier = "LoadMoreEarlierRow"
   let loadMoreLaterIdentifier = "LoadMoreLaterRow"
@@ -32,7 +30,7 @@ class TripListVC: UITableViewController {
   var isLoadingMoreBlocked = false
   var isLoadingMore = false
   var refreshTimer: Timer?
-  var headerHight = CGFloat(25)
+  var headerHight = CGFloat(40)
   
   var loadMoreEarlier: LoadMoreCell?
   var loadMoreLater: LoadMoreCell?
@@ -55,6 +53,7 @@ class TripListVC: UITableViewController {
       self, selector: #selector(didBecomeInactive),
       name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
     
+    IJProgressView.shared.showProgressView(navigationController!.view)
     handleMakeRoutineButton()
   }
   
@@ -69,8 +68,8 @@ class TripListVC: UITableViewController {
     if trips.count == 0 {
       loadTripData(true)
     } else {
+      reloadTableData()
       isLoading = false
-      self.tableView?.reloadData()
     }
   }
   
@@ -85,7 +84,7 @@ class TripListVC: UITableViewController {
   /**
    * Returned to the app.
    */
-  func didBecomeActive() {
+  @objc func didBecomeActive() {
     let now = Date()
     if now.timeIntervalSince(loadedTime) > (60 * 60) { // 1 hour
       let _ = navigationController?.popToRootViewController(animated: false)
@@ -98,7 +97,7 @@ class TripListVC: UITableViewController {
   /**
    * Backgrounded.
    */
-  func didBecomeInactive() {
+  @objc func didBecomeInactive() {
     stopRefreshTimmer()
   }
   
@@ -108,7 +107,7 @@ class TripListVC: UITableViewController {
   func startRefreshTimmer() {
     stopRefreshTimmer()
     self.refreshTimer = Timer.scheduledTimer(
-      timeInterval: 15, target: self, selector: #selector(refreshUI), userInfo: nil, repeats: true)
+      timeInterval: 10, target: self, selector: #selector(refreshUI), userInfo: nil, repeats: true)
   }
   
   /**
@@ -122,7 +121,7 @@ class TripListVC: UITableViewController {
   /**
    * Refresh collection view.
    */
-  func refreshUI() {
+  @objc func refreshUI() {
     if navigationController?.topViewController == self {
       self.tableView?.reloadData()
       var flatTrips = [Trip]()
@@ -174,13 +173,13 @@ class TripListVC: UITableViewController {
    * Load more trips when user scrolls
    * to the bottom of the list.
    */
-  func loadMoreTrips() {
+  @objc func loadMoreTrips() {
     isLoadingMore = true
     loadMoreLater?.displaySpinner(1.0)
     
     let trip = trips[keys.last!]!.last!
     criterions!.searchForArrival = false
-    criterions?.numTrips = 8
+    criterions?.numTrips = 15
     
     criterions?.time = DateUtils.dateAsTimeString(
       trip.tripSegments.first!.departureDateTime.addingTimeInterval(60))
@@ -191,7 +190,7 @@ class TripListVC: UITableViewController {
    * Load earlier trips when user scrolls
    * to the top of the list.
    */
-  func loadEarlierTrips() {
+  @objc func loadEarlierTrips() {
     isLoadingMore = true
     loadMoreEarlier?.displaySpinner(1.0)
     
@@ -285,7 +284,7 @@ class TripListVC: UITableViewController {
     } else if isLoadMoreEarlierRow(indexPath) || isLoadMoreLaterRow(indexPath) {
       return 40
     }
-    return 105
+    return 95
   }
   
   /**
@@ -311,18 +310,18 @@ class TripListVC: UITableViewController {
    */
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: headerHight))
-    let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: headerHight))
-    label.font = UIFont.systemFont(ofSize: 12)
+    let label = UILabel(frame: CGRect(x: 16, y: 0, width: tableView.frame.size.width, height: headerHight))
+    label.font = UIFont.systemFont(ofSize: 16)
     label.textColor = UIColor.white
-    label.textAlignment = NSTextAlignment.center
+    label.textAlignment = NSTextAlignment.left
     
     if trips.count > 0 {
       let date = DateUtils.convertDateString("\(keys[section]) 00:00")
-      label.text = DateUtils.friendlyDate(date)
+      label.text = DateUtils.friendlyDate(date) + ": " + criterions!.origin!.cleanName + " - " + criterions!.dest!.cleanName
     }
     
     view.addSubview(label)
-    let color = StyleHelper.sharedInstance.mainGreen
+    let color = UIColor.darkGray
     view.backgroundColor = color.withAlphaComponent(0.95)
     return view
   }
@@ -375,17 +374,17 @@ class TripListVC: UITableViewController {
       NetworkActivity.displayActivityIndicator(true)
       criterions.numTrips = (criterions.searchForArrival) ? 4 : criterions.numTrips
       SearchTripService.tripSearch(
-        criterions, callback: { resTuple in
+        criterions, callback: { (trips, slNetworkError) in
           NetworkActivity.displayActivityIndicator(false)
           DispatchQueue.main.async {
-            if resTuple.1 != nil {
+            if slNetworkError != nil {
               self.showNetworkErrorAlert()
               self.isLoading = false
-              self.tableView?.reloadData()
+              self.reloadTableData()
               return
             }
-            self.appendToDictionary(resTuple.0, shouldAppend: shouldAppend)
-            if resTuple.0.count == 0 {
+            self.appendToDictionary(trips, shouldAppend: shouldAppend)
+            if trips.count == 0 {
               self.navigationItem.rightBarButtonItem = nil
             }
             self.isLoading = false
@@ -396,8 +395,14 @@ class TripListVC: UITableViewController {
             if criterions.searchForArrival && self.firstTime {
               self.tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentSize.height - 480.0)
             }
+            
+            if shouldAppend && !self.firstTime {
+              IJProgressView.shared.hideProgressView()
+              self.tableView.reloadData()
+            } else {
+              self.reloadTableData()
+            }
             self.firstTime = false
-            self.tableView?.reloadData()
           }
       })
       return
@@ -469,16 +474,10 @@ class TripListVC: UITableViewController {
     if !trip.isValid {
       let validTuple = trip.checkInvalidSegments()
       let cell = tableView!.dequeueReusableCell(
-        withIdentifier: cancelledCellIdentifier, for: indexPath) as! TripCell
+        withIdentifier: cellIdentifier, for: indexPath) as! TripCell
       cell.setupData(trip)
-      cell.tripDurationLabel.text = (validTuple.isCancelled) ? "Cancelled".localized : "Short transfer".localized
-      return cell
-    }
-    
-    if checkInPast(trip) {
-      let cell = tableView!.dequeueReusableCell(
-        withIdentifier: pastCellIdentifier, for: indexPath) as! TripCell
-      cell.setupData(trip)
+      let warningText = (validTuple.isCancelled) ? "Cancelled".localized : "Short transfer".localized
+      cell.setCancelled(warningText)
       return cell
     }
     
@@ -486,14 +485,6 @@ class TripListVC: UITableViewController {
       withIdentifier: cellIdentifier, for: indexPath) as! TripCell
     cell.setupData(trip)
     return cell
-  }
-  
-  /**
-   * Check if trip is in past.
-   */
-  fileprivate func checkInPast(_ trip: Trip) -> Bool{
-    let date = trip.tripSegments.first!.departureDateTime
-    return (Date().timeIntervalSince1970 > date.timeIntervalSince1970)
   }
   
   /**
@@ -551,6 +542,7 @@ class TripListVC: UITableViewController {
    * Show a network error alert
    */
   fileprivate func showNetworkErrorAlert() {
+    IJProgressView.shared.hideProgressView()
     let networkErrorAlert = UIAlertController(
       title: "Service unavailable".localized,
       message: "Could not reach the search service.".localized,
@@ -559,6 +551,14 @@ class TripListVC: UITableViewController {
       UIAlertAction(title: "OK".localized, style: UIAlertActionStyle.default, handler: nil))
     
     present(networkErrorAlert, animated: true, completion: nil)
+  }
+  
+  /**
+   * Check if trip is in past.
+   */
+  fileprivate func checkInPast(_ trip: Trip) -> Bool{
+    let date = trip.tripSegments.first!.departureDateTime
+    return (Date().timeIntervalSince1970 >= date.timeIntervalSince1970)
   }
   
   /**
@@ -597,6 +597,18 @@ class TripListVC: UITableViewController {
         testCrit.dest?.siteId == criterions?.dest?.siteId {
         navigationItem.rightBarButtonItem = nil
         return
+      }
+    }
+  }
+  
+  fileprivate func reloadTableData() {
+    UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {
+      DispatchQueue.main.async {
+        self.tableView?.reloadData()
+      }
+    }) { (_) in
+      DispatchQueue.main.async {
+        IJProgressView.shared.hideProgressView()
       }
     }
   }

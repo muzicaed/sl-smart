@@ -19,7 +19,7 @@ class TripsIC: WKInterfaceController {
   @IBOutlet var loadingLabel: WKInterfaceLabel!
   @IBOutlet var tripTable: WKInterfaceTable!
   
-  let session = WCSession.default()
+  let session = WCSession.default
   var data: Dictionary<String, AnyObject>?
   var tripData = [Dictionary<String, AnyObject>]()
   var wasLoadedDate = Date()

@@ -51,7 +51,7 @@ class LocationPickerRow: UITableViewCell {
   /**
    * On origin touch
    */
-  func onOriginTouchStart(_ gesture: UILongPressGestureRecognizer) {
+  @objc func onOriginTouchStart(_ gesture: UILongPressGestureRecognizer) {
     if gesture.state == .began {
       originView.backgroundColor = StyleHelper.sharedInstance.highlight
     } else if gesture.state == .ended {
@@ -68,7 +68,7 @@ class LocationPickerRow: UITableViewCell {
   /**
    * On destination touch
    */
-  func onDestinationTouchStart(_ gesture: UILongPressGestureRecognizer) {
+  @objc func onDestinationTouchStart(_ gesture: UILongPressGestureRecognizer) {
     if gesture.state == .began {
       destinationView.backgroundColor = StyleHelper.sharedInstance.highlight
     } else if gesture.state == .ended {
@@ -84,7 +84,7 @@ class LocationPickerRow: UITableViewCell {
   /**
    * On destination tap
    */
-  func onSwitchTap() {
+  @objc func onSwitchTap() {
     if let del = delegate {
       UIView.animate(withDuration: 0.15, animations: {
         self.originLabel.alpha = 0

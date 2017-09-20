@@ -22,6 +22,7 @@ class TrafficSituationVC: UITableViewController {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = StyleHelper.sharedInstance.background
     setupView()
     refreshController.addTarget(
       self, action: #selector(loadData), for: UIControlEvents.valueChanged)
@@ -127,7 +128,6 @@ class TrafficSituationVC: UITableViewController {
   // MARK: Private
   
   fileprivate func setupView() {
-    view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     tableView.separatorInset = UIEdgeInsets.zero
     tableView.rowHeight = UITableViewAutomaticDimension
@@ -137,7 +137,7 @@ class TrafficSituationVC: UITableViewController {
   /**
    * Loads traffic situation data.
    */
-  func loadData() {
+  @objc func loadData() {
     if shouldReload() {
       NetworkActivity.displayActivityIndicator(true)
       TrafficSituationService.fetchInformation() {data, error in

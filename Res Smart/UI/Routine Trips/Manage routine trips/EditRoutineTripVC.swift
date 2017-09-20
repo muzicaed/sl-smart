@@ -42,7 +42,6 @@ DateTimePickResponder {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.isEditing = true
-    view.backgroundColor = StyleHelper.sharedInstance.background
     createFakeBackButton()
     updateGenericValues()
     createDimmer()
@@ -134,7 +133,7 @@ DateTimePickResponder {
   /**
    * On trip title text field change.
    */
-  func textFieldDidChange(_ textField: UITextField) {
+  @objc func textFieldDidChange(_ textField: UITextField) {
     hasChanged = true
     routineTrip?.title = tripTitleTextField.text
     if !isNewTrip {
@@ -145,7 +144,7 @@ DateTimePickResponder {
   /**
    * On navbar back tap.
    */
-  func onBackTap() {
+  @objc func onBackTap() {
     if !isNewTrip && !isMakeRoutine {
       if tripTitleTextField.text == nil || tripTitleTextField.text == "" {
         showInvalidTitleAlert()

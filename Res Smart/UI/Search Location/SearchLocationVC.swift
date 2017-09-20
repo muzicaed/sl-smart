@@ -24,7 +24,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   var allowNearbyStations = false
   var lastCount = 0
   var isLocationForRealTimeSearch = false
-  var editFavouritebutton = UIButton()
+  var editFavouritebutton = UIButton()  
   
   let loadedTime = Date()
   
@@ -36,7 +36,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     MyLocationHelper.sharedInstance.requestLocationUpdate { (_) -> () in
       self.tableView.reloadData()
     }
-    view.backgroundColor = StyleHelper.sharedInstance.background
     
     loadListedLocations()
     prepareSearchController()
@@ -64,7 +63,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   /**
    * Returned to the app.
    */
-  func didBecomeActive() {
+  @objc func didBecomeActive() {
     let now = Date()
     if now.timeIntervalSince(loadedTime) > (60 * 30) { // 0.5 hour
       let _ = navigationController?.popToRootViewController(animated: false)
@@ -146,11 +145,15 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     label.textColor = UIColor.white
     label.textAlignment = .left
     view.addSubview(label)
-    let color = StyleHelper.sharedInstance.mainGreen
+    let color = UIColor.darkGray
     view.backgroundColor = color.withAlphaComponent(0.95)
     
     let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
     let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
+    
+    if section == topSection {
+      return nil
+    }
     
     if section == favSection {
       label.text = "Favourites".localized
@@ -162,7 +165,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     return view
   }
   
-  func toggleEditFavourites() {
+  @objc func toggleEditFavourites() {
     tableView.isEditing = !tableView.isEditing
     let title = (tableView.isEditing) ? "Done".localized : "Change order".localized
     editFavouritebutton.setTitle(title, for: UIControlState())
@@ -176,7 +179,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   override func tableView(
     _ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     if (allowCurrentPosition || allowNearbyStations) && section == 0 {
-      return 0
+      return 1
     }
     return 25
   }
@@ -238,8 +241,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     }
     
     let location = latestLocations[indexPath.row]
-    return createLocationCell(indexPath, location: location, isFavourite: false)
-    
+    return createLocationCell(indexPath, location: location, isFavourite: false)    
   }
   
   /**
@@ -472,8 +474,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   fileprivate func createNearbyStationsCell(_ indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(
       withIdentifier: cellReusableId, for: indexPath)
-    cell.textLabel?.text = "Nearby locations".localized
-    cell.detailTextLabel?.text = nil
+    cell.textLabel?.text = "Nearby stops".localized
+    cell.detailTextLabel?.text = "Based on your current location".localized
     cell.imageView?.image = UIImage(named: "near-me-icon")
     cell.imageView?.alpha = 0.4
     cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
@@ -521,12 +523,21 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     searchController!.searchResultsUpdater = searchResultsVC
     searchController!.delegate = self
     searchController!.dimsBackgroundDuringPresentation = true
+    
+    searchController!.searchBar.barStyle = .black
+    searchController!.searchBar.barTintColor = UIColor.white
+    
     if searchOnlyForStations {
       searchController!.searchBar.placeholder = "Type stop name".localized
     } else {
       searchController!.searchBar.placeholder = "Type stop name or address".localized
     }
-    tableView.tableHeaderView = searchController!.searchBar
+    if #available(iOS 11.0, *) {
+      navigationItem.hidesSearchBarWhenScrolling = false
+      navigationItem.searchController = searchController
+    } else {
+      tableView.tableHeaderView = searchController!.searchBar
+    }
   }
   
   fileprivate func prepareEditFavouriteButton() {
@@ -542,8 +553,5 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   
   deinit {
     NotificationCenter.default.removeObserver(self)
-    if let superView = searchController!.view.superview {
-      superView.removeFromSuperview()
-    }
   }
 }

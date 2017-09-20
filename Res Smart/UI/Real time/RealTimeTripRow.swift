@@ -30,38 +30,37 @@ class RealTimeTripRow: UITableViewCell {
                boatKeys: [String], segmentView: SMSegmentView) {
     
     let index = indexPath.section - 1
-    var data: RTTransportBase?
-    var lineChar = ""
+    var data: RTTransport?
     let tabKeys = tabTypesKeys[segmentView.indexOfSelectedSegment]
-    stopPointDesignation.isHidden = true
-    
+    stopPointDesignation.text = ""
     switch tabKeys {
     case "BUS":
-      let bus = realTimeDepartures.busses[busKeys[index]]![indexPath.row - 1]
-      data = bus as RTTransportBase
-      if let designation = bus.stopPointDesignation {
-        stopPointDesignation.text = designation
-        stopPointDesignation.accessibilityLabel = "\("Section:".localized) " + designation
-        stopPointDesignation.isHidden = false
+      data = realTimeDepartures.busses[busKeys[index]]![indexPath.row - 1]
+      lineLabel.text = "Bus".localized + " " + data!.lineNumber
+      if data!.stopPointDesignation != "" {
+        stopPointDesignation.text = "Läge \(data!.stopPointDesignation)"
       }
       
     case "METRO":
-      lineChar = "T"
-      data = realTimeDepartures.metros[metroKeys[index]]![indexPath.row - 1] as RTTransportBase
+      data = realTimeDepartures.metros[metroKeys[index]]![indexPath.row - 1]
+      lineLabel.text = "Line".localized + " " + data!.lineNumber
+      stopPointDesignation.text = "Spår \(data!.stopPointDesignation)"
       
     case "TRAIN":
       let train = realTimeDepartures.trains[trainKeys[index]]![indexPath.row - 1]
-      lineLabel.text = "J" + train.lineNumber
-      let via = ((train.secondaryDestinationName != nil) ? " via \(train.secondaryDestinationName!)" : "")
-      infoLabel.text = "\(train.destination)" + via
+      stopPointDesignation.text = "Spår \(train.stopPointDesignation)"
+      lineLabel.text = "Line".localized + " " + train.lineNumber
+      let via = ((train.secondaryDestinationName != nil) ? " via \(train.secondaryDestinationName!)" : "")      
+      infoLabel.text = "Toward".localized + " " + train.destination + via
       if train.displayTime == "Nu" {
-        departureTimeLabel.font = UIFont.systemFont(ofSize: 16)
+        departureTimeLabel.font = UIFont.systemFont(ofSize: 18)
         departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
+        departureTimeLabel.text = "Now".localized
       } else {
-        departureTimeLabel.font = UIFont.systemFont(ofSize: 16)
+        departureTimeLabel.font = UIFont.systemFont(ofSize: 18)
         departureTimeLabel.textColor = UIColor.black
+        departureTimeLabel.text = train.displayTime
       }
-      departureTimeLabel.text = train.displayTime
       deviationsLabel.text = train.deviations.joined(separator: " ")
       if DisturbanceTextHelper.isDisturbance(deviationsLabel.text) {
         deviationsLabel.textColor = StyleHelper.sharedInstance.warningColor
@@ -71,37 +70,42 @@ class RealTimeTripRow: UITableViewCell {
       return
       
     case "TRAM":
-      lineChar = "L"
-      data = realTimeDepartures.trams[tramKeys[index]]![indexPath.row - 1] as RTTransportBase
+      data = realTimeDepartures.trams[tramKeys[index]]![indexPath.row - 1] as RTTransport
+      stopPointDesignation.text = "Spår \(data!.stopPointDesignation)"
+      lineLabel.text = "Line".localized + " " + data!.lineNumber
       
     case "LOCAL-TRAM":
-      lineChar = "S"
-      data = realTimeDepartures.localTrams[localTramKeys[index]]![indexPath.row - 1] as RTTransportBase
+      data = realTimeDepartures.localTrams[localTramKeys[index]]![indexPath.row - 1] as RTTransport
+      stopPointDesignation.text = "Spår \(data!.stopPointDesignation)"
+      lineLabel.text = "Line".localized + " " + data!.lineNumber
       
     case "SHIP":
-      data = realTimeDepartures.boats[boatKeys[index]]![indexPath.row - 1] as RTTransportBase
+      data = realTimeDepartures.boats[boatKeys[index]]![indexPath.row - 1] as RTTransport
+      stopPointDesignation.text = data!.stopPointDesignation
+      stopPointDesignation.text = "Läge \(data!.stopPointDesignation)"
+      lineLabel.text = "Line".localized + " " + data!.lineNumber
       
     default:
       break
     }
     
-    updateFields(data: data, lineChar: lineChar)
+    updateFields(data: data)
   }
   
   /**
    * Populates all fields
    */
-  fileprivate func updateFields(data: RTTransportBase?, lineChar: String) {
+  fileprivate func updateFields(data: RTTransport?) {
     if let data = data {
-      lineLabel.text = lineChar + data.lineNumber
-      infoLabel.text = "\(data.destination)"
-      infoLabel.accessibilityLabel = "Mot \(data.destination)"
+      infoLabel.text = "Toward".localized + " " + data.destination
       if data.displayTime == "Nu" {
-        departureTimeLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        departureTimeLabel.font = UIFont.boldSystemFont(ofSize: 18)
         departureTimeLabel.textColor = StyleHelper.sharedInstance.mainGreen
+        departureTimeLabel.text = "Now".localized
       } else {
-        departureTimeLabel.font = UIFont.systemFont(ofSize: 17)
+        departureTimeLabel.font = UIFont.systemFont(ofSize: 18)
         departureTimeLabel.textColor = UIColor.black
+        departureTimeLabel.text = data.displayTime
       }
       departureTimeLabel.text = data.displayTime
       deviationsLabel.text = data.deviations.joined(separator: " ")

@@ -33,7 +33,7 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   open var useFerry = true
   open var useShip = true
   
-  open var numTrips = 8
+  open var numTrips = 15
   open var realtime = true
   
   open var isAdvanced = false
@@ -127,7 +127,7 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     }
     var viaStr = ""
     if let via = self.via {
-      viaStr = "\(via.siteId)"
+      viaStr = "\(via.siteId!)"
     }    
     return "smart-\(createOriginQuery())-\(viaStr)-\(createDestinationQuery())"
   }

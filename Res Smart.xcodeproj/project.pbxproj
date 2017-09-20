@@ -11,13 +11,16 @@
 		1806037C1C02165000AC1841 /* LocationSearchResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037B1C02165000AC1841 /* LocationSearchResponder.swift */; };
 		180B657E1D8A985400D2A50F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 180B657D1D8A985400D2A50F /* Settings.bundle */; };
 		180F7D791C8CC987000C8207 /* UserPreferenceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F7D781C8CC987000C8207 /* UserPreferenceStore.swift */; };
+		181631DB1F5AC75C006D5DFE /* OtherRoutineTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181631DA1F5AC75C006D5DFE /* OtherRoutineTripCell.swift */; };
+		181631DD1F5ADB44006D5DFE /* HereToThereCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181631DC1F5ADB44006D5DFE /* HereToThereCell.swift */; };
+		181724651F459A63006E8EFA /* IJProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181724641F459A63006E8EFA /* IJProgressView.swift */; };
 		181860A41C61613800413C18 /* RealTimeStopPointDeviationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181860A31C61613800413C18 /* RealTimeStopPointDeviationRow.swift */; };
 		1818B2671C404FE0004E3CA3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188B80441C175D9600E7D90C /* NotificationCenter.framework */; };
 		1818B26A1C404FE0004E3CA3 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818B2691C404FE0004E3CA3 /* TodayViewController.swift */; };
 		1818B26D1C404FE0004E3CA3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1818B26B1C404FE0004E3CA3 /* MainInterface.storyboard */; };
 		1818B2781C405D5B004E3CA3 /* ResStockholmApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; };
 		181ABB861CD89283003CA251 /* NearbyStationsMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181ABB851CD89283003CA251 /* NearbyStationsMapVC.swift */; };
-		181BD4161C047AA900651D0F /* RoutineTripHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4151C047AA900651D0F /* RoutineTripHeader.swift */; };
+		181DE5441F5C139300FA6D93 /* NoTripsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DE5431F5C139300FA6D93 /* NoTripsCell.swift */; };
 		18232CA41C01D46A006334D1 /* EditRoutineTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */; };
 		18232CA61C01DB81006334D1 /* StyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA51C01DB81006334D1 /* StyleButton.swift */; };
 		18232CAC1C01EC2F006334D1 /* SearchLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAB1C01EC2F006334D1 /* SearchLocationVC.swift */; };
@@ -42,7 +45,6 @@
 		185073751C09CE84005D0D7E /* TripIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185073741C09CE84005D0D7E /* TripIcons.swift */; };
 		18530B441D80C05C005AB9EC /* StopEnhancer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18530B431D80C05C005AB9EC /* StopEnhancer.swift */; };
 		1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854E1981C065EB70070C545 /* StandardGradient.swift */; };
-		185690141E37385F0075AE78 /* CurrentTripAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185690131E37385F0075AE78 /* CurrentTripAnalyzer.swift */; };
 		185D8DBE1C189D0200300890 /* WatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367611C16264200A8BE16 /* WatchService.swift */; };
 		18609B381CC3B55E002F6346 /* LocationMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18609B371CC3B55E002F6346 /* LocationMapVC.swift */; };
 		18630EE01CC2366A0085C0B8 /* ResStockholmApiKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18630EDF1CC2366A0085C0B8 /* ResStockholmApiKitTests.swift */; };
@@ -54,29 +56,23 @@
 		186447631C5FF6B400020A17 /* DataMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186447621C5FF6B400020A17 /* DataMigration.swift */; };
 		18698AA61C4E91000031D1AD /* RealTimeHeaderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */; };
 		18698AAC1C4E913A0031D1AD /* RealTimeTripRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AAB1C4E913A0031D1AD /* RealTimeTripRow.swift */; };
-		18698AAE1C4EB51B0031D1AD /* RTMetro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AAD1C4EB51B0031D1AD /* RTMetro.swift */; };
-		18698AB01C4EE72C0031D1AD /* RTTrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AAF1C4EE72C0031D1AD /* RTTrain.swift */; };
 		1869E2991C1E0E36001FE4B2 /* PickLocationResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */; };
 		186B677D1E38827F000A52DC /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186B677C1E38827F000A52DC /* MapHelper.swift */; };
-		186CACD11C55265800B1B5F6 /* RTTram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CACD01C55265800B1B5F6 /* RTTram.swift */; };
-		186CACD71C55381100B1B5F6 /* RTBoat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186CACD61C55381100B1B5F6 /* RTBoat.swift */; };
 		18733C491C4E3D1000F66AEF /* RealTimeNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */; };
 		18733C4B1C4E411900F66AEF /* RealTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C4A1C4E411900F66AEF /* RealTimeVC.swift */; };
 		18733C4D1C4E472F00F66AEF /* SLRealtimeDepartures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C4C1C4E472F00F66AEF /* SLRealtimeDepartures.swift */; };
 		18733C4F1C4E482F00F66AEF /* RealTimeDeparturesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C4E1C4E482F00F66AEF /* RealTimeDeparturesService.swift */; };
 		18733C511C4E4B0C00F66AEF /* RealTimeDepartures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C501C4E4B0C00F66AEF /* RealTimeDepartures.swift */; };
-		18733C531C4E4DB800F66AEF /* RTTransportBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C521C4E4DB800F66AEF /* RTTransportBase.swift */; };
+		18733C531C4E4DB800F66AEF /* RTTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C521C4E4DB800F66AEF /* RTTransport.swift */; };
 		18733C611C4E568500F66AEF /* SMBasicSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C5D1C4E568500F66AEF /* SMBasicSegment.swift */; };
 		18733C621C4E568500F66AEF /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C5E1C4E568500F66AEF /* SMBasicSegmentView.swift */; };
 		18733C631C4E568500F66AEF /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C5F1C4E568500F66AEF /* SMSegment.swift */; };
 		18733C641C4E568500F66AEF /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C601C4E568500F66AEF /* SMSegmentView.swift */; };
-		18733C661C4E56C500F66AEF /* RTBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18733C651C4E56C500F66AEF /* RTBus.swift */; };
-		187484781D89743A00F1F7BA /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187484771D89743A00F1F7BA /* NewsVC.swift */; };
 		18763F221D80A29500666718 /* StaticExit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18763F211D80A29500666718 /* StaticExit.swift */; };
-		187733C91ED819C700B5B1B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733C81ED819C700B5B1B9 /* Localizable.strings */; };
 		187733CC1ED82A4900B5B1B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733CE1ED82A4900B5B1B9 /* InfoPlist.strings */; };
 		187733D11ED82B1100B5B1B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733D31ED82B1100B5B1B9 /* InfoPlist.strings */; };
 		187733D61ED82B6A00B5B1B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733D81ED82B6A00B5B1B9 /* InfoPlist.strings */; };
+		187733D91ED83FC500B5B1B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 187733DB1ED83FC500B5B1B9 /* Localizable.strings */; };
 		187808DF1D3A9DB100D297FF /* TimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187808DE1D3A9DB100D297FF /* TimePickerVC.swift */; };
 		18801B821E8D0610002E390E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18801B841E8D0610002E390E /* Localizable.strings */; };
 		188367691C16EEA000A8BE16 /* TripDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188367681C16EEA000A8BE16 /* TripDetailsVC.swift */; };
@@ -96,7 +92,6 @@
 		188B856E1C15BFA000098B00 /* OtherRoutinesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B856D1C15BFA000098B00 /* OtherRoutinesRow.swift */; };
 		188B85711C15D44200098B00 /* TripsIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85701C15D44200098B00 /* TripsIC.swift */; };
 		188B85731C15E30B00098B00 /* TripRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85721C15E30B00098B00 /* TripRow.swift */; };
-		188CA3F71D59E70A00074411 /* CurrentTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CA3F61D59E70A00074411 /* CurrentTripVC.swift */; };
 		1892BA3A1C1F188700BC191A /* TravelTypesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892BA391C1F188700BC191A /* TravelTypesVC.swift */; };
 		1892BA3C1C1F244400BC191A /* TravelTypesResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892BA3B1C1F244400BC191A /* TravelTypesResponder.swift */; };
 		1892BA3E1C1F26E100BC191A /* TravelTypesPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892BA3D1C1F26E100BC191A /* TravelTypesPickerRow.swift */; };
@@ -107,8 +102,6 @@
 		18937E4C1BFF33FB00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E4B1BFF33FB00C523C9 /* Assets.xcassets */; };
 		18937E531BFF33FB00C523C9 /* Res Smart.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 18937E521BFF33FB00C523C9 /* Res Smart.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		18937E641BFF33FB00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E631BFF33FB00C523C9 /* Assets.xcassets */; };
-		18937E771BFF5D6B00C523C9 /* RoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E761BFF5D6B00C523C9 /* RoutineTripsVC.swift */; };
-		18937E7E1BFF6AB700C523C9 /* RoutineTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E7D1BFF6AB700C523C9 /* RoutineTripCell.swift */; };
 		18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */; };
 		18946B171C18431500A5829D /* DateTimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18946B161C18431500A5829D /* DateTimePickerVC.swift */; };
 		18946B1D1C1844E700A5829D /* DateTimePickResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */; };
@@ -152,16 +145,13 @@
 		18AC9D001C08B5B4007ECFA2 /* LoadMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFF1C08B5B4007ECFA2 /* LoadMoreCell.swift */; };
 		18B2902B1C46D8BC00DCE585 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2902A1C46D8BC00DCE585 /* StringUtils.swift */; };
 		18B7619A1E28CD47000F9258 /* RoutePlotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B761991E28CD47000F9258 /* RoutePlotter.swift */; };
-		18B7D41A1E51998B00E67112 /* SegmentWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7D4191E51998B00E67112 /* SegmentWrapper.swift */; };
-		18B7D41C1E51B08700E67112 /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7D41B1E51B08700E67112 /* Instruction.swift */; };
-		18B7D41E1E51B34500E67112 /* SegmentWrapperList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7D41D1E51B34500E67112 /* SegmentWrapperList.swift */; };
 		18BC459E1C5FA5A100248D07 /* NearbyStationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC459D1C5FA5A100248D07 /* NearbyStationsVC.swift */; };
 		18BC85241CA01A3D0061C0BA /* BusFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC85231CA01A3D0061C0BA /* BusFilterVC.swift */; };
+		18CA276B1F4858D50095C231 /* RoutineTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CA276A1F4858D50095C231 /* RoutineTripsVC.swift */; };
 		18CB35B21C1E08BA0084CA27 /* LocationPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */; };
-		18CDAD501E2CC57600D7FDCA /* StepByStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CDAD4F1E2CC57600D7FDCA /* StepByStepView.swift */; };
 		18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */; };
 		18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */; };
-		18D6521E1C3D9C510067FC60 /* HereToThereCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6521D1C3D9C510067FC60 /* HereToThereCell.swift */; };
+		18D7472D1F5895DF0053E30D /* RoutineTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D7472C1F5895DF0053E30D /* RoutineTripCell.swift */; };
 		18DEAD981D8024C6009EF6BC /* ExitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEAD971D8024C6009EF6BC /* ExitData.swift */; };
 		18DEB4FD1E28CFB20056147A /* RouteRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2661C4B9C6200534587 /* RouteRenderer.swift */; };
 		18DEB4FE1E28CFB50056147A /* RoutePolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2681C4B9C9200534587 /* RoutePolyline.swift */; };
@@ -286,6 +276,9 @@
 		180B657D1D8A985400D2A50F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "Res Smart/Settings.bundle"; sourceTree = "<group>"; };
 		180F7D781C8CC987000C8207 /* UserPreferenceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferenceStore.swift; sourceTree = "<group>"; };
 		180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePostHelper.swift; sourceTree = "<group>"; };
+		181631DA1F5AC75C006D5DFE /* OtherRoutineTripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherRoutineTripCell.swift; sourceTree = "<group>"; };
+		181631DC1F5ADB44006D5DFE /* HereToThereCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HereToThereCell.swift; sourceTree = "<group>"; };
+		181724641F459A63006E8EFA /* IJProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IJProgressView.swift; sourceTree = "<group>"; };
 		181860A31C61613800413C18 /* RealTimeStopPointDeviationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeStopPointDeviationRow.swift; sourceTree = "<group>"; };
 		1818B2661C404FE0004E3CA3 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1818B2691C404FE0004E3CA3 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -299,7 +292,7 @@
 		181B9AF51C03A9E100B9145A /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		181B9AF71C03B3FB00B9145A /* TripHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHelper.swift; sourceTree = "<group>"; };
 		181B9AF91C03D64000B9145A /* RoutineService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineService.swift; sourceTree = "<group>"; };
-		181BD4151C047AA900651D0F /* RoutineTripHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTripHeader.swift; sourceTree = "<group>"; };
+		181DE5431F5C139300FA6D93 /* NoTripsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTripsCell.swift; sourceTree = "<group>"; };
 		18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRoutineTripVC.swift; sourceTree = "<group>"; };
 		18232CA51C01DB81006334D1 /* StyleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleButton.swift; sourceTree = "<group>"; };
 		18232CA91C01EA15006334D1 /* LocationSearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
@@ -325,7 +318,6 @@
 		185073741C09CE84005D0D7E /* TripIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripIcons.swift; sourceTree = "<group>"; };
 		18530B431D80C05C005AB9EC /* StopEnhancer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopEnhancer.swift; sourceTree = "<group>"; };
 		1854E1981C065EB70070C545 /* StandardGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGradient.swift; sourceTree = "<group>"; };
-		185690131E37385F0075AE78 /* CurrentTripAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentTripAnalyzer.swift; sourceTree = "<group>"; };
 		18609B371CC3B55E002F6346 /* LocationMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMapVC.swift; sourceTree = "<group>"; };
 		18630EDD1CC2366A0085C0B8 /* ResStockholmApiKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResStockholmApiKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18630EDF1CC2366A0085C0B8 /* ResStockholmApiKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResStockholmApiKitTests.swift; sourceTree = "<group>"; };
@@ -337,29 +329,23 @@
 		186447621C5FF6B400020A17 /* DataMigration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMigration.swift; sourceTree = "<group>"; };
 		18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeHeaderRow.swift; sourceTree = "<group>"; };
 		18698AAB1C4E913A0031D1AD /* RealTimeTripRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeTripRow.swift; sourceTree = "<group>"; };
-		18698AAD1C4EB51B0031D1AD /* RTMetro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMetro.swift; sourceTree = "<group>"; };
-		18698AAF1C4EE72C0031D1AD /* RTTrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTrain.swift; sourceTree = "<group>"; };
 		1869E2981C1E0E36001FE4B2 /* PickLocationResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickLocationResponder.swift; sourceTree = "<group>"; };
 		186B677C1E38827F000A52DC /* MapHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
-		186CACD01C55265800B1B5F6 /* RTTram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTram.swift; sourceTree = "<group>"; };
-		186CACD61C55381100B1B5F6 /* RTBoat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBoat.swift; sourceTree = "<group>"; };
 		18733C481C4E3D1000F66AEF /* RealTimeNavigationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeNavigationVC.swift; sourceTree = "<group>"; };
 		18733C4A1C4E411900F66AEF /* RealTimeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeVC.swift; sourceTree = "<group>"; };
 		18733C4C1C4E472F00F66AEF /* SLRealtimeDepartures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLRealtimeDepartures.swift; sourceTree = "<group>"; };
 		18733C4E1C4E482F00F66AEF /* RealTimeDeparturesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeDeparturesService.swift; sourceTree = "<group>"; };
 		18733C501C4E4B0C00F66AEF /* RealTimeDepartures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeDepartures.swift; sourceTree = "<group>"; };
-		18733C521C4E4DB800F66AEF /* RTTransportBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTransportBase.swift; sourceTree = "<group>"; };
+		18733C521C4E4DB800F66AEF /* RTTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTransport.swift; sourceTree = "<group>"; };
 		18733C5D1C4E568500F66AEF /* SMBasicSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBasicSegment.swift; sourceTree = "<group>"; };
 		18733C5E1C4E568500F66AEF /* SMBasicSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBasicSegmentView.swift; sourceTree = "<group>"; };
 		18733C5F1C4E568500F66AEF /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
 		18733C601C4E568500F66AEF /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
-		18733C651C4E56C500F66AEF /* RTBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBus.swift; sourceTree = "<group>"; };
-		187484771D89743A00F1F7BA /* NewsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		18763F211D80A29500666718 /* StaticExit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticExit.swift; sourceTree = "<group>"; };
-		187733C81ED819C700B5B1B9 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		187733CD1ED82A4900B5B1B9 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		187733D21ED82B1100B5B1B9 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		187733D71ED82B6A00B5B1B9 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		187733DA1ED83FC500B5B1B9 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		187808DE1D3A9DB100D297FF /* TimePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerVC.swift; sourceTree = "<group>"; };
 		188367611C16264200A8BE16 /* WatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchService.swift; sourceTree = "<group>"; };
 		188367681C16EEA000A8BE16 /* TripDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsVC.swift; sourceTree = "<group>"; };
@@ -382,7 +368,6 @@
 		188B856D1C15BFA000098B00 /* OtherRoutinesRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherRoutinesRow.swift; sourceTree = "<group>"; };
 		188B85701C15D44200098B00 /* TripsIC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsIC.swift; sourceTree = "<group>"; };
 		188B85721C15E30B00098B00 /* TripRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripRow.swift; sourceTree = "<group>"; };
-		188CA3F61D59E70A00074411 /* CurrentTripVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentTripVC.swift; sourceTree = "<group>"; };
 		1892BA391C1F188700BC191A /* TravelTypesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTypesVC.swift; sourceTree = "<group>"; };
 		1892BA3B1C1F244400BC191A /* TravelTypesResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTypesResponder.swift; sourceTree = "<group>"; };
 		1892BA3D1C1F26E100BC191A /* TravelTypesPickerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTypesPickerRow.swift; sourceTree = "<group>"; };
@@ -401,10 +386,8 @@
 		18937E611BFF33FB00C523C9 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		18937E631BFF33FB00C523C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18937E651BFF33FB00C523C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18937E761BFF5D6B00C523C9 /* RoutineTripsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTripsVC.swift; sourceTree = "<group>"; };
 		18937E791BFF5F2F00C523C9 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Trip.swift; path = ResStockholmApiKit/Model/Trip/Trip.swift; sourceTree = SOURCE_ROOT; };
 		18937E7B1BFF5F8100C523C9 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		18937E7D1BFF6AB700C523C9 /* RoutineTripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTripCell.swift; sourceTree = "<group>"; };
 		18937E821BFFB56A00C523C9 /* ManageRoutineTripsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageRoutineTripsVC.swift; sourceTree = "<group>"; };
 		18937E861C00A17700C523C9 /* RoutineTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineTrip.swift; sourceTree = "<group>"; };
 		18946B161C18431500A5829D /* DateTimePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickerVC.swift; sourceTree = "<group>"; };
@@ -433,17 +416,14 @@
 		18B2902A1C46D8BC00DCE585 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		18B290301C46D9D900DCE585 /* Res Smart Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Res Smart Playground.playground"; sourceTree = "<group>"; };
 		18B761991E28CD47000F9258 /* RoutePlotter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutePlotter.swift; sourceTree = "<group>"; };
-		18B7D4191E51998B00E67112 /* SegmentWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentWrapper.swift; sourceTree = "<group>"; };
-		18B7D41B1E51B08700E67112 /* Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
-		18B7D41D1E51B34500E67112 /* SegmentWrapperList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentWrapperList.swift; sourceTree = "<group>"; };
 		18BC459D1C5FA5A100248D07 /* NearbyStationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearbyStationsVC.swift; path = "Res Smart/UI/Search Location/Nearby/NearbyStationsVC.swift"; sourceTree = SOURCE_ROOT; };
 		18BC85231CA01A3D0061C0BA /* BusFilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusFilterVC.swift; sourceTree = "<group>"; };
+		18CA276A1F4858D50095C231 /* RoutineTripsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTripsVC.swift; sourceTree = "<group>"; };
 		18CB35B11C1E08B90084CA27 /* LocationPickerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerRow.swift; sourceTree = "<group>"; };
-		18CDAD4F1E2CC57600D7FDCA /* StepByStepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepByStepView.swift; sourceTree = "<group>"; };
 		18CE5CC81C03140A00E1F5A9 /* StyleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleHelper.swift; sourceTree = "<group>"; };
 		18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabVC.swift; sourceTree = "<group>"; };
 		18D1953E1C07964900FB1A93 /* TripSeachCriterion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripSeachCriterion.swift; path = ResStockholmApiKit/Model/Trip/TripSeachCriterion.swift; sourceTree = SOURCE_ROOT; };
-		18D6521D1C3D9C510067FC60 /* HereToThereCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HereToThereCell.swift; sourceTree = "<group>"; };
+		18D7472C1F5895DF0053E30D /* RoutineTripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTripCell.swift; sourceTree = "<group>"; };
 		18DEAD971D8024C6009EF6BC /* ExitData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExitData.swift; sourceTree = "<group>"; };
 		18F447CF1D7EBC7600B48D39 /* jour.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jour.json; sourceTree = "<group>"; };
 		18F447D01D7EBC7600B48D39 /* line.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = line.json; sourceTree = "<group>"; };
@@ -526,6 +506,14 @@
 			path = Lib;
 			sourceTree = "<group>";
 		};
+		181724631F459A2E006E8EFA /* IJProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				181724641F459A63006E8EFA /* IJProgressView.swift */,
+			);
+			path = IJProgressView;
+			sourceTree = "<group>";
+		};
 		1818B2681C404FE0004E3CA3 /* Today */ = {
 			isa = PBXGroup;
 			children = (
@@ -593,6 +581,7 @@
 		1827692E1C01163B00655B4B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				181724631F459A2E006E8EFA /* IJProgressView */,
 				18309FD71E460CB900A43309 /* CALayerExtention.swift */,
 				18B761981E28CC6F000F9258 /* Map */,
 				18733C5C1C4E562B00F66AEF /* SMSegmentView */,
@@ -735,20 +724,6 @@
 			path = Trips;
 			sourceTree = "<group>";
 		};
-		188CA3F51D59E6D500074411 /* Current trip */ = {
-			isa = PBXGroup;
-			children = (
-				188CA3F61D59E70A00074411 /* CurrentTripVC.swift */,
-				18CDAD4F1E2CC57600D7FDCA /* StepByStepView.swift */,
-				185690131E37385F0075AE78 /* CurrentTripAnalyzer.swift */,
-				18B7D4191E51998B00E67112 /* SegmentWrapper.swift */,
-				18B7D41B1E51B08700E67112 /* Instruction.swift */,
-				18B7D41D1E51B34500E67112 /* SegmentWrapperList.swift */,
-			);
-			name = "Current trip";
-			path = "Current Trip";
-			sourceTree = "<group>";
-		};
 		1892BA341C1F185500BC191A /* Travel Types */ = {
 			isa = PBXGroup;
 			children = (
@@ -833,7 +808,7 @@
 				18937E5B1BFF33FB00C523C9 /* ExtensionDelegate.swift */,
 				18937E631BFF33FB00C523C9 /* Assets.xcassets */,
 				18937E651BFF33FB00C523C9 /* Info.plist */,
-				187733C81ED819C700B5B1B9 /* Localizable.strings */,
+				187733DB1ED83FC500B5B1B9 /* Localizable.strings */,
 			);
 			path = "Res Smart WatchKit Extension";
 			sourceTree = "<group>";
@@ -850,10 +825,11 @@
 			isa = PBXGroup;
 			children = (
 				18232CA71C01E954006334D1 /* Manage Routine Trips */,
-				18937E761BFF5D6B00C523C9 /* RoutineTripsVC.swift */,
-				18937E7D1BFF6AB700C523C9 /* RoutineTripCell.swift */,
-				181BD4151C047AA900651D0F /* RoutineTripHeader.swift */,
-				18D6521D1C3D9C510067FC60 /* HereToThereCell.swift */,
+				18CA276A1F4858D50095C231 /* RoutineTripsVC.swift */,
+				18D7472C1F5895DF0053E30D /* RoutineTripCell.swift */,
+				181631DA1F5AC75C006D5DFE /* OtherRoutineTripCell.swift */,
+				181631DC1F5ADB44006D5DFE /* HereToThereCell.swift */,
+				181DE5431F5C139300FA6D93 /* NoTripsCell.swift */,
 			);
 			path = "Routine Trips";
 			sourceTree = "<group>";
@@ -892,7 +868,6 @@
 		18937E891C01139E00C523C9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				188CA3F51D59E6D500074411 /* Current trip */,
 				1885A4111CDF943D00680F8E /* Data pickers */,
 				18733C431C4E3CD700F66AEF /* Real time */,
 				1899F2651C4B9B6400534587 /* Map */,
@@ -904,7 +879,6 @@
 				183D6EB91C1A2E8B00EB7537 /* Traffic Situation */,
 				1827692E1C01163B00655B4B /* Common */,
 				18CE5CCA1C031A0800E1F5A9 /* CustomTabVC.swift */,
-				187484771D89743A00F1F7BA /* NewsVC.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1010,12 +984,7 @@
 			isa = PBXGroup;
 			children = (
 				18733C501C4E4B0C00F66AEF /* RealTimeDepartures.swift */,
-				18733C521C4E4DB800F66AEF /* RTTransportBase.swift */,
-				18733C651C4E56C500F66AEF /* RTBus.swift */,
-				18698AAD1C4EB51B0031D1AD /* RTMetro.swift */,
-				18698AAF1C4EE72C0031D1AD /* RTTrain.swift */,
-				186CACD01C55265800B1B5F6 /* RTTram.swift */,
-				186CACD61C55381100B1B5F6 /* RTBoat.swift */,
+				18733C521C4E4DB800F66AEF /* RTTransport.swift */,
 			);
 			path = Realtime;
 			sourceTree = "<group>";
@@ -1188,13 +1157,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Mikael Hellman";
 				TargetAttributes = {
 					1818B2651C404FE0004E3CA3 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 43E7S6Y435;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -1204,12 +1173,13 @@
 					};
 					18630EDC1CC2366A0085C0B8 = {
 						CreatedOnToolsVersion = 7.3;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 43E7S6Y435;
+						ProvisioningStyle = Automatic;
 					};
 					18937E301BFF33FA00C523C9 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 43E7S6Y435;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -1234,7 +1204,7 @@
 					18937E511BFF33FB00C523C9 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 43E7S6Y435;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -1245,7 +1215,7 @@
 					18A9E8461C18993B008F97C8 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 43E7S6Y435;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1325,7 +1295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18937E641BFF33FB00C523C9 /* Assets.xcassets in Resources */,
-				187733C91ED819C700B5B1B9 /* Localizable.strings in Resources */,
+				187733D91ED83FC500B5B1B9 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1393,19 +1363,16 @@
 				18DEB4FF1E28CFB70056147A /* Pins.swift in Sources */,
 				18DEB4FE1E28CFB50056147A /* RoutePolyline.swift in Sources */,
 				18DEB4FD1E28CFB20056147A /* RouteRenderer.swift in Sources */,
-				18B7D41E1E51B34500E67112 /* SegmentWrapperList.swift in Sources */,
 				186447631C5FF6B400020A17 /* DataMigration.swift in Sources */,
 				188367751C170E5500A8BE16 /* TripDetailsDestinationCell.swift in Sources */,
 				188B80AE1C178DD900E7D90C /* TripSearchVC.swift in Sources */,
 				1885A4131CDF95E300680F8E /* LinePickerVC.swift in Sources */,
-				18937E771BFF5D6B00C523C9 /* RoutineTripsVC.swift in Sources */,
 				18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */,
-				18D6521E1C3D9C510067FC60 /* HereToThereCell.swift in Sources */,
 				18733C631C4E568500F66AEF /* SMSegment.swift in Sources */,
+				181631DB1F5AC75C006D5DFE /* OtherRoutineTripCell.swift in Sources */,
 				180603641C01FCBE00AC1841 /* SwiftyJSON.swift in Sources */,
 				1806037C1C02165000AC1841 /* LocationSearchResponder.swift in Sources */,
 				18232CAE1C01F1CA006334D1 /* ManageRoutineTripCell.swift in Sources */,
-				18B7D41A1E51998B00E67112 /* SegmentWrapper.swift in Sources */,
 				18AC9D001C08B5B4007ECFA2 /* LoadMoreCell.swift in Sources */,
 				18CE5CCB1C031A0800E1F5A9 /* CustomTabVC.swift in Sources */,
 				18232CA61C01DB81006334D1 /* StyleButton.swift in Sources */,
@@ -1413,15 +1380,11 @@
 				18CE5CC91C03140A00E1F5A9 /* StyleHelper.swift in Sources */,
 				183D6EBF1C1A354F00EB7537 /* SituationRow.swift in Sources */,
 				18946B1D1C1844E700A5829D /* DateTimePickResponder.swift in Sources */,
-				181BD4161C047AA900651D0F /* RoutineTripHeader.swift in Sources */,
-				18CDAD501E2CC57600D7FDCA /* StepByStepView.swift in Sources */,
-				185690141E37385F0075AE78 /* CurrentTripAnalyzer.swift in Sources */,
 				186B677D1E38827F000A52DC /* MapHelper.swift in Sources */,
 				1899F25C1C4AF05C00534587 /* TripMapVC.swift in Sources */,
 				1883676B1C170CC100A8BE16 /* TripCellProtocol.swift in Sources */,
 				18937E831BFFB56A00C523C9 /* ManageRoutineTripsVC.swift in Sources */,
 				188A317F1E89394B00D44C97 /* LocalizedString.swift in Sources */,
-				187484781D89743A00F1F7BA /* NewsVC.swift in Sources */,
 				18946B171C18431500A5829D /* DateTimePickerVC.swift in Sources */,
 				1840C81B1CD646BC007062FD /* SearchLocationResultsVC.swift in Sources */,
 				183D6EBB1C1A2F2900EB7537 /* TrafficSituationVC.swift in Sources */,
@@ -1436,11 +1399,14 @@
 				18BC85241CA01A3D0061C0BA /* BusFilterVC.swift in Sources */,
 				18B7619A1E28CD47000F9258 /* RoutePlotter.swift in Sources */,
 				181860A41C61613800413C18 /* RealTimeStopPointDeviationRow.swift in Sources */,
+				181631DD1F5ADB44006D5DFE /* HereToThereCell.swift in Sources */,
 				1824A42E1C9F21ED000BEE9B /* ReportsVC.swift in Sources */,
+				181DE5441F5C139300FA6D93 /* NoTripsCell.swift in Sources */,
 				18CB35B21C1E08BA0084CA27 /* LocationPickerRow.swift in Sources */,
 				1835A0691C675D58008355F9 /* NetworkActivity.swift in Sources */,
 				18353DE01C1F70590011CDEA /* AdvancedCriterionsHelper.swift in Sources */,
 				18309FD81E460CB900A43309 /* CALayerExtention.swift in Sources */,
+				181724651F459A63006E8EFA /* IJProgressView.swift in Sources */,
 				1892BA3E1C1F26E100BC191A /* TravelTypesPickerRow.swift in Sources */,
 				188367731C170E3B00A8BE16 /* TripDetailsSegmentCell.swift in Sources */,
 				18698AA61C4E91000031D1AD /* RealTimeHeaderRow.swift in Sources */,
@@ -1452,20 +1418,19 @@
 				18FDA8C31CD92D94003665C6 /* GenericValuePickerVC.swift in Sources */,
 				1843AC541C4A78020065A462 /* TripDetailsSubSegmentCell.swift in Sources */,
 				18FDA8C51CD9364E003665C6 /* PickGenericValueResponder.swift in Sources */,
-				18B7D41C1E51B08700E67112 /* Instruction.swift in Sources */,
 				18232CAC1C01EC2F006334D1 /* SearchLocationVC.swift in Sources */,
+				18D7472D1F5895DF0053E30D /* RoutineTripCell.swift in Sources */,
 				181ABB861CD89283003CA251 /* NearbyStationsMapVC.swift in Sources */,
 				1824A4321C9F3453000BEE9B /* ReportSituationRow.swift in Sources */,
-				18937E7E1BFF6AB700C523C9 /* RoutineTripCell.swift in Sources */,
 				18733C611C4E568500F66AEF /* SMBasicSegment.swift in Sources */,
 				1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */,
+				18CA276B1F4858D50095C231 /* RoutineTripsVC.swift in Sources */,
 				1883676F1C170DE500A8BE16 /* TripDetailsOriginCell.swift in Sources */,
 				18BC459E1C5FA5A100248D07 /* NearbyStationsVC.swift in Sources */,
 				1824A4341C9F426F000BEE9B /* DeviationVC.swift in Sources */,
 				18733C621C4E568500F66AEF /* SMBasicSegmentView.swift in Sources */,
 				18232CA41C01D46A006334D1 /* EditRoutineTripVC.swift in Sources */,
 				18937E351BFF33FA00C523C9 /* AppDelegate.swift in Sources */,
-				188CA3F71D59E70A00074411 /* CurrentTripVC.swift in Sources */,
 				1892BA3C1C1F244400BC191A /* TravelTypesResponder.swift in Sources */,
 				18AC9CF81C07AD4D007ECFA2 /* TripListVC.swift in Sources */,
 				185073751C09CE84005D0D7E /* TripIcons.swift in Sources */,
@@ -1509,21 +1474,18 @@
 				188A317B1E892F9D00D44C97 /* LanguageHelper.swift in Sources */,
 				18FC747F1C7B778F00980B0D /* DeviationsService.swift in Sources */,
 				18FA99941C492BDC0075C4C2 /* SLJourneyDetailsApi.swift in Sources */,
-				186CACD71C55381100B1B5F6 /* RTBoat.swift in Sources */,
 				18530B441D80C05C005AB9EC /* StopEnhancer.swift in Sources */,
 				18630EEF1CC26C9E0085C0B8 /* FavouriteLocationsStore.swift in Sources */,
-				186CACD11C55265800B1B5F6 /* RTTram.swift in Sources */,
 				183D6EB41C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift in Sources */,
 				1835A06E1C676180008355F9 /* DisturbanceTextHelper.swift in Sources */,
 				18DEAD981D8024C6009EF6BC /* ExitData.swift in Sources */,
 				18FA999A1C492E3F0075C4C2 /* JournyDetailsService.swift in Sources */,
-				18698AAE1C4EB51B0031D1AD /* RTMetro.swift in Sources */,
 				18733C4D1C4E472F00F66AEF /* SLRealtimeDepartures.swift in Sources */,
 				18AAC9321C2EE61000022C54 /* ScorePostStore.swift in Sources */,
 				18A9E8621C189998008F97C8 /* ScorePostHelper.swift in Sources */,
 				18FA999C1C49321C0075C4C2 /* Stop.swift in Sources */,
 				18763F221D80A29500666718 /* StaticExit.swift in Sources */,
-				18733C531C4E4DB800F66AEF /* RTTransportBase.swift in Sources */,
+				18733C531C4E4DB800F66AEF /* RTTransport.swift in Sources */,
 				18A9E8651C1899E7008F97C8 /* SLSearchLocationApi.swift in Sources */,
 				18A9E8681C1899E7008F97C8 /* SLSearchNearbyStationsApi.swift in Sources */,
 				18AAC92F1C2EE3DF00022C54 /* SearchCriterionStore.swift in Sources */,
@@ -1532,7 +1494,6 @@
 				18A9E8691C1899E7008F97C8 /* SLNetworkError.swift in Sources */,
 				18A9E86A1C1899ED008F97C8 /* Trip.swift in Sources */,
 				18733C511C4E4B0C00F66AEF /* RealTimeDepartures.swift in Sources */,
-				18698AB01C4EE72C0031D1AD /* RTTrain.swift in Sources */,
 				18A9E8671C1899E7008F97C8 /* HttpRequestHelper.swift in Sources */,
 				18733C4F1C4E482F00F66AEF /* RealTimeDeparturesService.swift in Sources */,
 				18B2902B1C46D8BC00DCE585 /* StringUtils.swift in Sources */,
@@ -1545,7 +1506,6 @@
 				18FC74811C7B7D2E00980B0D /* Deviation.swift in Sources */,
 				18A9E85E1C189998008F97C8 /* RoutineService.swift in Sources */,
 				18A9E8601C189998008F97C8 /* SearchTripService.swift in Sources */,
-				18733C661C4E56C500F66AEF /* RTBus.swift in Sources */,
 				18A9E86E1C1899ED008F97C8 /* TripSegment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1619,6 +1579,14 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		187733DB1ED83FC500B5B1B9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				187733DA1ED83FC500B5B1B9 /* sv */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		18801B841E8D0610002E390E /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1681,13 +1649,14 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = Today/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.Today";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1699,13 +1668,14 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = Today/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.Today";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1713,12 +1683,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = ResStockholmApiKitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mikael-hellman.ResStockholmApiKitTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -1726,12 +1699,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = ResStockholmApiKitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mikael-hellman.ResStockholmApiKitTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -1744,17 +1720,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1774,11 +1757,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1792,14 +1776,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1816,10 +1806,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1832,15 +1823,18 @@
 				CODE_SIGN_ENTITLEMENTS = "Res Smart/Res Smart.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "Res Smart";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -1852,15 +1846,18 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "Res Smart";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -1874,12 +1871,14 @@
 				CODE_SIGN_ENTITLEMENTS = "Res Smart/Res Smart.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 43E7S6Y435;
 				IBSC_MODULE = SL_Smart_WatchKit_Extension;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp";
 				PRODUCT_NAME = "Res Smart";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -1896,12 +1895,14 @@
 				CODE_SIGN_ENTITLEMENTS = "Res Smart/Res Smart.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 43E7S6Y435;
 				IBSC_MODULE = SL_Smart_WatchKit_Extension;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart.watchkitapp";
 				PRODUCT_NAME = "Res Smart";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -1918,14 +1919,17 @@
 				CODE_SIGN_ENTITLEMENTS = "Res Smart/Res Smart.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart";
 				PRODUCT_NAME = "Res Smart";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1938,14 +1942,17 @@
 				CODE_SIGN_ENTITLEMENTS = "Res Smart/Res Smart.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 43E7S6Y435;
 				INFOPLIST_FILE = "$(SRCROOT)/Res Smart/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mikael-hellman.sl-smart";
 				PRODUCT_NAME = "Res Smart";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -1955,7 +1962,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 43E7S6Y435;
@@ -1964,11 +1971,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ResStockholmApiKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mikael-hellman.ResStockholmApiKit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1988,11 +1997,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ResStockholmApiKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mikael-hellman.ResStockholmApiKit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

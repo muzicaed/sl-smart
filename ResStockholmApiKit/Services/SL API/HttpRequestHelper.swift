@@ -25,13 +25,13 @@ class HttpRequestHelper {
     urlconfig.timeoutIntervalForResource = 10
     
     if let cacheData = handleCache(url) {
-      print("CACHE: \(url)")
-      print("")
+      //print("CACHE: \(url)")
+      //print("")
       callback((cacheData, nil))
       return
     }
-    print(url)
-    print("")
+    //print(url)
+    //print("")
     
     if let nsUrl = URL(string: url) {
       let request = URLRequest(url: nsUrl)

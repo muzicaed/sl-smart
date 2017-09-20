@@ -18,7 +18,9 @@ open class RealTimeDeparturesService {
    */
   open static func fetch(_ siteId: Int,
                          callback: @escaping (_ data: RealTimeDepartures?, _ error: SLNetworkError?) -> Void) {
-    api.getRealTimeTable(siteId) { (data, error) -> Void in
+    api.getRealTimeTable(siteId) { (arg) -> Void in
+      
+      let (data, error) = arg
       if let d = data {
         if d.count == 0 {
           HttpRequestHelper.clearCache()
@@ -44,47 +46,40 @@ open class RealTimeDeparturesService {
   fileprivate static func convertJson(_ json: JSON) -> RealTimeDepartures {
     let departures = RealTimeDepartures(
       lastUpdated: json["LatestUpdate"].string,
-      dataAge: json["DataAge"].int!)
+      dataAge: json["DataAge"].int)
     
-    departures.busses = convertBusesJson(json["Buses"])
-    
+    departures.busses = convertBusesJson(json["Buses"])    
     departures.metros = convertMetrosJson(json["Metros"])
     departures.trains = convertTrainsJson(json["Trains"])
     departures.trams = convertTramsJson(json["Trams"], isLocal: false)
     departures.localTrams = convertTramsJson(json["Trams"], isLocal: true)
     departures.boats = convertBoatsJson(json["Ships"])
     
-    if json["StopPointDeviations"].array!.count > 0 {
-      for messJson in json["StopPointDeviations"].array! {
-        if let mess = messJson["Deviation"]["Text"].string, let type = messJson["StopInfo"]["TransportMode"].string {
-          departures.deviations.append(type, mess)
+    if let arr = json["StopPointDeviations"].array {
+      if arr.count > 0 {
+        for messJson in arr {
+          if let mess = messJson["Deviation"]["Text"].string, let type = messJson["StopInfo"]["TransportMode"].string {
+            departures.deviations.append((type, mess))
+          }
         }
       }
     }
     return departures
   }
   
-  
   /**
    * Converts the bus json in to objects.
    */
-  fileprivate static func convertBusesJson(_ json: JSON) -> [String: [RTBus]] {
-    var result = [String: [RTBus]]()
-    
-    for busJson in json.array! {
-      let rtBus = RTBus(
-        stopAreaName: busJson["StopAreaName"].string!,
-        lineNumber: busJson["LineNumber"].string!,
-        destination: busJson["Destination"].string!,
-        displayTime: busJson["DisplayTime"].string!,
-        deviations: extractDeviations(busJson["Deviations"].array),
-        journeyDirection: busJson["JourneyDirection"].int!,
-        stopPointDesignation: busJson["StopPointDesignation"].string)
-      
-      if result["\(rtBus.stopAreaName)"] == nil {
-        result["\(rtBus.stopAreaName)"] = [RTBus]()
+  fileprivate static func convertBusesJson(_ json: JSON) -> [String: [RTTransport]] {
+    var result = [String: [RTTransport]]()
+    if let arr = json.array {
+      for busJson in arr {
+        let rtBus = createRTTransport(busJson)
+        if result["\(rtBus.stopAreaName)"] == nil {
+          result["\(rtBus.stopAreaName)"] = [RTTransport]()
+        }
+        result["\(rtBus.stopAreaName)"]?.append(rtBus)
       }
-      result["\(rtBus.stopAreaName)"]?.append(rtBus)
     }
     
     return result
@@ -93,30 +88,17 @@ open class RealTimeDeparturesService {
   /**
    * Converts the metro json in to objects.
    */
-  fileprivate static func convertMetrosJson(_ json: JSON) -> [String: [RTMetro]] {
-    var result = [String: [RTMetro]]()
-    
-    for metroJson in json.array! {
-      var messages = [String]()
-      if let message = metroJson["PlatformMessage"].string {
-        messages.append(message)
+  fileprivate static func convertMetrosJson(_ json: JSON) -> [String: [RTTransport]] {
+    var result = [String: [RTTransport]]()
+    if let arr = json.array {
+      for metroJson in arr {
+        let rtMetro = createRTTransport(metroJson)
+        let groupKey = "\(rtMetro.stopAreaName)-\(metroJson["GroupOfLine"].string!)-\(rtMetro.journeyDirection)"
+        if result[groupKey] == nil {
+          result[groupKey] = [RTTransport]()
+        }
+        result[groupKey]?.append(rtMetro)
       }
-      
-      let rtMetro = RTMetro(
-        stopAreaName: metroJson["StopAreaName"].string!,
-        lineNumber: metroJson["LineNumber"].string!,
-        destination: metroJson["Destination"].string!,
-        displayTime: metroJson["DisplayTime"].string!,
-        deviations: messages,
-        journeyDirection: metroJson["JourneyDirection"].int!,
-        platformMessage: metroJson["PlatformMessage"].string,
-        groupOfLine: metroJson["GroupOfLine"].string!)
-      
-      let groupKey = "\(rtMetro.stopAreaName)-\(metroJson["GroupOfLine"].string!)-\(rtMetro.journeyDirection)"
-      if result[groupKey] == nil {
-        result[groupKey] = [RTMetro]()
-      }
-      result[groupKey]?.append(rtMetro)
     }
     
     return result
@@ -125,51 +107,15 @@ open class RealTimeDeparturesService {
   /**
    * Converts the train json in to objects.
    */
-  fileprivate static func convertTrainsJson(_ json: JSON) -> [String: [RTTrain]] {
-    var result = [String: [RTTrain]]()
-    
-    for trainJson in json.array! {
-      let rtTrain = RTTrain(
-        stopAreaName: trainJson["StopAreaName"].string!,
-        lineNumber: trainJson["LineNumber"].string!,
-        destination: trainJson["Destination"].string!,
-        displayTime: trainJson["DisplayTime"].string!,
-        deviations: extractDeviations(trainJson["Deviations"].array),
-        journeyDirection: trainJson["JourneyDirection"].int!,
-        secondaryDestinationName: trainJson["SecondaryDestinationName"].string)
-      
-      if result["\(rtTrain.stopAreaName)-\(rtTrain.journeyDirection)"] == nil {
-        result["\(rtTrain.stopAreaName)-\(rtTrain.journeyDirection)"] = [RTTrain]()
-      }
-      result["\(rtTrain.stopAreaName)-\(rtTrain.journeyDirection)"]?.append(rtTrain)
-    }
-    
-    return result
-  }
-  
-  /**
-   * Converts the tram json in to objects.
-   */
-  fileprivate static func convertTramsJson(_ json: JSON, isLocal: Bool) -> [String: [RTTram]] {
-    var result = [String: [RTTram]]()
-    
-    for tramJson in json.array! {
-      let lineNo = Int(tramJson["LineNumber"].string!)!
-      if (isLocal && lineNo > 23) || (!isLocal && lineNo < 23) {
-        let rtTram = RTTram(
-          stopAreaName: tramJson["StopAreaName"].string!,
-          lineNumber: tramJson["LineNumber"].string!,
-          destination: tramJson["Destination"].string!,
-          displayTime: tramJson["DisplayTime"].string!,
-          deviations: extractDeviations(tramJson["Deviations"].array),
-          journeyDirection: tramJson["JourneyDirection"].int!,
-          stopPointDesignation: tramJson["StopPointDesignation"].string,
-          groupOfLine: tramJson["GroupOfLine"].string!)
-        
-        if result["\(rtTram.groupOfLine)-\(rtTram.journeyDirection)"] == nil {
-          result["\(rtTram.groupOfLine)-\(rtTram.journeyDirection)"] = [RTTram]()
+  fileprivate static func convertTrainsJson(_ json: JSON) -> [String: [RTTransport]] {
+    var result = [String: [RTTransport]]()
+    if let arr = json.array {
+      for trainJson in arr {
+        let rtTrain = createRTTransport(trainJson)
+        if result["\(rtTrain.stopAreaName)-\(rtTrain.journeyDirection)"] == nil {
+          result["\(rtTrain.stopAreaName)-\(rtTrain.journeyDirection)"] = [RTTransport]()
         }
-        result["\(rtTram.groupOfLine)-\(rtTram.journeyDirection)"]?.append(rtTram)
+        result["\(rtTrain.stopAreaName)-\(rtTrain.journeyDirection)"]?.append(rtTrain)
       }
     }
     
@@ -179,26 +125,53 @@ open class RealTimeDeparturesService {
   /**
    * Converts the tram json in to objects.
    */
-  fileprivate static func convertBoatsJson(_ json: JSON) -> [String: [RTBoat]] {
-    var result = [String: [RTBoat]]()
-    
-    for boatJson in json.array! {
-      let rtBoat = RTBoat(
-        stopAreaName: boatJson["StopAreaName"].string!,
-        lineNumber: boatJson["LineNumber"].string!,
-        destination: boatJson["Destination"].string!,
-        displayTime: boatJson["DisplayTime"].string!,
-        deviations: extractDeviations(boatJson["Deviations"].array),
-        journeyDirection: boatJson["JourneyDirection"].int!,
-        groupOfLine: boatJson["GroupOfLine"].string)
-      
-      if result["\(rtBoat.groupOfLine)-\(rtBoat.journeyDirection)"] == nil {
-        result["\(rtBoat.groupOfLine)-\(rtBoat.journeyDirection)"] = [RTBoat]()
+  fileprivate static func convertTramsJson(_ json: JSON, isLocal: Bool) -> [String: [RTTransport]] {
+    var result = [String: [RTTransport]]()
+    if let arr = json.array {
+      for tramJson in arr {
+        let lineNo = Int(tramJson["LineNumber"].string!)!
+        if (isLocal && lineNo > 23) || (!isLocal && lineNo < 23) {
+          let rtTram = createRTTransport(tramJson)
+          if result["\(String(describing: rtTram.groupOfLine))-\(rtTram.journeyDirection)"] == nil {
+            result["\(String(describing: rtTram.groupOfLine))-\(rtTram.journeyDirection)"] = [RTTransport]()
+          }
+          result["\(String(describing: rtTram.groupOfLine))-\(rtTram.journeyDirection)"]?.append(rtTram)
+        }
       }
-      result["\(rtBoat.groupOfLine)-\(rtBoat.journeyDirection)"]?.append(rtBoat)
     }
     
     return result
+  }
+  
+  /**
+   * Converts the tram json in to objects.
+   */
+  fileprivate static func convertBoatsJson(_ json: JSON) -> [String: [RTTransport]] {
+    var result = [String: [RTTransport]]()
+    if let arr = json.array {
+      for boatJson in arr {
+        let rtBoat = createRTTransport(boatJson)
+        if result["\(String(describing: rtBoat.groupOfLine))-\(rtBoat.journeyDirection)"] == nil {
+          result["\(String(describing: rtBoat.groupOfLine))-\(rtBoat.journeyDirection)"] = [RTTransport]()
+        }
+        result["\(String(describing: rtBoat.groupOfLine))-\(rtBoat.journeyDirection)"]?.append(rtBoat)
+      }
+    }
+    
+    return result
+  }
+  
+  fileprivate static func createRTTransport(_ json: JSON) -> RTTransport {
+    return RTTransport(
+      stopAreaName: json["StopAreaName"].string!,
+      lineNumber: json["LineNumber"].string!,
+      destination: json["Destination"].string!,
+      displayTime: json["DisplayTime"].string!,
+      deviations: extractDeviations(json["Deviations"].array),
+      journeyDirection: json["JourneyDirection"].int!,
+      stopPointDesignation: json["StopPointDesignation"].string,
+      groupOfLine: json["GroupOfLine"].string,
+      secondaryDestinationName: json["SecondaryDestinationName"].string)
   }
   
   /**

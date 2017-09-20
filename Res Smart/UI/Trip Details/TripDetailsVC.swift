@@ -32,6 +32,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = StyleHelper.sharedInstance.background
     if let trip = trip {
       prepareTableView()
       prepareHeader()
@@ -55,20 +56,13 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
   /**
    * Returned to the app.
    */
-  func didBecomeActive() {
+  @objc func didBecomeActive() {
     let now = Date()
     if now.timeIntervalSince(loadedTime) > (60 * 90) { // 1.5 hour
       let _ = navigationController?.popToRootViewController(animated: false)
     }
   }
-  
-  /**
-   * Selects this trip for current trip
-   */
-  @IBAction func onBeginTripTap(_ sender: UIButton) {
-    NotificationCenter.default.post(name: Notification.Name(rawValue: "BeginTrip"), object: trip)
-  }
-  
+    
   @IBAction func onSMSTicketTap(_ sender: UIBarButtonItem) {
     let ticketAlert = UIAlertController(
       title: "What kind of ticket?".localized,
@@ -318,8 +312,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
    */
   fileprivate func prepareTableView() {
     tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 40
-    view.backgroundColor = StyleHelper.sharedInstance.background
+    tableView.estimatedRowHeight = 50
     tableView.tableFooterView = UIView(frame: CGRect.zero)
   }
   

@@ -30,7 +30,6 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
    */
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView()
     edgesForExtendedLayout = UIRectEdge()
   }
@@ -56,7 +55,7 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
       FavouriteLocationsStore.sharedInstance.addFavouriteLocation(selectedLocation!)
     }
     self.selectedLocation = nil
-    tableView.reloadData()
+    reloadTableData()
   }
   
   /**
@@ -158,28 +157,28 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
   /**
    * Executes a search
    */
-  func searchLocation() {
+  @objc func searchLocation() {
     if let query = searchQueryText {
       if query.characters.count > 0 {
         self.noResults = false
         NetworkActivity.displayActivityIndicator(true)
-        LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { resTuple in
+        LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { (locations, slNetworkError) in
           NetworkActivity.displayActivityIndicator(false)
           DispatchQueue.main.async {
-            if resTuple.1 != nil {
+            if slNetworkError != nil {
               self.noResults = true
-              self.tableView.reloadData()
+              self.reloadTableData()
               return
             }
-            self.searchResult = resTuple.0
-            if resTuple.0.count > 0 {
-              self.tableView.reloadData()
+            self.searchResult = locations            
+            if locations.count > 0 {
+              self.reloadTableData()
             }
           }
         }
       } else if query.characters.count == 0 {
         self.noResults = false
-        self.tableView.reloadData()
+        reloadTableData()
       }
     }
   }
@@ -226,5 +225,12 @@ class SearchLocationResultsVC: UITableViewController, UISearchResultsUpdating {
       UIAlertAction(title: "OK".localized, style: UIAlertActionStyle.default, handler: nil))
     
     present(networkErrorAlert, animated: true, completion: nil)
+  }
+  
+  fileprivate func reloadTableData() {
+    UIView.transition(with: self.tableView,
+                      duration: 0.2,
+                      options: .transitionCrossDissolve,
+                      animations: { self.tableView?.reloadData() })
   }
 }

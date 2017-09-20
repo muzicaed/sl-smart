@@ -18,19 +18,30 @@ class NearbyStationsVC: UITableViewController {
   var isLocationForRealTimeSearch = false
   var selectedLocation: Location?
   
+  var showMapButton = UIButton(type: .custom)
+  
   @IBOutlet weak var spinnerView: UIView!
-  @IBOutlet weak var showOnMapButton: UIBarButtonItem!
   
   /**
    * View did load
    */
   override func viewDidLoad() {
-    view.backgroundColor = StyleHelper.sharedInstance.background
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     loadLocations()
     spinnerView.frame.size = tableView.frame.size
     spinnerView.frame.origin.y -= 84
     tableView.addSubview(spinnerView)
+    prepareShowMapButton()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.view.addSubview(showMapButton)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    showMapButton.removeFromSuperview()
   }
   
   /**
@@ -162,10 +173,33 @@ class NearbyStationsVC: UITableViewController {
             self.isLoading = false
             self.spinnerView.removeFromSuperview()
             self.tableView.reloadData()
-            self.showOnMapButton.isEnabled = true
           }          
       })
     }
+  }
+  
+  /**
+   * Prepare floating show map button
+   */
+  fileprivate func prepareShowMapButton() {
+    showMapButton.setTitle("Show on map".localized, for: .normal)
+    showMapButton.frame = CGRect(x: 0, y: 0, width: 140, height: 50)
+    showMapButton.frame.origin.x = 10
+    showMapButton.frame.origin.y = tableView.frame.size.height - showMapButton.frame.size.height - 60
+    showMapButton.backgroundColor = StyleHelper.sharedInstance.mainGreen
+    showMapButton.clipsToBounds = false
+    showMapButton.layer.shadowColor = UIColor.black.cgColor
+    showMapButton.layer.shadowOffset = CGSize(width: 1, height: 1)
+    showMapButton.layer.shadowOpacity = 0.35
+    showMapButton.layer.cornerRadius = 6
+    showMapButton.addTarget(self, action: #selector(onShowMapTap), for: .touchUpInside)
+    tableView.tableFooterView = UIView(
+      frame: CGRect(origin: CGPoint.zero, size: CGSize(width: tableView.frame.size.width, height: 65))
+    )
+  }
+  
+  @objc func onShowMapTap() {
+    performSegue(withIdentifier: "ShowMap", sender: self)
   }
   
   /**

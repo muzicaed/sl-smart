@@ -2,24 +2,22 @@
 //  HereToThereCell.swift
 //  Res Smart
 //
-//  Created by Mikael Hellman on 2016-01-06.
-//  Copyright © 2016 Mikael Hellman. All rights reserved.
+//  Created by Mikael Hellman on 2017-09-02.
+//  Copyright © 2017 Mikael Hellman. All rights reserved.
 //
 
 import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class HereToThereCell: UICollectionViewCell {
+class HereToThereCell: UITableViewCell {
   
-  @IBOutlet weak var hereToThereLabel: UILabel!
+  @IBOutlet weak var locationLabel: UILabel!
   
   /**
    * Set the from location text.
    */
   func setFromLocationText(_ location: Location) {
-    layer.borderWidth = 0.5
-    layer.borderColor = UIColor.lightGray.cgColor
-    hereToThereLabel.text = "\("From".localized) \(location.name)"
+    locationLabel.text = "\("From".localized) \(location.name)"
   }
 }

@@ -71,7 +71,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   /**
    * User tap widget
    */
-  func onTap() {
+  @objc func onTap() {
     extensionContext?.open(URL(string: "ressmart://")!, completionHandler: nil)
   }
   
@@ -116,7 +116,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   /**
    * Update widget UI
    */
-  func updateUI() {
+  @objc func updateUI() {
     if let bestRoutineTrip = self.bestRoutine {
       if let trip = bestRoutineTrip.trips.first {
         self.titleLabel.text = bestRoutineTrip.title
@@ -127,11 +127,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
           self.departureStationLabel.text = first.origin.name
           self.arrivalStationLabel.text = last.destination.name
           self.departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)        
-          self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)
-          
-          self.inAboutLabel.text = DateUtils.createAboutTimeText(
-            first.departureDateTime,
-            isWalk: (first.type == TripType.Walk))
+          self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)          
+          self.inAboutLabel.text = DateUtils.createAboutTimeText(segments: trip.tripSegments)
         }
         
         var second: Trip? = nil

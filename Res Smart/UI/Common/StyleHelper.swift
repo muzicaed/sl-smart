@@ -14,37 +14,48 @@ class StyleHelper {
   static let sharedInstance = StyleHelper()
   let tintColor = UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 1.0)
   let mainGreen = UIColor(red: 22/255, green: 173/255, blue: 126/255, alpha: 1.0)
-  
-  let highlight = UIColor(red: 229/255, green: 255/255, blue: 255/255, alpha: 0.95)
-  let background = UIColor(red: 226/255, green: 232/255, blue: 233/255, alpha: 1.0)
-  let cardBackground = UIColor(red: 63/255, green: 73/255, blue: 62/255, alpha: 0.8)
+  let background = UIColor(white: 0.955, alpha: 1.0)
+  let highlight = UIColor(red: 33/255, green: 202/255, blue: 71/255, alpha: 0.13)
   let warningColor = UIColor(red: 255/255, green: 75/255, blue: 0/255, alpha: 1.0)
   let realtimeColor = UIColor(red: 0/255, green: 113/255, blue: 218/255, alpha: 1.0)
   
   func setupCustomStyle() {
     let navAppearance = UINavigationBar.appearance()
     navAppearance.isTranslucent = false
+    if #available(iOS 11.0, *) {
+      navAppearance.prefersLargeTitles = true
+    }
     navAppearance.tintColor = UIColor.white
     navAppearance.barTintColor = mainGreen
-    navAppearance.titleTextAttributes = [
-      NSForegroundColorAttributeName: UIColor.white]
     
     let tabBarAppearance = UITabBar.appearance()
     tabBarAppearance.tintColor = mainGreen
     
     let searchBarAppearance = UISearchBar.appearance()
     searchBarAppearance.tintColor = tintColor
-    searchBarAppearance.barTintColor = mainGreen
+    searchBarAppearance.barTintColor = UIColor(white: 0.95, alpha: 1.0)
     
     UITabBarItem.appearance().setTitleTextAttributes(
       [
-        NSForegroundColorAttributeName: UIColor(white: 0.0, alpha: 0.75)
+        NSAttributedStringKey.foregroundColor: UIColor(white: 0.0, alpha: 0.75)
       ], for: UIControlState())
+
+    if #available(iOS 11.0, *) {
+      UINavigationBar.appearance().largeTitleTextAttributes = [
+        NSAttributedStringKey.foregroundColor: UIColor.white
+      ]
+    }
+    
+    UINavigationBar.appearance().titleTextAttributes = [
+      NSAttributedStringKey.foregroundColor: UIColor.white
+    ]
     
     UITabBarItem.appearance().setTitleTextAttributes(
       [
-        NSForegroundColorAttributeName: mainGreen
+        NSAttributedStringKey.foregroundColor: mainGreen
       ], for: .selected)
+    
+    UISearchBar.appearance().searchBarStyle = .minimal
     
     UIApplication.shared.statusBarStyle = .lightContent
     (UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])).tintColor = UIColor.white

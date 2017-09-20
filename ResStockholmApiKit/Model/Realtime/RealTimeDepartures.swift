@@ -12,24 +12,28 @@ open class RealTimeDepartures {
   
   open let latestUpdated: Date?
   open let dataAge: Int
-  open var busses = [String: [RTBus]]()
-  open var metros = [String: [RTMetro]]()
-  open var trains = [String: [RTTrain]]()
-  open var trams = [String: [RTTram]]()
-  open var localTrams = [String: [RTTram]]()
-  open var boats = [String: [RTBoat]]()
+  open var busses = [String: [RTTransport]]()
+  open var metros = [String: [RTTransport]]()
+  open var trains = [String: [RTTransport]]()
+  open var trams = [String: [RTTransport]]()
+  open var localTrams = [String: [RTTransport]]()
+  open var boats = [String: [RTTransport]]()
   open var deviations = [(String, String)]()
   
   /**
    * Init
    */
-  init(lastUpdated: String?, dataAge: Int) {
+  init(lastUpdated: String?, dataAge: Int?) {
     if let dateString = lastUpdated {
       self.latestUpdated = RealTimeDepartures.convertDate(dateString)
     } else {
       self.latestUpdated = nil
     }
-    self.dataAge = dataAge
+    if let age = dataAge {
+      self.dataAge = age
+    } else {
+      self.dataAge = 0
+    }
   }
   
   /**

@@ -23,6 +23,8 @@ class NetworkActivity {
       numberOfNetworkCalls -= 1
     }
     numberOfNetworkCalls = (numberOfNetworkCalls < 0) ? 0 : numberOfNetworkCalls
-    UIApplication.shared.isNetworkActivityIndicatorVisible = (numberOfNetworkCalls > 0)
+    DispatchQueue.main.async {
+      UIApplication.shared.isNetworkActivityIndicatorVisible = (numberOfNetworkCalls > 0)
+    }    
   }
 }
