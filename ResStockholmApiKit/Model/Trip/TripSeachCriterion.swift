@@ -59,47 +59,6 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   }
   
   /**
-   * Query string.
-   */
-  open func generateQueryString(_ beginsWithQuestionMark: Bool) -> String {
-    if (origin == nil && originId == "0") || (dest == nil && destId == "0") {
-      fatalError("TripSearchCriterion: Can not generate query without origin/destination")
-    }
-    
-    var query = (beginsWithQuestionMark) ? "?" : "&"
-    query += "numTrips=\(numTrips)"
-    
-    query += createOriginQuery()
-    query += createDestinationQuery()
-
-    query += (via != nil) ? "&viaId=\(via!.siteId!)" : ""
-    query += (date != nil) ? "&date=\(date!)" : ""
-    query += (time != nil) ? "&time=\(time!)" : ""
-    query += (numChg > -1) ? "&numChg=\(numChg)" : ""
-    query += (minChgTime != 0) ? "&minChgTime=\(minChgTime)" : ""
-    
-    query += (!useTrain) ? "&useTrain=0" : ""
-    query += (!useMetro) ? "&useMetro=0" : ""
-    query += (!useTram) ? "&useTram=0" : ""
-    query += (!useBus) ? "&useBus=0" : ""
-    query += (!useFerry) ? "&useFerry=0" : ""
-    query += (!useShip) ? "&useShip=0" : ""
-    
-    query += (searchForArrival) ? "&searchForArrival=1" : ""
-    query += (unsharp) ? "&unsharp=1" : ""
-    query += "&realtime=true"
-    query += (maxWalkDist > 0) ? "&maxWalkDist=\(maxWalkDist)" : ""
-    query += (lineInc != nil) ? "&lineInc=\(lineInc!.trimmingCharacters(in: CharacterSet.whitespaces))" : ""
-    query += (lineExc != nil) ? "&lineExc=\(lineExc!.trimmingCharacters(in: CharacterSet.whitespaces))" : ""
-    
-    if let escapedQuery = query.addingPercentEncoding(
-      withAllowedCharacters: .urlQueryAllowed) {
-        return escapedQuery
-    }
-    fatalError("Could not encode query string.")
-  }
-  
-  /**
    * Resets advanced search criterions
    */
   open func resetAdvancedTripTypes() {
@@ -116,20 +75,6 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     unsharp = false
     lineInc = nil
     lineExc = nil
-  }
-  
-  /**
-   * Gets smart id.
-   */
-  open func smartId() -> String{
-    if (origin == nil && originId == "0") || (dest == nil && destId == "0") {
-      fatalError("Can not generate smart id without origin/destination")
-    }
-    var viaStr = ""
-    if let via = self.via {
-      viaStr = "\(via.siteId!)"
-    }    
-    return "smart-\(createOriginQuery())-\(viaStr)-\(createDestinationQuery())"
   }
   
   // MARK: NSCoding
@@ -248,46 +193,5 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     copy.lineExc = lineExc
 
     return copy
-  }
-  
-  // MARK: Private methods
-  
-  /**
-   * Creates a query mathing the origin location
-   * type (Station/Address).
-   */
-  fileprivate func createOriginQuery() -> String {
-    if origin != nil && origin?.type == .Current {
-      if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
-        return "&originCoordLat=\(currentLocation.lat!)&originCoordLong=\(currentLocation.lon!)&originCoordName=\(currentLocation.name)"
-      }
-    }
-    
-    if origin == nil {
-      return "&originId=\(originId)"
-    } else if origin!.type == .Station {
-      return "&originId=\(origin!.siteId!)"
-    }
-    return "&originCoordLat=\(origin!.lat!)&originCoordLong=\(origin!.lon!)&originCoordName=\(origin!.name)"
-  }
-  
-  /**
-   * Creates a query mathing the destination location
-   * type (Station/Address).
-   */
-  fileprivate func createDestinationQuery() -> String {
-    if dest != nil && dest?.type == .Current {
-      if let currentLocation = MyLocationHelper.sharedInstance.getCurrentLocation() {
-        return "&destCoordLat=\(currentLocation.lat!)&destCoordLong=\(currentLocation.lon!)&destCoordName=\(currentLocation.name)"
-      }
-    }
-    
-    if dest == nil {
-      return "&destId=\(destId)"
-    } else if dest!.type == .Station {
-      return "&destId=\(dest!.siteId!)"
-    }
-
-    return "&destCoordLat=\(dest!.lat!)&destCoordLong=\(dest!.lon!)&destCoordName=\(dest!.name)"
   }
 }

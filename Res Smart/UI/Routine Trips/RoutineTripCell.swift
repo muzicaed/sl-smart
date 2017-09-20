@@ -24,12 +24,7 @@ class RoutineTripCell: UITableViewCell {
    * Populate cell data based on passed RoutineTrip
    */
   func setupData(_ routineTrip: RoutineTrip) {
-    var title = routineTrip.title!
-    if routineTrip.isSmartSuggestion {
-      title = "Habit".localized
-    }
-    routineTitleLabel.text = title
-    
+    routineTitleLabel.text = routineTrip.title    
     if let trip = routineTrip.trips.first {
       if trip.tripSegments.count > 0 {
         tripPath.text = routineTrip.criterions.origin!.cleanName + " - " + routineTrip.criterions.dest!.cleanName

@@ -210,11 +210,7 @@ class SmartTripIC: WKInterfaceController {
    * for best routine.
    */
   func updateUINoTripsFound(_ bestRoutine: Dictionary<String, AnyObject>) {
-    if bestRoutine["ha"] as! Bool {
-      titleLabel.setText("Smart habit".localized)
-    } else {
-      titleLabel.setText(bestRoutine["ti"] as? String)
-    }
+    titleLabel.setText(bestRoutine["ti"] as? String)
     departureTimeLabel.setText("No trips".localized)
     originLabel.setText("")
     destinationLabel.setText("")
@@ -236,15 +232,10 @@ class SmartTripIC: WKInterfaceController {
       let warnings = (bestRoutine["tr"] as! [Dictionary<String, AnyObject>]).first!["war"] as! [String]
       
       updateDepatureUI()
-      if bestRoutine["ha"] as! Bool {
-        titleLabel.setText("Smart habit".localized)
-      } else {
-        titleLabel.setText(bestRoutine["ti"] as? String)
-      }
-      
+
+      titleLabel.setText(bestRoutine["ti"] as? String)
       originLabel.setText(bestRoutine["or"] as? String)
-      destinationLabel.setText(bestRoutine["ds"] as? String)
-      
+      destinationLabel.setText(bestRoutine["ds"] as? String)      
       createTripIcons(icons, lines: lines, warnings: warnings)
       updateOtherTable(data["o"] as! [Dictionary<String, AnyObject>])
     }

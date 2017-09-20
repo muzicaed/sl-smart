@@ -33,6 +33,7 @@
 		18353DE01C1F70590011CDEA /* AdvancedCriterionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18353DDF1C1F70590011CDEA /* AdvancedCriterionsHelper.swift */; };
 		1835A0691C675D58008355F9 /* NetworkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A0681C675D58008355F9 /* NetworkActivity.swift */; };
 		1835A06E1C676180008355F9 /* DisturbanceTextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5A8D41C57BC54003C4C3B /* DisturbanceTextHelper.swift */; };
+		1838BB251F725E770012DDAA /* RRTravelPlannerV2Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838BB241F725E770012DDAA /* RRTravelPlannerV2Api.swift */; };
 		183D6EB21C19DBF000EB7537 /* TrafficSituationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D6EB11C19DBF000EB7537 /* TrafficSituationService.swift */; };
 		183D6EB41C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D6EB31C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift */; };
 		183D6EB61C19DEF400EB7537 /* SituationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D6EB51C19DEF400EB7537 /* SituationGroup.swift */; };
@@ -306,6 +307,7 @@
 		18309FD71E460CB900A43309 /* CALayerExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtention.swift; sourceTree = "<group>"; };
 		18353DDF1C1F70590011CDEA /* AdvancedCriterionsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedCriterionsHelper.swift; sourceTree = "<group>"; };
 		1835A0681C675D58008355F9 /* NetworkActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkActivity.swift; sourceTree = "<group>"; };
+		1838BB241F725E770012DDAA /* RRTravelPlannerV2Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRTravelPlannerV2Api.swift; sourceTree = "<group>"; };
 		183D6EB11C19DBF000EB7537 /* TrafficSituationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficSituationService.swift; sourceTree = "<group>"; };
 		183D6EB31C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLTrafficSituationServiceApi.swift; sourceTree = "<group>"; };
 		183D6EB51C19DEF400EB7537 /* SituationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SituationGroup.swift; sourceTree = "<group>"; };
@@ -595,6 +597,21 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		1838BB221F725E0F0012DDAA /* Json Converters */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Json Converters";
+			sourceTree = "<group>";
+		};
+		1838BB231F725E390012DDAA /* Res Robot API */ = {
+			isa = PBXGroup;
+			children = (
+				1838BB241F725E770012DDAA /* RRTravelPlannerV2Api.swift */,
+			);
+			path = "Res Robot API";
+			sourceTree = "<group>";
+		};
 		183D6EB91C1A2E8B00EB7537 /* Traffic Situation */ = {
 			isa = PBXGroup;
 			children = (
@@ -848,6 +865,8 @@
 		18937E881C01139400C523C9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1838BB231F725E390012DDAA /* Res Robot API */,
+				1838BB221F725E0F0012DDAA /* Json Converters */,
 				18232CA81C01E9FF006334D1 /* SL API */,
 				181B9AF91C03D64000B9145A /* RoutineService.swift */,
 				18232CA91C01EA15006334D1 /* LocationSearchService.swift */,
@@ -1473,6 +1492,7 @@
 				18A9E8721C1899F3008F97C8 /* DateUtils.swift in Sources */,
 				188A317B1E892F9D00D44C97 /* LanguageHelper.swift in Sources */,
 				18FC747F1C7B778F00980B0D /* DeviationsService.swift in Sources */,
+				1838BB251F725E770012DDAA /* RRTravelPlannerV2Api.swift in Sources */,
 				18FA99941C492BDC0075C4C2 /* SLJourneyDetailsApi.swift in Sources */,
 				18530B441D80C05C005AB9EC /* StopEnhancer.swift in Sources */,
 				18630EEF1CC26C9E0085C0B8 /* FavouriteLocationsStore.swift in Sources */,

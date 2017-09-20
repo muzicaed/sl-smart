@@ -98,7 +98,6 @@ PickGenericValueResponder, LinePickerResponder {
         let vc = segue.destination as! TripListVC
         vc.criterions = criterions?.copy() as? TripSearchCriterion
         SearchCriterionStore.sharedInstance.writeLastSearchCriterions(crit)
-        RoutineService.addHabitRoutine(crit)
         
       } else if segue.identifier == "ShowDateTimePicker" {
         let vc = segue.destination as! DateTimePickerVC
