@@ -32,7 +32,7 @@ class RRTravelPlannerV2Api {
    */
   fileprivate func createSimpleSearchApiUrl(_ criterions: TripSearchCriterion) -> String {
     //let criterionsUrl = criterions.generateQueryString()
-    //return urlBase + "?key=\(apiKey)\(criterionsUrl)&lang=\(LanguangeHelper.getLangCode())"
+    //return urlBase + "?key=\(apiKey)\(criterionsUrl)&lang=\(LanguangeHelper.getLangCode())&format=json"
     return ""
   }
 }
