@@ -60,7 +60,7 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
       return
     }
     if !isLoading {
-      loadTripData(true)
+      loadTripData(force: true)
       startRefreshTimmer()
     }
   }
@@ -83,7 +83,7 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
   }
   
   @objc func refreshUI() {
-    loadTripData(false)
+    loadTripData(force: false)
   }
   
   /**
@@ -107,7 +107,7 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
     }
     
     startRefreshTimmer()
-    loadTripData(false)
+    loadTripData(force: false)
   }
   
   /**
@@ -139,8 +139,7 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
       
     } else if segue.identifier == manageRoutineTripsSegue {
       // Force a reload when returning to this VC
-      stopRefreshTimmer()
-      lastUpdated = Date(timeIntervalSince1970: TimeInterval(0.0))
+      loadTripData(force: true)
       
     } else if segue.identifier == fromHereToThereSegue {
       let vc = segue.destination as! SearchLocationVC
@@ -383,7 +382,7 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
    * collection of time table data.
    * Will show big spinner when loading.
    */
-  fileprivate func loadTripData(_ force: Bool) {
+  fileprivate func loadTripData(force: Bool) {
     if RoutineTripsStore.sharedInstance.isRoutineTripsEmpty() {
       isShowInfo = true
       otherRoutineTrips = [RoutineTrip]()

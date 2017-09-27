@@ -31,9 +31,8 @@ class SLSearchLocationApi {
   * Creates api url
   */
   fileprivate func createApiUrl(_ query: String, stationsOnly: Bool) -> String {
-    if let escapedQuery = query.addingPercentEncoding(
-      withAllowedCharacters: .urlHostAllowed) {
-        return urlBase + "?Key=\(apiKey)&MaxResults=50&StationsOnly=\(stationsOnly)&SearchString=\(escapedQuery)"
+    if let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) {
+      return urlBase + "?Key=\(apiKey)&MaxResults=50&StationsOnly=\(stationsOnly)&SearchString=\(escapedQuery)"
     }
     
     fatalError("Could not encode query string.")

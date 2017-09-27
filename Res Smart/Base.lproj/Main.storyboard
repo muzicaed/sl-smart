@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z2r-oZ-gqC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z2r-oZ-gqC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -532,7 +532,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Search trip" id="glH-7o-VC8">
-                        <barButtonItem key="leftBarButtonItem" title="Advanced" id="ddt-6P-8PN">
+                        <barButtonItem key="rightBarButtonItem" title="Advanced" id="ddt-6P-8PN">
                             <connections>
                                 <action selector="onAdvancedButtonTap:" destination="Hg1-8K-Ui9" id="Yse-Pp-DQH"/>
                             </connections>
@@ -4735,10 +4735,10 @@ Tap "+" to create one.</string>
         <segue reference="alv-6I-0jl"/>
         <segue reference="Fdd-gY-eKk"/>
         <segue reference="ivB-Ve-lrb"/>
-        <segue reference="Sa7-1d-kG3"/>
+        <segue reference="SoV-ny-kIR"/>
         <segue reference="kst-2L-81y"/>
         <segue reference="OZb-MD-G7j"/>
-        <segue reference="0VD-Nj-Mfo"/>
+        <segue reference="ypq-Up-6Af"/>
         <segue reference="Lg4-KG-mN0"/>
         <segue reference="gZB-Im-USu"/>
     </inferredMetricsTieBreakers>

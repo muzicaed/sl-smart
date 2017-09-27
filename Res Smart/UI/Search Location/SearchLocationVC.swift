@@ -78,8 +78,10 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showRealTime" {
       if let realTimeVC = segue.destination as? RealTimeVC {
-        realTimeVC.title = selectedLocation?.name
-        realTimeVC.siteId = Int(selectedLocation!.siteId!)!
+        if let selectedLocation = selectedLocation, let siteId = selectedLocation.siteId {
+          realTimeVC.title = selectedLocation.name
+          realTimeVC.siteId = Int(siteId)!
+        }
       }
     } else if segue.identifier == "ShowNearbyStations" {
       if let nearbyVC = segue.destination as? NearbyStationsVC {

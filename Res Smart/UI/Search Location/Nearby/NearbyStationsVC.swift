@@ -184,8 +184,8 @@ class NearbyStationsVC: UITableViewController {
   fileprivate func prepareShowMapButton() {
     showMapButton.setTitle("Show on map".localized, for: .normal)
     showMapButton.frame = CGRect(x: 0, y: 0, width: 140, height: 50)
-    showMapButton.frame.origin.x = 10
-    showMapButton.frame.origin.y = tableView.frame.size.height - showMapButton.frame.size.height - 60
+    showMapButton.frame.origin.x = tableView.frame.size.width - showMapButton.frame.size.width - 10
+    showMapButton.frame.origin.y = tableView.frame.size.height - showMapButton.frame.size.height - navigationController!.tabBarController!.tabBar.frame.height - 10
     showMapButton.backgroundColor = StyleHelper.sharedInstance.mainGreen
     showMapButton.clipsToBounds = false
     showMapButton.layer.shadowColor = UIColor.black.cgColor
