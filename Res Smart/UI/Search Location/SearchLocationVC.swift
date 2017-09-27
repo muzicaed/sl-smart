@@ -604,8 +604,5 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
   
   deinit {
     NotificationCenter.default.removeObserver(self)
-    if let superView = searchController!.view.superview {
-      superView.removeFromSuperview()
-    }
   }
 }
