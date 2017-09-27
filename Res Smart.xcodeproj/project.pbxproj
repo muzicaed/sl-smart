@@ -143,6 +143,7 @@
 		18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CF91C07AE63007ECFA2 /* TripCell.swift */; };
 		18AC9D001C08B5B4007ECFA2 /* LoadMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFF1C08B5B4007ECFA2 /* LoadMoreCell.swift */; };
 		18B2902B1C46D8BC00DCE585 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2902A1C46D8BC00DCE585 /* StringUtils.swift */; };
+		18B685C41F7BBBC30013AEC8 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B685C31F7BBBC30013AEC8 /* BlurView.swift */; };
 		18B7619A1E28CD47000F9258 /* RoutePlotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B761991E28CD47000F9258 /* RoutePlotter.swift */; };
 		18BC459E1C5FA5A100248D07 /* NearbyStationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC459D1C5FA5A100248D07 /* NearbyStationsVC.swift */; };
 		18BC85241CA01A3D0061C0BA /* BusFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BC85231CA01A3D0061C0BA /* BusFilterVC.swift */; };
@@ -413,6 +414,7 @@
 		18AC9CFF1C08B5B4007ECFA2 /* LoadMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreCell.swift; sourceTree = "<group>"; };
 		18B2902A1C46D8BC00DCE585 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		18B290301C46D9D900DCE585 /* Res Smart Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Res Smart Playground.playground"; sourceTree = "<group>"; };
+		18B685C31F7BBBC30013AEC8 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		18B761991E28CD47000F9258 /* RoutePlotter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutePlotter.swift; sourceTree = "<group>"; };
 		18BC459D1C5FA5A100248D07 /* NearbyStationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearbyStationsVC.swift; path = "Res Smart/UI/Search Location/Nearby/NearbyStationsVC.swift"; sourceTree = SOURCE_ROOT; };
 		18BC85231CA01A3D0061C0BA /* BusFilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusFilterVC.swift; sourceTree = "<group>"; };
@@ -589,6 +591,7 @@
 				185073741C09CE84005D0D7E /* TripIcons.swift */,
 				18353DDF1C1F70590011CDEA /* AdvancedCriterionsHelper.swift */,
 				1885ECFF1C20BD7A000E803D /* UILabelExtention.swift */,
+				18B685C31F7BBBC30013AEC8 /* BlurView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1419,6 +1422,7 @@
 				181ABB861CD89283003CA251 /* NearbyStationsMapVC.swift in Sources */,
 				1824A4321C9F3453000BEE9B /* ReportSituationRow.swift in Sources */,
 				18733C611C4E568500F66AEF /* SMBasicSegment.swift in Sources */,
+				18B685C41F7BBBC30013AEC8 /* BlurView.swift in Sources */,
 				1854E1991C065EB70070C545 /* StandardGradient.swift in Sources */,
 				18CA276B1F4858D50095C231 /* RoutineTripsVC.swift in Sources */,
 				1883676F1C170DE500A8BE16 /* TripDetailsOriginCell.swift in Sources */,

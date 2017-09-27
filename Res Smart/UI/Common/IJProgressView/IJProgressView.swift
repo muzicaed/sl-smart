@@ -28,15 +28,17 @@ open class IJProgressView {
       containerView.frame = view.frame
       containerView.center = view.center
       containerView.isUserInteractionEnabled = true
-      containerView.backgroundColor = UIColor(hex: 0x000000, alpha: 0.1)
       containerView.alpha = 0.0
       
       progressView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
       progressView.center = view.center
-      progressView.backgroundColor = UIColor(hex: 0x444444, alpha: 0.7)
       progressView.clipsToBounds = true
       progressView.layer.cornerRadius = 10
       progressView.isUserInteractionEnabled = false
+      let blurEffect = UIBlurEffect(style: .dark)
+      let blurView = UIVisualEffectView(effect: blurEffect)
+      blurView.frame = progressView.bounds
+      progressView.addSubview(blurView)
       
       activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
       activityIndicator.activityIndicatorViewStyle = .whiteLarge

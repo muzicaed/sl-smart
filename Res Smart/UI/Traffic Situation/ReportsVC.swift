@@ -81,14 +81,17 @@ class ReportsVC: UITableViewController {
    */
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 25))
+    let blurEffect = UIBlurEffect(style: .dark)
+    let blurView = UIVisualEffectView(effect: blurEffect)
+    blurView.frame = view.bounds
+    view.addSubview(blurView)
+    
     let label = UILabel(frame: CGRect(x: 10, y: 0, width: tableView.frame.size.width - 10, height: 25))
     label.font = UIFont.systemFont(ofSize: 12)
     label.textColor = UIColor.white
     label.text = createHeaderTitle(section)
     view.addSubview(label)
     
-    let color = StyleHelper.sharedInstance.mainGreen
-    view.backgroundColor = color.withAlphaComponent(0.95)
     return view
   }
   

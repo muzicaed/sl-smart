@@ -319,10 +319,12 @@ class TripListVC: UITableViewController {
       let date = DateUtils.convertDateString("\(keys[section]) 00:00")
       label.text = DateUtils.friendlyDate(date) + ": " + criterions!.origin!.cleanName + " - " + criterions!.dest!.cleanName
     }
-    
+    let blurEffect = UIBlurEffect(style: .dark)
+    let blurView = UIVisualEffectView(effect: blurEffect)
+    blurView.frame = view.bounds
+    view.addSubview(blurView)
     view.addSubview(label)
-    let color = UIColor.darkGray
-    view.backgroundColor = color.withAlphaComponent(0.95)
+    //view.blurTintColor = StyleHelper.sharedInstance.mainGreen
     return view
   }
   

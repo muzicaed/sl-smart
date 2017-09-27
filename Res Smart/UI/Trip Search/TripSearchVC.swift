@@ -104,7 +104,7 @@ PickGenericValueResponder, LinePickerResponder {
         let vc = segue.destination as! DateTimePickerVC
         vc.selectedDate = selectedDate
         vc.delegate = self
-        UIView.animate(withDuration: 0.35, animations: {
+        UIView.animate(withDuration: 0.30, animations: {
           self.dimmer?.alpha = 0.7
         })
         
