@@ -564,8 +564,8 @@ PickGenericValueResponder, LinePickerResponder {
   fileprivate func prepareSearchButton() {
     searchButton.setTitle("Search".localized, for: .normal)
     searchButton.frame = CGRect(x: 0, y: 0, width: 140, height: 50)
-    searchButton.frame.origin.x = 10
-    searchButton.frame.origin.y = tableView.frame.size.height - searchButton.frame.size.height - 60
+    searchButton.frame.origin.x = tableView.frame.size.width - searchButton.frame.size.width - 10
+    searchButton.frame.origin.y = tableView.frame.size.height - searchButton.frame.size.height - navigationController!.tabBarController!.tabBar.frame.height - 10
     searchButton.backgroundColor = StyleHelper.sharedInstance.mainGreen
     searchButton.clipsToBounds = false
     searchButton.layer.shadowColor = UIColor.black.cgColor
