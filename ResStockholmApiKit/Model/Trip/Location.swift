@@ -160,10 +160,11 @@ open class Location: NSObject, NSCoding, NSCopying {
    */
   fileprivate static func ensureUTF8(_ string: String) -> String {
     var newString = string
-    let data = newString.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)!
-    let convertedName = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
-    if let convName = convertedName {
-      newString = convName as String
+    if let data = newString.data(using: String.Encoding.isoLatin1, allowLossyConversion: false) {
+      let convertedName = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+      if let convName = convertedName {
+        newString = convName as String
+      }
     }
     
     return newString

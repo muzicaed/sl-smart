@@ -118,7 +118,9 @@ class RealTimeVC: UITableViewController, SMSegmentViewDelegate {
    */
   @objc func loadData() {
     NetworkActivity.displayActivityIndicator(true)
-    IJProgressView.shared.showProgressView(navigationController!.view)
+    if let navController = navigationController {
+      IJProgressView.shared.showProgressView(navController.view)
+    }
     RealTimeDeparturesService.fetch(siteId) { (rtDepartures, error) -> Void in
       let when = DispatchTime.now() + 0.2
       DispatchQueue.main.asyncAfter(deadline: when) {

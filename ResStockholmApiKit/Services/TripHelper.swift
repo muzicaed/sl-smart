@@ -36,10 +36,11 @@ open class TripHelper {
   open static func friendlyTripSegmentDesc(_ segment: TripSegment) -> String {
     if segment.type == .Walk {
       return String(format: "Walk %d meters".localized, segment.distance!)
-      
     }
-    
-    return "\("toward".localized) \(segment.directionText!.capitalized)"
+    if let dirText = segment.directionText {
+      return "\("toward".localized) \(dirText.capitalized)"
+    }
+    return ""
   }
   
   /**
