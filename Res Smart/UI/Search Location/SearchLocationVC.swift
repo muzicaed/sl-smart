@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
+class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISearchResultsUpdating {
   
   let cellReusableId = "StationSearchResultCell"
   let cellNotFoundId = "NoStationsFound"
@@ -24,7 +24,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   var allowNearbyStations = false
   var lastCount = 0
   var isLocationForRealTimeSearch = false
-  var editFavouritebutton = UIButton()  
+  var editFavouritebutton = UIButton()
+  
+  var searchResult = [Location]()
+  var noResults = false
+  var searchQueryText: String?
   
   let loadedTime = Date()
   
@@ -54,7 +58,7 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    navigationController?.navigationBar.isTranslucent = false
+    navigationController?.navigationBar.isTranslucent = true
     loadListedLocations()
     tableView.isEditing = false
     tableView.reloadData()
@@ -117,20 +121,15 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     performSegue(withIdentifier: "ShowLocationMap", sender: self)
   }
   
-  /**
-   * Location wes selected on search result.
-   */
-  func onSearchSelectLocation(_ location: Location) {
-    selectedLocation = location
-    navigateOnSelect()
-  }
-  
   // MARK: UITableViewController
   
   /**
    * Number of section
    */
   override func numberOfSections(in tableView: UITableView) -> Int {
+    if searchResult.count > 0 || noResults {
+      return 1
+    }
     let count = (allowCurrentPosition || allowNearbyStations) ? 2 : 1
     return (favouriteLocations.count > 0) ? count + 1 : count
   }
@@ -200,6 +199,11 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
   override func tableView(
     _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
+    if searchResult.count > 0 {
+      print("No of result rows: \(searchResult.count)")
+      return searchResult.count
+    }
+    
     let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
     let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
     
@@ -218,6 +222,12 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    */
   override func tableView(
     _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    if searchResult.count > 0 {
+      print("Create result row")
+      let location = searchResult[indexPath.row]
+      return createLocationCell(indexPath, location: location, isFavourite: false)
+    }
     
     let topSection = (allowCurrentPosition || allowNearbyStations) ? 0 : -1
     let favSection = (favouriteLocations.count > 0) ? topSection + 1 : -1
@@ -251,8 +261,8 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    */
   override func tableView(
     _ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
-    if allowNearbyStations && indexPath.section == 0 {
+
+    if searchResult.count == 0 && noResults != true && allowNearbyStations && indexPath.section == 0 {
       if (allowCurrentPosition && indexPath.row == 1) ||
         (!allowCurrentPosition && indexPath.row == 0) {
         searchController!.isActive = false
@@ -364,12 +374,14 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     favouriteLocations.insert(location, at: destinationIndexPath.row)
   }
   
+  // MARK: UISearchControllerDelegate
+  
   /**
    * Fix for broken search bar when tranlucent navbar is off.
    * TODO: Remove if future update fixes this.
    */
   func willPresentSearchController(_ searchController: UISearchController) {
-    navigationController?.navigationBar.isTranslucent = true
+    //navigationController?.navigationBar.isTranslucent = true
   }
   
   /**
@@ -377,7 +389,47 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    * TODO: Remove if future update fixes this.
    */
   func willDismissSearchController(_ searchController: UISearchController) {
-    navigationController?.navigationBar.isTranslucent = false
+    //navigationController?.navigationBar.isTranslucent = true
+  }
+  
+  // MARK: UISearchResultsUpdating
+  
+  @objc func updateSearchResults(for searchController: UISearchController) {
+    NSObject.cancelPreviousPerformRequests(
+      withTarget: self, selector: #selector(searchLocation), object: nil)
+    searchQueryText = searchController.searchBar.text
+    self.perform(#selector(searchLocation), with: nil, afterDelay: 0.2)
+  }
+  
+  /**
+   * Executes a search
+   */
+  @objc func searchLocation() {
+    if let query = searchQueryText {
+      if query.characters.count > 0 {
+        self.noResults = false
+        NetworkActivity.displayActivityIndicator(true)
+        LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { (locations, slNetworkError) in
+          NetworkActivity.displayActivityIndicator(false)
+          DispatchQueue.main.async {
+            if slNetworkError != nil {
+              self.searchResult = []
+              self.noResults = true
+              self.reloadTableData()
+              return
+            }
+            self.searchResult = locations
+            if locations.count > 0 {
+              self.reloadTableData()
+            }
+          }
+        }
+      } else if query.characters.count == 0 {
+        self.searchResult = []
+        self.noResults = false
+        reloadTableData()
+      }
+    }
   }
   
   // MARK: Private
@@ -386,6 +438,12 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    * Select loation at index path
    */
   fileprivate func selectLocation(_ indexPath: IndexPath) {
+    
+    if searchResult.count > 0 {
+      selectedLocation = searchResult[indexPath.row]
+      return
+    }
+    
     if allowCurrentPosition &&
       indexPath.section == 0 && indexPath.row == 0 {
       selectedLocation = Location.createCurrentLocation()
@@ -516,18 +574,10 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
    * Prepares search controller
    */
   fileprivate func prepareSearchController() {
-    let searchResultsVC = storyboard!.instantiateViewController(withIdentifier: "LocationSearchResult") as! SearchLocationResultsVC
-    searchResultsVC.searchLocationVC = self
-    searchResultsVC.searchOnlyForStations = searchOnlyForStations
-    searchResultsVC.isLocationForRealTimeSearch = isLocationForRealTimeSearch
-    
-    searchController = UISearchController(searchResultsController: searchResultsVC)
-    searchController!.searchResultsUpdater = searchResultsVC
+    searchController = UISearchController(searchResultsController: nil)
+    searchController!.searchResultsUpdater = self
     searchController!.delegate = self
-    searchController!.dimsBackgroundDuringPresentation = true
-    
-    searchController!.searchBar.barStyle = .black
-    searchController!.searchBar.barTintColor = UIColor.white
+    searchController!.dimsBackgroundDuringPresentation = false
     
     if searchOnlyForStations {
       searchController!.searchBar.placeholder = "Type stop name".localized
@@ -537,6 +587,14 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
     if #available(iOS 11.0, *) {
       navigationItem.hidesSearchBarWhenScrolling = false
       navigationItem.searchController = searchController
+      if let textfield = searchController?.searchBar.value(forKey: "searchField") as? UITextField {
+        textfield.textColor = UIColor.blue
+        if let backgroundview = textfield.subviews.first {
+          backgroundview.backgroundColor = UIColor.white
+          backgroundview.layer.cornerRadius = 10
+          backgroundview.clipsToBounds = true
+        }
+      }
     } else {
       tableView.tableHeaderView = searchController!.searchBar
     }
@@ -553,7 +611,21 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate {
                                   for: .touchUpInside)
   }
   
+  fileprivate func reloadTableData() {
+    UIView.transition(with: self.tableView,
+                      duration: 0.2,
+                      options: .transitionCrossDissolve,
+                      animations: {
+                        DispatchQueue.main.async {
+                          self.tableView?.reloadData()
+                        }
+    })
+  }
+  
   deinit {
     NotificationCenter.default.removeObserver(self)
+    if let superView = searchController!.view.superview {
+      superView.removeFromSuperview()
+    }
   }
 }
