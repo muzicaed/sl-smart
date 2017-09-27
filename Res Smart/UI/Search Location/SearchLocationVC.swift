@@ -558,6 +558,7 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
     searchController = UISearchController(searchResultsController: nil)
     searchController!.searchResultsUpdater = self
     searchController!.dimsBackgroundDuringPresentation = false
+    searchController!.searchBar.searchBarStyle = .prominent
     
     if searchOnlyForStations {
       searchController!.searchBar.placeholder = "Type stop name".localized
