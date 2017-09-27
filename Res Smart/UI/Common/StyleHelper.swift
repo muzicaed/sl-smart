@@ -21,12 +21,11 @@ class StyleHelper {
   
   func setupCustomStyle() {
     let navAppearance = UINavigationBar.appearance()
-    navAppearance.isTranslucent = false
     if #available(iOS 11.0, *) {
       navAppearance.prefersLargeTitles = true
     }
     navAppearance.tintColor = UIColor.white
-    navAppearance.barTintColor = mainGreen
+    navAppearance.barTintColor = UIColor(red: 0/255, green: 158/255, blue: 102/255, alpha: 1.0)
     
     let tabBarAppearance = UITabBar.appearance()
     tabBarAppearance.tintColor = mainGreen
@@ -47,7 +46,7 @@ class StyleHelper {
     }
     
     UINavigationBar.appearance().titleTextAttributes = [
-      NSAttributedStringKey.foregroundColor: UIColor.white
+      NSAttributedStringKey.foregroundColor: UIColor(white: 0.2, alpha: 0.9)
     ]
     
     UITabBarItem.appearance().setTitleTextAttributes(

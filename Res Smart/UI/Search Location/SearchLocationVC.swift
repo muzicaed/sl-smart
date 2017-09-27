@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import ResStockholmApiKit
 
-class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISearchResultsUpdating {
+class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
   
   let cellReusableId = "StationSearchResultCell"
   let cellNotFoundId = "NoStationsFound"
@@ -58,7 +58,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    navigationController?.navigationBar.isTranslucent = true
     loadListedLocations()
     tableView.isEditing = false
     tableView.reloadData()
@@ -374,24 +373,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
     favouriteLocations.insert(location, at: destinationIndexPath.row)
   }
   
-  // MARK: UISearchControllerDelegate
-  
-  /**
-   * Fix for broken search bar when tranlucent navbar is off.
-   * TODO: Remove if future update fixes this.
-   */
-  func willPresentSearchController(_ searchController: UISearchController) {
-    //navigationController?.navigationBar.isTranslucent = true
-  }
-  
-  /**
-   * Fix for broken search bar when tranlucent navbar is off.
-   * TODO: Remove if future update fixes this.
-   */
-  func willDismissSearchController(_ searchController: UISearchController) {
-    //navigationController?.navigationBar.isTranslucent = true
-  }
-  
   // MARK: UISearchResultsUpdating
   
   @objc func updateSearchResults(for searchController: UISearchController) {
@@ -576,7 +557,6 @@ class SearchLocationVC: UITableViewController, UISearchControllerDelegate, UISea
   fileprivate func prepareSearchController() {
     searchController = UISearchController(searchResultsController: nil)
     searchController!.searchResultsUpdater = self
-    searchController!.delegate = self
     searchController!.dimsBackgroundDuringPresentation = false
     
     if searchOnlyForStations {
