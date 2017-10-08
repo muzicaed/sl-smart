@@ -21,29 +21,6 @@ open class RoutineService {
     createPrioList(allRoutineTrips, callback: callback)
   }
   
-  /**
-   * Adds a habit routine (Smart suggestion).
-   */
-  open static func addHabitRoutine(_ crit: TripSearchCriterion) {
-    let criterion = crit.copy() as! TripSearchCriterion
-    criterion.resetAdvancedTripTypes()
-    criterion.date = nil
-    criterion.time = nil
-    var routine = RoutineTripsStore.sharedInstance.retriveRoutineTripOnId(criterion.smartId())
-    
-    if routine == nil {
-      routine = RoutineTrip(
-        id: criterion.smartId(), title: "",
-        criterions: criterion, isSmartSuggestion: true)
-      RoutineTripsStore.sharedInstance.addRoutineTrip(routine!)
-    } else {
-      ScorePostHelper.changeScoreForRoutineTrip(
-        routine!.criterions.origin!.siteId!,
-        destinationId: routine!.criterions.dest!.siteId!,
-        score: ScorePostHelper.OtherTapCountScore)
-    }
-  }
-  
   // MARK: Private methods
   
   /**

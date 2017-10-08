@@ -277,7 +277,6 @@ class RoutineTripsVC: UITableViewController, LocationSearchResponder {
       crit.time = DateUtils.dateAsTimeString(date)
       hereToThereCriterion = crit
       
-      RoutineService.addHabitRoutine(crit)
       performSegue(withIdentifier: self.showTripListSegue, sender: self)
     }
   }

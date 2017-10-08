@@ -40,7 +40,6 @@ open class RoutineTripsStore {
    * Adds a routine trip to data store
    */
   open func addRoutineTrip(_ trip: RoutineTrip) {
-    cleanOutMatchingHabitRoutines(trip)
     trip.trips = [Trip]()
     cachedRoutineTrips = retrieveRoutineTripsFromStore()
     cachedRoutineTrips.append(trip)
@@ -65,7 +64,6 @@ open class RoutineTripsStore {
       if testRoutine.id == trip.id {
         cachedRoutineTrips[index] = trip.copy() as! RoutineTrip
         writeRoutineTripsToStore()
-        cleanOutMatchingHabitRoutines(trip)
         return
       }
     }
@@ -141,19 +139,5 @@ open class RoutineTripsStore {
     let archivedObject = NSKeyedArchiver.archivedData(withRootObject: cachedRoutineTrips as NSArray)
     defaults.set(archivedObject, forKey: MyRoutineTrips)
     cachedRoutineTrips = retrieveRoutineTripsFromStore()
-  }
-  
-  /**
-   * Delete mathing habit routines (Smart suggestions)
-   */
-  fileprivate func cleanOutMatchingHabitRoutines(_ trip: RoutineTrip) {
-    for testRoutine in cachedRoutineTrips {
-      if testRoutine.isSmartSuggestion {
-        if trip.criterions.originId == testRoutine.criterions.originId &&
-          trip.criterions.dest?.siteId == testRoutine.criterions.dest?.siteId {
-            deleteRoutineTrip(testRoutine.id)
-        }
-      }
-    }
   }
 }

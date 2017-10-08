@@ -120,9 +120,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     if let bestRoutineTrip = self.bestRoutine {
       if let trip = bestRoutineTrip.trips.first {
         self.titleLabel.text = bestRoutineTrip.title
-        if self.titleLabel.text == "" {
-          self.titleLabel.text = "Habit".localized
-        }
         if let first = trip.tripSegments.first, let last = trip.tripSegments.last {
           self.departureStationLabel.text = first.origin.name
           self.arrivalStationLabel.text = last.destination.name
