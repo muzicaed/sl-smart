@@ -10,7 +10,7 @@ import Foundation
 
 open class SearchTripService {
   
-  fileprivate static let api = SLTravelPlannerV2Api()
+  fileprivate static let api = SLTravelPlannerV3Api()
   
   /**
    * Trip search.
@@ -63,6 +63,7 @@ open class SearchTripService {
   fileprivate static func convertJsonResponse(_ jsonDataString: Data, _ criterion: TripSearchCriterion) -> [Trip] {
     var result = [Trip]()
     let data = JSON(data: jsonDataString)
+    print(data)
     if checkErrors(data) {
       return [Trip]()
     }

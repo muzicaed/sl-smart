@@ -21,6 +21,7 @@
 		1818B2781C405D5B004E3CA3 /* ResStockholmApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; };
 		181ABB861CD89283003CA251 /* NearbyStationsMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181ABB851CD89283003CA251 /* NearbyStationsMapVC.swift */; };
 		181DE5441F5C139300FA6D93 /* NoTripsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DE5431F5C139300FA6D93 /* NoTripsCell.swift */; };
+		18230C90210DF0A000EEF7F5 /* SLTravelPlannerV3Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18230C8F210DF0A000EEF7F5 /* SLTravelPlannerV3Api.swift */; };
 		18232CA41C01D46A006334D1 /* EditRoutineTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */; };
 		18232CA61C01DB81006334D1 /* StyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CA51C01DB81006334D1 /* StyleButton.swift */; };
 		18232CAC1C01EC2F006334D1 /* SearchLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAB1C01EC2F006334D1 /* SearchLocationVC.swift */; };
@@ -50,7 +51,6 @@
 		18630EE21CC2366A0085C0B8 /* ResStockholmApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A9E8471C18993B008F97C8 /* ResStockholmApiKit.framework */; };
 		18630EED1CC236A80085C0B8 /* SearchCriterionStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18630EEC1CC236A80085C0B8 /* SearchCriterionStoreTests.swift */; };
 		18630EEF1CC26C9E0085C0B8 /* FavouriteLocationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18630EEE1CC26C9E0085C0B8 /* FavouriteLocationsStore.swift */; };
-		18635D991D7564A4007A495E /* res-smart.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 18635D981D7564A4007A495E /* res-smart.geojson */; };
 		18635D9B1D756513007A495E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18635D9A1D756513007A495E /* MapKit.framework */; };
 		186447631C5FF6B400020A17 /* DataMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186447621C5FF6B400020A17 /* DataMigration.swift */; };
 		18698AA61C4E91000031D1AD /* RealTimeHeaderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */; };
@@ -95,7 +95,6 @@
 		1892BA3C1C1F244400BC191A /* TravelTypesResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892BA3B1C1F244400BC191A /* TravelTypesResponder.swift */; };
 		1892BA3E1C1F26E100BC191A /* TravelTypesPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892BA3D1C1F26E100BC191A /* TravelTypesPickerRow.swift */; };
 		18937E351BFF33FA00C523C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937E341BFF33FA00C523C9 /* AppDelegate.swift */; };
-		18937E3C1BFF33FA00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E3B1BFF33FA00C523C9 /* Assets.xcassets */; };
 		18937E441BFF33FB00C523C9 /* Res Smart.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 18937E431BFF33FB00C523C9 /* Res Smart.app */; };
 		18937E4A1BFF33FB00C523C9 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18937E481BFF33FB00C523C9 /* Interface.storyboard */; };
 		18937E4C1BFF33FB00C523C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18937E4B1BFF33FB00C523C9 /* Assets.xcassets */; };
@@ -123,7 +122,6 @@
 		18A9E8611C189998008F97C8 /* MyLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */; };
 		18A9E8621C189998008F97C8 /* ScorePostHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */; };
 		18A9E8651C1899E7008F97C8 /* SLSearchLocationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18232CAF1C01FA78006334D1 /* SLSearchLocationApi.swift */; };
-		18A9E8661C1899E7008F97C8 /* SLTravelPlannerV2Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */; };
 		18A9E8671C1899E7008F97C8 /* HttpRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180603651C0201A100AC1841 /* HttpRequestHelper.swift */; };
 		18A9E8681C1899E7008F97C8 /* SLSearchNearbyStationsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */; };
 		18A9E8691C1899E7008F97C8 /* SLNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B85651C14ADF100098B00 /* SLNetworkError.swift */; };
@@ -286,13 +284,14 @@
 		1818B26E1C404FE0004E3CA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1818B2751C405ACF004E3CA3 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Today.entitlements; sourceTree = "<group>"; };
 		181ABB851CD89283003CA251 /* NearbyStationsMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearbyStationsMapVC.swift; path = "Res Smart/UI/Search Location/Nearby/NearbyStationsMapVC.swift"; sourceTree = SOURCE_ROOT; };
-		181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLTravelPlannerV2Api.swift; sourceTree = "<group>"; };
 		181B9AF01C0375DC00B9145A /* TripSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripSegment.swift; path = ResStockholmApiKit/Model/Trip/TripSegment.swift; sourceTree = SOURCE_ROOT; };
 		181B9AF21C0380FD00B9145A /* SearchTripService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTripService.swift; sourceTree = "<group>"; };
 		181B9AF51C03A9E100B9145A /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		181B9AF71C03B3FB00B9145A /* TripHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHelper.swift; sourceTree = "<group>"; };
 		181B9AF91C03D64000B9145A /* RoutineService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineService.swift; sourceTree = "<group>"; };
 		181DE5431F5C139300FA6D93 /* NoTripsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTripsCell.swift; sourceTree = "<group>"; };
+		18230C8D210DEE8B00EEF7F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18230C8F210DF0A000EEF7F5 /* SLTravelPlannerV3Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SLTravelPlannerV3Api.swift; path = "../../../../../dev/res-smart/ResStockholmApiKit/Services/SL API/SLTravelPlannerV3Api.swift"; sourceTree = "<group>"; };
 		18232CA31C01D46A006334D1 /* EditRoutineTripVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRoutineTripVC.swift; sourceTree = "<group>"; };
 		18232CA51C01DB81006334D1 /* StyleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleButton.swift; sourceTree = "<group>"; };
 		18232CA91C01EA15006334D1 /* LocationSearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
@@ -323,7 +322,7 @@
 		18630EE11CC2366A0085C0B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18630EEC1CC236A80085C0B8 /* SearchCriterionStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCriterionStoreTests.swift; sourceTree = "<group>"; };
 		18630EEE1CC26C9E0085C0B8 /* FavouriteLocationsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteLocationsStore.swift; sourceTree = "<group>"; };
-		18635D981D7564A4007A495E /* res-smart.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "res-smart.geojson"; path = "../../Res Smart Web Assets/res-smart.geojson"; sourceTree = "<group>"; };
+		18635D981D7564A4007A495E /* res-smart.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "res-smart.geojson"; sourceTree = "<group>"; };
 		18635D9A1D756513007A495E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		186447621C5FF6B400020A17 /* DataMigration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMigration.swift; sourceTree = "<group>"; };
 		18698AA51C4E91000031D1AD /* RealTimeHeaderRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeHeaderRow.swift; sourceTree = "<group>"; };
@@ -372,7 +371,6 @@
 		1892BA3D1C1F26E100BC191A /* TravelTypesPickerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTypesPickerRow.swift; sourceTree = "<group>"; };
 		18937E311BFF33FA00C523C9 /* Res Smart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Res Smart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18937E341BFF33FA00C523C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		18937E3B1BFF33FA00C523C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18937E401BFF33FA00C523C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18937E431BFF33FB00C523C9 /* Res Smart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Res Smart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18937E491BFF33FB00C523C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -413,7 +411,7 @@
 		18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLocationHelper.swift; sourceTree = "<group>"; };
 		18AC9CFF1C08B5B4007ECFA2 /* LoadMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreCell.swift; sourceTree = "<group>"; };
 		18B2902A1C46D8BC00DCE585 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
-		18B290301C46D9D900DCE585 /* Res Smart Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Res Smart Playground.playground"; sourceTree = "<group>"; };
+		18B290301C46D9D900DCE585 /* Res Smart Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Res Smart Playground.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		18B685C31F7BBBC30013AEC8 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		18B761991E28CD47000F9258 /* RoutePlotter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutePlotter.swift; sourceTree = "<group>"; };
 		18BC459D1C5FA5A100248D07 /* NearbyStationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearbyStationsVC.swift; path = "Res Smart/UI/Search Location/Nearby/NearbyStationsVC.swift"; sourceTree = SOURCE_ROOT; };
@@ -563,7 +561,7 @@
 		18232CA81C01E9FF006334D1 /* SL API */ = {
 			isa = PBXGroup;
 			children = (
-				181B9AEE1C0370EF00B9145A /* SLTravelPlannerV2Api.swift */,
+				18230C8F210DF0A000EEF7F5 /* SLTravelPlannerV3Api.swift */,
 				18232CAF1C01FA78006334D1 /* SLSearchLocationApi.swift */,
 				18AC9CFB1C08647A007ECFA2 /* SLSearchNearbyStationsApi.swift */,
 				183D6EB31C19DC2700EB7537 /* SLTrafficSituationServiceApi.swift */,
@@ -740,7 +738,6 @@
 			children = (
 				180B657D1D8A985400D2A50F /* Settings.bundle */,
 				18F447CE1D7EBADC00B48D39 /* JSON */,
-				18635D981D7564A4007A495E /* res-smart.geojson */,
 				18B290301C46D9D900DCE585 /* Res Smart Playground.playground */,
 				18CE5CCC1C0329DA00E1F5A9 /* Libraries */,
 				18937E331BFF33FA00C523C9 /* Res Smart */,
@@ -772,9 +769,9 @@
 			children = (
 				1801A3F61C392D880068E1FC /* Lib */,
 				18937E891C01139E00C523C9 /* UI */,
+				18230C8D210DEE8B00EEF7F5 /* Assets.xcassets */,
 				18937E341BFF33FA00C523C9 /* AppDelegate.swift */,
 				188367611C16264200A8BE16 /* WatchService.swift */,
-				18937E3B1BFF33FA00C523C9 /* Assets.xcassets */,
 				18937E401BFF33FA00C523C9 /* Info.plist */,
 				187733CE1ED82A4900B5B1B9 /* InfoPlist.strings */,
 				188B80971C177E9E00E7D90C /* Res Smart.entitlements */,
@@ -782,6 +779,7 @@
 				18F64E401E8CEEC500709B02 /* LaunchScreen.storyboard */,
 				18F64E421E8CEEC500709B02 /* Main.storyboard */,
 				18801B841E8D0610002E390E /* Localizable.strings */,
+				18635D981D7564A4007A495E /* res-smart.geojson */,
 			);
 			path = "Res Smart";
 			sourceTree = "<group>";
@@ -1265,9 +1263,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18937E3C1BFF33FA00C523C9 /* Assets.xcassets in Resources */,
 				18F64E441E8CEEC500709B02 /* LaunchScreen.storyboard in Resources */,
-				18635D991D7564A4007A495E /* res-smart.geojson in Resources */,
 				18F447E31D7ECF0100B48D39 /* jour.json in Resources */,
 				18F447E41D7ECF0800B48D39 /* line.json in Resources */,
 				18801B821E8D0610002E390E /* Localizable.strings in Resources */,
@@ -1483,6 +1479,7 @@
 				18733C4D1C4E472F00F66AEF /* SLRealtimeDepartures.swift in Sources */,
 				18AAC9321C2EE61000022C54 /* ScorePostStore.swift in Sources */,
 				18A9E8621C189998008F97C8 /* ScorePostHelper.swift in Sources */,
+				18230C90210DF0A000EEF7F5 /* SLTravelPlannerV3Api.swift in Sources */,
 				18FA999C1C49321C0075C4C2 /* Stop.swift in Sources */,
 				18763F221D80A29500666718 /* StaticExit.swift in Sources */,
 				18733C531C4E4DB800F66AEF /* RTTransport.swift in Sources */,
@@ -1501,7 +1498,6 @@
 				188A317D1E89392C00D44C97 /* LocalizedString.swift in Sources */,
 				183D6EB21C19DBF000EB7537 /* TrafficSituationService.swift in Sources */,
 				18A9E85F1C189998008F97C8 /* LocationSearchService.swift in Sources */,
-				18A9E8661C1899E7008F97C8 /* SLTravelPlannerV2Api.swift in Sources */,
 				18FC74791C7B771100980B0D /* SLDeviationsApi.swift in Sources */,
 				18FC74811C7B7D2E00980B0D /* Deviation.swift in Sources */,
 				18A9E85E1C189998008F97C8 /* RoutineService.swift in Sources */,
