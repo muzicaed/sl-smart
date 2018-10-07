@@ -30,7 +30,7 @@ open class JournyDetailsService {
         }
         
         let jsonData = JSON(data: d)
-        if let stopsJson = jsonData["JourneyDetail"]["Stops"]["Stop"].array {
+        if let stopsJson = jsonData["Stops"]["Stop"].array {
           for stopJson in stopsJson {
             result.append(convertStopJson(stopJson))
           }
@@ -70,15 +70,15 @@ open class JournyDetailsService {
   fileprivate static func convertStopJson(_ stopJson: JSON) -> Stop {
     let timeDateTuple = extractTimeDate(stopJson)
     
-    if let staticStop = StopsStore.sharedInstance.getOnId(stopJson["id"].string!) {
+    if let staticStop = StopsStore.sharedInstance.getOnId(stopJson["extId"].string!) {
       return Stop(
-        id: stopJson["id"].string!, name: staticStop.stopPointName,
+        id: stopJson["extId"].string!, name: staticStop.stopPointName,
         location: staticStop.location, type: staticStop.type,
         exits: staticStop.exits, depDate: timeDateTuple.depDate, depTime: timeDateTuple.depTime)
     }
     
     return Stop(
-      id: stopJson["id"].string!, name: stopJson["name"].string!,
+      id: stopJson["extId"].string!, name: stopJson["name"].string!,
       location: CLLocation(latitude: Double(stopJson["lat"].string!)!, longitude: Double(stopJson["lon"].string!)!),
       type: .Bus, exits: [StaticExit](), depDate: timeDateTuple.depDate,
       depTime: timeDateTuple.depTime)

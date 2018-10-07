@@ -10,8 +10,8 @@ import Foundation
 
 class SLJourneyDetailsApi {
   
-  let apiKey = "e785e23627434ac295f09e08053147dc"
-  let urlBase = "http://api.sl.se/api2/TravelplannerV2/journeydetail.json"
+  let apiKey = "47d86c9229604982b95c94cb29d59f08"
+  let urlBase = "http://api.sl.se/api2/TravelplannerV3/journeydetail.json"
   
   /**
    * Search for journy details.
@@ -31,7 +31,7 @@ class SLJourneyDetailsApi {
   * Creates api url for journy details search
   */
   fileprivate func createJournyDetailsUrl(_ urlEncRef: String) -> String {
-    let decoded = urlEncRef.removingPercentEncoding!
-    return urlBase + "?key=\(apiKey)&realtime=true&\(decoded)"
+    let escapedRef = urlEncRef.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+    return urlBase + "?key=\(apiKey)&realtime=true&poly=1&id=\(escapedRef!)"
   }
 }

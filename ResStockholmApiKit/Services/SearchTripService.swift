@@ -137,7 +137,7 @@ open class SearchTripService {
         let origin = convertJsonToLocation(segmentJson["Origin"])
         let destination = convertJsonToLocation(segmentJson["Destination"])
         
-        let distString = (segmentJson["dist"].string != nil) ? segmentJson["dist"].string! : ""
+        let distString = (segmentJson["dist"].string != nil) ? segmentJson["dist"].string! : "0"
         let dateTimeTuple = extractTimeDate(segmentJson)
         let rtuMessages = extractRtuMessages(segmentJson["RTUMessages"]["RTUMessage"])
         
@@ -152,7 +152,7 @@ open class SearchTripService {
             index: Int(segmentJson["idx"].string!)!,
             name: segmentJson["name"].string!,
             type: extractTripType(segmentJson),
-            directionText: segmentJson["dir"].string, lineNumber: segmentJson["line"].string,
+            directionText: segmentJson["direction"].string, lineNumber: segmentJson["Product"]["line"].string,
             origin: origin, destination: destination,
             departureTime: dateTimeTuple.depTime,
             arrivalTime: dateTimeTuple.arrTime,
@@ -219,8 +219,13 @@ open class SearchTripService {
      * Extract TripType from JSON.
      */
     fileprivate static func extractTripType(_ data: JSON) -> TripType {
-        // TODO: Real code here...
-        return TripType.Metro
+        if let type = data["type"].string {
+            if type == "JNY" {
+                return TripType.fromCode(code: data["Product"]["catCode"].string!)
+            }
+        }
+        
+        return TripType.Walk
     }
     
     /**

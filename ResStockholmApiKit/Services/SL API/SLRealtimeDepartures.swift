@@ -11,7 +11,6 @@ import Foundation
 class SLRealtimeDepartures {
   
   //TODO: Remove old
-  let oldApiKey = "eabf4986caee4072a96fa6d5ec860e5c"
   let apiKey = "8350ec2932794e1daf81abf225022ab3"
   let urlBase = "http://api.sl.se/api2/realtimedeparturesV4.json"
   
