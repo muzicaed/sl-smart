@@ -316,7 +316,7 @@ class TripListVC: UITableViewController {
     label.textAlignment = NSTextAlignment.left
     
     if trips.count > 0 {
-      let date = DateUtils.convertDateString("\(keys[section]) 00:00")
+        let date = DateUtils.convertDateString("\(keys[section]) 00:00:00")
       label.text = DateUtils.friendlyDate(date) + ": " + criterions!.origin!.cleanName + " - " + criterions!.dest!.cleanName
     }
     let blurEffect = UIBlurEffect(style: .dark)

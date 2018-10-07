@@ -62,26 +62,7 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
       let _ = navigationController?.popToRootViewController(animated: false)
     }
   }
-    
-  @IBAction func onSMSTicketTap(_ sender: UIBarButtonItem) {
-    let ticketAlert = UIAlertController(
-      title: "What kind of ticket?".localized,
-      message: "Ages under 20 and over 65 can purchase tickets to a reduced price.".localized,
-      preferredStyle: .actionSheet)
-    
-    ticketAlert.addAction(
-      UIAlertAction(title: "Full price".localized, style: .default, handler: { _ in
-        self.sendSMSTicket(type: "vux")
-      }))
-    ticketAlert.addAction(
-      UIAlertAction(title: "Reduced price".localized, style: .default, handler: { _ in
-        self.sendSMSTicket(type: "rab")
-      }))
-    ticketAlert.addAction(
-      UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
-    
-    present(ticketAlert, animated: true, completion: nil)
-  }
+
   
   // MARK: UITableViewController
   
@@ -145,18 +126,6 @@ class TripDetailsVC: UITableViewController, MFMessageComposeViewControllerDelega
   }
   
   // MARK: Private
-  
-  /**
-   * Send SMS ticket request
-   */
-  fileprivate func sendSMSTicket(type: String) {
-    let composeVC = MFMessageComposeViewController()
-    composeVC.messageComposeDelegate = self
-    composeVC.disableUserAttachments()
-    composeVC.recipients = ["0767201010"]
-    composeVC.body = type
-    present(composeVC, animated: true, completion: nil)
-  }
   
   /**
    * Create table cell for origin row.
