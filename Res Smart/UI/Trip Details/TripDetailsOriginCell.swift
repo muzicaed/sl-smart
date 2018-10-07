@@ -23,7 +23,7 @@ class TripDetailsOriginCell: UITableViewCell, TripCellProtocol {
       layer.addBorder(edge: .top, color: UIColor.lightGray, thickness: 0.5)
     }
     let segment = trip.tripSegments[indexPath.section]
-    timeLabel.text = DateUtils.dateAsTimeString(segment.departureDateTime)
+    timeLabel.text = DateUtils.dateAsTimeNoSecString(segment.departureDateTime)
     timeLabel.accessibilityLabel = "Avgång \(timeLabel.text!)"
     locationLabel.text = segment.origin.cleanName
     locationLabel.accessibilityLabel = "från \(locationLabel.text!)"

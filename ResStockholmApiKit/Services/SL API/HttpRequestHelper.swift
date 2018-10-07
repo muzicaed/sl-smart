@@ -30,8 +30,8 @@ class HttpRequestHelper {
       callback((cacheData, nil))
       return
     }
-    //print(url)
-    //print("")
+    print(url)
+    print("")
     
     if let nsUrl = URL(string: url) {
       let request = URLRequest(url: nsUrl)

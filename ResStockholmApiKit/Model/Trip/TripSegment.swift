@@ -10,32 +10,32 @@ import Foundation
 import CoreLocation
 
 open class TripSegment: NSObject, NSCopying {
-  open let index: Int
-  open let name: String
-  open let type: TripType
-  open let directionText: String?
-  open let lineNumber: String?
-  open let origin: Location
-  open var destination: Location
-  open let departureDateTime: Date
-  open let arrivalDateTime: Date
-  open var distance: Int?
-  open let isRealtime: Bool
-  open let journyRef: String?
-  open let geometryRef: String?
-  open let rtuMessages: String?
-  open let notes: String?
-  open let isWarning: Bool
-  open var durationInMin: Int
-  open let isReachable: Bool
-  open let isCancelled: Bool
-  open var trainPositionText: String? = nil
-  open var exitText = ""
+  public let index: Int
+  public let name: String
+  public let type: TripType
+  public let directionText: String?
+  public let lineNumber: String?
+  public let origin: Location
+  public var destination: Location
+  public let departureDateTime: Date
+  public let arrivalDateTime: Date
+  public var distance: Int?
+  public let isRealtime: Bool
+  public let journyRef: String?
+  public let geometryRef: String?
+  public let rtuMessages: String?
+  public let notes: String?
+  public let isWarning: Bool
+  public var durationInMin: Int
+  public let isReachable: Bool
+  public let isCancelled: Bool
+  public var trainPositionText: String? = nil
+  public var exitText = ""
   
   open var stops = [Stop]()
   
   public init(
-    index: Int, name: String, type: String, directionText: String?,
+    index: Int, name: String, type: TripType, directionText: String?,
     lineNumber: String?, origin: Location, destination: Location,
     departureTime: String, arrivalTime: String,
     departureDate: String, arrivalDate: String,
@@ -45,7 +45,7 @@ open class TripSegment: NSObject, NSCopying {
     
     self.index = index
     self.name = name
-    self.type = TripType(rawValue: type)!
+    self.type = type
     if let dir = directionText {
       self.directionText = StringUtils.fixBrokenEncoding(dir)
     } else {
@@ -76,7 +76,7 @@ open class TripSegment: NSObject, NSCopying {
    */
   open func copy(with zone: NSZone?) -> Any {
     let seg = TripSegment(
-      index: index, name: name, type: type.rawValue,
+      index: index, name: name, type: type,
       directionText: directionText, lineNumber: lineNumber,
       origin: origin.copy() as! Location,
       destination: destination.copy() as! Location,

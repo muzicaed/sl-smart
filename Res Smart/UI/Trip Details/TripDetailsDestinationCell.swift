@@ -22,7 +22,7 @@ class TripDetailsDestinationCell: UITableViewCell, TripCellProtocol {
   func setData(_ indexPath: IndexPath, trip: Trip) {
     layer.addBorder(edge: .bottom, color: UIColor.lightGray, thickness: 0.5)
     let segment = trip.tripSegments[indexPath.section]
-    timeLabel.text = DateUtils.dateAsTimeString(segment.arrivalDateTime)
+    timeLabel.text = DateUtils.dateAsTimeNoSecString(segment.arrivalDateTime)
     timeLabel.accessibilityLabel = "\("Arrive at".localized) \(timeLabel.text!)"
     destinationLabel.text = segment.destination.cleanName
     exitLabel.text = ""

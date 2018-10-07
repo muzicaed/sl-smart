@@ -264,9 +264,9 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     }
     
     if origin == nil {
-      return "&originId=\(originId)"
+      return "&originExtId=\(originId)"
     } else if origin!.type == .Station {
-      return "&originId=\(origin!.siteId!)"
+      return "&originExtId=\(origin!.siteId!)"
     }
     return "&originCoordLat=\(origin!.lat!)&originCoordLong=\(origin!.lon!)&originCoordName=\(origin!.name)"
   }
@@ -283,9 +283,9 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     }
     
     if dest == nil {
-      return "&destId=\(destId)"
+      return "&destExtId=\(destId)"
     } else if dest!.type == .Station {
-      return "&destId=\(dest!.siteId!)"
+      return "&destExtId=\(dest!.siteId!)"
     }
 
     return "&destCoordLat=\(dest!.lat!)&destCoordLong=\(dest!.lon!)&destCoordName=\(dest!.name)"

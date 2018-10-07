@@ -51,14 +51,14 @@ class TripCell: UITableViewCell {
       
       let isWalk = (trip.tripSegments.first?.type == .Walk)
       if isWalk {
-        departureTimeLabel.text = DateUtils.dateAsTimeString(
+        departureTimeLabel.text = DateUtils.dateAsTimeNoSecString(
           trip.tripSegments[1].departureDateTime)
       } else {
-        departureTimeLabel.text = DateUtils.dateAsTimeString(
+        departureTimeLabel.text = DateUtils.dateAsTimeNoSecString(
           trip.tripSegments.first!.departureDateTime)
       }
       arrivalTimeLabel.textColor = UIColor.black
-      arrivalTimeLabel.text = DateUtils.dateAsTimeString(
+      arrivalTimeLabel.text = DateUtils.dateAsTimeNoSecString(
         trip.tripSegments.last!.arrivalDateTime)
       
       let aboutTime = DateUtils.createAboutTimeText(segments: trip.tripSegments)

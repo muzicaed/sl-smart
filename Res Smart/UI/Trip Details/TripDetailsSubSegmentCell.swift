@@ -23,7 +23,7 @@ class TripDetailsSubSegmentCell: UITableViewCell, TripCellProtocol {
     let stop = trip.tripSegments[indexPath.section].stops[indexPath.row - 1]
     locationLabel.text = stop.name
     if let date = stop.depDate {
-      timeLabel.text = DateUtils.dateAsTimeString(date)
+      timeLabel.text = DateUtils.dateAsTimeNoSecString(date)
     }
   }
 }
