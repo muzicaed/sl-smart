@@ -164,16 +164,10 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
         let next: TripSegment? = (trip.allTripSegments.count > index + 1) ? trip.allTripSegments[index + 1] : nil
         let before: TripSegment? = (index > 0) ? trip.allTripSegments[index - 1] : nil
         let isLast = (segment == trip.allTripSegments.last)
-        if let geoRef = segment.geometryRef {
-          GeometryService.fetchGeometry(geoRef, callback: { (locations, error) in
-            DispatchQueue.main.async {
-              self.loadedSegmentsCount += 1
-              let coords = RoutePlotter.plotRoute(segment, before: before, next: next,
-                                                  isLast: isLast, geoLocations: locations, mapView: self.mapView)
-              self.loadRouteDone(coords: coords, segment: segment)
-            }
-          })
-        }
+        self.loadedSegmentsCount += 1
+        //let coords = RoutePlotter.plotRoute(segment, before: before, next: next,
+//                                            isLast: isLast, geoLocations: locations, mapView: self.mapView)
+        //self.loadRouteDone(coords: coords, segment: segment)
       }
     }
   }

@@ -105,8 +105,6 @@
 		18946B171C18431500A5829D /* DateTimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18946B161C18431500A5829D /* DateTimePickerVC.swift */; };
 		18946B1D1C1844E700A5829D /* DateTimePickResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */; };
 		1899F25C1C4AF05C00534587 /* TripMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F25B1C4AF05C00534587 /* TripMapVC.swift */; };
-		1899F2621C4AF88B00534587 /* SLGeometryApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2611C4AF88B00534587 /* SLGeometryApi.swift */; };
-		1899F2641C4AFAB000534587 /* GeometryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F2631C4AFAB000534587 /* GeometryService.swift */; };
 		18A000441CDF9C0A004B83F6 /* LinePickerResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A000431CDF9C0A004B83F6 /* LinePickerResponder.swift */; };
 		18A428A11CA8257E004B4D67 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1818B2661C404FE0004E3CA3 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		18A5A8DB1C580E83003C4C3B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A5A8DA1C580E83003C4C3B /* CoreLocation.framework */; };
@@ -391,8 +389,6 @@
 		18946B161C18431500A5829D /* DateTimePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickerVC.swift; sourceTree = "<group>"; };
 		18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickResponder.swift; sourceTree = "<group>"; };
 		1899F25B1C4AF05C00534587 /* TripMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripMapVC.swift; sourceTree = "<group>"; };
-		1899F2611C4AF88B00534587 /* SLGeometryApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLGeometryApi.swift; sourceTree = "<group>"; };
-		1899F2631C4AFAB000534587 /* GeometryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryService.swift; sourceTree = "<group>"; };
 		1899F2661C4B9C6200534587 /* RouteRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteRenderer.swift; sourceTree = "<group>"; };
 		1899F2681C4B9C9200534587 /* RoutePolyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutePolyline.swift; sourceTree = "<group>"; };
 		1899F26A1C4BBE7800534587 /* Pins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pins.swift; sourceTree = "<group>"; };
@@ -569,7 +565,6 @@
 				180603651C0201A100AC1841 /* HttpRequestHelper.swift */,
 				188B85651C14ADF100098B00 /* SLNetworkError.swift */,
 				18FA99931C492BDC0075C4C2 /* SLJourneyDetailsApi.swift */,
-				1899F2611C4AF88B00534587 /* SLGeometryApi.swift */,
 				18733C4C1C4E472F00F66AEF /* SLRealtimeDepartures.swift */,
 				18FC74781C7B771100980B0D /* SLDeviationsApi.swift */,
 				188A317A1E892F9D00D44C97 /* LanguageHelper.swift */,
@@ -855,7 +850,6 @@
 				18AC9CFD1C0866C7007ECFA2 /* MyLocationHelper.swift */,
 				180FD8BA1C0B150E0095C790 /* ScorePostHelper.swift */,
 				18FA99991C492E3F0075C4C2 /* JournyDetailsService.swift */,
-				1899F2631C4AFAB000534587 /* GeometryService.swift */,
 				18733C4E1C4E482F00F66AEF /* RealTimeDeparturesService.swift */,
 				183D6EB11C19DBF000EB7537 /* TrafficSituationService.swift */,
 				18FC747E1C7B778F00980B0D /* DeviationsService.swift */,
@@ -1464,7 +1458,6 @@
 				18F447DD1D7EC02C00B48D39 /* ScorePost.swift in Sources */,
 				18AAC9341C2EE7BC00022C54 /* LatestLocationsStore.swift in Sources */,
 				18F447E21D7EC57200B48D39 /* StaticStop.swift in Sources */,
-				1899F2641C4AFAB000534587 /* GeometryService.swift in Sources */,
 				183D6EB61C19DEF400EB7537 /* SituationGroup.swift in Sources */,
 				18A9E8701C1899ED008F97C8 /* TripSeachCriterion.swift in Sources */,
 				18AAC9301C2EE3DF00022C54 /* RoutineTripsStore.swift in Sources */,
@@ -1488,7 +1481,6 @@
 				18A9E8651C1899E7008F97C8 /* SLSearchLocationApi.swift in Sources */,
 				18A9E8681C1899E7008F97C8 /* SLSearchNearbyStationsApi.swift in Sources */,
 				18AAC92F1C2EE3DF00022C54 /* SearchCriterionStore.swift in Sources */,
-				1899F2621C4AF88B00534587 /* SLGeometryApi.swift in Sources */,
 				18A9E86B1C1899ED008F97C8 /* Location.swift in Sources */,
 				18A9E8691C1899E7008F97C8 /* SLNetworkError.swift in Sources */,
 				18A9E86A1C1899ED008F97C8 /* Trip.swift in Sources */,
