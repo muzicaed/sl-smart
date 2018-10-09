@@ -67,7 +67,6 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     }
     
     var query = (beginsWithQuestionMark) ? "?" : "&"
-    //query += "numTrips=\(numTrips)"
     
     query += createOriginQuery()
     query += createDestinationQuery()
@@ -78,15 +77,10 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     query += (numChg > -1) ? "&maxChange=\(numChg)" : ""
     query += (minChgTime != 0) ? "&minChangeTime=\(minChgTime)" : ""
     
-    /**
-     TODO: USE BIT MASK
-    query += (!useTrain) ? "&useTrain=0" : ""
-    query += (!useMetro) ? "&useMetro=0" : ""
-    query += (!useTram) ? "&useTram=0" : ""
-    query += (!useBus) ? "&useBus=0" : ""
-    query += (!useFerry) ? "&useFerry=0" : ""
-    query += (!useShip) ? "&useShip=0" : ""
-     */
+    let productBitMask = createProductBitMask()
+    if (productBitMask != "0") {
+        query += "&products=\(productBitMask)"
+    }
     
     query += (searchForArrival) ? "&searchForArrival=1" : ""
     query += "&numB=0"
@@ -296,4 +290,16 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
 
     return "&destCoordLat=\(dest!.lat!)&destCoordLong=\(dest!.lon!)&destCoordName=\(dest!.name)"
   }
+    
+    fileprivate func createProductBitMask() -> String {
+        var productMask = 0
+        
+        if (useTrain) { productMask += 1 }
+        if (useMetro) { productMask += 2 }
+        if (useTram) { productMask += 4 }
+        if (useBus) { productMask += 8 }
+        if (useFerry || useShip) { productMask += 64 }
+        
+        return String(productMask)
+    }
 }
