@@ -137,7 +137,7 @@ open class SearchTripService {
         let origin = convertJsonToLocation(segmentJson["Origin"])
         let destination = convertJsonToLocation(segmentJson["Destination"])
         
-        let distString = (segmentJson["dist"].string != nil) ? segmentJson["dist"].string! : "0"
+        let dist = (segmentJson["dist"].int != nil) ? segmentJson["dist"].int! : 0
         let dateTimeTuple = extractTimeDate(segmentJson)
         let rtuMessages = extractRtuMessages(segmentJson["RTUMessages"]["RTUMessage"])
         
@@ -158,7 +158,7 @@ open class SearchTripService {
             arrivalTime: dateTimeTuple.arrTime,
             departureDate: dateTimeTuple.depDate,
             arrivalDate: dateTimeTuple.arrDate,
-            distance: Int(distString), isRealtime: dateTimeTuple.isRealtime,
+            distance: dist, isRealtime: dateTimeTuple.isRealtime,
             journyRef: segmentJson["JourneyDetailRef"]["ref"].string,
             geometryRef: segmentJson["GeometryRef"]["ref"].string,
             rtuMessages: rtuMessages, notes: "", isWarning: isWarning,

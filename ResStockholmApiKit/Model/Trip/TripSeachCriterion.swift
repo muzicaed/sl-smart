@@ -67,7 +67,7 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     }
     
     var query = (beginsWithQuestionMark) ? "?" : "&"
-    query += "numTrips=\(numTrips)"
+    //query += "numTrips=\(numTrips)"
     
     query += createOriginQuery()
     query += createDestinationQuery()
@@ -75,22 +75,28 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     query += (via != nil) ? "&viaId=\(via!.siteId!)" : ""
     query += (date != nil) ? "&date=\(date!)" : ""
     query += (time != nil) ? "&time=\(time!)" : ""
-    query += (numChg > -1) ? "&numChg=\(numChg)" : ""
-    query += (minChgTime != 0) ? "&minChgTime=\(minChgTime)" : ""
+    query += (numChg > -1) ? "&maxChange=\(numChg)" : ""
+    query += (minChgTime != 0) ? "&minChangeTime=\(minChgTime)" : ""
     
+    /**
+     TODO: USE BIT MASK
     query += (!useTrain) ? "&useTrain=0" : ""
     query += (!useMetro) ? "&useMetro=0" : ""
     query += (!useTram) ? "&useTram=0" : ""
     query += (!useBus) ? "&useBus=0" : ""
     query += (!useFerry) ? "&useFerry=0" : ""
     query += (!useShip) ? "&useShip=0" : ""
+     */
     
     query += (searchForArrival) ? "&searchForArrival=1" : ""
-    query += (unsharp) ? "&unsharp=1" : ""
-    query += "&realtime=true"
-    query += (maxWalkDist > 0) ? "&maxWalkDist=\(maxWalkDist)" : ""
-    query += (lineInc != nil) ? "&lineInc=\(lineInc!.trimmingCharacters(in: CharacterSet.whitespaces))" : ""
-    query += (lineExc != nil) ? "&lineExc=\(lineExc!.trimmingCharacters(in: CharacterSet.whitespaces))" : ""
+    query += "&numB=0"
+    query += "&numF=6"
+    query += (maxWalkDist > 0) ? "&originWalk=1,0,\(maxWalkDist)" : ""
+    query += (maxWalkDist > 0) ? "&destWalk=1,0,\(maxWalkDist)" : ""
+    
+    
+    query += (lineInc != nil) ? "&lines=\(lineInc!.trimmingCharacters(in: CharacterSet.whitespaces))" : ""
+    query += (lineExc != nil) ? "&lines=!\(lineExc!.trimmingCharacters(in: CharacterSet.whitespaces))" : ""
     
     if let escapedQuery = query.addingPercentEncoding(
       withAllowedCharacters: .urlQueryAllowed) {
