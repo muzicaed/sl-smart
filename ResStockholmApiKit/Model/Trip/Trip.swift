@@ -10,7 +10,7 @@ import Foundation
 
 open class Trip: NSObject, NSCopying {
   
-  open var durationMin = 0
+  open var durationText = ""
   open var noOfChanges = 0
   open var isValid = true
   open var tripSegments = [TripSegment]()
@@ -21,11 +21,11 @@ open class Trip: NSObject, NSCopying {
   /**
    * Standard init
    */
-  public init(durationMin: Int, noOfChanges: Int,
+  public init(durationText: String, noOfChanges: Int,
               isValid: Bool, tripSegments: [TripSegment]?,
               criterion: TripSearchCriterion) {
     
-    self.durationMin = durationMin
+    self.durationText = durationText
     self.noOfChanges = noOfChanges
     self.isValid = isValid
     self.criterion = criterion
@@ -112,7 +112,7 @@ open class Trip: NSObject, NSCopying {
     }
     
     return [
-      "dur": durationMin as AnyObject,
+      "dur": durationText as AnyObject,
       "icn": icons as AnyObject,
       "lns": lines as AnyObject,
       "war": warnings as AnyObject,
@@ -152,7 +152,7 @@ open class Trip: NSObject, NSCopying {
     for segment in tripSegments {
       tripSegmentCopy.append(segment.copy() as! TripSegment)
     }
-    return Trip(durationMin: durationMin, noOfChanges: noOfChanges,
+    return Trip(durationText: durationText, noOfChanges: noOfChanges,
                 isValid: isValid, tripSegments: tripSegmentCopy,
                 criterion: criterion.copy() as! TripSearchCriterion)
   }

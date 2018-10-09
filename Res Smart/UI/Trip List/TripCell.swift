@@ -79,7 +79,7 @@ class TripCell: UITableViewCell {
       }
       
       if trip.isValid {
-        tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationMin)
+        tripDurationLabel.text = DateUtils.createTripDurationString(trip.durationText)
         tripDurationLabel.textColor = UIColor.darkGray
       }
       

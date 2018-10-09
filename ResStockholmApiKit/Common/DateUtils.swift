@@ -149,16 +149,11 @@ open class DateUtils {
     /**
      * Creates human friendly trip duration string.
      */
-    public static func createTripDurationString(_ min: Int) -> String {
-        if min < 60 {
-            return "\("Trip time".localized): \(min) min"
-        }
-        
-        var remainder = String(min % 60)
-        if remainder.characters.count <= 1 {
-            remainder = "0" + remainder
-        }
-        return "\("Trip time".localized): \(min / 60):\(remainder) \("h".localized)"
+    public static func createTripDurationString(_ duration: String) -> String {
+        var newDurationText = duration.replacingOccurrences(of: "PT", with: "")
+        newDurationText = newDurationText.replacingOccurrences(of: "H", with: " " + "h".localized + " ")
+        newDurationText = newDurationText.replacingOccurrences(of: "M", with: " min")
+        return "\("Trip time".localized): \(newDurationText)"
     }
     
     // MARK: Private

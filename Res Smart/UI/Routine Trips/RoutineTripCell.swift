@@ -54,7 +54,7 @@ class RoutineTripCell: UITableViewCell {
         }
         
         if trip.isValid {
-          tripTimeLabel.text = DateUtils.createTripDurationString(trip.durationMin)
+          tripTimeLabel.text = DateUtils.createTripDurationString(trip.durationText)
           tripTimeLabel.textColor = UIColor.darkGray
         }
         
