@@ -324,7 +324,7 @@ class TripListVC: UITableViewController {
     blurView.frame = view.bounds
     view.addSubview(blurView)
     view.addSubview(label)
-    //view.blurTintColor = StyleHelper.sharedInstance.mainGreen
+
     return view
   }
   
@@ -353,7 +353,7 @@ class TripListVC: UITableViewController {
       }
       
       if !isLoadingMore && !isLoadingMoreBlocked {
-        if overflow > 0 {
+        if overflow > -100 {
           loadMoreTrips()
         } else {
           loadMoreEarlier?.hideSpinner()
