@@ -64,10 +64,16 @@ class TripCell: UITableViewCell {
       let aboutTime = DateUtils.createAboutTimeText(segments: trip.tripSegments)
       if aboutTime != "" {
         inAboutLabel.text = " \(aboutTime) \u{200C}"
-        inAboutLabel.layer.backgroundColor = UIColor.darkGray.cgColor
         inAboutLabel.layer.cornerRadius = 4.0
         inAboutLabel.textColor = UIColor.white
         inAboutLabel.isHidden = false
+        inAboutLabel.layer.backgroundColor = UIColor.darkGray.cgColor
+        if (aboutTime.range(of:"to dep.") != nil ||
+            aboutTime.range(of:"till avgång") != nil ||
+            aboutTime.range(of:"Agår nu") != nil ||
+            aboutTime.range(of:"Departs now") != nil) {
+            inAboutLabel.layer.backgroundColor = UIColor.black.cgColor
+        }
       } else {
         inAboutLabel.isHidden = true
       }

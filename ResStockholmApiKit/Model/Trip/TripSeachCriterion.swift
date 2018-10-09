@@ -74,7 +74,7 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     query += (date != nil) ? "&date=\(date!)" : ""
     query += (time != nil) ? "&time=\(time!)" : ""
     query += (numChg > -1) ? "&maxChange=\(numChg)" : ""
-    query += (minChgTime != 0) ? "&minChangeTime=\(minChgTime)" : ""
+    query += (minChgTime != 0) ? "&addChangeTime=\(minChgTime)" : ""
     
     let productBitMask = createProductBitMask()
     if (productBitMask != "0") {
