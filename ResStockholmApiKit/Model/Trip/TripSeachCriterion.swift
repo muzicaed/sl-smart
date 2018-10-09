@@ -23,7 +23,6 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
   open var numChg = -1
   open var minChgTime = 0
   open var searchForArrival = false
-  open var unsharp = false
   open var maxWalkDist = 1000
   
   open var useTrain = true
@@ -113,7 +112,6 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     maxWalkDist = 1000
     numChg = -1
     minChgTime = 0
-    unsharp = false
     lineInc = nil
     lineExc = nil
   }
@@ -145,7 +143,6 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     self.numChg = aDecoder.decodeInteger(forKey: PropertyKey.numChg)
     self.minChgTime = aDecoder.decodeInteger(forKey: PropertyKey.minChgTime)
     self.searchForArrival = aDecoder.decodeBool(forKey: PropertyKey.searchForArrival)
-    self.unsharp = aDecoder.decodeBool(forKey: PropertyKey.unsharp)
     self.maxWalkDist = aDecoder.decodeInteger(forKey: PropertyKey.maxWalkDist)
     self.useTrain = aDecoder.decodeBool(forKey: PropertyKey.useTrain)
     self.useMetro = aDecoder.decodeBool(forKey: PropertyKey.useMetro)
@@ -174,7 +171,6 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     aCoder.encode(numChg, forKey: PropertyKey.numChg)
     aCoder.encode(minChgTime, forKey: PropertyKey.minChgTime)
     aCoder.encode(searchForArrival, forKey: PropertyKey.searchForArrival)
-    aCoder.encode(unsharp, forKey: PropertyKey.unsharp)
     aCoder.encode(maxWalkDist, forKey: PropertyKey.maxWalkDist)
     aCoder.encode(useTrain, forKey: PropertyKey.useTrain)
     aCoder.encode(useMetro, forKey: PropertyKey.useMetro)
@@ -200,7 +196,6 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     static let numChg = "numChg"
     static let minChgTime = "minChgTime"
     static let searchForArrival = "searchForArrival"
-    static let unsharp = "unsharp"
     static let maxWalkDist = "maxWalkDist"
     static let useTrain = "useTrain"
     static let useMetro = "useMetro"
@@ -233,7 +228,6 @@ open class TripSearchCriterion: NSObject, NSCoding, NSCopying {
     copy.numChg = numChg
     copy.minChgTime = minChgTime
     copy.searchForArrival = searchForArrival
-    copy.unsharp = unsharp
     copy.maxWalkDist = maxWalkDist
     copy.useTrain = useTrain
     copy.useMetro = useMetro

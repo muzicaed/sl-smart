@@ -21,13 +21,12 @@ class AdvancedCriterionsHelper {
     let numChangeString = createNoChangeString(criterions)
     let walkDistanceString = createWalkDistanceString(criterions)
     let extraTimeString = createExtraTimeString(criterions)
-    let isUnsharpString = (criterions.unsharp) ? "\("Alternative".localized). " : ""
     let incLinesString = (criterions.lineInc != nil) ? "\("Only".localized) \(criterions.lineInc!). " : ""
     let excLinesString = (criterions.lineExc != nil) ? "\("Not".localized) \(criterions.lineExc!). " : ""
     let arrivalTimeString = (criterions.time != nil) ? "\("Arrive".localized) \(criterions.time!). " : ""
     
     return (isViaString + arrivalTimeString + travelTypesString + numChangeString +
-      walkDistanceString + extraTimeString + isUnsharpString + incLinesString + excLinesString)
+      walkDistanceString + extraTimeString + incLinesString + excLinesString)
   }
   
   /**

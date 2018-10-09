@@ -29,7 +29,6 @@ DateTimePickResponder {
   var selectedDate: Date?
   var dimmer: UIView?
   
-  @IBOutlet weak var isAlternative: UITableViewCell!
   @IBOutlet weak var maxWalkLabel: UILabel!
   @IBOutlet weak var numberOfChangesLabel: UILabel!
   @IBOutlet weak var changeTimeLabel: UILabel!
@@ -294,7 +293,7 @@ DateTimePickResponder {
    */
   override func tableView(_ tableView: UITableView,
                           numberOfRowsInSection section: Int) -> Int {
-    if section == 0 || section == 2 {
+    if section == 0 || section == 2 || section == 4 {
       return 1
     }
     return 2
@@ -363,14 +362,7 @@ DateTimePickResponder {
    * User selected row
    */
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if indexPath.section == 4 && indexPath.row == 1 {
-      hasChanged = true
-      if let routine = routineTrip {
-        routine.criterions.unsharp = !routine.criterions.unsharp
-        updateGenericValues()
-        tableView.deselectRow(at: indexPath, animated: true)
-      }
-    } else if indexPath.section == 2 && indexPath.row == 0 {
+    if indexPath.section == 2 && indexPath.row == 0 {
       tableView.deselectRow(at: indexPath, animated: true)
     }
   }
@@ -409,12 +401,10 @@ DateTimePickResponder {
       title = "New routine".localized
       isNewTrip = true
       routineTrip = RoutineTrip()
-      routineTrip?.criterions.unsharp = false
       locationPickerRow.setOriginLabelLocation(nil)
       locationPickerRow.setDestinationLabelLocation(nil)
       
     } else if isMakeRoutine {
-      routineTrip?.criterions.unsharp = false
       routineTripCopy = routineTrip!.copy() as? RoutineTrip
       setupEditData()
       title = "New routine".localized
@@ -612,7 +602,6 @@ DateTimePickResponder {
       return (
         !isTravelTypeDefault(crit) ||
           crit.via != nil ||
-          crit.unsharp == true ||
           crit.maxWalkDist != 1000 ||
           crit.minChgTime != 0 ||
           crit.numChg != -1)
@@ -657,11 +646,6 @@ DateTimePickResponder {
         changeTimeLabel.text = "No extra time for transfer".localized
       default:
         changeTimeLabel.text = String(format: "%d minutes extra for transfer".localized, routine.criterions.minChgTime)
-      }
-      
-      isAlternative.accessoryType = .none
-      if routine.criterions.unsharp {
-        isAlternative.accessoryType = .checkmark
       }
       
       if routine.criterions.lineInc == nil && routine.criterions.lineExc == nil {

@@ -31,7 +31,6 @@ PickGenericValueResponder, LinePickerResponder {
   @IBOutlet weak var locationPickerRow: LocationPickerRow!
   @IBOutlet weak var travelTypePicker:  TravelTypesPickerRow!
   
-  @IBOutlet weak var isAlternative: UITableViewCell!
   @IBOutlet weak var maxWalkLabel: UILabel!
   @IBOutlet weak var numberOfChangesLabel: UILabel!
   @IBOutlet weak var changeTimeLabel: UILabel!
@@ -327,6 +326,8 @@ PickGenericValueResponder, LinePickerResponder {
     
     if section == 0 {
       return (isAdvancedMode) ? 2 : 1
+    } else if section == 4 {
+        return 1
     } else if section > 2 {
       return 2
     }
@@ -339,8 +340,7 @@ PickGenericValueResponder, LinePickerResponder {
    */
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.section == 4 && indexPath.row == 1 {
-      if let crit = criterions {
-        crit.unsharp = !crit.unsharp
+      if criterions != nil {
         updateGenericValues()
         tableView.deselectRow(at: indexPath, animated: true)
       }
@@ -530,11 +530,6 @@ PickGenericValueResponder, LinePickerResponder {
         changeTimeLabel.text = "No extra time for transfer".localized
       default:
         changeTimeLabel.text = String(format: "%d minutes extra for transfer".localized, crit.minChgTime)
-      }
-      
-      isAlternative.accessoryType = .none
-      if crit.unsharp {
-        isAlternative.accessoryType = .checkmark
       }
       
       if crit.lineInc == nil && crit.lineExc == nil {
