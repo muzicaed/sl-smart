@@ -9,14 +9,14 @@
 import Foundation
 import CoreLocation
 
-open class JournyDetailsService {
+public class JournyDetailsService {
     
     fileprivate static let api = SLJourneyDetailsApi()
     
     /**
      * Fetch journy details
      */
-    open static func fetchJournyDetails(_ urlEncRef: String,
+    public static func fetchJournyDetails(_ urlEncRef: String,
                                         callback: @escaping (_ data: [Stop], _ error: SLNetworkError?) -> Void) {
         var result = [Stop]()
         api.getDetails(urlEncRef) { (arg) -> Void in
@@ -44,7 +44,7 @@ open class JournyDetailsService {
      * Filter out to show only relevat
      * in between stops.
      */
-    open static func filterStops(_ stops: [Stop], segment: TripSegment) -> [Stop] {
+    public static func filterStops(_ stops: [Stop], segment: TripSegment) -> [Stop] {
         var filterStops = [Stop]()
         var foundFirst = false
         for stop in stops {

@@ -15,7 +15,7 @@ open class SearchCriterionStore {
     fileprivate var cachedSearchCriterions = TripSearchCriterion(originId: "0", destId: "0")
     
     // Singelton pattern
-    open static let sharedInstance = SearchCriterionStore()
+    public static let sharedInstance = SearchCriterionStore()
     
     /**
      * Retrive "LastSearchCriterions" from data store

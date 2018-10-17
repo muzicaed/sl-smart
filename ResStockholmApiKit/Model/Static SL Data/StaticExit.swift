@@ -9,12 +9,12 @@
 import Foundation
 import CoreLocation
 
-open class StaticExit: NSObject, NSCoding {
+public class StaticExit: NSObject, NSCoding {
     
-    open let name: String
-    open let location: CLLocation
-    open let trainPosition: TrainPosition
-    open let changeToLines: [String]
+    public let name: String
+    public let location: CLLocation
+    public let trainPosition: TrainPosition
+    public let changeToLines: [String]
     
     
     /**

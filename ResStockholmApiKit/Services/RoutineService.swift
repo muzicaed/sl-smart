@@ -9,13 +9,13 @@
 import Foundation
 import CoreLocation
 
-open class RoutineService {
+public class RoutineService {
     
     /**
      * Finds the all routine trip based on
      * current position, time and week day.
      */
-    open static func findRoutineTrip(_ callback: @escaping ([RoutineTrip]) -> Void) {
+    public static func findRoutineTrip(_ callback: @escaping ([RoutineTrip]) -> Void) {
         let allRoutineTrips = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
         scoreRoutineTrips(allRoutineTrips)
         createPrioList(allRoutineTrips, callback: callback)

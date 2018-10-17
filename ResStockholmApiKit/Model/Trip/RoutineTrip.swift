@@ -8,13 +8,13 @@
 
 import Foundation
 
-open class RoutineTrip: NSObject, NSCoding, NSCopying {
-    open let id: String
-    open var title: String?
-    open var criterions = TripSearchCriterion(origin: nil, dest: nil)
-    open var trips = [Trip]()
-    open var score = Float(0.0)
-    open var isSmartSuggestion = false
+public class RoutineTrip: NSObject, NSCoding, NSCopying {
+    public let id: String
+    public var title: String?
+    public var criterions = TripSearchCriterion(origin: nil, dest: nil)
+    public var trips = [Trip]()
+    public var score = Float(0.0)
+    public var isSmartSuggestion = false
     
     public init(id: String, title: String?,
                 criterions: TripSearchCriterion, isSmartSuggestion: Bool) {
@@ -32,7 +32,7 @@ open class RoutineTrip: NSObject, NSCoding, NSCopying {
     /**
      * Converts into data dictionary for transfer to AppleWatch.
      */
-    open func watchTransferData(_ countLimit: Int) -> Dictionary<String, AnyObject> {
+    public func watchTransferData(_ countLimit: Int) -> Dictionary<String, AnyObject> {
         var departureString = ""
         var trasportTrips = [Dictionary<String, AnyObject>]()
         if trips.count > 0 {
@@ -74,7 +74,7 @@ open class RoutineTrip: NSObject, NSCoding, NSCopying {
     /**
      * Encode this object
      */
-    open func encode(with aCoder: NSCoder) {
+    public func encode(with aCoder: NSCoder) {
         aCoder.encode(id, forKey: PropertyKey.id)
         aCoder.encode(title, forKey: PropertyKey.title)
         aCoder.encode(criterions, forKey: PropertyKey.criterions)
@@ -93,7 +93,7 @@ open class RoutineTrip: NSObject, NSCoding, NSCopying {
     /**
      * Copy self
      */
-    open func copy(with zone: NSZone?) -> Any {
+    public func copy(with zone: NSZone?) -> Any {
         let copy =  RoutineTrip(
             id: id, title: title,
             criterions: criterions.copy() as! TripSearchCriterion,

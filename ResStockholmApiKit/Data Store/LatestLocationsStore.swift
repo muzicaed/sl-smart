@@ -8,19 +8,19 @@
 
 import Foundation
 
-open class LatestLocationsStore {
+public class LatestLocationsStore {
     
     fileprivate let LatestLocations = "LatestLocations"
     fileprivate let defaults = UserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
     fileprivate var cachedLocations = [Location]()
     
     // Singelton pattern
-    open static let sharedInstance = LatestLocationsStore()  
+    public static let sharedInstance = LatestLocationsStore()
     
     /**
      * Retrive "LatestLocations" from data store
      */
-    open func retrieveLatestLocations() -> [Location] {
+    public func retrieveLatestLocations() -> [Location] {
         if cachedLocations.count == 0 {
             if let unarchivedObject = defaults.object(
                 forKey: LatestLocations) as? Data {
@@ -40,7 +40,7 @@ open class LatestLocationsStore {
     /**
      * Retrive "LatestLocations" filtered on stations from data store
      */
-    open func retrieveLatestStationsOnly() -> [Location] {
+    public func retrieveLatestStationsOnly() -> [Location] {
         cachedLocations = retrieveLatestLocations()
         return cachedLocations.filter() {
             if $0.type == LocationType.Station {
@@ -53,7 +53,7 @@ open class LatestLocationsStore {
     /**
      * Add a location to latest location list.
      */
-    open func addLatestLocation(_ location: Location) {
+    public func addLatestLocation(_ location: Location) {
         cachedLocations = retrieveLatestLocations()
         cachedLocations = cachedLocations.filter() {
             if $0.siteId == location.siteId {

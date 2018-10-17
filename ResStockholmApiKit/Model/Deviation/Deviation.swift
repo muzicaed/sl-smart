@@ -8,14 +8,14 @@
 
 import Foundation
 
-open class Deviation {
+public class Deviation {
     
-    open let scope: String
-    open let title: String
-    open let details: String
-    open let reported: Date
-    open let fromDate: Date
-    open let tripType: TripType
+    public let scope: String
+    public let title: String
+    public let details: String
+    public let reported: Date
+    public let fromDate: Date
+    public let tripType: TripType
     
     init(scope: String, title: String, details: String, reportedDate: String, fromDate: String) {
         

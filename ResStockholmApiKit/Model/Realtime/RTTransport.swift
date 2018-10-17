@@ -10,15 +10,15 @@ import Foundation
 
 open class RTTransport {
     
-    open let stopAreaName: String
-    open let lineNumber: String
-    open let destination: String
-    open let displayTime: String
-    open let deviations: [String]
-    open let journeyDirection: Int
-    open let stopPointDesignation: String
-    open let groupOfLine: String?
-    open let secondaryDestinationName: String?
+    public let stopAreaName: String
+    public let lineNumber: String
+    public let destination: String
+    public let displayTime: String
+    public let deviations: [String]
+    public let journeyDirection: Int
+    public let stopPointDesignation: String
+    public let groupOfLine: String?
+    public let secondaryDestinationName: String?
     
     
     /**

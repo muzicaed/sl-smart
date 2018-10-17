@@ -10,15 +10,15 @@ import Foundation
 
 open class RealTimeDepartures {
     
-    open let latestUpdated: Date?
-    open let dataAge: Int
-    open var busses = [String: [RTTransport]]()
-    open var metros = [String: [RTTransport]]()
-    open var trains = [String: [RTTransport]]()
-    open var trams = [String: [RTTransport]]()
-    open var localTrams = [String: [RTTransport]]()
-    open var boats = [String: [RTTransport]]()
-    open var deviations = [(String, String)]()
+    public let latestUpdated: Date?
+    public let dataAge: Int
+    public var busses = [String: [RTTransport]]()
+    public var metros = [String: [RTTransport]]()
+    public var trains = [String: [RTTransport]]()
+    public var trams = [String: [RTTransport]]()
+    public var localTrams = [String: [RTTransport]]()
+    public var boats = [String: [RTTransport]]()
+    public var deviations = [(String, String)]()
     
     /**
      * Init

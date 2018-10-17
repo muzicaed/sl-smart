@@ -11,12 +11,12 @@ import CoreLocation
 
 open class StaticStop: NSObject, NSCoding {
     
-    open let stopPointNumber: String
-    open let stopPointName: String
-    open let stopAreaNumber: String
-    open let location: CLLocation
-    open let type: TripType
-    open var exits: [StaticExit]
+    public let stopPointNumber: String
+    public let stopPointName: String
+    public let stopAreaNumber: String
+    public let location: CLLocation
+    public let type: TripType
+    public var exits: [StaticExit]
     
     /**
      * Standard init

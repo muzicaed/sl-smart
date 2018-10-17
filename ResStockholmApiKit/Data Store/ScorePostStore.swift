@@ -8,20 +8,20 @@
 
 import Foundation
 
-open class ScorePostStore {
+public class ScorePostStore {
     
     fileprivate let ScoreList = "ScoreList"
     fileprivate let defaults = UserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
     fileprivate var cachedScorePosts = [ScorePost]()
-    open var lastReloaded = Date()
+    public var lastReloaded = Date()
     
     // Singelton pattern
-    open static let sharedInstance = ScorePostStore()  
+    public static let sharedInstance = ScorePostStore()
     
     /**
      * Retrive "ScoreList" from data store
      */
-    open func retrieveScorePosts() -> [ScorePost] {
+    public func retrieveScorePosts() -> [ScorePost] {
         if cachedScorePosts.count == 0 || Date().timeIntervalSince(lastReloaded) > 60 {
             if let unarchivedObject = defaults.object(forKey: ScoreList) as? Data {
                 if let scorePosts = NSKeyedUnarchiver.unarchiveObject(with: unarchivedObject) as? [ScorePost] {
@@ -36,7 +36,7 @@ open class ScorePostStore {
     /**
      * Store score lists to "ScoreList" in data store
      */
-    open func writeScorePosts(_ scorePosts: [ScorePost]) {
+    public func writeScorePosts(_ scorePosts: [ScorePost]) {
         var filteredPosts = [ScorePost]()
         for post in scorePosts {
             if post.score > 0 {

@@ -8,16 +8,16 @@
 
 import Foundation
 
-open class SituationGroup {
+public class SituationGroup {
     
-    open let statusIcon: String // "EventMajor", "EventMinor", "EventGood"
-    open let hasPlannedEvent: Bool
-    open let name: String
-    open let tripType: TripType
-    open let iconName: String
-    open var situations = [Situation]()
-    open var plannedSituations = [Situation]()
-    open var deviations = [Deviation]()
+    public let statusIcon: String // "EventMajor", "EventMinor", "EventGood"
+    public let hasPlannedEvent: Bool
+    public let name: String
+    public let tripType: TripType
+    public let iconName: String
+    public var situations = [Situation]()
+    public var plannedSituations = [Situation]()
+    public var deviations = [Deviation]()
     
     
     /**
@@ -46,7 +46,7 @@ open class SituationGroup {
     /**
      * Counts no of situations excluding planned situations.
      */
-    open func countSituationsExclPlanned() -> Int {
+    public func countSituationsExclPlanned() -> Int {
         var count = 0
         for situation in situations {
             count = (situation.planned) ? count : count + 1

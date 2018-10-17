@@ -8,12 +8,12 @@
 
 import Foundation
 
-open class Situation {
+public class Situation {
     
-    open let planned: Bool
-    open let trafficLine: String?
-    open let statusIcon: String
-    open let message: String
+    public let planned: Bool
+    public let trafficLine: String?
+    public let statusIcon: String
+    public let message: String
     
     /**
      * Standard init

@@ -54,7 +54,7 @@ class DateUtils {
      * Converts a NSDate to a swedish local friendly
      * date string.
      */
-    open static func friendlyDate(_ date: Date) -> String {
+    public static func friendlyDate(_ date: Date) -> String {
         let formatter = getFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
@@ -72,7 +72,7 @@ class DateUtils {
      * Converts a NSDate to a swedish local friendly
      * date string.
      */
-    open static func friendlyDateAndTime(_ date: Date) -> String {
+    public static func friendlyDateAndTime(_ date: Date) -> String {
         let formatter = getFormatter()
         
         formatter.dateFormat = "EEEE"

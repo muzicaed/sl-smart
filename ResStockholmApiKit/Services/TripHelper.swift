@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class TripHelper {
+public class TripHelper {
     
     static let walkColor = UIColor(white: 0.4, alpha: 1.0)
     static let busColor = UIColor(red: 180/255, green: 20/255, blue: 30/255, alpha: 1.0)
@@ -33,7 +33,7 @@ open class TripHelper {
     /**
      * Creates a human readable trip segment description.
      */
-    open static func friendlyTripSegmentDesc(_ segment: TripSegment) -> String {
+    public static func friendlyTripSegmentDesc(_ segment: TripSegment) -> String {
         if segment.type == .Walk {
             return String(format: "Walk %d meters".localized, segment.distance!)
         }
@@ -46,7 +46,7 @@ open class TripHelper {
     /**
      * Creates human readable line name.
      */
-    open static func friendlyLineData(
+    public static func friendlyLineData(
         _ segment: TripSegment) -> (short: String, long: String, icon: String, color: UIColor) {
         
         let type = segment.type

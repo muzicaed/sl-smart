@@ -15,19 +15,19 @@ open class RoutineTripsStore {
     fileprivate var cachedRoutineTrips = [RoutineTrip]()
     
     // Singelton pattern
-    open static let sharedInstance = RoutineTripsStore()
+    public static let sharedInstance = RoutineTripsStore()
     
     /**
      * Preloads routine trip data.
      */
-    open func preload() {
+    public func preload() {
         cachedRoutineTrips = retrieveRoutineTripsFromStore()
     }
     
     /**
      * Is empty
      */
-    open func isRoutineTripsEmpty() -> Bool {
+    public func isRoutineTripsEmpty() -> Bool {
         for trip in cachedRoutineTrips {
             if !trip.isSmartSuggestion {
                 return false
@@ -39,7 +39,7 @@ open class RoutineTripsStore {
     /**
      * Adds a routine trip to data store
      */
-    open func addRoutineTrip(_ trip: RoutineTrip) {
+    public func addRoutineTrip(_ trip: RoutineTrip) {
         trip.trips = [Trip]()
         cachedRoutineTrips = retrieveRoutineTripsFromStore()
         cachedRoutineTrips.append(trip)
@@ -49,7 +49,7 @@ open class RoutineTripsStore {
     /**
      * Moves a routine trip in data store
      */
-    open func moveRoutineTrip(_ index: Int, targetIndex: Int) {
+    public func moveRoutineTrip(_ index: Int, targetIndex: Int) {
         let moveTrip = cachedRoutineTrips.remove(at: index)
         cachedRoutineTrips.insert(moveTrip, at: targetIndex)
         writeRoutineTripsToStore()
@@ -58,7 +58,7 @@ open class RoutineTripsStore {
     /**
      * Update a routine trip in data store
      */
-    open func updateRoutineTrip(_ trip: RoutineTrip) {
+    public func updateRoutineTrip(_ trip: RoutineTrip) {
         trip.trips = [Trip]()
         for (index, testRoutine) in cachedRoutineTrips.enumerated() {
             if testRoutine.id == trip.id {
@@ -72,7 +72,7 @@ open class RoutineTripsStore {
     /**
      * Delete a routine trip from data store
      */
-    open func deleteRoutineTrip(_ id: String) {
+    public func deleteRoutineTrip(_ id: String) {
         cachedRoutineTrips = retrieveRoutineTripsFromStore()
         for (index, routine) in cachedRoutineTrips.enumerated() {
             if routine.id == id {
@@ -86,7 +86,7 @@ open class RoutineTripsStore {
     /**
      * Retrieve a routine trip from data store for a id
      */
-    open func retriveRoutineTripOnId(_ id: String) -> RoutineTrip? {
+    public func retriveRoutineTripOnId(_ id: String) -> RoutineTrip? {
         let trips = retriveRoutineTrips()
         if let index = trips.index(where: {$0.id == id}) {
             return trips[index].copy() as? RoutineTrip
@@ -97,7 +97,7 @@ open class RoutineTripsStore {
     /**
      * Retrieves all routine trips from data store
      */
-    open func retriveRoutineTrips() -> [RoutineTrip] {
+    public func retriveRoutineTrips() -> [RoutineTrip] {
         if cachedRoutineTrips.count == 0  {
             cachedRoutineTrips = retrieveRoutineTripsFromStore()
         }
@@ -108,7 +108,7 @@ open class RoutineTripsStore {
     /**
      * Retrieves all routine trips except for "Smart suggestions" from data store
      */
-    open func retriveRoutineTripsNoSuggestions() -> [RoutineTrip] {
+    public func retriveRoutineTripsNoSuggestions() -> [RoutineTrip] {
         if cachedRoutineTrips.count == 0  {
             cachedRoutineTrips = retrieveRoutineTripsFromStore()
         }

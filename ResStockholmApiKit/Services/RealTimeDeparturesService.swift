@@ -9,14 +9,14 @@
 import Foundation
 import CoreLocation
 
-open class RealTimeDeparturesService {
+public class RealTimeDeparturesService {
     
     fileprivate static let api = SLRealtimeDepartures()
     
     /**
      * Fetch geometry data
      */
-    open static func fetch(_ siteId: Int,
+    public static func fetch(_ siteId: Int,
                            callback: @escaping (_ data: RealTimeDepartures?, _ error: SLNetworkError?) -> Void) {
         api.getRealTimeTable(siteId) { (arg) -> Void in
             

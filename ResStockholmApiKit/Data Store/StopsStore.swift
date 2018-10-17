@@ -9,19 +9,19 @@
 import Foundation
 import CoreLocation
 
-open class StopsStore {
+public class StopsStore {
     
     fileprivate let StaticStopList = "StaticStopList"
     fileprivate let defaults = UserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
     fileprivate var cachedStops = [String: StaticStop]()
     
     // Singelton pattern
-    open static let sharedInstance = StopsStore()
+    public static let sharedInstance = StopsStore()
     
     /**
      * Gets static stop on id
      */
-    open func getOnId(_ id: String) -> StaticStop? {
+    public func getOnId(_ id: String) -> StaticStop? {
         let stops = getStops()
         if let stop = stops[convertId(id)] {
             return stop
@@ -33,7 +33,7 @@ open class StopsStore {
     /**
      * Gets all static stops in a flat list.
      */
-    open func getStops() -> [String: StaticStop] {
+    public func getStops() -> [String: StaticStop] {
         if cachedStops.count == 0 {
             cachedStops = retrieveStaticStopsFromStore()
         }
@@ -45,7 +45,7 @@ open class StopsStore {
      * Loads static site data from json file.
      * Should only be triggred as part of migration.
      */
-    open func loadJson() {
+    public func loadJson() {
         let bundle = Bundle.main
         do {
             if let path = bundle.path(forResource: "stop", ofType: "json") {

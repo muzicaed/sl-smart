@@ -9,14 +9,14 @@
 import Foundation
 import CoreLocation
 
-open class MyLocationHelper: NSObject, CLLocationManagerDelegate {
+public class MyLocationHelper: NSObject, CLLocationManagerDelegate {
     
-    open static let sharedInstance = MyLocationHelper()
-    open let locationManager = CLLocationManager()
-    open var currentLocation: CLLocation?
-    open var currentStreet: String?
-    open var callback: ((CLLocation) -> Void)?
-    open var isStarted = false
+    public static let sharedInstance = MyLocationHelper()
+    public let locationManager = CLLocationManager()
+    public var currentLocation: CLLocation?
+    public var currentStreet: String?
+    public var callback: ((CLLocation) -> Void)?
+    public var isStarted = false
     
     override public init() {
         super.init()
@@ -36,7 +36,7 @@ open class MyLocationHelper: NSObject, CLLocationManagerDelegate {
     /**
      * Request a force updat of current location.
      */
-    open func requestLocationUpdate(_ callback: ((_ location: CLLocation) -> ())?) {
+    public func requestLocationUpdate(_ callback: ((_ location: CLLocation) -> ())?) {
         locationManager.requestLocation()    
         if let location = currentLocation {
             callback?(location)
@@ -47,7 +47,7 @@ open class MyLocationHelper: NSObject, CLLocationManagerDelegate {
         self.callback = callback
     }
     
-    open func getCurrentLocation() -> Location? {
+    public func getCurrentLocation() -> Location? {
         if let loc = currentLocation, let street = currentStreet {
             return Location(
                 id: nil,
@@ -63,7 +63,7 @@ open class MyLocationHelper: NSObject, CLLocationManagerDelegate {
     /**
      * On location update
      */
-    open func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let sortedLocations = locations.sorted {$0.timestamp.timeIntervalSince1970 > $1.timestamp.timeIntervalSince1970}
         currentLocation = sortedLocations[0]
@@ -72,7 +72,7 @@ open class MyLocationHelper: NSObject, CLLocationManagerDelegate {
         updateAddressForCurrentLocation()
     }
     
-    open func locationManager(
+    public func locationManager(
         _ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .notDetermined {
             return
@@ -88,7 +88,7 @@ open class MyLocationHelper: NSObject, CLLocationManagerDelegate {
     /**
      * On error
      */
-    open func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         if error._code != 0 {
             isStarted = false
         }
@@ -97,7 +97,7 @@ open class MyLocationHelper: NSObject, CLLocationManagerDelegate {
     /**
      * Starts the location manager
      */
-    open func startLocationManager() {
+    public func startLocationManager() {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationManager.pausesLocationUpdatesAutomatically = true
             locationManager.desiredAccuracy = 25

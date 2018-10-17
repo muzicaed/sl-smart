@@ -11,16 +11,16 @@ import CoreLocation
 
 open class ScorePostHelper {
     
-    open static let BestTapCountScore = Float(0.6)
-    open static let OtherTapCountScore = Float(0.5)
-    open static let NotBestTripScore = Float(-0.5)
-    open static let WideScoreMod = Float(0.25)
+    public static let BestTapCountScore = Float(0.6)
+    public static let OtherTapCountScore = Float(0.5)
+    public static let NotBestTripScore = Float(-0.5)
+    public static let WideScoreMod = Float(0.25)
     fileprivate static let RequiredDistance = Double(400)
     
     /**
      * Adds score for selected routine trip.
      */
-    open static func changeScoreForRoutineTrip(
+    public static func changeScoreForRoutineTrip(
         _ originId: String, destinationId: String, score: Float) {
         
         var scorePosts = ScorePostStore.sharedInstance.retrieveScorePosts()

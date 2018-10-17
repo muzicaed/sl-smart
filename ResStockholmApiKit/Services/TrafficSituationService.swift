@@ -8,14 +8,14 @@
 
 import Foundation
 
-open class TrafficSituationService {
+public class TrafficSituationService {
     
     fileprivate static let situationsApi = SLTrafficSituationServiceApi()
     
     /**
      * Fetch trafic situation data
      */
-    open static func fetchInformation(
+    public static func fetchInformation(
         _ callback: @escaping ([SituationGroup], SLNetworkError?) -> Void) {
         situationsApi.fetchInformation { resTuple -> Void in
             var situations = [SituationGroup]()

@@ -14,7 +14,7 @@ open class StopEnhancer {
     /**
      * Enhance stop data for a trip.
      */
-    open static func enhance(_ trip: Trip) {
+    public static func enhance(_ trip: Trip) {
         for (index, segment) in trip.allTripSegments.enumerated() {
             if segment.type == .Metro {
                 let nextSegment = findNextSegment(index, trip: trip)

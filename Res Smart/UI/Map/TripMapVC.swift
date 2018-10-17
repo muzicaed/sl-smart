@@ -25,6 +25,7 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         mapView.delegate = self
         mapView.mapType = MKMapType.standard
         mapView.showsBuildings = true
