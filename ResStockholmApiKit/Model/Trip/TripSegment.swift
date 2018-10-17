@@ -22,7 +22,7 @@ open class TripSegment: NSObject, NSCopying {
   public var distance: Int?
   public let isRealtime: Bool
   public let journyRef: String?
-  public let rtuMessages: String?
+  public let messages: String?
   public let notes: String?
   public let isWarning: Bool
   public var durationInMin: Int
@@ -39,7 +39,7 @@ open class TripSegment: NSObject, NSCopying {
     departureTime: String, arrivalTime: String,
     departureDate: String, arrivalDate: String,
     distance: Int?, isRealtime: Bool, journyRef: String?,
-    rtuMessages: String?, notes: String?, isWarning: Bool,
+    messages: String?, notes: String?, isWarning: Bool,
     isReachable: Bool, isCancelled: Bool) {
     
     self.index = index
@@ -58,7 +58,7 @@ open class TripSegment: NSObject, NSCopying {
     self.distance = distance
     self.isRealtime = isRealtime
     self.journyRef = journyRef
-    self.rtuMessages = rtuMessages
+    self.messages = messages
     self.notes = notes
     self.isWarning = isWarning
     self.isReachable = isReachable
@@ -83,7 +83,7 @@ open class TripSegment: NSObject, NSCopying {
       departureDate: DateUtils.dateAsDateString(departureDateTime),
       arrivalDate: DateUtils.dateAsDateString(departureDateTime),
       distance: distance, isRealtime: isRealtime, journyRef: journyRef,
-      rtuMessages: rtuMessages, notes: notes, isWarning: isWarning,
+      messages: messages, notes: notes, isWarning: isWarning,
       isReachable: isReachable, isCancelled: isCancelled)
     
     return seg

@@ -111,7 +111,7 @@ class RoutineTripCell: UITableViewCell {
         wrapperView.addSubview(iconView)
         wrapperView.addSubview(label)
         
-        if segment.rtuMessages != nil {
+        if segment.messages != nil {
           var warnIconView = UIImageView(image: TripIcons.icons["INFO-ICON"]!)
           if segment.isWarning {
             warnIconView = UIImageView(image: TripIcons.icons["WARNING-ICON"]!)

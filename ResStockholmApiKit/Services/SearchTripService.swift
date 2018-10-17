@@ -160,7 +160,7 @@ open class SearchTripService {
             arrivalDate: dateTimeTuple.arrDate,
             distance: dist, isRealtime: dateTimeTuple.isRealtime,
             journyRef: segmentJson["JourneyDetailRef"]["ref"].string,            
-            rtuMessages: messages, notes: "", isWarning: isWarning,
+            messages: messages, notes: "", isWarning: isWarning,
             isReachable: isReachable, isCancelled: isCancelled)
     }
     

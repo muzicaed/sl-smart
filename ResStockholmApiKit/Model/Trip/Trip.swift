@@ -105,7 +105,7 @@ open class Trip: NSObject, NSCopying {
       lines.append(data.short)
       
       var warning = ""
-      if segment.rtuMessages != nil {
+      if segment.messages != nil {
         warning = (segment.isWarning) ? "W" : "I"
       }
       warnings.append(warning)

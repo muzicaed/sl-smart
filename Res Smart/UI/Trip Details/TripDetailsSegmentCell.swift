@@ -87,7 +87,7 @@ class TripDetailsSegmentCell: UITableViewCell {
    * Generates a warning text
    */
   fileprivate func generateWarningText(_ segment: TripSegment) -> String? {
-    var warning = (segment.rtuMessages != nil) ? segment.rtuMessages! : ""
+    var warning = (segment.messages != nil) ? segment.messages! : ""
     if segment.isCancelled {
       warning = "Inställd. " + warning
     } else if !segment.isReachable {
