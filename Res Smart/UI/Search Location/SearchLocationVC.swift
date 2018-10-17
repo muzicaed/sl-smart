@@ -385,7 +385,7 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
      */
     @objc func searchLocation() {
         if let query = searchQueryText {
-            if query.characters.count > 0 {
+            if query.count > 0 {
                 self.noResults = false
                 NetworkActivity.displayActivityIndicator(true)
                 LocationSearchService.search(query, stationsOnly: searchOnlyForStations) { (locations, slNetworkError) in
@@ -403,7 +403,7 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
                         }
                     }
                 }
-            } else if query.characters.count == 0 {
+            } else if query.count == 0 {
                 self.searchResult = []
                 self.noResults = false
                 reloadTableData()

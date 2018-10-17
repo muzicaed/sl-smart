@@ -146,7 +146,7 @@ class TripRow: NSObject {
         }
         
         var remainder = String(duration % 60)
-        if remainder.characters.count <= 1 {
+        if remainder.count <= 1 {
             remainder = "0" + remainder
         }
         return "\(duration / 60):\(remainder)h"

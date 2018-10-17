@@ -387,7 +387,7 @@ DateTimePickResponder {
                    replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
         
-        let newLength = text.characters.count + string.characters.count - range.length
+        let newLength = text.count + string.count - range.length
         return newLength <= 200
     }
     

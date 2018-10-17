@@ -120,7 +120,7 @@ open class Location: NSObject, NSCoding, NSCopying {
             }
             
         }
-        let nameSegments = nameString.characters.split{$0 == ","}.map(String.init)
+        let nameSegments = nameString.split{$0 == ","}.map(String.init)
         if nameSegments.count > 1 {
             return (
                 nameSegments[0].trimmingCharacters(in: CharacterSet.whitespaces),

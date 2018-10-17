@@ -130,8 +130,8 @@ class BusFilterVC: UITableViewController {
             if $0 == "STOPS" || $1 == "STOPS" {
                 return $0 == "STOPS"
             }
-            if $0.characters.count != $1.characters.count {
-                return $0.characters.count < $1.characters.count
+            if $0.count != $1.count {
+                return $0.count < $1.count
             }
             return $0 < $1
         }

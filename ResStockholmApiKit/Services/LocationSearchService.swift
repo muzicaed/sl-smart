@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-open class LocationSearchService {
+public class LocationSearchService {
     
     fileprivate static let api = SLSearchLocationApi()
     fileprivate static let nearbyApi = SLSearchNearbyStationsApi()
@@ -17,7 +17,7 @@ open class LocationSearchService {
     /**
      * Searches for locations based on the query
      */
-    open static func search(
+    public static func search(
         _ query: String, stationsOnly: Bool,
         callback: @escaping (_ data: [Location], _ error: SLNetworkError?) -> Void) {
         api.search(query, stationsOnly: stationsOnly) { resTuple in
@@ -37,7 +37,7 @@ open class LocationSearchService {
     /**
      * Searches for nearby locations.
      */
-    open static func searchNearby(
+    public static func searchNearby(
         _ location: CLLocation, distance: Int,
         callback: @escaping (_ data: [(location: Location, dist: Int)], _ error: SLNetworkError?) -> Void) {
         
@@ -108,7 +108,7 @@ open class LocationSearchService {
      */
     fileprivate static func isCodeLocation(_ locationJson: JSON) -> Bool {
         let name = locationJson["Name"].string!
-        if name == name.uppercased() && name.characters.count < 5 {
+        if name == name.uppercased() && name.count < 5 {
             return true
         }
         return false
@@ -119,10 +119,10 @@ open class LocationSearchService {
      * into true lat/lon values
      */
     fileprivate static func convertCoordinateFormat(_ coordinate: String) -> Double {
-        if !coordinate.characters.contains(".") {
+        if !coordinate.contains(".") {
             let index = 2
-            let stringCoord = String(coordinate.characters.prefix(index)) +
-                "." + String(coordinate.characters.suffix(coordinate.characters.count - index))
+            let stringCoord = String(coordinate.prefix(index)) +
+                "." + String(coordinate.suffix(coordinate.count - index))
             return Double(stringCoord)!
         }
         return 0.0

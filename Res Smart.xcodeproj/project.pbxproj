@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		180603641C01FCBE00AC1841 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180603631C01FCBE00AC1841 /* SwiftyJSON.swift */; };
 		1806037C1C02165000AC1841 /* LocationSearchResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806037B1C02165000AC1841 /* LocationSearchResponder.swift */; };
+		1808C71421774F8C00E83005 /* res-smart.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 18635D981D7564A4007A495E /* res-smart.geojson */; };
 		180B657E1D8A985400D2A50F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 180B657D1D8A985400D2A50F /* Settings.bundle */; };
 		180F7D791C8CC987000C8207 /* UserPreferenceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F7D781C8CC987000C8207 /* UserPreferenceStore.swift */; };
 		181631DB1F5AC75C006D5DFE /* OtherRoutineTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181631DA1F5AC75C006D5DFE /* OtherRoutineTripCell.swift */; };
@@ -1268,6 +1269,7 @@
 				187733CC1ED82A4900B5B1B9 /* InfoPlist.strings in Resources */,
 				18F447E61D7ECF0F00B48D39 /* stop.json in Resources */,
 				188A0B42216A708600453832 /* Assets.xcassets in Resources */,
+				1808C71421774F8C00E83005 /* res-smart.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1312,7 +1314,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$SRCROOT/Res Smart/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$SRCROOT/Res Smart WatchKit Extension/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$SRCROOT/Res Smart WatchKit App/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$SRCROOT/Today/Info.plist\"";
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$SRCROOT/Res Smart/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$SRCROOT/Res Smart WatchKit Extension/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$SRCROOT/Res Smart WatchKit App/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$SRCROOT/Today/Info.plist\"\n";
 		};
 		18F9483C1C1C78F3008C1B59 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
