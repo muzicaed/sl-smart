@@ -22,7 +22,6 @@ open class TripSegment: NSObject, NSCopying {
   public var distance: Int?
   public let isRealtime: Bool
   public let journyRef: String?
-  public let geometryRef: String?
   public let rtuMessages: String?
   public let notes: String?
   public let isWarning: Bool
@@ -39,7 +38,7 @@ open class TripSegment: NSObject, NSCopying {
     lineNumber: String?, origin: Location, destination: Location,
     departureTime: String, arrivalTime: String,
     departureDate: String, arrivalDate: String,
-    distance: Int?, isRealtime: Bool, journyRef: String?, geometryRef: String?,
+    distance: Int?, isRealtime: Bool, journyRef: String?,
     rtuMessages: String?, notes: String?, isWarning: Bool,
     isReachable: Bool, isCancelled: Bool) {
     
@@ -59,7 +58,6 @@ open class TripSegment: NSObject, NSCopying {
     self.distance = distance
     self.isRealtime = isRealtime
     self.journyRef = journyRef
-    self.geometryRef = geometryRef
     self.rtuMessages = rtuMessages
     self.notes = notes
     self.isWarning = isWarning
@@ -84,7 +82,7 @@ open class TripSegment: NSObject, NSCopying {
       arrivalTime: DateUtils.dateAsTimeString(arrivalDateTime),
       departureDate: DateUtils.dateAsDateString(departureDateTime),
       arrivalDate: DateUtils.dateAsDateString(departureDateTime),
-      distance: distance, isRealtime: isRealtime, journyRef: journyRef, geometryRef: geometryRef,
+      distance: distance, isRealtime: isRealtime, journyRef: journyRef,
       rtuMessages: rtuMessages, notes: notes, isWarning: isWarning,
       isReachable: isReachable, isCancelled: isCancelled)
     
