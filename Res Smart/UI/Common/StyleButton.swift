@@ -11,10 +11,10 @@ import UIKit
 
 
 class MyCustomButton: UIButton {
-  
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    layer.cornerRadius = 6;
-    tintColor = UIColor.white
-  }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        layer.cornerRadius = 6;
+        tintColor = UIColor.white
+    }
 }

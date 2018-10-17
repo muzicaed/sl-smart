@@ -10,21 +10,21 @@ import Foundation
 import UIKit
 
 class LoadMoreCell: UITableViewCell {
-  
-  @IBOutlet weak var spinnerView: UIActivityIndicatorView!
-  @IBOutlet weak var loadButton: UIButton!
-  
-  func displaySpinner(_ alpha: CGFloat) {
-    spinnerView.alpha = alpha
-    loadButton.alpha = 1.0 - (alpha)
-    if spinnerView.alpha >= 1.0 {
-      spinnerView.startAnimating()
+    
+    @IBOutlet weak var spinnerView: UIActivityIndicatorView!
+    @IBOutlet weak var loadButton: UIButton!
+    
+    func displaySpinner(_ alpha: CGFloat) {
+        spinnerView.alpha = alpha
+        loadButton.alpha = 1.0 - (alpha)
+        if spinnerView.alpha >= 1.0 {
+            spinnerView.startAnimating()
+        }
     }
-  }
-  
-  func hideSpinner() {
-    spinnerView.alpha = 0
-    loadButton.alpha = 1
-    spinnerView.stopAnimating()
-  }
+    
+    func hideSpinner() {
+        spinnerView.alpha = 0
+        loadButton.alpha = 1
+        spinnerView.stopAnimating()
+    }
 }

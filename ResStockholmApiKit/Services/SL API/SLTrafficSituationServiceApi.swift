@@ -9,23 +9,23 @@
 import Foundation
 
 class SLTrafficSituationServiceApi {
-  
-  let apiKey = "3cbb0a4852e24020a58ef63a0399ac9b"
-  let urlBase = "http://api.sl.se/api2/trafficsituation.json"
-  
-  /**
-   * Search for traffic situations.
-   */
-  func fetchInformation(_ callback: @escaping ((data: Data?, error: SLNetworkError?)) -> Void) {
-    HttpRequestHelper.makeGetRequest(createApiUrl()) { resTuple in
-      callback(resTuple)
+    
+    let apiKey = "3cbb0a4852e24020a58ef63a0399ac9b"
+    let urlBase = "http://api.sl.se/api2/trafficsituation.json"
+    
+    /**
+     * Search for traffic situations.
+     */
+    func fetchInformation(_ callback: @escaping ((data: Data?, error: SLNetworkError?)) -> Void) {
+        HttpRequestHelper.makeGetRequest(createApiUrl()) { resTuple in
+            callback(resTuple)
+        }
     }
-  }
-  
-  /**
-   * Creates api url
-   */
-  fileprivate func createApiUrl() -> String {
-    return urlBase + "?Key=\(apiKey)"
-  }
+    
+    /**
+     * Creates api url
+     */
+    fileprivate func createApiUrl() -> String {
+        return urlBase + "?Key=\(apiKey)"
+    }
 }

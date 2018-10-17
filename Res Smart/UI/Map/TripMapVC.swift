@@ -152,26 +152,6 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
     /**
      * Loads map route
      */
-    /*
-     fileprivate func loadRoute() {
-     if let trip = trip {
-     noOfSegments = trip.allTripSegments.count
-     for (index, segment) in trip.allTripSegments.enumerated() {
-     let next: TripSegment? = (trip.allTripSegments.count > index + 1) ? trip.allTripSegments[index + 1] : nil
-     let before: TripSegment? = (index > 0) ? trip.allTripSegments[index - 1] : nil
-     let isLast = (segment == trip.allTripSegments.last)
-     self.loadedSegmentsCount += 1
-     //let coords = RoutePlotter.plotRoute(segment, before: before, next: next,
-     //                                            isLast: isLast, geoLocations: locations, mapView: self.mapView)
-     //self.loadRouteDone(coords: coords, segment: segment)
-     }
-     }
-     }
-     */
-    
-    /**
-     * Loads map route
-     */
     fileprivate func loadRoute() {
         var allCoords = [CLLocationCoordinate2D]()
         if let trip = trip {
@@ -192,23 +172,4 @@ class TripMapVC: UIViewController, MKMapViewDelegate {
         
         MapHelper.setMapViewport(mapView, coordinates: allCoords, topPadding: 150)
     }
-    
-    /**
-     * Create overlay on rote plot done
-     */
-    /*
-    fileprivate func loadRouteDone(coords: [CLLocationCoordinate2D], segment: TripSegment) {
-        allCords += coords
-        let routeTuple = (coords, segment)
-        routeTuples.append(routeTuple)
-        if loadedSegmentsCount == noOfSegments {
-            activityIndicator.stopAnimating()
-            MapHelper.setMapViewport(mapView, coordinates: allCords, topPadding: 150)
-            for tuple in routeTuples {
-                RoutePlotter.createOverlays(tuple.0, tuple.1, trip, mapView, showStart: true)
-            }
-            mapView.isHidden = false
-        }
-    }
- */
 }

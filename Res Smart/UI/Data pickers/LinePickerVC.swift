@@ -10,80 +10,80 @@ import Foundation
 import UIKit
 
 class LinePickerVC: UITableViewController {
-  
-  @IBOutlet weak var lineTypeSegmentedControl: UISegmentedControl!
-  @IBOutlet weak var lineTextField: UITextField!
-  
-  var delegate: LinePickerResponder?
-  
-  var incText: String?
-  var excText: String?
-  var selectedSegment = 0
-  
-  /**
-   * When view is done loading.
-   */
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    view.backgroundColor = StyleHelper.sharedInstance.background
-    if incText != nil {
-      lineTextField.text = "\(incText!)"
-      lineTypeSegmentedControl.selectedSegmentIndex = 1
-      lineTextField.isEnabled = true
-    } else if excText != nil {
-      lineTextField.text = "\(excText!)"
-      lineTypeSegmentedControl.selectedSegmentIndex = 2
-      lineTextField.isEnabled = true
+    
+    @IBOutlet weak var lineTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var lineTextField: UITextField!
+    
+    var delegate: LinePickerResponder?
+    
+    var incText: String?
+    var excText: String?
+    var selectedSegment = 0
+    
+    /**
+     * When view is done loading.
+     */
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = StyleHelper.sharedInstance.background
+        if incText != nil {
+            lineTextField.text = "\(incText!)"
+            lineTypeSegmentedControl.selectedSegmentIndex = 1
+            lineTextField.isEnabled = true
+        } else if excText != nil {
+            lineTextField.text = "\(excText!)"
+            lineTypeSegmentedControl.selectedSegmentIndex = 2
+            lineTextField.isEnabled = true
+        }
+        selectedSegment = lineTypeSegmentedControl.selectedSegmentIndex
     }
-    selectedSegment = lineTypeSegmentedControl.selectedSegmentIndex
-  }
-  
-  /**
-   * User changed line type segmented control
-   */
-  @IBAction func onLineTypeValueChanged(_ sender: UISegmentedControl) {
-    if sender.selectedSegmentIndex == 0 {
-      lineTextField.isEnabled = false
-      lineTextField.text = nil
-      incText = nil
-      excText = nil
-    } else {
-      lineTextField.isEnabled = true
+    
+    /**
+     * User changed line type segmented control
+     */
+    @IBAction func onLineTypeValueChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            lineTextField.isEnabled = false
+            lineTextField.text = nil
+            incText = nil
+            excText = nil
+        } else {
+            lineTextField.isEnabled = true
+        }
+        selectedSegment = sender.selectedSegmentIndex
+        updateIncExcTexts()
     }
-    selectedSegment = sender.selectedSegmentIndex
-    updateIncExcTexts()
-  }
-  
-  /**
-   * User stoped editing line text field.
-   */
-  @IBAction func onLineTextFieldEditEnd(_ sender: UITextField) {
-    updateIncExcTexts()
-  }
-  
-  // MARK: UITableViewController
-  
-  override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-    return false
-  }
-  
-  // MARK: Private
-  
-  /**
-   * Updates included / excluded parameters.
-   */
-  fileprivate func updateIncExcTexts() {
-    switch selectedSegment {
-    case 1:
-      incText = lineTextField.text
-      excText = nil
-    case 2:
-      incText = nil
-      excText = lineTextField.text
-    default:
-      incText = nil
-      excText = nil
+    
+    /**
+     * User stoped editing line text field.
+     */
+    @IBAction func onLineTextFieldEditEnd(_ sender: UITextField) {
+        updateIncExcTexts()
     }
-    delegate?.pickedLines(incText, excluded: excText)
-  }
+    
+    // MARK: UITableViewController
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    // MARK: Private
+    
+    /**
+     * Updates included / excluded parameters.
+     */
+    fileprivate func updateIncExcTexts() {
+        switch selectedSegment {
+        case 1:
+            incText = lineTextField.text
+            excText = nil
+        case 2:
+            incText = nil
+            excText = lineTextField.text
+        default:
+            incText = nil
+            excText = nil
+        }
+        delegate?.pickedLines(incText, excluded: excText)
+    }
 }

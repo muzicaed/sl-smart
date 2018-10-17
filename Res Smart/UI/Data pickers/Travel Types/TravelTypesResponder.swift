@@ -10,8 +10,8 @@ import Foundation
 import ResStockholmApiKit
 
 protocol TravelTypesResponder {
-  
-  func selectedTravelType(
-    _ useMetro: Bool, useTrain: Bool, useTram: Bool,
-    useBus: Bool, useBoat: Bool) -> Void
+    
+    func selectedTravelType(
+        _ useMetro: Bool, useTrain: Bool, useTram: Bool,
+        useBus: Bool, useBoat: Bool) -> Void
 }

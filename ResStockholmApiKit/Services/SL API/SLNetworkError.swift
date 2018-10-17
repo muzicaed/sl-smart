@@ -9,8 +9,8 @@
 import Foundation
 
 public enum SLNetworkError: Error {
-  case serviceUnavailable
-  case networkError
-  case noDataFound
-  case invalidRequest
+    case serviceUnavailable
+    case networkError
+    case noDataFound
+    case invalidRequest
 }

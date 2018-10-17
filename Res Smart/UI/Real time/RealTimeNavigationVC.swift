@@ -10,16 +10,16 @@ import Foundation
 import UIKit
 
 class RealTimeNavigationVC: UINavigationController {
-
-  /**
-   * On load
-   */
-  override func viewDidLoad() {
-    super.viewDidLoad()    
-    if let rootVC = viewControllers.first as? SearchLocationVC {
-      rootVC.isLocationForRealTimeSearch = true
-      rootVC.title = "Next departure".localized
-      rootVC.allowNearbyStations = true
+    
+    /**
+     * On load
+     */
+    override func viewDidLoad() {
+        super.viewDidLoad()    
+        if let rootVC = viewControllers.first as? SearchLocationVC {
+            rootVC.isLocationForRealTimeSearch = true
+            rootVC.title = "Next departure".localized
+            rootVC.allowNearbyStations = true
+        }
     }
-  }
 }

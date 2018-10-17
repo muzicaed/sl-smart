@@ -9,6 +9,6 @@
 import Foundation
 
 protocol LinePickerResponder {
-  
-  func pickedLines(_ included: String?, excluded: String?)
+    
+    func pickedLines(_ included: String?, excluded: String?)
 }

@@ -9,14 +9,14 @@
 import Foundation
 
 class LanguangeHelper {
-
-  static func getLangCode() -> String {
-    if let code = Locale.current.languageCode {
-      if code == "sv" {
-        return code
-      }
+    
+    static func getLangCode() -> String {
+        if let code = Locale.current.languageCode {
+            if code == "sv" {
+                return code
+            }
+        }
+        return "en"
     }
-    return "en"
-  }
 }
 

@@ -9,19 +9,19 @@
 import Foundation
 
 open class Situation {
-
-  open let planned: Bool
-  open let trafficLine: String?
-  open let statusIcon: String
-  open let message: String
-  
-  /**
-   * Standard init
-   */
-  init (planned: Bool, trafficLine: String?, statusIcon: String, message: String) {
-    self.planned = planned
-    self.trafficLine = trafficLine
-    self.statusIcon = statusIcon
-    self.message = message
-  }
+    
+    open let planned: Bool
+    open let trafficLine: String?
+    open let statusIcon: String
+    open let message: String
+    
+    /**
+     * Standard init
+     */
+    init (planned: Bool, trafficLine: String?, statusIcon: String, message: String) {
+        self.planned = planned
+        self.trafficLine = trafficLine
+        self.statusIcon = statusIcon
+        self.message = message
+    }
 }

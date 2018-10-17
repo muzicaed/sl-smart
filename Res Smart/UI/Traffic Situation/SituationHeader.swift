@@ -11,26 +11,26 @@ import UIKit
 import ResStockholmApiKit
 
 class SituationHeader: UITableViewCell {
-  
-  @IBOutlet weak var title: UILabel!
-  @IBOutlet weak var statusIcon: UIImageView!
-  
-  /**
-   * Setup data
-   */
-  func setupData(_ group: SituationGroup) {
-    title.text = group.name
-    isUserInteractionEnabled = false
-    if group.hasPlannedEvent && group.statusIcon == "EventGood" {
-      statusIcon.image = UIImage(named: "EventPlanned")
-      title.accessibilityLabel = group.name + ". Har plannerade avvikelser"
-    } else {
-      statusIcon.image = UIImage(named: group.statusIcon)
-      if group.statusIcon == "EventGood" {
-        title.accessibilityLabel = group.name + ". Inga avvikelser"
-      } else {
-        title.accessibilityLabel = group.name + ". Finns pågående störningar"
-      }
+    
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var statusIcon: UIImageView!
+    
+    /**
+     * Setup data
+     */
+    func setupData(_ group: SituationGroup) {
+        title.text = group.name
+        isUserInteractionEnabled = false
+        if group.hasPlannedEvent && group.statusIcon == "EventGood" {
+            statusIcon.image = UIImage(named: "EventPlanned")
+            title.accessibilityLabel = group.name + ". Har plannerade avvikelser"
+        } else {
+            statusIcon.image = UIImage(named: group.statusIcon)
+            if group.statusIcon == "EventGood" {
+                title.accessibilityLabel = group.name + ". Inga avvikelser"
+            } else {
+                title.accessibilityLabel = group.name + ". Finns pågående störningar"
+            }
+        }
     }
-  }
 }
