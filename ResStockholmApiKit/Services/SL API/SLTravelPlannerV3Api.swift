@@ -32,7 +32,7 @@ class SLTravelPlannerV3Api {
      */
     fileprivate func createSimpleSearchApiUrl(_ criterions: TripSearchCriterion) -> String {
         let criterionsUrl = criterions.generateQueryString(false)
-        return urlBase + "?key=\(apiKey)\(criterionsUrl)&lang=\(LanguangeHelper.getLangCode())"
+        return urlBase + "?key=\(apiKey)\(criterionsUrl)&lang=\(LanguangeHelper.getLangCode())&poly=1"
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 open class SearchTripService {
     
@@ -148,6 +149,8 @@ open class SearchTripService {
             isWarning = true
         }
         
+        let geoRoute = extractGeoRoute(segmentJson)
+        
         return TripSegment(
             index: Int(segmentJson["idx"].string!)!,
             name: segmentJson["name"].string!,
@@ -161,7 +164,7 @@ open class SearchTripService {
             distance: dist, isRealtime: dateTimeTuple.isRealtime,
             journyRef: segmentJson["JourneyDetailRef"]["ref"].string,            
             messages: messages, notes: "", isWarning: isWarning,
-            isReachable: isReachable, isCancelled: isCancelled)
+            isReachable: isReachable, isCancelled: isCancelled, geoRoute: geoRoute)
     }
     
     /**
@@ -175,9 +178,6 @@ open class SearchTripService {
             lat: locationJson["lat"].string,
             lon: locationJson["lon"].string)
     }
-    
-    
-    
     
     /**
      * Extracts departure date/time and arriaval date/time.
@@ -213,7 +213,7 @@ open class SearchTripService {
             
             return (isRealtime, depDate, depTime, arrDate, arrTime)
     }
-
+    
     /**
      * Extract TripType from JSON.
      */
@@ -241,5 +241,53 @@ open class SearchTripService {
         }
         
         return nil
+    }
+    
+    /**
+     * Extract route (coords for map route).
+     */
+    fileprivate static func extractGeoRoute(_ data: JSON) -> [CLLocation] {
+        var locations = [CLLocation]()
+        if let coordData = data["Polyline"]["crd"].array {
+            if(coordData.count > 2) {
+                locations = extractLocations(coordData)
+            }
+        }
+        return locations
+    }
+    
+    /**
+     * Extract locations for map route.
+     */
+    fileprivate static func extractLocations(_ coords: [JSON]) -> [CLLocation] {
+        var locations = [CLLocation]()
+        let lonInt = coords[0].int!
+        let latInt = coords[1].int!
+        let startLocation = mantissaToLocation(lonInt: lonInt, latInt: latInt)
+        locations.append(startLocation)
+        
+        let coordPairs = stride(from: 2, to: coords.count, by: 2).map {
+            (lon: coords[$0].int!, lat: coords[$0.advanced(by: 1)].int!)
+        }
+        
+        for coordDelta in coordPairs {
+            locations.append(
+                mantissaToLocation(
+                    lonInt: lonInt + coordDelta.lon,
+                    latInt: latInt + coordDelta.lat
+                )
+            )
+        }
+
+        return locations
+    }
+    
+    /**
+     * Extract locations for map route.
+     */
+    fileprivate static func mantissaToLocation(lonInt: Int, latInt: Int) -> CLLocation {
+        let lon = NSDecimalNumber(mantissa: UInt64(lonInt), exponent: -6, isNegative: false)
+        let lat = NSDecimalNumber(mantissa: UInt64(latInt), exponent: -6, isNegative: false)
+        return CLLocation(latitude: lat.doubleValue, longitude: lon.doubleValue)
     }
 }
