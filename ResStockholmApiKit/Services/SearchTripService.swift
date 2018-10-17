@@ -139,9 +139,9 @@ open class SearchTripService {
         
         let dist = (segmentJson["dist"].int != nil) ? segmentJson["dist"].int! : 0
         let dateTimeTuple = extractTimeDate(segmentJson)
-        let rtuMessages = extractRtuMessages(segmentJson["RTUMessages"]["RTUMessage"])
+        let messages = extractMessages(segmentJson["Messages"]["Message"])
         
-        var isWarning = DisturbanceTextHelper.isDisturbance(rtuMessages)
+        var isWarning = DisturbanceTextHelper.isDisturbance(messages)
         let isReachable = (segmentJson["reachable"].string == nil) ? true : false
         let isCancelled = (segmentJson["cancelled"].string == nil) ? false : true
         if !isReachable || isCancelled {
@@ -161,7 +161,7 @@ open class SearchTripService {
             distance: dist, isRealtime: dateTimeTuple.isRealtime,
             journyRef: segmentJson["JourneyDetailRef"]["ref"].string,
             geometryRef: segmentJson["GeometryRef"]["ref"].string,
-            rtuMessages: rtuMessages, notes: "", isWarning: isWarning,
+            rtuMessages: messages, notes: "", isWarning: isWarning,
             isReachable: isReachable, isCancelled: isCancelled)
     }
     
@@ -229,18 +229,18 @@ open class SearchTripService {
     }
     
     /**
-     * Extract RTU Messages (trip warnings).
+     * Extract Messages (trip warnings).
      */
-    fileprivate static func extractRtuMessages(_ data: JSON) -> String? {
+    fileprivate static func extractMessages(_ data: JSON) -> String? {
         if let messages = data.array {
             var result = ""
             for mess in messages {
-                result += mess["$"].string!
-                result += (mess == messages.last) ? "\n\n" : ""
+                result += mess["text"].string!
+                result += (mess == messages.last) ? "\n" : ""
             }
             return result
         }
         
-        return data["$"].string
+        return nil
     }
 }
