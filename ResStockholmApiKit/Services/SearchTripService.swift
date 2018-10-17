@@ -175,8 +175,8 @@ open class SearchTripService {
             id: locationJson["extId"].string,
             name: locationJson["name"].string,
             type: locationJson["type"].string,
-            lat: locationJson["lat"].string,
-            lon: locationJson["lon"].string)
+            lat: locationJson["lat"].double,
+            lon: locationJson["lon"].double)
     }
     
     /**
@@ -246,8 +246,8 @@ open class SearchTripService {
     /**
      * Extract route (coords for map route).
      */
-    fileprivate static func extractGeoRoute(_ data: JSON) -> [CLLocation] {
-        var locations = [CLLocation]()
+    fileprivate static func extractGeoRoute(_ data: JSON) -> [CLLocationCoordinate2D] {
+        var locations = [CLLocationCoordinate2D]()
         if let coordData = data["Polyline"]["crd"].array {
             if(coordData.count > 2) {
                 locations = extractLocations(coordData)
@@ -259,11 +259,11 @@ open class SearchTripService {
     /**
      * Extract locations for map route.
      */
-    fileprivate static func extractLocations(_ coords: [JSON]) -> [CLLocation] {
-        var locations = [CLLocation]()
-        let lonInt = coords[0].int!
-        let latInt = coords[1].int!
-        let startLocation = mantissaToLocation(lonInt: lonInt, latInt: latInt)
+    fileprivate static func extractLocations(_ coords: [JSON]) -> [CLLocationCoordinate2D] {
+        var locations = [CLLocationCoordinate2D]()
+        var prevLonInt = coords[0].int!
+        var prevlatInt = coords[1].int!
+        let startLocation = mantissaToLocation(lonInt: prevLonInt, latInt: prevlatInt)
         locations.append(startLocation)
         
         let coordPairs = stride(from: 2, to: coords.count, by: 2).map {
@@ -271,12 +271,16 @@ open class SearchTripService {
         }
         
         for coordDelta in coordPairs {
+            let newLonInt = prevLonInt + coordDelta.lon
+            let newLatInt = prevlatInt + coordDelta.lat
             locations.append(
                 mantissaToLocation(
-                    lonInt: lonInt + coordDelta.lon,
-                    latInt: latInt + coordDelta.lat
+                    lonInt: newLonInt,
+                    latInt: newLatInt
                 )
             )
+            prevLonInt = newLonInt
+            prevlatInt = newLatInt
         }
 
         return locations
@@ -285,9 +289,9 @@ open class SearchTripService {
     /**
      * Extract locations for map route.
      */
-    fileprivate static func mantissaToLocation(lonInt: Int, latInt: Int) -> CLLocation {
+    fileprivate static func mantissaToLocation(lonInt: Int, latInt: Int) -> CLLocationCoordinate2D {
         let lon = NSDecimalNumber(mantissa: UInt64(lonInt), exponent: -6, isNegative: false)
         let lat = NSDecimalNumber(mantissa: UInt64(latInt), exponent: -6, isNegative: false)
-        return CLLocation(latitude: lat.doubleValue, longitude: lon.doubleValue)
+        return CLLocationCoordinate2D(latitude: lat.doubleValue, longitude: lon.doubleValue)
     }
 }

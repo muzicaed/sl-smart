@@ -76,7 +76,6 @@ open class JournyDetailsService {
         location: staticStop.location, type: staticStop.type,
         exits: staticStop.exits, depDate: timeDateTuple.depDate, depTime: timeDateTuple.depTime)
     }
-    print(stopJson)
     return Stop(
       id: stopJson["extId"].string!, name: stopJson["name"].string!,
       location: CLLocation(latitude: stopJson["lat"].double!, longitude: stopJson["lon"].double!),

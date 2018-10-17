@@ -22,6 +22,6 @@ class MapHelper {
     mapView.setVisibleMapRect(
       mapView.mapRectThatFits(allPolyline.boundingMapRect),
       edgePadding: UIEdgeInsets(top: topPadding, left: 25, bottom: 75, right: 25),
-      animated: false)
+      animated: true)
   }
 }

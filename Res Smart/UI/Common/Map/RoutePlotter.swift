@@ -18,11 +18,11 @@ class RoutePlotter {
   static func plotRoute(_ segment: TripSegment,
                         before: TripSegment?,
                         next: TripSegment?,
-                        isLast: Bool, geoLocations: [CLLocation],
+                        isLast: Bool, geoLocations: [CLLocationCoordinate2D],
                         mapView: MKMapView) -> [CLLocationCoordinate2D] {
     
     var coords = [CLLocationCoordinate2D]()
-    if canPlotRoute(segment, before: before, next: next, isLast: isLast) {
+    if canPlotWalkRoute(segment, before: before, next: next, isLast: isLast) {
       plotWalk(segment, mapView)
     } else {
       if segment.stops.count == 0 {
@@ -31,22 +31,7 @@ class RoutePlotter {
           coords.append(destLocation.coordinate)
         }
       } else {
-        var shouldPlot = false
-        if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
-          coords.append(originLocation.coordinate)
-          for location in geoLocations {
-            if location.distance(from: originLocation) < 1  {
-              shouldPlot = true
-            }
-            if shouldPlot == true && location.distance(from: destLocation) < 1 {
-              break
-            }
-            if shouldPlot {
-              coords.append(location.coordinate)
-            }
-          }
-          coords.append(destLocation.coordinate)
-        }
+        coords.append(contentsOf: geoLocations)        
       }
     }
     
@@ -59,16 +44,18 @@ class RoutePlotter {
    */
   static func createOverlays(_ coordinates: [CLLocationCoordinate2D],
                              _ segment: TripSegment,
-                             _ trip: Trip?,
+                             _ trip: Trip,
                              _ mapView: MKMapView,
                              showStart: Bool) {
+    
+    
     var newCoordinates = coordinates
     let polyline = RoutePolyline(coordinates: &newCoordinates, count: newCoordinates.count)
     polyline.segment = segment
     mapView.add(polyline)
     
     createStopPins(segment, mapView: mapView)
-    createLocationPins(segment, coordinates: newCoordinates, trip, mapView, showStart)
+    createLocationPins(segment, trip, mapView, showStart)
   }
   
   // MARK: Private
@@ -76,7 +63,7 @@ class RoutePlotter {
   /**
    * Check if segment can be ploted as walk route.
    */
-  static fileprivate func canPlotRoute(_ segment: TripSegment, before: TripSegment?, next: TripSegment?, isLast: Bool) -> Bool {
+  static fileprivate func canPlotWalkRoute(_ segment: TripSegment, before: TripSegment?, next: TripSegment?, isLast: Bool) -> Bool {
     return (
       segment.type == .Walk && (
         (segment.origin.type == .Address || segment.destination.type == .Address) ||
@@ -121,21 +108,17 @@ class RoutePlotter {
    * Create location pins for each segment
    */
   static fileprivate func createLocationPins(_ segment: TripSegment,
-                                             coordinates: [CLLocationCoordinate2D],
-                                             _ trip: Trip?,
+                                             _ trip: Trip,
                                              _ mapView: MKMapView,
                                              _ showStart: Bool) {
     
     if let originLocation = segment.origin.location, let destLocation = segment.destination.location {
-      //let originCoord = (segment.stops.count == 0) ? originLocation.coordinate : segment.stops.first!.location.coordinate
-      //let destCoord = (segment.stops.count == 0) ? destLocation.coordinate : segment.stops.last!.location.coordinate
-      
       let originCoord = originLocation.coordinate
       let destCoord = destLocation.coordinate
       
       let pin = BigPin()
       pin.zIndexMod = (segment.type == .Walk) ? -1 : 1
-      if segment == trip?.tripSegments.first! {
+      if segment == trip.tripSegments.first! {
         pin.coordinate = originCoord
         pin.title = "\("Start:".localized) " + segment.origin.name
         pin.subtitle = "\("Departure:".localized) " + DateUtils.dateAsTimeString(segment.departureDateTime)
@@ -145,7 +128,7 @@ class RoutePlotter {
           mapView.selectAnnotation(pin, animated: false)
         }
       }
-      if segment == trip?.tripSegments.last! {
+      if segment == trip.tripSegments.last! {
         pin.coordinate = originCoord
         pin.title = segment.origin.name
         pin.subtitle = "\("Departure:".localized) " + DateUtils.dateAsTimeString(segment.departureDateTime)
@@ -158,7 +141,7 @@ class RoutePlotter {
         destPin.subtitle = "\("Arrival:".localized) " + DateUtils.dateAsTimeString(segment.arrivalDateTime)
         mapView.addAnnotation(destPin)
       }
-      if segment != trip?.tripSegments.first! && segment != trip?.tripSegments.last! {
+      if segment != trip.tripSegments.first! && segment != trip.tripSegments.last! {
         pin.coordinate = originCoord
         pin.title = segment.origin.name
         pin.subtitle = "\("Departure:".localized) " + DateUtils.dateAsTimeString(segment.departureDateTime)

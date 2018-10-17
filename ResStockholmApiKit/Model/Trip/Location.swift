@@ -17,20 +17,20 @@ open class Location: NSObject, NSCoding, NSCopying {
     public let cleanName: String
     public let area: String
     public let type: LocationType
-    public let lat: String?
-    public let lon: String?
+    public let lat: Double?
+    public let lon: Double?
     public let location: CLLocation?
     
     /**
      * Standard init
      */
-    public init(id: String?, name: String?, type: String?, lat: String?, lon: String?) {
+    public init(id: String?, name: String?, type: String?, lat: Double?, lon: Double?) {
         if let lat = lat, let lon = lon {
-            self.lat = Location.convertCoordinateFormat(lat)
-            self.lon = Location.convertCoordinateFormat(lon)
+            self.lat = lat
+            self.lon = lon
             self.location = CLLocation(
-                latitude: Double(lat)!,
-                longitude: Double(lon)!)
+                latitude: lat,
+                longitude: lon)
         } else {
             self.lat = nil
             self.lon = nil
@@ -71,7 +71,7 @@ open class Location: NSObject, NSCoding, NSCopying {
      * Standard init
      */
     public init(id: String, name: String, cleanName: String,
-                area: String, type: LocationType, lat: String?, lon: String?) {
+                area: String, type: LocationType, lat: Double?, lon: Double?) {
         self.siteId = id
         self.name = name
         self.cleanName = cleanName
@@ -81,8 +81,8 @@ open class Location: NSObject, NSCoding, NSCopying {
             self.lat = lat
             self.lon = lon
             self.location = CLLocation(
-                latitude: Double(lat)!,
-                longitude: Double(lon)!)
+                latitude: lat,
+                longitude: lon)
         } else {
             self.lat = nil
             self.lon = nil
@@ -94,7 +94,7 @@ open class Location: NSObject, NSCoding, NSCopying {
      * Creates a current location instance.
      */
     public static func createCurrentLocation() -> Location {
-        return Location(id: nil, name: "From here".localized, type: "Current", lat: "0.0", lon: "0.0")
+        return Location(id: nil, name: "From here".localized, type: "Current", lat: 0.0, lon: 0.0)
     }
     
     /**
@@ -143,19 +143,6 @@ open class Location: NSObject, NSCoding, NSCopying {
     }
     
     /**
-     * Converts Xpos & Ypos returned from some SL Services
-     * into true lat/lon values
-     */
-    fileprivate static func convertCoordinateFormat(_ coordinate: String) -> String {
-        if !coordinate.characters.contains(".") {
-            let index = 2
-            return String(coordinate.characters.prefix(index)) +
-                "." + String(coordinate.characters.suffix(coordinate.characters.count - index))
-        }
-        return coordinate
-    }
-    
-    /**
      * Ensures the string is UTF8
      */
     fileprivate static func ensureUTF8(_ string: String) -> String {
@@ -181,8 +168,12 @@ open class Location: NSObject, NSCoding, NSCopying {
         let cleanName = aDecoder.decodeObject(forKey: PropertyKey.cleanName) as! String
         let area = aDecoder.decodeObject(forKey: PropertyKey.area) as! String
         let type = aDecoder.decodeObject(forKey: PropertyKey.type) as! String
-        let lat = aDecoder.decodeObject(forKey: PropertyKey.lat) as! String
-        let lon = aDecoder.decodeObject(forKey: PropertyKey.lon) as! String
+        var lat = aDecoder.decodeObject(forKey: PropertyKey.lat) as? Double
+        var lon = aDecoder.decodeObject(forKey: PropertyKey.lon) as? Double
+        if lat == nil || lon == nil {
+            lat = Double(aDecoder.decodeObject(forKey: PropertyKey.lat) as! String)!
+            lon = Double(aDecoder.decodeObject(forKey: PropertyKey.lon) as! String)!
+        }
         
         self.init(
             id: siteId, name: name, cleanName: cleanName,

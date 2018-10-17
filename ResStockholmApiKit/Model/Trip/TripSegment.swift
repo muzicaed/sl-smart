@@ -31,7 +31,7 @@ open class TripSegment: NSObject, NSCopying {
     public var trainPositionText: String? = nil
     public var exitText = ""
     public var stops = [Stop]()
-    public let geoRoute: [CLLocation]
+    public let geoRoute: [CLLocationCoordinate2D]
     
     public init(
         index: Int, name: String, type: TripType, directionText: String?,
@@ -40,7 +40,7 @@ open class TripSegment: NSObject, NSCopying {
         departureDate: String, arrivalDate: String,
         distance: Int?, isRealtime: Bool, journyRef: String?,
         messages: String?, notes: String?, isWarning: Bool,
-        isReachable: Bool, isCancelled: Bool, geoRoute: [CLLocation]) {
+        isReachable: Bool, isCancelled: Bool, geoRoute: [CLLocationCoordinate2D]) {
         
         self.index = index
         self.name = name

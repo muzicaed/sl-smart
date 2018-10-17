@@ -52,8 +52,8 @@ open class MyLocationHelper: NSObject, CLLocationManagerDelegate {
       return Location(
         id: nil,
         name: street, type: "Address",
-        lat: String(loc.coordinate.latitude),
-        lon: String(loc.coordinate.longitude))
+        lat: loc.coordinate.latitude,
+        lon: loc.coordinate.longitude)
     }
     return nil
   }
