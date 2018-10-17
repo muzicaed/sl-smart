@@ -42,7 +42,7 @@ open class DateUtils {
         formatter.dateFormat = "HH:mm:ss"
         return formatter.string(from: date)
     }
-
+    
     /**
      * Converts a NSDate to a swedish local time string
      * eg. "17:04"

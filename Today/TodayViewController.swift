@@ -123,8 +123,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         if let first = trip.tripSegments.first, let last = trip.tripSegments.last {
           self.departureStationLabel.text = first.origin.name
           self.arrivalStationLabel.text = last.destination.name
-          self.departureTimeLabel.text = DateUtils.dateAsTimeString(first.departureDateTime)        
-          self.arrivalTimeLabel.text = DateUtils.dateAsTimeString(last.arrivalDateTime)          
+          self.departureTimeLabel.text = DateUtils.dateAsTimeNoSecString(first.departureDateTime)
+          self.arrivalTimeLabel.text = DateUtils.dateAsTimeNoSecString(last.arrivalDateTime)          
           self.inAboutLabel.text = DateUtils.createAboutTimeText(segments: trip.tripSegments)
         }
         
