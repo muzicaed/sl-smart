@@ -199,7 +199,6 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
     _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
     if searchResult.count > 0 {
-      print("No of result rows: \(searchResult.count)")
       return searchResult.count
     }
     
@@ -223,7 +222,6 @@ class SearchLocationVC: UITableViewController, UISearchResultsUpdating {
     _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     if searchResult.count > 0 {
-      print("Create result row")
       let location = searchResult[indexPath.row]
       return createLocationCell(indexPath, location: location, isFavourite: false)
     }
