@@ -43,10 +43,10 @@ class TripRow: NSObject {
         let depDateString = DateUtils.createDepartureTimeString(
             data["ot"] as! String, isWalk: checkIfWalk(data))
         let arrivalDate = DateUtils.convertDateString(data["dt"] as! String)
-        let humanTripDuration = createHumanTripDuration(data["dur"] as! Int)
+        let humanTripDuration = data["dur"] as! String
         
         scheduleLabel.setText("\(depDateString) → \(DateUtils.dateAsTimeString(arrivalDate))")
-        travelTimeLabel.setText("Trip time".localized  + ": \(humanTripDuration)")
+        travelTimeLabel.setText(humanTripDuration)
         handleTravelDateLabel(data["ot"] as! String)
         createTripIcons(
             data["icn"] as! [String],
@@ -134,21 +134,5 @@ class TripRow: NSObject {
         iconGroups.append(icnGrp3)
         iconGroups.append(icnGrp4)
         iconGroups.append(icnGrp5)
-    }
-    
-    /**
-     * Creates a human readable trip duration string.
-     * eg "1:32" eller "20 minuter"
-     */
-    fileprivate func createHumanTripDuration(_ duration: Int) -> String {
-        if duration < 60 {
-            return "\(duration) min"
-        }
-        
-        var remainder = String(duration % 60)
-        if remainder.count <= 1 {
-            remainder = "0" + remainder
-        }
-        return "\(duration / 60):\(remainder)h"
     }
 }

@@ -112,7 +112,7 @@ open class Trip: NSObject, NSCopying {
         }
         
         return [
-            "dur": durationText as AnyObject,
+            "dur": DateUtils.createTripDurationString(durationText) as AnyObject,
             "icn": icons as AnyObject,
             "lns": lines as AnyObject,
             "war": warnings as AnyObject,

@@ -106,6 +106,7 @@
 		18946B171C18431500A5829D /* DateTimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18946B161C18431500A5829D /* DateTimePickerVC.swift */; };
 		18946B1D1C1844E700A5829D /* DateTimePickResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18946B1C1C1844E700A5829D /* DateTimePickResponder.swift */; };
 		1899F25C1C4AF05C00534587 /* TripMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899F25B1C4AF05C00534587 /* TripMapVC.swift */; };
+		189F68E0217A0FC10096FE89 /* WatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189F68DF217A0FC10096FE89 /* WatchManager.swift */; };
 		18A000441CDF9C0A004B83F6 /* LinePickerResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A000431CDF9C0A004B83F6 /* LinePickerResponder.swift */; };
 		18A428A11CA8257E004B4D67 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1818B2661C404FE0004E3CA3 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		18A5A8DB1C580E83003C4C3B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A5A8DA1C580E83003C4C3B /* CoreLocation.framework */; };
@@ -393,6 +394,7 @@
 		1899F2661C4B9C6200534587 /* RouteRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteRenderer.swift; sourceTree = "<group>"; };
 		1899F2681C4B9C9200534587 /* RoutePolyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutePolyline.swift; sourceTree = "<group>"; };
 		1899F26A1C4BBE7800534587 /* Pins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pins.swift; sourceTree = "<group>"; };
+		189F68DF217A0FC10096FE89 /* WatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchManager.swift; sourceTree = "<group>"; };
 		18A000431CDF9C0A004B83F6 /* LinePickerResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinePickerResponder.swift; sourceTree = "<group>"; };
 		18A5A8D41C57BC54003C4C3B /* DisturbanceTextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisturbanceTextHelper.swift; sourceTree = "<group>"; };
 		18A5A8DA1C580E83003C4C3B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -768,6 +770,7 @@
 				18937E891C01139E00C523C9 /* UI */,
 				18230C8D210DEE8B00EEF7F5 /* Assets.xcassets */,
 				18937E341BFF33FA00C523C9 /* AppDelegate.swift */,
+				189F68DF217A0FC10096FE89 /* WatchManager.swift */,
 				188367611C16264200A8BE16 /* WatchService.swift */,
 				18937E401BFF33FA00C523C9 /* Info.plist */,
 				187733CE1ED82A4900B5B1B9 /* InfoPlist.strings */,
@@ -1361,6 +1364,7 @@
 				188367751C170E5500A8BE16 /* TripDetailsDestinationCell.swift in Sources */,
 				188B80AE1C178DD900E7D90C /* TripSearchVC.swift in Sources */,
 				1885A4131CDF95E300680F8E /* LinePickerVC.swift in Sources */,
+				189F68E0217A0FC10096FE89 /* WatchManager.swift in Sources */,
 				18AC9CFA1C07AE63007ECFA2 /* TripCell.swift in Sources */,
 				18733C631C4E568500F66AEF /* SMSegment.swift in Sources */,
 				181631DB1F5AC75C006D5DFE /* OtherRoutineTripCell.swift in Sources */,

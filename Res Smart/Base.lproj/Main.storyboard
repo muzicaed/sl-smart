@@ -680,9 +680,6 @@
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1C-Mj-3GQ">
                                                     <rect key="frame" x="40" y="0.0" width="335" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="b7X-zO-zU0"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="highlightedColor"/>
                                                     <attributedString key="userComments">
@@ -4068,6 +4065,9 @@ Tap "+" to create one.</string>
                         <outlet property="mapButton" destination="bTo-4z-Wx5" id="8Hr-zG-4Yi"/>
                         <outlet property="originLabel" destination="ZNu-I4-w7g" id="qrp-SP-cFI"/>
                         <outlet property="timeLabel" destination="4vg-xG-Jx7" id="Ux0-TG-0bf"/>
+                        <segue destination="gGh-GB-Cpo" kind="popoverPresentation" popoverAnchorView="Q2W-7V-Yq6" id="Jzn-XH-KDP">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dB-zP-KDF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4161,7 +4161,96 @@ Tap "+" to create one.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yKK-B0-t7g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5353" y="-18"/>
+            <point key="canvasLocation" x="5742" y="-18"/>
+        </scene>
+        <!--Trip Assistant-->
+        <scene sceneID="LCb-Xi-7Td">
+            <objects>
+                <viewController title="Trip Assistant" id="gGh-GB-Cpo" customClass="TripMapVC" customModule="Res_Smart" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IVv-5d-QTl"/>
+                        <viewControllerLayoutGuide type="bottom" id="s86-0W-dgP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1HV-kh-2th">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m3e-SY-tw1">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <color key="backgroundColor" red="0.90980392160000001" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I3l-8k-LAZ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </mapView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="n2P-5B-BQJ">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="0.33333334329999997" green="0.33333334329999997" blue="0.33333334329999997" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iqd-ue-r0n">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Map" largeTitleDisplayMode="never" id="e9A-AM-Ez5">
+                                        <barButtonItem key="rightBarButtonItem" title="Close" style="done" id="aKA-GQ-Giu">
+                                            <connections>
+                                                <action selector="onCloseTap:" destination="gGh-GB-Cpo" id="atr-Ja-sob"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2WZ-bO-BEw">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Show my location" id="jxK-dM-rTq">
+                                        <connections>
+                                            <action selector="myPositionTap:" destination="gGh-GB-Cpo" id="bKy-Sa-WHE"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="kZD-7r-iIw"/>
+                                    <barButtonItem style="plain" id="2DB-kT-Mhx">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="eyt-ly-bGC">
+                                            <rect key="frame" x="248" y="7.5" width="111" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Map"/>
+                                                <segment title="Hybrid"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="onSegmentChanged:" destination="gGh-GB-Cpo" eventType="valueChanged" id="cvv-E3-Htq"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.61960784310000006" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="m3e-SY-tw1" secondAttribute="trailing" id="3RZ-kz-Pjp"/>
+                            <constraint firstAttribute="trailing" secondItem="2WZ-bO-BEw" secondAttribute="trailing" id="4Mv-Pl-yfE"/>
+                            <constraint firstItem="I3l-8k-LAZ" firstAttribute="top" secondItem="iqd-ue-r0n" secondAttribute="top" id="AZx-9Z-Aub"/>
+                            <constraint firstItem="n2P-5B-BQJ" firstAttribute="centerX" secondItem="1HV-kh-2th" secondAttribute="centerX" id="Ba5-eI-ROE"/>
+                            <constraint firstItem="2WZ-bO-BEw" firstAttribute="top" secondItem="m3e-SY-tw1" secondAttribute="bottom" id="DdS-TS-MQb"/>
+                            <constraint firstAttribute="trailing" secondItem="iqd-ue-r0n" secondAttribute="trailing" id="MBA-XL-8ex"/>
+                            <constraint firstItem="I3l-8k-LAZ" firstAttribute="leading" secondItem="1HV-kh-2th" secondAttribute="leading" id="V3L-Oo-rLb"/>
+                            <constraint firstItem="iqd-ue-r0n" firstAttribute="top" secondItem="IVv-5d-QTl" secondAttribute="bottom" id="VD9-xg-1bP"/>
+                            <constraint firstItem="iqd-ue-r0n" firstAttribute="leading" secondItem="1HV-kh-2th" secondAttribute="leading" id="YUu-ZM-vmI"/>
+                            <constraint firstItem="m3e-SY-tw1" firstAttribute="leading" secondItem="1HV-kh-2th" secondAttribute="leading" id="bVy-7K-v7D"/>
+                            <constraint firstItem="n2P-5B-BQJ" firstAttribute="centerY" secondItem="1HV-kh-2th" secondAttribute="centerY" id="gbZ-Hk-XeH"/>
+                            <constraint firstItem="s86-0W-dgP" firstAttribute="top" secondItem="2WZ-bO-BEw" secondAttribute="bottom" id="ltY-Sd-H48"/>
+                            <constraint firstItem="2WZ-bO-BEw" firstAttribute="leading" secondItem="1HV-kh-2th" secondAttribute="leading" id="pT0-48-tw5"/>
+                            <constraint firstAttribute="trailing" secondItem="I3l-8k-LAZ" secondAttribute="trailing" id="pVe-Qk-Hcd"/>
+                            <constraint firstItem="s86-0W-dgP" firstAttribute="top" secondItem="I3l-8k-LAZ" secondAttribute="bottom" id="tWo-Oa-a0b"/>
+                            <constraint firstItem="m3e-SY-tw1" firstAttribute="top" secondItem="iqd-ue-r0n" secondAttribute="bottom" id="yw5-6d-g8Y"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="n2P-5B-BQJ" id="Sbn-8j-MjI"/>
+                        <outlet property="mapView" destination="I3l-8k-LAZ" id="G22-io-f0X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X0P-ZR-XfH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5742" y="-735"/>
         </scene>
         <!--Platskarta-->
         <scene sceneID="VGN-Ze-caN">
@@ -4668,6 +4757,6 @@ Tap "+" to create one.</string>
         <segue reference="L0K-5H-KeJ"/>
         <segue reference="0VD-Nj-Mfo"/>
         <segue reference="6zU-Tw-atf"/>
-        <segue reference="gZB-Im-USu"/>
+        <segue reference="zVB-lv-c0r"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,16 +7,16 @@
 //
 
 import UIKit
-import WatchConnectivity
 import ResStockholmApiKit
 import UserNotifications
 
 //TODO: Move WCSessionDelegate out to a helper object
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     let notificationCenter = NotificationCenter.default
+    let watchManager = WatchManager()
     
     // MARK: UIApplicationDelegate
     
@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window?.backgroundColor = UIColor(red: 244/255, green: 255/255, blue: 249/255, alpha: 1.0)
         DataMigration.migrateData()
-        setupAppleWatchConnection()
         setupApp()
         
         return true
@@ -57,50 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    // MARK: WCSessionDelegate
-    
-    func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
-        
-        let message = NSKeyedUnarchiver.unarchiveObject(with: messageData)! as! Dictionary<String, AnyObject>
-        let action = message["action"] as! String
-        DispatchQueue.main.async {
-            switch action {
-            case "RequestRoutineTrips":
-                WatchService.requestRoutineTrips() { response in
-                    let data = NSKeyedArchiver.archivedData(withRootObject: response)
-                    replyHandler(data)
-                }
-            case "SearchTrips":
-                let routineTripId = message["id"] as! String
-                WatchService.searchTrips(routineTripId) { response in
-                    let data = NSKeyedArchiver.archivedData(withRootObject: response)
-                    replyHandler(data)
-                }
-            case "SearchLastTrip":
-                WatchService.lastTripSearch() { response in
-                    let data = NSKeyedArchiver.archivedData(withRootObject: response)
-                    replyHandler(data)
-                }
-            default:
-                fatalError("Unknown WCSession message.")
-            }
-        }
-    }
-    
-    /** Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */
-    @available(iOS 9.3, *)
-    public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-    }
-    
-    /** Called when the session can no longer be used to modify or add any new transfers and, all interactive messages will be cancelled, but delegate callbacks for background transfers can still occur. This will happen when the selected watch is being changed. */
-    @available(iOS 9.3, *)
-    public func sessionDidBecomeInactive(_ session: WCSession) {
-    }
-    
-    @available(iOS 9.3, *)
-    public func sessionDidDeactivate(_ session: WCSession) {}
-    
-    
     //MARK: Private
     
     /**
@@ -110,17 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         StyleHelper.sharedInstance.setupCustomStyle()
         window?.tintColor = StyleHelper.sharedInstance.tintColor
         RoutineTripsStore.sharedInstance.preload()
-    }
-    
-    /**
-     * Prepares AppleWatch session.
-     */
-    fileprivate func setupAppleWatchConnection() {
-        if (WCSession.isSupported()) {
-            let defaultSession = WCSession.default
-            defaultSession.delegate = self
-            defaultSession.activate()
-        }
     }
     
     /**
