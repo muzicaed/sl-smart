@@ -54,7 +54,7 @@ class DateUtils {
      * Converts a NSDate to a swedish local friendly
      * date string.
      */
-    open static func friendlyDate(_ date: Date) -> String {
+    public static func friendlyDate(_ date: Date) -> String {
         let formatter = getFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
@@ -72,7 +72,7 @@ class DateUtils {
      * Converts a NSDate to a swedish local friendly
      * date string.
      */
-    open static func friendlyDateAndTime(_ date: Date) -> String {
+    public static func friendlyDateAndTime(_ date: Date) -> String {
         let formatter = getFormatter()
         
         formatter.dateFormat = "EEEE"
@@ -119,11 +119,11 @@ class DateUtils {
      * Creates a human friendly deparure time.
      */
     static func createDepartureTimeString(_ departureTime: String, isWalk: Bool) -> String {
-        var aboutStr = "In"
-        var nowStr = "Departs now"
+        var aboutStr = "In".localized
+        var nowStr = "Departs now".localized
         if isWalk {
-            aboutStr = "Walk in"
-            nowStr = "Walk now"
+            aboutStr = "Walk in".localized
+            nowStr = "Walk now".localized
         }
         
         let departureDate = DateUtils.convertDateString(departureTime)

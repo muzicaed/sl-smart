@@ -282,7 +282,7 @@ open class SearchTripService {
             prevLonInt = newLonInt
             prevlatInt = newLatInt
         }
-
+        
         return locations
     }
     

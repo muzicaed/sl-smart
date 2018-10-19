@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class ReportSituationRow: UITableViewCell {
-  
-  @IBOutlet weak var titleLabel: UILabel!
-  @IBOutlet weak var messageLabel: UILabel!  
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!  
 }

@@ -10,15 +10,15 @@ import Foundation
 import MapKit
 
 class DestinationPin: MKPointAnnotation {
-  var stationIndex = -1
+    var stationIndex = -1
 }
 
 class BigPin: MKPointAnnotation {
-  var stationIndex = -1
-  var imageName: String?
-  var zIndexMod: CGFloat = 0.0
+    var stationIndex = -1
+    var imageName: String?
+    var zIndexMod: CGFloat = 0.0
 }
 
 class SmallPin: MKPointAnnotation {
-  var imageName: String?
+    var imageName: String?
 }

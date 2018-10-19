@@ -10,7 +10,7 @@ import Foundation
 
 
 protocol PickLocationResponder {
-  
-  func pickLocation(_ isOrigin: Bool)
-  func switchTapped() -> Void    
+    
+    func pickLocation(_ isOrigin: Bool)
+    func switchTapped() -> Void    
 }

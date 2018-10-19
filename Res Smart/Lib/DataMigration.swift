@@ -10,81 +10,81 @@ import Foundation
 import ResStockholmApiKit
 
 class DataMigration {
-  
-  fileprivate static let dataKey = "RES-SMART-CURRENT-MIGRATION-STEP"
-  fileprivate static let defaults = UserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
-  
-  static func migrateData() {
-    let step = defaults.integer(forKey: dataKey)
-    if step <= 1 {
-      migrateVersion_1_3()
+    
+    fileprivate static let dataKey = "RES-SMART-CURRENT-MIGRATION-STEP"
+    fileprivate static let defaults = UserDefaults.init(suiteName: "group.mikael-hellman.ResSmart")!
+    
+    static func migrateData() {
+        let step = defaults.integer(forKey: dataKey)
+        if step <= 1 {
+            migrateVersion_1_3()
+        }
+        if step <= 2 {
+            migrateVersion_1_4()
+        }
+        if step <= 3 {
+            migrateVersion_1_5()
+        }
+        if step <= 4 {
+            migrateVersion_1_6()
+        }
+        if step <= 5 {
+            migrateVersion_2_0()
+        }
     }
-    if step <= 2 {
-      migrateVersion_1_4()
+    
+    // Version 1.3
+    fileprivate static func migrateVersion_1_3() {
+        print("Running migration v1.3")
+        let routines = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
+        for routine in routines {
+            routine.criterions.numChg = -1
+            RoutineTripsStore.sharedInstance.updateRoutineTrip(routine)
+        }
+        defaults.set(2, forKey: dataKey)
+        defaults.synchronize()    
     }
-    if step <= 3 {
-      migrateVersion_1_5()
+    
+    // Version 1.4
+    fileprivate static func migrateVersion_1_4() {
+        print("Running migration v1.4")
+        let routines = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
+        for routine in routines {
+            if routine.isSmartSuggestion {
+                routine.criterions.date = nil
+                routine.criterions.time = nil
+                RoutineTripsStore.sharedInstance.updateRoutineTrip(routine)
+            }
+        }
+        defaults.set(3, forKey: dataKey)
+        defaults.synchronize()
     }
-    if step <= 4 {
-      migrateVersion_1_6()
+    
+    // Version 1.5
+    fileprivate static func migrateVersion_1_5() {
+        print("Running migration v1.5")
+        UserDefaults.standard.set(true, forKey: "res_smart_premium_preference")
+        StopsStore.sharedInstance.loadJson()
+        //SubscriptionStore.sharedInstance.resetTrial()
+        defaults.set(4, forKey: dataKey)
+        defaults.synchronize()
     }
-    if step <= 5 {
-      migrateVersion_2_0()
+    
+    // Version 1.6
+    fileprivate static func migrateVersion_1_6() {
+        print("Running migration v1.6")
+        let criterions = SearchCriterionStore.sharedInstance.retrieveSearchCriterions()
+        SearchCriterionStore.sharedInstance.writeLastSearchCriterions(criterions)
+        defaults.set(5, forKey: dataKey)
+        UserDefaults.standard.set(true, forKey: "res_smart_premium_preference")
+        defaults.synchronize()
     }
-  }
-  
-  // Version 1.3
-  fileprivate static func migrateVersion_1_3() {
-    print("Running migration v1.3")
-    let routines = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
-    for routine in routines {
-      routine.criterions.numChg = -1
-      RoutineTripsStore.sharedInstance.updateRoutineTrip(routine)
+    
+    // Version 2.0
+    fileprivate static func migrateVersion_2_0() {
+        print("Running migration v2.0")
+        UserDefaults.standard.set(true, forKey: "res_smart_premium_preference")
+        defaults.set(6, forKey: dataKey)
+        defaults.synchronize()
     }
-    defaults.set(2, forKey: dataKey)
-    defaults.synchronize()    
-  }
-  
-  // Version 1.4
-  fileprivate static func migrateVersion_1_4() {
-    print("Running migration v1.4")
-    let routines = RoutineTripsStore.sharedInstance.retriveRoutineTrips()
-    for routine in routines {
-      if routine.isSmartSuggestion {
-        routine.criterions.date = nil
-        routine.criterions.time = nil
-        RoutineTripsStore.sharedInstance.updateRoutineTrip(routine)
-      }
-    }
-    defaults.set(3, forKey: dataKey)
-    defaults.synchronize()
-  }
-  
-  // Version 1.5
-  fileprivate static func migrateVersion_1_5() {
-    print("Running migration v1.5")
-    UserDefaults.standard.set(true, forKey: "res_smart_premium_preference")
-    StopsStore.sharedInstance.loadJson()
-    //SubscriptionStore.sharedInstance.resetTrial()
-    defaults.set(4, forKey: dataKey)
-    defaults.synchronize()
-  }
-  
-  // Version 1.6
-  fileprivate static func migrateVersion_1_6() {
-    print("Running migration v1.6")
-    let criterions = SearchCriterionStore.sharedInstance.retrieveSearchCriterions()
-    SearchCriterionStore.sharedInstance.writeLastSearchCriterions(criterions)
-    defaults.set(5, forKey: dataKey)
-    UserDefaults.standard.set(true, forKey: "res_smart_premium_preference")
-    defaults.synchronize()
-  }
-  
-  // Version 2.0
-  fileprivate static func migrateVersion_2_0() {
-    print("Running migration v2.0")
-    UserDefaults.standard.set(true, forKey: "res_smart_premium_preference")
-    defaults.set(6, forKey: dataKey)
-    defaults.synchronize()
-  }
 }

@@ -12,18 +12,18 @@ import MapKit
 import ResStockholmApiKit
 
 class TripDetailsSubSegmentCell: UITableViewCell, TripCellProtocol {
-  
-  @IBOutlet weak var timeLabel: UILabel!
-  @IBOutlet weak var locationLabel: UILabel!
-  
-  /**
-   * Set cell data.
-   */
-  func setData(_ indexPath: IndexPath, trip: Trip) {
-    let stop = trip.tripSegments[indexPath.section].stops[indexPath.row - 1]
-    locationLabel.text = stop.name
-    if let date = stop.depDate {
-      timeLabel.text = DateUtils.dateAsTimeNoSecString(date)
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    
+    /**
+     * Set cell data.
+     */
+    func setData(_ indexPath: IndexPath, trip: Trip) {
+        let stop = trip.tripSegments[indexPath.section].stops[indexPath.row - 1]
+        locationLabel.text = stop.name
+        if let date = stop.depDate {
+            timeLabel.text = DateUtils.dateAsTimeNoSecString(date)
+        }
     }
-  }
 }

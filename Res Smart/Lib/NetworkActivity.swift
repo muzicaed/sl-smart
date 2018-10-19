@@ -10,21 +10,21 @@ import Foundation
 import UIKit
 
 class NetworkActivity {
-  
-  static fileprivate var numberOfNetworkCalls = 0
-  
-  /**
-   * Track network activity and handle sysbar indicator.
-   */
-  static func displayActivityIndicator(_ isDisplay: Bool) {
-    if isDisplay {
-      numberOfNetworkCalls += 1
-    } else {
-      numberOfNetworkCalls -= 1
+    
+    static fileprivate var numberOfNetworkCalls = 0
+    
+    /**
+     * Track network activity and handle sysbar indicator.
+     */
+    static func displayActivityIndicator(_ isDisplay: Bool) {
+        if isDisplay {
+            numberOfNetworkCalls += 1
+        } else {
+            numberOfNetworkCalls -= 1
+        }
+        numberOfNetworkCalls = (numberOfNetworkCalls < 0) ? 0 : numberOfNetworkCalls
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = (numberOfNetworkCalls > 0)
+        }    
     }
-    numberOfNetworkCalls = (numberOfNetworkCalls < 0) ? 0 : numberOfNetworkCalls
-    DispatchQueue.main.async {
-      UIApplication.shared.isNetworkActivityIndicatorVisible = (numberOfNetworkCalls > 0)
-    }    
-  }
 }

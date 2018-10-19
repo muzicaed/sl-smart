@@ -11,6 +11,6 @@ import MapKit
 import ResStockholmApiKit
 
 class RoutePolyline: MKPolyline {
-  
-  var segment: TripSegment?
+    
+    var segment: TripSegment?
 }

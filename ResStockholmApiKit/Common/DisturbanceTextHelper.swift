@@ -9,20 +9,20 @@
 import Foundation
 
 open class DisturbanceTextHelper {
-  
-  open class func isDisturbance(_ text: String?) -> Bool {
-    if let text = text {
-      return (text.lowercased().range(of: "försen") != nil ||
-        text.lowercased().range(of: "utebli") != nil ||
-        text.lowercased().range(of: "signalfel") != nil ||
-        text.lowercased().range(of: "inställd") != nil ||        
-        text.lowercased().range(of: "stannar inte") != nil ||
-        text.lowercased().range(of: "banarbete") != nil ||
-        text.lowercased().range(of: "rökutveckling") != nil ||
-        text.lowercased().range(of: "växelfel") != nil ||
-        text.lowercased().range(of: "stannar ej") != nil)            
-    }
     
-    return false
-  }
+    open class func isDisturbance(_ text: String?) -> Bool {
+        if let text = text {
+            return (text.lowercased().range(of: "försen") != nil ||
+                text.lowercased().range(of: "utebli") != nil ||
+                text.lowercased().range(of: "signalfel") != nil ||
+                text.lowercased().range(of: "inställd") != nil ||        
+                text.lowercased().range(of: "stannar inte") != nil ||
+                text.lowercased().range(of: "banarbete") != nil ||
+                text.lowercased().range(of: "rökutveckling") != nil ||
+                text.lowercased().range(of: "växelfel") != nil ||
+                text.lowercased().range(of: "stannar ej") != nil)            
+        }
+        
+        return false
+    }
 }

@@ -9,19 +9,19 @@
 import Foundation
 
 extension String {
-  var localized: String {
-    return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
-  }
+    var localized: String {
+        return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
+    }
 }
 
 extension String {
-  var first: String {
-    return String(characters.prefix(1))
-  }
-  var last: String {
-    return String(characters.suffix(1))
-  }
-  var uppercaseFirst: String {
-    return first.uppercased() + String(characters.dropFirst())
-  }
+    var first: String {
+        return String(prefix(1))
+    }
+    var last: String {
+        return String(suffix(1))
+    }
+    var uppercaseFirst: String {
+        return first.uppercased() + String(dropFirst())
+    }
 }

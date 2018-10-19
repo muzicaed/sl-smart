@@ -11,13 +11,13 @@ import UIKit
 import ResStockholmApiKit
 
 class HereToThereCell: UITableViewCell {
-  
-  @IBOutlet weak var locationLabel: UILabel!
-  
-  /**
-   * Set the from location text.
-   */
-  func setFromLocationText(_ location: Location) {
-    locationLabel.text = "\("From".localized) \(location.name)"
-  }
+    
+    @IBOutlet weak var locationLabel: UILabel!
+    
+    /**
+     * Set the from location text.
+     */
+    func setFromLocationText(_ location: Location) {
+        locationLabel.text = "\("From".localized) \(location.name)"
+    }
 }

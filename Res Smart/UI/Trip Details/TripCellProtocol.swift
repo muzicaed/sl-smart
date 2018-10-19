@@ -11,6 +11,6 @@ import UIKit
 import ResStockholmApiKit
 
 protocol TripCellProtocol {
-  
-  func setData(_ indexPath: IndexPath, trip: Trip)
+    
+    func setData(_ indexPath: IndexPath, trip: Trip)
 }
